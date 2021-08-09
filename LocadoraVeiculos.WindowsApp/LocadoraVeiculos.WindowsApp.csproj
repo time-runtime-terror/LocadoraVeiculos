@@ -59,6 +59,12 @@
     <Compile Include="TelaCadastrarFuncionario.Designer.cs">
       <DependentUpon>TelaCadastrarFuncionario.cs</DependentUpon>
     </Compile>
+    <Compile Include="TelaCadastroGrupoAutomoveis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TelaCadastroGrupoAutomoveis.Designer.cs">
+      <DependentUpon>TelaCadastroGrupoAutomoveis.cs</DependentUpon>
+    </Compile>
     <Compile Include="TelaLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +78,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TelaCadastrarFuncionario.resx">
       <DependentUpon>TelaCadastrarFuncionario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TelaCadastroGrupoAutomoveis.resx">
+      <DependentUpon>TelaCadastroGrupoAutomoveis.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TelaLogin.resx">
       <DependentUpon>TelaLogin.cs</DependentUpon>
