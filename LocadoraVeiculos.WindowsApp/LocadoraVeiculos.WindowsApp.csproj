@@ -52,6 +52,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="TelaCadastrarFuncionario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TelaCadastrarFuncionario.Designer.cs">
+      <DependentUpon>TelaCadastrarFuncionario.cs</DependentUpon>
+    </Compile>
     <Compile Include="TelaLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +66,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="TelaCadastrarFuncionario.resx">
+      <DependentUpon>TelaCadastrarFuncionario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TelaLogin.resx">
       <DependentUpon>TelaLogin.cs</DependentUpon>
     </EmbeddedResource>
