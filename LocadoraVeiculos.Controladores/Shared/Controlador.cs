@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LocadoraVeiculos.Dominio.Shared;
+using System;
 using System.Collections.Generic;
 using System.Data;
 
