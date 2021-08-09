@@ -64,6 +64,7 @@
     </Compile>
     <Compile Include="TelaCadastrarVeiculos.Designer.cs">
       <DependentUpon>TelaCadastrarVeiculos.cs</DependentUpon>
+    </Compile>
     <Compile Include="TelaCadastroGrupoAutomoveis.cs">
       <SubType>Form</SubType>
     </Compile>
