@@ -57,7 +57,6 @@
   <ItemGroup>
     <Compile Include="ClienteModule\ClienteTests.cs" />
     <Compile Include="FuncionarioModule\FuncionarioTest.cs" />
-    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
