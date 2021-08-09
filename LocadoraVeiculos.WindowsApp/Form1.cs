@@ -16,5 +16,6 @@ namespace LocadoraVeiculos.WindowsApp
         {
             InitializeComponent();
         }
+
     }
 }
