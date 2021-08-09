@@ -76,7 +76,6 @@
     </Compile>
     <Compile Include="TelaControleCombustível.Designer.cs">
       <DependentUpon>TelaControleCombustível.cs</DependentUpon>
-    </Compile>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Login\TelaLogin.Designer.cs">
