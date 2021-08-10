@@ -8,13 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LocadoraVeiculos.WindowsApp
+namespace LocadoraVeiculos.WindowsApp.Feature.Dashboard
 {
-    public partial class FormLogin : Form
+    public partial class Form1 : Form
     {
-        public FormLogin()
+        public Form1()
         {
             InitializeComponent();
         }
+
     }
 }

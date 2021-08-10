@@ -46,29 +46,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dashboard\Dashboard.cs">
+    <Compile Include="Feature\Dashboard\Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dashboard\.Designer.cs">
+    <Compile Include="Feature\Dashboard\.Designer.cs">
       <DependentUpon>Dashboard.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Funcionário\TelaCadastrarFuncionario.cs">
+    <Compile Include="Feature\Funcionário\TelaCadastrarFuncionario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Funcionário\TelaCadastrarFuncionario.Designer.cs">
+    <Compile Include="Feature\Funcionário\TelaCadastrarFuncionario.Designer.cs">
       <DependentUpon>TelaCadastrarFuncionario.cs</DependentUpon>
     </Compile>
-    <Compile Include="Veículos\TelaCadastrarVeiculos.cs">
+    <Compile Include="Feature\Veiculo\TelaCadastrarVeiculos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Veículos\TelaCadastrarVeiculos.Designer.cs">
+    <Compile Include="Feature\Veiculo\TelaCadastrarVeiculos.Designer.cs">
       <DependentUpon>TelaCadastrarVeiculos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Veículos\TelaCadastroGrupoAutomoveis.cs">
+    <Compile Include="Feature\Veiculo\TelaCadastroGrupoAutomoveis.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Veículos\TelaCadastroGrupoAutomoveis.Designer.cs">
+    <Compile Include="Feature\Veiculo\TelaCadastroGrupoAutomoveis.Designer.cs">
       <DependentUpon>TelaCadastroGrupoAutomoveis.cs</DependentUpon>
     </Compile>
     <Compile Include="Shared\TelaControleCombustível.cs">
@@ -78,28 +78,22 @@
       <DependentUpon>TelaControleCombustível.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login\TelaLogin.Designer.cs">
-      <DependentUpon>TelaLogin.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Dashboard\Dashboard.resx">
+    <EmbeddedResource Include="Feature\Dashboard\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Funcionário\TelaCadastrarFuncionario.resx">
+    <EmbeddedResource Include="Feature\Funcionário\TelaCadastrarFuncionario.resx">
       <DependentUpon>TelaCadastrarFuncionario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Veículos\TelaCadastrarVeiculos.resx">
+    <EmbeddedResource Include="Feature\Veiculo\TelaCadastrarVeiculos.resx">
       <DependentUpon>TelaCadastrarVeiculos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Veículos\TelaCadastroGrupoAutomoveis.resx">
+    <EmbeddedResource Include="Feature\Veiculo\TelaCadastroGrupoAutomoveis.resx">
       <DependentUpon>TelaCadastroGrupoAutomoveis.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Shared\TelaControleCombustível.resx">
       <DependentUpon>TelaControleCombustível.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Login\TelaLogin.resx">
-      <DependentUpon>TelaLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
