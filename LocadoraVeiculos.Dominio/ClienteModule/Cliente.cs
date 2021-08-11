@@ -1,10 +1,13 @@
-﻿using LocadoraVeiculos.Dominio.Shared;
+﻿using LocadoraVeiculos.Dominio.CondutorModule;
+using LocadoraVeiculos.Dominio.Shared;
 using System;
 
 namespace LocadoraVeiculos.Dominio.ClienteModule
 {
     public class Cliente : EntidadeBase
     {
+        private Condutor condutor;
+
         public string Nome { get; }
         public string Endereco { get; }
         public string Telefone { get; }
@@ -14,7 +17,7 @@ namespace LocadoraVeiculos.Dominio.ClienteModule
         public string CPF { get; }
         public string CNPJ { get; }
         public string RG { get; }
-        public Condutor Condutor { get; }
+        public Condutor Condutor { get => condutor; }
 
         public Cliente(string nome, string endereco, string telefone, string tipoPessoa,
             string cnh, DateTime vencimentoCnh, string cpf, string cpnj, string rg, Condutor condutor) 
@@ -28,7 +31,20 @@ namespace LocadoraVeiculos.Dominio.ClienteModule
             CPF = cpf;
             CNPJ = cpnj;
             RG = rg;
-            Condutor = condutor;
+            this.condutor = condutor;
+        }
+
+        public Cliente(string nome, string endereco, string telefone, string tipoPessoa, string cnh, DateTime vencimentoCnh, string cpf, string cnpj, Condutor condutor)
+        {
+            Nome = nome;
+            Endereco = endereco;
+            Telefone = telefone;
+            TipoPessoa = tipoPessoa;
+            CNH = cnh;
+            VencimentoCnh = vencimentoCnh;
+            CPF = cpf;
+            CNPJ = cnpj;
+            this.condutor = condutor;
         }
 
         public override string Validar()
