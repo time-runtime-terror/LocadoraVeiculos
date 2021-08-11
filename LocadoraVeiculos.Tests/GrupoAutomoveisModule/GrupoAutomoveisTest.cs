@@ -1,57 +1,83 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using LocadoraVeiculos.Dominio.GrupoAutomoveisModule;
+using FluentAssertions;
 
 namespace LocadoraVeiculos.Tests.GrupoAutomoveisModule
 {
     [TestClass]
+    [TestCategory("Dominio")]
     public class GrupoAutomoveisTest
     {
-        public GrupoAutomoveisTest()
-        {
-            
-        }
-
-        private TestContext testContextInstance;
-
-        public TestContext TestContext
-        {
-            get
-            {
-                return testContextInstance;
-            }
-            set
-            {
-                testContextInstance = value;
-            }
-        }
-
-        #region Additional test attributes
-        //
-        // You can use the following additional attributes as you write your tests:
-        //
-        // Use ClassInitialize to run code before running the first test in the class
-        // [ClassInitialize()]
-        // public static void MyClassInitialize(TestContext testContext) { }
-        //
-        // Use ClassCleanup to run code after all tests in a class have run
-        // [ClassCleanup()]
-        // public static void MyClassCleanup() { }
-        //
-        // Use TestInitialize to run code before running each test 
-        // [TestInitialize()]
-        // public void MyTestInitialize() { }
-        //
-        // Use TestCleanup to run code after each test has run
-        // [TestCleanup()]
-        // public void MyTestCleanup() { }
-        //
-        #endregion
 
         [TestMethod]
-        public void TestMethod1()
+        public void DeveValidar_GrupoAutomoveis()
         {
+            // arrange
+            GrupoAutomoveis grupoAutomoveis = new GrupoAutomoveis("Economico", "120", "140", "180",
+                "200", "90", "110");
+
+            // action
+            string validacao = grupoAutomoveis.Validar();
+
+            // assert
+            validacao.Should().Be("ESTA_VALIDO");
+        }
+
+        [TestMethod]
+        public void NaoDeveValidar_NomeGrupoVazio()
+        {
+            // arrange
+            GrupoAutomoveis grupoAutomoveis = new GrupoAutomoveis("", "120", "140", "180",
+                "200", "90", "110");
+
+            // action
+            string validacao = grupoAutomoveis.Validar();
+
+            // assert
+            validacao.Should().Be("O campo Nome do Grupo de Automóveis é obrigatório");
+        }
+
+        [TestMethod]
+        public void NaoDeveValidar_PlanoDiarioUmVazio()
+        {
+            // arrange
+            GrupoAutomoveis grupoAutomoveis = new GrupoAutomoveis("Suv", "", "140", "180",
+                "200", "90", "110");
+
+            // action
+            string validacao = grupoAutomoveis.Validar();
+
+            // assert
+            validacao.Should().Be("O campo Plano Diário é obrigatório");
+        }
+
+        [TestMethod]
+        public void NaoDeveValidar_KmControladoUmVazio()
+        {
+            // arrange
+            GrupoAutomoveis grupoAutomoveis = new GrupoAutomoveis("Suv", "120", "140", "",
+                "200", "90", "110");
+
+            // action
+            string validacao = grupoAutomoveis.Validar();
+
+            // assert
+            validacao.Should().Be("O campo Quilometro Controlado é obrigatório");
+        }
+
+        [TestMethod]
+        public void NaoDeveValidar_KmLivreUmVazio()
+        {
+            // arrange
+            GrupoAutomoveis grupoAutomoveis = new GrupoAutomoveis("Suv", "120", "140", "180",
+                "200", "", "110");
+
+            // action
+            string validacao = grupoAutomoveis.Validar();
+
+            // assert
+            validacao.Should().Be("O campo Quilometro Livre é obrigatório");
         }
     }
 }

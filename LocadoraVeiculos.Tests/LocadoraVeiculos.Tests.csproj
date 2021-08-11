@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="ClienteModule\ClienteTests.cs" />
     <Compile Include="FuncionarioModule\FuncionarioTest.cs" />
+    <Compile Include="GrupoAutomoveisModule\ControladorGrupoAutomoveisTest.cs" />
     <Compile Include="GrupoAutomoveisModule\GrupoAutomoveisTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -73,6 +74,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LocadoraVeiculos.Controladores\LocadoraVeiculos.Controladores.csproj">
+      <Project>{834ADC7C-DCD2-4409-A546-C3D58ADB97B2}</Project>
+      <Name>LocadoraVeiculos.Controladores</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LocadoraVeiculos.Dominio\LocadoraVeiculos.Dominio.csproj">
       <Project>{de9a2fab-893c-427c-abff-92b196453eaf}</Project>
       <Name>LocadoraVeiculos.Dominio</Name>
