@@ -5,13 +5,15 @@ namespace LocadoraVeiculos.Dominio.CondutorModule
 {
     public class Condutor : EntidadeBase
     {
+        public string Nome { get; }
         public string CNH { get; }
         public string CPF { get; }
         public string RG { get; }
         public DateTime VencimentoCnh { get; }
 
-        public Condutor(string cnh, string cpf, string rg, DateTime vencimentoCnh)
+        public Condutor(string nome, string cnh, string cpf, string rg, DateTime vencimentoCnh)
         {
+            Nome = nome;
             CNH = cnh;
             CPF = cpf;
             RG = rg;
@@ -21,6 +23,9 @@ namespace LocadoraVeiculos.Dominio.CondutorModule
         public override string Validar()
         {
             string resultadoValidacao = "";
+
+            if (string.IsNullOrEmpty(Nome))
+                resultadoValidacao = "O campo Nome é obrigatório";
 
             if (string.IsNullOrEmpty(CNH))
                 resultadoValidacao = "O campo CNH é obrigatório";
