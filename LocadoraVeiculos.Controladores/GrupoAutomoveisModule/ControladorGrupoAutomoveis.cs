@@ -43,7 +43,7 @@ namespace LocadoraVeiculos.Controladores.GrupoAutomoveisModule
                         [KMCONTROLADOUM] = @KMCONTROLADOUM,
                         [KMCONTROLADODOIS] = @KMCONTROLADODOIS,
                         [KMLIVREUM] = @KMLIVREUM,
-                        [KMLIVREDOIS] = @KMLIVREDOIS,
+                        [KMLIVREDOIS] = @KMLIVREDOIS
 
                     WHERE 
                         ID = @ID";
@@ -164,13 +164,13 @@ namespace LocadoraVeiculos.Controladores.GrupoAutomoveisModule
         private GrupoAutomoveis ConverterEmGrupoAutomovel(IDataReader reader)
         {
             int id = Convert.ToInt32(reader["ID"]);
-            string nomeGrupo = Convert.ToString(reader["NOME"]);
-            string planoDiarioUm = Convert.ToString(reader["PLANODIARIOUM"]);
-            string planoDiarioDois = Convert.ToString(reader["PLANODIARIODOIS"]);
-            string kmControladoUm = Convert.ToString(reader["KMCONTROLADOUM"]);
-            string kmControladoDois = Convert.ToString(reader["KMCONTROLADODOIS"]);
-            string kmLivreUm = Convert.ToString(reader["KMLIVREUM"]);
-            string kmLivreDois = Convert.ToString(reader["KMLIVREDOIS"]);
+            string nomeGrupo = Convert.ToString(reader["NOMEGRUPO"]);
+            double planoDiarioUm = Convert.ToDouble(reader["PLANODIARIOUM"]);
+            double planoDiarioDois = Convert.ToDouble(reader["PLANODIARIODOIS"]);
+            double kmControladoUm = Convert.ToDouble(reader["KMCONTROLADOUM"]);
+            double kmControladoDois = Convert.ToDouble(reader["KMCONTROLADODOIS"]);
+            double kmLivreUm = Convert.ToDouble(reader["KMLIVREUM"]);
+            double kmLivreDois = Convert.ToDouble(reader["KMLIVREDOIS"]);
 
             GrupoAutomoveis grupoAutomoveis = new GrupoAutomoveis(nomeGrupo, planoDiarioUm, planoDiarioDois, kmControladoUm,
                 kmControladoDois, kmLivreUm, kmLivreDois);

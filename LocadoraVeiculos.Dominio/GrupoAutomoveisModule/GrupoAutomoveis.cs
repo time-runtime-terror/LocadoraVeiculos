@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.Dominio.GrupoAutomoveisModule
 {
-    public class GrupoAutomoveis : EntidadeBase
+    public class GrupoAutomoveis : EntidadeBase, IEquatable<GrupoAutomoveis>
     {
-        public GrupoAutomoveis(string nomeGrupo, string planoDiarioUm, string planoDiarioDois, string kmControladoUm, 
-            string kmControladoDois, string kmLivreUm, string kmLivreDois)
+        public GrupoAutomoveis(string nomeGrupo, double planoDiarioUm, double planoDiarioDois, double kmControladoUm,
+            double kmControladoDois, double kmLivreUm, double kmLivreDois)
         {
             NomeGrupo = nomeGrupo;
             PlanoDiarioUm = planoDiarioUm;
@@ -23,17 +23,35 @@ namespace LocadoraVeiculos.Dominio.GrupoAutomoveisModule
 
         public string NomeGrupo { get; }
 
-        public string PlanoDiarioUm { get; }
+        public double PlanoDiarioUm { get; }
 
-        public string PlanoDiarioDois { get; }
+        public double PlanoDiarioDois { get; }
 
-        public string KmControladoUm { get; }
+        public double KmControladoUm { get; }
 
-        public string KmControladoDois { get; }
+        public double KmControladoDois { get; }
 
-        public string KmLivreUm { get; }
+        public double KmLivreUm { get; }
 
-        public string KmLivreDois { get; }
+        public double KmLivreDois { get; }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as GrupoAutomoveis);
+        }
+
+        public bool Equals(GrupoAutomoveis other)
+        {
+            return other != null
+              && Id == other.Id
+              && NomeGrupo == other.NomeGrupo
+              && PlanoDiarioUm == other.PlanoDiarioUm
+              && PlanoDiarioDois == other.PlanoDiarioDois
+              && KmControladoUm == other.KmControladoUm
+              && KmControladoDois == other.KmControladoDois
+              && KmLivreUm == other.KmLivreUm
+              && KmLivreDois == other.KmLivreDois;
+        }
 
         public override string Validar()
         {
@@ -42,13 +60,13 @@ namespace LocadoraVeiculos.Dominio.GrupoAutomoveisModule
             if (string.IsNullOrEmpty(NomeGrupo))
                 resultadoValidacao = "O campo Nome do Grupo de Automóveis é obrigatório";
 
-            if (string.IsNullOrEmpty(PlanoDiarioUm))
+            if (PlanoDiarioUm == 0)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Plano Diário é obrigatório";
 
-            if (string.IsNullOrEmpty(KmControladoUm))
+            if (KmControladoUm == 0)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Quilometro Controlado é obrigatório";
 
-            if (string.IsNullOrEmpty(KmLivreUm))
+            if (KmLivreUm == 0)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Quilometro Livre é obrigatório";
 
             if (resultadoValidacao == "")
