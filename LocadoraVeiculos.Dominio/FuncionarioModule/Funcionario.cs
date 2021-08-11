@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.Dominio.FuncionarioModule
 {
-    public class Funcionario : EntidadeBase
+    public class Funcionario : EntidadeBase, IEquatable<Funcionario>
     {
         //Devem ser registrados nome, usuário de acesso,
         //senha de acesso, data de entrada na empresa e o salário do funcionário.
@@ -20,6 +20,8 @@ namespace LocadoraVeiculos.Dominio.FuncionarioModule
             Salario = salario;
         }
 
+        
+
         public string Nome { get; }
 
         public string NomeUsuario { get; }
@@ -29,6 +31,22 @@ namespace LocadoraVeiculos.Dominio.FuncionarioModule
         public DateTime DataEntrada { get; }
 
         public string Salario { get; }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as Funcionario);
+        }
+
+        public bool Equals(Funcionario other)
+        {
+            return other != null
+               && Id == other.Id
+               && Nome == other.Nome
+               && NomeUsuario == other.NomeUsuario
+               && Senha == other.Senha
+               && DataEntrada == other.DataEntrada
+               && Salario == other.Salario;
+        }
 
         public override string Validar()
         {
