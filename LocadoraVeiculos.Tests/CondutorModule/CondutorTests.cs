@@ -65,7 +65,7 @@ namespace LocadoraVeiculos.Tests.CondutorModule
         public void NaoDeveValidar_RGVazio()
         {
             // arrange
-            Condutor condutor = new Condutor("Tiago Santini", "2321324", "", "01134954920", new DateTime(2025, 06, 30));
+            Condutor condutor = new Condutor("Tiago Santini", "2321324", "01134954920", "", new DateTime(2025, 06, 30));
 
             // action
             string resultadoValidacao = condutor.Validar();
