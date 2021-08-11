@@ -1,5 +1,5 @@
 ﻿
-namespace LocadoraVeiculos.WindowsApp.Feature.Funcionario
+namespace LocadoraVeiculos.WindowsApp.Features.Funcionario
 {
     partial class TelaFuncionário
     {
