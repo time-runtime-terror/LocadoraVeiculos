@@ -1,5 +1,5 @@
 ﻿
-namespace LocadoraVeiculos.WindowsApp.Feature.Veiculo
+namespace LocadoraVeiculos.WindowsApp.Features.Veiculo
 {
     partial class TelaCadastrarVeiculos
     {

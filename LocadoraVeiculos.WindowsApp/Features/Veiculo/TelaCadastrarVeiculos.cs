@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LocadoraVeiculos.WindowsApp.Feature.Dashboard
+namespace LocadoraVeiculos.WindowsApp.Features.Veiculo
 {
-    public partial class Form1 : Form
+    public partial class TelaCadastrarVeiculos : Form
     {
-        public Form1()
+        public TelaCadastrarVeiculos()
         {
             InitializeComponent();
         }
