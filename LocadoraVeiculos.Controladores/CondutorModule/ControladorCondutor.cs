@@ -16,7 +16,7 @@ namespace LocadoraVeiculos.Controladores.CondutorModule
 		                [CPF],
                         [CNH], 
 		                [RG],
-		                [DATAVENCIMENTOCNH]
+		                [VENCIMENTOCNH]
 	                ) 
 	                VALUES
 	                (
@@ -24,7 +24,7 @@ namespace LocadoraVeiculos.Controladores.CondutorModule
                         @CPF,
                         @CNH,
 		                @RG, 
-		                @DATAVENCIMENTOCNH
+		                @VENCIMENTOCNH
 	                )";
 
         private const string sqlEditarCondutor =
@@ -34,7 +34,7 @@ namespace LocadoraVeiculos.Controladores.CondutorModule
                         [CPF] = @CPF,
                         [CNH] = @CNH,
                         [RG] = @RG,
-                        [DATAVENCIMENTOCNH] = @DATAVENCIMENTOCNH,
+                        [VENCIMENTOCNH] = @DATAVENCIMENTOCNH,
                     WHERE 
                         ID = @ID";
 
@@ -47,11 +47,12 @@ namespace LocadoraVeiculos.Controladores.CondutorModule
 
         private const string sqlSelecionarCondutorPorId =
             @"SELECT
+                        [ID],
 		                [NOME], 
                         [CPF], 
 		                [CNH],
 		                [RG],
-		                [DATAVENCIMENTOCNH],
+		                [VENCIMENTOCNH]
 	                FROM
                         [TBCONDUTOR] 
                     WHERE 
@@ -59,11 +60,12 @@ namespace LocadoraVeiculos.Controladores.CondutorModule
 
         private const string sqlSelecionarTodosCondutores =
             @"SELECT
+                        [ID],
 		                [NOME], 
                         [CPF], 
 		                [CNH],
 		                [RG],
-		                [DATAVENCIMENTOCNH],
+		                [VENCIMENTOCNH]
 	                FROM
                         [TBCONDUTOR] 
                     WHERE 
@@ -141,7 +143,7 @@ namespace LocadoraVeiculos.Controladores.CondutorModule
             parametros.Add("CPF", condutor.CPF);
             parametros.Add("CNH", condutor.CNH);
             parametros.Add("RG", condutor.RG);
-            parametros.Add("DATAVENCIMENTOCNH", condutor.VencimentoCnh);
+            parametros.Add("VENCIMENTOCNH", condutor.VencimentoCnh);
 
             return parametros;
         }
@@ -153,7 +155,7 @@ namespace LocadoraVeiculos.Controladores.CondutorModule
             string cnh = Convert.ToString(reader["CNH"]);
             string cpf = Convert.ToString(reader["CPF"]);
             string rg = Convert.ToString(reader["RG"]);
-            DateTime vencimentoCnh = Convert.ToDateTime(reader["DATAVENCIMENTOCNH"]);
+            DateTime vencimentoCnh = Convert.ToDateTime(reader["VENCIMENTOCNH"]);
 
             Condutor condutor = new Condutor(nome, cnh, cpf, rg, vencimentoCnh);
 

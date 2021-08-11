@@ -16,6 +16,11 @@ namespace LocadoraVeiculos.WindowsApp
             Instancia = this;
         }
 
+        private void btnCadastroClientes_Click(object sender, System.EventArgs e)
+        {
+
+        }
+
         private void ConfigurarPainelRegistros()
         {
             UserControl tabela = operacoes.ObterTabela();

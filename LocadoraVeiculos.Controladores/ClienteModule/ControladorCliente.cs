@@ -1,6 +1,7 @@
 ﻿using LocadoraVeiculos.Controladores.CondutorModule;
 using LocadoraVeiculos.Controladores.Shared;
 using LocadoraVeiculos.Dominio.ClienteModule;
+using LocadoraVeiculos.Dominio.CondutorModule;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -25,6 +26,7 @@ namespace LocadoraVeiculos.Controladores.ClienteModule
 		                [TELEFONE], 
 		                [TIPOPESSOA],
                         [CPF], 
+                        [CNH],
 		                [CNPJ],
 		                [RG],
 		                [DATAVENCIMENTOCNH],
@@ -37,10 +39,11 @@ namespace LocadoraVeiculos.Controladores.ClienteModule
                         @TELEFONE,
 		                @TIPOPESSOA, 
 		                @CPF,
+                        @CNH,
 		                @CNPJ,
 		                @RG,
 		                @DATAVENCIMENTOCNH,
-		                @ID_CONDUTOR,
+		                @ID_CONDUTOR
 	                )";
 
         private const string sqlEditarCliente =
@@ -51,10 +54,11 @@ namespace LocadoraVeiculos.Controladores.ClienteModule
 		                [TELEFONE] = @TELEFONE,
                         [TIPOPESSOA] = @TIPOPESSOA,
                         [CPF] = @CPF,
+                        [CNH] = @CNH,
                         [CNPJ] = @CNPJ,
                         [RG] = @RG,
                         [DATAVENCIMENTOCNH] = @DATAVENCIMENTOCNH,
-                        [ID_CONDUTOR] = @ID_CONDUTOR,
+                        [ID_CONDUTOR] = @ID_CONDUTOR
                     WHERE 
                         ID = @ID";
 
@@ -67,10 +71,12 @@ namespace LocadoraVeiculos.Controladores.ClienteModule
 
         private const string sqlSelecionarClientePorId =
             @"SELECT
+                        CL.[ID],
 		                CL.[NOME], 
 		                CL.[ENDERECO], 
 		                CL.[TELEFONE], 
 		                CL.[TIPOPESSOA],
+                        CL.[CNH],
                         CL.[CPF], 
 		                CL.[CNPJ],
 		                CL.[RG],
@@ -86,10 +92,12 @@ namespace LocadoraVeiculos.Controladores.ClienteModule
 
         private const string sqlSelecionarTodosClientes =
             @"SELECT
+                        CL.[ID],
 		                CL.[NOME], 
 		                CL.[ENDERECO], 
 		                CL.[TELEFONE], 
 		                CL.[TIPOPESSOA],
+                        CL.[CNH],
                         CL.[CPF], 
 		                CL.[CNPJ],
 		                CL.[RG],
@@ -172,6 +180,7 @@ namespace LocadoraVeiculos.Controladores.ClienteModule
             parametros.Add("ENDERECO", cliente.Endereco);
             parametros.Add("TELEFONE", cliente.Telefone);
             parametros.Add("TIPOPESSOA", cliente.TipoPessoa);
+            parametros.Add("CNH", cliente.CNH);
             parametros.Add("CPF", cliente.CPF);
             parametros.Add("CNPJ", cliente.CNPJ);
             parametros.Add("RG", cliente.RG);
@@ -194,10 +203,16 @@ namespace LocadoraVeiculos.Controladores.ClienteModule
             string cnh = Convert.ToString(reader["CNH"]);
             DateTime vencimentoCnh = Convert.ToDateTime(reader["DATAVENCIMENTOCNH"]);
             string cpf = Convert.ToString(reader["CPF"]);
+            string rg = Convert.ToString(reader["RG"]);
             string cnpj = Convert.ToString(reader["CNPJ"]);
-            var condutor = controladorCondutor.SelecionarPorId(Convert.ToInt32(reader["ID_CONDUTOR"]));
 
-            Cliente cliente = new Cliente(nome, endereco, telefone, tipoPessoa, cnh, vencimentoCnh, cpf, cnpj, condutor);
+            Condutor condutor = null;
+            if (reader["ID_CONDUTOR"] != DBNull.Value)
+            {
+                condutor = controladorCondutor.SelecionarPorId(Convert.ToInt32(reader["ID_CONDUTOR"]));
+            }
+
+            Cliente cliente = new Cliente(nome, endereco, telefone, tipoPessoa, cnh, vencimentoCnh, cpf, cnpj, rg, condutor);
 
             cliente.Id = id;
 

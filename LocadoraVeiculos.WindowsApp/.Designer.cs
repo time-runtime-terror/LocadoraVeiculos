@@ -47,10 +47,10 @@ namespace LocadoraVeiculos.WindowsApp
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripBtnAdicionar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripBtnExcluir = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripBtnEditar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripBtnExcluir = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripBtnFiltrar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripBtnAgrupar = new System.Windows.Forms.ToolStripButton();
@@ -188,6 +188,7 @@ namespace LocadoraVeiculos.WindowsApp
             this.btnCadastroClientes.TabIndex = 1;
             this.btnCadastroClientes.Text = "Clientes";
             this.btnCadastroClientes.UseVisualStyleBackColor = true;
+            this.btnCadastroClientes.Click += new System.EventHandler(this.btnCadastroClientes_Click);
             // 
             // label3
             // 
@@ -265,22 +266,6 @@ namespace LocadoraVeiculos.WindowsApp
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 55);
             // 
-            // toolStripBtnExcluir
-            // 
-            this.toolStripBtnExcluir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripBtnExcluir.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtnExcluir.Image")));
-            this.toolStripBtnExcluir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripBtnExcluir.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripBtnExcluir.Name = "toolStripBtnExcluir";
-            this.toolStripBtnExcluir.Size = new System.Drawing.Size(52, 52);
-            this.toolStripBtnExcluir.Text = "toolStripButton2";
-            this.toolStripBtnExcluir.ToolTipText = "Excluir";
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 55);
-            // 
             // toolStripBtnEditar
             // 
             this.toolStripBtnEditar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -296,6 +281,22 @@ namespace LocadoraVeiculos.WindowsApp
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 55);
+            // 
+            // toolStripBtnExcluir
+            // 
+            this.toolStripBtnExcluir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBtnExcluir.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtnExcluir.Image")));
+            this.toolStripBtnExcluir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripBtnExcluir.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBtnExcluir.Name = "toolStripBtnExcluir";
+            this.toolStripBtnExcluir.Size = new System.Drawing.Size(52, 52);
+            this.toolStripBtnExcluir.Text = "toolStripButton2";
+            this.toolStripBtnExcluir.ToolTipText = "Excluir";
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 55);
             // 
             // toolStripBtnFiltrar
             // 
