@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LocadoraVeiculos.WindowsApp.Feature.Funcionario
+namespace LocadoraVeiculos.WindowsApp.Features.Combustivel
 {
-    public partial class TelaFuncionário : Form
+    public partial class TelaControleCombustível : Form
     {
-        public TelaFuncionário()
+        public TelaControleCombustível()
         {
             InitializeComponent();
         }
