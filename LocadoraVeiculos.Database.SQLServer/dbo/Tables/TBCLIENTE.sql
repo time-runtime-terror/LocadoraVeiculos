@@ -10,6 +10,6 @@
     [Rg]                VARCHAR (50) NOT NULL,
     [DataVencimentoCNH] DATE         NOT NULL,
     [Id_Condutor]       INT          NULL,
-    CONSTRAINT [FK_TBCLIENTE_TBCONDUTOR] FOREIGN KEY ([Id_Condutor]) REFERENCES [dbo].[TBCONDUTOR] ([Id])
+    CONSTRAINT [FK_TBCLIENTE_TBCONDUTOR] FOREIGN KEY ([Id_Condutor]) REFERENCES [dbo].[TBCONDUTOR] ([Id]) ON DELETE SET NULL
 );
 

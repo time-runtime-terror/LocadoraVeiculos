@@ -34,7 +34,7 @@ namespace LocadoraVeiculos.Controladores.CondutorModule
                         [CPF] = @CPF,
                         [CNH] = @CNH,
                         [RG] = @RG,
-                        [VENCIMENTOCNH] = @DATAVENCIMENTOCNH,
+                        [VENCIMENTOCNH] = @VENCIMENTOCNH
                     WHERE 
                         ID = @ID";
 
@@ -67,10 +67,7 @@ namespace LocadoraVeiculos.Controladores.CondutorModule
 		                [RG],
 		                [VENCIMENTOCNH]
 	                FROM
-                        [TBCONDUTOR] 
-                    WHERE 
-                        [ID] = @ID";
-
+                        [TBCONDUTOR]";
 
         private const string sqlExisteCondutor =
             @"SELECT 

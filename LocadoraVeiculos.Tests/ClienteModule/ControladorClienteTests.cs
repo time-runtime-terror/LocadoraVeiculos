@@ -44,7 +44,7 @@ namespace LocadoraVeiculos.Tests.ClienteModule
         }
 
         [TestMethod]
-        public void DeveAtualizar_Cliente()
+        public void DeveEditar_Cliente()
         {
             // arrange
             Condutor condutor = new Condutor("Tiago Jr.", "99999999", "9999999999", "9999999", new DateTime(2025, 06, 30));
