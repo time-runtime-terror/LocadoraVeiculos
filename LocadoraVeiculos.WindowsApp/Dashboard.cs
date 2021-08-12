@@ -27,6 +27,11 @@ namespace LocadoraVeiculos.WindowsApp
             panelRegistros.Controls.Add(tabela);
         }
 
+        private void btnCadastroFuncionarios_Click(object sender, System.EventArgs e)
+        {
+
+        }
+
         private void ConfigurarToolBox(IConfiguracaoToolBox configuracao)
         {
             toolBoxAcoes.Enabled = true;
@@ -48,5 +53,6 @@ namespace LocadoraVeiculos.WindowsApp
             toolStripBtnFiltrar.Enabled = configuracao.BotaoFiltrar;
         }
 
+       
     }
 }
