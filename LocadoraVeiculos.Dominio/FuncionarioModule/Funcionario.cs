@@ -73,5 +73,17 @@ namespace LocadoraVeiculos.Dominio.FuncionarioModule
             return resultadoValidacao;
         }
 
+        public override int GetHashCode()
+        {
+            int hashCode = 1695060689;
+            hashCode = hashCode * -1521134295 + Id.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Nome);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(NomeUsuario);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Senha);
+            hashCode = hashCode * -1521134295 + EqualityComparer<DateTime>.Default.GetHashCode(DataEntrada);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Salario);
+            return hashCode;
+        }
+
     }
 }

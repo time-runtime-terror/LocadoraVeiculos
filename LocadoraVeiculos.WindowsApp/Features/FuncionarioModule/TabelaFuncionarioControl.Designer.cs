@@ -29,35 +29,35 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
         /// </summary>
         private void InitializeComponent()
         {
-            this.gridFuncionarios = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.gridFuncionarios)).BeginInit();
+            this.gridFuncionario = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.gridFuncionario)).BeginInit();
             this.SuspendLayout();
             // 
-            // gridFuncionarios
+            // gridFuncionario
             // 
-            this.gridFuncionarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridFuncionarios.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridFuncionarios.Location = new System.Drawing.Point(0, 0);
-            this.gridFuncionarios.Name = "gridFuncionarios";
-            this.gridFuncionarios.RowHeadersWidth = 51;
-            this.gridFuncionarios.RowTemplate.Height = 24;
-            this.gridFuncionarios.Size = new System.Drawing.Size(601, 478);
-            this.gridFuncionarios.TabIndex = 0;
+            this.gridFuncionario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridFuncionario.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridFuncionario.Location = new System.Drawing.Point(0, 0);
+            this.gridFuncionario.Name = "gridFuncionario";
+            this.gridFuncionario.RowHeadersWidth = 51;
+            this.gridFuncionario.RowTemplate.Height = 24;
+            this.gridFuncionario.Size = new System.Drawing.Size(601, 478);
+            this.gridFuncionario.TabIndex = 0;
             // 
             // TabelaFuncionarioControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.gridFuncionarios);
+            this.Controls.Add(this.gridFuncionario);
             this.Name = "TabelaFuncionarioControl";
             this.Size = new System.Drawing.Size(601, 478);
-            ((System.ComponentModel.ISupportInitialize)(this.gridFuncionarios)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridFuncionario)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView gridFuncionarios;
+        private System.Windows.Forms.DataGridView gridFuncionario;
     }
 }

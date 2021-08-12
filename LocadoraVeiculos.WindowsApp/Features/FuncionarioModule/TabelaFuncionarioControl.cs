@@ -10,8 +10,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using LocadoraVeiculos.Dominio.FuncionarioModule;
 
-
-
 namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
 {
     public partial class TabelaFuncionarioControl : UserControl
@@ -19,9 +17,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
         public TabelaFuncionarioControl()
         {
             InitializeComponent();
-            gridFuncionarios.ConfigurarGridZebrado();
-            gridFuncionarios.ConfigurarGridSomenteLeitura();
-            gridFuncionarios.Columns.AddRange(ObterColunas());
+            gridFuncionario.ConfigurarGridZebrado();
+            gridFuncionario.ConfigurarGridSomenteLeitura();
+            gridFuncionario.Columns.AddRange(ObterColunas());
         }
 
         public DataGridViewColumn[] ObterColunas()
@@ -45,17 +43,17 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
 
         public int ObtemIdSelecionado()
         {
-            return gridFuncionarios.SelecionarId<int>();
+            return gridFuncionario.SelecionarId<int>();
         }
 
         public void AtualizarRegistros(List<Funcionario> funcionarios)
         {
-            gridFuncionarios.Rows.Clear();
+            gridFuncionario.Rows.Clear();
 
             foreach (Funcionario f in funcionarios)
             {
-                gridFuncionarios.Rows.Add(f.Id, f.Titulo, f.Prioridade,
-                    f.Percentual, f.DataCriacao, f.DataConclusao);
+                gridFuncionario.Rows.Add(f.Id, f.Nome, f.NomeUsuario,
+                    f.DataEntrada.ToString("dd/MM/yyyy"), f.Salario);
             }
         }
     }

@@ -12,22 +12,22 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
 
         public string TipoCadastro
         {
-            get { return "Cadastro de FuncionarioModules"; }
+            get { return "Cadastro de Funcionario"; }
         }
 
         public string ToolTipAdicionar 
         {
-            get { return "Adicionar um novo FuncionarioModule"; }
+            get { return "Adicionar um novo Funcionario"; }
         }
 
         public string ToolTipEditar
         {
-            get { return "Editar um FuncionarioModule existente"; }
+            get { return "Editar um Funcionario existente"; }
         }
 
         public string ToolTipExcluir
         {
-            get { return "Excluir um FuncionarioModule existente"; }
+            get { return "Excluir um Funcionario existente"; }
         }
 
         public string ToolTipFiltrar

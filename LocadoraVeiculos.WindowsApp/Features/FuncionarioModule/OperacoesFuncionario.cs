@@ -5,46 +5,115 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LocadoraVeiculos.Controladores.FuncionarioModule;
+using LocadoraVeiculos.Dominio.FuncionarioModule;
 
 namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
 {
     public class OperacoesFuncionario : ICadastravel
     {
+        private readonly ControladorFuncionario controlador = null;
+        private readonly TabelaFuncionarioControl tabelaFuncionario = null;
 
+        public OperacoesFuncionario(ControladorFuncionario ctrlFuncionario)
+        {
+            controlador = ctrlFuncionario;
+            tabelaFuncionario = new TabelaFuncionarioControl();
+        }
 
         public void InserirNovoRegistro()
         {
-            throw new NotImplementedException();
+            TelaCadastrarFuncionario tela = new TelaCadastrarFuncionario();
+
+            if (tela.ShowDialog() == DialogResult.OK)
+            {
+                controlador.InserirNovo(tela.Funcionario);
+
+                List<Funcionario> funcionarios = controlador.SelecionarTodos();
+
+                tabelaFuncionario.AtualizarRegistros(funcionarios);
+
+                //Dashboard.Instancia.AtualizarRodape($"Tarefa: [{tela.Tarefa.Titulo}] inserido com sucesso");
+            }
         }
 
         public void EditarRegistro()
         {
-            throw new NotImplementedException();
+            int id = tabelaFuncionario.ObtemIdSelecionado();
+
+            if (id == 0)
+            {
+                MessageBox.Show("Selecione um funcionário para poder editar!", "Edição de Funcionário",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            Funcionario funcionarioSelecionado = controlador.SelecionarPorId(id);
+
+            TelaCadastrarFuncionario tela = new TelaCadastrarFuncionario();
+
+            tela.Funcionario = funcionarioSelecionado;
+
+            if (tela.ShowDialog() == DialogResult.OK)
+            {
+                controlador.Editar(id, tela.Funcionario);
+
+                List<Funcionario> funcionarios = controlador.SelecionarTodos();
+
+                tabelaFuncionario.AtualizarRegistros(funcionarios);
+
+                //TelaPrincipalForm.Instancia.AtualizarRodape($"Tarefa: [{tela.Tarefa.Titulo}] editada com sucesso");
+            }
         }
 
         public void ExcluirRegistro()
         {
-            throw new NotImplementedException();
+            int id = tabelaFuncionario.ObtemIdSelecionado();
+
+            if (id == 0)
+            {
+                MessageBox.Show("Selecione um funcionário para poder excluir!", "Exclusão de Funcionários",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            Funcionario funcionarioSelecionado = controlador.SelecionarPorId(id);
+
+            if (MessageBox.Show($"Tem certeza que deseja excluir o funcionário: [{funcionarioSelecionado.Nome}] ?",
+                "Exclusão de Funcionários", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                controlador.Excluir(id);
+
+                List<Funcionario> funcionarios = controlador.SelecionarTodos();
+
+                tabelaFuncionario.AtualizarRegistros(funcionarios);
+
+               // TelaPrincipalForm.Instancia.AtualizarRodape($"Tarefa: [{tarefaSelecionada.Titulo}] removida com sucesso");
+            }
         }
 
         public UserControl ObterTabela()
         {
-            throw new NotImplementedException();
+            List<Funcionario> funcionarios = controlador.SelecionarTodos();
+
+            tabelaFuncionario.AtualizarRegistros(funcionarios);
+
+            return tabelaFuncionario;
         }
 
         public void FiltrarRegistros()
         {
-            throw new NotImplementedException();
+            
         }
 
         public void AgruparRegistros()
         {
-            throw new NotImplementedException();
+            
         }
 
         public void DesagruparRegistros()
         {
-            throw new NotImplementedException();
+            
         }
 
     }
