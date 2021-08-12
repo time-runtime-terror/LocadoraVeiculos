@@ -63,10 +63,16 @@
       <DependentUpon>Dashboard.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Features\Cliente\TelaClienteForm.cs">
+    <Compile Include="Features\ClienteModule\TabelaClienteControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Features\ClienteModule\TabelaClienteControl.Designer.cs">
+      <DependentUpon>TabelaClienteControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\ClienteModule\TelaClienteForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Features\Cliente\TelaClienteForm.Designer.cs">
+    <Compile Include="Features\ClienteModule\TelaClienteForm.Designer.cs">
       <DependentUpon>TelaClienteForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Features\Funcionário\TelaCadastrarFuncionario.cs">
@@ -102,7 +108,10 @@
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Features\Cliente\TelaClienteForm.resx">
+    <EmbeddedResource Include="Features\ClienteModule\TabelaClienteControl.resx">
+      <DependentUpon>TabelaClienteControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\ClienteModule\TelaClienteForm.resx">
       <DependentUpon>TelaClienteForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Features\Funcionário\TelaCadastrarFuncionario.resx">
@@ -145,6 +154,16 @@
     <Content Include="Libs\DataGridViewGrouper.dll" />
     <None Include="Resources\sedan.png" />
     <None Include="Resources\sedan2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LocadoraVeiculos.Controladores\LocadoraVeiculos.Controladores.csproj">
+      <Project>{834adc7c-dcd2-4409-a546-c3d58adb97b2}</Project>
+      <Name>LocadoraVeiculos.Controladores</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LocadoraVeiculos.Dominio\LocadoraVeiculos.Dominio.csproj">
+      <Project>{de9a2fab-893c-427c-abff-92b196453eaf}</Project>
+      <Name>LocadoraVeiculos.Dominio</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

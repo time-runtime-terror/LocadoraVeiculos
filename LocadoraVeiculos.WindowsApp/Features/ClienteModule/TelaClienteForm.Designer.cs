@@ -1,5 +1,5 @@
 ﻿
-namespace LocadoraVeiculos.WindowsApp.Features.Cliente
+namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 {
     partial class TelaClienteForm
     {
