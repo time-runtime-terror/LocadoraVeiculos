@@ -1,4 +1,7 @@
-﻿using LocadoraVeiculos.WindowsApp.Shared;
+﻿using LocadoraVeiculos.Controladores.GrupoAutomoveisModule;
+using LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule;
+using LocadoraVeiculos.WindowsApp.Shared;
+using System;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WindowsApp
@@ -46,6 +49,44 @@ namespace LocadoraVeiculos.WindowsApp
             toolStripBtnAgrupar.Enabled = configuracao.BotaoAgrupar;
             toolStripBtnDesagrupar.Enabled = configuracao.BotaoDesagrupar;
             toolStripBtnFiltrar.Enabled = configuracao.BotaoFiltrar;
+        }
+
+        private void btnCadastroGrupoAutomoveis_Click(object sender, EventArgs e)
+        {
+            ConfiguracaoGrupoAutomoveisToolBox configuracao = new ConfiguracaoGrupoAutomoveisToolBox();
+
+            ConfigurarToolBox(configuracao);
+
+            //AtualizarRodape(configuracao.TipoCadastro);
+
+            operacoes = new OperacoesGrupoAutomoveis(new ControladorGrupoAutomoveis());
+
+            ConfigurarPainelRegistros();
+        }
+            
+        private void toolStripBtnAdicionar_Click(object sender, EventArgs e)
+        {
+            operacoes.InserirNovoRegistro();
+        }
+
+        private void toolStripBtnEditar_Click(object sender, EventArgs e)
+        {
+            operacoes.EditarRegistro();
+        }
+
+        private void toolStripBtnExcluir_Click(object sender, EventArgs e)
+        {
+            operacoes.ExcluirRegistro();
+        }
+
+        private void toolStripBtnAgrupar_Click(object sender, EventArgs e)
+        {
+            operacoes.AgruparRegistros();
+        }
+
+        private void toolStripBtnDesagrupar_Click(object sender, EventArgs e)
+        {
+            operacoes.DesagruparRegistros();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculos.Dominio.GrupoAutomoveisModule;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 
@@ -37,17 +38,20 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
         {
             string nomeGrupo = txtNomeGrupo.Text;
 
-            string planoDiarioUm = txtDiarioUm.Text;
+            double planoDiarioUm = Convert.ToDouble(txtDiarioUm.Text);
 
-            string planoDiarioDois = txtDiarioDois.Text;
+            double planoDiarioDois = Convert.ToDouble(txtDiarioDois.Text);
 
-            string kmControladoUm = txtControladoUm.Text;
+            double kmControladoUm = Convert.ToDouble(txtControladoUm.Text);
 
-            string kmControladoDois = txtControladoDois.Text;
+            double kmControladoDois = Convert.ToDouble(txtControladoDois.Text);
 
-            string kmLivreUm = txtLivreUm.Text;
+            double kmLivreUm = Convert.ToDouble(txtLivreUm.Text);
 
-            string kmLivreDois = txtLivreDois.Text;
+            double kmLivreDois = Convert.ToDouble(txtLivreDois.Text);
+
+            GrupoAutomoveis = new GrupoAutomoveis(nomeGrupo, planoDiarioUm, planoDiarioDois, kmControladoUm, kmControladoDois,
+                kmLivreUm, kmLivreDois);
 
             string resultadoValidacao = grupoAutomoveis.Validar();
 

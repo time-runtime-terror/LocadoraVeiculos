@@ -32,19 +32,19 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             {
                 new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Grupo de Automoveis", HeaderText = "Grupo de Automoveis"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "nomeGrupo", HeaderText = "Grupo de Automoveis"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Plano Diario", HeaderText = "Plano Diario"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "planoDiarioUm", HeaderText = "Plano Diario"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Plano Diario II", HeaderText = "Plano Diario II"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "planoDiarioDois", HeaderText = "Plano Diario II"},
 
-                new DataGridViewTextBoxColumn {DataPropertyName = "Km Controlado", HeaderText = "Km Controlado"},
+                new DataGridViewTextBoxColumn {DataPropertyName = "kmControladoUm", HeaderText = "Km Controlado"},
 
-                new DataGridViewTextBoxColumn {DataPropertyName = "Km Controlado II", HeaderText = "Km Controlado II"},
+                new DataGridViewTextBoxColumn {DataPropertyName = "kmControladoDois", HeaderText = "Km Controlado II"},
 
-                new DataGridViewTextBoxColumn {DataPropertyName = "Km Livre", HeaderText = "Km Livre"},
+                new DataGridViewTextBoxColumn {DataPropertyName = "kmLivreUm", HeaderText = "Km Livre"},
 
-                new DataGridViewTextBoxColumn {DataPropertyName = "Km Livre II", HeaderText = "Km Livre II"}
+                new DataGridViewTextBoxColumn {DataPropertyName = "kmLivreDois", HeaderText = "Km Livre II"}
             };
 
             return colunas;

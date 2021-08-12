@@ -21,6 +21,8 @@ namespace LocadoraVeiculos.Dominio.GrupoAutomoveisModule
             KmLivreDois = kmLivreDois;
         }
 
+        public new int Id { get; set; }
+
         public string NomeGrupo { get; }
 
         public double PlanoDiarioUm { get; }
@@ -51,6 +53,20 @@ namespace LocadoraVeiculos.Dominio.GrupoAutomoveisModule
               && KmControladoDois == other.KmControladoDois
               && KmLivreUm == other.KmLivreUm
               && KmLivreDois == other.KmLivreDois;
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = -815075522;
+            hashCode = hashCode * -1521134295 + Id.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(NomeGrupo);
+            hashCode = hashCode * -1521134295 + PlanoDiarioUm.GetHashCode();
+            hashCode = hashCode * -1521134295 + PlanoDiarioDois.GetHashCode();
+            hashCode = hashCode * -1521134295 + KmControladoUm.GetHashCode();
+            hashCode = hashCode * -1521134295 + KmControladoDois.GetHashCode();
+            hashCode = hashCode * -1521134295 + KmLivreUm.GetHashCode();
+            hashCode = hashCode * -1521134295 + KmLivreDois.GetHashCode();
+            return hashCode;
         }
 
         public override string Validar()

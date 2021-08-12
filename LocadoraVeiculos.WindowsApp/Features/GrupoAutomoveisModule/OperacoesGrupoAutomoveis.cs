@@ -2,7 +2,7 @@
 using LocadoraVeiculos.Dominio.GrupoAutomoveisModule;
 using LocadoraVeiculos.WindowsApp.Shared;
 using System;
-
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
@@ -19,7 +19,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
         }
 
         public void InserirNovoRegistro()
-        {
+        { 
+
             TelaCadastroGrupoAutomoveis tela = new TelaCadastroGrupoAutomoveis();
 
             if (tela.ShowDialog() == DialogResult.OK)
@@ -94,7 +95,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
         }
         public void FiltrarRegistros()
         {
-            throw new NotImplementedException();
+            
         }
 
         public UserControl ObterTabela()

@@ -146,6 +146,7 @@ namespace LocadoraVeiculos.WindowsApp
             this.btnCadastroGrupoAutomoveis.TabIndex = 4;
             this.btnCadastroGrupoAutomoveis.Text = "Grupo de Automóveis";
             this.btnCadastroGrupoAutomoveis.UseVisualStyleBackColor = true;
+            this.btnCadastroGrupoAutomoveis.Click += new System.EventHandler(this.btnCadastroGrupoAutomoveis_Click);
             // 
             // btnCadastroVeiculos
             // 
@@ -259,6 +260,7 @@ namespace LocadoraVeiculos.WindowsApp
             this.toolStripBtnAdicionar.Size = new System.Drawing.Size(52, 52);
             this.toolStripBtnAdicionar.Text = "toolStripButton1";
             this.toolStripBtnAdicionar.ToolTipText = "Adicionar";
+            this.toolStripBtnAdicionar.Click += new System.EventHandler(this.toolStripBtnAdicionar_Click);
             // 
             // toolStripSeparator1
             // 
@@ -275,6 +277,7 @@ namespace LocadoraVeiculos.WindowsApp
             this.toolStripBtnEditar.Size = new System.Drawing.Size(52, 52);
             this.toolStripBtnEditar.Text = "toolStripButton3";
             this.toolStripBtnEditar.ToolTipText = "Editar";
+            this.toolStripBtnEditar.Click += new System.EventHandler(this.toolStripBtnEditar_Click);
             // 
             // toolStripSeparator2
             // 
@@ -291,6 +294,7 @@ namespace LocadoraVeiculos.WindowsApp
             this.toolStripBtnExcluir.Size = new System.Drawing.Size(52, 52);
             this.toolStripBtnExcluir.Text = "toolStripButton2";
             this.toolStripBtnExcluir.ToolTipText = "Excluir";
+            this.toolStripBtnExcluir.Click += new System.EventHandler(this.toolStripBtnExcluir_Click);
             // 
             // toolStripSeparator4
             // 
@@ -323,6 +327,7 @@ namespace LocadoraVeiculos.WindowsApp
             this.toolStripBtnAgrupar.Size = new System.Drawing.Size(52, 52);
             this.toolStripBtnAgrupar.Text = "toolStripButton5";
             this.toolStripBtnAgrupar.ToolTipText = "Agrupar";
+            this.toolStripBtnAgrupar.Click += new System.EventHandler(this.toolStripBtnAgrupar_Click);
             // 
             // toolStripSeparator5
             // 
@@ -339,6 +344,7 @@ namespace LocadoraVeiculos.WindowsApp
             this.toolStripBtnDesagrupar.Size = new System.Drawing.Size(52, 52);
             this.toolStripBtnDesagrupar.Text = "toolStripButton6";
             this.toolStripBtnDesagrupar.ToolTipText = "Desagrupar";
+            this.toolStripBtnDesagrupar.Click += new System.EventHandler(this.toolStripBtnDesagrupar_Click);
             // 
             // toolStripSeparator7
             // 
