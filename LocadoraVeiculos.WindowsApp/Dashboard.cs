@@ -47,6 +47,5 @@ namespace LocadoraVeiculos.WindowsApp
             toolStripBtnDesagrupar.Enabled = configuracao.BotaoDesagrupar;
             toolStripBtnFiltrar.Enabled = configuracao.BotaoFiltrar;
         }
-
     }
 }

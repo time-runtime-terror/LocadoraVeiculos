@@ -1,5 +1,5 @@
 ﻿
-namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveis
+namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
 {
     partial class TelaCadastroGrupoAutomoveis
     {
@@ -211,6 +211,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveis
             this.btnGravar.TabIndex = 11;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
+            this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
             // 
             // panel2
             // 
@@ -227,11 +228,11 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveis
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Cooper Black", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
             this.label1.Location = new System.Drawing.Point(104, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(267, 31);
+            this.label1.Size = new System.Drawing.Size(252, 31);
             this.label1.TabIndex = 6;
             this.label1.Text = "LOCADORA RECH";
             // 

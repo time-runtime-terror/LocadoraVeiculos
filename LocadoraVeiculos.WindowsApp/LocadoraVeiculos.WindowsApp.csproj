@@ -36,6 +36,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DataGridViewGrouper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\DataGridViewGrouper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -69,16 +73,31 @@
     <Compile Include="Features\Funcionário\TelaCadastrarFuncionario.Designer.cs">
       <DependentUpon>TelaCadastrarFuncionario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Features\GrupoAutomoveisModule\AgrupamentoGrupoAutomoveisEnum.cs" />
+    <Compile Include="Features\GrupoAutomoveisModule\ConfiguracaoGrupoAutomoveisToolBox.cs" />
+    <Compile Include="Features\GrupoAutomoveisModule\OperacoesGrupoAutomoveis.cs" />
+    <Compile Include="Features\GrupoAutomoveisModule\TabelaGrupoAutomoveisControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Features\GrupoAutomoveisModule\TabelaGrupoAutomoveisControl.Designer.cs">
+      <DependentUpon>TabelaGrupoAutomoveisControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\GrupoAutomoveisModule\TelaAgrupamentoGrupoAutomoveis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\GrupoAutomoveisModule\TelaAgrupamentoGrupoAutomoveis.Designer.cs">
+      <DependentUpon>TelaAgrupamentoGrupoAutomoveis.cs</DependentUpon>
+    </Compile>
     <Compile Include="Features\Veiculo\TelaCadastrarVeiculos.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Features\Veiculo\TelaCadastrarVeiculos.Designer.cs">
       <DependentUpon>TelaCadastrarVeiculos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Features\GrupoAutomoveis\TelaCadastroGrupoAutomoveis.cs">
+    <Compile Include="Features\GrupoAutomoveisModule\TelaCadastroGrupoAutomoveis.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Features\GrupoAutomoveis\TelaCadastroGrupoAutomoveis.Designer.cs">
+    <Compile Include="Features\GrupoAutomoveisModule\TelaCadastroGrupoAutomoveis.Designer.cs">
       <DependentUpon>TelaCadastroGrupoAutomoveis.cs</DependentUpon>
     </Compile>
     <Compile Include="Features\Combustivel\TelaControleCombustível.cs">
@@ -99,10 +118,16 @@
     <EmbeddedResource Include="Features\Funcionário\TelaCadastrarFuncionario.resx">
       <DependentUpon>TelaCadastrarFuncionario.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Features\GrupoAutomoveisModule\TabelaGrupoAutomoveisControl.resx">
+      <DependentUpon>TabelaGrupoAutomoveisControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\GrupoAutomoveisModule\TelaAgrupamentoGrupoAutomoveis.resx">
+      <DependentUpon>TelaAgrupamentoGrupoAutomoveis.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Features\Veiculo\TelaCadastrarVeiculos.resx">
       <DependentUpon>TelaCadastrarVeiculos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Features\GrupoAutomoveis\TelaCadastroGrupoAutomoveis.resx">
+    <EmbeddedResource Include="Features\GrupoAutomoveisModule\TelaCadastroGrupoAutomoveis.resx">
       <DependentUpon>TelaCadastroGrupoAutomoveis.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Features\Combustivel\TelaControleCombustível.resx">
@@ -137,7 +162,16 @@
     <None Include="Resources\sedan.png" />
     <None Include="Resources\sedan2.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\LocadoraVeiculos.Controladores\LocadoraVeiculos.Controladores.csproj">
+      <Project>{834ADC7C-DCD2-4409-A546-C3D58ADB97B2}</Project>
+      <Name>LocadoraVeiculos.Controladores</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LocadoraVeiculos.Dominio\LocadoraVeiculos.Dominio.csproj">
+      <Project>{de9a2fab-893c-427c-abff-92b196453eaf}</Project>
+      <Name>LocadoraVeiculos.Dominio</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
