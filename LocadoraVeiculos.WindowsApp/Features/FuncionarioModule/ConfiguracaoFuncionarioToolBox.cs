@@ -5,29 +5,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocadoraVeiculos.WindowsApp.Features.Funcionário
+namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
 {
     public class ConfiguracaoFuncionarioToolBox : IConfiguracaoToolBox
     {
 
         public string TipoCadastro
         {
-            get { return "Cadastro de Funcionários"; }
+            get { return "Cadastro de FuncionarioModules"; }
         }
 
         public string ToolTipAdicionar 
         {
-            get { return "Adicionar um novo Funcionário"; }
+            get { return "Adicionar um novo FuncionarioModule"; }
         }
 
         public string ToolTipEditar
         {
-            get { return "Editar um Funcionário existente"; }
+            get { return "Editar um FuncionarioModule existente"; }
         }
 
         public string ToolTipExcluir
         {
-            get { return "Excluir um Funcionário existente"; }
+            get { return "Excluir um FuncionarioModule existente"; }
         }
 
         public string ToolTipFiltrar

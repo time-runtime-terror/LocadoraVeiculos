@@ -1,5 +1,5 @@
 ﻿
-namespace LocadoraVeiculos.WindowsApp.Features.Funcionário
+namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
 {
     partial class TabelaFuncionarioControl
     {

@@ -1,7 +1,7 @@
 ﻿
 namespace LocadoraVeiculos.WindowsApp.Features.Funcionario
 {
-    partial class TelaFuncionário
+    partial class TelaFuncionarioModule
     {
         /// <summary>
         /// Required designer variable.
@@ -233,7 +233,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.Funcionario
             this.label3.TabIndex = 6;
             this.label3.Text = "LOCADORA RECH";
             // 
-            // TelaFuncionário
+            // TelaFuncionarioModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -255,8 +255,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.Funcionario
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "TelaFuncionário";
-            this.Text = "Cadastrar Funcionário";
+            this.Name = "TelaFuncionarioModule";
+            this.Text = "Cadastrar FuncionarioModule";
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

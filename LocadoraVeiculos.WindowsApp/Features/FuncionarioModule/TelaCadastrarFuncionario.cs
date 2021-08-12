@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WindowsApp.Features.Funcionario
 {
-    public partial class TelaFuncionário : Form
+    public partial class TelaFuncionarioModule : Form
     {
-        public TelaFuncionário()
+        public TelaFuncionarioModule()
         {
             InitializeComponent();
         }

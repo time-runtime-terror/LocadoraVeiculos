@@ -181,7 +181,7 @@ namespace LocadoraVeiculos.WindowsApp
             this.btnCadastroFuncionarios.Name = "btnCadastroFuncionarios";
             this.btnCadastroFuncionarios.Size = new System.Drawing.Size(311, 75);
             this.btnCadastroFuncionarios.TabIndex = 2;
-            this.btnCadastroFuncionarios.Text = "Funcionários";
+            this.btnCadastroFuncionarios.Text = "FuncionarioModules";
             this.btnCadastroFuncionarios.UseMnemonic = false;
             this.btnCadastroFuncionarios.UseVisualStyleBackColor = true;
             this.btnCadastroFuncionarios.Click += new System.EventHandler(this.btnCadastroFuncionarios_Click);
