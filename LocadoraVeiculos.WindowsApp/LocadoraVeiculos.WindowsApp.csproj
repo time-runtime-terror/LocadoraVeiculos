@@ -89,10 +89,10 @@
     <Compile Include="Features\Veiculo\TelaCadastrarVeiculos.Designer.cs">
       <DependentUpon>TelaCadastrarVeiculos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Features\Veiculo\TelaCadastroGrupoAutomoveis.cs">
+    <Compile Include="Features\GrupoAutomoveis\TelaCadastroGrupoAutomoveis.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Features\Veiculo\TelaCadastroGrupoAutomoveis.Designer.cs">
+    <Compile Include="Features\GrupoAutomoveis\TelaCadastroGrupoAutomoveis.Designer.cs">
       <DependentUpon>TelaCadastroGrupoAutomoveis.cs</DependentUpon>
     </Compile>
     <Compile Include="Features\Combustivel\TelaControleCombustível.cs">
@@ -122,7 +122,7 @@
     <EmbeddedResource Include="Features\Veiculo\TelaCadastrarVeiculos.resx">
       <DependentUpon>TelaCadastrarVeiculos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Features\Veiculo\TelaCadastroGrupoAutomoveis.resx">
+    <EmbeddedResource Include="Features\GrupoAutomoveis\TelaCadastroGrupoAutomoveis.resx">
       <DependentUpon>TelaCadastroGrupoAutomoveis.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Features\Combustivel\TelaControleCombustível.resx">
