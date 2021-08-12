@@ -8,5 +8,6 @@ namespace LocadoraVeiculos.WindowsApp.Shared
 {
     public static class DataGridViewExtensions
     {
+
     }
 }
