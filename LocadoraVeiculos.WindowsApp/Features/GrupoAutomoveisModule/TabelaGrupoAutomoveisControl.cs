@@ -100,7 +100,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
 
         public void DesagruparGrupoAutomoveis()
         {
-            var campos = new string[] { "Nome"};
+            var campos = new string[] {"NomeGrupo"};
 
             if (gridGrupoAutomoveisAgrupados == null)
                 return;
@@ -118,7 +118,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             switch (tipoAgrupamento)
             {
                 case AgrupamentoGrupoAutomoveisEnum.GrupoAutomoveisPorNome:
-                    AgruparGrupoAutomoveisPor("Nome");
+                    AgruparGrupoAutomoveisPor("NomeGrupo");
                     break;
 
                 case AgrupamentoGrupoAutomoveisEnum.TodosOsGrupoAutomoveis:

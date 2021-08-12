@@ -28,6 +28,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
                 TipoAgrupamento = AgrupamentoGrupoAutomoveisEnum.TodosOsGrupoAutomoveis;
         }
 
-
+        private void button1_Click(object sender, EventArgs e)
+        {
+            agruparGrupoAutomoveis();
+        }
     }
 }
