@@ -20,6 +20,8 @@ namespace LocadoraVeiculos.Dominio.FuncionarioModule
             Salario = salario;
         }
 
+        
+
         public string Nome { get; }
 
         public string NomeUsuario { get; }
