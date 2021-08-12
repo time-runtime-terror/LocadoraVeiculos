@@ -63,6 +63,8 @@
       <DependentUpon>Dashboard.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Features\ClienteModule\ConfiguracaoClienteToolBox.cs" />
+    <Compile Include="Features\ClienteModule\OperacoesCliente.cs" />
     <Compile Include="Features\ClienteModule\TabelaClienteControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

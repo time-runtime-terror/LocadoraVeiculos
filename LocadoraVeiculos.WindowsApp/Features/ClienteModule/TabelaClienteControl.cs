@@ -12,7 +12,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             InitializeComponent();
             gridClientes.ConfigurarGridZebrado();
             gridClientes.ConfigurarGridSomenteLeitura();
-            gridClientes.Columns.Add(ObterColunas());
+            gridClientes.Columns.AddRange(ObterColunas());
         }
 
         public DataGridViewColumn[] ObterColunas()

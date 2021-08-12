@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.WindowsApp.Shared;
+﻿using LocadoraVeiculos.WindowsApp.Features.ClienteModule;
+using LocadoraVeiculos.WindowsApp.Shared;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WindowsApp
@@ -18,7 +19,13 @@ namespace LocadoraVeiculos.WindowsApp
 
         private void btnCadastroClientes_Click(object sender, System.EventArgs e)
         {
+            ConfiguracaoClienteToolBox config = new ConfiguracaoClienteToolBox();
 
+            ConfigurarToolBox(config);
+
+            operacoes = new OperacoesCliente();
+
+            ConfigurarPainelRegistros();
         }
 
         private void ConfigurarPainelRegistros()
