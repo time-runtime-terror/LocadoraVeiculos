@@ -79,7 +79,7 @@ namespace LocadoraVeiculos.Tests.FuncionarioModule
         public void NaoDeveValidarSenha()
         {
             //arrange
-            var fucionario = new Funcionario("José", "Zé", "1234", DateTime.Now, "1200");
+            var fucionario = new Funcionario("José", "Zé", "12", DateTime.Now, "1200");
 
             //action
             var resultadoValidacao = fucionario.Validar();
@@ -144,7 +144,7 @@ namespace LocadoraVeiculos.Tests.FuncionarioModule
         public void NaoDeveValidarTodosOsCampos(){
 
             //arrange
-            var fucionario = new Funcionario("", "", "123", DateTime.MinValue, "");
+            var fucionario = new Funcionario("", "", "12", DateTime.MinValue, "");
 
             //action
             var resultadoValidacao = fucionario.Validar();
@@ -153,7 +153,7 @@ namespace LocadoraVeiculos.Tests.FuncionarioModule
                 + Environment.NewLine
                 + "O campo Nome de Usuário é obrigatório"
                 + Environment.NewLine
-                + "O campo Senha necessita ter ao mínimo 5 caracteres"
+                + "O campo Senha necessita ter ao mínimo 3 caracteres"
                 + Environment.NewLine
                 + "O campo Data de Entrada é obrigatório"
                 + Environment.NewLine
