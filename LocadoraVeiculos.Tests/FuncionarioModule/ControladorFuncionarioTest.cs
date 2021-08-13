@@ -103,6 +103,59 @@ namespace LocadoraVeiculos.Tests.FuncionarioModule
             funcionarios[2].Nome.Should().Be("Lucas");
         }
 
+        [TestMethod]
+        public void DeveLogar_Funcionario()
+        {
+            //arrange
+            var f1 = new Funcionario("Lucas", "lucas", "12345", new DateTime(2002, 02, 22), "2000");
+            controlador.InserirNovo(f1);
+
+            string usuario = "lucas";
+            string senha = "12345";
+
+            //action
+            bool existeFuncionario = controlador.ExisteFuncionario(usuario, senha);
+
+            //assert
+            existeFuncionario.Should().BeTrue();
+        }
+
+        [TestMethod]
+        public void NaoDeveLogarUsuario_Funcionario()
+        {
+            //arrange
+            var f1 = new Funcionario("Lucas", "lucas", "12345", new DateTime(2002, 02, 22), "2000");
+            controlador.InserirNovo(f1);
+
+            string usuario = "ucas";
+            string senha = "12345";
+
+            //action
+            bool existeFuncionario = controlador.ExisteFuncionario(usuario, senha);
+
+            //assert
+            existeFuncionario.Should().BeFalse();
+        }
+
+        [TestMethod]
+        public void NaoDeveLogarSenha_Funcionario()
+        {
+            //arrange
+            var f1 = new Funcionario("Lucas", "lucas", "12345", new DateTime(2002, 02, 22), "2000");
+            controlador.InserirNovo(f1);
+
+            string usuario = "lucas";
+            string senha = "123";
+
+            //action
+            bool existeFuncionario = controlador.ExisteFuncionario(usuario, senha);
+
+            //assert
+            existeFuncionario.Should().BeFalse();
+        }
+
+
+
 
 
 
