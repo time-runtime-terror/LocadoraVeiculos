@@ -36,8 +36,8 @@ namespace LocadoraVeiculos.WindowsApp
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnCadastroGrupoAutomoveis = new System.Windows.Forms.Button();
+            this.btnCadastroVeiculos = new System.Windows.Forms.Button();
             this.btnCadastroFuncionarioModules = new System.Windows.Forms.Button();
             this.btnCadastroClientes = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -132,8 +132,8 @@ namespace LocadoraVeiculos.WindowsApp
             // 
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel4.Controls.Add(this.button4);
-            this.panel4.Controls.Add(this.button3);
+            this.panel4.Controls.Add(this.btnCadastroGrupoAutomoveis);
+            this.panel4.Controls.Add(this.btnCadastroVeiculos);
             this.panel4.Controls.Add(this.btnCadastroFuncionarioModules);
             this.panel4.Controls.Add(this.btnCadastroClientes);
             this.panel4.Location = new System.Drawing.Point(4, 94);
@@ -142,35 +142,35 @@ namespace LocadoraVeiculos.WindowsApp
             this.panel4.Size = new System.Drawing.Size(311, 300);
             this.panel4.TabIndex = 1;
             // 
-            // button4
+            // btnCadastroGrupoAutomoveis
             // 
-            this.button4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
-            this.button4.Location = new System.Drawing.Point(0, 225);
-            this.button4.Margin = new System.Windows.Forms.Padding(4);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(311, 75);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnCadastroGrupoAutomoveis.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnCadastroGrupoAutomoveis.FlatAppearance.BorderSize = 0;
+            this.btnCadastroGrupoAutomoveis.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCadastroGrupoAutomoveis.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCadastroGrupoAutomoveis.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
+            this.btnCadastroGrupoAutomoveis.Location = new System.Drawing.Point(0, 225);
+            this.btnCadastroGrupoAutomoveis.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCadastroGrupoAutomoveis.Name = "btnCadastroGrupoAutomoveis";
+            this.btnCadastroGrupoAutomoveis.Size = new System.Drawing.Size(311, 75);
+            this.btnCadastroGrupoAutomoveis.TabIndex = 4;
+            this.btnCadastroGrupoAutomoveis.Text = "Grupo Automóveis";
+            this.btnCadastroGrupoAutomoveis.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnCadastroVeiculos
             // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
-            this.button3.Location = new System.Drawing.Point(0, 150);
-            this.button3.Margin = new System.Windows.Forms.Padding(4);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(311, 75);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnCadastroVeiculos.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnCadastroVeiculos.FlatAppearance.BorderSize = 0;
+            this.btnCadastroVeiculos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCadastroVeiculos.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCadastroVeiculos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
+            this.btnCadastroVeiculos.Location = new System.Drawing.Point(0, 150);
+            this.btnCadastroVeiculos.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCadastroVeiculos.Name = "btnCadastroVeiculos";
+            this.btnCadastroVeiculos.Size = new System.Drawing.Size(311, 75);
+            this.btnCadastroVeiculos.TabIndex = 3;
+            this.btnCadastroVeiculos.Text = "Veículos";
+            this.btnCadastroVeiculos.UseVisualStyleBackColor = true;
             // 
             // btnCadastroFuncionarioModules
             // 
@@ -446,8 +446,8 @@ namespace LocadoraVeiculos.WindowsApp
         private System.Windows.Forms.Panel panelRegistros;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnCadastroGrupoAutomoveis;
+        private System.Windows.Forms.Button btnCadastroVeiculos;
         private System.Windows.Forms.Button btnCadastroFuncionarioModules;
         private System.Windows.Forms.Button btnCadastroClientes;
         private System.Windows.Forms.Label label3;
