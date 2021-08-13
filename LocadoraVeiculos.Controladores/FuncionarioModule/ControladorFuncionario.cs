@@ -79,6 +79,16 @@ namespace LocadoraVeiculos.Controladores.FuncionarioModule
                 [TBFUNCIONARIO]
             WHERE 
                 [ID] = @ID";
+
+        private const string sqlExisteFuncionarioLogin =
+             @"SELECT 
+                COUNT(*) 
+            FROM 
+                [TBFUNCIONARIO]
+            WHERE 
+                [NOMEUSUARIO] = @NOMEUSUARIO
+             AND
+                [SENHA] = @SENHA";
         #endregion
 
         public override string InserirNovo(Funcionario registro)
@@ -124,6 +134,7 @@ namespace LocadoraVeiculos.Controladores.FuncionarioModule
             return Db.Exists(sqlExisteFuncionario, AdicionarParametro("ID", id));
         }
 
+
         public override Funcionario SelecionarPorId(int id)
         {
             return Db.Get(sqlSelecionarFuncionarioPorId, ConverterEmFuncionario, AdicionarParametro("ID", id));
@@ -162,6 +173,16 @@ namespace LocadoraVeiculos.Controladores.FuncionarioModule
             funcionario.Id = id;
 
             return funcionario;
+        }
+
+        public bool ExisteFuncionario(string usuario, string senha)
+        {
+            return Db.Exists(sqlExisteFuncionarioLogin, AdicionarParametroFuncionario("NOMEUSUARIO", usuario, "SENHA", senha));
+        }
+
+        private Dictionary<string, object> AdicionarParametroFuncionario(string campoUsuario, object valorUsuario, string campoSenha, object valorSenha)
+        {
+            return new Dictionary<string, object>() { { campoUsuario, valorUsuario }, { campoSenha, valorSenha } };
         }
     }
 }
