@@ -90,16 +90,6 @@ namespace LocadoraVeiculos.WindowsApp
             operacoes.EditarRegistro();
         }
 
-        private void toolStripBtnAdicionar_Click(object sender, System.EventArgs e)
-        {
-            operacoes.InserirNovoRegistro();
-        }
-
-        private void toolStripBtnEditar_Click(object sender, System.EventArgs e)
-        {
-            operacoes.EditarRegistro();
-        }
-
         private void toolStripBtnExcluir_Click(object sender, System.EventArgs e)
         {
             operacoes.ExcluirRegistro();

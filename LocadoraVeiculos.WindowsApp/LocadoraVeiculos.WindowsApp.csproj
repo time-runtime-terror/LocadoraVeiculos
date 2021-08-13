@@ -84,7 +84,6 @@
     <Compile Include="Features\ClienteModule\TelaClienteForm.Designer.cs">
       <DependentUpon>TelaClienteForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Features\Funcionário\TelaCadastrarFuncionario.cs">
     <Compile Include="Features\FuncionarioModule\ConfiguracaoFuncionarioToolBox.cs" />
     <Compile Include="Features\FuncionarioModule\OperacoesFuncionario.cs" />
     <Compile Include="Features\FuncionarioModule\TabelaFuncionarioControl.cs">
@@ -141,7 +140,6 @@
     <EmbeddedResource Include="Features\ClienteModule\TelaClienteForm.resx">
       <DependentUpon>TelaClienteForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Features\Funcionário\TelaCadastrarFuncionario.resx">
     <EmbeddedResource Include="Features\FuncionarioModule\TabelaFuncionarioControl.resx">
       <DependentUpon>TabelaFuncionarioControl.cs</DependentUpon>
     </EmbeddedResource>
