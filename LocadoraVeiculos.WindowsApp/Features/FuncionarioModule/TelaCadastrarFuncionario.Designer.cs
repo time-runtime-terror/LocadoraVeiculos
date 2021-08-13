@@ -56,7 +56,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(66)))));
             this.panel3.Location = new System.Drawing.Point(0, 58);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(184, 401);
             this.panel3.TabIndex = 3;
@@ -69,7 +69,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(803, 74);
             this.panel2.TabIndex = 4;
@@ -102,7 +102,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
             // 
             this.pictureBox1.Image = global::LocadoraVeiculos.WindowsApp.Properties.Resources.sedan;
             this.pictureBox1.Location = new System.Drawing.Point(4, -17);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(127, 101);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -177,9 +177,11 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
             // 
             // txtId
             // 
+            this.txtId.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.txtId.Enabled = false;
             this.txtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtId.Location = new System.Drawing.Point(288, 106);
-            this.txtId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtId.Margin = new System.Windows.Forms.Padding(4);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(71, 29);
             this.txtId.TabIndex = 11;
@@ -188,7 +190,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
             // 
             this.txtNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNome.Location = new System.Drawing.Point(313, 159);
-            this.txtNome.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNome.Margin = new System.Windows.Forms.Padding(4);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(419, 29);
             this.txtNome.TabIndex = 12;
@@ -197,7 +199,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
             // 
             this.txtUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsuario.Location = new System.Drawing.Point(329, 203);
-            this.txtUsuario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUsuario.Margin = new System.Windows.Forms.Padding(4);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(247, 29);
             this.txtUsuario.TabIndex = 13;
@@ -206,8 +208,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
             // 
             this.txtSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSenha.Location = new System.Drawing.Point(329, 245);
-            this.txtSenha.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSenha.Margin = new System.Windows.Forms.Padding(4);
             this.txtSenha.Name = "txtSenha";
+            this.txtSenha.PasswordChar = '*';
             this.txtSenha.Size = new System.Drawing.Size(247, 29);
             this.txtSenha.TabIndex = 14;
             // 
@@ -216,7 +219,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
             this.dtDateAdmissao.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtDateAdmissao.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtDateAdmissao.Location = new System.Drawing.Point(429, 287);
-            this.dtDateAdmissao.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtDateAdmissao.Margin = new System.Windows.Forms.Padding(4);
             this.dtDateAdmissao.Name = "dtDateAdmissao";
             this.dtDateAdmissao.Size = new System.Drawing.Size(147, 29);
             this.dtDateAdmissao.TabIndex = 15;
@@ -225,7 +228,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
             // 
             this.txtSalario.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSalario.Location = new System.Drawing.Point(329, 334);
-            this.txtSalario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSalario.Margin = new System.Windows.Forms.Padding(4);
             this.txtSalario.Name = "txtSalario";
             this.txtSalario.Size = new System.Drawing.Size(132, 29);
             this.txtSalario.TabIndex = 16;
@@ -235,7 +238,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.Location = new System.Drawing.Point(516, 402);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(115, 41);
             this.btnCancelar.TabIndex = 17;
@@ -247,7 +250,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
             this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnGravar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGravar.Location = new System.Drawing.Point(639, 402);
-            this.btnGravar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGravar.Margin = new System.Windows.Forms.Padding(4);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(113, 41);
             this.btnGravar.TabIndex = 18;
@@ -278,7 +281,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
             this.Controls.Add(this.panel3);
             this.Cursor = System.Windows.Forms.Cursors.AppStarting;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "TelaCadastrarFuncionario";
             this.Text = "Cadastrar FuncionarioModuleModule";
             this.panel2.ResumeLayout(false);

@@ -58,8 +58,8 @@ namespace LocadoraVeiculos.Dominio.FuncionarioModule
             if (string.IsNullOrEmpty(NomeUsuario))
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Nome de Usuário é obrigatório";
 
-            if (Senha.Length < 5)
-                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Senha necessita ter ao mínimo 5 caracteres";
+            if (Senha.Length < 3)
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Senha necessita ter ao mínimo 3 caracteres";
 
             if (DataEntrada == DateTime.MinValue)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Data de Entrada é obrigatório";
