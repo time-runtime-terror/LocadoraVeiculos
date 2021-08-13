@@ -59,9 +59,63 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             {
                 string primeiroErro = new StringReader(resultadoValidacao).ReadLine();
 
-                //Dashboard.Instancia.AtualizarRodape(primeiroErro);
+                Dashboard.Instancia.AtualizarRodape(primeiroErro);
 
                 DialogResult = DialogResult.None;
+            }
+        }
+
+        private void txtDiarioUm_TextChanged(object sender, EventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(txtDiarioUm.Text, "[^0-9]"))
+            {
+                MessageBox.Show("Por favor, apenas números.");
+                txtDiarioUm.Text = txtDiarioUm.Text.Remove(txtDiarioUm.Text.Length - 1);
+            }
+        }
+
+        private void txtControladoUm_TextChanged(object sender, EventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(txtControladoUm.Text, "[^0-9]"))
+            {
+                MessageBox.Show("Por favor, apenas números.");
+                txtControladoUm.Text = txtControladoUm.Text.Remove(txtControladoUm.Text.Length - 1);
+            }
+        }
+
+        private void txtLivreUm_TextChanged(object sender, EventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(txtLivreUm.Text, "[^0-9]"))
+            {
+                MessageBox.Show("Por favor, apenas números.");
+                txtLivreUm.Text = txtLivreUm.Text.Remove(txtLivreUm.Text.Length - 1);
+            }
+        }
+
+        private void txtDiarioDois_TextChanged(object sender, EventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(txtDiarioDois.Text, "[^0-9]"))
+            {
+                MessageBox.Show("Por favor, apenas números.");
+                txtDiarioDois.Text = txtDiarioDois.Text.Remove(txtDiarioDois.Text.Length - 1);
+            }
+        }
+
+        private void txtControladoDois_TextChanged(object sender, EventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(txtControladoDois.Text, "[^0-9]"))
+            {
+                MessageBox.Show("Por favor, apenas números.");
+                txtControladoDois.Text = txtControladoDois.Text.Remove(txtControladoDois.Text.Length - 1);
+            }
+        }
+
+        private void txtLivreDois_TextChanged(object sender, EventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(txtLivreDois.Text, "[^0-9]"))
+            {
+                MessageBox.Show("Por favor, apenas números.");
+                txtLivreDois.Text = txtLivreDois.Text.Remove(txtLivreDois.Text.Length - 1);
             }
         }
     }

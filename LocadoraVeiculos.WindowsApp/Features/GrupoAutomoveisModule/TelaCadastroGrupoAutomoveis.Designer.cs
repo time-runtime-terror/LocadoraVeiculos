@@ -125,6 +125,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             this.txtLivreDois.Name = "txtLivreDois";
             this.txtLivreDois.Size = new System.Drawing.Size(100, 20);
             this.txtLivreDois.TabIndex = 8;
+            this.txtLivreDois.TextChanged += new System.EventHandler(this.txtLivreDois_TextChanged);
             // 
             // txtLivreUm
             // 
@@ -132,6 +133,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             this.txtLivreUm.Name = "txtLivreUm";
             this.txtLivreUm.Size = new System.Drawing.Size(100, 20);
             this.txtLivreUm.TabIndex = 7;
+            this.txtLivreUm.TextChanged += new System.EventHandler(this.txtLivreUm_TextChanged);
             // 
             // txtControladoDois
             // 
@@ -139,6 +141,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             this.txtControladoDois.Name = "txtControladoDois";
             this.txtControladoDois.Size = new System.Drawing.Size(100, 20);
             this.txtControladoDois.TabIndex = 6;
+            this.txtControladoDois.TextChanged += new System.EventHandler(this.txtControladoDois_TextChanged);
             // 
             // txtControladoUm
             // 
@@ -146,6 +149,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             this.txtControladoUm.Name = "txtControladoUm";
             this.txtControladoUm.Size = new System.Drawing.Size(100, 20);
             this.txtControladoUm.TabIndex = 5;
+            this.txtControladoUm.TextChanged += new System.EventHandler(this.txtControladoUm_TextChanged);
             // 
             // txtDiarioDois
             // 
@@ -153,6 +157,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             this.txtDiarioDois.Name = "txtDiarioDois";
             this.txtDiarioDois.Size = new System.Drawing.Size(100, 20);
             this.txtDiarioDois.TabIndex = 4;
+            this.txtDiarioDois.TextChanged += new System.EventHandler(this.txtDiarioDois_TextChanged);
             // 
             // txtDiarioUm
             // 
@@ -160,6 +165,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             this.txtDiarioUm.Name = "txtDiarioUm";
             this.txtDiarioUm.Size = new System.Drawing.Size(100, 20);
             this.txtDiarioUm.TabIndex = 3;
+            this.txtDiarioUm.TextChanged += new System.EventHandler(this.txtDiarioUm_TextChanged);
             // 
             // label8
             // 

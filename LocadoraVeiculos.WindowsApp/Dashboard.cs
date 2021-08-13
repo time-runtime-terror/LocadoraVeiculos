@@ -93,16 +93,6 @@ namespace LocadoraVeiculos.WindowsApp
 
             ConfigurarPainelRegistros();
         }
-            
-        private void toolStripBtnAdicionar_Click(object sender, EventArgs e)
-        {
-            operacoes.InserirNovoRegistro();
-        }
-
-        private void toolStripBtnEditar_Click(object sender, EventArgs e)
-        {
-            operacoes.EditarRegistro();
-        }
 
         private void toolStripBtnExcluir_Click(object sender, EventArgs e)
         {
@@ -118,11 +108,5 @@ namespace LocadoraVeiculos.WindowsApp
         {
             operacoes.DesagruparRegistros();
         }
-        private void toolStripBtnExcluir_Click(object sender, System.EventArgs e)
-        {
-            operacoes.ExcluirRegistro();
-        }
-
-
     }
 }
