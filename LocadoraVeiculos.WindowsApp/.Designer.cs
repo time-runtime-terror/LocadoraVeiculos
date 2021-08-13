@@ -33,7 +33,6 @@ namespace LocadoraVeiculos.WindowsApp
             this.panelTopo = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnCadastroGrupoAutomoveis = new System.Windows.Forms.Button();
@@ -43,25 +42,25 @@ namespace LocadoraVeiculos.WindowsApp
             this.label3 = new System.Windows.Forms.Label();
             this.toolBoxAcoes = new System.Windows.Forms.ToolStrip();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripBtnPesquisar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripBtnAdicionar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripBtnEditar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripBtnExcluir = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripBtnFiltrar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripBtnAgrupar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripBtnDesagrupar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.panelRegistros = new System.Windows.Forms.Panel();
+            this.toolStripBtnPesquisar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripBtnAdicionar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripBtnEditar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripBtnExcluir = new System.Windows.Forms.ToolStripButton();
+            this.toolStripBtnFiltrar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripBtnAgrupar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripBtnDesagrupar = new System.Windows.Forms.ToolStripButton();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.labelRodape = new System.Windows.Forms.ToolStripStatusLabel();
             this.panelTopo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelMenu.SuspendLayout();
             this.panel4.SuspendLayout();
             this.toolBoxAcoes.SuspendLayout();
@@ -203,6 +202,7 @@ namespace LocadoraVeiculos.WindowsApp
             this.btnCadastroClientes.TabIndex = 1;
             this.btnCadastroClientes.Text = "Clientes";
             this.btnCadastroClientes.UseVisualStyleBackColor = true;
+            this.btnCadastroClientes.Click += new System.EventHandler(this.btnCadastroClientes_Click);
             // 
             // label3
             // 
@@ -250,6 +250,49 @@ namespace LocadoraVeiculos.WindowsApp
             this.toolStripTextBox1.Size = new System.Drawing.Size(479, 55);
             this.toolStripTextBox1.Text = "Digite para Pesquisar";
             // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 55);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 55);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 55);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 55);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 55);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 55);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 55);
+            // 
+            // panelRegistros
+            // 
+            this.panelRegistros.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelRegistros.Location = new System.Drawing.Point(242, 115);
+            this.panelRegistros.Name = "panelRegistros";
+            this.panelRegistros.Size = new System.Drawing.Size(942, 546);
+            this.panelRegistros.TabIndex = 5;
+            // 
             // toolStripBtnPesquisar
             // 
             this.toolStripBtnPesquisar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -259,11 +302,6 @@ namespace LocadoraVeiculos.WindowsApp
             this.toolStripBtnPesquisar.Name = "toolStripBtnPesquisar";
             this.toolStripBtnPesquisar.Size = new System.Drawing.Size(29, 52);
             this.toolStripBtnPesquisar.Text = "toolStripButton7";
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 55);
             // 
             // toolStripBtnAdicionar
             // 
@@ -279,9 +317,6 @@ namespace LocadoraVeiculos.WindowsApp
             this.toolStripBtnAdicionar.Click += new System.EventHandler(this.toolStripBtnAdicionar_Click);
             // 
             // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 55);
             // 
             // toolStripBtnEditar
             // 
@@ -314,9 +349,6 @@ namespace LocadoraVeiculos.WindowsApp
             // 
             // toolStripSeparator4
             // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 55);
-            // 
             // toolStripBtnFiltrar
             // 
             this.toolStripBtnFiltrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -327,11 +359,7 @@ namespace LocadoraVeiculos.WindowsApp
             this.toolStripBtnFiltrar.Size = new System.Drawing.Size(52, 52);
             this.toolStripBtnFiltrar.Text = "toolStripButton4";
             this.toolStripBtnFiltrar.ToolTipText = "Filtrar";
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 55);
+            this.toolStripBtnFiltrar.Click += new System.EventHandler(this.toolStripBtnFiltrar_Click);
             // 
             // toolStripBtnAgrupar
             // 
@@ -344,11 +372,6 @@ namespace LocadoraVeiculos.WindowsApp
             this.toolStripBtnAgrupar.Text = "toolStripButton5";
             this.toolStripBtnAgrupar.ToolTipText = "Agrupar";
             // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 55);
-            // 
             // toolStripBtnDesagrupar
             // 
             this.toolStripBtnDesagrupar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -359,8 +382,9 @@ namespace LocadoraVeiculos.WindowsApp
             this.toolStripBtnDesagrupar.Size = new System.Drawing.Size(52, 52);
             this.toolStripBtnDesagrupar.Text = "toolStripButton6";
             this.toolStripBtnDesagrupar.ToolTipText = "Desagrupar";
+            this.toolStripBtnDesagrupar.Click += new System.EventHandler(this.toolStripBtnDesagrupar_Click);
             // 
-            // toolStripSeparator7
+            // pictureBox1
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
             this.toolStripSeparator7.Size = new System.Drawing.Size(6, 55);
@@ -409,7 +433,6 @@ namespace LocadoraVeiculos.WindowsApp
             this.Text = "Tela Principal";
             this.panelTopo.ResumeLayout(false);
             this.panelTopo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelMenu.ResumeLayout(false);
             this.panelMenu.PerformLayout();
             this.panel4.ResumeLayout(false);

@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.WindowsApp.Features.FuncionarioModule;
+﻿using LocadoraVeiculos.WindowsApp.Features.ClienteModule;
+using LocadoraVeiculos.WindowsApp.Features.FuncionarioModule;
 using LocadoraVeiculos.WindowsApp.Shared;
 using System.Windows.Forms;
 using LocadoraVeiculos.Controladores.FuncionarioModule;
@@ -16,6 +17,17 @@ namespace LocadoraVeiculos.WindowsApp
             InitializeComponent();
 
             Instancia = this;
+        }
+
+        private void btnCadastroClientes_Click(object sender, System.EventArgs e)
+        {
+            ConfiguracaoClienteToolBox config = new ConfiguracaoClienteToolBox();
+
+            ConfigurarToolBox(config);
+
+            operacoes = new OperacoesCliente();
+
+            ConfigurarPainelRegistros();
         }
 
         public void AtualizarRodape(string mensagem)
@@ -78,11 +90,29 @@ namespace LocadoraVeiculos.WindowsApp
             operacoes.EditarRegistro();
         }
 
+        private void toolStripBtnAdicionar_Click(object sender, System.EventArgs e)
+        {
+            operacoes.InserirNovoRegistro();
+        }
+
+        private void toolStripBtnEditar_Click(object sender, System.EventArgs e)
+        {
+            operacoes.EditarRegistro();
+        }
+
         private void toolStripBtnExcluir_Click(object sender, System.EventArgs e)
         {
             operacoes.ExcluirRegistro();
         }
 
+        private void toolStripBtnFiltrar_Click(object sender, System.EventArgs e)
+        {
+            operacoes.FiltrarRegistros();
+        }
 
+        private void toolStripBtnDesagrupar_Click(object sender, System.EventArgs e)
+        {
+            operacoes.DesagruparRegistros();
+        }
     }
 }

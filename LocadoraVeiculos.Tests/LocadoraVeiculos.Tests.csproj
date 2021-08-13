@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClienteModule\ClienteTests.cs" />
+    <Compile Include="ClienteModule\ControladorClienteTests.cs" />
     <Compile Include="FuncionarioModule\FuncionarioTest.cs" />
     <Compile Include="FuncionarioModule\ControladorFuncionarioTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

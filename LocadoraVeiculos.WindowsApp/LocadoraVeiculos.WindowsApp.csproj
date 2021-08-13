@@ -63,6 +63,28 @@
       <DependentUpon>Dashboard.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Features\ClienteModule\ConfiguracaoClienteToolBox.cs" />
+    <Compile Include="Features\ClienteModule\FiltroClienteEnum.cs" />
+    <Compile Include="Features\ClienteModule\FiltroClienteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\ClienteModule\FiltroClienteForm.Designer.cs">
+      <DependentUpon>FiltroClienteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\ClienteModule\OperacoesCliente.cs" />
+    <Compile Include="Features\ClienteModule\TabelaClienteControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Features\ClienteModule\TabelaClienteControl.Designer.cs">
+      <DependentUpon>TabelaClienteControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\ClienteModule\TelaClienteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\ClienteModule\TelaClienteForm.Designer.cs">
+      <DependentUpon>TelaClienteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Funcionário\TelaCadastrarFuncionario.cs">
     <Compile Include="Features\FuncionarioModule\ConfiguracaoFuncionarioToolBox.cs" />
     <Compile Include="Features\FuncionarioModule\OperacoesFuncionario.cs" />
     <Compile Include="Features\FuncionarioModule\TabelaFuncionarioControl.cs">
@@ -110,6 +132,16 @@
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Features\ClienteModule\FiltroClienteForm.resx">
+      <DependentUpon>FiltroClienteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\ClienteModule\TabelaClienteControl.resx">
+      <DependentUpon>TabelaClienteControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\ClienteModule\TelaClienteForm.resx">
+      <DependentUpon>TelaClienteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\Funcionário\TelaCadastrarFuncionario.resx">
     <EmbeddedResource Include="Features\FuncionarioModule\TabelaFuncionarioControl.resx">
       <DependentUpon>TabelaFuncionarioControl.cs</DependentUpon>
     </EmbeddedResource>
