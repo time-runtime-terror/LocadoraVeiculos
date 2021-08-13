@@ -14,8 +14,7 @@ namespace LocadoraVeiculos.Tests.ClienteModule
         public void DeveValidar_Cliente()
         {
             // arrange
-            Cliente cliente = new Cliente("Tiago", "Maria de Melo Kuster, 276", "985056251", "Física",
-                "1292132321", new DateTime(2025, 07, 30), "123151567", "", "8242566", null);
+            Cliente cliente = new Cliente("Testador 1", "Maria de Melo Kuster", "(49) 9805-6251", "CPF", "123123124", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
 
             // action
             string validacao = cliente.Validar();
@@ -28,8 +27,7 @@ namespace LocadoraVeiculos.Tests.ClienteModule
         public void NaoDeveValidar_NomeVazio()
         {
             // arrange
-            Cliente cliente = new Cliente("", "Maria de Melo Kuster, 276", "985056251", "Física",
-                "1292132321", new DateTime(2025, 07, 30), "123151567", "", "8242566", null);
+            Cliente cliente = new Cliente("", "Maria de Melo Kuster", "(49) 9805-6251", "CPF", "123123124", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
 
             // action
             string validacao = cliente.Validar();
@@ -42,8 +40,7 @@ namespace LocadoraVeiculos.Tests.ClienteModule
         public void NaoDeveValidar_EnderecoVazio()
         {
             // arrange
-            Cliente cliente = new Cliente("Tiago", "", "985056251", "Física",
-                "1292132321", new DateTime(2025, 07, 30), "123151567", "", "8242566", null);
+            Cliente cliente = new Cliente("Testador 1", "", "(49) 9805-6251", "CPF", "123123124", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
 
             // action
             string validacao = cliente.Validar();
@@ -56,8 +53,7 @@ namespace LocadoraVeiculos.Tests.ClienteModule
         public void NaoDeveValidar_TelefoneVazio()
         {
             // arrange
-            Cliente cliente = new Cliente("Tiago", "Maria de Melo Kuster, 276", "", "Física",
-                "1292132321", new DateTime(2025, 07, 30), "123151567", "", "8242566", null);
+            Cliente cliente = new Cliente("Testador 1", "Maria de Melo Kuster", "", "CPF", "123123124", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
 
             // action
             string validacao = cliente.Validar();
@@ -70,8 +66,7 @@ namespace LocadoraVeiculos.Tests.ClienteModule
         public void NaoDeveValidar_CamposVazios()
         {
             // arrange
-            Cliente cliente = new Cliente("", "", "", "Física",
-                "1292132321", new DateTime(2025, 07, 30), "123151567", "", "8242566", null);
+            Cliente cliente = new Cliente("", "", "", "CPF", "123123124", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
 
             // action
             string validacao = cliente.Validar();
