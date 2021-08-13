@@ -24,9 +24,9 @@ namespace LocadoraVeiculos.Controladores.FuncionarioModule
 	                VALUES
 	                (
                         @NOME, 
-                        @NOME_USUARIO,
+                        @NOMEUSUARIO,
                         @SENHA,
-		                @DATA_ENTRADA, 
+		                @DATAENTRADA, 
 		                @SALARIO
 	                )";
 
@@ -34,9 +34,9 @@ namespace LocadoraVeiculos.Controladores.FuncionarioModule
             @"UPDATE TBFUNCIONARIO
                     SET
                         [NOME] = @NOME,
-		                [NOMEUSUARIO] = @NOME_USUARIO, 
+		                [NOMEUSUARIO] = @NOMEUSUARIO, 
 		                [SENHA] = @SENHA,
-                        [DATAENTRADA] = @DATA_ENTRADA,
+                        [DATAENTRADA] = @DATAENTRADA,
                         [SALARIO] = @SALARIO
                     WHERE 
                         ID = @ID";
@@ -79,6 +79,16 @@ namespace LocadoraVeiculos.Controladores.FuncionarioModule
                 [TBFUNCIONARIO]
             WHERE 
                 [ID] = @ID";
+
+        private const string sqlExisteFuncionarioLogin =
+             @"SELECT 
+                COUNT(*) 
+            FROM 
+                [TBFUNCIONARIO]
+            WHERE 
+                [NOMEUSUARIO] = @NOMEUSUARIO
+             AND
+                [SENHA] = @SENHA";
         #endregion
 
         public override string InserirNovo(Funcionario registro)
@@ -124,6 +134,7 @@ namespace LocadoraVeiculos.Controladores.FuncionarioModule
             return Db.Exists(sqlExisteFuncionario, AdicionarParametro("ID", id));
         }
 
+
         public override Funcionario SelecionarPorId(int id)
         {
             return Db.Get(sqlSelecionarFuncionarioPorId, ConverterEmFuncionario, AdicionarParametro("ID", id));
@@ -140,9 +151,9 @@ namespace LocadoraVeiculos.Controladores.FuncionarioModule
 
             parametros.Add("ID", funcionario.Id);
             parametros.Add("NOME", funcionario.Nome);
-            parametros.Add("NOME_USUARIO", funcionario.NomeUsuario);
+            parametros.Add("NOMEUSUARIO", funcionario.NomeUsuario);
             parametros.Add("SENHA", funcionario.Senha);
-            parametros.Add("DATA_ENTRADA", funcionario.DataEntrada);
+            parametros.Add("DATAENTRADA", funcionario.DataEntrada);
             parametros.Add("SALARIO", funcionario.Salario);
 
             return parametros;
@@ -152,9 +163,9 @@ namespace LocadoraVeiculos.Controladores.FuncionarioModule
         {
             int id = Convert.ToInt32(reader["ID"]);
             string nome = Convert.ToString(reader["NOME"]);
-            string nomeUsuario = Convert.ToString(reader["NOME_USUARIO"]);
+            string nomeUsuario = Convert.ToString(reader["NOMEUSUARIO"]);
             string senha = Convert.ToString(reader["SENHA"]);
-            DateTime dataEntrada = Convert.ToDateTime(reader["DATA_ENTRADA"]);
+            DateTime dataEntrada = Convert.ToDateTime(reader["DATAENTRADA"]);
             string salario = Convert.ToString(reader["SALARIO"]);
 
             Funcionario funcionario = new Funcionario(nome, nomeUsuario, senha, dataEntrada, salario);
@@ -162,6 +173,16 @@ namespace LocadoraVeiculos.Controladores.FuncionarioModule
             funcionario.Id = id;
 
             return funcionario;
+        }
+
+        public bool ExisteFuncionario(string usuario, string senha)
+        {
+            return Db.Exists(sqlExisteFuncionarioLogin, AdicionarParametroFuncionario("NOMEUSUARIO", usuario, "SENHA", senha));
+        }
+
+        private Dictionary<string, object> AdicionarParametroFuncionario(string campoUsuario, object valorUsuario, string campoSenha, object valorSenha)
+        {
+            return new Dictionary<string, object>() { { campoUsuario, valorUsuario }, { campoSenha, valorSenha } };
         }
     }
 }

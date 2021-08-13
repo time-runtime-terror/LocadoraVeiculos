@@ -63,10 +63,18 @@
       <DependentUpon>Dashboard.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Features\Funcionário\TelaCadastrarFuncionario.cs">
+    <Compile Include="Features\FuncionarioModule\ConfiguracaoFuncionarioToolBox.cs" />
+    <Compile Include="Features\FuncionarioModule\OperacoesFuncionario.cs" />
+    <Compile Include="Features\FuncionarioModule\TabelaFuncionarioControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Features\FuncionarioModule\TabelaFuncionarioControl.Designer.cs">
+      <DependentUpon>TabelaFuncionarioControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\FuncionarioModule\TelaCadastrarFuncionario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Features\Funcionário\TelaCadastrarFuncionario.Designer.cs">
+    <Compile Include="Features\FuncionarioModule\TelaCadastrarFuncionario.Designer.cs">
       <DependentUpon>TelaCadastrarFuncionario.cs</DependentUpon>
     </Compile>
     <Compile Include="Features\Veiculo\TelaCadastrarVeiculos.cs">
@@ -88,6 +96,12 @@
       <DependentUpon>TelaControleCombustível.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shared\DataGridViewExtensions.cs" />
@@ -96,7 +110,10 @@
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Features\Funcionário\TelaCadastrarFuncionario.resx">
+    <EmbeddedResource Include="Features\FuncionarioModule\TabelaFuncionarioControl.resx">
+      <DependentUpon>TabelaFuncionarioControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\FuncionarioModule\TelaCadastrarFuncionario.resx">
       <DependentUpon>TelaCadastrarFuncionario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Features\Veiculo\TelaCadastrarVeiculos.resx">
@@ -107,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Features\Combustivel\TelaControleCombustível.resx">
       <DependentUpon>TelaControleCombustível.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -137,7 +157,16 @@
     <None Include="Resources\sedan.png" />
     <None Include="Resources\sedan2.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\LocadoraVeiculos.Controladores\LocadoraVeiculos.Controladores.csproj">
+      <Project>{834adc7c-dcd2-4409-a546-c3d58adb97b2}</Project>
+      <Name>LocadoraVeiculos.Controladores</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LocadoraVeiculos.Dominio\LocadoraVeiculos.Dominio.csproj">
+      <Project>{de9a2fab-893c-427c-abff-92b196453eaf}</Project>
+      <Name>LocadoraVeiculos.Dominio</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

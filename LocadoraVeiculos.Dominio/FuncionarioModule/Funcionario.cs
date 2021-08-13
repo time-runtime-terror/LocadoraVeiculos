@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.Dominio.FuncionarioModule
 {
-    public class Funcionario : EntidadeBase
+    public class Funcionario : EntidadeBase, IEquatable<Funcionario>
     {
         //Devem ser registrados nome, usuário de acesso,
         //senha de acesso, data de entrada na empresa e o salário do funcionário.
@@ -20,6 +20,8 @@ namespace LocadoraVeiculos.Dominio.FuncionarioModule
             Salario = salario;
         }
 
+        
+
         public string Nome { get; }
 
         public string NomeUsuario { get; }
@@ -29,6 +31,22 @@ namespace LocadoraVeiculos.Dominio.FuncionarioModule
         public DateTime DataEntrada { get; }
 
         public string Salario { get; }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as Funcionario);
+        }
+
+        public bool Equals(Funcionario other)
+        {
+            return other != null
+               && Id == other.Id
+               && Nome == other.Nome
+               && NomeUsuario == other.NomeUsuario
+               && Senha == other.Senha
+               && DataEntrada == other.DataEntrada
+               && Salario == other.Salario;
+        }
 
         public override string Validar()
         {
@@ -40,8 +58,8 @@ namespace LocadoraVeiculos.Dominio.FuncionarioModule
             if (string.IsNullOrEmpty(NomeUsuario))
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Nome de Usuário é obrigatório";
 
-            if (Senha.Length < 5)
-                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Senha necessita ter ao mínimo 5 caracteres";
+            if (Senha.Length < 3)
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Senha necessita ter ao mínimo 3 caracteres";
 
             if (DataEntrada == DateTime.MinValue)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Data de Entrada é obrigatório";
@@ -55,6 +73,17 @@ namespace LocadoraVeiculos.Dominio.FuncionarioModule
             return resultadoValidacao;
         }
 
+        public override int GetHashCode()
+        {
+            int hashCode = 1695060689;
+            hashCode = hashCode * -1521134295 + Id.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Nome);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(NomeUsuario);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Senha);
+            hashCode = hashCode * -1521134295 + EqualityComparer<DateTime>.Default.GetHashCode(DataEntrada);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Salario);
+            return hashCode;
+        }
 
     }
 }
