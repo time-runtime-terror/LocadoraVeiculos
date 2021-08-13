@@ -18,6 +18,11 @@ namespace LocadoraVeiculos.WindowsApp
             Instancia = this;
         }
 
+        public void AtualizarRodape(string mensagem)
+        {
+            labelRodape.Text = mensagem;
+        }
+
         private void ConfigurarPainelRegistros()
         {
             UserControl tabela = operacoes.ObterTabela();
@@ -35,7 +40,7 @@ namespace LocadoraVeiculos.WindowsApp
 
             ConfigurarToolBox(configuracao);
 
-            //AtualizarRodape(configuracao.TipoCadastro);
+            AtualizarRodape(configuracao.TipoCadastro);
 
             operacoes = new OperacoesFuncionario(new ControladorFuncionario());
 
@@ -77,5 +82,7 @@ namespace LocadoraVeiculos.WindowsApp
         {
             operacoes.ExcluirRegistro();
         }
+
+
     }
 }

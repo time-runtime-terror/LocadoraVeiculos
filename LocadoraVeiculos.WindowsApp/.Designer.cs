@@ -58,11 +58,14 @@ namespace LocadoraVeiculos.WindowsApp
             this.toolStripBtnDesagrupar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.panelRegistros = new System.Windows.Forms.Panel();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.labelRodape = new System.Windows.Forms.ToolStripStatusLabel();
             this.panelTopo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelMenu.SuspendLayout();
             this.panel4.SuspendLayout();
             this.toolBoxAcoes.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTopo
@@ -371,11 +374,29 @@ namespace LocadoraVeiculos.WindowsApp
             this.panelRegistros.Size = new System.Drawing.Size(1256, 685);
             this.panelRegistros.TabIndex = 5;
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.labelRodape});
+            this.statusStrip1.Location = new System.Drawing.Point(323, 788);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1256, 26);
+            this.statusStrip1.TabIndex = 6;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // labelRodape
+            // 
+            this.labelRodape.Name = "labelRodape";
+            this.labelRodape.Size = new System.Drawing.Size(93, 20);
+            this.labelRodape.Text = "Tudo certo ;)";
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1579, 814);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.panelRegistros);
             this.Controls.Add(this.toolBoxAcoes);
             this.Controls.Add(this.panelMenu);
@@ -394,6 +415,8 @@ namespace LocadoraVeiculos.WindowsApp
             this.panel4.ResumeLayout(false);
             this.toolBoxAcoes.ResumeLayout(false);
             this.toolBoxAcoes.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -428,6 +451,8 @@ namespace LocadoraVeiculos.WindowsApp
         private System.Windows.Forms.Button btnCadastroFuncionarioModules;
         private System.Windows.Forms.Button btnCadastroClientes;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel labelRodape;
     }
 }
 

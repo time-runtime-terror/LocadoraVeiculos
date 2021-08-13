@@ -33,7 +33,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
 
                 tabelaFuncionario.AtualizarRegistros(funcionarios);
 
-                //Dashboard.Instancia.AtualizarRodape($"Tarefa: [{tela.Tarefa.Titulo}] inserido com sucesso");
+                Dashboard.Instancia.AtualizarRodape($"Funcionário: [{tela.Funcionario.Nome}] inserido com sucesso");
             }
         }
 
@@ -62,7 +62,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
 
                 tabelaFuncionario.AtualizarRegistros(funcionarios);
 
-                //TelaPrincipalForm.Instancia.AtualizarRodape($"Tarefa: [{tela.Tarefa.Titulo}] editada com sucesso");
+                Dashboard.Instancia.AtualizarRodape($"Tarefa: [{tela.Funcionario.Nome}] editado com sucesso");
             }
         }
 
@@ -88,7 +88,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
 
                 tabelaFuncionario.AtualizarRegistros(funcionarios);
 
-               // TelaPrincipalForm.Instancia.AtualizarRodape($"Tarefa: [{tarefaSelecionada.Titulo}] removida com sucesso");
+               Dashboard.Instancia.AtualizarRodape($"Funcionário: [{funcionarioSelecionado.Nome}] removido com sucesso");
             }
         }
 

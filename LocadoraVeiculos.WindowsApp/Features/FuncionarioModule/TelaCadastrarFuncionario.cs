@@ -53,12 +53,17 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
 
             if (resultadoValidacao != "ESTA_VALIDO")
             {
-                //string primeiroErro = new StringReader(resultadoValidacao).ReadLine();
+                string primeiroErro = new StringReader(resultadoValidacao).ReadLine();
 
-                //TelaPrincipalForm.Instancia.AtualizarRodape(primeiroErro);
+                Dashboard.Instancia.AtualizarRodape(primeiroErro);
 
                 DialogResult = DialogResult.None;
             }
+        }
+
+        private void TelaCadastrarFuncionario_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Dashboard.Instancia.AtualizarRodape("");
         }
     }
 }
