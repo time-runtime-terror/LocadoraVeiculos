@@ -29,7 +29,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
 
                 tabelaGrupoAutomoveis.AtualizarRegistros();
 
-                //TelaAgrupamentoGrupoAutomoveis.Instancia.AtualizarRodape($"Contato: [{tela.Contato.Nome}] inserido com sucesso");
+                //Dashboard.Instancia.AtualizarRodape($"Grupo Automóvel: [{tela.GrupoAutomoveis.NomeGrupo}] inserido com sucesso");
             }
         }
 
@@ -56,7 +56,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
 
                 tabelaGrupoAutomoveis.AtualizarRegistros();
 
-                //TelaCadastroGrupoAutomoveis.Instancia.AtualizarRodape($"Contato: [{tela..Nome}] editado com sucesso");
+                //Dashboard.Instancia.AtualizarRodape($"Grupo Automóvel: [{tela.GrupoAutomoveis.NomeGrupo}] editado com sucesso");
             }
         }
 
@@ -80,7 +80,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
 
                 tabelaGrupoAutomoveis.AtualizarRegistros();
 
-                //TelaCadastroGrupoAutomoveis.Instancia.AtualizarRodape($"Contato: [{contatoSelecionado.Nome}] removido com sucesso");
+                //Dashboard.Instancia.AtualizarRodape($"Grupo Automóvel: [{grupoAutomoveisSelecionado.NomeGrupo}] removido com sucesso");
             }
         }
 

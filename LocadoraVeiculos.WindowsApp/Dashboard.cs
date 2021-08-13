@@ -19,6 +19,11 @@ namespace LocadoraVeiculos.WindowsApp
             Instancia = this;
         }
 
+        /*public void AtualizarRodape(string mensagem)
+        {
+            labelRodape.Text = mensagem;
+        }*/
+
         private void ConfigurarPainelRegistros()
         {
             UserControl tabela = operacoes.ObterTabela();

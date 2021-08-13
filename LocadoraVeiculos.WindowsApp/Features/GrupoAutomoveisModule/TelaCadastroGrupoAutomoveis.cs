@@ -59,7 +59,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             {
                 string primeiroErro = new StringReader(resultadoValidacao).ReadLine();
 
-                //instancia
+                //Dashboard.Instancia.AtualizarRodape(primeiroErro);
 
                 DialogResult = DialogResult.None;
             }
