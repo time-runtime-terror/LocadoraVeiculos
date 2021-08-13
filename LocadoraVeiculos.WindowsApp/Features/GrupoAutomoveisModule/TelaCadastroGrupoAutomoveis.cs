@@ -38,17 +38,31 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
         {
             string nomeGrupo = txtNomeGrupo.Text;
 
-            double planoDiarioUm = Convert.ToDouble(txtDiarioUm.Text);
+            string planoDiarioUmstr = txtDiarioUm.Text;
 
-            double planoDiarioDois = Convert.ToDouble(txtDiarioDois.Text);
+            string planoDiarioDoisstr = txtDiarioDois.Text;
 
-            double kmControladoUm = Convert.ToDouble(txtControladoUm.Text);
+            string kmControladoUmstr = txtControladoUm.Text;
 
-            double kmControladoDois = Convert.ToDouble(txtControladoDois.Text);
+            string kmControladoDoisstr = txtControladoDois.Text;
 
-            double kmLivreUm = Convert.ToDouble(txtLivreUm.Text);
+            string kmLivreUmstr = txtLivreUm.Text;
 
-            double kmLivreDois = Convert.ToDouble(txtLivreDois.Text);
+            string kmLivreDoisstr = txtLivreDois.Text;
+
+            //separar
+
+            double planoDiarioUm = validarGrupos(planoDiarioUmstr);
+
+            double planoDiarioDois = validarGrupos(planoDiarioDoisstr);
+
+            double kmControladoUm = validarGrupos(kmControladoUmstr);
+
+            double kmControladoDois = validarGrupos(kmControladoDoisstr);
+
+            double kmLivreUm = validarGrupos(kmLivreUmstr);
+
+            double kmLivreDois = validarGrupos(kmLivreDoisstr);
 
             GrupoAutomoveis = new GrupoAutomoveis(nomeGrupo, planoDiarioUm, planoDiarioDois, kmControladoUm, kmControladoDois,
                 kmLivreUm, kmLivreDois);
@@ -63,6 +77,21 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
 
                 DialogResult = DialogResult.None;
             }
+        }
+
+        private static double validarGrupos(string planoStr)
+        {
+            double plano;
+            if (string.IsNullOrEmpty(planoStr))
+            {
+                plano = 0;
+            }
+            else
+            {
+                plano = Convert.ToDouble(planoStr);
+            }
+
+            return plano;
         }
 
         private void txtDiarioUm_TextChanged(object sender, EventArgs e)
