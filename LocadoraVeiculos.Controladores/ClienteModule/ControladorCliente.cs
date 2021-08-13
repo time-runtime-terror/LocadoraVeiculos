@@ -1,7 +1,5 @@
-﻿using LocadoraVeiculos.Controladores.CondutorModule;
-using LocadoraVeiculos.Controladores.Shared;
+﻿using LocadoraVeiculos.Controladores.Shared;
 using LocadoraVeiculos.Dominio.ClienteModule;
-using LocadoraVeiculos.Dominio.CondutorModule;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,11 +8,8 @@ namespace LocadoraVeiculos.Controladores.ClienteModule
 {
     public class ControladorCliente : Controlador<Cliente>
     {
-        private readonly ControladorCondutor controladorCondutor;
-
-        public ControladorCliente(ControladorCondutor controladorCondutor)
+        public ControladorCliente()
         {
-            this.controladorCondutor = controladorCondutor;
         }
 
         #region Queries
@@ -24,26 +19,24 @@ namespace LocadoraVeiculos.Controladores.ClienteModule
 		                [NOME], 
 		                [ENDERECO], 
 		                [TELEFONE], 
-		                [TIPOPESSOA],
-                        [CPF], 
+		                [TIPOCADASTRO],
+                        [NUMEROCADASTRO], 
                         [CNH],
-		                [CNPJ],
 		                [RG],
 		                [DATAVENCIMENTOCNH],
-		                [ID_CONDUTOR]
+		                [ID_EMPRESA]
 	                ) 
 	                VALUES
 	                (
                         @NOME, 
                         @ENDERECO,
                         @TELEFONE,
-		                @TIPOPESSOA, 
-		                @CPF,
+		                @TIPOCADASTRO, 
+		                @NUMEROCADASTRO,
                         @CNH,
-		                @CNPJ,
 		                @RG,
 		                @DATAVENCIMENTOCNH,
-		                @ID_CONDUTOR
+		                @ID_EMPRESA
 	                )";
 
         private const string sqlEditarCliente =
@@ -52,13 +45,12 @@ namespace LocadoraVeiculos.Controladores.ClienteModule
                         [NOME] = @NOME,
 		                [ENDERECO] = @ENDERECO, 
 		                [TELEFONE] = @TELEFONE,
-                        [TIPOPESSOA] = @TIPOPESSOA,
-                        [CPF] = @CPF,
+                        [TIPOCADASTRO] = @TIPOCADASTRO,
+                        [NUMEROCADASTRO] = @NUMEROCADASTRO,
                         [CNH] = @CNH,
-                        [CNPJ] = @CNPJ,
                         [RG] = @RG,
                         [DATAVENCIMENTOCNH] = @DATAVENCIMENTOCNH,
-                        [ID_CONDUTOR] = @ID_CONDUTOR
+                        [ID_EMPRESA] = @ID_EMPRESA
                     WHERE 
                         ID = @ID";
 
@@ -75,18 +67,17 @@ namespace LocadoraVeiculos.Controladores.ClienteModule
 		                CL.[NOME], 
 		                CL.[ENDERECO], 
 		                CL.[TELEFONE], 
-		                CL.[TIPOPESSOA],
+		                CL.[TIPOCADASTRO],
+                        CL.[NUMEROCADASTRO], 
                         CL.[CNH],
-                        CL.[CPF], 
-		                CL.[CNPJ],
 		                CL.[RG],
 		                CL.[DATAVENCIMENTOCNH],
-		                CL.[ID_CONDUTOR]
+		                CL.[ID_EMPRESA]
 	                FROM
                         [TBCLIENTE] AS CL LEFT JOIN
-                        [TBCONDUTOR] AS CD
+                        [TBCLIENTE] AS CE
                     ON
-                        CD.ID = CL.ID_CONDUTOR
+                        CE.ID = CL.ID_EMPRESA
                     WHERE 
                         CL.[ID] = @ID";
 
@@ -96,18 +87,17 @@ namespace LocadoraVeiculos.Controladores.ClienteModule
 		                CL.[NOME], 
 		                CL.[ENDERECO], 
 		                CL.[TELEFONE], 
-		                CL.[TIPOPESSOA],
+		                CL.[TIPOCADASTRO],
+                        CL.[NUMEROCADASTRO], 
                         CL.[CNH],
-                        CL.[CPF], 
-		                CL.[CNPJ],
 		                CL.[RG],
 		                CL.[DATAVENCIMENTOCNH],
-		                CL.[ID_CONDUTOR]
+		                CL.[ID_EMPRESA]
 	                FROM
                         [TBCLIENTE] AS CL LEFT JOIN
-                        [TBCONDUTOR] AS CD
+                        [TBCLIENTE] AS CE
                     ON
-                        CD.ID = CL.ID_CONDUTOR";
+                        CE.ID = CL.ID_EMPRESA";
 
         private const string sqlExisteCliente =
             @"SELECT 
@@ -179,16 +169,15 @@ namespace LocadoraVeiculos.Controladores.ClienteModule
             parametros.Add("NOME", cliente.Nome);
             parametros.Add("ENDERECO", cliente.Endereco);
             parametros.Add("TELEFONE", cliente.Telefone);
-            parametros.Add("TIPOPESSOA", cliente.TipoPessoa);
+            parametros.Add("TIPOCADASTRO", cliente.TipoCadastro);
+            parametros.Add("NUMEROCADASTRO", cliente.NumeroCadastro);
             parametros.Add("CNH", cliente.CNH);
-            parametros.Add("CPF", cliente.CPF);
-            parametros.Add("CNPJ", cliente.CNPJ);
             parametros.Add("RG", cliente.RG);
             parametros.Add("DATAVENCIMENTOCNH", cliente.VencimentoCnh);
 
-            var idCondutor = cliente.Condutor?.Id;
+            var idEmpresa = cliente.Empresa?.Id;
 
-            parametros.Add("ID_CONDUTOR", idCondutor);
+            parametros.Add("ID_EMPRESA", idEmpresa);
 
             return parametros;
         }
@@ -199,20 +188,19 @@ namespace LocadoraVeiculos.Controladores.ClienteModule
             string nome = Convert.ToString(reader["NOME"]);
             string endereco = Convert.ToString(reader["ENDERECO"]);
             string telefone = Convert.ToString(reader["TELEFONE"]);
-            string tipoPessoa = Convert.ToString(reader["TIPOPESSOA"]);
+            string tipoCadastro = Convert.ToString(reader["TIPOCADASTRO"]);
             string cnh = Convert.ToString(reader["CNH"]);
             DateTime vencimentoCnh = Convert.ToDateTime(reader["DATAVENCIMENTOCNH"]);
-            string cpf = Convert.ToString(reader["CPF"]);
+            string documento = Convert.ToString(reader["NUMEROCADASTRO"]);
             string rg = Convert.ToString(reader["RG"]);
-            string cnpj = Convert.ToString(reader["CNPJ"]);
 
-            Condutor condutor = null;
-            if (reader["ID_CONDUTOR"] != DBNull.Value)
+            Cliente empresa = null;
+            if (reader["ID_EMPRESA"] != DBNull.Value)
             {
-                condutor = controladorCondutor.SelecionarPorId(Convert.ToInt32(reader["ID_CONDUTOR"]));
+                empresa = this.SelecionarPorId(Convert.ToInt32(reader["ID_EMPRESA"]));
             }
 
-            Cliente cliente = new Cliente(nome, endereco, telefone, tipoPessoa, cnh, vencimentoCnh, cpf, cnpj, rg, condutor);
+            Cliente cliente = new Cliente(nome, endereco, telefone, tipoCadastro, cnh, vencimentoCnh, documento, rg, empresa);
 
             cliente.Id = id;
 

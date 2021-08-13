@@ -60,5 +60,29 @@ namespace LocadoraVeiculos.WindowsApp
             toolStripBtnFiltrar.Enabled = configuracao.BotaoFiltrar;
         }
 
+        private void toolStripBtnAdicionar_Click(object sender, System.EventArgs e)
+        {
+            operacoes.InserirNovoRegistro();
+        }
+
+        private void toolStripBtnEditar_Click(object sender, System.EventArgs e)
+        {
+            operacoes.EditarRegistro();
+        }
+
+        private void toolStripBtnExcluir_Click(object sender, System.EventArgs e)
+        {
+            operacoes.ExcluirRegistro();
+        }
+
+        private void toolStripBtnFiltrar_Click(object sender, System.EventArgs e)
+        {
+            operacoes.FiltrarRegistros();
+        }
+
+        private void toolStripBtnDesagrupar_Click(object sender, System.EventArgs e)
+        {
+            operacoes.DesagruparRegistros();
+        }
     }
 }

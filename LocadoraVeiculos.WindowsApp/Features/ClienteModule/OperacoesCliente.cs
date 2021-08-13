@@ -1,5 +1,4 @@
 ﻿using LocadoraVeiculos.Controladores.ClienteModule;
-using LocadoraVeiculos.Controladores.CondutorModule;
 using LocadoraVeiculos.Dominio.ClienteModule;
 using LocadoraVeiculos.WindowsApp.Shared;
 using System;
@@ -14,13 +13,12 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
     public class OperacoesCliente : ICadastravel
     {
         private readonly ControladorCliente controladorCliente;
-        private readonly ControladorCondutor controladorCondutor;
         private readonly TabelaClienteControl tabelaClientes;
 
         public OperacoesCliente()
         {
-            controladorCondutor = new ControladorCondutor();
-            controladorCliente = new ControladorCliente(controladorCondutor);
+            controladorCliente = new ControladorCliente();
+            tabelaClientes = new TabelaClienteControl();
         }
 
         public void AgruparRegistros()
@@ -30,22 +28,92 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 
         public void DesagruparRegistros()
         {
-            throw new NotImplementedException();
+            var clientes = controladorCliente.SelecionarTodos();
+
+            tabelaClientes.AtualizarRegistros(clientes);
         }
 
         public void EditarRegistro()
         {
-            throw new NotImplementedException();
+            int id = tabelaClientes.ObtemIdSelecionado();
+
+            if (id == 0)
+            {
+                MessageBox.Show("Selecione um cliente para poder editar!", "Edição de Clientes",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            Cliente clienteSelecionado = controladorCliente.SelecionarPorId(id);
+
+            TelaClienteForm tela = new TelaClienteForm();
+
+            tela.Cliente = clienteSelecionado;
+
+            if (tela.ShowDialog() == DialogResult.OK)
+            {
+                controladorCliente.Editar(id, tela.Cliente);
+
+                List<Cliente> clientes = controladorCliente.SelecionarTodos();
+
+                tabelaClientes.AtualizarRegistros(clientes);
+
+                //TelaPrincipalForm.Instancia.AtualizarRodape($"Compromisso: [{tela.Compromisso.Assunto}] editado com sucesso");
+            }
+
         }
 
         public void ExcluirRegistro()
         {
-            throw new NotImplementedException();
+            int id = tabelaClientes.ObtemIdSelecionado();
+
+            if (id == 0)
+            {
+                MessageBox.Show("Selecione um cliente para poder excluir!", "Exclusão de Clientes",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            Cliente clienteSelecionado = controladorCliente.SelecionarPorId(id);
+
+            if (MessageBox.Show($"Tem certeza que deseja excluir o cliente: [{clienteSelecionado.Nome}] ?",
+                "Exclusão de Clientes", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                controladorCliente.Excluir(id);
+
+                List<Cliente> clientes = controladorCliente.SelecionarTodos();
+
+                tabelaClientes.AtualizarRegistros(clientes);
+
+                //TelaPrincipalForm.Instancia.AtualizarRodape($"Compromisso: [{compromissoSelecionado.Assunto}] removido com sucesso");
+            }
         }
 
         public void FiltrarRegistros()
         {
-            throw new NotImplementedException();
+            FiltroClienteForm telaFiltro = new FiltroClienteForm();
+
+            if (telaFiltro.ShowDialog() == DialogResult.OK)
+            {
+                List<Cliente> clientes = new List<Cliente>();
+
+
+                switch (telaFiltro.TipoFiltro)
+                {
+                    case FiltroClienteEnum.PessoasFisicas:
+                        clientes = controladorCliente.SelecionarTodos().FindAll(x => x.TipoCadastro == "CPF");
+                        break;
+
+                    case FiltroClienteEnum.PessoasJuridicas:
+                        clientes = controladorCliente.SelecionarTodos().FindAll(x => x.TipoCadastro == "CNPJ");
+                        break;
+
+                    default:
+                        break;
+                }
+
+                tabelaClientes.AtualizarRegistros(clientes);
+            }
         }
 
         public void InserirNovoRegistro()
@@ -54,7 +122,11 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
+                controladorCliente.InserirNovo(tela.Cliente);
 
+                List<Cliente> clientes = controladorCliente.SelecionarTodos();
+
+                tabelaClientes.AtualizarRegistros(clientes);
             }
         }
 

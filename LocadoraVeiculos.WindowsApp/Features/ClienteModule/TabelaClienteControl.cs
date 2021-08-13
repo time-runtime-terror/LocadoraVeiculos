@@ -21,17 +21,15 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             {
                 new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Assunto", HeaderText = "Nome"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome"},
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Telefone", HeaderText = "Telefone"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "TipoPessoa", HeaderText = "Cadastro"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "TipoCadastro", HeaderText = "Cadastro"},
 
-                new DataGridViewTextBoxColumn {DataPropertyName = "RG", HeaderText = "RG"},
+                new DataGridViewTextBoxColumn {DataPropertyName = "NumeroCadastro", HeaderText = "Número do Cadastro"},
 
-                new DataGridViewTextBoxColumn {DataPropertyName = "CNH", HeaderText = "CNH"},
-
-                new DataGridViewTextBoxColumn {DataPropertyName = "Condutor", HeaderText = "Condutor"}
+                new DataGridViewTextBoxColumn {DataPropertyName = "Empresa", HeaderText = "Empresa"}
             };
 
             return colunas;
@@ -49,9 +47,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             foreach (Cliente cliente in clientes)
             {
 
-                var condutor = (cliente.Condutor != null) ? cliente.Condutor.Nome : null;
+                var empresa = (cliente.Empresa != null) ? cliente.Empresa.Nome : null;
 
-                gridClientes.Rows.Add(cliente.Id, cliente.Nome, cliente.Telefone, cliente.TipoPessoa, cliente.RG, cliente.CNH, condutor);
+                gridClientes.Rows.Add(cliente.Id, cliente.Nome, cliente.Telefone, cliente.TipoCadastro, cliente.CNH, empresa);
             }
 
         }

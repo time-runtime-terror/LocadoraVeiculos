@@ -16,7 +16,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 
         public string ToolTipAgrupar => "Agrupar";
 
-        public string ToolTipDesagrupar => "Desagrupar";
+        public string ToolTipDesagrupar => "Desagrupar clientes";
 
         public bool BotaoAdicionar => true;
 
@@ -30,6 +30,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 
         public bool BotaoAgrupar => false;
 
-        public bool BotaoDesagrupar => false;
+        public bool BotaoDesagrupar => true;
     }
 }
