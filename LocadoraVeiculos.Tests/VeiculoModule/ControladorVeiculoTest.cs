@@ -3,11 +3,6 @@ using LocadoraVeiculos.Controladores.Shared;
 using LocadoraVeiculos.Controladores.VeiculoModule;
 using LocadoraVeiculos.Dominio.VeiculoModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.Tests.VeiculoModule
 {
@@ -17,8 +12,9 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
     public class ControladorVeiculoTest
     {
         ControladorVeiculo controlador = null;
+        byte[] imagem = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20 };
 
-        public ControladorVeiculoTest()
+    public ControladorVeiculoTest()
         {
             controlador = new ControladorVeiculo();
             Db.Update("DELETE FROM [TBVEICULO]");
@@ -28,7 +24,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         public void DeveInserir_Veiculo()
         {
             //arrange
-            Veiculo novoVeiculo = new Veiculo(null, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", "Economico");
+            Veiculo novoVeiculo = new Veiculo(imagem, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", "Economico");
 
             //action
             controlador.InserirNovo(novoVeiculo);
@@ -42,10 +38,10 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         public void DeveEditar_UmVeiculo()
         {
             //arrange
-            Veiculo veiculo = new Veiculo(null, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", "Economico");
+            Veiculo veiculo = new Veiculo(imagem, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", "Economico");
             controlador.InserirNovo(veiculo);
 
-            Veiculo novoVeiculo = new Veiculo(null, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "3200km", "Economico");
+            Veiculo novoVeiculo = new Veiculo(imagem, "ABC-1234", "Gol", "Volkswagen", "Comum", "70L", "3200km", "Economico");
 
             //action
             controlador.Editar(veiculo.Id, novoVeiculo);
@@ -59,7 +55,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         public void DeveExcluir_UmVeiculo()
         {
             //arrange            
-            Veiculo veiculo = new Veiculo(null, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", "Economico");
+            Veiculo veiculo = new Veiculo(imagem, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", "Economico");
             controlador.InserirNovo(veiculo);
 
             //action            
@@ -74,7 +70,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         public void DeveSelecionar_Veiculo_PorId()
         {
             //arrange
-            Veiculo veiculo = new Veiculo(null, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", "Economico");
+            Veiculo veiculo = new Veiculo(imagem, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", "Economico");
             controlador.InserirNovo(veiculo);
 
             //action

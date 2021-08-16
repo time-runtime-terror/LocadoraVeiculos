@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[TBVEICULO] (
-    [Id]               INT             NOT NULL,
-    [Foto]             VARBINARY (100) NULL,
+    [Id]               INT             IDENTITY NOT NULL,
+    [Foto]             VARBINARY (MAX) NULL,
     [Placa]            VARCHAR (50)    NOT NULL,
     [Modelo]           VARCHAR (50)    NOT NULL,
     [Marca]            VARCHAR (50)    NOT NULL,

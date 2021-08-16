@@ -4,6 +4,9 @@ using LocadoraVeiculos.Dominio.VeiculoModule;
 using LocadoraVeiculos.Controladores.Shared;
 using System.Data;
 using System.Text;
+using System.IO;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace LocadoraVeiculos.Controladores.VeiculoModule
 {
@@ -64,7 +67,7 @@ namespace LocadoraVeiculos.Controladores.VeiculoModule
                     [QUILOMETRAGEM],
                     [TIPOVEICULO]
             FROM
-                [TBVEICULO] T";
+                [TBVEICULO]";
 
         private const string sqlSelecionarVeiculoPorId =
             @"SELECT 
@@ -149,7 +152,7 @@ namespace LocadoraVeiculos.Controladores.VeiculoModule
         private Veiculo ConverterEmVeiculo(IDataReader reader)
         {
             var placa = Convert.ToString(reader["PLACA"]);
-            byte[] foto = Encoding.ASCII.GetBytes(Convert.ToString(reader["FOTO"])); 
+            byte[] foto = (byte[])reader["FOTO"]; 
             var modelo = Convert.ToString(reader["MODELO"]);
             var marca = Convert.ToString(reader["MARCA"]);
             var tipoCombustivel = Convert.ToString(reader["TIPOCOMBUSTIVEL"]);
@@ -173,7 +176,7 @@ namespace LocadoraVeiculos.Controladores.VeiculoModule
             parametros.Add("PLACA", veiculo.Placa);
             parametros.Add("MODELO", veiculo.Modelo);
             parametros.Add("MARCA", veiculo.Marca);
-            parametros.Add("TIPOCOMBUSTIVEL", veiculo.TipoVeiculo);
+            parametros.Add("TIPOCOMBUSTIVEL", veiculo.TipoCombustivel);
             parametros.Add("CAPACIDADETANQUE", veiculo.CapacidadeTanque);
             parametros.Add("QUILOMETRAGEM", veiculo.Quilometragem);
             parametros.Add("TIPOVEICULO", veiculo.TipoVeiculo);

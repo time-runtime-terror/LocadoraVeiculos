@@ -29,14 +29,14 @@ namespace LocadoraVeiculos.Dominio.VeiculoModule
 
         public override bool Equals(object obj)
         {
-            return base.Equals(obj as Veiculo);
+            return Equals(obj as Veiculo);
         }
 
         public bool Equals(Veiculo obj)
         {
             return obj is Veiculo veiculo &&
                    Id == veiculo.Id &&
-                   EqualityComparer<byte[]>.Default.Equals(Foto, veiculo.Foto) &&
+                   //EqualityComparer<byte[]>.Default.Equals(Foto, veiculo.Foto) &&
                    Placa == veiculo.Placa &&
                    Modelo == veiculo.Modelo &&
                    Marca == veiculo.Marca &&
@@ -67,6 +67,9 @@ namespace LocadoraVeiculos.Dominio.VeiculoModule
 
             if (string.IsNullOrEmpty(Placa))
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Placa é obrigatório";
+
+            if (Foto == null)
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Foto é obrigatório";
 
             if (string.IsNullOrEmpty(Modelo))
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Modelo é obrigatório";
