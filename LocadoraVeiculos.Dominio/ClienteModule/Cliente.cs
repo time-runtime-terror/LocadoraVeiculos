@@ -1,50 +1,34 @@
-﻿using LocadoraVeiculos.Dominio.CondutorModule;
-using LocadoraVeiculos.Dominio.Shared;
+﻿using LocadoraVeiculos.Dominio.Shared;
 using System;
+using System.Collections.Generic;
 
 namespace LocadoraVeiculos.Dominio.ClienteModule
 {
-    public class Cliente : EntidadeBase
+    public class Cliente : EntidadeBase, IEquatable<Cliente>
     {
-        private Condutor condutor;
 
         public string Nome { get; }
         public string Endereco { get; }
         public string Telefone { get; }
-        public string TipoPessoa { get; }
+        public string TipoCadastro { get; }
+        public string NumeroCadastro { get; }
         public string CNH { get; }
-        public DateTime VencimentoCnh { get; }
-        public string CPF { get; }
-        public string CNPJ { get; }
+        public DateTime? VencimentoCnh { get; }
         public string RG { get; }
-        public Condutor Condutor { get => condutor; }
+        public Cliente Empresa { get; set; }
 
         public Cliente(string nome, string endereco, string telefone, string tipoPessoa,
-            string cnh, DateTime vencimentoCnh, string cpf, string cpnj, string rg, Condutor condutor) 
+            string cnh, DateTime? vencimentoCnh, string cadastro, string rg, Cliente empresa) 
         {
             Nome = nome;
             Endereco = endereco;
             Telefone = telefone;
-            TipoPessoa = tipoPessoa;
+            TipoCadastro = tipoPessoa;
             CNH = cnh;
             VencimentoCnh = vencimentoCnh;
-            CPF = cpf;
-            CNPJ = cpnj;
+            NumeroCadastro = cadastro;
             RG = rg;
-            this.condutor = condutor;
-        }
-
-        public Cliente(string nome, string endereco, string telefone, string tipoPessoa, string cnh, DateTime vencimentoCnh, string cpf, string cnpj, Condutor condutor)
-        {
-            Nome = nome;
-            Endereco = endereco;
-            Telefone = telefone;
-            TipoPessoa = tipoPessoa;
-            CNH = cnh;
-            VencimentoCnh = vencimentoCnh;
-            CPF = cpf;
-            CNPJ = cnpj;
-            this.condutor = condutor;
+            Empresa = empresa;
         }
 
         public override string Validar()
@@ -64,6 +48,42 @@ namespace LocadoraVeiculos.Dominio.ClienteModule
                 resultadoValidacao = "ESTA_VALIDO";
 
             return resultadoValidacao;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj as Cliente);
+        }
+
+        public bool Equals(Cliente other)
+        {
+            return other is Cliente cliente &&
+                   Id == cliente.Id &&
+                   Nome == cliente.Nome &&
+                   Endereco == cliente.Endereco &&
+                   Telefone == cliente.Telefone &&
+                   TipoCadastro == cliente.TipoCadastro &&
+                   NumeroCadastro == cliente.NumeroCadastro &&
+                   CNH == cliente.CNH &&
+                   VencimentoCnh == cliente.VencimentoCnh &&
+                   RG == cliente.RG &&
+                   EqualityComparer<Cliente>.Default.Equals(Empresa, cliente.Empresa);
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = 2119485743;
+            hashCode = hashCode * -1521134295 + Id.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Nome);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Endereco);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Telefone);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(TipoCadastro);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(NumeroCadastro);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(CNH);
+            hashCode = hashCode * -1521134295 + VencimentoCnh.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(RG);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Cliente>.Default.GetHashCode(Empresa);
+            return hashCode;
         }
     }
 }

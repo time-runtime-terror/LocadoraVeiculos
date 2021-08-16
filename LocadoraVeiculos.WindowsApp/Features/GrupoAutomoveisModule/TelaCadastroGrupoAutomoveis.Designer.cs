@@ -1,5 +1,5 @@
 ﻿
-namespace LocadoraVeiculoModules.WindowsApp.Features.GrupoAutomoveis
+namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
 {
     partial class TelaCadastroGrupoAutomoveis
     {
@@ -69,6 +69,7 @@ namespace LocadoraVeiculoModules.WindowsApp.Features.GrupoAutomoveis
             // txtId
             // 
             this.txtId.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.txtId.Enabled = false;
             this.txtId.Location = new System.Drawing.Point(197, 90);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(66, 20);
@@ -124,6 +125,7 @@ namespace LocadoraVeiculoModules.WindowsApp.Features.GrupoAutomoveis
             this.txtLivreDois.Name = "txtLivreDois";
             this.txtLivreDois.Size = new System.Drawing.Size(100, 20);
             this.txtLivreDois.TabIndex = 8;
+            this.txtLivreDois.TextChanged += new System.EventHandler(this.txtLivreDois_TextChanged);
             // 
             // txtLivreUm
             // 
@@ -131,6 +133,7 @@ namespace LocadoraVeiculoModules.WindowsApp.Features.GrupoAutomoveis
             this.txtLivreUm.Name = "txtLivreUm";
             this.txtLivreUm.Size = new System.Drawing.Size(100, 20);
             this.txtLivreUm.TabIndex = 7;
+            this.txtLivreUm.TextChanged += new System.EventHandler(this.txtLivreUm_TextChanged);
             // 
             // txtControladoDois
             // 
@@ -138,6 +141,7 @@ namespace LocadoraVeiculoModules.WindowsApp.Features.GrupoAutomoveis
             this.txtControladoDois.Name = "txtControladoDois";
             this.txtControladoDois.Size = new System.Drawing.Size(100, 20);
             this.txtControladoDois.TabIndex = 6;
+            this.txtControladoDois.TextChanged += new System.EventHandler(this.txtControladoDois_TextChanged);
             // 
             // txtControladoUm
             // 
@@ -145,6 +149,7 @@ namespace LocadoraVeiculoModules.WindowsApp.Features.GrupoAutomoveis
             this.txtControladoUm.Name = "txtControladoUm";
             this.txtControladoUm.Size = new System.Drawing.Size(100, 20);
             this.txtControladoUm.TabIndex = 5;
+            this.txtControladoUm.TextChanged += new System.EventHandler(this.txtControladoUm_TextChanged);
             // 
             // txtDiarioDois
             // 
@@ -152,6 +157,7 @@ namespace LocadoraVeiculoModules.WindowsApp.Features.GrupoAutomoveis
             this.txtDiarioDois.Name = "txtDiarioDois";
             this.txtDiarioDois.Size = new System.Drawing.Size(100, 20);
             this.txtDiarioDois.TabIndex = 4;
+            this.txtDiarioDois.TextChanged += new System.EventHandler(this.txtDiarioDois_TextChanged);
             // 
             // txtDiarioUm
             // 
@@ -159,6 +165,7 @@ namespace LocadoraVeiculoModules.WindowsApp.Features.GrupoAutomoveis
             this.txtDiarioUm.Name = "txtDiarioUm";
             this.txtDiarioUm.Size = new System.Drawing.Size(100, 20);
             this.txtDiarioUm.TabIndex = 3;
+            this.txtDiarioUm.TextChanged += new System.EventHandler(this.txtDiarioUm_TextChanged);
             // 
             // label8
             // 
@@ -211,6 +218,7 @@ namespace LocadoraVeiculoModules.WindowsApp.Features.GrupoAutomoveis
             this.btnGravar.TabIndex = 11;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
+            this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
             // 
             // panel2
             // 
@@ -227,11 +235,11 @@ namespace LocadoraVeiculoModules.WindowsApp.Features.GrupoAutomoveis
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Cooper Black", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
             this.label1.Location = new System.Drawing.Point(104, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(267, 31);
+            this.label1.Size = new System.Drawing.Size(252, 31);
             this.label1.TabIndex = 6;
             this.label1.Text = "LOCADORA RECH";
             // 

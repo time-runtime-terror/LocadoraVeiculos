@@ -4,6 +4,9 @@
     [NomeUsuario] VARCHAR (50) NOT NULL,
     [Senha]       VARCHAR (50) NOT NULL,
     [DataEntrada] DATE         NOT NULL,
-    [Salario]     VARCHAR (50) NOT NULL
+    [Salario]     VARCHAR (50) NOT NULL,
+    CONSTRAINT [PK_TBFUNCIONARIO] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
+
+
 

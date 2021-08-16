@@ -3,11 +3,13 @@
     [Nome]              VARCHAR (50) NOT NULL,
     [Endereco]          VARCHAR (50) NOT NULL,
     [Telefone]          VARCHAR (50) NOT NULL,
-    [TipoPessoa]        VARCHAR (50) NOT NULL,
-    [Cpf]               VARCHAR (50) NULL,
-    [Cnpj]              VARCHAR (50) NULL,
-    [Rg]                VARCHAR (50) NOT NULL,
-    [DataVencimentoCNH] DATE         NOT NULL,
-    [Id_Condutor]       INT          NULL
+    [TipoCadastro]      VARCHAR (50) NOT NULL,
+    [NumeroCadastro]    VARCHAR (50) NOT NULL,
+    [Rg]                VARCHAR (50) NULL,
+    [Cnh]               VARCHAR (50) NULL,
+    [DataVencimentoCNH] DATE         NULL,
+    [Id_Empresa]        INT          NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_TBCLIENTE_TBCLIENTE] FOREIGN KEY ([Id_Empresa]) REFERENCES [dbo].[TBCLIENTE] ([Id]) ON DELETE SET NULL
 );
 
