@@ -1,12 +1,8 @@
-﻿using LocadoraVeiculoModules.WindowsApp.Shared;
+﻿using LocadoraVeiculos.WindowsApp.Shared;
 using LocadoraVeiculos.Controladores.VeiculoModule;
 using LocadoraVeiculos.Dominio.VeiculoModule;
 using LocadoraVeiculos.WindowsApp.Features.VeiculoModule;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 

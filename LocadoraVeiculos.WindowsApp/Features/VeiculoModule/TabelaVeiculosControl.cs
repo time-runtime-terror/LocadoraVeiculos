@@ -1,4 +1,4 @@
-﻿using LocadoraVeiculoModules.WindowsApp.Shared;
+﻿using LocadoraVeiculos.WindowsApp.Shared;
 using LocadoraVeiculos.Controladores.VeiculoModule;
 using LocadoraVeiculos.Dominio.VeiculoModule;
 using System;

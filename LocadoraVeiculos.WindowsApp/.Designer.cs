@@ -1,5 +1,5 @@
 ﻿
-namespace LocadoraVeiculoModules.WindowsApp
+namespace LocadoraVeiculos.WindowsApp
 {
     partial class Dashboard
     {

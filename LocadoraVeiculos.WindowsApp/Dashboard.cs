@@ -4,12 +4,13 @@ using LocadoraVeiculos.Controladores.GrupoAutomoveisModule;
 using LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule;
 using System;
 using System.Windows.Forms;
-using LocadoraVeiculoModules.WindowsApp.Shared;
+using LocadoraVeiculos.WindowsApp.Shared;
 using LocadoraVeiculos.Controladores.VeiculoModule;
 using LocadoraVeiculos.WindowsApp.Feature.VeiculoModule;
 using LocadoraVeiculos.WindowsApp.Features.VeiculoModule;
+using LocadoraVeiculos.Controladores.FuncionarioModule;
 
-namespace LocadoraVeiculoModules.WindowsApp
+namespace LocadoraVeiculos.WindowsApp
 {
     public partial class Dashboard : Form
     {
@@ -141,29 +142,6 @@ namespace LocadoraVeiculoModules.WindowsApp
             
         }
 
-        private void toolStripBtnAdicionar_Click(object sender, System.EventArgs e)
-        {
-            operacoes.InserirNovoRegistro();
-        }
 
-        private void toolStripBtnEditar_Click(object sender, System.EventArgs e)
-        {
-            operacoes.EditarRegistro();
-        }
-
-        private void toolStripBtnExcluir_Click(object sender, System.EventArgs e)
-        {
-            operacoes.ExcluirRegistro();
-        }
-
-        private void toolStripBtnAgrupar_Click(object sender, System.EventArgs e)
-        {
-            operacoes.AgruparRegistros();
-        }
-
-        private void toolStripBtnDesagrupar_Click(object sender, System.EventArgs e)
-        {
-            operacoes.DesagruparRegistros();
-        }
     }
 }

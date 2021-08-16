@@ -1,5 +1,5 @@
 ﻿
-namespace LocadoraVeiculoModules.WindowsApp.Features.Combustivel
+namespace LocadoraVeiculos.WindowsApp.Features.Combustivel
 {
     partial class TelaControleCombustível
     {

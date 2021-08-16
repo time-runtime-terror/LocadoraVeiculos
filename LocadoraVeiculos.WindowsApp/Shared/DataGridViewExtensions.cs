@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LocadoraVeiculoModules.WindowsApp.Shared
+namespace LocadoraVeiculos.WindowsApp.Shared
 {
     public static class DataGridViewExtensions
     {

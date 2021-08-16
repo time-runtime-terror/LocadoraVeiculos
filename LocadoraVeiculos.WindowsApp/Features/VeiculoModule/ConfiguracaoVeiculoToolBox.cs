@@ -1,5 +1,4 @@
-﻿using LocadoraVeiculoModules.WindowsApp.Shared;
-using LocadoraVeiculos.WindowsApp.Shared;
+﻿using LocadoraVeiculos.WindowsApp.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;

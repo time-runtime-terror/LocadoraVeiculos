@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using LocadoraVeiculoModules.WindowsApp;
+using LocadoraVeiculos.WindowsApp;
 using LocadoraVeiculos.Dominio.VeiculoModule;
 //using LocadoraVeiculos.Dominio.GrupoVeiculosModule;
 
