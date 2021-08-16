@@ -18,13 +18,13 @@ namespace LocadoraVeiculos.Dominio.CombustivelModule
             Gnv = gnv;  
         }
 
-        public double Gasolina { get; }
+        public double Gasolina { get; set; }
 
-        public double Etanol { get; }
+        public double Etanol { get; set; }
 
-        public double Diesel { get; }
+        public double Diesel { get; set; }
 
-        public double Gnv { get; }
+        public double Gnv { get; set; }
 
         public override bool Equals(object obj)
         {

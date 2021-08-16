@@ -19,7 +19,7 @@ namespace LocadoraVeiculos.Tests.ClienteModule
             controladorCliente = new ControladorCliente();
 
             Db.Update("DELETE FROM [TBCLIENTE]");
-            Db.Update("DELETE FROM [TBCONDUTOR]");
+            Db.Update("DELETE FROM [TBFUNCIONARIO]");
         }
 
         [TestMethod]

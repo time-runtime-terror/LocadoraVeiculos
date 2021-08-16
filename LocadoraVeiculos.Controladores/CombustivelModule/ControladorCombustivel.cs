@@ -18,13 +18,35 @@ namespace LocadoraVeiculos.Controladores.CombustivelModule
             if (resultadoValidacao == "ESTA_VALIDO")
             {
                 //salvar os dados dentro do app config
-                SalvandoAppConfig("gasolina", Convert.ToString(registro.Gasolina));
+                string gasolina = Convert.ToString(registro.Gasolina);
+                SalvandoAppConfig("gasolina", gasolina);
                 SalvandoAppConfig("etanol", Convert.ToString(registro.Etanol));
                 SalvandoAppConfig("diesel", Convert.ToString(registro.Diesel));
                 SalvandoAppConfig("gnv", Convert.ToString(registro.Gnv));
             }
 
             return resultadoValidacao;
+        }
+
+        
+        public string PegarValorGasolina()
+        {
+            return ConfigurationManager.AppSettings["gasolina"];
+        }
+
+        public string PegarValorEtanol()
+        {
+            return ConfigurationManager.AppSettings["etanol"];
+        }
+
+        public  string PegarValorDiesel()
+        {
+            return ConfigurationManager.AppSettings["diesel"];
+        }
+
+        public  string PegarValorGnv()
+        {
+            return ConfigurationManager.AppSettings["gnv"];
         }
 
         private static void SalvandoAppConfig(string key, string value)
@@ -34,26 +56,6 @@ namespace LocadoraVeiculos.Controladores.CombustivelModule
             configuration.Save();
 
             ConfigurationManager.RefreshSection("appSettings");
-        }
-
-        public static string PegarValorGasolina()
-        {
-            return ConfigurationManager.AppSettings["gasolina"];
-        }
-
-        public static string PegarValorEtanol()
-        {
-            return ConfigurationManager.AppSettings["etanol"];
-        }
-
-        public static string PegarValorDiesel()
-        {
-            return ConfigurationManager.AppSettings["diesel"];
-        }
-
-        public static string PegarValorGnv()
-        {
-            return ConfigurationManager.AppSettings["gnv"];
         }
     }
 }
