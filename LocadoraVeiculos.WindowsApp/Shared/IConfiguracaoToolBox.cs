@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocadoraVeiculos.WindowsApp.Shared
+namespace LocadoraVeiculoModules.WindowsApp.Shared
 {
     public interface IConfiguracaoToolBox
     {

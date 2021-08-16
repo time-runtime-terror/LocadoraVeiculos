@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveis
+namespace LocadoraVeiculoModules.WindowsApp.Features.GrupoAutomoveis
 {
     public partial class TelaCadastroGrupoAutomoveis : Form
     {

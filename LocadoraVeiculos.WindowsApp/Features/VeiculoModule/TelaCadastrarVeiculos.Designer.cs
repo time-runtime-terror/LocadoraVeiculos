@@ -1,5 +1,5 @@
 ﻿
-namespace LocadoraVeiculos.WindowsApp.Features.Veiculo
+namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
 {
     partial class TelaCadastrarVeiculos
     {
@@ -29,10 +29,11 @@ namespace LocadoraVeiculos.WindowsApp.Features.Veiculo
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaCadastrarVeiculos));
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -43,17 +44,17 @@ namespace LocadoraVeiculos.WindowsApp.Features.Veiculo
             this.label10 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.txtId = new System.Windows.Forms.TextBox();
+            this.txtPlaca = new System.Windows.Forms.TextBox();
+            this.txtModelo = new System.Windows.Forms.TextBox();
+            this.txtMarca = new System.Windows.Forms.TextBox();
+            this.txtCapacidadeTanque = new System.Windows.Forms.TextBox();
+            this.txtQuilometragem = new System.Windows.Forms.TextBox();
             this.btnGravar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtTipoCombustivel = new System.Windows.Forms.TextBox();
+            this.btnImagem = new System.Windows.Forms.Button();
+            this.cbTipoVeiculo = new System.Windows.Forms.ComboBox();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -61,14 +62,24 @@ namespace LocadoraVeiculos.WindowsApp.Features.Veiculo
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(66)))));
+            this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(557, 60);
             this.panel2.TabIndex = 5;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::LocadoraVeiculos.WindowsApp.Properties.Resources.sedan;
+            this.pictureBox1.Location = new System.Drawing.Point(13, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(68, 60);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
             // 
             // label3
             // 
@@ -91,16 +102,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.Veiculo
             this.label4.Size = new System.Drawing.Size(169, 18);
             this.label4.TabIndex = 5;
             this.label4.Text = "O carro certo para você!";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::LocadoraVeiculos.WindowsApp.Properties.Resources.sedan;
-            this.pictureBox1.Location = new System.Drawing.Point(3, -14);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(95, 82);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
             // 
             // panel3
             // 
@@ -201,72 +202,58 @@ namespace LocadoraVeiculos.WindowsApp.Features.Veiculo
             this.label15.TabIndex = 19;
             this.label15.Text = "Quilometragem";
             // 
-            // textBox1
+            // txtId
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(165, 69);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(136, 24);
-            this.textBox1.TabIndex = 20;
+            this.txtId.Enabled = false;
+            this.txtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtId.Location = new System.Drawing.Point(165, 69);
+            this.txtId.Name = "txtId";
+            this.txtId.Size = new System.Drawing.Size(136, 24);
+            this.txtId.TabIndex = 20;
             // 
-            // textBox2
+            // txtPlaca
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(189, 138);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(111, 24);
-            this.textBox2.TabIndex = 21;
+            this.txtPlaca.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPlaca.Location = new System.Drawing.Point(189, 138);
+            this.txtPlaca.Name = "txtPlaca";
+            this.txtPlaca.Size = new System.Drawing.Size(111, 24);
+            this.txtPlaca.TabIndex = 21;
             // 
-            // textBox3
+            // txtModelo
             // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(206, 177);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(311, 24);
-            this.textBox3.TabIndex = 22;
+            this.txtModelo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtModelo.Location = new System.Drawing.Point(206, 177);
+            this.txtModelo.Name = "txtModelo";
+            this.txtModelo.Size = new System.Drawing.Size(311, 24);
+            this.txtModelo.TabIndex = 22;
             // 
-            // textBox4
+            // txtMarca
             // 
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(198, 220);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(319, 24);
-            this.textBox4.TabIndex = 23;
+            this.txtMarca.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMarca.Location = new System.Drawing.Point(198, 220);
+            this.txtMarca.Name = "txtMarca";
+            this.txtMarca.Size = new System.Drawing.Size(319, 24);
+            this.txtMarca.TabIndex = 23;
             // 
-            // textBox8
+            // txtCapacidadeTanque
             // 
-            this.textBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox8.Location = new System.Drawing.Point(315, 300);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(202, 24);
-            this.textBox8.TabIndex = 27;
+            this.txtCapacidadeTanque.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCapacidadeTanque.Location = new System.Drawing.Point(315, 300);
+            this.txtCapacidadeTanque.Name = "txtCapacidadeTanque";
+            this.txtCapacidadeTanque.Size = new System.Drawing.Size(202, 24);
+            this.txtCapacidadeTanque.TabIndex = 27;
             // 
-            // textBox10
+            // txtQuilometragem
             // 
-            this.textBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox10.Location = new System.Drawing.Point(257, 342);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(260, 24);
-            this.textBox10.TabIndex = 29;
-            // 
-            // textBox12
-            // 
-            this.textBox12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox12.Location = new System.Drawing.Point(257, 384);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(260, 24);
-            this.textBox12.TabIndex = 31;
-            // 
-            // textBox13
-            // 
-            this.textBox13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox13.Location = new System.Drawing.Point(189, 104);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(155, 24);
-            this.textBox13.TabIndex = 32;
+            this.txtQuilometragem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtQuilometragem.Location = new System.Drawing.Point(257, 342);
+            this.txtQuilometragem.Name = "txtQuilometragem";
+            this.txtQuilometragem.Size = new System.Drawing.Size(260, 24);
+            this.txtQuilometragem.TabIndex = 29;
             // 
             // btnGravar
             // 
+            this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnGravar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGravar.Location = new System.Drawing.Point(459, 423);
             this.btnGravar.Name = "btnGravar";
@@ -274,6 +261,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.Veiculo
             this.btnGravar.TabIndex = 34;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
+            this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click_1);
             // 
             // btnCancelar
             // 
@@ -284,31 +272,52 @@ namespace LocadoraVeiculos.WindowsApp.Features.Veiculo
             this.btnCancelar.TabIndex = 33;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // textBox6
+            // txtTipoCombustivel
             // 
-            this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.Location = new System.Drawing.Point(270, 260);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(247, 24);
-            this.textBox6.TabIndex = 25;
+            this.txtTipoCombustivel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTipoCombustivel.Location = new System.Drawing.Point(270, 260);
+            this.txtTipoCombustivel.Name = "txtTipoCombustivel";
+            this.txtTipoCombustivel.Size = new System.Drawing.Size(247, 24);
+            this.txtTipoCombustivel.TabIndex = 25;
+            // 
+            // btnImagem
+            // 
+            this.btnImagem.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImagem.Location = new System.Drawing.Point(189, 104);
+            this.btnImagem.Name = "btnImagem";
+            this.btnImagem.Size = new System.Drawing.Size(143, 23);
+            this.btnImagem.TabIndex = 35;
+            this.btnImagem.Text = "Selecione Imagem";
+            this.btnImagem.UseVisualStyleBackColor = true;
+            this.btnImagem.Click += new System.EventHandler(this.btnImagem_Click);
+            // 
+            // cbTipoVeiculo
+            // 
+            this.cbTipoVeiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.cbTipoVeiculo.FormattingEnabled = true;
+            this.cbTipoVeiculo.Location = new System.Drawing.Point(270, 382);
+            this.cbTipoVeiculo.Name = "cbTipoVeiculo";
+            this.cbTipoVeiculo.Size = new System.Drawing.Size(121, 26);
+            this.cbTipoVeiculo.TabIndex = 36;
             // 
             // TelaCadastrarVeiculos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(557, 467);
+            this.Controls.Add(this.cbTipoVeiculo);
+            this.Controls.Add(this.btnImagem);
             this.Controls.Add(this.btnGravar);
             this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.textBox13);
-            this.Controls.Add(this.textBox12);
-            this.Controls.Add(this.textBox10);
-            this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtQuilometragem);
+            this.Controls.Add(this.txtCapacidadeTanque);
+            this.Controls.Add(this.txtTipoCombustivel);
+            this.Controls.Add(this.txtMarca);
+            this.Controls.Add(this.txtModelo);
+            this.Controls.Add(this.txtPlaca);
+            this.Controls.Add(this.txtId);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label10);
@@ -320,8 +329,13 @@ namespace LocadoraVeiculos.WindowsApp.Features.Veiculo
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "TelaCadastrarVeiculos";
-            this.Text = "TelaCadastroVeiculos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "TelaCadastroVeiculoModules";
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -335,7 +349,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.Veiculo
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -346,16 +359,17 @@ namespace LocadoraVeiculos.WindowsApp.Features.Veiculo
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox textBox12;
-        private System.Windows.Forms.TextBox textBox13;
+        private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.TextBox txtPlaca;
+        private System.Windows.Forms.TextBox txtModelo;
+        private System.Windows.Forms.TextBox txtMarca;
+        private System.Windows.Forms.TextBox txtCapacidadeTanque;
+        private System.Windows.Forms.TextBox txtQuilometragem;
         private System.Windows.Forms.Button btnGravar;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txtTipoCombustivel;
+        private System.Windows.Forms.Button btnImagem;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ComboBox cbTipoVeiculo;
     }
 }

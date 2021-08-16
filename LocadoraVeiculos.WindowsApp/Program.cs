@@ -1,11 +1,11 @@
-﻿using LocadoraVeiculos.WindowsApp;
+﻿using LocadoraVeiculoModules.WindowsApp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LocadoraVeiculos.WindowsApp
+namespace LocadoraVeiculoModules.WindowsApp
 {
     static class Program
     {

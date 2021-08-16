@@ -1,5 +1,5 @@
 ﻿
-namespace LocadoraVeiculos.WindowsApp
+namespace LocadoraVeiculoModules.WindowsApp
 {
     partial class Dashboard
     {
@@ -37,7 +37,7 @@ namespace LocadoraVeiculos.WindowsApp
             this.panelMenu = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnCadastroGrupoAutomoveis = new System.Windows.Forms.Button();
-            this.btnCadastroVeiculos = new System.Windows.Forms.Button();
+            this.btnCadastroVeiculoModules = new System.Windows.Forms.Button();
             this.btnCadastroFuncionarios = new System.Windows.Forms.Button();
             this.btnCadastroClientes = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -74,7 +74,7 @@ namespace LocadoraVeiculos.WindowsApp
             this.panelTopo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTopo.Location = new System.Drawing.Point(0, 0);
             this.panelTopo.Name = "panelTopo";
-            this.panelTopo.Size = new System.Drawing.Size(1184, 60);
+            this.panelTopo.Size = new System.Drawing.Size(1247, 60);
             this.panelTopo.TabIndex = 1;
             // 
             // label2
@@ -125,7 +125,7 @@ namespace LocadoraVeiculos.WindowsApp
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.Controls.Add(this.btnCadastroGrupoAutomoveis);
-            this.panel4.Controls.Add(this.btnCadastroVeiculos);
+            this.panel4.Controls.Add(this.btnCadastroVeiculoModules);
             this.panel4.Controls.Add(this.btnCadastroFuncionarios);
             this.panel4.Controls.Add(this.btnCadastroClientes);
             this.panel4.Location = new System.Drawing.Point(3, 76);
@@ -147,19 +147,20 @@ namespace LocadoraVeiculos.WindowsApp
             this.btnCadastroGrupoAutomoveis.Text = "Grupo de Automóveis";
             this.btnCadastroGrupoAutomoveis.UseVisualStyleBackColor = true;
             // 
-            // btnCadastroVeiculos
+            // btnCadastroVeiculoModules
             // 
-            this.btnCadastroVeiculos.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnCadastroVeiculos.FlatAppearance.BorderSize = 0;
-            this.btnCadastroVeiculos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCadastroVeiculos.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCadastroVeiculos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
-            this.btnCadastroVeiculos.Location = new System.Drawing.Point(0, 122);
-            this.btnCadastroVeiculos.Name = "btnCadastroVeiculos";
-            this.btnCadastroVeiculos.Size = new System.Drawing.Size(233, 61);
-            this.btnCadastroVeiculos.TabIndex = 3;
-            this.btnCadastroVeiculos.Text = "Veículos";
-            this.btnCadastroVeiculos.UseVisualStyleBackColor = true;
+            this.btnCadastroVeiculoModules.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnCadastroVeiculoModules.FlatAppearance.BorderSize = 0;
+            this.btnCadastroVeiculoModules.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCadastroVeiculoModules.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCadastroVeiculoModules.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
+            this.btnCadastroVeiculoModules.Location = new System.Drawing.Point(0, 122);
+            this.btnCadastroVeiculoModules.Name = "btnCadastroVeiculoModules";
+            this.btnCadastroVeiculoModules.Size = new System.Drawing.Size(233, 61);
+            this.btnCadastroVeiculoModules.TabIndex = 3;
+            this.btnCadastroVeiculoModules.Text = "Veículos";
+            this.btnCadastroVeiculoModules.UseVisualStyleBackColor = true;
+            this.btnCadastroVeiculoModules.Click += new System.EventHandler(this.btnCadastroVeiculoModules_Click);
             // 
             // btnCadastroFuncionarios
             // 
@@ -221,7 +222,7 @@ namespace LocadoraVeiculos.WindowsApp
             this.toolStripSeparator7});
             this.toolBoxAcoes.Location = new System.Drawing.Point(242, 60);
             this.toolBoxAcoes.Name = "toolBoxAcoes";
-            this.toolBoxAcoes.Size = new System.Drawing.Size(942, 55);
+            this.toolBoxAcoes.Size = new System.Drawing.Size(1005, 55);
             this.toolBoxAcoes.TabIndex = 4;
             this.toolBoxAcoes.Text = "toolStrip1";
             // 
@@ -259,6 +260,7 @@ namespace LocadoraVeiculos.WindowsApp
             this.toolStripBtnAdicionar.Size = new System.Drawing.Size(52, 52);
             this.toolStripBtnAdicionar.Text = "toolStripButton1";
             this.toolStripBtnAdicionar.ToolTipText = "Adicionar";
+            this.toolStripBtnAdicionar.Click += new System.EventHandler(this.toolStripBtnAdicionar_Click);
             // 
             // toolStripSeparator1
             // 
@@ -275,6 +277,7 @@ namespace LocadoraVeiculos.WindowsApp
             this.toolStripBtnEditar.Size = new System.Drawing.Size(52, 52);
             this.toolStripBtnEditar.Text = "toolStripButton3";
             this.toolStripBtnEditar.ToolTipText = "Editar";
+            this.toolStripBtnEditar.Click += new System.EventHandler(this.toolStripBtnEditar_Click);
             // 
             // toolStripSeparator2
             // 
@@ -291,6 +294,7 @@ namespace LocadoraVeiculos.WindowsApp
             this.toolStripBtnExcluir.Size = new System.Drawing.Size(52, 52);
             this.toolStripBtnExcluir.Text = "toolStripButton2";
             this.toolStripBtnExcluir.ToolTipText = "Excluir";
+            this.toolStripBtnExcluir.Click += new System.EventHandler(this.toolStripBtnExcluir_Click);
             // 
             // toolStripSeparator4
             // 
@@ -323,6 +327,7 @@ namespace LocadoraVeiculos.WindowsApp
             this.toolStripBtnAgrupar.Size = new System.Drawing.Size(52, 52);
             this.toolStripBtnAgrupar.Text = "toolStripButton5";
             this.toolStripBtnAgrupar.ToolTipText = "Agrupar";
+            this.toolStripBtnAgrupar.Click += new System.EventHandler(this.toolStripBtnAgrupar_Click);
             // 
             // toolStripSeparator5
             // 
@@ -339,6 +344,7 @@ namespace LocadoraVeiculos.WindowsApp
             this.toolStripBtnDesagrupar.Size = new System.Drawing.Size(52, 52);
             this.toolStripBtnDesagrupar.Text = "toolStripButton6";
             this.toolStripBtnDesagrupar.ToolTipText = "Desagrupar";
+            this.toolStripBtnDesagrupar.Click += new System.EventHandler(this.toolStripBtnDesagrupar_Click);
             // 
             // toolStripSeparator7
             // 
@@ -350,19 +356,20 @@ namespace LocadoraVeiculos.WindowsApp
             this.panelRegistros.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelRegistros.Location = new System.Drawing.Point(242, 115);
             this.panelRegistros.Name = "panelRegistros";
-            this.panelRegistros.Size = new System.Drawing.Size(942, 546);
+            this.panelRegistros.Size = new System.Drawing.Size(1005, 546);
             this.panelRegistros.TabIndex = 5;
             // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 661);
+            this.ClientSize = new System.Drawing.Size(1247, 661);
             this.Controls.Add(this.panelRegistros);
             this.Controls.Add(this.toolBoxAcoes);
             this.Controls.Add(this.panelMenu);
             this.Controls.Add(this.panelTopo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Dashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -405,7 +412,7 @@ namespace LocadoraVeiculos.WindowsApp
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button btnCadastroGrupoAutomoveis;
-        private System.Windows.Forms.Button btnCadastroVeiculos;
+        private System.Windows.Forms.Button btnCadastroVeiculoModules;
         private System.Windows.Forms.Button btnCadastroFuncionarios;
         private System.Windows.Forms.Button btnCadastroClientes;
         private System.Windows.Forms.Label label3;

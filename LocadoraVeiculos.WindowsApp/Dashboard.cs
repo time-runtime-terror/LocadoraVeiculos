@@ -1,13 +1,17 @@
-﻿using LocadoraVeiculos.WindowsApp.Shared;
+﻿using LocadoraVeiculoModules.WindowsApp.Shared;
+using LocadoraVeiculos.Controladores.VeiculoModule;
+using LocadoraVeiculos.WindowsApp.Feature.VeiculoModule;
+using LocadoraVeiculos.WindowsApp.Features.VeiculoModule;
 using System.Windows.Forms;
 
-namespace LocadoraVeiculos.WindowsApp
+namespace LocadoraVeiculoModules.WindowsApp
 {
     public partial class Dashboard : Form
     {
-        private ICadastravel operacoes;
+        private ICadastravel operacoes; 
 
         public static Dashboard Instancia;
+        private OperacoesVeiculos operacaoVeiculos;
 
         public Dashboard()
         {
@@ -48,5 +52,43 @@ namespace LocadoraVeiculos.WindowsApp
             toolStripBtnFiltrar.Enabled = configuracao.BotaoFiltrar;
         }
 
+        private void btnCadastroVeiculoModules_Click(object sender, System.EventArgs e)
+        {
+            ConfiguracaoVeiculoToolBox configuracao = new ConfiguracaoVeiculoToolBox();
+
+            ConfigurarToolBox(configuracao);
+
+            //AtualizarRodape(configuracao.TipoCadastro);
+
+            operacoes = new OperacoesVeiculos(new ControladorVeiculo());
+
+            ConfigurarPainelRegistros();
+            
+        }
+
+        private void toolStripBtnAdicionar_Click(object sender, System.EventArgs e)
+        {
+            operacoes.InserirNovoRegistro();
+        }
+
+        private void toolStripBtnEditar_Click(object sender, System.EventArgs e)
+        {
+            operacoes.EditarRegistro();
+        }
+
+        private void toolStripBtnExcluir_Click(object sender, System.EventArgs e)
+        {
+            operacoes.ExcluirRegistro();
+        }
+
+        private void toolStripBtnAgrupar_Click(object sender, System.EventArgs e)
+        {
+            operacoes.AgruparRegistros();
+        }
+
+        private void toolStripBtnDesagrupar_Click(object sender, System.EventArgs e)
+        {
+            operacoes.DesagruparRegistros();
+        }
     }
 }

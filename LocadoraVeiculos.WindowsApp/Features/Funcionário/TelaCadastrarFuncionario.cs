@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LocadoraVeiculos.WindowsApp.Features.Funcionario
+namespace LocadoraVeiculoModules.WindowsApp.Features.Funcionario
 {
     public partial class TelaFuncionário : Form
     {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LocadoraVeiculos.WindowsApp.Shared
+namespace LocadoraVeiculoModules.WindowsApp.Shared
 {
     public interface ICadastravel
     {
