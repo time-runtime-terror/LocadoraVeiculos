@@ -1,6 +1,7 @@
 ﻿using System;
 using LocadoraVeiculos.Dominio.Shared;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LocadoraVeiculos.Dominio.VeiculoModule
 {
@@ -36,7 +37,7 @@ namespace LocadoraVeiculos.Dominio.VeiculoModule
         {
             return obj is Veiculo veiculo &&
                    Id == veiculo.Id &&
-                   //EqualityComparer<byte[]>.Default.Equals(Foto, veiculo.Foto) &&
+                   Foto.SequenceEqual(obj.Foto) &&
                    Placa == veiculo.Placa &&
                    Modelo == veiculo.Modelo &&
                    Marca == veiculo.Marca &&

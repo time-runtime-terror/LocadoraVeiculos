@@ -142,6 +142,5 @@ namespace LocadoraVeiculos.WindowsApp
             
         }
 
-
     }
 }

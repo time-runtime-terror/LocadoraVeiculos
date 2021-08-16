@@ -92,7 +92,9 @@ namespace LocadoraVeiculos.WindowsApp.Feature.VeiculoModule
 
         public UserControl ObterTabela()
         {
-            tabelaVeiculo.AtualizarRegistros();
+            List<Veiculo> veiculos = controlador.SelecionarTodos();
+
+            tabelaVeiculo.AtualizarRegistros(veiculos);
 
             return tabelaVeiculo;
         }
