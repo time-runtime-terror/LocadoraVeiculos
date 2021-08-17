@@ -19,7 +19,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         public void DeveValidarCampoPlaca()
         {            
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", "Economico");
+            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -32,7 +32,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         public void NaoDeveValidarCampoPlaca()
         {
             //arrange
-            var veiculo = new Veiculo(foto, "", "Vectra", "Chevrolet", "Comum", "70L", "2000km", "Economico");
+            var veiculo = new Veiculo(foto, "", "Vectra", "Chevrolet", "Comum", "70L", "2000km", null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -45,7 +45,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         public void DeveValidarCampoModelo()
         {
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", "Economico");
+            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -58,7 +58,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         public void NaoDeveValidarCampoModelo()
         {
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "", "Chevrolet", "Comum", "70L", "2000km", "Economico");
+            var veiculo = new Veiculo(foto, "ABC-1234", "", "Chevrolet", "Comum", "70L", "2000km", null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -71,7 +71,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         public void DeveValidarCampoMarca()
         {
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", "Economico");
+            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -84,7 +84,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         public void NaoDeveValidarCampoMarca()
         {
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "", "Comum", "70L", "2000km", "Economico");
+            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "", "Comum", "70L", "2000km", null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -97,7 +97,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         public void DeveValidarCampoTipoCombustivel()
         {
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", "Economico");
+            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -110,7 +110,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         public void NaoDeveValidarCampoTipoCombustivel()
         {
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "", "70L", "2000km", "Economico");
+            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "", "70L", "2000km", null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -123,7 +123,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         public void DeveValidarCampoCapacidadeTanque()
         {
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", "Economico");
+            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -136,7 +136,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         public void NaoDeveValidarCampoCapacidadeTanque()
         {
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Comum", "", "2000km", "Economico");
+            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Comum", "", "2000km", null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -149,7 +149,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         public void DeveValidarCampoQuilometragem()
         {
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", "Economico");
+            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -162,7 +162,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         public void NaoDeveValidarCampoQuilometragem()
         {
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "", "Economico");
+            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "", null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -175,7 +175,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         public void DeveValidarCampoTipoVeiculo()
         {
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", "Economico");
+            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -188,7 +188,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         public void NaoDeveValidarCampoTipoVeiculo()
         {
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", "");
+            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
