@@ -52,81 +52,97 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             this.gbCadastroFisico = new System.Windows.Forms.GroupBox();
             this.cmbEmpresa = new System.Windows.Forms.ComboBox();
             this.lblEmpresa = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.gbCadastroFisico.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // idLabel
             // 
             this.idLabel.AutoSize = true;
-            this.idLabel.Location = new System.Drawing.Point(67, 27);
+            this.idLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.idLabel.Location = new System.Drawing.Point(144, 80);
             this.idLabel.Name = "idLabel";
-            this.idLabel.Size = new System.Drawing.Size(19, 13);
+            this.idLabel.Size = new System.Drawing.Size(27, 20);
             this.idLabel.TabIndex = 0;
             this.idLabel.Text = "Id:";
             // 
             // txtId
             // 
             this.txtId.Enabled = false;
-            this.txtId.Location = new System.Drawing.Point(158, 27);
+            this.txtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtId.Location = new System.Drawing.Point(274, 74);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(67, 20);
+            this.txtId.Size = new System.Drawing.Size(67, 26);
             this.txtId.TabIndex = 1;
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(158, 53);
+            this.txtNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNome.Location = new System.Drawing.Point(274, 106);
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(175, 20);
+            this.txtNome.Size = new System.Drawing.Size(175, 26);
             this.txtNome.TabIndex = 3;
             // 
             // lblNome
             // 
             this.lblNome.AutoSize = true;
-            this.lblNome.Location = new System.Drawing.Point(67, 53);
+            this.lblNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNome.Location = new System.Drawing.Point(145, 112);
             this.lblNome.Name = "lblNome";
-            this.lblNome.Size = new System.Drawing.Size(38, 13);
+            this.lblNome.Size = new System.Drawing.Size(55, 20);
             this.lblNome.TabIndex = 2;
             this.lblNome.Text = "Nome:";
             // 
             // txtEndereco
             // 
-            this.txtEndereco.Location = new System.Drawing.Point(158, 79);
+            this.txtEndereco.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEndereco.Location = new System.Drawing.Point(274, 138);
             this.txtEndereco.Name = "txtEndereco";
-            this.txtEndereco.Size = new System.Drawing.Size(175, 20);
+            this.txtEndereco.Size = new System.Drawing.Size(175, 26);
             this.txtEndereco.TabIndex = 5;
             // 
             // lblEndereco
             // 
             this.lblEndereco.AutoSize = true;
-            this.lblEndereco.Location = new System.Drawing.Point(67, 79);
+            this.lblEndereco.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEndereco.Location = new System.Drawing.Point(144, 144);
             this.lblEndereco.Name = "lblEndereco";
-            this.lblEndereco.Size = new System.Drawing.Size(56, 13);
+            this.lblEndereco.Size = new System.Drawing.Size(82, 20);
             this.lblEndereco.TabIndex = 4;
             this.lblEndereco.Text = "Endereço:";
             // 
             // lblTelefone
             // 
             this.lblTelefone.AutoSize = true;
-            this.lblTelefone.Location = new System.Drawing.Point(67, 105);
+            this.lblTelefone.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTelefone.Location = new System.Drawing.Point(144, 176);
             this.lblTelefone.Name = "lblTelefone";
-            this.lblTelefone.Size = new System.Drawing.Size(52, 13);
+            this.lblTelefone.Size = new System.Drawing.Size(75, 20);
             this.lblTelefone.TabIndex = 6;
             this.lblTelefone.Text = "Telefone:";
             // 
             // txtTelefone
             // 
-            this.txtTelefone.Location = new System.Drawing.Point(158, 102);
+            this.txtTelefone.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTelefone.Location = new System.Drawing.Point(274, 170);
             this.txtTelefone.Mask = "(99) 00000-0000";
             this.txtTelefone.Name = "txtTelefone";
-            this.txtTelefone.Size = new System.Drawing.Size(100, 20);
+            this.txtTelefone.Size = new System.Drawing.Size(128, 26);
             this.txtTelefone.TabIndex = 7;
             // 
             // rdbPessoaFisica
             // 
             this.rdbPessoaFisica.AutoSize = true;
-            this.rdbPessoaFisica.Location = new System.Drawing.Point(158, 152);
+            this.rdbPessoaFisica.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbPessoaFisica.Location = new System.Drawing.Point(274, 229);
             this.rdbPessoaFisica.Name = "rdbPessoaFisica";
-            this.rdbPessoaFisica.Size = new System.Drawing.Size(45, 17);
+            this.rdbPessoaFisica.Size = new System.Drawing.Size(58, 24);
             this.rdbPessoaFisica.TabIndex = 8;
             this.rdbPessoaFisica.Text = "CPF";
             this.rdbPessoaFisica.UseVisualStyleBackColor = true;
@@ -135,9 +151,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             // rdbPessoaJuridica
             // 
             this.rdbPessoaJuridica.AutoSize = true;
-            this.rdbPessoaJuridica.Location = new System.Drawing.Point(256, 152);
+            this.rdbPessoaJuridica.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbPessoaJuridica.Location = new System.Drawing.Point(372, 229);
             this.rdbPessoaJuridica.Name = "rdbPessoaJuridica";
-            this.rdbPessoaJuridica.Size = new System.Drawing.Size(52, 17);
+            this.rdbPessoaJuridica.Size = new System.Drawing.Size(67, 24);
             this.rdbPessoaJuridica.TabIndex = 9;
             this.rdbPessoaJuridica.Text = "CNPJ";
             this.rdbPessoaJuridica.UseVisualStyleBackColor = true;
@@ -146,9 +163,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(233, 367);
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Location = new System.Drawing.Point(224, 472);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.Size = new System.Drawing.Size(75, 29);
             this.btnCancelar.TabIndex = 10;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -156,9 +174,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             // btnGravar
             // 
             this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnGravar.Location = new System.Drawing.Point(314, 367);
+            this.btnGravar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGravar.Location = new System.Drawing.Point(305, 472);
             this.btnGravar.Name = "btnGravar";
-            this.btnGravar.Size = new System.Drawing.Size(75, 23);
+            this.btnGravar.Size = new System.Drawing.Size(75, 29);
             this.btnGravar.TabIndex = 11;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
@@ -166,67 +185,69 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             // 
             // txtDocumento
             // 
-            this.txtDocumento.Location = new System.Drawing.Point(158, 126);
+            this.txtDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDocumento.Location = new System.Drawing.Point(274, 203);
             this.txtDocumento.Name = "txtDocumento";
-            this.txtDocumento.Size = new System.Drawing.Size(156, 20);
+            this.txtDocumento.Size = new System.Drawing.Size(156, 26);
             this.txtDocumento.TabIndex = 13;
             // 
             // lblDocumento
             // 
             this.lblDocumento.AutoSize = true;
-            this.lblDocumento.Location = new System.Drawing.Point(67, 129);
+            this.lblDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDocumento.Location = new System.Drawing.Point(145, 209);
             this.lblDocumento.Name = "lblDocumento";
-            this.lblDocumento.Size = new System.Drawing.Size(65, 13);
+            this.lblDocumento.Size = new System.Drawing.Size(96, 20);
             this.lblDocumento.TabIndex = 12;
             this.lblDocumento.Text = "Documento:";
             // 
             // txtRg
             // 
-            this.txtRg.Location = new System.Drawing.Point(154, 37);
+            this.txtRg.Location = new System.Drawing.Point(190, 25);
             this.txtRg.Name = "txtRg";
-            this.txtRg.Size = new System.Drawing.Size(92, 20);
+            this.txtRg.Size = new System.Drawing.Size(92, 26);
             this.txtRg.TabIndex = 15;
             // 
             // lblRG
             // 
             this.lblRG.AutoSize = true;
-            this.lblRG.Location = new System.Drawing.Point(19, 40);
+            this.lblRG.Location = new System.Drawing.Point(18, 31);
             this.lblRG.Name = "lblRG";
-            this.lblRG.Size = new System.Drawing.Size(26, 13);
+            this.lblRG.Size = new System.Drawing.Size(38, 20);
             this.lblRG.TabIndex = 14;
             this.lblRG.Text = "RG:";
             // 
             // txtVencimentoCnh
             // 
-            this.txtVencimentoCnh.Location = new System.Drawing.Point(154, 87);
+            this.txtVencimentoCnh.Location = new System.Drawing.Point(190, 93);
             this.txtVencimentoCnh.Mask = "00/00/0000";
             this.txtVencimentoCnh.Name = "txtVencimentoCnh";
-            this.txtVencimentoCnh.Size = new System.Drawing.Size(76, 20);
+            this.txtVencimentoCnh.Size = new System.Drawing.Size(76, 26);
             this.txtVencimentoCnh.TabIndex = 30;
             this.txtVencimentoCnh.ValidatingType = typeof(System.DateTime);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 90);
+            this.label1.Location = new System.Drawing.Point(18, 99);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 13);
+            this.label1.Size = new System.Drawing.Size(158, 20);
             this.label1.TabIndex = 29;
             this.label1.Text = "Vencimento da CNH:";
             // 
             // txtCNH
             // 
-            this.txtCNH.Location = new System.Drawing.Point(154, 62);
+            this.txtCNH.Location = new System.Drawing.Point(190, 59);
             this.txtCNH.Name = "txtCNH";
-            this.txtCNH.Size = new System.Drawing.Size(92, 20);
+            this.txtCNH.Size = new System.Drawing.Size(92, 26);
             this.txtCNH.TabIndex = 28;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(19, 65);
+            this.label2.Location = new System.Drawing.Point(18, 65);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(33, 13);
+            this.label2.Size = new System.Drawing.Size(47, 20);
             this.label2.TabIndex = 27;
             this.label2.Text = "CNH:";
             // 
@@ -241,9 +262,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             this.gbCadastroFisico.Controls.Add(this.label1);
             this.gbCadastroFisico.Controls.Add(this.txtVencimentoCnh);
             this.gbCadastroFisico.Enabled = false;
-            this.gbCadastroFisico.Location = new System.Drawing.Point(12, 187);
+            this.gbCadastroFisico.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbCadastroFisico.Location = new System.Drawing.Point(134, 273);
             this.gbCadastroFisico.Name = "gbCadastroFisico";
-            this.gbCadastroFisico.Size = new System.Drawing.Size(377, 161);
+            this.gbCadastroFisico.Size = new System.Drawing.Size(377, 180);
             this.gbCadastroFisico.TabIndex = 31;
             this.gbCadastroFisico.TabStop = false;
             this.gbCadastroFisico.Text = "Pessoa Fisica";
@@ -252,25 +274,80 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             // 
             this.cmbEmpresa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEmpresa.FormattingEnabled = true;
-            this.cmbEmpresa.Location = new System.Drawing.Point(154, 112);
+            this.cmbEmpresa.Location = new System.Drawing.Point(190, 125);
             this.cmbEmpresa.Name = "cmbEmpresa";
-            this.cmbEmpresa.Size = new System.Drawing.Size(148, 21);
+            this.cmbEmpresa.Size = new System.Drawing.Size(148, 28);
             this.cmbEmpresa.TabIndex = 32;
             // 
             // lblEmpresa
             // 
             this.lblEmpresa.AutoSize = true;
-            this.lblEmpresa.Location = new System.Drawing.Point(19, 115);
+            this.lblEmpresa.Location = new System.Drawing.Point(18, 133);
             this.lblEmpresa.Name = "lblEmpresa";
-            this.lblEmpresa.Size = new System.Drawing.Size(114, 13);
+            this.lblEmpresa.Size = new System.Drawing.Size(170, 20);
             this.lblEmpresa.TabIndex = 31;
             this.lblEmpresa.Text = "Empresa Relacionada:";
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(66)))));
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(552, 60);
+            this.panel2.TabIndex = 32;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Cooper Black", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
+            this.label3.Location = new System.Drawing.Point(104, 13);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(267, 31);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "LOCADORA RECH";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label4.Location = new System.Drawing.Point(375, 26);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(169, 18);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "O carro certo para você!";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::LocadoraVeiculos.WindowsApp.Properties.Resources.sedan;
+            this.pictureBox1.Location = new System.Drawing.Point(3, -14);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(95, 82);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(66)))));
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel3.Location = new System.Drawing.Point(0, 60);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(98, 453);
+            this.panel3.TabIndex = 33;
             // 
             // TelaClienteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(401, 402);
+            this.ClientSize = new System.Drawing.Size(552, 513);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.txtDocumento);
             this.Controls.Add(this.lblDocumento);
             this.Controls.Add(this.btnGravar);
@@ -296,6 +373,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             this.Load += new System.EventHandler(this.TelaClienteForm_Load);
             this.gbCadastroFisico.ResumeLayout(false);
             this.gbCadastroFisico.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -326,5 +406,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
         private System.Windows.Forms.GroupBox gbCadastroFisico;
         private System.Windows.Forms.Label lblEmpresa;
         private System.Windows.Forms.ComboBox cmbEmpresa;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panel3;
     }
 }
