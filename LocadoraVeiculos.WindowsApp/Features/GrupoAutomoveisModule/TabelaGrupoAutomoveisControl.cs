@@ -105,6 +105,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             if (gridGrupoAutomoveisAgrupados == null)
                 return;
 
+            gridGrupoAutomoveisAgrupados.RemoveGrouping();
             gridGrupoAutomoveis.RowHeadersVisible = true;
 
             foreach (var campo in campos)
