@@ -182,9 +182,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.CombustivelModule
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Image = global::LocadoraVeiculos.WindowsApp.Properties.Resources.sedan;
             this.pictureBox1.Location = new System.Drawing.Point(3, -14);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(95, 82);
+            this.pictureBox1.Size = new System.Drawing.Size(95, 74);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;

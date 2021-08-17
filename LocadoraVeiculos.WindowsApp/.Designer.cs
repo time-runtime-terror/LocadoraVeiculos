@@ -32,9 +32,9 @@ namespace LocadoraVeiculos.WindowsApp
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             this.panelTopo = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.btnConfiguracoes = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnCadastroGrupoAutomoveis = new System.Windows.Forms.Button();
             this.btnCadastroVeiculos = new System.Windows.Forms.Button();
@@ -60,7 +60,7 @@ namespace LocadoraVeiculos.WindowsApp
             this.panelRegistros = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.labelRodape = new System.Windows.Forms.ToolStripStatusLabel();
-            this.btnConfiguracoes = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.panelTopo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelMenu.SuspendLayout();
@@ -72,8 +72,8 @@ namespace LocadoraVeiculos.WindowsApp
             // panelTopo
             // 
             this.panelTopo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(66)))));
-            this.panelTopo.Controls.Add(this.label2);
             this.panelTopo.Controls.Add(this.label1);
+            this.panelTopo.Controls.Add(this.label2);
             this.panelTopo.Controls.Add(this.pictureBox1);
             this.panelTopo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTopo.Location = new System.Drawing.Point(0, 0);
@@ -92,17 +92,6 @@ namespace LocadoraVeiculos.WindowsApp
             this.label2.TabIndex = 2;
             this.label2.Text = "O carro certo para você!";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
-            this.label1.Location = new System.Drawing.Point(113, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(344, 42);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "LOCADORA RECH";
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::LocadoraVeiculos.WindowsApp.Properties.Resources.sedan;
@@ -116,7 +105,6 @@ namespace LocadoraVeiculos.WindowsApp
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(66)))));
-            this.panelMenu.Controls.Add(this.btnConfiguracoes);
             this.panelMenu.Controls.Add(this.panel4);
             this.panelMenu.Controls.Add(this.label3);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
@@ -125,17 +113,33 @@ namespace LocadoraVeiculos.WindowsApp
             this.panelMenu.Size = new System.Drawing.Size(242, 549);
             this.panelMenu.TabIndex = 3;
             // 
+            // btnConfiguracoes
+            // 
+            this.btnConfiguracoes.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnConfiguracoes.FlatAppearance.BorderSize = 0;
+            this.btnConfiguracoes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfiguracoes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.btnConfiguracoes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
+            this.btnConfiguracoes.Location = new System.Drawing.Point(0, 244);
+            this.btnConfiguracoes.Name = "btnConfiguracoes";
+            this.btnConfiguracoes.Size = new System.Drawing.Size(233, 60);
+            this.btnConfiguracoes.TabIndex = 0;
+            this.btnConfiguracoes.Text = "Configurações";
+            this.btnConfiguracoes.UseVisualStyleBackColor = true;
+            this.btnConfiguracoes.Click += new System.EventHandler(this.btnConfiguracoes_Click);
+            // 
             // panel4
             // 
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel4.Controls.Add(this.btnConfiguracoes);
             this.panel4.Controls.Add(this.btnCadastroGrupoAutomoveis);
             this.panel4.Controls.Add(this.btnCadastroVeiculos);
             this.panel4.Controls.Add(this.btnCadastroFuncionarioModules);
             this.panel4.Controls.Add(this.btnCadastroClientes);
             this.panel4.Location = new System.Drawing.Point(3, 76);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(233, 244);
+            this.panel4.Size = new System.Drawing.Size(233, 316);
             this.panel4.TabIndex = 1;
             // 
             // btnCadastroGrupoAutomoveis
@@ -388,15 +392,16 @@ namespace LocadoraVeiculos.WindowsApp
             this.labelRodape.Size = new System.Drawing.Size(74, 17);
             this.labelRodape.Text = "Tudo certo ;)";
             // 
-            // btnConfiguracoes
+            // label1
             // 
-            this.btnConfiguracoes.Location = new System.Drawing.Point(16, 426);
-            this.btnConfiguracoes.Name = "btnConfiguracoes";
-            this.btnConfiguracoes.Size = new System.Drawing.Size(280, 60);
-            this.btnConfiguracoes.TabIndex = 0;
-            this.btnConfiguracoes.Text = "Configuracoes";
-            this.btnConfiguracoes.UseVisualStyleBackColor = true;
-            this.btnConfiguracoes.Click += new System.EventHandler(this.btnConfiguracoes_Click);
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Cooper Black", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
+            this.label1.Location = new System.Drawing.Point(113, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(344, 40);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "LOCADORA RECH";
             // 
             // Dashboard
             // 
@@ -448,7 +453,6 @@ namespace LocadoraVeiculos.WindowsApp
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ToolStripButton toolStripBtnPesquisar;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panelRegistros;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel4;
@@ -460,6 +464,7 @@ namespace LocadoraVeiculos.WindowsApp
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel labelRodape;
         private System.Windows.Forms.Button btnConfiguracoes;
+        private System.Windows.Forms.Label label1;
     }
 }
 

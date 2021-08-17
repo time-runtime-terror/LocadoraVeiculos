@@ -37,9 +37,9 @@ namespace LocadoraVeiculos.WindowsApp
             this.btnEntrar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -58,7 +58,7 @@ namespace LocadoraVeiculos.WindowsApp
             // txbUsuario
             // 
             this.txbUsuario.Location = new System.Drawing.Point(352, 156);
-            this.txbUsuario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbUsuario.Margin = new System.Windows.Forms.Padding(2);
             this.txbUsuario.Name = "txbUsuario";
             this.txbUsuario.Size = new System.Drawing.Size(76, 20);
             this.txbUsuario.TabIndex = 1;
@@ -77,7 +77,7 @@ namespace LocadoraVeiculos.WindowsApp
             // txbSenha
             // 
             this.txbSenha.Location = new System.Drawing.Point(352, 204);
-            this.txbSenha.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbSenha.Margin = new System.Windows.Forms.Padding(2);
             this.txbSenha.Name = "txbSenha";
             this.txbSenha.PasswordChar = '*';
             this.txbSenha.Size = new System.Drawing.Size(76, 20);
@@ -98,7 +98,7 @@ namespace LocadoraVeiculos.WindowsApp
             // 
             this.btnEntrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEntrar.Location = new System.Drawing.Point(288, 273);
-            this.btnEntrar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEntrar.Margin = new System.Windows.Forms.Padding(2);
             this.btnEntrar.Name = "btnEntrar";
             this.btnEntrar.Size = new System.Drawing.Size(140, 36);
             this.btnEntrar.TabIndex = 5;
@@ -117,25 +117,24 @@ namespace LocadoraVeiculos.WindowsApp
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(66)))));
+            this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.label4);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(600, 48);
             this.panel2.TabIndex = 7;
             // 
-            // label4
+            // pictureBox1
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
-            this.label4.Location = new System.Drawing.Point(113, 8);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(252, 31);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "LOCADORA RECH";
+            this.pictureBox1.Image = global::LocadoraVeiculos.WindowsApp.Properties.Resources.sedan;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(62, 47);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.TabStop = false;
             // 
             // label5
             // 
@@ -148,15 +147,16 @@ namespace LocadoraVeiculos.WindowsApp
             this.label5.TabIndex = 8;
             this.label5.Text = "O carro certo para você!";
             // 
-            // pictureBox1
+            // label4
             // 
-            this.pictureBox1.Image = global::LocadoraVeiculos.WindowsApp.Properties.Resources.sedan;
-            this.pictureBox1.Location = new System.Drawing.Point(30, 1);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(62, 47);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 8;
-            this.pictureBox1.TabStop = false;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Cooper Black", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
+            this.label4.Location = new System.Drawing.Point(80, 10);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(267, 31);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "LOCADORA RECH";
             // 
             // LoginForm
             // 
@@ -171,7 +171,7 @@ namespace LocadoraVeiculos.WindowsApp
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txbUsuario);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "LoginForm";
@@ -195,8 +195,8 @@ namespace LocadoraVeiculos.WindowsApp
         private System.Windows.Forms.Button btnEntrar;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label4;
     }
 }
