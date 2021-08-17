@@ -15,6 +15,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
         {
             InitializeComponent();
             controladorCliente = new ControladorCliente();
+
         }
 
         public Cliente Cliente
@@ -35,8 +36,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
                 txtCNH.Text = cliente.CNH;
                 txtVencimentoCnh.Text = cliente.VencimentoCnh.ToString();
 
-                cmbEmpresa.SelectedItem = (cliente.Empresa != null
-                    && cmbEmpresa.Items.Contains(cliente.Empresa.Nome)) ? cliente.Empresa.Nome : null;
+
 
                 if (cliente.TipoCadastro == "CNPJ")
                     rdbPessoaJuridica.Checked = true;
@@ -89,6 +89,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             {
                 cmbEmpresa.Items.Add(cliente.Nome);
             }
+
+            cmbEmpresa.SelectedItem = (cliente.Empresa != null
+                && cmbEmpresa.Items.Contains(cliente.Empresa.Nome)) ? cliente.Empresa.Nome : null;
         }
     }
 }

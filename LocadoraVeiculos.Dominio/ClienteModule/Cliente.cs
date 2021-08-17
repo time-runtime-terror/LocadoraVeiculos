@@ -31,6 +31,11 @@ namespace LocadoraVeiculos.Dominio.ClienteModule
             Empresa = empresa;
         }
 
+        public override string ToString()
+        {
+            return Nome;
+        }
+
         public override string Validar()
         {
             string resultadoValidacao = "";
