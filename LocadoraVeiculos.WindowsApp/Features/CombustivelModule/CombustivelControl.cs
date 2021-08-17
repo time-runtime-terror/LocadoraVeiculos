@@ -27,6 +27,27 @@ namespace LocadoraVeiculos.WindowsApp.Features.CombustivelModule
             txbDiesel.Text = controlador.PegarValorDiesel();
             txbGnv.Text = controlador.PegarValorGnv();
 
+            //colocando os zeros, se for necessário
+            txbGasolina.Text = PadronizarTextBox(txbGasolina.Text);
+            txbEtanol.Text = PadronizarTextBox(txbEtanol.Text);
+            txbDiesel.Text = PadronizarTextBox(txbDiesel.Text);
+            txbGnv.Text = PadronizarTextBox(txbGnv.Text);
+        }
+
+        private string PadronizarTextBox(string text)
+        {
+
+            if (text.Length == 2)
+            {
+                text += "00";
+            }
+
+            if(text.Length == 3)
+            {
+                text += "0";
+            }
+
+            return text;
         }
 
         private void btnGravar_Click(object sender, EventArgs e)

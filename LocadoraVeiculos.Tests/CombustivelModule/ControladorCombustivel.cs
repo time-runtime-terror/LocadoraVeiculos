@@ -21,7 +21,7 @@ namespace LocadoraVeiculos.Tests.CombustivelModule
         public void DeveGravar_Combustivel()
         {
             // arrange
-            Combustivel combustivel = new Combustivel(2.3, 3.4, 5, 7.8);
+            Combustivel combustivel = new Combustivel(2, 3.4, 5, 7.8);
 
             // action
             string resultado = controlador.GravarCombustivel(combustivel);
@@ -34,17 +34,24 @@ namespace LocadoraVeiculos.Tests.CombustivelModule
         [TestMethod]
         public void DeveSelecionar_Gasolina()
         {
+            // arrange
+            Combustivel combustivel = new Combustivel(3, 3.4, 5, 7.8);
+            controlador.GravarCombustivel(combustivel);
             // action
             var gasolina = controlador.PegarValorGasolina();
 
             // assert
-            gasolina.Should().Be("2,3");
+            gasolina.Should().Be("3");
 
         }
 
         [TestMethod]
         public void DeveSelecionar_Etanol()
         {
+            // arrange
+            Combustivel combustivel = new Combustivel(3, 3.4, 5, 7.8);
+            controlador.GravarCombustivel(combustivel);
+
             // action
             var etanol = controlador.PegarValorEtanol();
 
@@ -56,6 +63,10 @@ namespace LocadoraVeiculos.Tests.CombustivelModule
         [TestMethod]
         public void DeveSelecionar_Diesel()
         {
+            // arrange
+            Combustivel combustivel = new Combustivel(3, 3.4, 5, 7.8);
+            controlador.GravarCombustivel(combustivel);
+
             // action
             var diesel = controlador.PegarValorDiesel();
 
@@ -66,6 +77,10 @@ namespace LocadoraVeiculos.Tests.CombustivelModule
         [TestMethod]
         public void DeveSelecionar_Gnv()
         {
+            // arrange
+            Combustivel combustivel = new Combustivel(3, 3.4, 5, 7.8);
+            controlador.GravarCombustivel(combustivel);
+
             // action
             var gnv = controlador.PegarValorGnv();
 
