@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LocadoraVeiculos.WindowsApp.Features.Combustivel
+namespace LocadoraVeiculos.WindowsApp.Features.CombustivelModule
 {
     public partial class TelaControleCombustível : Form
     {

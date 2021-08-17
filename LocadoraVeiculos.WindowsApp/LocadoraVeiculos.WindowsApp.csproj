@@ -88,6 +88,14 @@
     <Compile Include="Features\ClienteModule\TelaClienteForm.Designer.cs">
       <DependentUpon>TelaClienteForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Features\CombustivelModule\CombustivelControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Features\CombustivelModule\CombustivelControl.Designer.cs">
+      <DependentUpon>CombustivelControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\CombustivelModule\ConfiguracaoCombustivelToolBox.cs" />
+    <Compile Include="Features\CombustivelModule\OperacoesCombustivel.cs" />
     <Compile Include="Features\FuncionarioModule\ConfiguracaoFuncionarioToolBox.cs" />
     <Compile Include="Features\FuncionarioModule\OperacoesFuncionario.cs" />
     <Compile Include="Features\FuncionarioModule\TabelaFuncionarioControl.cs">
@@ -129,10 +137,10 @@
     <Compile Include="Features\GrupoAutomoveisModule\TelaCadastroGrupoAutomoveis.Designer.cs">
       <DependentUpon>TelaCadastroGrupoAutomoveis.cs</DependentUpon>
     </Compile>
-    <Compile Include="Features\Combustivel\TelaControleCombustível.cs">
+    <Compile Include="Features\CombustivelModule\TelaControleCombustível.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Features\Combustivel\TelaControleCombustível.Designer.cs">
+    <Compile Include="Features\CombustivelModule\TelaControleCombustível.Designer.cs">
       <DependentUpon>TelaControleCombustível.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
@@ -159,6 +167,9 @@
     <EmbeddedResource Include="Features\ClienteModule\TelaClienteForm.resx">
       <DependentUpon>TelaClienteForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Features\CombustivelModule\CombustivelControl.resx">
+      <DependentUpon>CombustivelControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Features\FuncionarioModule\TabelaFuncionarioControl.resx">
       <DependentUpon>TabelaFuncionarioControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -177,7 +188,7 @@
     <EmbeddedResource Include="Features\GrupoAutomoveisModule\TelaCadastroGrupoAutomoveis.resx">
       <DependentUpon>TelaCadastroGrupoAutomoveis.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Features\Combustivel\TelaControleCombustível.resx">
+    <EmbeddedResource Include="Features\CombustivelModule\TelaControleCombustível.resx">
       <DependentUpon>TelaControleCombustível.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
