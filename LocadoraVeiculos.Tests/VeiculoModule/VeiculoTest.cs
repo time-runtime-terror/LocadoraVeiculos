@@ -13,7 +13,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
     [TestCategory("Dominio")]
     public class VeiculoTest
     {
-        byte[] foto = null;
+        byte[] foto = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20 };
 
         [TestMethod]
         public void DeveValidarCampoPlaca()
@@ -184,17 +184,5 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
             resultadoValidacao.Should().Be("ESTA_VALIDO");
         }
 
-        [TestMethod]
-        public void NaoDeveValidarCampoTipoVeiculo()
-        {
-            //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", null);
-
-            //action
-            var resultadoValidacao = veiculo.Validar();
-
-            //assert
-            resultadoValidacao.Should().Be("O campo Tipo do Veiculo é obrigatório");
-        }
     }
 }
