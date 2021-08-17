@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.Dominio.GrupoAutomoveisModule;
+﻿using LocadoraVeiculos.WindowsApp;
+using LocadoraVeiculos.Dominio.GrupoAutomoveisModule;
 using System;
 using System.Collections.Generic;
 using System.IO;

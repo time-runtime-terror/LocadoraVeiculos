@@ -124,10 +124,22 @@
     <Compile Include="Features\GrupoAutomoveisModule\TelaAgrupamentoGrupoAutomoveis.Designer.cs">
       <DependentUpon>TelaAgrupamentoGrupoAutomoveis.cs</DependentUpon>
     </Compile>
-    <Compile Include="Features\Veiculo\TelaCadastrarVeiculos.cs">
+    <Compile Include="Features\VeiculoModule\AgrupamentoVeiculosEnum.cs" />
+    <Compile Include="Features\VeiculoModule\AgrupamentoVeiculosForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Features\Veiculo\TelaCadastrarVeiculos.Designer.cs">
+    <Compile Include="Features\VeiculoModule\AgrupamentoVeiculosForm.Designer.cs">
+      <DependentUpon>AgrupamentoVeiculosForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\VeiculoModule\ConfiguracaoVeiculoToolBox.cs" />
+    <Compile Include="Features\VeiculoModule\OperacoesVeiculos.cs" />
+    <Compile Include="Features\VeiculoModule\TabelaVeiculosControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Features\VeiculoModule\TelaCadastrarVeiculos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\VeiculoModule\TelaCadastrarVeiculos.Designer.cs">
       <DependentUpon>TelaCadastrarVeiculos.cs</DependentUpon>
     </Compile>
     <Compile Include="Features\GrupoAutomoveisModule\TelaCadastroGrupoAutomoveis.cs">
@@ -151,6 +163,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shared\ConfiguracaoEstadoBotoes.cs" />
+    <Compile Include="Shared\ConfiguracaoToolTips.cs" />
     <Compile Include="Shared\DataGridViewExtensions.cs" />
     <Compile Include="Shared\ICadastravel.cs" />
     <Compile Include="Shared\IConfiguracaoToolBox.cs" />
@@ -175,14 +189,17 @@
     <EmbeddedResource Include="Features\FuncionarioModule\TelaCadastrarFuncionario.resx">
       <DependentUpon>TelaCadastrarFuncionario.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Features\VeiculoModule\AgrupamentoVeiculosForm.resx">
+      <DependentUpon>AgrupamentoVeiculosForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\VeiculoModule\TabelaVeiculosControl.resx">
+      <DependentUpon>TabelaVeiculosControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Features\GrupoAutomoveisModule\TabelaGrupoAutomoveisControl.resx">
       <DependentUpon>TabelaGrupoAutomoveisControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Features\GrupoAutomoveisModule\TelaAgrupamentoGrupoAutomoveis.resx">
       <DependentUpon>TelaAgrupamentoGrupoAutomoveis.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\Veiculo\TelaCadastrarVeiculos.resx">
-      <DependentUpon>TelaCadastrarVeiculos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Features\GrupoAutomoveisModule\TelaCadastroGrupoAutomoveis.resx">
       <DependentUpon>TelaCadastroGrupoAutomoveis.cs</DependentUpon>
@@ -190,11 +207,14 @@
     <EmbeddedResource Include="Features\CombustivelModule\TelaControleCombustível.resx">
       <DependentUpon>TelaControleCombustível.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Features\VeiculoModule\TelaCadastrarVeiculos.resx">
+      <DependentUpon>TelaCadastrarVeiculos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -219,6 +239,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Libs\DataGridViewGrouper.dll" />
+    <Content Include="Resources\IconLogo.ico" />
+    <Content Include="Resources\round_close_fullscreen_black_24dp.png" />
+    <Content Include="Resources\round_delete_black_24dp.png" />
+    <Content Include="Resources\round_edit_black_24dp.png" />
+    <Content Include="Resources\round_filter_alt_black_24dp.png" />
+    <Content Include="Resources\round_local_hospital_black_24dp.png" />
+    <Content Include="Resources\round_search_black_24dp.png" />
+    <Content Include="Resources\round_sort_by_alpha_black_24dp.png" />
     <None Include="Resources\sedan.png" />
     <None Include="Resources\sedan2.png" />
   </ItemGroup>
