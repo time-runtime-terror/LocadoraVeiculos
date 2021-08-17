@@ -44,10 +44,9 @@ namespace LocadoraVeiculos.Dominio.VeiculoModule
 
         public string NomeGrupo { get => GrupoAutomoveis.NomeGrupo; }
 
-
         public override bool Equals(object obj)
         {
-            return base.Equals(obj as Veiculo);
+            return Equals(obj);
         }
 
         public bool Equals(Veiculo obj)
@@ -63,12 +62,13 @@ namespace LocadoraVeiculos.Dominio.VeiculoModule
                    TipoCombustivel == veiculo.TipoCombustivel &&
                    CapacidadeTanque == veiculo.CapacidadeTanque &&
                    Quilometragem == veiculo.Quilometragem &&
-                   EqualityComparer<GrupoAutomoveis>.Default.Equals(GrupoAutomoveis, veiculo.GrupoAutomoveis);
+                   EqualityComparer<GrupoAutomoveis>.Default.Equals(GrupoAutomoveis, veiculo.GrupoAutomoveis) &&
+                   NomeGrupo == veiculo.NomeGrupo;
         }
 
         public override int GetHashCode()
         {
-            int hashCode = -150478439;
+            int hashCode = -1944787682;
             hashCode = hashCode * -1521134295 + id.GetHashCode();
             hashCode = hashCode * -1521134295 + Id.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<Bitmap>.Default.GetHashCode(Imagem);
@@ -80,6 +80,7 @@ namespace LocadoraVeiculos.Dominio.VeiculoModule
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(CapacidadeTanque);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Quilometragem);
             hashCode = hashCode * -1521134295 + EqualityComparer<GrupoAutomoveis>.Default.GetHashCode(GrupoAutomoveis);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(NomeGrupo);
             return hashCode;
         }
 
