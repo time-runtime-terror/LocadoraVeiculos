@@ -26,6 +26,9 @@ namespace LocadoraVeiculos.Dominio.VeiculoModule
         {
             get
             {
+                if (GrupoAutomoveis == null)
+                    return null;
+
                 using (var ms = new MemoryStream(Foto))
                 {
                     return new Bitmap(ms);
