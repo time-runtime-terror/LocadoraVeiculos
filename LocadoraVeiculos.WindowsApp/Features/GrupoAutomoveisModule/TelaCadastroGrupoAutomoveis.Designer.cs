@@ -47,10 +47,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGravar = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -232,17 +232,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             this.panel2.Size = new System.Drawing.Size(597, 60);
             this.panel2.TabIndex = 20;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
-            this.label1.Location = new System.Drawing.Point(104, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(252, 31);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "LOCADORA RECH";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -272,6 +261,17 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(135, 381);
             this.panel1.TabIndex = 21;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Cooper Black", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
+            this.label1.Location = new System.Drawing.Point(104, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(267, 31);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "LOCADORA RECH";
             // 
             // TelaCadastroGrupoAutomoveis
             // 
@@ -319,9 +319,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnGravar;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label1;
     }
 }
