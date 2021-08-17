@@ -60,6 +60,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             // 
             // btnCancelar
             // 
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.Location = new System.Drawing.Point(149, 161);
             this.btnCancelar.Name = "btnCancelar";
