@@ -30,6 +30,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
         private void InitializeComponent()
         {
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -53,12 +54,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             this.txtTipoCombustivel = new System.Windows.Forms.TextBox();
             this.btnImagem = new System.Windows.Forms.Button();
             this.cbTipoVeiculo = new System.Windows.Forms.ComboBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.txtCaminhoImagem = new System.Windows.Forms.TextBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.imgCarro = new System.Windows.Forms.PictureBox();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgCarro)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
@@ -72,6 +71,16 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(557, 60);
             this.panel2.TabIndex = 5;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::LocadoraVeiculos.WindowsApp.Properties.Resources.sedan;
+            this.pictureBox1.Location = new System.Drawing.Point(13, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(68, 60);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
             // 
             // label3
             // 
@@ -108,7 +117,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(136, 130);
+            this.label1.Location = new System.Drawing.Point(136, 168);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(23, 20);
             this.label1.TabIndex = 7;
@@ -119,7 +128,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(136, 165);
+            this.label2.Location = new System.Drawing.Point(374, 113);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 20);
             this.label2.TabIndex = 8;
@@ -129,7 +138,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(136, 199);
+            this.label5.Location = new System.Drawing.Point(136, 201);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(48, 20);
             this.label5.TabIndex = 9;
@@ -199,7 +208,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             // 
             this.txtId.Enabled = false;
             this.txtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtId.Location = new System.Drawing.Point(166, 126);
+            this.txtId.Location = new System.Drawing.Point(190, 164);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(86, 24);
             this.txtId.TabIndex = 20;
@@ -207,7 +216,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             // txtPlaca
             // 
             this.txtPlaca.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPlaca.Location = new System.Drawing.Point(190, 195);
+            this.txtPlaca.Location = new System.Drawing.Point(190, 197);
             this.txtPlaca.Name = "txtPlaca";
             this.txtPlaca.Size = new System.Drawing.Size(111, 24);
             this.txtPlaca.TabIndex = 21;
@@ -278,7 +287,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             // btnImagem
             // 
             this.btnImagem.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImagem.Location = new System.Drawing.Point(342, 161);
+            this.btnImagem.Location = new System.Drawing.Point(401, 183);
             this.btnImagem.Name = "btnImagem";
             this.btnImagem.Size = new System.Drawing.Size(143, 23);
             this.btnImagem.TabIndex = 35;
@@ -288,6 +297,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             // 
             // cbTipoVeiculo
             // 
+            this.cbTipoVeiculo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTipoVeiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.cbTipoVeiculo.FormattingEnabled = true;
             this.cbTipoVeiculo.Location = new System.Drawing.Point(271, 439);
@@ -295,40 +305,21 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             this.cbTipoVeiculo.Size = new System.Drawing.Size(121, 26);
             this.cbTipoVeiculo.TabIndex = 36;
             // 
-            // pictureBox1
+            // imgCarro
             // 
-            this.pictureBox1.Image = global::LocadoraVeiculos.WindowsApp.Properties.Resources.sedan;
-            this.pictureBox1.Location = new System.Drawing.Point(13, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(68, 60);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.TabStop = false;
-            // 
-            // txtCaminhoImagem
-            // 
-            this.txtCaminhoImagem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCaminhoImagem.Location = new System.Drawing.Point(190, 161);
-            this.txtCaminhoImagem.Name = "txtCaminhoImagem";
-            this.txtCaminhoImagem.Size = new System.Drawing.Size(136, 24);
-            this.txtCaminhoImagem.TabIndex = 37;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Location = new System.Drawing.Point(370, 66);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(84, 84);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox2.TabIndex = 38;
-            this.pictureBox2.TabStop = false;
+            this.imgCarro.Location = new System.Drawing.Point(434, 84);
+            this.imgCarro.Name = "imgCarro";
+            this.imgCarro.Size = new System.Drawing.Size(84, 84);
+            this.imgCarro.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imgCarro.TabIndex = 38;
+            this.imgCarro.TabStop = false;
             // 
             // TelaCadastrarVeiculos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(557, 525);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.txtCaminhoImagem);
+            this.Controls.Add(this.imgCarro);
             this.Controls.Add(this.cbTipoVeiculo);
             this.Controls.Add(this.btnImagem);
             this.Controls.Add(this.btnGravar);
@@ -356,11 +347,11 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             this.MinimizeBox = false;
             this.Name = "TelaCadastrarVeiculos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TelaCadastroVeiculoModules";
+            this.Text = "Cadastro de Veículos";
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgCarro)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -393,7 +384,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
         private System.Windows.Forms.Button btnImagem;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ComboBox cbTipoVeiculo;
-        private System.Windows.Forms.TextBox txtCaminhoImagem;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox imgCarro;
     }
 }

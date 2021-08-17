@@ -2,12 +2,15 @@
 using LocadoraVeiculos.Dominio.Shared;
 using System.Collections.Generic;
 using System.Linq;
+using System.Drawing;
+using System.IO;
+using LocadoraVeiculos.Dominio.GrupoAutomoveisModule;
 
 namespace LocadoraVeiculos.Dominio.VeiculoModule
 {
     public class Veiculo : EntidadeBase, IEquatable<Veiculo>
     {
-        public Veiculo(byte[] foto, string placa, string modelo, string marca, string tipoCombustivel, string capacidadeTanque, string quilometragem, string tipoVeiculo)
+        public Veiculo(byte[] foto, string placa, string modelo, string marca, string tipoCombustivel, string capacidadeTanque, string quilometragem, GrupoAutomoveis grupo)
         {
             Foto = foto;
             Placa = placa;
@@ -16,7 +19,18 @@ namespace LocadoraVeiculos.Dominio.VeiculoModule
             TipoCombustivel = tipoCombustivel;
             CapacidadeTanque = capacidadeTanque;
             Quilometragem = quilometragem;
-            TipoVeiculo = tipoVeiculo;
+            GrupoAutomoveis = grupo;
+        }
+
+        public Bitmap Imagem
+        {
+            get
+            {
+                using (var ms = new MemoryStream(Foto))
+                {
+                    return new Bitmap(ms);
+                }
+            }
         }
 
         public byte[] Foto { get; }
@@ -26,31 +40,38 @@ namespace LocadoraVeiculos.Dominio.VeiculoModule
         public string TipoCombustivel { get; }
         public string CapacidadeTanque { get; }
         public string Quilometragem { get; }
-        public string TipoVeiculo { get; }
+        public GrupoAutomoveis GrupoAutomoveis { get; }
+
+        public string NomeGrupo { get => GrupoAutomoveis.NomeGrupo; }
+
 
         public override bool Equals(object obj)
         {
-            return Equals(obj as Veiculo);
+            return base.Equals(obj as Veiculo);
         }
 
         public bool Equals(Veiculo obj)
         {
             return obj is Veiculo veiculo &&
+                   id == veiculo.id &&
                    Id == veiculo.Id &&
-                   Foto.SequenceEqual(obj.Foto) &&
+                   EqualityComparer<Bitmap>.Default.Equals(Imagem, veiculo.Imagem) &&
+                   Foto.SequenceEqual(veiculo.Foto) &&
                    Placa == veiculo.Placa &&
                    Modelo == veiculo.Modelo &&
                    Marca == veiculo.Marca &&
                    TipoCombustivel == veiculo.TipoCombustivel &&
                    CapacidadeTanque == veiculo.CapacidadeTanque &&
                    Quilometragem == veiculo.Quilometragem &&
-                   TipoVeiculo == veiculo.TipoVeiculo;
+                   EqualityComparer<GrupoAutomoveis>.Default.Equals(GrupoAutomoveis, veiculo.GrupoAutomoveis);
         }
 
         public override int GetHashCode()
         {
-            int hashCode = -877309296;
+            int hashCode = -150478439;
+            hashCode = hashCode * -1521134295 + id.GetHashCode();
             hashCode = hashCode * -1521134295 + Id.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<Bitmap>.Default.GetHashCode(Imagem);
             hashCode = hashCode * -1521134295 + EqualityComparer<byte[]>.Default.GetHashCode(Foto);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Placa);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Modelo);
@@ -58,7 +79,7 @@ namespace LocadoraVeiculos.Dominio.VeiculoModule
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(TipoCombustivel);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(CapacidadeTanque);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Quilometragem);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(TipoVeiculo);
+            hashCode = hashCode * -1521134295 + EqualityComparer<GrupoAutomoveis>.Default.GetHashCode(GrupoAutomoveis);
             return hashCode;
         }
 
@@ -86,9 +107,6 @@ namespace LocadoraVeiculos.Dominio.VeiculoModule
 
             if (string.IsNullOrEmpty(Quilometragem))
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Quilometragem é obrigatório";
-
-            if (string.IsNullOrEmpty(TipoVeiculo))
-                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Tipo do Veiculo é obrigatório";
 
             if (resultadoValidacao == "")
                 resultadoValidacao = "ESTA_VALIDO";

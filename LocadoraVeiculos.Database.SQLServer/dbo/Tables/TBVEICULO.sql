@@ -7,7 +7,8 @@
     [TipoCombustivel]  VARCHAR (50)    NOT NULL,
     [CapacidadeTanque] VARCHAR (50)    NOT NULL,
     [Quilometragem]    VARCHAR (50)    NOT NULL,
-    [TipoVeiculo]      VARCHAR (50)    NOT NULL,
+    [Id_GrupoAutomoveis] INT    NULL,
+    CONSTRAINT [FK_TBVEICULO_TBGRUPOAUTOMOVEIS] FOREIGN KEY (Id_GrupoAutomoveis) REFERENCES [dbo].[TBGRUPOAUTOMOVEIS] ([Id]) ON DELETE SET NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 

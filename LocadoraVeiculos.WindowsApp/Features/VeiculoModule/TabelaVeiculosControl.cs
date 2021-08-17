@@ -21,6 +21,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             gridVeiculos.ConfigurarGridZebrado();
             gridVeiculos.ConfigurarGridSomenteLeitura();
             gridVeiculos.Columns.AddRange(ObterColunas());
+
+            tipoAgrupamento = AgrupamentoVeiculosEnum.TodosAutomoveis;
+
             this.controladorVeiculo = controladorVeiculo;
         }
 
@@ -30,7 +33,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             {
                 new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName  = "Foto", HeaderText = "Foto"},
+                new DataGridViewImageColumn { DataPropertyName  = "Imagem", HeaderText = "Foto", ImageLayout = DataGridViewImageCellLayout.Zoom},
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Placa", HeaderText = "Placa"},
 
@@ -38,13 +41,13 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Marca", HeaderText = "Marca"},
 
-                new DataGridViewTextBoxColumn {DataPropertyName = "TipoCombustivel", HeaderText = "TipoCombustivel"},
+                new DataGridViewTextBoxColumn {DataPropertyName = "TipoCombustivel", HeaderText = "Combustível"},
 
-                new DataGridViewTextBoxColumn {DataPropertyName = "CapacidadeTanque", HeaderText = "CapacidadeTanque"},
+                new DataGridViewTextBoxColumn {DataPropertyName = "CapacidadeTanque", HeaderText = "Capacidade do Tanque"},
 
-                new DataGridViewTextBoxColumn {DataPropertyName = "Quilometragem", HeaderText = "Quilometragem"},
+                new DataGridViewTextBoxColumn {DataPropertyName = "Quilometragem", HeaderText = "Km"},
 
-                new DataGridViewTextBoxColumn {DataPropertyName = "TipoVeiculo", HeaderText = "TipoVeiculo"}
+                new DataGridViewTextBoxColumn {DataPropertyName = "NomeGrupo", HeaderText = "Categoria"}
             };
 
             return colunas;
@@ -74,6 +77,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
         }
         public void AgruparVeiculos(AgrupamentoVeiculosEnum tipoAgrupamento)
         {
+            DesagruparVeiculos();
+
             this.tipoAgrupamento = tipoAgrupamento;
 
             AgruparVeiculos();
@@ -84,7 +89,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             switch (tipoAgrupamento)
             {
                 case AgrupamentoVeiculosEnum.PorGrupoAutomoveis:
-                    AgruparVeiculosPor("TipoVeiculo");
+                    AgruparVeiculosPor("NomeGrupo");
                     break;
 
                 case AgrupamentoVeiculosEnum.TodosAutomoveis:
@@ -116,11 +121,13 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
 
         public void DesagruparVeiculos()
         {
+
             var campos = new string[] { "NomeGrupo" };
 
             if (gridVeiculosAgrupados == null)
                 return;
 
+            gridVeiculosAgrupados.RemoveGrouping();
             gridVeiculos.RowHeadersVisible = true;
 
             foreach (var campo in campos)

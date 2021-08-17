@@ -118,6 +118,12 @@
       <DependentUpon>TelaAgrupamentoGrupoAutomoveis.cs</DependentUpon>
     </Compile>
     <Compile Include="Features\VeiculoModule\AgrupamentoVeiculosEnum.cs" />
+    <Compile Include="Features\VeiculoModule\AgrupamentoVeiculosForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\VeiculoModule\AgrupamentoVeiculosForm.Designer.cs">
+      <DependentUpon>AgrupamentoVeiculosForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Features\VeiculoModule\ConfiguracaoVeiculoToolBox.cs" />
     <Compile Include="Features\VeiculoModule\OperacoesVeiculos.cs" />
     <Compile Include="Features\VeiculoModule\TabelaVeiculosControl.cs">
@@ -172,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Features\FuncionarioModule\TelaCadastrarFuncionario.resx">
       <DependentUpon>TelaCadastrarFuncionario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\VeiculoModule\AgrupamentoVeiculosForm.resx">
+      <DependentUpon>AgrupamentoVeiculosForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Features\VeiculoModule\TabelaVeiculosControl.resx">
       <DependentUpon>TabelaVeiculosControl.cs</DependentUpon>

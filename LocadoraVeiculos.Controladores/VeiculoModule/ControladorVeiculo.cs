@@ -7,6 +7,8 @@ using System.Text;
 using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
+using LocadoraVeiculos.Dominio.GrupoAutomoveisModule;
+using LocadoraVeiculos.Controladores.GrupoAutomoveisModule;
 
 namespace LocadoraVeiculos.Controladores.VeiculoModule
 {
@@ -23,7 +25,7 @@ namespace LocadoraVeiculos.Controladores.VeiculoModule
                     [TIPOCOMBUSTIVEL],
                     [CAPACIDADETANQUE],
                     [QUILOMETRAGEM],
-                    [TIPOVEICULO]
+                    [ID_GRUPOAUTOMOVEIS]
                 )
             VALUES
                 (
@@ -34,7 +36,7 @@ namespace LocadoraVeiculos.Controladores.VeiculoModule
                     @TIPOCOMBUSTIVEL,
                     @CAPACIDADETANQUE,
                     @QUILOMETRAGEM,
-                    @TIPOVEICULO
+                    @ID_GRUPOAUTOMOVEIS
                 )";
 
         private const string sqlEditarVeiculo =
@@ -47,7 +49,7 @@ namespace LocadoraVeiculos.Controladores.VeiculoModule
                     [TIPOCOMBUSTIVEL] = @TIPOCOMBUSTIVEL,
                     [CAPACIDADETANQUE] = @CAPACIDADETANQUE,
                     [QUILOMETRAGEM] = @QUILOMETRAGEM,
-                    [TIPOVEICULO] = @TIPOVEICULO
+                    [ID_GRUPOAUTOMOVEIS] = @ID_GRUPOAUTOMOVEIS
 
                 WHERE [ID] = @ID";
 
@@ -57,33 +59,39 @@ namespace LocadoraVeiculos.Controladores.VeiculoModule
 
         private const string sqlSelecionarTodosVeiculos =
             @"SELECT 
-                    [ID],       
-                    [FOTO],       
-                    [PLACA],             
-                    [MODELO],                    
-                    [MARCA], 
-                    [TIPOCOMBUSTIVEL],
-                    [CAPACIDADETANQUE],
-                    [QUILOMETRAGEM],
-                    [TIPOVEICULO]
+                    VE.[ID],       
+                    VE.[FOTO],       
+                    VE.[PLACA],             
+                    VE.[MODELO],                    
+                    VE.[MARCA], 
+                    VE.[TIPOCOMBUSTIVEL],
+                    VE.[CAPACIDADETANQUE],
+                    VE.[QUILOMETRAGEM],
+                    VE.[ID_GRUPOAUTOMOVEIS]
             FROM
-                [TBVEICULO]";
+                    [TBVEICULO] AS VE LEFT JOIN
+                    [TBGRUPOAUTOMOVEIS] AS GA
+            ON
+                    GA.ID = VE.[ID_GRUPOAUTOMOVEIS]";
 
         private const string sqlSelecionarVeiculoPorId =
-            @"SELECT 
-                    [ID],       
-                    [FOTO],       
-                    [PLACA],             
-                    [MODELO],                    
-                    [MARCA], 
-                    [TIPOCOMBUSTIVEL],
-                    [CAPACIDADETANQUE],
-                    [QUILOMETRAGEM],
-                    [TIPOVEICULO]
-             FROM
-                [TBVEICULO]
-             WHERE 
-                [ID] = @ID";
+           @"SELECT 
+                    VE.[ID],       
+                    VE.[FOTO],       
+                    VE.[PLACA],             
+                    VE.[MODELO],                    
+                    VE.[MARCA], 
+                    VE.[TIPOCOMBUSTIVEL],
+                    VE.[CAPACIDADETANQUE],
+                    VE.[QUILOMETRAGEM],
+                    VE.[ID_GRUPOAUTOMOVEIS]
+            FROM
+                    [TBVEICULO] AS VE LEFT JOIN
+                    [TBGRUPOAUTOMOVEIS] AS GA
+            ON
+                    GA.ID = VE.[ID_GRUPOAUTOMOVEIS]
+            WHERE
+                    VE.[ID] = @ID";
 
         private const string sqlExisteTarefa =
             @"SELECT 
@@ -94,6 +102,13 @@ namespace LocadoraVeiculos.Controladores.VeiculoModule
                 [ID] = @ID";
 
         #endregion
+
+        private ControladorGrupoAutomoveis controladorGrupoAutomoveis;
+
+        public ControladorVeiculo()
+        {
+            controladorGrupoAutomoveis = new ControladorGrupoAutomoveis();
+        }
 
         public override string InserirNovo(Veiculo registro)
         {
@@ -158,9 +173,13 @@ namespace LocadoraVeiculos.Controladores.VeiculoModule
             var tipoCombustivel = Convert.ToString(reader["TIPOCOMBUSTIVEL"]);
             var capacidadeTanque = Convert.ToString(reader["CAPACIDADETANQUE"]);
             var quilometragem = Convert.ToString(reader["QUILOMETRAGEM"]);
-            var tipoVeiculo = Convert.ToString(reader["TIPOVEICULO"]);
 
-            Veiculo veiculo = new Veiculo(foto, placa, modelo, marca, tipoCombustivel, capacidadeTanque, quilometragem, tipoVeiculo);
+            GrupoAutomoveis grupo = null;
+
+            if (reader["ID_GRUPOAUTOMOVEIS"] != DBNull.Value)
+                grupo = controladorGrupoAutomoveis.SelecionarPorId(Convert.ToInt32(reader["ID_GRUPOAUTOMOVEIS"]));
+
+            Veiculo veiculo = new Veiculo(foto, placa, modelo, marca, tipoCombustivel, capacidadeTanque, quilometragem, grupo);
 
             veiculo.Id = Convert.ToInt32(reader["ID"]);
 
@@ -179,7 +198,10 @@ namespace LocadoraVeiculos.Controladores.VeiculoModule
             parametros.Add("TIPOCOMBUSTIVEL", veiculo.TipoCombustivel);
             parametros.Add("CAPACIDADETANQUE", veiculo.CapacidadeTanque);
             parametros.Add("QUILOMETRAGEM", veiculo.Quilometragem);
-            parametros.Add("TIPOVEICULO", veiculo.TipoVeiculo);
+
+            var idGrupoAutomoveis = veiculo.GrupoAutomoveis?.Id;
+
+            parametros.Add("ID_GRUPOAUTOMOVEIS", idGrupoAutomoveis);
 
             return parametros;
         }

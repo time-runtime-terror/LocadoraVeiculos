@@ -31,7 +31,7 @@ namespace LocadoraVeiculos.WindowsApp.Feature.VeiculoModule
 
                 tabelaVeiculo.AtualizarRegistros();
 
-                // TelaPrincipalForm.Instancia.AtualizarRodape($"Tarefa: [{tela.Tarefa.Titulo}] inserido com sucesso");
+                Dashboard.Instancia.AtualizarRodape($"Veículo: [{tela.Veiculo.Modelo}] inserido com sucesso");
             }
         }
 
@@ -56,11 +56,9 @@ namespace LocadoraVeiculos.WindowsApp.Feature.VeiculoModule
             {
                 controlador.Editar(id, tela.Veiculo);
 
-                List<Veiculo> veiculos = controlador.SelecionarTodos();
-
                 tabelaVeiculo.AtualizarRegistros();
 
-                // TelaPrincipalForm.Instancia.AtualizarRodape($"Tarefa: [{tela.Tarefa.Titulo}] editada com sucesso");
+                Dashboard.Instancia.AtualizarRodape($"Veículo: [{tela.Veiculo.Modelo}] editado com sucesso");
             }
         }
 
@@ -75,9 +73,9 @@ namespace LocadoraVeiculos.WindowsApp.Feature.VeiculoModule
                 return;
             }
 
-            Veiculo veiculoSelecionada = controlador.SelecionarPorId(id);
+            Veiculo veiculoSelecionado = controlador.SelecionarPorId(id);
 
-            if (MessageBox.Show($"Tem certeza que deseja excluir o Veiculo: [{veiculoSelecionada.Id}] ?",
+            if (MessageBox.Show($"Tem certeza que deseja excluir o Veiculo: [{veiculoSelecionado.Id}] ?",
                 "Exclusão de Veiculos", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 controlador.Excluir(id);
@@ -86,7 +84,7 @@ namespace LocadoraVeiculos.WindowsApp.Feature.VeiculoModule
 
                 tabelaVeiculo.AtualizarRegistros();
 
-                //TelaPrincipalForm.Instancia.AtualizarRodape($"Tarefa: [{tarefaSelecionada.Titulo}] removida com sucesso");
+                Dashboard.Instancia.AtualizarRodape($"Veículo: [{veiculoSelecionado.Modelo}] removido com sucesso");
             }
         }
 
@@ -94,19 +92,24 @@ namespace LocadoraVeiculos.WindowsApp.Feature.VeiculoModule
         {
             List<Veiculo> veiculos = controlador.SelecionarTodos();
 
-            tabelaVeiculo.AtualizarRegistros(veiculos);
+            tabelaVeiculo.AtualizarRegistros();
 
             return tabelaVeiculo;
         }
 
         public void AgruparRegistros()
         {
+            AgrupamentoVeiculosForm telaFiltro = new AgrupamentoVeiculosForm();
 
+            if (telaFiltro.ShowDialog() == DialogResult.OK)
+            {
+                tabelaVeiculo.AgruparVeiculos(telaFiltro.TipoAgrupamento);
+            }
         }
 
         public void DesagruparRegistros()
         {
-
+            tabelaVeiculo.DesagruparVeiculos();
         }
 
         public void FiltrarRegistros()
