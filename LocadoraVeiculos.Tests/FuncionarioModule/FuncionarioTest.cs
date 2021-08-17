@@ -85,7 +85,7 @@ namespace LocadoraVeiculos.Tests.FuncionarioModule
             var resultadoValidacao = fucionario.Validar();
 
             //assert
-            resultadoValidacao.Should().Be("O campo Senha necessita ter ao mínimo 5 caracteres");
+            resultadoValidacao.Should().Be("O campo Senha necessita ter ao mínimo 3 caracteres");
         }
 
         [TestMethod]

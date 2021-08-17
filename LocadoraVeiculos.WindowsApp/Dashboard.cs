@@ -2,18 +2,22 @@
 using LocadoraVeiculos.WindowsApp.Features.FuncionarioModule;
 using LocadoraVeiculos.Controladores.GrupoAutomoveisModule;
 using LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule;
-using LocadoraVeiculos.WindowsApp.Shared;
 using System;
 using System.Windows.Forms;
+using LocadoraVeiculos.WindowsApp.Shared;
+using LocadoraVeiculos.Controladores.VeiculoModule;
+using LocadoraVeiculos.WindowsApp.Feature.VeiculoModule;
+using LocadoraVeiculos.WindowsApp.Features.VeiculoModule;
 using LocadoraVeiculos.Controladores.FuncionarioModule;
 
 namespace LocadoraVeiculos.WindowsApp
 {
     public partial class Dashboard : Form
     {
-        private ICadastravel operacoes;
+        private ICadastravel operacoes; 
 
         public static Dashboard Instancia;
+        private OperacoesVeiculos operacaoVeiculos;
 
         public Dashboard()
         {
@@ -124,5 +128,19 @@ namespace LocadoraVeiculos.WindowsApp
         {
             operacoes.DesagruparRegistros();
         }
+        private void btnCadastroVeiculoModules_Click(object sender, System.EventArgs e)
+        {
+            ConfiguracaoVeiculoToolBox configuracao = new ConfiguracaoVeiculoToolBox();
+
+            ConfigurarToolBox(configuracao);
+
+            AtualizarRodape(configuracao.TipoCadastro);
+
+            operacoes = new OperacoesVeiculos(new ControladorVeiculo());
+
+            ConfigurarPainelRegistros();
+            
+        }
+
     }
 }
