@@ -42,7 +42,16 @@ namespace LocadoraVeiculos.Dominio.VeiculoModule
         public string Quilometragem { get; }
         public GrupoAutomoveis GrupoAutomoveis { get; }
 
-        public string NomeGrupo { get => GrupoAutomoveis.NomeGrupo; }
+        public string NomeGrupo 
+        {
+            get
+            {
+                if (GrupoAutomoveis == null)
+                   return  "Sem Categoria";
+
+                return GrupoAutomoveis.NomeGrupo;
+            }
+        }
 
         public override bool Equals(object obj)
         {
