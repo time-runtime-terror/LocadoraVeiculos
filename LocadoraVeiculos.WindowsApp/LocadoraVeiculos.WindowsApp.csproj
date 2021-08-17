@@ -90,6 +90,8 @@
     <Compile Include="Features\CombustivelModule\CombustivelControl.Designer.cs">
       <DependentUpon>CombustivelControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Features\CombustivelModule\ConfiguracaoCombustivelToolBox.cs" />
+    <Compile Include="Features\CombustivelModule\OperacoesCombustivel.cs" />
     <Compile Include="Features\FuncionarioModule\ConfiguracaoFuncionarioToolBox.cs" />
     <Compile Include="Features\FuncionarioModule\OperacoesFuncionario.cs" />
     <Compile Include="Features\FuncionarioModule\TabelaFuncionarioControl.cs">

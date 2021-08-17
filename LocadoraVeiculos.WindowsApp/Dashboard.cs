@@ -3,6 +3,8 @@ using LocadoraVeiculos.WindowsApp.Features.FuncionarioModule;
 using LocadoraVeiculos.WindowsApp.Shared;
 using System.Windows.Forms;
 using LocadoraVeiculos.Controladores.FuncionarioModule;
+using LocadoraVeiculos.WindowsApp.Features.CombustivelModule;
+using LocadoraVeiculos.Controladores.CombustivelModule;
 
 namespace LocadoraVeiculos.WindowsApp
 {
@@ -46,6 +48,18 @@ namespace LocadoraVeiculos.WindowsApp
             panelRegistros.Controls.Add(tabela);
         }
 
+
+        private void ConfigurarPainelConfiguracoes()
+        {
+            UserControl tela = new CombustivelControl(new ControladorCombustivel());
+
+            tela.Dock = DockStyle.Fill;
+
+            panelRegistros.Controls.Clear();
+
+            panelRegistros.Controls.Add(tela);
+        }
+
         private void btnCadastroFuncionario_Click(object sender, System.EventArgs e)
         {
             ConfiguracaoFuncionarioToolBox configuracao = new ConfiguracaoFuncionarioToolBox();
@@ -57,6 +71,21 @@ namespace LocadoraVeiculos.WindowsApp
             operacoes = new OperacoesFuncionario(new ControladorFuncionario());
 
             ConfigurarPainelRegistros();
+        }
+        private void btnConfiguracoes_Click(object sender, System.EventArgs e)
+        {
+            ConfiguracaoCombustivelToolBox configuracao = new ConfiguracaoCombustivelToolBox();
+
+            ConfigurarToolBox(configuracao);
+
+            AtualizarRodape(configuracao.TipoCadastro);
+
+            //OperacoesCombustivel operacoesComb = new OperacoesCombustivel(new ControladorCombustivel());
+
+            //operacoesComb.MostrarCombustiveis();
+
+            ConfigurarPainelConfiguracoes();
+
         }
 
         private void ConfigurarToolBox(IConfiguracaoToolBox configuracao)
@@ -104,5 +133,7 @@ namespace LocadoraVeiculos.WindowsApp
         {
             operacoes.DesagruparRegistros();
         }
+
+       
     }
 }
