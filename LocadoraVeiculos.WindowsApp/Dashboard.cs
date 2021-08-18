@@ -132,7 +132,7 @@ namespace LocadoraVeiculos.WindowsApp
 
             ConfigurarToolBox(configuracao);
 
-            //AtualizarRodape(configuracao.TipoCadastro);
+            AtualizarRodape(configuracao.TipoCadastro);
 
             operacoes = new OperacoesGrupoAutomoveis(new ControladorGrupoAutomoveis());
 
