@@ -339,6 +339,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             this.Name = "TelaCadastroGrupoAutomoveis";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Grupo Automóveis";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TelaCadastroGrupoAutomoveis_FormClosing);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);

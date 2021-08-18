@@ -134,5 +134,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
                 txtControladoDois.Text = txtControladoDois.Text.Remove(txtControladoDois.Text.Length - 1);
             }
         }
+
+        private void TelaCadastroGrupoAutomoveis_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Dashboard.Instancia.AtualizarRodape($"Cadastro de Grupo de Automóveis");
+        }
     }
 }
