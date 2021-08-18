@@ -57,7 +57,7 @@ namespace LocadoraVeiculos.Dominio.ClienteModule
 
         public override bool Equals(object obj)
         {
-            return base.Equals(obj as Cliente);
+            return Equals(obj as Cliente);
         }
 
         public bool Equals(Cliente other)
