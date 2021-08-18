@@ -49,7 +49,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 
                 var empresa = (cliente.Empresa != null) ? cliente.Empresa.Nome : null;
 
-                gridClientes.Rows.Add(cliente.Id, cliente.Nome, cliente.Telefone, cliente.TipoCadastro, cliente.CNH, empresa);
+                gridClientes.Rows.Add(cliente.Id, cliente.Nome, cliente.Telefone, cliente.TipoCadastro, cliente.NumeroCadastro, empresa);
             }
 
         }
