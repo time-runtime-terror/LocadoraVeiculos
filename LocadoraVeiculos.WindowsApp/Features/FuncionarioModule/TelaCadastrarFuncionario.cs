@@ -64,7 +64,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
 
         private void TelaCadastrarFuncionario_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Dashboard.Instancia.AtualizarRodape("");
+            Dashboard.Instancia.AtualizarRodape("Cadastro de Funcionario");
         }
 
         private void txtSalario_TextChanged(object sender, EventArgs e)
