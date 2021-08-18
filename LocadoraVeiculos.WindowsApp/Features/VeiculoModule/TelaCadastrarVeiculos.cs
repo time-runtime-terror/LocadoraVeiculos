@@ -89,7 +89,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
 
             if (resultadoValidacao != "ESTA_VALIDO")
             {
-                MessageBox.Show(resultadoValidacao, "Erro ao Cadastrar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string primeiroErro = new StringReader(resultadoValidacao).ReadLine();
+
+                Dashboard.Instancia.AtualizarRodape(primeiroErro);
 
                 DialogResult = DialogResult.None;
             }
@@ -98,11 +100,30 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Close();
+            Dashboard.Instancia.AtualizarRodape("Cadastro de Veiculos");
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void txtCapacidadeTanque_TextChanged(object sender, EventArgs e)
         {
+            if (System.Text.RegularExpressions.Regex.IsMatch(txtCapacidadeTanque.Text, "[^0-9]"))
+            {
+                Dashboard.Instancia.AtualizarRodape("Por favor, apenas números.");
+                txtCapacidadeTanque.Text = txtCapacidadeTanque.Text.Remove(txtCapacidadeTanque.Text.Length - 1);
+            }
+        }
 
+        private void txtQuilometragem_TextChanged(object sender, EventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(txtQuilometragem.Text, "[^0-9]"))
+            {
+                Dashboard.Instancia.AtualizarRodape("Por favor, apenas números.");
+                txtQuilometragem.Text = txtQuilometragem.Text.Remove(txtQuilometragem.Text.Length - 1);
+            }
+        }
+
+        private void TelaCadastrarVeiculos_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Dashboard.Instancia.AtualizarRodape("Cadastro de Veiculos");
         }
     }
 }

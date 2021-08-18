@@ -19,12 +19,12 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         ControladorGrupoAutomoveis controlodarGrupoAutomoveis = null;
         GrupoAutomoveis grupoAutomoveis = new GrupoAutomoveis("Economico", 32, 64, 65, 82, 90);
 
-    public ControladorVeiculoTest()
-        {
+         public ControladorVeiculoTest()
+         {
             controlador = new ControladorVeiculo();
             controlodarGrupoAutomoveis = new ControladorGrupoAutomoveis();
             Db.Update("DELETE FROM [TBVEICULO]");
-        }
+         }
 
         [TestMethod]
         public void DeveInserir_Veiculo()

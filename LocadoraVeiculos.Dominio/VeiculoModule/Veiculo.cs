@@ -58,7 +58,7 @@ namespace LocadoraVeiculos.Dominio.VeiculoModule
 
         public override bool Equals(object obj)
         {
-            return Equals(obj);
+            return Equals(obj as Veiculo);
         }
 
         public bool Equals(Veiculo obj)

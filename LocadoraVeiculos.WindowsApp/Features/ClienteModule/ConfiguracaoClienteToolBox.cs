@@ -4,7 +4,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 {
     public class ConfiguracaoClienteToolBox : IConfiguracaoToolBox
     {
-        public string TipoCadastro => "Controle de Clientes";
+        public string TipoCadastro => "Cadastro de Clientes";
 
         public string ToolTipAdicionar => "Adicionar um novo cliente";
 
