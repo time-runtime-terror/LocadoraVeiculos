@@ -3,9 +3,6 @@ using LocadoraVeiculos.Dominio.ClienteModule;
 using LocadoraVeiculos.WindowsApp.Shared;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
@@ -21,16 +18,20 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             tabelaClientes = new TabelaClienteControl();
         }
 
-        public void AgruparRegistros()
+        public void InserirNovoRegistro()
         {
-            throw new NotImplementedException();
-        }
+            TelaClienteForm tela = new TelaClienteForm();
 
-        public void DesagruparRegistros()
-        {
-            var clientes = controladorCliente.SelecionarTodos();
+            if (tela.ShowDialog() == DialogResult.OK)
+            {
+                controladorCliente.InserirNovo(tela.Cliente);
 
-            tabelaClientes.AtualizarRegistros(clientes);
+                List<Cliente> clientes = controladorCliente.SelecionarTodos();
+
+                tabelaClientes.AtualizarRegistros(clientes);
+
+                Dashboard.Instancia.AtualizarRodape($"Cliente: [{tela.Cliente.Nome}] inserido com sucesso!");
+            }
         }
 
         public void EditarRegistro()
@@ -58,7 +59,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 
                 tabelaClientes.AtualizarRegistros(clientes);
 
-                //TelaPrincipalForm.Instancia.AtualizarRodape($"Compromisso: [{tela.Compromisso.Assunto}] editado com sucesso");
+                Dashboard.Instancia.AtualizarRodape($"Cliente: [{tela.Cliente.Nome}] inserido com sucesso");
             }
 
         }
@@ -69,8 +70,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 
             if (id == 0)
             {
-                MessageBox.Show("Selecione um cliente para poder excluir!", "Exclusão de Clientes",
-                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                Dashboard.Instancia.AtualizarRodape($"Selecione um registro para poder excluir!");
                 return;
             }
 
@@ -85,7 +85,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 
                 tabelaClientes.AtualizarRegistros(clientes);
 
-                //TelaPrincipalForm.Instancia.AtualizarRodape($"Compromisso: [{compromissoSelecionado.Assunto}] removido com sucesso");
+
             }
         }
 
@@ -116,18 +116,16 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             }
         }
 
-        public void InserirNovoRegistro()
+        public void AgruparRegistros()
         {
-            TelaClienteForm tela = new TelaClienteForm();
+            throw new NotImplementedException();
+        }
 
-            if (tela.ShowDialog() == DialogResult.OK)
-            {
-                controladorCliente.InserirNovo(tela.Cliente);
+        public void DesagruparRegistros()
+        {
+            var clientes = controladorCliente.SelecionarTodos();
 
-                List<Cliente> clientes = controladorCliente.SelecionarTodos();
-
-                tabelaClientes.AtualizarRegistros(clientes);
-            }
+            tabelaClientes.AtualizarRegistros(clientes);
         }
 
         public UserControl ObterTabela()

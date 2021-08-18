@@ -2,6 +2,7 @@
 using LocadoraVeiculos.Dominio.ClienteModule;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
@@ -62,7 +63,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 
             if (resultadoValidacao != "ESTA_VALIDO")
             {
-                MessageBox.Show(resultadoValidacao, "Erro ao Cadastrar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string primeiroErro = new StringReader(resultadoValidacao).ReadLine();
+
+                Dashboard.Instancia.AtualizarRodape(primeiroErro);
 
                 DialogResult = DialogResult.None;
             }

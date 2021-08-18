@@ -46,8 +46,17 @@ namespace LocadoraVeiculos.Dominio.ClienteModule
             if (string.IsNullOrEmpty(Endereco))
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Endereço é obrigatório";
 
-            if (string.IsNullOrEmpty(Telefone))
+            if (string.IsNullOrEmpty(Telefone) || Telefone == "(  )      -")
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Telefone é obrigatório";
+
+            if (string.IsNullOrEmpty(NumeroCadastro))
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Documento é obrigatório";
+
+            if (TipoCadastro == "CPF" && string.IsNullOrEmpty(RG))
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo RG é obrigatório para pessoas físicas";
+
+            if (TipoCadastro == "CPF" && string.IsNullOrEmpty(RG))
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo RG é obrigatório para pessoas físicas";
 
             if (resultadoValidacao == "")
                 resultadoValidacao = "ESTA_VALIDO";

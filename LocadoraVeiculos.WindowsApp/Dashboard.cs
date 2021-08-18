@@ -34,6 +34,8 @@ namespace LocadoraVeiculos.WindowsApp
 
             ConfigurarToolBox(config);
 
+            AtualizarRodape(config.TipoCadastro);
+
             operacoes = new OperacoesCliente();
 
             ConfigurarPainelRegistros();
