@@ -31,7 +31,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
                 txtControladoUm.Text = grupoAutomoveis.KmControladoUm.ToString();
                 txtControladoDois.Text = grupoAutomoveis.KmControladoDois.ToString();
                 txtLivreUm.Text = grupoAutomoveis.KmLivreUm.ToString();
-                txtLivreDois.Text = grupoAutomoveis.KmLivreDois.ToString();
             }
         }
 
@@ -49,8 +48,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
 
             string kmLivreUmstr = txtLivreUm.Text;
 
-            string kmLivreDoisstr = txtLivreDois.Text;
-
             //separar
 
             double planoDiarioUm = validarGrupos(planoDiarioUmstr);
@@ -63,10 +60,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
 
             double kmLivreUm = validarGrupos(kmLivreUmstr);
 
-            double kmLivreDois = validarGrupos(kmLivreDoisstr);
-
             GrupoAutomoveis = new GrupoAutomoveis(nomeGrupo, planoDiarioUm, planoDiarioDois, kmControladoUm, kmControladoDois,
-                kmLivreUm, kmLivreDois);
+                kmLivreUm);
 
             string resultadoValidacao = grupoAutomoveis.Validar();
 
@@ -99,7 +94,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
         {
             if (System.Text.RegularExpressions.Regex.IsMatch(txtDiarioUm.Text, "[^0-9]"))
             {
-                MessageBox.Show("Por favor, apenas números.");
+                Dashboard.Instancia.AtualizarRodape($"Apenas números no Plano Diário, por favor.");
                 txtDiarioUm.Text = txtDiarioUm.Text.Remove(txtDiarioUm.Text.Length - 1);
             }
         }
@@ -108,7 +103,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
         {
             if (System.Text.RegularExpressions.Regex.IsMatch(txtControladoUm.Text, "[^0-9]"))
             {
-                MessageBox.Show("Por favor, apenas números.");
+                Dashboard.Instancia.AtualizarRodape($"Apenas números no Km Controlado, por favor.");
                 txtControladoUm.Text = txtControladoUm.Text.Remove(txtControladoUm.Text.Length - 1);
             }
         }
@@ -117,7 +112,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
         {
             if (System.Text.RegularExpressions.Regex.IsMatch(txtLivreUm.Text, "[^0-9]"))
             {
-                MessageBox.Show("Por favor, apenas números.");
+                Dashboard.Instancia.AtualizarRodape($"Apenas números no Km Livre, por favor.");
                 txtLivreUm.Text = txtLivreUm.Text.Remove(txtLivreUm.Text.Length - 1);
             }
         }
@@ -126,7 +121,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
         {
             if (System.Text.RegularExpressions.Regex.IsMatch(txtDiarioDois.Text, "[^0-9]"))
             {
-                MessageBox.Show("Por favor, apenas números.");
+                Dashboard.Instancia.AtualizarRodape($"Apenas números no Plano Diário por Km Rodado, por favor.");
                 txtDiarioDois.Text = txtDiarioDois.Text.Remove(txtDiarioDois.Text.Length - 1);
             }
         }
@@ -135,17 +130,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
         {
             if (System.Text.RegularExpressions.Regex.IsMatch(txtControladoDois.Text, "[^0-9]"))
             {
-                MessageBox.Show("Por favor, apenas números.");
+                Dashboard.Instancia.AtualizarRodape($"Apenas números no Km Controlado por Km Rodado, por favor.");
                 txtControladoDois.Text = txtControladoDois.Text.Remove(txtControladoDois.Text.Length - 1);
-            }
-        }
-
-        private void txtLivreDois_TextChanged(object sender, EventArgs e)
-        {
-            if (System.Text.RegularExpressions.Regex.IsMatch(txtLivreDois.Text, "[^0-9]"))
-            {
-                MessageBox.Show("Por favor, apenas números.");
-                txtLivreDois.Text = txtLivreDois.Text.Remove(txtLivreDois.Text.Length - 1);
             }
         }
     }

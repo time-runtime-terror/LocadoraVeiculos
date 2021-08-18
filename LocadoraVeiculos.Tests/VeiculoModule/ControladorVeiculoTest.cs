@@ -17,7 +17,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         byte[] imagem = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20 };
 
         ControladorGrupoAutomoveis controlodarGrupoAutomoveis = null;
-        GrupoAutomoveis grupoAutomoveis = new GrupoAutomoveis("Economico", 32, 64, 65, 82, 90, 100);
+        GrupoAutomoveis grupoAutomoveis = new GrupoAutomoveis("Economico", 32, 64, 65, 82, 90);
 
     public ControladorVeiculoTest()
         {

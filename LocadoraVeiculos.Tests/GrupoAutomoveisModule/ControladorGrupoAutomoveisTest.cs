@@ -23,7 +23,7 @@ namespace LocadoraVeiculos.Tests.GrupoAutomoveisModule
         public void DeveInserir_GrupoAutomoveis()
         {
             //arrange
-            var novoGrupoAutomovel = new GrupoAutomoveis("Econômico", 100, 120, 140, 160, 180, 200);
+            var novoGrupoAutomovel = new GrupoAutomoveis("Econômico", 100, 120, 140, 160, 180);
 
             //action
             controlador.InserirNovo(novoGrupoAutomovel);
@@ -37,10 +37,10 @@ namespace LocadoraVeiculos.Tests.GrupoAutomoveisModule
         public void DeveAtualizar_GrupoAutomoveis()
         {
             //arrange
-            var grupoAutomoveis = new GrupoAutomoveis("Econômico", 100, 120, 140, 160, 180, 200);
+            var grupoAutomoveis = new GrupoAutomoveis("Econômico", 100, 120, 140, 160, 180);
             controlador.InserirNovo(grupoAutomoveis);
 
-            var novoGrupoAutomoveis = new GrupoAutomoveis("Econômico", 110, 130, 150, 170, 190, 210);
+            var novoGrupoAutomoveis = new GrupoAutomoveis("Econômico", 110, 130, 150, 170, 190);
 
             //action
             controlador.Editar(grupoAutomoveis.Id, novoGrupoAutomoveis);
@@ -54,7 +54,7 @@ namespace LocadoraVeiculos.Tests.GrupoAutomoveisModule
         public void DeveExcluir_GrupoAutomoveis()
         {
             //arrange            
-            var grupoAutomoveis = new GrupoAutomoveis("Econômico", 110, 130, 150, 170, 190, 210);
+            var grupoAutomoveis = new GrupoAutomoveis("Econômico", 110, 130, 150, 170, 190);
             controlador.InserirNovo(grupoAutomoveis);
 
             //action            
@@ -69,7 +69,7 @@ namespace LocadoraVeiculos.Tests.GrupoAutomoveisModule
         public void DeveSelecionar_GrupoAutomoveis_PorId()
         {
             //arrange
-            var grupoAutomoveis = new GrupoAutomoveis("Econômico", 110, 130, 150, 170, 190, 210);
+            var grupoAutomoveis = new GrupoAutomoveis("Econômico", 110, 130, 150, 170, 190);
             controlador.InserirNovo(grupoAutomoveis);
 
             //action
@@ -83,13 +83,13 @@ namespace LocadoraVeiculos.Tests.GrupoAutomoveisModule
         public void DeveSelecionar_TodosOsGruposDeAutomoveis()
         {
             //arrange
-            var gp1 = new GrupoAutomoveis("Econômico", 110, 130, 150, 170, 190, 210);
+            var gp1 = new GrupoAutomoveis("Econômico", 110, 130, 150, 170, 190);
             controlador.InserirNovo(gp1);
 
-            var gp2 = new GrupoAutomoveis("SUV", 210, 230, 250, 270, 290, 310);
+            var gp2 = new GrupoAutomoveis("SUV", 210, 230, 250, 270, 290);
             controlador.InserirNovo(gp2);
 
-            var gp3 = new GrupoAutomoveis("Utilitário", 90, 100, 100, 120, 130, 140);
+            var gp3 = new GrupoAutomoveis("Utilitário", 90, 100, 100, 120, 130);
             controlador.InserirNovo(gp3);
 
             //action

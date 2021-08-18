@@ -20,8 +20,7 @@ namespace LocadoraVeiculos.Controladores.GrupoAutomoveisModule
 		                [PLANODIARIODOIS],
                         [KMCONTROLADOUM], 
 		                [KMCONTROLADODOIS],
-                        [KMLIVREUM],
-                        [KMLIVREDOIS]
+                        [KMLIVREUM]
 	                ) 
 	                VALUES
 	                (
@@ -30,8 +29,7 @@ namespace LocadoraVeiculos.Controladores.GrupoAutomoveisModule
                         @PLANODIARIODOIS,
 		                @KMCONTROLADOUM, 
 		                @KMCONTROLADODOIS,
-                        @KMLIVREUM,
-                        @KMLIVREDOIS
+                        @KMLIVREUM
 	                )";
 
         private const string sqlEditarGrupoAutomoveis =
@@ -42,8 +40,7 @@ namespace LocadoraVeiculos.Controladores.GrupoAutomoveisModule
 		                [PLANODIARIODOIS] = @PLANODIARIODOIS,
                         [KMCONTROLADOUM] = @KMCONTROLADOUM,
                         [KMCONTROLADODOIS] = @KMCONTROLADODOIS,
-                        [KMLIVREUM] = @KMLIVREUM,
-                        [KMLIVREDOIS] = @KMLIVREDOIS
+                        [KMLIVREUM] = @KMLIVREUM
 
                     WHERE 
                         ID = @ID";
@@ -63,8 +60,7 @@ namespace LocadoraVeiculos.Controladores.GrupoAutomoveisModule
 		                [PLANODIARIODOIS],
                         [KMCONTROLADOUM], 
 		                [KMCONTROLADODOIS],
-                        [KMLIVREUM],
-                        [KMLIVREDOIS]
+                        [KMLIVREUM]
 	                FROM
                         TBGRUPOAUTOMOVEIS
                     WHERE 
@@ -78,8 +74,7 @@ namespace LocadoraVeiculos.Controladores.GrupoAutomoveisModule
 		                [PLANODIARIODOIS],
                         [KMCONTROLADOUM], 
 		                [KMCONTROLADODOIS],
-                        [KMLIVREUM],
-                        [KMLIVREDOIS]
+                        [KMLIVREUM]
 	                FROM
                         TBGRUPOAUTOMOVEIS";
 
@@ -156,7 +151,6 @@ namespace LocadoraVeiculos.Controladores.GrupoAutomoveisModule
             parametros.Add("KMCONTROLADOUM", grupoAutomoveis.KmControladoUm);
             parametros.Add("KMCONTROLADODOIS", grupoAutomoveis.KmControladoDois);
             parametros.Add("KMLIVREUM", grupoAutomoveis.KmLivreUm);
-            parametros.Add("KMLIVREDOIS", grupoAutomoveis.KmLivreDois);
 
             return parametros;
         }
@@ -170,10 +164,9 @@ namespace LocadoraVeiculos.Controladores.GrupoAutomoveisModule
             double kmControladoUm = Convert.ToDouble(reader["KMCONTROLADOUM"]);
             double kmControladoDois = Convert.ToDouble(reader["KMCONTROLADODOIS"]);
             double kmLivreUm = Convert.ToDouble(reader["KMLIVREUM"]);
-            double kmLivreDois = Convert.ToDouble(reader["KMLIVREDOIS"]);
 
             GrupoAutomoveis grupoAutomoveis = new GrupoAutomoveis(nomeGrupo, planoDiarioUm, planoDiarioDois, kmControladoUm,
-                kmControladoDois, kmLivreUm, kmLivreDois);
+                kmControladoDois, kmLivreUm);
 
             grupoAutomoveis.Id = id;
 
