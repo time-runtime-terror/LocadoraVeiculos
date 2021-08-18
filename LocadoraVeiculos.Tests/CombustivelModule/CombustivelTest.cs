@@ -32,7 +32,7 @@ namespace LocadoraVeiculos.Tests.CombustivelModule
             var resultadoValidacao = combustivel.Validar();
 
             //assert
-            resultadoValidacao.Should().Be("\nO campo Gasolina não pode ser menor que 0");
+            resultadoValidacao.Should().Be("O campo Gasolina não pode ser menor que 0");
         }
 
         [TestMethod]
@@ -58,7 +58,7 @@ namespace LocadoraVeiculos.Tests.CombustivelModule
             var resultadoValidacao = combustivel.Validar();
 
             //assert
-            resultadoValidacao.Should().Be("\nO campo Etanol não pode ser 0");
+            resultadoValidacao.Should().Be("O campo Etanol não pode ser 0");
         }
 
         [TestMethod]
@@ -84,7 +84,7 @@ namespace LocadoraVeiculos.Tests.CombustivelModule
             var resultadoValidacao = combustivel.Validar();
 
             //assert
-            resultadoValidacao.Should().Be("\nO campo Diesel não pode ser 0");
+            resultadoValidacao.Should().Be("O campo Diesel não pode ser 0");
         }
 
         [TestMethod]
@@ -110,7 +110,7 @@ namespace LocadoraVeiculos.Tests.CombustivelModule
             var resultadoValidacao = combustivel.Validar();
 
             //assert
-            resultadoValidacao.Should().Be("\nO campo Gnv não pode ser menor que 0");
+            resultadoValidacao.Should().Be("O campo Gnv não pode ser menor que 0");
         }
 
         [TestMethod]
@@ -122,11 +122,13 @@ namespace LocadoraVeiculos.Tests.CombustivelModule
             //action
             var resultadoValidacao = combustivel.Validar();
 
-            var resultadoEsperado =
-                "\nO campo Gasolina não pode ser menor que 0"
-                + "\nO campo Etanol não pode ser 0"
-                + "\nO campo Diesel não pode ser 0"
-                + "\nO campo Gnv não pode ser menor que 0";
+            var resultadoEsperado = "O campo Gasolina não pode ser menor que 0"
+                + Environment.NewLine
+                + "O campo Etanol não pode ser 0"
+                + Environment.NewLine
+                + "O campo Diesel não pode ser 0"
+                + Environment.NewLine
+                + "O campo Gnv não pode ser menor que 0";
 
             //assert
             resultadoValidacao.Should().Be(resultadoEsperado);
