@@ -120,5 +120,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
                 txtQuilometragem.Text = txtQuilometragem.Text.Remove(txtQuilometragem.Text.Length - 1);
             }
         }
+
+        private void TelaCadastrarVeiculos_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Dashboard.Instancia.AtualizarRodape("Cadastro de Veiculos");
+        }
     }
 }
