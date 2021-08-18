@@ -190,9 +190,13 @@ namespace LocadoraVeiculos.Controladores.ClienteModule
             string telefone = Convert.ToString(reader["TELEFONE"]);
             string tipoCadastro = Convert.ToString(reader["TIPOCADASTRO"]);
             string cnh = Convert.ToString(reader["CNH"]);
-            DateTime vencimentoCnh = Convert.ToDateTime(reader["DATAVENCIMENTOCNH"]);
             string documento = Convert.ToString(reader["NUMEROCADASTRO"]);
             string rg = Convert.ToString(reader["RG"]);
+            DateTime? vencimentoCnh = null;
+
+            if (reader["DATAVENCIMENTOCNH"] != DBNull.Value)
+                vencimentoCnh = Convert.ToDateTime(reader["DATAVENCIMENTOCNH"]);
+
 
             Cliente empresa = null;
             if (reader["ID_EMPRESA"] != DBNull.Value)

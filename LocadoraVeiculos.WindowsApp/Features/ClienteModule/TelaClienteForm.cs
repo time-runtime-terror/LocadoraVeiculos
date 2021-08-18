@@ -90,8 +90,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
                 cmbEmpresa.Items.Add(cliente.Nome);
             }
 
-            cmbEmpresa.SelectedItem = (cliente.Empresa != null
-                && cmbEmpresa.Items.Contains(cliente.Empresa.Nome)) ? cliente.Empresa.Nome : null;
+            if (cliente != null)
+                cmbEmpresa.SelectedItem = (cliente.Empresa != null
+                    && cmbEmpresa.Items.Contains(cliente.Empresa.Nome)) ? cliente.Empresa.Nome : null;
         }
     }
 }
