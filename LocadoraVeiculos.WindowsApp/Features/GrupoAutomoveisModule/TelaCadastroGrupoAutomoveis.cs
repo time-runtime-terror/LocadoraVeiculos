@@ -94,7 +94,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
         {
             if (System.Text.RegularExpressions.Regex.IsMatch(txtDiarioUm.Text, "[^0-9]"))
             {
-                MessageBox.Show("Por favor, apenas números.");
+                Dashboard.Instancia.AtualizarRodape($"Apenas números no Plano Diário, por favor.");
                 txtDiarioUm.Text = txtDiarioUm.Text.Remove(txtDiarioUm.Text.Length - 1);
             }
         }
@@ -103,7 +103,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
         {
             if (System.Text.RegularExpressions.Regex.IsMatch(txtControladoUm.Text, "[^0-9]"))
             {
-                MessageBox.Show("Por favor, apenas números.");
+                Dashboard.Instancia.AtualizarRodape($"Apenas números no Km Controlado, por favor.");
                 txtControladoUm.Text = txtControladoUm.Text.Remove(txtControladoUm.Text.Length - 1);
             }
         }
@@ -112,7 +112,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
         {
             if (System.Text.RegularExpressions.Regex.IsMatch(txtLivreUm.Text, "[^0-9]"))
             {
-                MessageBox.Show("Por favor, apenas números.");
+                Dashboard.Instancia.AtualizarRodape($"Apenas números no Km Livre, por favor.");
                 txtLivreUm.Text = txtLivreUm.Text.Remove(txtLivreUm.Text.Length - 1);
             }
         }
@@ -121,7 +121,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
         {
             if (System.Text.RegularExpressions.Regex.IsMatch(txtDiarioDois.Text, "[^0-9]"))
             {
-                MessageBox.Show("Por favor, apenas números.");
+                Dashboard.Instancia.AtualizarRodape($"Apenas números no Plano Diário por Km Rodado, por favor.");
                 txtDiarioDois.Text = txtDiarioDois.Text.Remove(txtDiarioDois.Text.Length - 1);
             }
         }
@@ -130,7 +130,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
         {
             if (System.Text.RegularExpressions.Regex.IsMatch(txtControladoDois.Text, "[^0-9]"))
             {
-                MessageBox.Show("Por favor, apenas números.");
+                Dashboard.Instancia.AtualizarRodape($"Apenas números no Km Controlado por Km Rodado, por favor.");
                 txtControladoDois.Text = txtControladoDois.Text.Remove(txtControladoDois.Text.Length - 1);
             }
         }
