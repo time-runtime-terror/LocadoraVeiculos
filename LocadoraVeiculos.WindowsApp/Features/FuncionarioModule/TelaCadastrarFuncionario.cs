@@ -66,5 +66,14 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
         {
             Dashboard.Instancia.AtualizarRodape("");
         }
+
+        private void txtSalario_TextChanged(object sender, EventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(txtSalario.Text, "[^0-9]"))
+            {
+                Dashboard.Instancia.AtualizarRodape("Salario: Por favor, digite apenas números");
+                txtSalario.Text = txtSalario.Text.Remove(txtSalario.Text.Length - 1);
+            }
+        }
     }
 }
