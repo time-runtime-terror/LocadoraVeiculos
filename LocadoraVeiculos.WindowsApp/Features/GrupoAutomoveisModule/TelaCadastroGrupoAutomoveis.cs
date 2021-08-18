@@ -31,7 +31,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
                 txtControladoUm.Text = grupoAutomoveis.KmControladoUm.ToString();
                 txtControladoDois.Text = grupoAutomoveis.KmControladoDois.ToString();
                 txtLivreUm.Text = grupoAutomoveis.KmLivreUm.ToString();
-                txtLivreDois.Text = grupoAutomoveis.KmLivreDois.ToString();
             }
         }
 
@@ -49,8 +48,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
 
             string kmLivreUmstr = txtLivreUm.Text;
 
-            string kmLivreDoisstr = txtLivreDois.Text;
-
             //separar
 
             double planoDiarioUm = validarGrupos(planoDiarioUmstr);
@@ -63,10 +60,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
 
             double kmLivreUm = validarGrupos(kmLivreUmstr);
 
-            double kmLivreDois = validarGrupos(kmLivreDoisstr);
-
             GrupoAutomoveis = new GrupoAutomoveis(nomeGrupo, planoDiarioUm, planoDiarioDois, kmControladoUm, kmControladoDois,
-                kmLivreUm, kmLivreDois);
+                kmLivreUm);
 
             string resultadoValidacao = grupoAutomoveis.Validar();
 
@@ -137,15 +132,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             {
                 MessageBox.Show("Por favor, apenas números.");
                 txtControladoDois.Text = txtControladoDois.Text.Remove(txtControladoDois.Text.Length - 1);
-            }
-        }
-
-        private void txtLivreDois_TextChanged(object sender, EventArgs e)
-        {
-            if (System.Text.RegularExpressions.Regex.IsMatch(txtLivreDois.Text, "[^0-9]"))
-            {
-                MessageBox.Show("Por favor, apenas números.");
-                txtLivreDois.Text = txtLivreDois.Text.Remove(txtLivreDois.Text.Length - 1);
             }
         }
     }

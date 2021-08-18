@@ -34,17 +34,15 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "nomeGrupo", HeaderText = "Grupo de Automoveis"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "planoDiarioUm", HeaderText = "Plano Diario"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "planoDiarioUm", HeaderText = "Plano Diario por Dia"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "planoDiarioDois", HeaderText = "Plano Diario II"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "planoDiarioDois", HeaderText = "Plano Diario por Km Rodado"},
 
-                new DataGridViewTextBoxColumn {DataPropertyName = "kmControladoUm", HeaderText = "Km Controlado"},
+                new DataGridViewTextBoxColumn {DataPropertyName = "kmControladoUm", HeaderText = "Km Controlado por Dia"},
 
-                new DataGridViewTextBoxColumn {DataPropertyName = "kmControladoDois", HeaderText = "Km Controlado II"},
+                new DataGridViewTextBoxColumn {DataPropertyName = "kmControladoDois", HeaderText = "Km Controlado por Km Rodado"},
 
-                new DataGridViewTextBoxColumn {DataPropertyName = "kmLivreUm", HeaderText = "Km Livre"},
-
-                new DataGridViewTextBoxColumn {DataPropertyName = "kmLivreDois", HeaderText = "Km Livre II"}
+                new DataGridViewTextBoxColumn {DataPropertyName = "kmLivreUm", HeaderText = "Km Livre por Dia"}
             };
 
             return colunas;

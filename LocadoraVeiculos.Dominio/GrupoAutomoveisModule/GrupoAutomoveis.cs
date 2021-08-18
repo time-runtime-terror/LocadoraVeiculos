@@ -10,7 +10,7 @@ namespace LocadoraVeiculos.Dominio.GrupoAutomoveisModule
     public class GrupoAutomoveis : EntidadeBase, IEquatable<GrupoAutomoveis>
     {
         public GrupoAutomoveis(string nomeGrupo, double planoDiarioUm, double planoDiarioDois, double kmControladoUm,
-            double kmControladoDois, double kmLivreUm, double kmLivreDois)
+            double kmControladoDois, double kmLivreUm)
         {
             NomeGrupo = nomeGrupo;
             PlanoDiarioUm = planoDiarioUm;
@@ -18,7 +18,6 @@ namespace LocadoraVeiculos.Dominio.GrupoAutomoveisModule
             KmControladoUm = kmControladoUm;
             KmControladoDois = kmControladoDois;
             KmLivreUm = kmLivreUm;
-            KmLivreDois = kmLivreDois;
         }
 
         public new int Id { get; set; }
@@ -35,8 +34,6 @@ namespace LocadoraVeiculos.Dominio.GrupoAutomoveisModule
 
         public double KmLivreUm { get; }
 
-        public double KmLivreDois { get; }
-
         public override bool Equals(object obj)
         {
             return Equals(obj as GrupoAutomoveis);
@@ -51,8 +48,7 @@ namespace LocadoraVeiculos.Dominio.GrupoAutomoveisModule
               && PlanoDiarioDois == other.PlanoDiarioDois
               && KmControladoUm == other.KmControladoUm
               && KmControladoDois == other.KmControladoDois
-              && KmLivreUm == other.KmLivreUm
-              && KmLivreDois == other.KmLivreDois;
+              && KmLivreUm == other.KmLivreUm;
         }
 
         public override int GetHashCode()
@@ -65,7 +61,6 @@ namespace LocadoraVeiculos.Dominio.GrupoAutomoveisModule
             hashCode = hashCode * -1521134295 + KmControladoUm.GetHashCode();
             hashCode = hashCode * -1521134295 + KmControladoDois.GetHashCode();
             hashCode = hashCode * -1521134295 + KmLivreUm.GetHashCode();
-            hashCode = hashCode * -1521134295 + KmLivreDois.GetHashCode();
             return hashCode;
         }
 
