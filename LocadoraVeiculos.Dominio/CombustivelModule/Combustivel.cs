@@ -46,48 +46,58 @@ namespace LocadoraVeiculos.Dominio.CombustivelModule
 
             if (Gasolina == 0)
             {
-                resultadoValidacao = "\nO campo Gasolina não pode ser 0";
+                resultadoValidacao = "O campo Gasolina não pode ser 0";
             }
 
             if (Gasolina < 0)
             {
-                resultadoValidacao += "\nO campo Gasolina não pode ser menor que 0";
+                resultadoValidacao += resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Gasolina não pode ser menor que 0";
             }
 
             if (Etanol == 0)
             {
-                resultadoValidacao += "\nO campo Etanol não pode ser 0";
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Etanol não pode ser 0";
             }
 
             if (Etanol < 0)
             {
-                resultadoValidacao += "\nO campo Etanol não pode ser menor que 0";
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Etanol não pode ser menor que 0";
             }
 
             if (Diesel == 0)
             {
-                resultadoValidacao += "\nO campo Diesel não pode ser 0";
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Diesel não pode ser 0";
             }
 
             if (Diesel < 0)
             {
-                resultadoValidacao += "\nO campo Diesel não pode ser menor que 0";
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Diesel não pode ser menor que 0";
             }
 
             if (Gnv == 0)
             {
-                resultadoValidacao += "\nO campo Gnv não pode ser 0";
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Gnv não pode ser 0";
             }
 
             if (Gnv < 0)
             {
-                resultadoValidacao += "\nO campo Gnv não pode ser menor que 0";
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Gnv não pode ser menor que 0";
             }
 
             if (resultadoValidacao == "")
                 resultadoValidacao = "ESTA_VALIDO";
 
             return resultadoValidacao;
+        }
+
+        private string QuebraDeLinha(string resultadoValidacao)
+        {
+            string quebraDeLinha = "";
+
+            if (string.IsNullOrEmpty(resultadoValidacao) == false)
+                quebraDeLinha = Environment.NewLine;
+
+            return quebraDeLinha;
         }
 
 

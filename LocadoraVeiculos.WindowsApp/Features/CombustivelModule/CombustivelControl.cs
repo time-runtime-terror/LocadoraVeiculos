@@ -58,9 +58,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.CombustivelModule
             string gnvStr = txbGnv.Text;
 
             double gasolina, etanol, diesel, gnv;
-            if(string.IsNullOrEmpty(gasolinaStr) || string.IsNullOrEmpty(etanolStr) || string.IsNullOrEmpty(dieselStr) || string.IsNullOrEmpty(gnvStr))
+
+            if(!txbGasolina.MaskCompleted || !txbEtanol.MaskCompleted || !txbDiesel.MaskCompleted || !txbGnv.MaskCompleted)
             {
-                MessageBox.Show("Por favor, preencha todos os campos.");
+                Dashboard.Instancia.AtualizarRodape("Preencha todos os campos");
             }
             else
             {
@@ -75,16 +76,15 @@ namespace LocadoraVeiculos.WindowsApp.Features.CombustivelModule
 
                 if (resultadoValidacao != "ESTA_VALIDO")
                 {
-                    
-                    MessageBox.Show(resultadoValidacao);
+                    string primeiroErro = new StringReader(resultadoValidacao).ReadLine();
 
-
-                    //DialogResult = DialogResult.None;
+                    Dashboard.Instancia.AtualizarRodape(primeiroErro); 
                 }
                 else
                 {
                     controlador.GravarCombustivel(combustivel);
-                    MessageBox.Show("Combustiveis gravados com sucesso");
+                    
+                    Dashboard.Instancia.AtualizarRodape("Combustiveis gravados com sucesso");
                 }
             } 
         }
