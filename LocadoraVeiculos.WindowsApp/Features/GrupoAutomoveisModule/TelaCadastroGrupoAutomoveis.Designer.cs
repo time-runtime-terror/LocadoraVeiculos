@@ -35,7 +35,11 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             this.txtNomeGrupo = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.txtLivreDois = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.txtLivreUm = new System.Windows.Forms.TextBox();
             this.txtControladoDois = new System.Windows.Forms.TextBox();
             this.txtControladoUm = new System.Windows.Forms.TextBox();
@@ -47,10 +51,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGravar = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -105,7 +109,11 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.panel3.Controls.Add(this.txtLivreDois);
+            this.panel3.Controls.Add(this.label13);
+            this.panel3.Controls.Add(this.label12);
+            this.panel3.Controls.Add(this.label11);
+            this.panel3.Controls.Add(this.label10);
+            this.panel3.Controls.Add(this.label9);
             this.panel3.Controls.Add(this.txtLivreUm);
             this.panel3.Controls.Add(this.txtControladoDois);
             this.panel3.Controls.Add(this.txtControladoUm);
@@ -116,20 +124,57 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             this.panel3.Controls.Add(this.label6);
             this.panel3.Location = new System.Drawing.Point(167, 213);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(406, 166);
+            this.panel3.Size = new System.Drawing.Size(406, 204);
             this.panel3.TabIndex = 9;
             // 
-            // txtLivreDois
+            // label13
             // 
-            this.txtLivreDois.Location = new System.Drawing.Point(278, 116);
-            this.txtLivreDois.Name = "txtLivreDois";
-            this.txtLivreDois.Size = new System.Drawing.Size(100, 20);
-            this.txtLivreDois.TabIndex = 8;
-            this.txtLivreDois.TextChanged += new System.EventHandler(this.txtLivreDois_TextChanged);
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(171, 145);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(40, 13);
+            this.label13.TabIndex = 12;
+            this.label13.Text = "Por dia";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(291, 83);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(78, 13);
+            this.label12.TabIndex = 11;
+            this.label12.Text = "Por KM rodado";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(171, 83);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(40, 13);
+            this.label11.TabIndex = 10;
+            this.label11.Text = "Por dia";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(291, 21);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(78, 13);
+            this.label10.TabIndex = 9;
+            this.label10.Text = "Por KM rodado";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(172, 21);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(40, 13);
+            this.label9.TabIndex = 8;
+            this.label9.Text = "Por dia";
             // 
             // txtLivreUm
             // 
-            this.txtLivreUm.Location = new System.Drawing.Point(139, 116);
+            this.txtLivreUm.Location = new System.Drawing.Point(139, 161);
             this.txtLivreUm.Name = "txtLivreUm";
             this.txtLivreUm.Size = new System.Drawing.Size(100, 20);
             this.txtLivreUm.TabIndex = 7;
@@ -137,7 +182,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             // 
             // txtControladoDois
             // 
-            this.txtControladoDois.Location = new System.Drawing.Point(278, 76);
+            this.txtControladoDois.Location = new System.Drawing.Point(278, 99);
             this.txtControladoDois.Name = "txtControladoDois";
             this.txtControladoDois.Size = new System.Drawing.Size(100, 20);
             this.txtControladoDois.TabIndex = 6;
@@ -145,7 +190,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             // 
             // txtControladoUm
             // 
-            this.txtControladoUm.Location = new System.Drawing.Point(139, 76);
+            this.txtControladoUm.Location = new System.Drawing.Point(139, 99);
             this.txtControladoUm.Name = "txtControladoUm";
             this.txtControladoUm.Size = new System.Drawing.Size(100, 20);
             this.txtControladoUm.TabIndex = 5;
@@ -153,7 +198,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             // 
             // txtDiarioDois
             // 
-            this.txtDiarioDois.Location = new System.Drawing.Point(278, 40);
+            this.txtDiarioDois.Location = new System.Drawing.Point(278, 37);
             this.txtDiarioDois.Name = "txtDiarioDois";
             this.txtDiarioDois.Size = new System.Drawing.Size(100, 20);
             this.txtDiarioDois.TabIndex = 4;
@@ -161,7 +206,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             // 
             // txtDiarioUm
             // 
-            this.txtDiarioUm.Location = new System.Drawing.Point(139, 40);
+            this.txtDiarioUm.Location = new System.Drawing.Point(139, 37);
             this.txtDiarioUm.Name = "txtDiarioUm";
             this.txtDiarioUm.Size = new System.Drawing.Size(100, 20);
             this.txtDiarioUm.TabIndex = 3;
@@ -171,7 +216,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(23, 116);
+            this.label8.Location = new System.Drawing.Point(23, 161);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(69, 20);
             this.label8.TabIndex = 2;
@@ -181,7 +226,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(23, 79);
+            this.label7.Location = new System.Drawing.Point(23, 102);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(114, 20);
             this.label7.TabIndex = 1;
@@ -191,7 +236,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(23, 40);
+            this.label6.Location = new System.Drawing.Point(23, 37);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(94, 20);
             this.label6.TabIndex = 0;
@@ -201,7 +246,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(400, 395);
+            this.btnCancelar.Location = new System.Drawing.Point(490, 439);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(83, 34);
             this.btnCancelar.TabIndex = 10;
@@ -212,7 +257,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             // 
             this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnGravar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGravar.Location = new System.Drawing.Point(489, 395);
+            this.btnGravar.Location = new System.Drawing.Point(400, 439);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(84, 34);
             this.btnGravar.TabIndex = 11;
@@ -231,6 +276,17 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(597, 60);
             this.panel2.TabIndex = 20;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
+            this.label1.Location = new System.Drawing.Point(104, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(252, 31);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "LOCADORA RECH";
             // 
             // label2
             // 
@@ -259,25 +315,14 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 60);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(135, 381);
+            this.panel1.Size = new System.Drawing.Size(135, 425);
             this.panel1.TabIndex = 21;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Cooper Black", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
-            this.label1.Location = new System.Drawing.Point(104, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(267, 31);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "LOCADORA RECH";
             // 
             // TelaCadastroGrupoAutomoveis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(597, 441);
+            this.ClientSize = new System.Drawing.Size(597, 485);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.btnGravar);
@@ -307,7 +352,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
         private System.Windows.Forms.TextBox txtNomeGrupo;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox txtLivreDois;
         private System.Windows.Forms.TextBox txtLivreUm;
         private System.Windows.Forms.TextBox txtControladoDois;
         private System.Windows.Forms.TextBox txtControladoUm;
@@ -323,5 +367,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
     }
 }
