@@ -349,6 +349,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             this.Name = "TelaCadastrarVeiculos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Veículos";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TelaCadastrarVeiculos_FormClosing);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
