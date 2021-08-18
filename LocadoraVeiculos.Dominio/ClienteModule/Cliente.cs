@@ -58,6 +58,9 @@ namespace LocadoraVeiculos.Dominio.ClienteModule
             if (TipoCadastro == "CPF" && string.IsNullOrEmpty(RG))
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo RG é obrigatório para pessoas físicas";
 
+            if (VencimentoCnh != null && VencimentoCnh < DateTime.Now)
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "A CNH inserida está vencida!";
+
             if (resultadoValidacao == "")
                 resultadoValidacao = "ESTA_VALIDO";
 

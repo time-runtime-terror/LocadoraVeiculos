@@ -40,8 +40,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 
             if (id == 0)
             {
-                MessageBox.Show("Selecione um cliente para poder editar!", "Edição de Clientes",
-                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                Dashboard.Instancia.AtualizarRodape("Selecione um cliente para poder editar!");
                 return;
             }
 

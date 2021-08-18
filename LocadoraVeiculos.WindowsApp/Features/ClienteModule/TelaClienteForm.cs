@@ -35,9 +35,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
                 txtDocumento.Text = cliente.NumeroCadastro;
                 txtRg.Text = cliente.RG;
                 txtCNH.Text = cliente.CNH;
-                txtVencimentoCnh.Text = cliente.VencimentoCnh.ToString();
-
-
+                dateVencimentoCnh.Value = (DateTime)cliente.VencimentoCnh;
 
                 if (cliente.TipoCadastro == "CNPJ")
                     rdbPessoaJuridica.Checked = true;
@@ -50,8 +48,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
         {
             string tipoPessoa = (rdbPessoaFisica.Checked) ? "CPF" : "CNPJ";
 
-            DateTime? vencimentoCnh = 
-                (gbCadastroFisico.Enabled == false) ? DateTime.Now : Convert.ToDateTime(txtVencimentoCnh.Text);
+            DateTime? vencimentoCnh = dateVencimentoCnh.Value;
 
             List<Cliente> listaEmpresas = controladorCliente.SelecionarTodos();
 
@@ -96,6 +93,38 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             if (cliente != null)
                 cmbEmpresa.SelectedItem = (cliente.Empresa != null
                     && cmbEmpresa.Items.Contains(cliente.Empresa.Nome)) ? cliente.Empresa.Nome : null;
+        }
+
+        private void txtDocumento_TextChanged(object sender, EventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(txtDocumento.Text, "[^0-9]"))
+            {
+                Dashboard.Instancia.AtualizarRodape("Documento: Por favor digite apenas números!");
+                txtDocumento.Text = txtDocumento.Text.Remove(txtDocumento.Text.Length - 1);
+            }
+        }
+
+        private void txtRg_TextChanged(object sender, EventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(txtRg.Text, "[^0-9]"))
+            {
+                Dashboard.Instancia.AtualizarRodape("RG: Por favor digite apenas números!");
+                txtRg.Text = txtRg.Text.Remove(txtRg.Text.Length - 1);
+            }
+        }
+
+        private void txtCNH_TextChanged(object sender, EventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(txtCNH.Text, "[^0-9]"))
+            {
+                Dashboard.Instancia.AtualizarRodape("CNH: Por favor digite apenas números!");
+                txtCNH.Text = txtCNH.Text.Remove(txtCNH.Text.Length - 1);
+            }
+        }
+
+        private void TelaClienteForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Dashboard.Instancia.AtualizarRodape("Cadastro de Clientes");
         }
     }
 }
