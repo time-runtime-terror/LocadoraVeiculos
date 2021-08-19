@@ -124,6 +124,20 @@
     <Compile Include="Features\GrupoAutomoveisModule\TelaAgrupamentoGrupoAutomoveis.Designer.cs">
       <DependentUpon>TelaAgrupamentoGrupoAutomoveis.cs</DependentUpon>
     </Compile>
+    <Compile Include="Features\TaxasServicosModule\ConfiguracaoTaxasServicosToolBox.cs" />
+    <Compile Include="Features\TaxasServicosModule\OperacoesTaxasServicos.cs" />
+    <Compile Include="Features\TaxasServicosModule\TabelaTaxasServicosControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Features\TaxasServicosModule\TabelaTaxasServicosControl.Designer.cs">
+      <DependentUpon>TabelaTaxasServicosControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\TaxasServicosModule\TelaCadastrarTaxasServicos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\TaxasServicosModule\TelaCadastrarTaxasServicos.Designer.cs">
+      <DependentUpon>TelaCadastrarTaxasServicos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Features\VeiculoModule\AgrupamentoVeiculosEnum.cs" />
     <Compile Include="Features\VeiculoModule\AgrupamentoVeiculosForm.cs">
       <SubType>Form</SubType>
@@ -181,6 +195,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Features\FuncionarioModule\TelaCadastrarFuncionario.resx">
       <DependentUpon>TelaCadastrarFuncionario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\TaxasServicosModule\TabelaTaxasServicosControl.resx">
+      <DependentUpon>TabelaTaxasServicosControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\TaxasServicosModule\TelaCadastrarTaxasServicos.resx">
+      <DependentUpon>TelaCadastrarTaxasServicos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Features\VeiculoModule\AgrupamentoVeiculosForm.resx">
       <DependentUpon>AgrupamentoVeiculosForm.cs</DependentUpon>
