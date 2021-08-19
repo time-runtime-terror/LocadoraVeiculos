@@ -45,10 +45,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             // rdbFiltroPessoasFisicas
             // 
             this.rdbFiltroPessoasFisicas.AutoSize = true;
-            this.rdbFiltroPessoasFisicas.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbFiltroPessoasFisicas.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdbFiltroPessoasFisicas.Location = new System.Drawing.Point(111, 81);
             this.rdbFiltroPessoasFisicas.Name = "rdbFiltroPessoasFisicas";
-            this.rdbFiltroPessoasFisicas.Size = new System.Drawing.Size(186, 24);
+            this.rdbFiltroPessoasFisicas.Size = new System.Drawing.Size(214, 22);
             this.rdbFiltroPessoasFisicas.TabIndex = 0;
             this.rdbFiltroPessoasFisicas.TabStop = true;
             this.rdbFiltroPessoasFisicas.Text = "Filtrar por Pessoas Fisicas";
@@ -59,10 +59,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             // rdbFiltroPessoasJuridicas
             // 
             this.rdbFiltroPessoasJuridicas.AutoSize = true;
-            this.rdbFiltroPessoasJuridicas.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbFiltroPessoasJuridicas.Location = new System.Drawing.Point(302, 81);
+            this.rdbFiltroPessoasJuridicas.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbFiltroPessoasJuridicas.Location = new System.Drawing.Point(330, 81);
             this.rdbFiltroPessoasJuridicas.Name = "rdbFiltroPessoasJuridicas";
-            this.rdbFiltroPessoasJuridicas.Size = new System.Drawing.Size(197, 24);
+            this.rdbFiltroPessoasJuridicas.Size = new System.Drawing.Size(225, 22);
             this.rdbFiltroPessoasJuridicas.TabIndex = 1;
             this.rdbFiltroPessoasJuridicas.TabStop = true;
             this.rdbFiltroPessoasJuridicas.Text = "Filtrar por Pessoas Jurídicas";
@@ -72,7 +72,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             // btnGravar
             // 
             this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnGravar.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGravar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGravar.Location = new System.Drawing.Point(302, 123);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(75, 30);
@@ -83,7 +83,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.Location = new System.Drawing.Point(221, 123);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 30);
@@ -100,28 +100,28 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(494, 60);
+            this.panel2.Size = new System.Drawing.Size(567, 60);
             this.panel2.TabIndex = 33;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Cooper Black", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
             this.label3.Location = new System.Drawing.Point(74, 13);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(267, 31);
+            this.label3.Size = new System.Drawing.Size(267, 34);
             this.label3.TabIndex = 6;
             this.label3.Text = "LOCADORA RECH";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Arial", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label4.Location = new System.Drawing.Point(337, 28);
+            this.label4.Location = new System.Drawing.Point(347, 30);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(152, 16);
+            this.label4.Size = new System.Drawing.Size(178, 17);
             this.label4.TabIndex = 5;
             this.label4.Text = "O carro certo para você!";
             // 
@@ -148,7 +148,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(494, 165);
+            this.BackColor = System.Drawing.Color.Silver;
+            this.ClientSize = new System.Drawing.Size(567, 165);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.btnGravar);

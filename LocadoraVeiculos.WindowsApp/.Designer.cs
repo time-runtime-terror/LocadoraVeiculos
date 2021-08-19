@@ -227,6 +227,7 @@ namespace LocadoraVeiculos.WindowsApp
             // 
             // toolBoxAcoes
             // 
+            this.toolBoxAcoes.BackColor = System.Drawing.Color.Silver;
             this.toolBoxAcoes.Enabled = false;
             this.toolBoxAcoes.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolBoxAcoes.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -379,6 +380,7 @@ namespace LocadoraVeiculos.WindowsApp
             // 
             // panelRegistros
             // 
+            this.panelRegistros.BackColor = System.Drawing.Color.Silver;
             this.panelRegistros.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelRegistros.Location = new System.Drawing.Point(242, 115);
             this.panelRegistros.Name = "panelRegistros";
@@ -387,6 +389,7 @@ namespace LocadoraVeiculos.WindowsApp
             // 
             // statusStrip1
             // 
+            this.statusStrip1.BackColor = System.Drawing.Color.Silver;
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.labelRodape});

@@ -49,6 +49,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             this.txtCNH = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.gbCadastroFisico = new System.Windows.Forms.GroupBox();
+            this.dateVencimentoCnh = new System.Windows.Forms.DateTimePicker();
             this.cmbEmpresa = new System.Windows.Forms.ComboBox();
             this.lblEmpresa = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -56,7 +57,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.dateVencimentoCnh = new System.Windows.Forms.DateTimePicker();
             this.gbCadastroFisico.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -167,7 +167,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             this.btnCancelar.Location = new System.Drawing.Point(452, 472);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(88, 29);
-            this.btnCancelar.TabIndex = 11;
+            this.btnCancelar.TabIndex = 12;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -178,7 +178,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             this.btnGravar.Location = new System.Drawing.Point(371, 472);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(75, 29);
-            this.btnGravar.TabIndex = 10;
+            this.btnGravar.TabIndex = 11;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
             this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
@@ -207,7 +207,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             this.txtRg.Location = new System.Drawing.Point(190, 25);
             this.txtRg.Name = "txtRg";
             this.txtRg.Size = new System.Drawing.Size(148, 26);
-            this.txtRg.TabIndex = 6;
+            this.txtRg.TabIndex = 7;
             this.txtRg.TextChanged += new System.EventHandler(this.txtRg_TextChanged);
             // 
             // lblRG
@@ -233,7 +233,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             this.txtCNH.Location = new System.Drawing.Point(190, 58);
             this.txtCNH.Name = "txtCNH";
             this.txtCNH.Size = new System.Drawing.Size(148, 26);
-            this.txtCNH.TabIndex = 7;
+            this.txtCNH.TabIndex = 8;
             this.txtCNH.TextChanged += new System.EventHandler(this.txtCNH_TextChanged);
             // 
             // label2
@@ -260,9 +260,17 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             this.gbCadastroFisico.Location = new System.Drawing.Point(134, 273);
             this.gbCadastroFisico.Name = "gbCadastroFisico";
             this.gbCadastroFisico.Size = new System.Drawing.Size(377, 180);
-            this.gbCadastroFisico.TabIndex = 31;
+            this.gbCadastroFisico.TabIndex = 6;
             this.gbCadastroFisico.TabStop = false;
             this.gbCadastroFisico.Text = "Pessoa Fisica";
+            // 
+            // dateVencimentoCnh
+            // 
+            this.dateVencimentoCnh.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateVencimentoCnh.Location = new System.Drawing.Point(190, 91);
+            this.dateVencimentoCnh.Name = "dateVencimentoCnh";
+            this.dateVencimentoCnh.Size = new System.Drawing.Size(148, 26);
+            this.dateVencimentoCnh.TabIndex = 9;
             // 
             // cmbEmpresa
             // 
@@ -271,7 +279,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             this.cmbEmpresa.Location = new System.Drawing.Point(190, 124);
             this.cmbEmpresa.Name = "cmbEmpresa";
             this.cmbEmpresa.Size = new System.Drawing.Size(148, 26);
-            this.cmbEmpresa.TabIndex = 9;
+            this.cmbEmpresa.TabIndex = 10;
             // 
             // lblEmpresa
             // 
@@ -335,18 +343,11 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             this.panel3.Size = new System.Drawing.Size(98, 453);
             this.panel3.TabIndex = 33;
             // 
-            // dateVencimentoCnh
-            // 
-            this.dateVencimentoCnh.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateVencimentoCnh.Location = new System.Drawing.Point(190, 91);
-            this.dateVencimentoCnh.Name = "dateVencimentoCnh";
-            this.dateVencimentoCnh.Size = new System.Drawing.Size(148, 26);
-            this.dateVencimentoCnh.TabIndex = 8;
-            // 
             // TelaClienteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(552, 513);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);

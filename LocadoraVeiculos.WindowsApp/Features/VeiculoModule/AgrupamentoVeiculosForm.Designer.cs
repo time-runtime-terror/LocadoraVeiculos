@@ -101,11 +101,11 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial Narrow", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
             this.label3.Location = new System.Drawing.Point(87, 14);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(227, 33);
+            this.label3.Size = new System.Drawing.Size(222, 29);
             this.label3.TabIndex = 6;
             this.label3.Text = "LOCADORA RECH";
             // 
@@ -133,6 +133,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(462, 206);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);

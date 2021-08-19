@@ -164,6 +164,7 @@ namespace LocadoraVeiculos.WindowsApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(539, 366);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
