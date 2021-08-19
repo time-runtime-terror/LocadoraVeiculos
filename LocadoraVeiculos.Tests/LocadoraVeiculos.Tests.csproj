@@ -72,6 +72,8 @@
     <Compile Include="GrupoAutomoveisModule\GrupoAutomoveisTest.cs" />
     <Compile Include="FuncionarioModule\ControladorFuncionarioTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaxasServicosModule\ControladorTaxasServicosTest.cs" />
+    <Compile Include="TaxasServicosModule\TaxasServicosTest.cs" />
     <Compile Include="VeiculoModule\ControladorVeiculoTest.cs" />
     <Compile Include="VeiculoModule\VeiculoTest.cs" />
   </ItemGroup>

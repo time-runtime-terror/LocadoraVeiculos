@@ -58,6 +58,7 @@
     <Compile Include="GrupoAutomoveisModule\GrupoAutomoveis.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shared\EntidadeBase.cs" />
+    <Compile Include="TaxasServicosModule\TaxasServicos.cs" />
     <Compile Include="VeiculoModule\Veiculo.cs" />
   </ItemGroup>
   <ItemGroup>
