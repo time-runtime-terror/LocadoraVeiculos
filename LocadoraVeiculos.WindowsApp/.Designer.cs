@@ -37,13 +37,14 @@ namespace LocadoraVeiculos.WindowsApp
             this.panelMenu = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnConfiguracoes = new System.Windows.Forms.Button();
+            this.btnTaxasServicos = new System.Windows.Forms.Button();
             this.btnCadastroGrupoAutomoveis = new System.Windows.Forms.Button();
             this.btnCadastroVeiculos = new System.Windows.Forms.Button();
             this.btnCadastroFuncionarioModules = new System.Windows.Forms.Button();
             this.btnCadastroClientes = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.toolBoxAcoes = new System.Windows.Forms.ToolStrip();
-            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.txtPesquisa = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripBtnPesquisar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripBtnAdicionar = new System.Windows.Forms.ToolStripButton();
@@ -61,7 +62,6 @@ namespace LocadoraVeiculos.WindowsApp
             this.panelRegistros = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.labelRodape = new System.Windows.Forms.ToolStripStatusLabel();
-            this.btnTaxasServicos = new System.Windows.Forms.Button();
             this.panelTopo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelMenu.SuspendLayout();
@@ -155,6 +155,21 @@ namespace LocadoraVeiculos.WindowsApp
             this.btnConfiguracoes.UseVisualStyleBackColor = true;
             this.btnConfiguracoes.Click += new System.EventHandler(this.btnConfiguracoes_Click);
             // 
+            // btnTaxasServicos
+            // 
+            this.btnTaxasServicos.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnTaxasServicos.FlatAppearance.BorderSize = 0;
+            this.btnTaxasServicos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTaxasServicos.Font = new System.Drawing.Font("Arial", 12F);
+            this.btnTaxasServicos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
+            this.btnTaxasServicos.Location = new System.Drawing.Point(0, 244);
+            this.btnTaxasServicos.Name = "btnTaxasServicos";
+            this.btnTaxasServicos.Size = new System.Drawing.Size(233, 60);
+            this.btnTaxasServicos.TabIndex = 5;
+            this.btnTaxasServicos.Text = "Taxas e serviços";
+            this.btnTaxasServicos.UseVisualStyleBackColor = true;
+            this.btnTaxasServicos.Click += new System.EventHandler(this.btnTaxasServicos_Click);
+            // 
             // btnCadastroGrupoAutomoveis
             // 
             this.btnCadastroGrupoAutomoveis.Dock = System.Windows.Forms.DockStyle.Top;
@@ -233,7 +248,7 @@ namespace LocadoraVeiculos.WindowsApp
             this.toolBoxAcoes.Enabled = false;
             this.toolBoxAcoes.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolBoxAcoes.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripTextBox1,
+            this.txtPesquisa,
             this.toolStripBtnPesquisar,
             this.toolStripSeparator6,
             this.toolStripBtnAdicionar,
@@ -254,13 +269,16 @@ namespace LocadoraVeiculos.WindowsApp
             this.toolBoxAcoes.TabIndex = 4;
             this.toolBoxAcoes.Text = "toolStrip1";
             // 
-            // toolStripTextBox1
+            // txtPesquisa
             // 
-            this.toolStripTextBox1.Font = new System.Drawing.Font("Arial", 12F);
-            this.toolStripTextBox1.ForeColor = System.Drawing.Color.Black;
-            this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(360, 55);
-            this.toolStripTextBox1.Text = "Digite para Pesquisar";
+            this.txtPesquisa.Font = new System.Drawing.Font("Arial", 12F);
+            this.txtPesquisa.ForeColor = System.Drawing.Color.Black;
+            this.txtPesquisa.Name = "txtPesquisa";
+            this.txtPesquisa.Size = new System.Drawing.Size(360, 55);
+            this.txtPesquisa.Text = "Digite para Pesquisar";
+            this.txtPesquisa.Enter += new System.EventHandler(this.txtPesquisa_Enter);
+            this.txtPesquisa.Leave += new System.EventHandler(this.txtPesquisa_Leave);
+            this.txtPesquisa.TextChanged += new System.EventHandler(this.txtPesquisa_TextChanged);
             // 
             // toolStripBtnPesquisar
             // 
@@ -409,21 +427,6 @@ namespace LocadoraVeiculos.WindowsApp
             this.labelRodape.Size = new System.Drawing.Size(90, 17);
             this.labelRodape.Text = "Tudo certo ;)";
             // 
-            // btnTaxasServicos
-            // 
-            this.btnTaxasServicos.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnTaxasServicos.FlatAppearance.BorderSize = 0;
-            this.btnTaxasServicos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTaxasServicos.Font = new System.Drawing.Font("Arial", 12F);
-            this.btnTaxasServicos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
-            this.btnTaxasServicos.Location = new System.Drawing.Point(0, 244);
-            this.btnTaxasServicos.Name = "btnTaxasServicos";
-            this.btnTaxasServicos.Size = new System.Drawing.Size(233, 60);
-            this.btnTaxasServicos.TabIndex = 5;
-            this.btnTaxasServicos.Text = "Taxas e serviços";
-            this.btnTaxasServicos.UseVisualStyleBackColor = true;
-            this.btnTaxasServicos.Click += new System.EventHandler(this.btnTaxasServicos_Click);
-            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -459,7 +462,7 @@ namespace LocadoraVeiculos.WindowsApp
         private System.Windows.Forms.Panel panelTopo;
         private System.Windows.Forms.Panel panelMenu;
         private System.Windows.Forms.ToolStrip toolBoxAcoes;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
+        private System.Windows.Forms.ToolStripTextBox txtPesquisa;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripButton toolStripBtnAdicionar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;

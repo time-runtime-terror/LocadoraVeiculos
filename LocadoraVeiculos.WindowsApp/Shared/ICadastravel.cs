@@ -22,5 +22,6 @@ namespace LocadoraVeiculos.WindowsApp.Shared
         void AgruparRegistros();
 
         void DesagruparRegistros();
+        void Pesquisar(string text);
     }
 }

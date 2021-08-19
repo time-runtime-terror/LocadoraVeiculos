@@ -106,6 +106,26 @@ namespace LocadoraVeiculos.Controladores.ClienteModule
                 [TBCLIENTE]
             WHERE 
                 [ID] = @ID";
+
+        private const string sqlPesquisarClientes =
+                        @"SELECT
+                        CL.[ID],
+		                CL.[NOME], 
+		                CL.[ENDERECO], 
+		                CL.[TELEFONE], 
+		                CL.[TIPOCADASTRO],
+                        CL.[NUMEROCADASTRO], 
+                        CL.[CNH],
+		                CL.[RG],
+		                CL.[DATAVENCIMENTOCNH],
+		                CL.[ID_EMPRESA]
+	                FROM
+                        [TBCLIENTE] AS CL LEFT JOIN
+                        [TBCLIENTE] AS CE
+                    ON
+                        CE.ID = CL.ID_EMPRESA
+                    WHERE
+                        CL.[NOME] LIKE @NOME";
         #endregion
 
         public override string InserirNovo(Cliente registro)
@@ -159,6 +179,11 @@ namespace LocadoraVeiculos.Controladores.ClienteModule
         public override List<Cliente> SelecionarTodos()
         {
             return Db.GetAll(sqlSelecionarTodosClientes, ConverterEmCliente);
+        }
+
+        public List<Cliente> PesquisarClientes(string nome)
+        {
+            return Db.GetAll(sqlPesquisarClientes, ConverterEmCliente, AdicionarParametro("NOME", nome + "%"));
         }
 
         private Dictionary<string, object> ObtemParametrosCliente(Cliente cliente)

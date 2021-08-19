@@ -132,15 +132,18 @@ namespace LocadoraVeiculos.WindowsApp
 
         private void toolStripBtnFiltrar_Click(object sender, System.EventArgs e)
         {
+            txtPesquisa.Text = "Digite para Pesquisar";
             operacoes.FiltrarRegistros();
         }
         private void toolStripBtnAgrupar_Click(object sender, EventArgs e)
         {
+            txtPesquisa.Text = "Digite para Pesquisar";
             operacoes.AgruparRegistros();
         }
 
         private void toolStripBtnDesagrupar_Click(object sender, EventArgs e)
         {
+            txtPesquisa.Text = "Digite para Pesquisar";
             operacoes.DesagruparRegistros();
         }
         #endregion
@@ -194,5 +197,23 @@ namespace LocadoraVeiculos.WindowsApp
             Application.Exit();
         }
         #endregion
+
+        private void txtPesquisa_Enter(object sender, EventArgs e)
+        {
+            if (txtPesquisa.Text == "Digite para Pesquisar")
+                txtPesquisa.Text = "";
+        }
+
+        private void txtPesquisa_Leave(object sender, EventArgs e)
+        {
+            if (txtPesquisa.Text == "")
+                txtPesquisa.Text = "Digite para Pesquisar";
+        }
+
+        private void txtPesquisa_TextChanged(object sender, EventArgs e)
+        {
+            if (txtPesquisa.Text != "Digite para Pesquisar")
+                operacoes.Pesquisar(txtPesquisa.Text);
+        }
     }
 }

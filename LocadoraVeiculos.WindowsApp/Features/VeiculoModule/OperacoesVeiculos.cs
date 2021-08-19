@@ -116,5 +116,10 @@ namespace LocadoraVeiculos.WindowsApp.Feature.VeiculoModule
         {
             
         }
+
+        public void Pesquisar(string text)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

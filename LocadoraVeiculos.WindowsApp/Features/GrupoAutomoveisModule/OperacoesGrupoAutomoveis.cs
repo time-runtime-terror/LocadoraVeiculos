@@ -109,5 +109,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
         {
             tabelaGrupoAutomoveis.DesagruparGrupoAutomoveis();
         }
+
+        public void Pesquisar(string text)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

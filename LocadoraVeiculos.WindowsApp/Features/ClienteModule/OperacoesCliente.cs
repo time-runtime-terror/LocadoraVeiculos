@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculos.Controladores.ClienteModule;
+using LocadoraVeiculos.Controladores.Shared;
 using LocadoraVeiculos.Dominio.ClienteModule;
 using LocadoraVeiculos.WindowsApp.Shared;
 using System;
@@ -134,6 +135,13 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             tabelaClientes.AtualizarRegistros(clientes);
 
             return tabelaClientes;
+        }
+
+        public void Pesquisar(string text)
+        {
+            List<Cliente> clientesSelecionados = controladorCliente.PesquisarClientes(text);
+
+            tabelaClientes.AtualizarRegistros(clientesSelecionados);
         }
     }
 }

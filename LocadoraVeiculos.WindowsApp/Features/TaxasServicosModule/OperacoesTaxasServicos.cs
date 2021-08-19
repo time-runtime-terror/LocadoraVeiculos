@@ -102,5 +102,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule
         {
             
         }
+
+        public void Pesquisar(string text)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
