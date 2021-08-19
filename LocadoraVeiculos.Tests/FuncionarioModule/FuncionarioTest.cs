@@ -105,14 +105,15 @@ namespace LocadoraVeiculos.Tests.FuncionarioModule
         public void NaoDeveValidarDataEntrada()
         {
             //arrange
-            var fucionario = new Funcionario("José", "Zé", "12345", DateTime.MinValue, "1200");
+            var fucionario = new Funcionario("José", "Zé", "12345", new DateTime(2021,08, 20), "1200");
 
             //action
             var resultadoValidacao = fucionario.Validar();
 
             //assert
-            resultadoValidacao.Should().Be("O campo Data de Entrada é obrigatório");
+            resultadoValidacao.Should().Be("O campo Data de Entrada aceita apenas datas menores que a atual");
         }
+
 
         [TestMethod]
         public void DeveValidarSalario()

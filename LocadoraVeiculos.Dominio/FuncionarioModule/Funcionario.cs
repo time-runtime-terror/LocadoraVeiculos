@@ -64,8 +64,13 @@ namespace LocadoraVeiculos.Dominio.FuncionarioModule
             if (DataEntrada == DateTime.MinValue)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Data de Entrada é obrigatório";
 
+            if(DataEntrada > DateTime.Now)
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Data de Entrada aceita apenas datas menores que a atual";
+            
+
             if (string.IsNullOrEmpty(Salario))
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Salário é obrigatório";
+
 
             if (resultadoValidacao == "")
                 resultadoValidacao = "ESTA_VALIDO";
