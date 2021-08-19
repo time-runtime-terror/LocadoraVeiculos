@@ -174,7 +174,7 @@ namespace LocadoraVeiculos.WindowsApp
 
         private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit()
+            Application.Exit();
         }
     }
 }
