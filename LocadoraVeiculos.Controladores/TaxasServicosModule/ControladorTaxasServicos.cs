@@ -10,7 +10,7 @@ namespace LocadoraVeiculos.Controladores.TaxasServicosModule
     {
         #region Queries
         private const string sqlInserirTaxasServicos =
-            @"INSERT INTO TBTAXASSERVICO
+            @"INSERT INTO TBTAXASSERVICOS
 	                (
 		                [SERVICO], 
 		                [TAXA], 
@@ -24,7 +24,7 @@ namespace LocadoraVeiculos.Controladores.TaxasServicosModule
 	                )";
 
         private const string sqlEditarTaxasServicos =
-            @"UPDATE TBTAXASSERVICO
+            @"UPDATE TBTAXASSERVICOS
                     SET
                         [SERVICO] = @SERVICO,
 		                [TAXA] = @TAXA, 
@@ -36,7 +36,7 @@ namespace LocadoraVeiculos.Controladores.TaxasServicosModule
         private const string sqlExcluirTaxasServicos =
             @"DELETE 
 	                FROM
-                        TBTAXASSERVICO
+                        TBTAXASSERVICOS
                     WHERE 
                         ID = @ID";
 
@@ -47,7 +47,7 @@ namespace LocadoraVeiculos.Controladores.TaxasServicosModule
 		                [TAXA], 
 		                [OPCAOSERVICO]
 	                FROM
-                        TBTAXASSERVICO
+                        TBTAXASSERVICOS
                     WHERE 
                         ID = @ID";
 
@@ -58,13 +58,13 @@ namespace LocadoraVeiculos.Controladores.TaxasServicosModule
 		                [TAXA], 
 		                [OPCAOSERVICO]
 	                FROM
-                        TBTAXASSERVICO";
+                        TBTAXASSERVICOS";
 
         private const string sqlExisteTaxasServicos =
             @"SELECT 
                 COUNT(*) 
             FROM 
-                [TBTAXASSERVICO]
+                [TBTAXASSERVICOS]
             WHERE 
                 [ID] = @ID";
         #endregion

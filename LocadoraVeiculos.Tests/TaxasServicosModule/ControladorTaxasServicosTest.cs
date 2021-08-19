@@ -15,7 +15,7 @@ namespace LocadoraVeiculos.Tests.TaxasServicosModule
         public ControladorTaxasServicosTest()
         {
             controlador = new ControladorTaxasServicos();
-            Db.Update("DELETE FROM [TBTAXASSERVICO]");
+            Db.Update("DELETE FROM [TBTAXASSERVICOS]");
         }
 
         [TestMethod]

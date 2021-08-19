@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.WindowsApp.Features.ClienteModule;
+﻿using LocadoraVeiculos.Controladores.TaxasServicosModule;
+using LocadoraVeiculos.WindowsApp.Features.ClienteModule;
 using LocadoraVeiculos.WindowsApp.Features.FuncionarioModule;
 using LocadoraVeiculos.Controladores.GrupoAutomoveisModule;
 using LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule;
@@ -11,6 +12,7 @@ using LocadoraVeiculos.WindowsApp.Features.VeiculoModule;
 using LocadoraVeiculos.Controladores.FuncionarioModule;
 using LocadoraVeiculos.WindowsApp.Features.CombustivelModule;
 using LocadoraVeiculos.Controladores.CombustivelModule;
+using LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule;
 
 namespace LocadoraVeiculos.WindowsApp
 {
@@ -18,8 +20,7 @@ namespace LocadoraVeiculos.WindowsApp
     {
         private ICadastravel operacoes; 
 
-        public static Dashboard Instancia;
-        private OperacoesVeiculos operacaoVeiculos;
+        public static Dashboard Instancia { get; set; }
 
         public Dashboard()
         {
@@ -28,6 +29,12 @@ namespace LocadoraVeiculos.WindowsApp
             Instancia = this;
         }
 
+        public void AtualizarRodape(string mensagem)
+        {
+            labelRodape.Text = mensagem;
+        }
+
+        #region Eventos de Click dos Botões do Menu Principal
         private void btnCadastroClientes_Click(object sender, System.EventArgs e)
         {
             ConfiguracaoClienteToolBox config = new ConfiguracaoClienteToolBox();
@@ -39,34 +46,6 @@ namespace LocadoraVeiculos.WindowsApp
             operacoes = new OperacoesCliente();
 
             ConfigurarPainelRegistros();
-        }
-
-        public void AtualizarRodape(string mensagem)
-        {
-            labelRodape.Text = mensagem;
-        }
-
-        private void ConfigurarPainelRegistros()
-        {
-            UserControl tabela = operacoes.ObterTabela();
-
-            tabela.Dock = DockStyle.Fill;
-
-            panelRegistros.Controls.Clear();
-
-            panelRegistros.Controls.Add(tabela);
-        }
-
-
-        private void ConfigurarPainelConfiguracoes()
-        {
-            UserControl tela = new CombustivelControl(new ControladorCombustivel());
-
-            tela.Dock = DockStyle.Fill;
-
-            panelRegistros.Controls.Clear();
-
-            panelRegistros.Controls.Add(tela);
         }
 
         private void btnCadastroFuncionario_Click(object sender, System.EventArgs e)
@@ -81,6 +60,46 @@ namespace LocadoraVeiculos.WindowsApp
 
             ConfigurarPainelRegistros();
         }
+
+        private void btnCadastroVeiculoModules_Click(object sender, System.EventArgs e)
+        {
+            ConfiguracaoVeiculoToolBox configuracao = new ConfiguracaoVeiculoToolBox();
+
+            ConfigurarToolBox(configuracao);
+
+            AtualizarRodape(configuracao.TipoCadastro);
+
+            operacoes = new OperacoesVeiculos(new ControladorVeiculo());
+
+            ConfigurarPainelRegistros();
+        }
+
+        private void btnCadastroGrupoAutomoveis_Click(object sender, EventArgs e)
+        {
+            ConfiguracaoGrupoAutomoveisToolBox configuracao = new ConfiguracaoGrupoAutomoveisToolBox();
+
+            ConfigurarToolBox(configuracao);
+
+            AtualizarRodape(configuracao.TipoCadastro);
+
+            operacoes = new OperacoesGrupoAutomoveis(new ControladorGrupoAutomoveis());
+
+            ConfigurarPainelRegistros();
+        }
+
+        private void btnTaxasServicos_Click(object sender, EventArgs e)
+        {
+            ConfiguracaoTaxasServicosToolBox config = new ConfiguracaoTaxasServicosToolBox();
+
+            ConfigurarToolBox(config);
+
+            AtualizarRodape(config.TipoCadastro);
+
+            operacoes = new OperacoesTaxasServicos(new ControladorTaxasServicos());
+
+            ConfigurarPainelRegistros();
+        }
+
         private void btnConfiguracoes_Click(object sender, System.EventArgs e)
         {
             ConfiguracaoCombustivelToolBox configuracao = new ConfiguracaoCombustivelToolBox();
@@ -89,12 +108,64 @@ namespace LocadoraVeiculos.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            //OperacoesCombustivel operacoesComb = new OperacoesCombustivel(new ControladorCombustivel());
-
-            //operacoesComb.MostrarCombustiveis();
-
             ConfigurarPainelConfiguracoes();
 
+        }
+        #endregion
+
+        #region Eventos de Click dos Botões de CRUD
+        private void toolStripBtnAdicionar_Click(object sender, System.EventArgs e)
+        {
+            operacoes.InserirNovoRegistro();
+        }
+
+        private void toolStripBtnEditar_Click(object sender, System.EventArgs e)
+        {
+            operacoes.EditarRegistro();
+        }
+
+
+        private void toolStripBtnExcluir_Click(object sender, EventArgs e)
+        {
+            operacoes.ExcluirRegistro();
+        }
+
+        private void toolStripBtnFiltrar_Click(object sender, System.EventArgs e)
+        {
+            operacoes.FiltrarRegistros();
+        }
+        private void toolStripBtnAgrupar_Click(object sender, EventArgs e)
+        {
+            operacoes.AgruparRegistros();
+        }
+
+        private void toolStripBtnDesagrupar_Click(object sender, EventArgs e)
+        {
+            operacoes.DesagruparRegistros();
+        }
+        #endregion
+
+        #region Métodos Privados da Classe
+        private void ConfigurarPainelRegistros()
+        {
+            UserControl tabela = operacoes.ObterTabela();
+
+            tabela.Dock = DockStyle.Fill;
+
+            panelRegistros.Controls.Clear();
+
+            panelRegistros.Controls.Add(tabela);
+        }
+
+        private void ConfigurarPainelConfiguracoes()
+        {
+            UserControl tela = new CombustivelControl(new ControladorCombustivel());
+
+            tela.Dock = DockStyle.Fill;
+
+            panelRegistros.Controls.Clear();
+
+            panelRegistros.Controls.Add(tela);
         }
 
         private void ConfigurarToolBox(IConfiguracaoToolBox configuracao)
@@ -118,68 +189,10 @@ namespace LocadoraVeiculos.WindowsApp
             toolStripBtnFiltrar.Enabled = configuracao.BotaoFiltrar;
         }
 
-        private void toolStripBtnAdicionar_Click(object sender, System.EventArgs e)
-        {
-            operacoes.InserirNovoRegistro();
-        }
-
-        private void toolStripBtnEditar_Click(object sender, System.EventArgs e)
-        {
-            operacoes.EditarRegistro();
-        }
-
-        private void btnCadastroGrupoAutomoveis_Click(object sender, EventArgs e)
-        {
-            ConfiguracaoGrupoAutomoveisToolBox configuracao = new ConfiguracaoGrupoAutomoveisToolBox();
-
-            ConfigurarToolBox(configuracao);
-
-            AtualizarRodape(configuracao.TipoCadastro);
-
-            operacoes = new OperacoesGrupoAutomoveis(new ControladorGrupoAutomoveis());
-
-            ConfigurarPainelRegistros();
-        }
-
-        private void toolStripBtnExcluir_Click(object sender, EventArgs e)
-        {
-            operacoes.ExcluirRegistro();
-        }
-
-        private void toolStripBtnFiltrar_Click(object sender, System.EventArgs e)
-        {
-            operacoes.FiltrarRegistros();
-        }
-        private void toolStripBtnAgrupar_Click(object sender, EventArgs e)
-        {
-            operacoes.AgruparRegistros();
-        }
-
-        private void toolStripBtnDesagrupar_Click(object sender, EventArgs e)
-        {
-            operacoes.DesagruparRegistros();
-        }
-        private void btnCadastroVeiculoModules_Click(object sender, System.EventArgs e)
-        {
-            ConfiguracaoVeiculoToolBox configuracao = new ConfiguracaoVeiculoToolBox();
-
-            ConfigurarToolBox(configuracao);
-
-            AtualizarRodape(configuracao.TipoCadastro);
-
-            operacoes = new OperacoesVeiculos(new ControladorVeiculo());
-
-            ConfigurarPainelRegistros();
-        }
-
         private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
-
-        private void btnTaxasServicos_Click(object sender, EventArgs e)
-        {
-
-        }
+        #endregion
     }
 }
