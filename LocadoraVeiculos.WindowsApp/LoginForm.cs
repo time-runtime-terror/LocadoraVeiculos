@@ -42,6 +42,7 @@ namespace LocadoraVeiculos.WindowsApp
                 if (existeFuncionario == true)
                 {
                     Dashboard tela = new Dashboard();
+                    this.Hide();
                     tela.ShowDialog();
                 }
                 else
