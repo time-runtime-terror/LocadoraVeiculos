@@ -66,7 +66,6 @@ namespace LocadoraVeiculos.Dominio.VeiculoModule
             return obj is Veiculo veiculo &&
                    id == veiculo.id &&
                    Id == veiculo.Id &&
-                   EqualityComparer<Bitmap>.Default.Equals(Imagem, veiculo.Imagem) &&
                    Foto.SequenceEqual(veiculo.Foto) &&
                    Placa == veiculo.Placa &&
                    Modelo == veiculo.Modelo &&
