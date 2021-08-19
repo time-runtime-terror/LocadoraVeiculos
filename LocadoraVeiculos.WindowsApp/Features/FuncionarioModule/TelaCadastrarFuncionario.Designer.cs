@@ -287,7 +287,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
             this.MinimizeBox = false;
             this.Name = "TelaCadastrarFuncionario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Cadastror de Funcionários";
+            this.Text = "Cadastro de Funcionários";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TelaCadastrarFuncionario_FormClosing);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
