@@ -170,12 +170,11 @@ namespace LocadoraVeiculos.WindowsApp
             operacoes = new OperacoesVeiculos(new ControladorVeiculo());
 
             ConfigurarPainelRegistros();
-            
         }
 
         private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            Application.Exit()
         }
     }
 }
