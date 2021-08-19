@@ -72,7 +72,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             // 
             // txtId
             // 
-            this.txtId.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.txtId.BackColor = System.Drawing.SystemColors.Window;
             this.txtId.Enabled = false;
             this.txtId.Location = new System.Drawing.Point(507, 90);
             this.txtId.Name = "txtId";

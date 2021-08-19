@@ -166,7 +166,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
             // 
             // txtId
             // 
-            this.txtId.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.txtId.BackColor = System.Drawing.SystemColors.Window;
             this.txtId.Enabled = false;
             this.txtId.Font = new System.Drawing.Font("Arial", 12F);
             this.txtId.Location = new System.Drawing.Point(322, 84);
