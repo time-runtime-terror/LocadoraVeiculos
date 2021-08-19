@@ -31,6 +31,8 @@ namespace LocadoraVeiculos.WindowsApp
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             this.panelTopo = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -59,8 +61,6 @@ namespace LocadoraVeiculos.WindowsApp
             this.panelRegistros = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.labelRodape = new System.Windows.Forms.ToolStripStatusLabel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.panelTopo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelMenu.SuspendLayout();
@@ -78,8 +78,30 @@ namespace LocadoraVeiculos.WindowsApp
             this.panelTopo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTopo.Location = new System.Drawing.Point(0, 0);
             this.panelTopo.Name = "panelTopo";
-            this.panelTopo.Size = new System.Drawing.Size(913, 60);
+            this.panelTopo.Size = new System.Drawing.Size(1069, 60);
             this.panelTopo.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
+            this.label1.Location = new System.Drawing.Point(157, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(371, 46);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "LOCADORA RECH";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Arial", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label4.Location = new System.Drawing.Point(534, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(284, 28);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "O carro certo para você!";
             // 
             // pictureBox1
             // 
@@ -99,7 +121,7 @@ namespace LocadoraVeiculos.WindowsApp
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 60);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(242, 481);
+            this.panelMenu.Size = new System.Drawing.Size(242, 518);
             this.panelMenu.TabIndex = 3;
             // 
             // panel4
@@ -225,7 +247,7 @@ namespace LocadoraVeiculos.WindowsApp
             this.toolStripSeparator7});
             this.toolBoxAcoes.Location = new System.Drawing.Point(242, 60);
             this.toolBoxAcoes.Name = "toolBoxAcoes";
-            this.toolBoxAcoes.Size = new System.Drawing.Size(671, 55);
+            this.toolBoxAcoes.Size = new System.Drawing.Size(827, 55);
             this.toolBoxAcoes.TabIndex = 4;
             this.toolBoxAcoes.Text = "toolStrip1";
             // 
@@ -360,7 +382,7 @@ namespace LocadoraVeiculos.WindowsApp
             this.panelRegistros.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelRegistros.Location = new System.Drawing.Point(242, 115);
             this.panelRegistros.Name = "panelRegistros";
-            this.panelRegistros.Size = new System.Drawing.Size(671, 426);
+            this.panelRegistros.Size = new System.Drawing.Size(827, 463);
             this.panelRegistros.TabIndex = 5;
             // 
             // statusStrip1
@@ -368,10 +390,10 @@ namespace LocadoraVeiculos.WindowsApp
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.labelRodape});
-            this.statusStrip1.Location = new System.Drawing.Point(242, 519);
+            this.statusStrip1.Location = new System.Drawing.Point(242, 556);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 10, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(671, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(827, 22);
             this.statusStrip1.TabIndex = 6;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -382,33 +404,11 @@ namespace LocadoraVeiculos.WindowsApp
             this.labelRodape.Size = new System.Drawing.Size(90, 17);
             this.labelRodape.Text = "Tudo certo ;)";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
-            this.label1.Location = new System.Drawing.Point(157, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(371, 46);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "LOCADORA RECH";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label4.Location = new System.Drawing.Point(534, 22);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(284, 28);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "O carro certo para você!";
-            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(913, 541);
+            this.ClientSize = new System.Drawing.Size(1069, 578);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.panelRegistros);
             this.Controls.Add(this.toolBoxAcoes);
