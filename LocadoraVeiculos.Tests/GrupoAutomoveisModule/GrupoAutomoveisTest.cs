@@ -15,7 +15,7 @@ namespace LocadoraVeiculos.Tests.GrupoAutomoveisModule
         {
             // arrange
             GrupoAutomoveis grupoAutomoveis = new GrupoAutomoveis("Economico", 120, 140, 180,
-                200, 90);
+                200, 100, 90);
 
             // action
             string validacao = grupoAutomoveis.Validar();
@@ -29,7 +29,7 @@ namespace LocadoraVeiculos.Tests.GrupoAutomoveisModule
         {
             // arrange
             GrupoAutomoveis grupoAutomoveis = new GrupoAutomoveis("", 120, 140, 180,
-                200, 90);
+                200, 100, 90);
 
             // action
             string validacao = grupoAutomoveis.Validar();
@@ -43,7 +43,7 @@ namespace LocadoraVeiculos.Tests.GrupoAutomoveisModule
         {
             // arrange
             GrupoAutomoveis grupoAutomoveis = new GrupoAutomoveis("Suv", 0, 140, 180,
-                200, 90);
+                200, 100, 90);
 
             // action
             string validacao = grupoAutomoveis.Validar();
@@ -57,7 +57,7 @@ namespace LocadoraVeiculos.Tests.GrupoAutomoveisModule
         {
             // arrange
             GrupoAutomoveis grupoAutomoveis = new GrupoAutomoveis("Suv", 120, 140, 0,
-                200, 90);
+                200, 100, 90);
 
             // action
             string validacao = grupoAutomoveis.Validar();
@@ -71,7 +71,7 @@ namespace LocadoraVeiculos.Tests.GrupoAutomoveisModule
         {
             // arrange
             GrupoAutomoveis grupoAutomoveis = new GrupoAutomoveis("Suv", 120, 140, 180,
-                200, 0);
+                200, 100, 0);
 
             // action
             string validacao = grupoAutomoveis.Validar();

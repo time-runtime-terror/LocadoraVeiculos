@@ -10,13 +10,14 @@ namespace LocadoraVeiculos.Dominio.GrupoAutomoveisModule
     public class GrupoAutomoveis : EntidadeBase, IEquatable<GrupoAutomoveis>
     {
         public GrupoAutomoveis(string nomeGrupo, double planoDiarioUm, double planoDiarioDois, double kmControladoUm,
-            double kmControladoDois, double kmLivreUm)
+            double kmControladoDois, double kmLivreUm, double kmControladoIncluida)
         {
             NomeGrupo = nomeGrupo;
             PlanoDiarioUm = planoDiarioUm;
             PlanoDiarioDois = planoDiarioDois;
             KmControladoUm = kmControladoUm;
             KmControladoDois = kmControladoDois;
+            KmControladoIncluida = kmControladoIncluida;
             KmLivreUm = kmLivreUm;
         }
 
@@ -31,6 +32,8 @@ namespace LocadoraVeiculos.Dominio.GrupoAutomoveisModule
         public double KmControladoUm { get; }
 
         public double KmControladoDois { get; }
+
+        public double KmControladoIncluida { get; }
 
         public double KmLivreUm { get; }
 
