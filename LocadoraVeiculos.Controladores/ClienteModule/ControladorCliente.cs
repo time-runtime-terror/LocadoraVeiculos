@@ -8,9 +8,6 @@ namespace LocadoraVeiculos.Controladores.ClienteModule
 {
     public class ControladorCliente : Controlador<Cliente>
     {
-        public ControladorCliente()
-        {
-        }
 
         #region Queries
         private const string sqlInserirCliente =
@@ -181,7 +178,7 @@ namespace LocadoraVeiculos.Controladores.ClienteModule
             return Db.GetAll(sqlSelecionarTodosClientes, ConverterEmCliente);
         }
 
-        public List<Cliente> PesquisarClientes(string nome)
+        public override List<Cliente> Pesquisar(string nome)
         {
             return Db.GetAll(sqlPesquisarClientes, ConverterEmCliente, AdicionarParametro("NOME", nome + "%"));
         }

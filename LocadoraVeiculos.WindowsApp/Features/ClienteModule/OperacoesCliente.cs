@@ -139,7 +139,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 
         public void Pesquisar(string text)
         {
-            List<Cliente> clientesSelecionados = controladorCliente.PesquisarClientes(text);
+            List<Cliente> clientesSelecionados = controladorCliente.Pesquisar(text);
 
             tabelaClientes.AtualizarRegistros(clientesSelecionados);
         }

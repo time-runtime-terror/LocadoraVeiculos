@@ -205,5 +205,10 @@ namespace LocadoraVeiculos.Controladores.VeiculoModule
 
             return parametros;
         }
+
+        public override List<Veiculo> Pesquisar(string texto)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

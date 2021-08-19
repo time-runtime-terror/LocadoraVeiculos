@@ -12,6 +12,7 @@ namespace LocadoraVeiculos.Controladores.Shared
         public abstract bool Existe(int id);
         public abstract bool Excluir(int id);
         public abstract List<T> SelecionarTodos();
+        public abstract List<T> Pesquisar(string texto);
         public abstract T SelecionarPorId(int id);
         protected Dictionary<string, object> AdicionarParametro(string campo, object valor)
         {

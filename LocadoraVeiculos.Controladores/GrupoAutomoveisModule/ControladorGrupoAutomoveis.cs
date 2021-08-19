@@ -172,5 +172,10 @@ namespace LocadoraVeiculos.Controladores.GrupoAutomoveisModule
 
             return grupoAutomoveis;
         }
+
+        public override List<GrupoAutomoveis> Pesquisar(string texto)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

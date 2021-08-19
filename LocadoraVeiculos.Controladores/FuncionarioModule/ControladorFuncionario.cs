@@ -89,6 +89,19 @@ namespace LocadoraVeiculos.Controladores.FuncionarioModule
                 [NOMEUSUARIO] = @NOMEUSUARIO
              AND
                 [SENHA] = @SENHA";
+
+        private const string sqlPesquisarFuncionarios =
+            @"SELECT
+                        [ID],
+		                [NOME], 
+		                [NOMEUSUARIO], 
+		                [SENHA],
+                        [DATAENTRADA], 
+		                [SALARIO]
+	                FROM
+                        TBFUNCIONARIO
+                    WHERE 
+                        [NOME] LIKE @NOME";
         #endregion
 
         public override string InserirNovo(Funcionario registro)
@@ -102,6 +115,7 @@ namespace LocadoraVeiculos.Controladores.FuncionarioModule
 
             return resultadoValidacao;
         }
+
         public override string Editar(int id, Funcionario registro)
         {
             string resultadoValidacao = registro.Validar();
@@ -143,6 +157,10 @@ namespace LocadoraVeiculos.Controladores.FuncionarioModule
         public override List<Funcionario> SelecionarTodos()
         {
             return Db.GetAll(sqlSelecionarTodosFuncionarios, ConverterEmFuncionario);
+        }
+        public override List<Funcionario> Pesquisar(string nome)
+        {
+            return Db.GetAll(sqlPesquisarFuncionarios, ConverterEmFuncionario, AdicionarParametro("NOME", nome + "%"));
         }
 
         private Dictionary<string, object> ObtemParametrosFuncionario(Funcionario funcionario)

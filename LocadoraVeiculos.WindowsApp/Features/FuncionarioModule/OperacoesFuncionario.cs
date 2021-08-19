@@ -104,22 +104,24 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
 
         public void FiltrarRegistros()
         {
-            
+            throw new NotImplementedException();
         }
 
         public void AgruparRegistros()
         {
-            
+            throw new NotImplementedException();
         }
 
         public void DesagruparRegistros()
         {
-            
+            throw new NotImplementedException();
         }
 
         public void Pesquisar(string text)
         {
-            throw new NotImplementedException();
+            List<Funcionario> clientesSelecionados = controlador.Pesquisar(text);
+
+            tabelaFuncionario.AtualizarRegistros(clientesSelecionados);
         }
     }
 }

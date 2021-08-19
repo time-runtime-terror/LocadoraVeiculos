@@ -147,5 +147,10 @@ namespace LocadoraVeiculos.Controladores.TaxasServicosModule
 
             return taxasServicos;
         }
+
+        public override List<TaxasServicos> Pesquisar(string texto)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
