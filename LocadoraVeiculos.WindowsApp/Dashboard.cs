@@ -176,5 +176,10 @@ namespace LocadoraVeiculos.WindowsApp
         {
             Application.Exit();
         }
+
+        private void btnTaxasServicos_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

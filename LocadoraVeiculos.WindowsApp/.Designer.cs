@@ -61,6 +61,7 @@ namespace LocadoraVeiculos.WindowsApp
             this.panelRegistros = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.labelRodape = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnTaxasServicos = new System.Windows.Forms.Button();
             this.panelTopo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelMenu.SuspendLayout();
@@ -129,13 +130,14 @@ namespace LocadoraVeiculos.WindowsApp
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.Controls.Add(this.btnConfiguracoes);
+            this.panel4.Controls.Add(this.btnTaxasServicos);
             this.panel4.Controls.Add(this.btnCadastroGrupoAutomoveis);
             this.panel4.Controls.Add(this.btnCadastroVeiculos);
             this.panel4.Controls.Add(this.btnCadastroFuncionarioModules);
             this.panel4.Controls.Add(this.btnCadastroClientes);
             this.panel4.Location = new System.Drawing.Point(3, 76);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(233, 316);
+            this.panel4.Size = new System.Drawing.Size(233, 377);
             this.panel4.TabIndex = 1;
             // 
             // btnConfiguracoes
@@ -145,10 +147,10 @@ namespace LocadoraVeiculos.WindowsApp
             this.btnConfiguracoes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfiguracoes.Font = new System.Drawing.Font("Arial", 12F);
             this.btnConfiguracoes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
-            this.btnConfiguracoes.Location = new System.Drawing.Point(0, 244);
+            this.btnConfiguracoes.Location = new System.Drawing.Point(0, 304);
             this.btnConfiguracoes.Name = "btnConfiguracoes";
             this.btnConfiguracoes.Size = new System.Drawing.Size(233, 60);
-            this.btnConfiguracoes.TabIndex = 0;
+            this.btnConfiguracoes.TabIndex = 6;
             this.btnConfiguracoes.Text = "Configurações";
             this.btnConfiguracoes.UseVisualStyleBackColor = true;
             this.btnConfiguracoes.Click += new System.EventHandler(this.btnConfiguracoes_Click);
@@ -407,6 +409,21 @@ namespace LocadoraVeiculos.WindowsApp
             this.labelRodape.Size = new System.Drawing.Size(90, 17);
             this.labelRodape.Text = "Tudo certo ;)";
             // 
+            // btnTaxasServicos
+            // 
+            this.btnTaxasServicos.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnTaxasServicos.FlatAppearance.BorderSize = 0;
+            this.btnTaxasServicos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTaxasServicos.Font = new System.Drawing.Font("Arial", 12F);
+            this.btnTaxasServicos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
+            this.btnTaxasServicos.Location = new System.Drawing.Point(0, 244);
+            this.btnTaxasServicos.Name = "btnTaxasServicos";
+            this.btnTaxasServicos.Size = new System.Drawing.Size(233, 60);
+            this.btnTaxasServicos.TabIndex = 5;
+            this.btnTaxasServicos.Text = "Taxas e serviços";
+            this.btnTaxasServicos.UseVisualStyleBackColor = true;
+            this.btnTaxasServicos.Click += new System.EventHandler(this.btnTaxasServicos_Click);
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -470,6 +487,7 @@ namespace LocadoraVeiculos.WindowsApp
         private System.Windows.Forms.Button btnConfiguracoes;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnTaxasServicos;
     }
 }
 
