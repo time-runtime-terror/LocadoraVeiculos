@@ -121,17 +121,6 @@
     <value>17, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="toolStripBtnPesquisar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEHSURBVEhL7ZQhbkJBEEC/QHIEBAKBQCB6AJJKRA/AASoQ
-        lciKygpEZUVFD4BAViIQlT1AZWVFBQJB39tkkgq27S6GEF7ykj8/O7uZnfm/OXMIQ3zCN3zHV7zDPh5E
-        C+9xl3GDU6zmAd1oi3O8xC6O0YrioGssZoSxuc/7mGBUUnxdSzT5NkV5ohKrLeITTRykKI/X5ToHoAiT
-        9C866Dqnqwjv1cReivLY+KoKVmjiTYryOF2usxdFXKGJX5ibEKfLKXPdhS9KecY4xEriumy80xWbP2IV
-        bfz5Qe0zxnmNrq/C61pgNN4RdmMbLB/oe/tWfchv2KPTO6T41/FfPOQFZyk6c0Q0zTemG1NtmzxEjAAA
-        AABJRU5ErkJggg==
-</value>
-  </data>
   <data name="toolStripBtnAdicionar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8

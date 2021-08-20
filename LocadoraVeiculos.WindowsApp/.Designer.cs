@@ -45,7 +45,6 @@ namespace LocadoraVeiculos.WindowsApp
             this.label3 = new System.Windows.Forms.Label();
             this.toolBoxAcoes = new System.Windows.Forms.ToolStrip();
             this.txtPesquisa = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripBtnPesquisar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripBtnAdicionar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -249,7 +248,6 @@ namespace LocadoraVeiculos.WindowsApp
             this.toolBoxAcoes.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolBoxAcoes.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.txtPesquisa,
-            this.toolStripBtnPesquisar,
             this.toolStripSeparator6,
             this.toolStripBtnAdicionar,
             this.toolStripSeparator1,
@@ -279,16 +277,6 @@ namespace LocadoraVeiculos.WindowsApp
             this.txtPesquisa.Enter += new System.EventHandler(this.txtPesquisa_Enter);
             this.txtPesquisa.Leave += new System.EventHandler(this.txtPesquisa_Leave);
             this.txtPesquisa.TextChanged += new System.EventHandler(this.txtPesquisa_TextChanged);
-            // 
-            // toolStripBtnPesquisar
-            // 
-            this.toolStripBtnPesquisar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripBtnPesquisar.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtnPesquisar.Image")));
-            this.toolStripBtnPesquisar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripBtnPesquisar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripBtnPesquisar.Name = "toolStripBtnPesquisar";
-            this.toolStripBtnPesquisar.Size = new System.Drawing.Size(28, 52);
-            this.toolStripBtnPesquisar.Text = "toolStripButton7";
             // 
             // toolStripSeparator6
             // 
@@ -477,7 +465,6 @@ namespace LocadoraVeiculos.WindowsApp
         private System.Windows.Forms.ToolStripButton toolStripBtnDesagrupar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.ToolStripButton toolStripBtnPesquisar;
         private System.Windows.Forms.Panel panelRegistros;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button btnCadastroGrupoAutomoveis;
