@@ -29,6 +29,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaAgrupamentoGrupoAutomoveis));
             this.rdbAgrupadosPorNome = new System.Windows.Forms.RadioButton();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -141,6 +142,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             this.Controls.Add(this.button1);
             this.Controls.Add(this.rdbAgrupadosPorNome);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "TelaAgrupamentoGrupoAutomoveis";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

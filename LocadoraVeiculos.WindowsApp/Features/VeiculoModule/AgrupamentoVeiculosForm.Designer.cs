@@ -29,6 +29,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AgrupamentoVeiculosForm));
             this.rdbAgrupar = new System.Windows.Forms.RadioButton();
             this.btnGravar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -141,6 +142,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.rdbAgrupar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AgrupamentoVeiculosForm";
