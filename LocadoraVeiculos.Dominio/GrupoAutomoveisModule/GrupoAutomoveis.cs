@@ -51,7 +51,8 @@ namespace LocadoraVeiculos.Dominio.GrupoAutomoveisModule
               && PlanoDiarioDois == other.PlanoDiarioDois
               && KmControladoUm == other.KmControladoUm
               && KmControladoDois == other.KmControladoDois
-              && KmLivreUm == other.KmLivreUm;
+              && KmLivreUm == other.KmLivreUm
+              && KmControladoIncluida == other.KmControladoIncluida;
         }
 
         public override int GetHashCode()
@@ -64,6 +65,8 @@ namespace LocadoraVeiculos.Dominio.GrupoAutomoveisModule
             hashCode = hashCode * -1521134295 + KmControladoUm.GetHashCode();
             hashCode = hashCode * -1521134295 + KmControladoDois.GetHashCode();
             hashCode = hashCode * -1521134295 + KmLivreUm.GetHashCode();
+            hashCode = hashCode * -1521134295 + KmControladoIncluida.GetHashCode();
+
             return hashCode;
         }
 
@@ -82,6 +85,9 @@ namespace LocadoraVeiculos.Dominio.GrupoAutomoveisModule
 
             if (KmLivreUm == 0)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Quilometro Livre é obrigatório";
+
+            if (KmControladoIncluida == 0)
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Quilometro Incluido é obrigatório";
 
             if (resultadoValidacao == "")
                 resultadoValidacao = "ESTA_VALIDO";
