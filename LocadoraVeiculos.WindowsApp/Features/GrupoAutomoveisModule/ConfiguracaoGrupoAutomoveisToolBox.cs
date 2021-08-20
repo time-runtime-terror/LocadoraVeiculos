@@ -17,7 +17,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
 
         public string ToolTipExcluir => "Excluir um Grupo de Automóveis existente";
 
-        public string ToolTipFiltrar => "";
+        public string ToolTipFiltrar => "Indisponivel";
 
         public string ToolTipAgrupar => "Agrupar um Grupo de Automóveis existente";
 

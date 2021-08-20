@@ -29,7 +29,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             get { return "Excluir um Veiculo existente"; }
         }
 
-        public string ToolTipFiltrar => "";
+        public string ToolTipFiltrar => "Indisponivel";
 
         public string ToolTipAgrupar => "Agrupar Veiculos";
 

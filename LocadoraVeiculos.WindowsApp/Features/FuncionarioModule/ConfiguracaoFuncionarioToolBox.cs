@@ -32,17 +32,17 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
 
         public string ToolTipFiltrar
         {
-            get { return ""; }
+            get { return "Indisponivel"; }
         }
 
         public string ToolTipAgrupar
         {
-            get { return ""; }
+            get { return "Indisponivel"; }
         }
 
         public string ToolTipDesagrupar
         {
-            get { return ""; }
+            get { return "Indisponivel"; }
         }
 
         /// <summary>
