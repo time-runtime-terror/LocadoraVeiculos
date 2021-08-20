@@ -147,10 +147,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
 
         private void txtKmIncluida_TextChanged(object sender, EventArgs e)
         {
-            if (System.Text.RegularExpressions.Regex.IsMatch(txtControladoDois.Text, "[^0-9]"))
+            if (System.Text.RegularExpressions.Regex.IsMatch(txtKmIncluida.Text, "[^0-9]"))
             {
                 Dashboard.Instancia.AtualizarRodape($"Apenas números no Km Controlado Incluído, por favor.");
-                txtControladoDois.Text = txtControladoDois.Text.Remove(txtControladoDois.Text.Length - 1);
+                txtKmIncluida.Text = txtKmIncluida.Text.Remove(txtKmIncluida.Text.Length - 1);
             }
         }
     }
