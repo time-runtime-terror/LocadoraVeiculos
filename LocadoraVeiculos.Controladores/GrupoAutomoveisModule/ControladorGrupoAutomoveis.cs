@@ -20,6 +20,7 @@ namespace LocadoraVeiculos.Controladores.GrupoAutomoveisModule
 		                [PLANODIARIODOIS],
                         [KMCONTROLADOUM], 
 		                [KMCONTROLADODOIS],
+                        [KMCONTROLADOINCLUIDO],
                         [KMLIVREUM]
 	                ) 
 	                VALUES
@@ -29,6 +30,7 @@ namespace LocadoraVeiculos.Controladores.GrupoAutomoveisModule
                         @PLANODIARIODOIS,
 		                @KMCONTROLADOUM, 
 		                @KMCONTROLADODOIS,
+                        @KMCONTROLADOINCLUIDO,
                         @KMLIVREUM
 	                )";
 
@@ -40,6 +42,7 @@ namespace LocadoraVeiculos.Controladores.GrupoAutomoveisModule
 		                [PLANODIARIODOIS] = @PLANODIARIODOIS,
                         [KMCONTROLADOUM] = @KMCONTROLADOUM,
                         [KMCONTROLADODOIS] = @KMCONTROLADODOIS,
+                        [KMCONTROLADOINCLUIDO] = @KMCONTROLADOINCLUIDO,
                         [KMLIVREUM] = @KMLIVREUM
 
                     WHERE 
@@ -60,6 +63,7 @@ namespace LocadoraVeiculos.Controladores.GrupoAutomoveisModule
 		                [PLANODIARIODOIS],
                         [KMCONTROLADOUM], 
 		                [KMCONTROLADODOIS],
+                        [KMCONTROLADOINCLUIDO],
                         [KMLIVREUM]
 	                FROM
                         TBGRUPOAUTOMOVEIS
@@ -74,6 +78,7 @@ namespace LocadoraVeiculos.Controladores.GrupoAutomoveisModule
 		                [PLANODIARIODOIS],
                         [KMCONTROLADOUM], 
 		                [KMCONTROLADODOIS],
+                        [KMCONTROLADOINCLUIDO],
                         [KMLIVREUM]
 	                FROM
                         TBGRUPOAUTOMOVEIS";
@@ -150,6 +155,7 @@ namespace LocadoraVeiculos.Controladores.GrupoAutomoveisModule
             parametros.Add("PLANODIARIODOIS", grupoAutomoveis.PlanoDiarioDois);
             parametros.Add("KMCONTROLADOUM", grupoAutomoveis.KmControladoUm);
             parametros.Add("KMCONTROLADODOIS", grupoAutomoveis.KmControladoDois);
+            parametros.Add("KMCONTROLADOINCLUIDO", grupoAutomoveis.KmControladoIncluida);
             parametros.Add("KMLIVREUM", grupoAutomoveis.KmLivreUm);
 
             return parametros;
@@ -163,10 +169,11 @@ namespace LocadoraVeiculos.Controladores.GrupoAutomoveisModule
             double planoDiarioDois = Convert.ToDouble(reader["PLANODIARIODOIS"]);
             double kmControladoUm = Convert.ToDouble(reader["KMCONTROLADOUM"]);
             double kmControladoDois = Convert.ToDouble(reader["KMCONTROLADODOIS"]);
+            double kmControladoIncluida = Convert.ToDouble(reader["KMCONTROLADOINCLUIDO"]);
             double kmLivreUm = Convert.ToDouble(reader["KMLIVREUM"]);
 
             GrupoAutomoveis grupoAutomoveis = new GrupoAutomoveis(nomeGrupo, planoDiarioUm, planoDiarioDois, kmControladoUm,
-                kmControladoDois, kmLivreUm);
+                kmControladoDois, kmControladoIncluida, kmLivreUm);
 
             grupoAutomoveis.Id = id;
 

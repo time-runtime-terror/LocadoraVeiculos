@@ -42,6 +42,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
 
                 new DataGridViewTextBoxColumn {DataPropertyName = "kmControladoDois", HeaderText = "Km Controlado por Km Rodado"},
 
+                new DataGridViewTextBoxColumn {DataPropertyName = "kmControladoIncluida", HeaderText = "Km Controlado Incluído"},
+
                 new DataGridViewTextBoxColumn {DataPropertyName = "kmLivreUm", HeaderText = "Km Livre por Dia"}
             };
 

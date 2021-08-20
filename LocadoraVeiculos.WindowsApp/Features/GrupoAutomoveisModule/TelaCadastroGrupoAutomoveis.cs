@@ -30,6 +30,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
                 txtDiarioDois.Text = grupoAutomoveis.PlanoDiarioDois.ToString();
                 txtControladoUm.Text = grupoAutomoveis.KmControladoUm.ToString();
                 txtControladoDois.Text = grupoAutomoveis.KmControladoDois.ToString();
+                txtKmIncluida.Text = grupoAutomoveis.KmControladoIncluida.ToString();
                 txtLivreUm.Text = grupoAutomoveis.KmLivreUm.ToString();
             }
         }
@@ -46,6 +47,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
 
             string kmControladoDoisstr = txtControladoDois.Text;
 
+            string kmControladaIncluidastr = txtKmIncluida.Text;
+
             string kmLivreUmstr = txtLivreUm.Text;
 
             //separar
@@ -58,10 +61,12 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
 
             double kmControladoDois = validarGrupos(kmControladoDoisstr);
 
+            double kmCotroladaIncluida = validarGrupos(kmControladaIncluidastr);
+
             double kmLivreUm = validarGrupos(kmLivreUmstr);
 
             GrupoAutomoveis = new GrupoAutomoveis(nomeGrupo, planoDiarioUm, planoDiarioDois, kmControladoUm, kmControladoDois,
-                kmLivreUm);
+                kmCotroladaIncluida, kmLivreUm);
 
             string resultadoValidacao = grupoAutomoveis.Validar();
 
@@ -138,6 +143,15 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
         private void TelaCadastroGrupoAutomoveis_FormClosing(object sender, FormClosingEventArgs e)
         {
             Dashboard.Instancia.AtualizarRodape($"Cadastro de Grupo de Automóveis");
+        }
+
+        private void txtKmIncluida_TextChanged(object sender, EventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(txtControladoDois.Text, "[^0-9]"))
+            {
+                Dashboard.Instancia.AtualizarRodape($"Apenas números no Km Controlado Incluído, por favor.");
+                txtControladoDois.Text = txtControladoDois.Text.Remove(txtControladoDois.Text.Length - 1);
+            }
         }
     }
 }
