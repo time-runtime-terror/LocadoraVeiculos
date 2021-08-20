@@ -64,11 +64,11 @@ namespace LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
             this.label1.Location = new System.Drawing.Point(104, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(252, 32);
+            this.label1.Size = new System.Drawing.Size(257, 32);
             this.label1.TabIndex = 7;
             this.label1.Text = "LOCADORA RECH";
             // 
@@ -114,16 +114,18 @@ namespace LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule
             // 
             // txtServico
             // 
+            this.txtServico.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtServico.Location = new System.Drawing.Point(239, 137);
             this.txtServico.Name = "txtServico";
-            this.txtServico.Size = new System.Drawing.Size(325, 20);
+            this.txtServico.Size = new System.Drawing.Size(325, 26);
             this.txtServico.TabIndex = 1;
             // 
             // txtTaxa
             // 
+            this.txtTaxa.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTaxa.Location = new System.Drawing.Point(239, 175);
             this.txtTaxa.Name = "txtTaxa";
-            this.txtTaxa.Size = new System.Drawing.Size(133, 20);
+            this.txtTaxa.Size = new System.Drawing.Size(133, 26);
             this.txtTaxa.TabIndex = 2;
             // 
             // label4
@@ -148,21 +150,23 @@ namespace LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule
             // 
             // cmbTipo
             // 
+            this.cmbTipo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbTipo.FormattingEnabled = true;
             this.cmbTipo.Items.AddRange(new object[] {
             "Diário",
             "Fixo"});
             this.cmbTipo.Location = new System.Drawing.Point(239, 213);
             this.cmbTipo.Name = "cmbTipo";
-            this.cmbTipo.Size = new System.Drawing.Size(133, 21);
+            this.cmbTipo.Size = new System.Drawing.Size(133, 26);
             this.cmbTipo.TabIndex = 3;
             // 
             // txtId
             // 
             this.txtId.Enabled = false;
+            this.txtId.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtId.Location = new System.Drawing.Point(239, 98);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(55, 20);
+            this.txtId.Size = new System.Drawing.Size(55, 26);
             this.txtId.TabIndex = 30;
             // 
             // label6
