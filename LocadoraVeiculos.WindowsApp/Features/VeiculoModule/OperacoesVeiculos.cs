@@ -119,7 +119,9 @@ namespace LocadoraVeiculos.WindowsApp.Feature.VeiculoModule
 
         public void Pesquisar(string text)
         {
-            throw new System.NotImplementedException();
+            List<Veiculo> veiculosEncontrados = controlador.Pesquisar(text);
+
+            tabelaVeiculo.AtualizarRegistros(veiculosEncontrados);
         }
     }
 }

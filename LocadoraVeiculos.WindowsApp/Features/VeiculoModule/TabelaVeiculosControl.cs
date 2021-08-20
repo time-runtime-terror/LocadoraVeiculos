@@ -69,6 +69,15 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             AgruparVeiculos();
         }
 
+        public void AtualizarRegistros(List<Veiculo> veiculos)
+        {
+            DesagruparVeiculos();
+
+            CarregarTabela(veiculos);
+
+            AgruparVeiculos();
+        }
+
         private void CarregarTabela(List<Veiculo> veiculos)
         {
             gridVeiculos.DataSource = veiculos;

@@ -101,6 +101,24 @@ namespace LocadoraVeiculos.Controladores.VeiculoModule
             WHERE 
                 [ID] = @ID";
 
+        private const string sqlPesquisarVeiculos =
+            @"SELECT 
+                    VE.[ID],       
+                    VE.[FOTO],       
+                    VE.[PLACA],             
+                    VE.[MODELO],                    
+                    VE.[MARCA], 
+                    VE.[TIPOCOMBUSTIVEL],
+                    VE.[CAPACIDADETANQUE],
+                    VE.[QUILOMETRAGEM],
+                    VE.[ID_GRUPOAUTOMOVEIS]
+            FROM
+                    [TBVEICULO] AS VE LEFT JOIN
+                    [TBGRUPOAUTOMOVEIS] AS GA
+            ON
+                    GA.ID = VE.[ID_GRUPOAUTOMOVEIS]
+            WHERE
+                    VE.[MODELO] LIKE @MODELO";
         #endregion
 
         private ControladorGrupoAutomoveis controladorGrupoAutomoveis;
@@ -206,9 +224,9 @@ namespace LocadoraVeiculos.Controladores.VeiculoModule
             return parametros;
         }
 
-        public override List<Veiculo> Pesquisar(string texto)
+        public override List<Veiculo> Pesquisar(string modelo)
         {
-            throw new NotImplementedException();
+            return Db.GetAll(sqlPesquisarVeiculos, ConverterEmVeiculo, AdicionarParametro("MODELO", modelo + "%"));
         }
     }
 }
