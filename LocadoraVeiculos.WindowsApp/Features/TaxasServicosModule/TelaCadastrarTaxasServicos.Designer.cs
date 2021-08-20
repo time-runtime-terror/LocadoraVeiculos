@@ -148,6 +148,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule
             // cmbTipo
             // 
             this.cmbTipo.FormattingEnabled = true;
+            this.cmbTipo.Items.AddRange(new object[] {
+            "Diário",
+            "Fixo"});
             this.cmbTipo.Location = new System.Drawing.Point(239, 213);
             this.cmbTipo.Name = "cmbTipo";
             this.cmbTipo.Size = new System.Drawing.Size(133, 21);

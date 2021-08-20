@@ -2,6 +2,7 @@
 using LocadoraVeiculos.Dominio.TaxasServicosModule;
 using System.Windows.Forms;
 using System.IO;
+using System.Collections.Generic;
 
 namespace LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule
 {
