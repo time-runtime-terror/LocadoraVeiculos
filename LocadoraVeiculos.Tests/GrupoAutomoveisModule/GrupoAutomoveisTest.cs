@@ -71,7 +71,7 @@ namespace LocadoraVeiculos.Tests.GrupoAutomoveisModule
         {
             // arrange
             GrupoAutomoveis grupoAutomoveis = new GrupoAutomoveis("Suv", 120, 140, 180,
-                200, 100, 0);
+                200, 0, 110);
 
             // action
             string validacao = grupoAutomoveis.Validar();

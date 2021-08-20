@@ -105,7 +105,7 @@ namespace LocadoraVeiculos.Tests.FuncionarioModule
         public void NaoDeveValidarDataEntrada()
         {
             //arrange
-            var fucionario = new Funcionario("José", "Zé", "12345", new DateTime(2021,08, 20), "1200");
+            var fucionario = new Funcionario("José", "Zé", "12345", new DateTime(2025,08, 20), "1200");
 
             //action
             var resultadoValidacao = fucionario.Validar();
