@@ -15,32 +15,32 @@ namespace LocadoraVeiculos.WindowsApp.Features.CombustivelModule
 
         public string ToolTipAdicionar
         {
-            get { return ""; }
+            get { return "Indisponivel"; }
         }
 
         public string ToolTipEditar
         {
-            get { return ""; }
+            get { return "Indisponivel"; }
         }
 
         public string ToolTipExcluir
         {
-            get { return ""; }
+            get { return "Indisponivel"; }
         }
 
         public string ToolTipFiltrar
         {
-            get { return ""; }
+            get { return "Indisponivel"; }
         }
 
         public string ToolTipAgrupar
         {
-            get { return ""; }
+            get { return "Indisponivel"; }
         }
 
         public string ToolTipDesagrupar
         {
-            get { return ""; }
+            get { return "Indisponivel"; }
         }
 
         public bool BarraPesquisa => false;

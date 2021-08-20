@@ -14,7 +14,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 
         public string ToolTipFiltrar => "Filtrar clientes";
 
-        public string ToolTipAgrupar => "Agrupar";
+        public string ToolTipAgrupar => "Indisponivel";
 
         public string ToolTipDesagrupar => "Desagrupar clientes";
 
