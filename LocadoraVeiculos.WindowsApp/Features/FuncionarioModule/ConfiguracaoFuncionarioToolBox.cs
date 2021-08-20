@@ -49,6 +49,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
         /// Setando estados dos botoes
         /// </summary>
 
+        public bool BarraPesquisa => true;
+
         public bool BotaoAdicionar
         {
             get { return true; }

@@ -14,9 +14,9 @@ namespace LocadoraVeiculos.WindowsApp.Shared
         string ToolTipExcluir { get; }
         string ToolTipFiltrar { get; }
         string ToolTipAgrupar { get; }
-
         string ToolTipDesagrupar { get; }
 
+        bool BarraPesquisa { get; }
         bool BotaoAdicionar { get; }
         bool BotaoCadastro { get; }
         bool BotaoEditar { get; }

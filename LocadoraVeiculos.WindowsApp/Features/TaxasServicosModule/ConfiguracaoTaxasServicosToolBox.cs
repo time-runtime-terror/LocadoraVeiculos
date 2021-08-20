@@ -23,6 +23,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule
 
         public string ToolTipDesagrupar => "Indisponível";
 
+        public bool BarraPesquisa => false;
+
         public bool BotaoAdicionar => true;
 
         public bool BotaoCadastro => throw new NotImplementedException();

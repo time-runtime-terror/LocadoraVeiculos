@@ -109,7 +109,6 @@ namespace LocadoraVeiculos.WindowsApp
             AtualizarRodape(configuracao.TipoCadastro);
 
             ConfigurarPainelConfiguracoes();
-
         }
         #endregion
 
@@ -123,7 +122,6 @@ namespace LocadoraVeiculos.WindowsApp
         {
             operacoes.EditarRegistro();
         }
-
 
         private void toolStripBtnExcluir_Click(object sender, EventArgs e)
         {
@@ -183,6 +181,7 @@ namespace LocadoraVeiculos.WindowsApp
             toolStripBtnDesagrupar.ToolTipText = configuracao.ToolTipDesagrupar;
             toolStripBtnFiltrar.ToolTipText = configuracao.ToolTipFiltrar;
 
+            txtPesquisa.Enabled = configuracao.BarraPesquisa;
             toolStripBtnAdicionar.Enabled = configuracao.BotaoAdicionar;
             toolStripBtnEditar.Enabled = configuracao.BotaoEditar;
             toolStripBtnExcluir.Enabled = configuracao.BotaoExcluir;

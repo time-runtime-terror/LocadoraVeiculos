@@ -18,6 +18,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 
         public string ToolTipDesagrupar => "Desagrupar clientes";
 
+        public bool BarraPesquisa => true;
+
         public bool BotaoAdicionar => true;
 
         public bool BotaoCadastro => throw new System.NotImplementedException();

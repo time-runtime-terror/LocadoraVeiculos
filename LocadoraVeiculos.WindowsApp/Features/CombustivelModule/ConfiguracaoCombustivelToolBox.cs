@@ -43,6 +43,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.CombustivelModule
             get { return ""; }
         }
 
+        public bool BarraPesquisa => false;
+
         public bool BotaoAdicionar
         {
             get { return false; }
