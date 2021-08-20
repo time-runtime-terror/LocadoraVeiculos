@@ -29,6 +29,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaCadastrarTaxasServicos));
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -215,6 +216,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule
             this.Controls.Add(this.label5);
             this.Controls.Add(this.cmbTipo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TelaCadastrarTaxasServicos";

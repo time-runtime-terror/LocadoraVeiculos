@@ -29,6 +29,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FiltroClienteForm));
             this.rdbFiltroPessoasFisicas = new System.Windows.Forms.RadioButton();
             this.rdbFiltroPessoasJuridicas = new System.Windows.Forms.RadioButton();
             this.btnGravar = new System.Windows.Forms.Button();
@@ -157,6 +158,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             this.Controls.Add(this.rdbFiltroPessoasJuridicas);
             this.Controls.Add(this.rdbFiltroPessoasFisicas);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FiltroClienteForm";
