@@ -7,11 +7,13 @@ using System.Windows.Forms;
 using LocadoraVeiculos.Dominio.VeiculoModule;
 using LocadoraVeiculos.Controladores.GrupoAutomoveisModule;
 using LocadoraVeiculos.Dominio.GrupoAutomoveisModule;
+using LocadoraVeiculos.Controladores.CombustivelModule;
 
 namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
 {
     public partial class TelaCadastrarVeiculos : Form
     {
+        private List<string> tiposCombustivel = new List<string>() {"Gasolina", "Etanol", "Diesel", "Gnv"};
         private Veiculo veiculo;
         private byte[] imagemSelecionada;
 
@@ -22,6 +24,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             InitializeComponent();
             controladorGrupoAutomoveis = new ControladorGrupoAutomoveis();
             PopularGruposDeAutomoveis();
+            PopularTiposCombustivel();
+         
         }
 
         private void PopularGruposDeAutomoveis()
@@ -29,6 +33,12 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             foreach (var grupoAutomoveis in controladorGrupoAutomoveis.SelecionarTodos())
                 if (!cbTipoVeiculo.Items.Contains(grupoAutomoveis.NomeGrupo))
                     cbTipoVeiculo.Items.Add(grupoAutomoveis.NomeGrupo);
+        }
+
+        private void PopularTiposCombustivel()
+        {
+            foreach (var combustivel in tiposCombustivel)
+                    cmbTipoCombustivel.Items.Add(combustivel);
         }
 
         public Veiculo Veiculo
@@ -48,13 +58,25 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
                 txtPlaca.Text = veiculo.Placa;
                 txtModelo.Text = veiculo.Modelo;
                 txtMarca.Text = veiculo.Marca;
-                txtTipoCombustivel.Text = veiculo.TipoCombustivel;
+                
                 txtCapacidadeTanque.Text = veiculo.CapacidadeTanque;
                 txtQuilometragem.Text = veiculo.Quilometragem;
 
-                cbTipoVeiculo.SelectedItem = (veiculo.GrupoAutomoveis != null
-                    && cbTipoVeiculo.Items.Contains(veiculo.GrupoAutomoveis.NomeGrupo)) ? veiculo.GrupoAutomoveis.NomeGrupo : null;
+                SelecionarGrupoAutomoveis();
+
+                SelecionarTipoCombustivel();
             }
+        }
+
+        private void SelecionarGrupoAutomoveis()
+        {
+            cbTipoVeiculo.SelectedItem = (veiculo.GrupoAutomoveis != null
+                    && cbTipoVeiculo.Items.Contains(veiculo.GrupoAutomoveis.NomeGrupo)) ? veiculo.GrupoAutomoveis.NomeGrupo : null;
+        }
+
+        private void SelecionarTipoCombustivel()
+        {
+            cmbTipoCombustivel.SelectedItem = Veiculo.TipoCombustivel;
         }
 
         private void btnImagem_Click(object sender, EventArgs e)
@@ -74,9 +96,29 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             string placa = txtPlaca.Text;
             string modelo = txtModelo.Text;
             string marca = txtMarca.Text;
-            string tipoCombustivel = txtTipoCombustivel.Text;
+            //double tipoCombustivel = Convert.ToDouble(txtTipoCombustivel.Text);
             string capacidadeTanque = txtCapacidadeTanque.Text;
             string quilometragem = txtQuilometragem.Text;
+
+            string tipoCombustivel = null;
+
+            if(cmbTipoCombustivel.SelectedIndex == 0)
+            {
+                 tipoCombustivel = Convert.ToString(cmbTipoCombustivel.SelectedItem);
+            }
+            else if(cmbTipoCombustivel.SelectedIndex == 1)
+            {
+                tipoCombustivel = Convert.ToString(cmbTipoCombustivel.SelectedItem);
+            }
+            else if (cmbTipoCombustivel.SelectedIndex == 2)
+            {
+                tipoCombustivel = Convert.ToString(cmbTipoCombustivel.SelectedItem);
+            }
+            else if (cmbTipoCombustivel.SelectedIndex == 3)
+            {
+                tipoCombustivel = Convert.ToString(cmbTipoCombustivel.SelectedItem);
+            }
+
 
             var listaGrupos = controladorGrupoAutomoveis.SelecionarTodos();
 

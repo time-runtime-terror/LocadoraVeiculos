@@ -42,7 +42,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
             controlodarGrupoAutomoveis.InserirNovo(grupoAutomoveis);
 
             //arrange
-            Veiculo novoVeiculo = new Veiculo(imagem, "ABC-1234", "Vectra", "Chevrolet", combustivel.Diesel, "70L", "2000km", grupoAutomoveis);
+            Veiculo novoVeiculo = new Veiculo(imagem, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", "70L", "2000km", grupoAutomoveis);
 
             //action
             controlador.InserirNovo(novoVeiculo);
@@ -60,10 +60,10 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
             controladorCombustivel.GravarCombustivel(combustivel);
 
             //arrange
-            Veiculo veiculo = new Veiculo(imagem, "ABC-1234", "Vectra", "Chevrolet", combustivel.Diesel, "70L", "2000km", null);
+            Veiculo veiculo = new Veiculo(imagem, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", "70L", "2000km", null);
             controlador.InserirNovo(veiculo);
 
-            Veiculo novoVeiculo = new Veiculo(imagem, "ABC-1234", "Gol", "Volkswagen", combustivel.Gasolina, "70L", "3200km", null);
+            Veiculo novoVeiculo = new Veiculo(imagem, "ABC-1234", "Gol", "Volkswagen", "Diesel", "70L", "3200km", null);
 
             //action
             controlador.Editar(veiculo.Id, novoVeiculo);
@@ -81,7 +81,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
             controladorCombustivel.GravarCombustivel(combustivel);
 
             //arrange            
-            Veiculo veiculo = new Veiculo(imagem, "ABC-1234", "Vectra", "Chevrolet", combustivel.Diesel, "70L", "2000km", null);
+            Veiculo veiculo = new Veiculo(imagem, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", "70L", "2000km", null);
             controlador.InserirNovo(veiculo);
 
             //action            
@@ -100,7 +100,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
             controladorCombustivel.GravarCombustivel(combustivel);
 
             //arrange
-            Veiculo veiculo = new Veiculo(imagem, "ABC-1234", "Vectra", "Chevrolet", combustivel.Diesel, "70L", "2000km", null);
+            Veiculo veiculo = new Veiculo(imagem, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", "70L", "2000km", null);
             controlador.InserirNovo(veiculo);
 
             //action

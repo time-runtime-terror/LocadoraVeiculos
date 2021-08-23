@@ -11,7 +11,7 @@ namespace LocadoraVeiculos.Dominio.VeiculoModule
 {
     public class Veiculo : EntidadeBase, IEquatable<Veiculo>
     {
-        public Veiculo(byte[] foto, string placa, string modelo, string marca, double tipoCombustivel, string capacidadeTanque, string quilometragem, GrupoAutomoveis grupo)
+        public Veiculo(byte[] foto, string placa, string modelo, string marca, string tipoCombustivel, string capacidadeTanque, string quilometragem, GrupoAutomoveis grupo)
         {
             Foto = foto;
             Placa = placa;
@@ -41,7 +41,7 @@ namespace LocadoraVeiculos.Dominio.VeiculoModule
         public string Placa { get; }
         public string Modelo { get; }
         public string Marca { get; }
-        public double TipoCombustivel { get; }
+        public string TipoCombustivel { get; }
         public string CapacidadeTanque { get; }
         public string Quilometragem { get; }
         public GrupoAutomoveis GrupoAutomoveis { get; }
@@ -88,7 +88,7 @@ namespace LocadoraVeiculos.Dominio.VeiculoModule
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Placa);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Modelo);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Marca);
-            hashCode = hashCode * -1521134295 + EqualityComparer<double>.Default.GetHashCode(TipoCombustivel);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(TipoCombustivel);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(CapacidadeTanque);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Quilometragem);
             hashCode = hashCode * -1521134295 + EqualityComparer<GrupoAutomoveis>.Default.GetHashCode(GrupoAutomoveis);
@@ -111,7 +111,10 @@ namespace LocadoraVeiculos.Dominio.VeiculoModule
 
             if (string.IsNullOrEmpty(Marca))
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Marca é obrigatório";
-            
+
+            if (string.IsNullOrEmpty(TipoCombustivel))
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "Por favor selecione um combustível";
+
 
             if (string.IsNullOrEmpty(CapacidadeTanque))
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Capacidade do Tanque é obrigatório";
