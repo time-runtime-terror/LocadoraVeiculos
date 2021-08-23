@@ -71,21 +71,20 @@ namespace LocadoraVeiculos.Dominio.LocacaoModule
                 resultadoValidacao += "O Cliente deve ser inserido!";
 
             if (Veiculo == null)
-                resultadoValidacao += "O Veículo deve ser inserido!";
-
-            if (string.IsNullOrEmpty(Plano))
-                resultadoValidacao += "A escolha de um plano de locação é obrigatória!";
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O Veículo deve ser inserido!";
 
             if (DataDevolucao == DateTime.MinValue)
-                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Data de Devolução é obrigatório";
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Data de Devolução é obrigatório!";
 
-            if (DataDevolucao < DateTime.Now)
-                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Data de Devolução necessita ser maior que a data atual";
+            if (DataDevolucao < DataSaida)
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Data de Devolução necessita ser maior que a de saida do veículo!";
 
             if(Caucao == 0)
-            {
-                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "É necessário, colocar uma valor de caução";
-            }
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "É necessário, colocar um valor de caução!";
+
+            if (string.IsNullOrEmpty(Plano))
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "A escolha de um plano de locação é obrigatória!";
+
 
             else if (string.IsNullOrEmpty(resultadoValidacao))
                 resultadoValidacao = "ESTA_VALIDO";
