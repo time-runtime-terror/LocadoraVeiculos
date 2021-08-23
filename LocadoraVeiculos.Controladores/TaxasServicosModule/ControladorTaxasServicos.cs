@@ -60,6 +60,16 @@ namespace LocadoraVeiculos.Controladores.TaxasServicosModule
 	                FROM
                         TBTAXASSERVICOS";
 
+        private const string sqlSelecionarTaxasServicosUsados =
+            @"SELECT
+                [ID],
+                [ID_TAXASSERVICOS],
+                [ID_LOCACAO]
+            FROM
+                [TBTAXASSERVICOS_USADOS]
+            WHERE
+                [ID_LOCACAO] = @ID";
+
         private const string sqlExisteTaxasServicos =
             @"SELECT 
                 COUNT(*) 
@@ -120,6 +130,19 @@ namespace LocadoraVeiculos.Controladores.TaxasServicosModule
         public override List<TaxasServicos> SelecionarTodos()
         {
             return Db.GetAll(sqlSelecionarTodasTaxasServicos, ConverterEmTaxasServicos);
+        }
+
+        public List<TaxasServicos> SelecionarTaxasServicosUsados(int id)
+        {
+            return Db.GetAll(sqlSelecionarTaxasServicosUsados, ConverterEmTaxasServicosUsados, AdicionarParametro("ID", id));
+        }
+
+        private TaxasServicos ConverterEmTaxasServicosUsados(IDataReader reader)
+        {
+            if (reader["ID_TAXASSERVICOS"] == DBNull.Value)
+                return null;
+
+            return SelecionarPorId(Convert.ToInt32(reader["ID_TAXASSERVICOS"]));
         }
 
         private Dictionary<string, object> ObtemParametrosTaxasServicos(TaxasServicos grupoAutomoveis)
