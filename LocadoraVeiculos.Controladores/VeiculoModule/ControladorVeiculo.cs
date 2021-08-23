@@ -188,7 +188,7 @@ namespace LocadoraVeiculos.Controladores.VeiculoModule
             byte[] foto = (byte[])reader["FOTO"]; 
             var modelo = Convert.ToString(reader["MODELO"]);
             var marca = Convert.ToString(reader["MARCA"]);
-            var tipoCombustivel = Convert.ToString(reader["TIPOCOMBUSTIVEL"]);
+            var tipoCombustivel = Convert.ToDouble(reader["TIPOCOMBUSTIVEL"]);
             var capacidadeTanque = Convert.ToString(reader["CAPACIDADETANQUE"]);
             var quilometragem = Convert.ToString(reader["QUILOMETRAGEM"]);
 

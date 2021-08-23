@@ -5,6 +5,8 @@ using LocadoraVeiculos.Controladores.VeiculoModule;
 using LocadoraVeiculos.Dominio.GrupoAutomoveisModule;
 using LocadoraVeiculos.Dominio.VeiculoModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using LocadoraVeiculos.Controladores.CombustivelModule;
+using LocadoraVeiculos.Dominio.CombustivelModule;
 
 namespace LocadoraVeiculos.Tests.VeiculoModule
 {
@@ -13,6 +15,9 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
 
     public class ControladorVeiculoTest
     {
+        ControladorCombustivel controladorCombustivel = null;
+        
+
         ControladorVeiculo controlador = null;
         byte[] imagem = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20 };
 
@@ -23,16 +28,21 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
          {
             controlador = new ControladorVeiculo();
             controlodarGrupoAutomoveis = new ControladorGrupoAutomoveis();
+            controladorCombustivel = new ControladorCombustivel();
             Db.Update("DELETE FROM [TBVEICULO]");
          }
 
         [TestMethod]
         public void DeveInserir_Veiculo()
         {
+            Combustivel combustivel = new Combustivel(3.0, 4.0, 5.0, 6.0);
+
+            controladorCombustivel.GravarCombustivel(combustivel);
+
             controlodarGrupoAutomoveis.InserirNovo(grupoAutomoveis);
 
             //arrange
-            Veiculo novoVeiculo = new Veiculo(imagem, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", grupoAutomoveis);
+            Veiculo novoVeiculo = new Veiculo(imagem, "ABC-1234", "Vectra", "Chevrolet", combustivel.Diesel, "70L", "2000km", grupoAutomoveis);
 
             //action
             controlador.InserirNovo(novoVeiculo);
@@ -45,11 +55,15 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         [TestMethod]
         public void DeveEditar_UmVeiculo()
         {
+            Combustivel combustivel = new Combustivel(3.0, 4.0, 5.0, 6.0);
+
+            controladorCombustivel.GravarCombustivel(combustivel);
+
             //arrange
-            Veiculo veiculo = new Veiculo(imagem, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", null);
+            Veiculo veiculo = new Veiculo(imagem, "ABC-1234", "Vectra", "Chevrolet", combustivel.Diesel, "70L", "2000km", null);
             controlador.InserirNovo(veiculo);
 
-            Veiculo novoVeiculo = new Veiculo(imagem, "ABC-1234", "Gol", "Volkswagen", "Comum", "70L", "3200km", null);
+            Veiculo novoVeiculo = new Veiculo(imagem, "ABC-1234", "Gol", "Volkswagen", combustivel.Gasolina, "70L", "3200km", null);
 
             //action
             controlador.Editar(veiculo.Id, novoVeiculo);
@@ -62,8 +76,12 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         [TestMethod]
         public void DeveExcluir_UmVeiculo()
         {
+            Combustivel combustivel = new Combustivel(3.0, 4.0, 5.0, 6.0);
+
+            controladorCombustivel.GravarCombustivel(combustivel);
+
             //arrange            
-            Veiculo veiculo = new Veiculo(imagem, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", null);
+            Veiculo veiculo = new Veiculo(imagem, "ABC-1234", "Vectra", "Chevrolet", combustivel.Diesel, "70L", "2000km", null);
             controlador.InserirNovo(veiculo);
 
             //action            
@@ -77,8 +95,12 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         [TestMethod]
         public void DeveSelecionar_Veiculo_PorId()
         {
+            Combustivel combustivel = new Combustivel(3.0, 4.0, 5.0, 6.0);
+
+            controladorCombustivel.GravarCombustivel(combustivel);
+
             //arrange
-            Veiculo veiculo = new Veiculo(imagem, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", null);
+            Veiculo veiculo = new Veiculo(imagem, "ABC-1234", "Vectra", "Chevrolet", combustivel.Diesel, "70L", "2000km", null);
             controlador.InserirNovo(veiculo);
 
             //action

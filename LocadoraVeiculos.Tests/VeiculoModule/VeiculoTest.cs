@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LocadoraVeiculos.Dominio.CombustivelModule;
 
 namespace LocadoraVeiculos.Tests.VeiculoModule
 {
@@ -17,9 +18,11 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
 
         [TestMethod]
         public void DeveValidarCampoPlaca()
-        {            
+        {
+            var combustivel = new Combustivel(3.0, 6.0, 8.9, 7.1);
+
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", null);
+            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", combustivel.Diesel, "70L", "2000km", null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -31,8 +34,10 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         [TestMethod]
         public void NaoDeveValidarCampoPlaca()
         {
+            var combustivel = new Combustivel(3.0, 6.0, 8.9, 7.1);
+
             //arrange
-            var veiculo = new Veiculo(foto, "", "Vectra", "Chevrolet", "Comum", "70L", "2000km", null);
+            var veiculo = new Veiculo(foto, "", "Vectra", "Chevrolet", combustivel.Diesel, "70L", "2000km", null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -44,8 +49,10 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         [TestMethod]
         public void DeveValidarCampoModelo()
         {
+            var combustivel = new Combustivel(3.0, 6.0, 8.9, 7.1);
+
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", null);
+            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", combustivel.Diesel, "70L", "2000km", null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -57,8 +64,11 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         [TestMethod]
         public void NaoDeveValidarCampoModelo()
         {
+
+            var combustivel = new Combustivel(3.0, 6.0, 8.9, 7.1);
+
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "", "Chevrolet", "Comum", "70L", "2000km", null);
+            var veiculo = new Veiculo(foto, "ABC-1234", "", "Chevrolet", combustivel.Diesel, "70L", "2000km", null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -70,8 +80,10 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         [TestMethod]
         public void DeveValidarCampoMarca()
         {
+
+            var combustivel = new Combustivel(3.0, 6.0, 8.9, 7.1);
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", null);
+            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", combustivel.Diesel, "70L", "2000km", null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -83,8 +95,10 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         [TestMethod]
         public void NaoDeveValidarCampoMarca()
         {
+            var combustivel = new Combustivel(3.0, 6.0, 8.9, 7.1);
+
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "", "Comum", "70L", "2000km", null);
+            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "", combustivel.Diesel, "70L", "2000km", null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -93,37 +107,15 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
             resultadoValidacao.Should().Be("O campo Marca é obrigatório");
         }
 
-        [TestMethod]
-        public void DeveValidarCampoTipoCombustivel()
-        {
-            //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", null);
 
-            //action
-            var resultadoValidacao = veiculo.Validar();
-
-            //assert
-            resultadoValidacao.Should().Be("ESTA_VALIDO");
-        }
-
-        [TestMethod]
-        public void NaoDeveValidarCampoTipoCombustivel()
-        {
-            //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "", "70L", "2000km", null);
-
-            //action
-            var resultadoValidacao = veiculo.Validar();
-
-            //assert
-            resultadoValidacao.Should().Be("O campo Tipo do Combustivel é obrigatório");
-        }
 
         [TestMethod]
         public void DeveValidarCampoCapacidadeTanque()
         {
+            var combustivel = new Combustivel(3.0, 6.0, 8.9, 7.1);
+
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", null);
+            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", combustivel.Diesel, "70L", "2000km", null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -135,8 +127,10 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         [TestMethod]
         public void NaoDeveValidarCampoCapacidadeTanque()
         {
+            var combustivel = new Combustivel(3.0, 6.0, 8.9, 7.1);
+
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Comum", "", "2000km", null);
+            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", combustivel.Diesel, "", "2000km", null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -148,8 +142,10 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         [TestMethod]
         public void DeveValidarCampoQuilometragem()
         {
+            var combustivel = new Combustivel(3.0, 6.0, 8.9, 7.1);
+
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", null);
+            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", combustivel.Diesel, "70L", "2000km", null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -161,8 +157,10 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         [TestMethod]
         public void NaoDeveValidarCampoQuilometragem()
         {
+
+            var combustivel = new Combustivel(3.0, 6.0, 8.9, 7.1);
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "", null);
+            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", combustivel.Diesel, "70L", "", null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -174,8 +172,9 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         [TestMethod]
         public void DeveValidarCampoTipoVeiculo()
         {
+            var combustivel = new Combustivel(3.0, 6.0, 8.9, 7.1);
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Comum", "70L", "2000km", null);
+            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", combustivel.Diesel, "70L", "2000km", null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
