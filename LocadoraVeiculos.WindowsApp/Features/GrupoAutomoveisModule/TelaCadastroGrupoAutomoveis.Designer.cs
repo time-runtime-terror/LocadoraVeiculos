@@ -87,7 +87,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             this.txtId.Location = new System.Drawing.Point(626, 130);
             this.txtId.Margin = new System.Windows.Forms.Padding(4);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(66, 26);
+            this.txtId.Size = new System.Drawing.Size(142, 26);
             this.txtId.TabIndex = 5;
             // 
             // label4
@@ -106,7 +106,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             this.txtNomeGrupo.Location = new System.Drawing.Point(325, 80);
             this.txtNomeGrupo.Margin = new System.Windows.Forms.Padding(4);
             this.txtNomeGrupo.Name = "txtNomeGrupo";
-            this.txtNomeGrupo.Size = new System.Drawing.Size(367, 26);
+            this.txtNomeGrupo.Size = new System.Drawing.Size(443, 26);
             this.txtNomeGrupo.TabIndex = 1;
             // 
             // label5
