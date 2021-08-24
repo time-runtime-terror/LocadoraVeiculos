@@ -1,7 +1,11 @@
-﻿using LocadoraVeiculos.Controladores.Shared;
+﻿using LocadoraVeiculos.Controladores.ClienteModule;
+using LocadoraVeiculos.Controladores.Shared;
 using LocadoraVeiculos.Controladores.TaxasServicosModule;
+using LocadoraVeiculos.Controladores.VeiculoModule;
+using LocadoraVeiculos.Dominio.ClienteModule;
 using LocadoraVeiculos.Dominio.LocacaoModule;
 using LocadoraVeiculos.Dominio.TaxasServicosModule;
+using LocadoraVeiculos.Dominio.VeiculoModule;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,90 +16,81 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
     {
         #region Queries
         private const string sqlInserirLocacao =
-            @"INSERT INTO TBCLIENTE 
+            @"INSERT INTO TBLOCACAO 
 	                (
-		                [NOME], 
-		                [ENDERECO], 
-		                [TELEFONE], 
-		                [TIPOCADASTRO],
-                        [NUMEROCADASTRO], 
-                        [CNH],
-		                [RG],
-		                [DATAVENCIMENTOCNH],
-		                [ID_EMPRESA]
+		                [ID_CLIENTE], 
+		                [ID_VEICULO], 
+		                [PLANO], 
+		                [DATASAIDA],
+                        [DATADEVOLUCAO], 
+                        [CAUCAO]
 	                ) 
 	                VALUES
 	                (
-                        @NOME, 
-                        @ENDERECO,
-                        @TELEFONE,
-		                @TIPOCADASTRO, 
-		                @NUMEROCADASTRO,
-                        @CNH,
-		                @RG,
-		                @DATAVENCIMENTOCNH,
-		                @ID_EMPRESA
+                        @ID_CLIENTE, 
+                        @ID_VEICULO,
+                        @PLANO,
+		                @DATASAIDA, 
+		                @DATADEVOLUCAO,
+                        @CAUCAO
 	                )";
 
         private const string sqlEditarLocacao =
-            @"UPDATE TBCLIENTE
+            @"UPDATE TBLOCACAO
                     SET
-                        [NOME] = @NOME,
-		                [ENDERECO] = @ENDERECO, 
-		                [TELEFONE] = @TELEFONE,
-                        [TIPOCADASTRO] = @TIPOCADASTRO,
-                        [NUMEROCADASTRO] = @NUMEROCADASTRO,
-                        [CNH] = @CNH,
-                        [RG] = @RG,
-                        [DATAVENCIMENTOCNH] = @DATAVENCIMENTOCNH,
-                        [ID_EMPRESA] = @ID_EMPRESA
+                        [ID_CLIENTE] = @ID_CLIENTE,
+		                [ID_VEICULO] = @ID_VEICULO, 
+		                [PLANO] = @PLANO,
+                        [DATASAIDA] = @DATASAIDA,
+                        [DATADEVOLUCAO] = @DATADEVOLUCAO,
+                        [CAUCAO] = @CAUCAO
                     WHERE 
                         ID = @ID";
 
         private const string sqlExcluirLocacao =
             @"DELETE 
 	                FROM
-                        TBCLIENTE
+                        TBLOCACAO
                     WHERE 
                         ID = @ID";
 
         private const string sqlSelecionarLocacaoPorId =
             @"SELECT
-                        CL.[ID],
-		                CL.[NOME], 
-		                CL.[ENDERECO], 
-		                CL.[TELEFONE], 
-		                CL.[TIPOCADASTRO],
-                        CL.[NUMEROCADASTRO], 
-                        CL.[CNH],
-		                CL.[RG],
-		                CL.[DATAVENCIMENTOCNH],
-		                CL.[ID_EMPRESA]
+                        LO.[ID],
+		                LO.[ID_CLIENTE], 
+		                LO.[ID_VEICULO], 
+		                LO.[DATASAIDA], 
+		                LO.[DATADEVOLUCAO], 
+		                LO.[PLANO],
+		                LO.[CAUCAO],
+
 	                FROM
-                        [TBCLIENTE] AS CL LEFT JOIN
-                        [TBCLIENTE] AS CE
+                        [TBLOCACAO] AS LO LEFT JOIN
+                        [TBCLIENTE] AS CL
+                        [TBVEICULO] AS VE
                     ON
-                        CE.ID = CL.ID_EMPRESA
+                        CL.ID = LO.ID_CLIENTE,
+                        VE.ID = LO.ID_VEICULO
                     WHERE 
-                        CL.[ID] = @ID";
+                        LO.[ID] = @ID";
 
         private const string sqlSelecionarTodasLocacoes =
             @"SELECT
-                        CL.[ID],
-		                CL.[NOME], 
-		                CL.[ENDERECO], 
-		                CL.[TELEFONE], 
-		                CL.[TIPOCADASTRO],
-                        CL.[NUMEROCADASTRO], 
-                        CL.[CNH],
-		                CL.[RG],
-		                CL.[DATAVENCIMENTOCNH],
-		                CL.[ID_EMPRESA]
+                        LO.[ID],
+		                LO.[ID_CLIENTE], 
+		                LO.[ID_VEICULO], 
+		                LO.[DATASAIDA], 
+		                LO.[DATADEVOLUCAO], 
+		                LO.[PLANO],
+		                LO.[CAUCAO],
+
 	                FROM
-                        [TBCLIENTE] AS CL LEFT JOIN
-                        [TBCLIENTE] AS CE
+                        [TBLOCACAO] AS LO LEFT JOIN
+                        [TBCLIENTE] AS CL
+                        [TBVEICULO] AS VE
                     ON
-                        CE.ID = CL.ID_EMPRESA";
+                        CL.ID = LO.ID_CLIENTE,
+                        VE.ID = LO.ID_VEICULO";
 
         private const string sqlExisteLocacao =
             @"SELECT 
@@ -105,61 +100,116 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
             WHERE 
                 [ID] = @ID";
 
-        private const string sqlPesquisarLocacoes =
-                        @"SELECT
-                        CL.[ID],
-		                CL.[NOME], 
-		                CL.[ENDERECO], 
-		                CL.[TELEFONE], 
-		                CL.[TIPOCADASTRO],
-                        CL.[NUMEROCADASTRO], 
-                        CL.[CNH],
-		                CL.[RG],
-		                CL.[DATAVENCIMENTOCNH],
-		                CL.[ID_EMPRESA]
-	                FROM
-                        [TBCLIENTE] AS CL LEFT JOIN
-                        [TBCLIENTE] AS CE
-                    ON
-                        CE.ID = CL.ID_EMPRESA
-                    WHERE
-                        CL.[NOME] LIKE @NOME";
+        private const string sqlPesquisarLocacoes = "";
 
         #endregion
 
+        private readonly ControladorCliente controladorCliente;
+        private readonly ControladorVeiculo controladorVeiculo;
+        private readonly ControladorTaxasServicos controladorTaxasServicos;
+
+        public ControladorLocacao(ControladorCliente ctrlC, ControladorVeiculo ctrlV, ControladorTaxasServicos ctrlT)
+        {
+            controladorCliente = ctrlC;
+            controladorVeiculo = ctrlV;
+            controladorTaxasServicos = ctrlT;
+        }
+
         public override string InserirNovo(Locacao registro)
         {
-            throw new NotImplementedException();
+            string resultadoValidacao = registro.Validar();
+
+            if (resultadoValidacao == "ESTA_VALIDO")
+            {
+                registro.Id = Db.Insert(sqlInserirLocacao, ObtemParametrosLocacao(registro));
+            }
+
+            return resultadoValidacao;
         }
 
         public override string Editar(int id, Locacao registro)
         {
-            throw new NotImplementedException();
+            string resultadoValidacao = registro.Validar();
+
+            if (resultadoValidacao == "ESTA_VALIDO")
+            {
+                registro.Id = id;
+                Db.Update(sqlEditarLocacao, ObtemParametrosLocacao(registro));
+            }
+
+            return resultadoValidacao;
         }
 
         public override bool Excluir(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Db.Delete(sqlExcluirLocacao, AdicionarParametro("ID", id));
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public override bool Existe(int id)
         {
-            throw new NotImplementedException();
+            return Db.Exists(sqlExisteLocacao, AdicionarParametro("ID", id));
         }
 
         public override Locacao SelecionarPorId(int id)
         {
-            throw new NotImplementedException();
+            return Db.Get(sqlSelecionarLocacaoPorId, ConverterEmLocacao, AdicionarParametro("ID", id));
         }
 
         public override List<Locacao> SelecionarTodos()
         {
-            throw new NotImplementedException();
+            return Db.GetAll(sqlSelecionarTodasLocacoes, ConverterEmLocacao);
         }
 
         public override List<Locacao> Pesquisar(string texto)
         {
             throw new NotImplementedException();
+        }
+
+        private Dictionary<string, object> ObtemParametrosLocacao(Locacao locacao)
+        {
+            var parametros = new Dictionary<string, object>();
+
+            parametros.Add("ID", locacao.Id);
+            parametros.Add("ID_VEICULO", locacao.Veiculo.Id);
+            parametros.Add("ID_CLIENTE", locacao.Cliente.Id);
+            parametros.Add("PLANO", locacao.Plano);
+            parametros.Add("DATASAIDA", locacao.DataSaida);
+            parametros.Add("DATADEVOLUCAO", locacao.DataDevolucao);
+            parametros.Add("CAUCAO", locacao.Caucao);
+
+            return parametros;
+        }
+
+        private Locacao ConverterEmLocacao(IDataReader reader)
+        {
+            int id = Convert.ToInt32(reader["ID"]);
+            int idVeiculo = Convert.ToInt32(reader["ID_VEICULO"]);
+            int idCliente = Convert.ToInt32(reader["ID_CLIENTE"]);
+            string plano = Convert.ToString(reader["PLANO"]);
+            DateTime dataSaida = Convert.ToDateTime(reader["DATASAIDA"]);
+            DateTime dataDevolucao = Convert.ToDateTime(reader["DATADEVOLUCAO"]);
+            double caucao = Convert.ToDouble(reader["CAUCAO"]);
+
+            Veiculo veiculo = controladorVeiculo.SelecionarPorId(idVeiculo);
+            Cliente cliente = controladorCliente.SelecionarPorId(idCliente);
+
+            List<TaxasServicos> taxas = controladorTaxasServicos.SelecionarTaxasServicosUsados(id);
+
+            Locacao locacao = new Locacao(cliente, veiculo, taxas, dataSaida, dataDevolucao,
+                caucao, plano);
+
+            locacao.Id = id;
+
+            return locacao;
         }
     }
 }
