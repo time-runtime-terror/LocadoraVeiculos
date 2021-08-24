@@ -30,7 +30,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         private void InitializeComponent()
         {
             this.lblId = new System.Windows.Forms.Label();
-            this.txtCaucao = new System.Windows.Forms.TextBox();
+            this.txtValorEntrada = new System.Windows.Forms.TextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.txtId = new System.Windows.Forms.TextBox();
             this.cmbCliente = new System.Windows.Forms.ComboBox();
@@ -39,11 +39,11 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             this.lblVeiculo = new System.Windows.Forms.Label();
             this.cmbPlano = new System.Windows.Forms.ComboBox();
             this.lblPlano = new System.Windows.Forms.Label();
-            this.lblCaucao = new System.Windows.Forms.Label();
+            this.lblValorEntrada = new System.Windows.Forms.Label();
             this.dateDataSaida = new System.Windows.Forms.DateTimePicker();
             this.lblDataSaida = new System.Windows.Forms.Label();
             this.lblDataDevolucao = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateDataDevolucao = new System.Windows.Forms.DateTimePicker();
             this.btnGravar = new System.Windows.Forms.Button();
             this.listaTaxasServicos = new System.Windows.Forms.CheckedListBox();
             this.cmbCondutor = new System.Windows.Forms.ComboBox();
@@ -64,13 +64,14 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             this.lblId.TabIndex = 0;
             this.lblId.Text = "Id:";
             // 
-            // txtCaucao
+            // txtValorEntrada
             // 
-            this.txtCaucao.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCaucao.Location = new System.Drawing.Point(186, 210);
-            this.txtCaucao.Name = "txtCaucao";
-            this.txtCaucao.Size = new System.Drawing.Size(100, 26);
-            this.txtCaucao.TabIndex = 1;
+            this.txtValorEntrada.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtValorEntrada.Location = new System.Drawing.Point(186, 210);
+            this.txtValorEntrada.Name = "txtValorEntrada";
+            this.txtValorEntrada.Size = new System.Drawing.Size(100, 26);
+            this.txtValorEntrada.TabIndex = 1;
+            this.txtValorEntrada.TextChanged += new System.EventHandler(this.txtCaucao_TextChanged);
             // 
             // btnCancelar
             // 
@@ -157,15 +158,15 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             this.lblPlano.TabIndex = 9;
             this.lblPlano.Text = "Plano:";
             // 
-            // lblCaucao
+            // lblValorEntrada
             // 
-            this.lblCaucao.AutoSize = true;
-            this.lblCaucao.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCaucao.Location = new System.Drawing.Point(52, 213);
-            this.lblCaucao.Name = "lblCaucao";
-            this.lblCaucao.Size = new System.Drawing.Size(129, 18);
-            this.lblCaucao.TabIndex = 11;
-            this.lblCaucao.Text = "Valor de Entrada:";
+            this.lblValorEntrada.AutoSize = true;
+            this.lblValorEntrada.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblValorEntrada.Location = new System.Drawing.Point(52, 213);
+            this.lblValorEntrada.Name = "lblValorEntrada";
+            this.lblValorEntrada.Size = new System.Drawing.Size(129, 18);
+            this.lblValorEntrada.TabIndex = 11;
+            this.lblValorEntrada.Text = "Valor de Entrada:";
             // 
             // dateDataSaida
             // 
@@ -197,14 +198,14 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             this.lblDataDevolucao.TabIndex = 15;
             this.lblDataDevolucao.Text = "Data de Devolução:";
             // 
-            // dateTimePicker1
+            // dateDataDevolucao
             // 
-            this.dateTimePicker1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(186, 274);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(121, 26);
-            this.dateTimePicker1.TabIndex = 14;
+            this.dateDataDevolucao.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateDataDevolucao.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateDataDevolucao.Location = new System.Drawing.Point(186, 274);
+            this.dateDataDevolucao.Name = "dateDataDevolucao";
+            this.dateDataDevolucao.Size = new System.Drawing.Size(121, 26);
+            this.dateDataDevolucao.TabIndex = 14;
             // 
             // btnGravar
             // 
@@ -305,10 +306,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             this.Controls.Add(this.listaTaxasServicos);
             this.Controls.Add(this.btnGravar);
             this.Controls.Add(this.lblDataDevolucao);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dateDataDevolucao);
             this.Controls.Add(this.lblDataSaida);
             this.Controls.Add(this.dateDataSaida);
-            this.Controls.Add(this.lblCaucao);
+            this.Controls.Add(this.lblValorEntrada);
             this.Controls.Add(this.cmbPlano);
             this.Controls.Add(this.lblPlano);
             this.Controls.Add(this.cmbVeiculo);
@@ -318,7 +319,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             this.Controls.Add(this.lblCliente);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.txtCaucao);
+            this.Controls.Add(this.txtValorEntrada);
             this.Controls.Add(this.lblId);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -344,17 +345,17 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         private System.Windows.Forms.Label lblVeiculo;
         private System.Windows.Forms.ComboBox cmbPlano;
         private System.Windows.Forms.Label lblPlano;
-        private System.Windows.Forms.Label lblCaucao;
+        private System.Windows.Forms.Label lblValorEntrada;
         private System.Windows.Forms.DateTimePicker dateDataSaida;
         private System.Windows.Forms.Label lblDataSaida;
         private System.Windows.Forms.Label lblDataDevolucao;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateDataDevolucao;
         private System.Windows.Forms.Button btnGravar;
         private System.Windows.Forms.CheckedListBox listaTaxasServicos;
         private System.Windows.Forms.ComboBox cmbCondutor;
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Label lblValorTotal;
-        private System.Windows.Forms.TextBox txtCaucao;
+        private System.Windows.Forms.TextBox txtValorEntrada;
         private System.Windows.Forms.Label lblCondutor;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox comboBox2;

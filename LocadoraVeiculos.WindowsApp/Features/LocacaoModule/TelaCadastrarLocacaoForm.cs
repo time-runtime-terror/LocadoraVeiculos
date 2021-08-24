@@ -7,6 +7,8 @@ using LocadoraVeiculos.Dominio.TaxasServicosModule;
 using LocadoraVeiculos.Dominio.VeiculoModule;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
@@ -18,7 +20,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         private readonly ControladorVeiculo controladorVeiculo;
 
         private Locacao locacao;
-
         public Locacao Locacao
         {
             get => locacao;
@@ -37,7 +38,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                 cmbPlano.SelectedItem = (cmbPlano.Items.Contains(locacao.Plano)) ?
                     locacao.Plano : null;
 
-                txtCaucao.Text = locacao.Caucao.ToString();
+                txtValorEntrada.Text = locacao.Caucao.ToString();
 
                 List<TaxasServicos> taxasUtilizdas = controladorTaxasServicos.SelecionarTaxasServicosUsados(locacao.Id);
 
@@ -68,7 +69,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             foreach (var v in veiculos)
                 cmbVeiculo.Items.Add(v);
-
         }
 
         private void cmbCliente_SelectedIndexChanged(object sender, EventArgs e)
@@ -114,7 +114,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
         private void CalcularValorTotal(List<TaxasServicos> taxasSelecionadas)
         {
-            string strCaucao = txtCaucao.Text;
+            string strCaucao = txtValorEntrada.Text;
             double caucao, total = 0;
 
             if (string.IsNullOrEmpty(strCaucao))
@@ -132,7 +132,41 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
+            Cliente cliente = (Cliente)cmbCliente.SelectedItem;
+            Veiculo veiculo = (Veiculo)cmbVeiculo.SelectedItem;
 
+            string plano = (string)cmbPlano.SelectedItem;
+            double caucao = Convert.ToDouble(txtValorEntrada.Text);
+
+            DateTime dataSaida = dateDataSaida.Value;
+            DateTime dataDevolucao = dateDataDevolucao.Value;
+
+            List<TaxasServicos> taxasSelecionadas = new List<TaxasServicos>();
+
+            foreach (var item in listaTaxasServicos.CheckedItems)
+                taxasSelecionadas.Add((TaxasServicos)item);
+
+            locacao = new Locacao(cliente, veiculo, taxasSelecionadas, dataSaida, dataDevolucao, caucao, plano);
+
+            string resultadoValidacao = locacao.Validar();
+
+            if (resultadoValidacao != "ESTA_VALIDO")
+            {
+                string primeiroErro = new StringReader(resultadoValidacao).ReadLine();
+
+                Dashboard.Instancia.AtualizarRodape(primeiroErro);
+
+                DialogResult = DialogResult.None;
+            }
+        }
+
+        private void txtCaucao_TextChanged(object sender, EventArgs e)
+        {
+            if (Regex.IsMatch(txtValorEntrada.Text, "[^0-9]"))
+            {
+                Dashboard.Instancia.AtualizarRodape("Valor de Entrada: Por favor, apenas números.");
+                txtValorEntrada.Text = txtValorEntrada.Text.Remove(txtValorEntrada.Text.Length - 1);
+            }
         }
     }
 }
