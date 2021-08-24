@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculos.Controladores.Shared;
 using LocadoraVeiculos.WindowsApp;
+using LocadoraVeiculos.WindowsApp.Features.LocacaoModule;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,7 +48,8 @@ namespace LocadoraVeiculos.WindowsApp
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm());
+            //Application.Run(new LoginForm());
+            Application.Run(new TelaCadastrarLocacaoForm());
         }
     }
 }
