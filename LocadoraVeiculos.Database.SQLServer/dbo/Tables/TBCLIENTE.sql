@@ -9,7 +9,8 @@
     [Cnh]               VARCHAR (50) NULL,
     [DataVencimentoCNH] DATE         NULL,
     [Id_Empresa]        INT          NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC),
-    CONSTRAINT [FK_TBCLIENTE_TBCLIENTE] FOREIGN KEY ([Id_Empresa]) REFERENCES [dbo].[TBCLIENTE] ([Id]) ON DELETE SET NULL
+    PRIMARY KEY CLUSTERED ([Id] ASC)
 );
+
+
 

@@ -21,7 +21,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         {
 
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", "70L", "2000km", null);
+            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -36,7 +36,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
             
 
             //arrange
-            var veiculo = new Veiculo(foto, "", "Vectra", "Chevrolet", "Gasolina", "70L", "2000km", null);
+            var veiculo = new Veiculo(foto, "", "Vectra", "Chevrolet", "Gasolina", 70, 2000, null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -51,7 +51,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
             
 
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", "70L", "2000km", null);
+            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -67,7 +67,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
            
 
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "", "Chevrolet", "Gasolina", "70L", "2000km", null);
+            var veiculo = new Veiculo(foto, "ABC-1234", "", "Chevrolet", "Gasolina", 70, 2000, null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -82,7 +82,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
 
            
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", "70L", "2000km", null);
+            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -95,7 +95,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         public void NaoDeveValidarCampoMarca()
         {
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "", "Gasolina", "70L", "2000km", null);
+            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "", "Gasolina", 70, 2000, null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -110,7 +110,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
 
 
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", "70L", "2000km", null);
+            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -124,7 +124,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         {
 
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "", "70L", "2000km", null);
+            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "", 70, 2000, null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -141,7 +141,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
             
 
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", "70L", "2000km", null);
+            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -156,7 +156,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
             
 
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", "", "2000km", null);
+            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 0, 2000, null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -171,7 +171,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
            
 
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", "70L", "2000km", null);
+            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -185,7 +185,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         {
            
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", "70L", "", null);
+            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 0, null);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -199,7 +199,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         {
             
             //arrange
-            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", "70L", "2000km", null);
+            var veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, null);
 
             //action
             var resultadoValidacao = veiculo.Validar();

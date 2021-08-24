@@ -189,8 +189,8 @@ namespace LocadoraVeiculos.Controladores.VeiculoModule
             var modelo = Convert.ToString(reader["MODELO"]);
             var marca = Convert.ToString(reader["MARCA"]);
             var tipoCombustivel = Convert.ToString(reader["TIPOCOMBUSTIVEL"]);
-            var capacidadeTanque = Convert.ToString(reader["CAPACIDADETANQUE"]);
-            var quilometragem = Convert.ToString(reader["QUILOMETRAGEM"]);
+            var capacidadeTanque = Convert.ToInt32(reader["CAPACIDADETANQUE"]);
+            var quilometragem = Convert.ToInt32(reader["QUILOMETRAGEM"]);
 
             GrupoAutomoveis grupo = null;
 

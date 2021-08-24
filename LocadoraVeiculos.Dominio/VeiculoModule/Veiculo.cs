@@ -11,7 +11,7 @@ namespace LocadoraVeiculos.Dominio.VeiculoModule
 {
     public class Veiculo : EntidadeBase, IEquatable<Veiculo>
     {
-        public Veiculo(byte[] foto, string placa, string modelo, string marca, string tipoCombustivel, string capacidadeTanque, string quilometragem, GrupoAutomoveis grupo)
+        public Veiculo(byte[] foto, string placa, string modelo, string marca, string tipoCombustivel, int capacidadeTanque, int quilometragem, GrupoAutomoveis grupo)
         {
             Foto = foto;
             Placa = placa;
@@ -42,8 +42,8 @@ namespace LocadoraVeiculos.Dominio.VeiculoModule
         public string Modelo { get; }
         public string Marca { get; }
         public string TipoCombustivel { get; }
-        public string CapacidadeTanque { get; }
-        public string Quilometragem { get; }
+        public int CapacidadeTanque { get; }
+        public int Quilometragem { get; }
         public GrupoAutomoveis GrupoAutomoveis { get; }
 
         public string NomeGrupo 
@@ -89,8 +89,8 @@ namespace LocadoraVeiculos.Dominio.VeiculoModule
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Modelo);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Marca);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(TipoCombustivel);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(CapacidadeTanque);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Quilometragem);
+            hashCode = hashCode * -1521134295 + EqualityComparer<int>.Default.GetHashCode(CapacidadeTanque);
+            hashCode = hashCode * -1521134295 + EqualityComparer<int>.Default.GetHashCode(Quilometragem);
             hashCode = hashCode * -1521134295 + EqualityComparer<GrupoAutomoveis>.Default.GetHashCode(GrupoAutomoveis);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(NomeGrupo);
             return hashCode;
@@ -116,10 +116,10 @@ namespace LocadoraVeiculos.Dominio.VeiculoModule
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "Por favor selecione um combustível";
 
 
-            if (string.IsNullOrEmpty(CapacidadeTanque))
+            if (CapacidadeTanque == 0)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Capacidade do Tanque é obrigatório";
 
-            if (string.IsNullOrEmpty(Quilometragem))
+            if (Quilometragem == 0)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Quilometragem é obrigatório";
 
             if (resultadoValidacao == "")

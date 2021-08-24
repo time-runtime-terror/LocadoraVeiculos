@@ -59,8 +59,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
                 txtModelo.Text = veiculo.Modelo;
                 txtMarca.Text = veiculo.Marca;
                 
-                txtCapacidadeTanque.Text = veiculo.CapacidadeTanque;
-                txtQuilometragem.Text = veiculo.Quilometragem;
+                txtCapacidadeTanque.Text = Convert.ToString(veiculo.CapacidadeTanque);
+                txtQuilometragem.Text = Convert.ToString(veiculo.Quilometragem);
 
                 SelecionarGrupoAutomoveis();
 
@@ -96,9 +96,12 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             string placa = txtPlaca.Text;
             string modelo = txtModelo.Text;
             string marca = txtMarca.Text;
-            //double tipoCombustivel = Convert.ToDouble(txtTipoCombustivel.Text);
-            string capacidadeTanque = txtCapacidadeTanque.Text;
-            string quilometragem = txtQuilometragem.Text;
+            
+            string capacidadeTanqueStr = txtCapacidadeTanque.Text;
+            string quilometragemStr = txtQuilometragem.Text;
+
+            int capacidadeTanque = validarCamposInt(capacidadeTanqueStr);
+            int quilometragem = validarCamposInt(quilometragemStr);
 
             string tipoCombustivel = null;
 
@@ -137,6 +140,21 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
 
                 DialogResult = DialogResult.None;
             }
+        }
+
+        private static int validarCamposInt(string campoStr)
+        {
+            int campo;
+            if (string.IsNullOrEmpty(campoStr))
+            {
+                campo = 0;
+            }
+            else
+            {
+                campo = Convert.ToInt32(campoStr);
+            }
+
+            return campo;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
