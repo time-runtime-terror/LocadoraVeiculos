@@ -2,6 +2,7 @@
 using LocadoraVeiculos.Controladores.TaxasServicosModule;
 using LocadoraVeiculos.Controladores.VeiculoModule;
 using LocadoraVeiculos.Dominio.ClienteModule;
+using LocadoraVeiculos.Dominio.LocacaoModule;
 using LocadoraVeiculos.Dominio.TaxasServicosModule;
 using LocadoraVeiculos.Dominio.VeiculoModule;
 using System;
@@ -16,7 +17,34 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         private readonly ControladorCliente controladorCliente;
         private readonly ControladorVeiculo controladorVeiculo;
 
-        //private List<TaxasServicos> taxasSelecionadas = new List<TaxasServicos>();
+        private Locacao locacao;
+
+        public Locacao Locacao
+        {
+            get => locacao;
+
+            set
+            {
+                locacao = value;
+
+                txtId.Text = locacao.Id.ToString();
+
+                cmbCliente.SelectedItem = (cmbCliente.Items.Contains(locacao.Cliente)) ?
+                    locacao.Cliente : null;
+
+                cmbVeiculo.SelectedItem = (cmbVeiculo.Items.Contains(locacao.Veiculo)) ? locacao.Veiculo : null;
+
+                cmbPlano.SelectedItem = (cmbPlano.Items.Contains(locacao.Plano)) ?
+                    locacao.Plano : null;
+
+                txtCaucao.Text = locacao.Caucao.ToString();
+
+                List<TaxasServicos> taxasUtilizdas = controladorTaxasServicos.SelecionarTaxasServicosUsados(locacao.Id);
+
+                foreach (var taxa in taxasUtilizdas)
+                    listaTaxasServicos.Items.Add(taxa);
+            }
+        }
 
         public TelaCadastrarLocacaoForm()
         {
@@ -24,11 +52,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             controladorTaxasServicos = new ControladorTaxasServicos();
             controladorCliente = new ControladorCliente();
             controladorVeiculo = new ControladorVeiculo();
-        }
-
-        private void listaTaxasServicos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void TelaCadastrarLocacaoForm_Load(object sender, EventArgs e)
@@ -50,10 +73,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
         private void cmbCliente_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Cliente cliente = null;
             List<Cliente> clientes = controladorCliente.SelecionarTodos();
 
-            cliente = (Cliente)cmbCliente.SelectedItem;
+            Cliente cliente = (Cliente)cmbCliente.SelectedItem;
 
             if (cliente.TipoCadastro == "CNPJ")
             {
@@ -69,23 +91,46 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             }
         }
 
-        private void listaTaxasServicos_ItemCheck(object sender, ItemCheckEventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
-            //double total = 0;
 
-            //for (int i = 0; i < listaTaxasServicos.Items.Count; i++)
-            //{
-            //    if (listaTaxasServicos.GetItemCheckState(i) == CheckState.Checked)
-            //    {
-            //        taxasSelecionadas.Add((TaxasServicos)listaTaxasServicos.Items[i]);
-            //        total += ((TaxasServicos)listaTaxasServicos.Items[i]).Taxa;
-            //        lblValorTotal.Text = total.ToString();
-            //    }
-
-            //}
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void listaTaxasServicos_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            List<TaxasServicos> taxasSelecionadas = new List<TaxasServicos>();
+
+            foreach (var item in listaTaxasServicos.CheckedItems)
+                taxasSelecionadas.Add((TaxasServicos)item);
+
+            if (e.NewValue == CheckState.Checked)
+                taxasSelecionadas.Add((TaxasServicos)listaTaxasServicos.Items[e.Index]);
+
+            else
+                taxasSelecionadas.Remove((TaxasServicos)listaTaxasServicos.Items[e.Index]);
+
+            CalcularValorTotal(taxasSelecionadas);
+        }
+
+        private void CalcularValorTotal(List<TaxasServicos> taxasSelecionadas)
+        {
+            string strCaucao = txtCaucao.Text;
+            double caucao, total = 0;
+
+            if (string.IsNullOrEmpty(strCaucao))
+                caucao = 0;
+            else
+                caucao = Convert.ToDouble(strCaucao);
+
+            foreach (var item in taxasSelecionadas)
+                total += item.Taxa;
+
+            total += caucao;
+
+            lblValorTotal.Text = total.ToString();
+        }
+
+        private void btnGravar_Click(object sender, EventArgs e)
         {
 
         }

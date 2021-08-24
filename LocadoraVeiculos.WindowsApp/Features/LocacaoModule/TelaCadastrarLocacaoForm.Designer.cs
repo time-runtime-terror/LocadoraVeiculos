@@ -30,9 +30,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         private void InitializeComponent()
         {
             this.lblId = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtCaucao = new System.Windows.Forms.TextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtId = new System.Windows.Forms.TextBox();
             this.cmbCliente = new System.Windows.Forms.ComboBox();
             this.lblCliente = new System.Windows.Forms.Label();
             this.cmbVeiculo = new System.Windows.Forms.ComboBox();
@@ -49,25 +49,28 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             this.cmbCondutor = new System.Windows.Forms.ComboBox();
             this.lblTotal = new System.Windows.Forms.Label();
             this.lblValorTotal = new System.Windows.Forms.Label();
+            this.lblCondutor = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // lblId
             // 
             this.lblId.AutoSize = true;
             this.lblId.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblId.Location = new System.Drawing.Point(157, 46);
+            this.lblId.Location = new System.Drawing.Point(157, 52);
             this.lblId.Name = "lblId";
             this.lblId.Size = new System.Drawing.Size(24, 18);
             this.lblId.TabIndex = 0;
             this.lblId.Text = "Id:";
             // 
-            // textBox1
+            // txtCaucao
             // 
-            this.textBox1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(187, 210);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 26);
-            this.textBox1.TabIndex = 1;
+            this.txtCaucao.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCaucao.Location = new System.Drawing.Point(186, 210);
+            this.txtCaucao.Name = "txtCaucao";
+            this.txtCaucao.Size = new System.Drawing.Size(100, 26);
+            this.txtCaucao.TabIndex = 1;
             // 
             // btnCancelar
             // 
@@ -80,23 +83,23 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // txtId
             // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(187, 43);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 26);
-            this.textBox2.TabIndex = 4;
+            this.txtId.Enabled = false;
+            this.txtId.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtId.Location = new System.Drawing.Point(186, 49);
+            this.txtId.Name = "txtId";
+            this.txtId.Size = new System.Drawing.Size(96, 26);
+            this.txtId.TabIndex = 4;
             // 
             // cmbCliente
             // 
             this.cmbCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCliente.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbCliente.FormattingEnabled = true;
-            this.cmbCliente.Location = new System.Drawing.Point(121, 75);
+            this.cmbCliente.Location = new System.Drawing.Point(186, 82);
             this.cmbCliente.Name = "cmbCliente";
-            this.cmbCliente.Size = new System.Drawing.Size(121, 26);
+            this.cmbCliente.Size = new System.Drawing.Size(167, 26);
             this.cmbCliente.TabIndex = 6;
             this.cmbCliente.SelectedIndexChanged += new System.EventHandler(this.cmbCliente_SelectedIndexChanged);
             // 
@@ -104,7 +107,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             // 
             this.lblCliente.AutoSize = true;
             this.lblCliente.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCliente.Location = new System.Drawing.Point(54, 81);
+            this.lblCliente.Location = new System.Drawing.Point(120, 85);
             this.lblCliente.Name = "lblCliente";
             this.lblCliente.Size = new System.Drawing.Size(61, 18);
             this.lblCliente.TabIndex = 5;
@@ -115,16 +118,16 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             this.cmbVeiculo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbVeiculo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbVeiculo.FormattingEnabled = true;
-            this.cmbVeiculo.Location = new System.Drawing.Point(187, 131);
+            this.cmbVeiculo.Location = new System.Drawing.Point(186, 146);
             this.cmbVeiculo.Name = "cmbVeiculo";
-            this.cmbVeiculo.Size = new System.Drawing.Size(121, 26);
+            this.cmbVeiculo.Size = new System.Drawing.Size(167, 26);
             this.cmbVeiculo.TabIndex = 8;
             // 
             // lblVeiculo
             // 
             this.lblVeiculo.AutoSize = true;
             this.lblVeiculo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVeiculo.Location = new System.Drawing.Point(119, 134);
+            this.lblVeiculo.Location = new System.Drawing.Point(119, 149);
             this.lblVeiculo.Name = "lblVeiculo";
             this.lblVeiculo.Size = new System.Drawing.Size(62, 18);
             this.lblVeiculo.TabIndex = 7;
@@ -139,9 +142,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             "Plano Diário",
             "Km Controlado",
             "Km Livre"});
-            this.cmbPlano.Location = new System.Drawing.Point(187, 178);
+            this.cmbPlano.Location = new System.Drawing.Point(186, 178);
             this.cmbPlano.Name = "cmbPlano";
-            this.cmbPlano.Size = new System.Drawing.Size(121, 26);
+            this.cmbPlano.Size = new System.Drawing.Size(167, 26);
             this.cmbPlano.TabIndex = 10;
             // 
             // lblPlano
@@ -168,7 +171,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             // 
             this.dateDataSaida.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateDataSaida.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateDataSaida.Location = new System.Drawing.Point(187, 242);
+            this.dateDataSaida.Location = new System.Drawing.Point(186, 242);
             this.dateDataSaida.MinDate = new System.DateTime(2021, 8, 24, 0, 0, 0, 0);
             this.dateDataSaida.Name = "dateDataSaida";
             this.dateDataSaida.Size = new System.Drawing.Size(121, 26);
@@ -198,7 +201,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             // 
             this.dateTimePicker1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(187, 274);
+            this.dateTimePicker1.Location = new System.Drawing.Point(186, 274);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(121, 26);
             this.dateTimePicker1.TabIndex = 14;
@@ -213,17 +216,17 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             this.btnGravar.TabIndex = 16;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
+            this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
             // 
             // listaTaxasServicos
             // 
             this.listaTaxasServicos.CheckOnClick = true;
             this.listaTaxasServicos.FormattingEnabled = true;
-            this.listaTaxasServicos.Location = new System.Drawing.Point(71, 318);
+            this.listaTaxasServicos.Location = new System.Drawing.Point(71, 316);
             this.listaTaxasServicos.Name = "listaTaxasServicos";
             this.listaTaxasServicos.Size = new System.Drawing.Size(283, 124);
             this.listaTaxasServicos.TabIndex = 17;
             this.listaTaxasServicos.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.listaTaxasServicos_ItemCheck);
-            this.listaTaxasServicos.SelectedIndexChanged += new System.EventHandler(this.listaTaxasServicos_SelectedIndexChanged);
             // 
             // cmbCondutor
             // 
@@ -231,7 +234,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             this.cmbCondutor.Enabled = false;
             this.cmbCondutor.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbCondutor.FormattingEnabled = true;
-            this.cmbCondutor.Location = new System.Drawing.Point(248, 75);
+            this.cmbCondutor.Location = new System.Drawing.Point(186, 114);
             this.cmbCondutor.Name = "cmbCondutor";
             this.cmbCondutor.Size = new System.Drawing.Size(121, 26);
             this.cmbCondutor.TabIndex = 18;
@@ -257,13 +260,47 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             this.lblValorTotal.TabIndex = 20;
             this.lblValorTotal.Text = "0";
             // 
+            // lblCondutor
+            // 
+            this.lblCondutor.AutoSize = true;
+            this.lblCondutor.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCondutor.Location = new System.Drawing.Point(105, 117);
+            this.lblCondutor.Name = "lblCondutor";
+            this.lblCondutor.Size = new System.Drawing.Size(76, 18);
+            this.lblCondutor.TabIndex = 21;
+            this.lblCondutor.Text = "Condutor:";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(186, 82);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(167, 26);
+            this.comboBox1.TabIndex = 6;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.cmbCliente_SelectedIndexChanged);
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.Enabled = false;
+            this.comboBox2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(186, 114);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(167, 26);
+            this.comboBox2.TabIndex = 18;
+            // 
             // TelaCadastrarLocacaoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(422, 548);
+            this.Controls.Add(this.lblCondutor);
             this.Controls.Add(this.lblValorTotal);
             this.Controls.Add(this.lblTotal);
+            this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.cmbCondutor);
             this.Controls.Add(this.listaTaxasServicos);
             this.Controls.Add(this.btnGravar);
@@ -276,11 +313,12 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             this.Controls.Add(this.lblPlano);
             this.Controls.Add(this.cmbVeiculo);
             this.Controls.Add(this.lblVeiculo);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.cmbCliente);
             this.Controls.Add(this.lblCliente);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtId);
             this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtCaucao);
             this.Controls.Add(this.lblId);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -298,9 +336,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         #endregion
 
         private System.Windows.Forms.Label lblId;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.ComboBox cmbCliente;
         private System.Windows.Forms.Label lblCliente;
         private System.Windows.Forms.ComboBox cmbVeiculo;
@@ -317,5 +354,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         private System.Windows.Forms.ComboBox cmbCondutor;
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Label lblValorTotal;
+        private System.Windows.Forms.TextBox txtCaucao;
+        private System.Windows.Forms.Label lblCondutor;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox2;
     }
 }
