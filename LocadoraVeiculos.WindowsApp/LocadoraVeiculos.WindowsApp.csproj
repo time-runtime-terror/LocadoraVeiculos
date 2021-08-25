@@ -124,6 +124,7 @@
     <Compile Include="Features\GrupoAutomoveisModule\TelaAgrupamentoGrupoAutomoveis.Designer.cs">
       <DependentUpon>TelaAgrupamentoGrupoAutomoveis.cs</DependentUpon>
     </Compile>
+    <Compile Include="Features\LocacaoModule\OperacoesLocacao.cs" />
     <Compile Include="Features\LocacaoModule\TelaCadastrarLocacaoForm.cs">
       <SubType>Form</SubType>
     </Compile>
