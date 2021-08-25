@@ -204,7 +204,9 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
 
             List<TaxasServicos> taxas = controladorTaxasServicos.SelecionarTaxasServicosUsados(id);
 
-            Locacao locacao = new Locacao(cliente, veiculo, taxas, dataSaida, dataDevolucao,
+            List<TaxasServicos> taxasSelecionadas = (taxas.Count == 0) ? null : taxas;
+
+            Locacao locacao = new Locacao(cliente, veiculo, taxasSelecionadas, dataSaida, dataDevolucao,
                 caucao, plano);
 
             locacao.Id = id;
