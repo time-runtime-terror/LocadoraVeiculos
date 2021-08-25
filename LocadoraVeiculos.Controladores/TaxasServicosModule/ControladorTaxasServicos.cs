@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using LocadoraVeiculos.Dominio.TaxasServicosModule;
+using LocadoraVeiculos.Dominio.LocacaoModule;
 
 namespace LocadoraVeiculos.Controladores.TaxasServicosModule
 {
@@ -21,6 +22,18 @@ namespace LocadoraVeiculos.Controladores.TaxasServicosModule
                         @SERVICO, 
                         @TAXA,
                         @OPCAOSERVICO
+	                )";
+
+        private const string sqlInserirTaxasServicosUsados =
+            @"INSERT INTO TBTAXASSERVICOS_USADOS
+	                (
+		                [ID_TAXASSERVICOS], 
+		                [ID_LOCACAO]
+	                ) 
+	                VALUES
+	                (
+                        @ID_TAXASSERVICOS, 
+                        @ID_LOCACAO
 	                )";
 
         private const string sqlEditarTaxasServicos =
@@ -50,6 +63,7 @@ namespace LocadoraVeiculos.Controladores.TaxasServicosModule
                         TBTAXASSERVICOS
                     WHERE 
                         ID = @ID";
+
 
         private const string sqlSelecionarTodasTaxasServicos =
             @"SELECT
@@ -90,6 +104,14 @@ namespace LocadoraVeiculos.Controladores.TaxasServicosModule
 
             return resultadoValidacao;
         }
+
+        public void InserirNovaTaxaUsada(Locacao registro)
+        {
+            if (registro.Taxas != null)
+                foreach (TaxasServicos taxa in registro.Taxas)
+                    Db.Insert(sqlInserirTaxasServicosUsados, ObtemParametrosTaxasServicosUsados(registro, taxa));
+        }
+
         public override string Editar(int id, TaxasServicos registro)
         {
             string resultadoValidacao = registro.Validar();
@@ -143,6 +165,16 @@ namespace LocadoraVeiculos.Controladores.TaxasServicosModule
                 return null;
 
             return SelecionarPorId(Convert.ToInt32(reader["ID_TAXASSERVICOS"]));
+        }
+
+        private Dictionary<string, object> ObtemParametrosTaxasServicosUsados(Locacao locacao, TaxasServicos taxa)
+        {
+            var parametros = new Dictionary<string, object>();
+
+            parametros.Add("ID_TAXASSERVICOS", taxa.Id);
+            parametros.Add("ID_LOCACAO", locacao.Id);
+
+            return parametros;
         }
 
         private Dictionary<string, object> ObtemParametrosTaxasServicos(TaxasServicos grupoAutomoveis)

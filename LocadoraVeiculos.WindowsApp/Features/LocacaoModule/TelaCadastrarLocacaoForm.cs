@@ -158,6 +158,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                 DialogResult = DialogResult.None;
             }
+
         }
 
         private void txtCaucao_TextChanged(object sender, EventArgs e)

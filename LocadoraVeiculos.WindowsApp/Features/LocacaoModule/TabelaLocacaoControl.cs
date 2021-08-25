@@ -1,13 +1,6 @@
 ﻿using LocadoraVeiculos.Dominio.LocacaoModule;
 using LocadoraVeiculos.WindowsApp.Shared;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
@@ -21,7 +14,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             gridLocacoes.ConfigurarGridSomenteLeitura();
             gridLocacoes.Columns.AddRange(ObterColunas());
         }
-
 
         public DataGridViewColumn[] ObterColunas()
         {

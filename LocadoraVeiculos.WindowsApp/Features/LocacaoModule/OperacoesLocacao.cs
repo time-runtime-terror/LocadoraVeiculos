@@ -13,16 +13,34 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
     public class OperacoesLocacao : ICadastravel
     {
         private readonly ControladorLocacao controladorLocacao;
+        private readonly ControladorTaxasServicos controladorTaxasServicos;
         private readonly TabelaLocacaoControl tabelaLocacoes;
 
         public OperacoesLocacao()
         {
-            controladorLocacao = new ControladorLocacao(new ControladorCliente(), new ControladorVeiculo(), new ControladorTaxasServicos());
+            controladorTaxasServicos = new ControladorTaxasServicos();
+
+            controladorLocacao = new ControladorLocacao(new ControladorCliente(), new ControladorVeiculo(), controladorTaxasServicos);
+
+            tabelaLocacoes = new TabelaLocacaoControl();
         }
 
         public void InserirNovoRegistro()
         {
-            throw new NotImplementedException();
+            TelaCadastrarLocacaoForm tela = new TelaCadastrarLocacaoForm();
+
+            if (tela.ShowDialog() == DialogResult.OK)
+            {
+                controladorLocacao.InserirNovo(tela.Locacao);
+
+                controladorTaxasServicos.InserirNovaTaxaUsada(tela.Locacao);
+
+                List<Locacao> locacoes = controladorLocacao.SelecionarTodos();
+
+                tabelaLocacoes.AtualizarRegistros(locacoes);
+
+                Dashboard.Instancia.AtualizarRodape($"Locação: [{tela.Locacao.Id}] inserido com sucesso!");
+            }
         }
 
         public void EditarRegistro()
@@ -54,7 +72,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         {
             List<Locacao> locacoes = controladorLocacao.SelecionarTodos();
 
-            tabelaLocacoes.AtualizarRegistros(clientes);
+            tabelaLocacoes.AtualizarRegistros(locacoes);
 
             return tabelaLocacoes;
         }
