@@ -61,6 +61,7 @@ namespace LocadoraVeiculos.WindowsApp
             this.panelRegistros = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.labelRodape = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnLocacoes = new System.Windows.Forms.Button();
             this.panelTopo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelMenu.SuspendLayout();
@@ -128,6 +129,7 @@ namespace LocadoraVeiculos.WindowsApp
             // 
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel4.Controls.Add(this.btnLocacoes);
             this.panel4.Controls.Add(this.btnConfiguracoes);
             this.panel4.Controls.Add(this.btnTaxasServicos);
             this.panel4.Controls.Add(this.btnCadastroGrupoAutomoveis);
@@ -136,7 +138,7 @@ namespace LocadoraVeiculos.WindowsApp
             this.panel4.Controls.Add(this.btnCadastroClientes);
             this.panel4.Location = new System.Drawing.Point(3, 76);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(233, 377);
+            this.panel4.Size = new System.Drawing.Size(233, 430);
             this.panel4.TabIndex = 1;
             // 
             // btnConfiguracoes
@@ -415,6 +417,21 @@ namespace LocadoraVeiculos.WindowsApp
             this.labelRodape.Size = new System.Drawing.Size(90, 17);
             this.labelRodape.Text = "Tudo certo ;)";
             // 
+            // btnLocacoes
+            // 
+            this.btnLocacoes.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnLocacoes.FlatAppearance.BorderSize = 0;
+            this.btnLocacoes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLocacoes.Font = new System.Drawing.Font("Arial", 12F);
+            this.btnLocacoes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
+            this.btnLocacoes.Location = new System.Drawing.Point(0, 364);
+            this.btnLocacoes.Name = "btnLocacoes";
+            this.btnLocacoes.Size = new System.Drawing.Size(233, 60);
+            this.btnLocacoes.TabIndex = 7;
+            this.btnLocacoes.Text = "Locações";
+            this.btnLocacoes.UseVisualStyleBackColor = true;
+            this.btnLocacoes.Click += new System.EventHandler(this.btnLocacoes_Click);
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -479,6 +496,7 @@ namespace LocadoraVeiculos.WindowsApp
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnTaxasServicos;
+        private System.Windows.Forms.Button btnLocacoes;
     }
 }
 

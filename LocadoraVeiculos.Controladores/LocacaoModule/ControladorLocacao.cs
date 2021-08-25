@@ -62,14 +62,14 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
 		                LO.[DATASAIDA], 
 		                LO.[DATADEVOLUCAO], 
 		                LO.[PLANO],
-		                LO.[CAUCAO],
-
+		                LO.[CAUCAO]
 	                FROM
-                        [TBLOCACAO] AS LO LEFT JOIN
+                        [TBLOCACAO] AS LO JOIN
                         [TBCLIENTE] AS CL
+                    ON
+                        CL.ID = LO.ID_CLIENTE JOIN
                         [TBVEICULO] AS VE
                     ON
-                        CL.ID = LO.ID_CLIENTE,
                         VE.ID = LO.ID_VEICULO
                     WHERE 
                         LO.[ID] = @ID";
@@ -82,14 +82,14 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
 		                LO.[DATASAIDA], 
 		                LO.[DATADEVOLUCAO], 
 		                LO.[PLANO],
-		                LO.[CAUCAO],
-
+		                LO.[CAUCAO]
 	                FROM
-                        [TBLOCACAO] AS LO LEFT JOIN
+                        [TBLOCACAO] AS LO JOIN
                         [TBCLIENTE] AS CL
+                        ON
+                        CL.ID = LO.ID_CLIENTE JOIN
                         [TBVEICULO] AS VE
                     ON
-                        CL.ID = LO.ID_CLIENTE,
                         VE.ID = LO.ID_VEICULO";
 
         private const string sqlExisteLocacao =

@@ -46,7 +46,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             foreach (Locacao locacao in locacoes)
             {
-                gridLocacoes.Rows.Add(locacao.Id, locacao.Cliente, locacao.Veiculo, locacao.Plano, locacao.DataSaida, locacao.DataDevolucao);
+                gridLocacoes.Rows.Add(locacao.Id, locacao.Cliente, locacao.Veiculo, locacao.Plano, locacao.DataSaida.ToShortDateString(), locacao.DataDevolucao.ToShortDateString());
             }
 
         }

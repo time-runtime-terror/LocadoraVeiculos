@@ -48,8 +48,8 @@ namespace LocadoraVeiculos.WindowsApp
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new LoginForm());
-            Application.Run(new TelaCadastrarLocacaoForm());
+            Application.Run(new LoginForm());
+            //Application.Run(new TelaCadastrarLocacaoForm());
         }
     }
 }

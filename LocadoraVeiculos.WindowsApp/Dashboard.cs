@@ -13,6 +13,7 @@ using LocadoraVeiculos.Controladores.FuncionarioModule;
 using LocadoraVeiculos.WindowsApp.Features.CombustivelModule;
 using LocadoraVeiculos.Controladores.CombustivelModule;
 using LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule;
+using LocadoraVeiculos.WindowsApp.Features.LocacaoModule;
 
 namespace LocadoraVeiculos.WindowsApp
 {
@@ -35,6 +36,20 @@ namespace LocadoraVeiculos.WindowsApp
         }
 
         #region Eventos de Click dos Botões do Menu Principal
+
+        private void btnLocacoes_Click(object sender, EventArgs e)
+        {
+            ConfiguracoesLocacaoToolBox config = new ConfiguracoesLocacaoToolBox();
+
+            ConfigurarToolBox(config);
+
+            AtualizarRodape(config.TipoCadastro);
+
+            operacoes = new OperacoesLocacao();
+
+            ConfigurarPainelRegistros();
+        }
+
         private void btnCadastroClientes_Click(object sender, System.EventArgs e)
         {
             ConfiguracaoClienteToolBox config = new ConfiguracaoClienteToolBox();
@@ -214,5 +229,6 @@ namespace LocadoraVeiculos.WindowsApp
             if (txtPesquisa.Text != "Digite para Pesquisar")
                 operacoes.Pesquisar(txtPesquisa.Text);
         }
+
     }
 }
