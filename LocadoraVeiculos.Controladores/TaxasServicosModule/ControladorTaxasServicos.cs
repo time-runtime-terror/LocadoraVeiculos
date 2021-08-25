@@ -46,6 +46,15 @@ namespace LocadoraVeiculos.Controladores.TaxasServicosModule
                     WHERE 
                         ID = @ID";
 
+        private const string sqlEditarTaxasServicosUsados =
+            @"UPDATE TBTAXASSERVICOS_USADOS
+                    SET
+                        [ID_TAXASSERVICOS] = @ID_TAXASSERVICOS,
+		                [ID_LOCACAO] = @ID_LOCACAO
+                    WHERE 
+                        [ID_TAXASSERVICOS]= @ID_TAXASSERVICOS";
+
+
         private const string sqlExcluirTaxasServicos =
             @"DELETE 
 	                FROM
@@ -83,6 +92,7 @@ namespace LocadoraVeiculos.Controladores.TaxasServicosModule
                 [TBTAXASSERVICOS_USADOS]
             WHERE
                 [ID_LOCACAO] = @ID";
+
 
         private const string sqlExisteTaxasServicos =
             @"SELECT 
@@ -123,6 +133,11 @@ namespace LocadoraVeiculos.Controladores.TaxasServicosModule
             }
 
             return resultadoValidacao;
+        }
+        public void EditarTaxasUsadas(Locacao locacao)
+        {
+                foreach (TaxasServicos taxa in locacao.Taxas)
+                    Db.Update(sqlEditarTaxasServicosUsados, ObtemParametrosTaxasServicosUsados(locacao, taxa));
         }
 
         public override bool Excluir(int id)

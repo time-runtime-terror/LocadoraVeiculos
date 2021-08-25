@@ -138,6 +138,12 @@
     <Compile Include="Features\LocacaoModule\TelaCadastrarLocacaoForm.Designer.cs">
       <DependentUpon>TelaCadastrarLocacaoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Features\LocacaoModule\TelaSelecaoTaxasForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\LocacaoModule\TelaSelecaoTaxasForm.Designer.cs">
+      <DependentUpon>TelaSelecaoTaxasForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Features\TaxasServicosModule\ConfiguracaoTaxasServicosToolBox.cs" />
     <Compile Include="Features\TaxasServicosModule\OperacoesTaxasServicos.cs" />
     <Compile Include="Features\TaxasServicosModule\TabelaTaxasServicosControl.cs">
@@ -215,6 +221,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Features\LocacaoModule\TelaCadastrarLocacaoForm.resx">
       <DependentUpon>TelaCadastrarLocacaoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\LocacaoModule\TelaSelecaoTaxasForm.resx">
+      <DependentUpon>TelaSelecaoTaxasForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Features\TaxasServicosModule\TabelaTaxasServicosControl.resx">
       <DependentUpon>TabelaTaxasServicosControl.cs</DependentUpon>

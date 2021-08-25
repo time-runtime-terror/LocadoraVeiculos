@@ -39,18 +39,65 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                 tabelaLocacoes.AtualizarRegistros(locacoes);
 
-                Dashboard.Instancia.AtualizarRodape($"Locação: [{tela.Locacao.Id}] inserido com sucesso!");
+                Dashboard.Instancia.AtualizarRodape($"Locação: [{tela.Locacao.Id}] inserida com sucesso!");
             }
         }
 
         public void EditarRegistro()
         {
-            throw new NotImplementedException();
+            int id = tabelaLocacoes.ObtemIdSelecionado();
+
+            if (id == 0)
+            {
+                Dashboard.Instancia.AtualizarRodape("Selecione uma locação para poder editar!");
+                return;
+            }
+
+            Locacao locacaoSelecionada = controladorLocacao.SelecionarPorId(id);
+
+            TelaCadastrarLocacaoForm tela = new TelaCadastrarLocacaoForm();
+
+            tela.Locacao = locacaoSelecionada;
+
+            if (tela.ShowDialog() == DialogResult.OK)
+            {
+                controladorLocacao.Editar(id, tela.Locacao);
+
+                //controladorTaxasServicos.InserirNovaTaxaUsada(tela.Locacao);
+
+                controladorTaxasServicos.EditarTaxasUsadas(tela.Locacao);
+
+                List<Locacao> locacoes = controladorLocacao.SelecionarTodos();
+
+                tabelaLocacoes.AtualizarRegistros(locacoes);
+
+                Dashboard.Instancia.AtualizarRodape($"Locação: [{tela.Locacao.Id}] editada com sucesso!");
+            }
         }
 
         public void ExcluirRegistro()
         {
-            throw new NotImplementedException();
+            int id = tabelaLocacoes.ObtemIdSelecionado();
+
+            if (id == 0)
+            {
+                Dashboard.Instancia.AtualizarRodape($"Selecione um registro para poder excluir!");
+                return;
+            }
+
+            Locacao locacaoSelecionada = controladorLocacao.SelecionarPorId(id);
+
+            if (MessageBox.Show($"Tem certeza que deseja excluir a locação: [{locacaoSelecionada.Id}] ?",
+                "Exclusão de Locações", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                controladorLocacao.Excluir(id);
+
+                List<Locacao> locacoes = controladorLocacao.SelecionarTodos();
+
+                tabelaLocacoes.AtualizarRegistros(locacoes);
+
+                Dashboard.Instancia.AtualizarRodape($"Locação: [{locacaoSelecionada.Id}] excluída com sucesso!");
+            }
         }
 
         public void FiltrarRegistros()
