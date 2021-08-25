@@ -1,4 +1,7 @@
-﻿using LocadoraVeiculos.Controladores.LocacaoModule;
+﻿using LocadoraVeiculos.Controladores.ClienteModule;
+using LocadoraVeiculos.Controladores.LocacaoModule;
+using LocadoraVeiculos.Controladores.TaxasServicosModule;
+using LocadoraVeiculos.Controladores.VeiculoModule;
 using LocadoraVeiculos.Dominio.LocacaoModule;
 using LocadoraVeiculos.WindowsApp.Shared;
 using System;
@@ -14,7 +17,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
         public OperacoesLocacao()
         {
-            controladorLocacao = new ControladorLocacao();
+            controladorLocacao = new ControladorLocacao(new ControladorCliente(), new ControladorVeiculo(), new ControladorTaxasServicos());
         }
 
         public void InserirNovoRegistro()
