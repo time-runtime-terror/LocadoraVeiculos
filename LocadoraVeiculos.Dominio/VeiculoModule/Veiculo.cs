@@ -57,6 +57,11 @@ namespace LocadoraVeiculos.Dominio.VeiculoModule
             }
         }
 
+        public override string ToString()
+        {
+            return Modelo;
+        }
+
         public override bool Equals(object obj)
         {
             return Equals(obj as Veiculo);

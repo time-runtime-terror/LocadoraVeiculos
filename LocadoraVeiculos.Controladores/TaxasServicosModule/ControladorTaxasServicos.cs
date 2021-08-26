@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using LocadoraVeiculos.Dominio.TaxasServicosModule;
+using LocadoraVeiculos.Dominio.LocacaoModule;
 
 namespace LocadoraVeiculos.Controladores.TaxasServicosModule
 {
@@ -23,6 +24,18 @@ namespace LocadoraVeiculos.Controladores.TaxasServicosModule
                         @OPCAOSERVICO
 	                )";
 
+        private const string sqlInserirTaxasServicosUsados =
+            @"INSERT INTO TBTAXASSERVICOS_USADOS
+	                (
+		                [ID_TAXASSERVICOS], 
+		                [ID_LOCACAO]
+	                ) 
+	                VALUES
+	                (
+                        @ID_TAXASSERVICOS, 
+                        @ID_LOCACAO
+	                )";
+
         private const string sqlEditarTaxasServicos =
             @"UPDATE TBTAXASSERVICOS
                     SET
@@ -33,12 +46,28 @@ namespace LocadoraVeiculos.Controladores.TaxasServicosModule
                     WHERE 
                         ID = @ID";
 
+        private const string sqlEditarTaxasServicosUsados =
+            @"UPDATE TBTAXASSERVICOS_USADOS
+                    SET
+                        [ID_TAXASSERVICOS] = @ID_TAXASSERVICOS,
+		                [ID_LOCACAO] = @ID_LOCACAO
+                    WHERE 
+                        [ID_TAXASSERVICOS]= @ID_TAXASSERVICOS";
+
+
         private const string sqlExcluirTaxasServicos =
             @"DELETE 
 	                FROM
                         TBTAXASSERVICOS
                     WHERE 
                         ID = @ID";
+
+        private const string sqlExcluirTaxasServicosUsados =
+            @"DELETE 
+	                FROM
+                        TBTAXASSERVICOS_USADOS
+                    WHERE 
+                        ID_LOCACAO = @ID";
 
         private const string sqlSelecionarTaxasServicosPorId =
             @"SELECT
@@ -51,6 +80,7 @@ namespace LocadoraVeiculos.Controladores.TaxasServicosModule
                     WHERE 
                         ID = @ID";
 
+
         private const string sqlSelecionarTodasTaxasServicos =
             @"SELECT
                         [ID],
@@ -59,6 +89,17 @@ namespace LocadoraVeiculos.Controladores.TaxasServicosModule
 		                [OPCAOSERVICO]
 	                FROM
                         TBTAXASSERVICOS";
+
+        private const string sqlSelecionarTaxasServicosUsados =
+            @"SELECT
+                [ID],
+                [ID_TAXASSERVICOS],
+                [ID_LOCACAO]
+            FROM
+                [TBTAXASSERVICOS_USADOS]
+            WHERE
+                [ID_LOCACAO] = @ID";
+
 
         private const string sqlExisteTaxasServicos =
             @"SELECT 
@@ -80,6 +121,14 @@ namespace LocadoraVeiculos.Controladores.TaxasServicosModule
 
             return resultadoValidacao;
         }
+
+        public void InserirNovaTaxaUsada(Locacao registro)
+        {
+            if (registro.Taxas != null)
+                foreach (TaxasServicos taxa in registro.Taxas)
+                    Db.Insert(sqlInserirTaxasServicosUsados, ObtemParametrosTaxasServicosUsados(registro, taxa));
+        }
+
         public override string Editar(int id, TaxasServicos registro)
         {
             string resultadoValidacao = registro.Validar();
@@ -92,12 +141,31 @@ namespace LocadoraVeiculos.Controladores.TaxasServicosModule
 
             return resultadoValidacao;
         }
+        public void EditarTaxasUsadas(Locacao locacao)
+        {
+                foreach (TaxasServicos taxa in locacao.Taxas)
+                    Db.Update(sqlEditarTaxasServicosUsados, ObtemParametrosTaxasServicosUsados(locacao, taxa));
+        }
 
         public override bool Excluir(int id)
         {
             try
             {
                 Db.Delete(sqlExcluirTaxasServicos, AdicionarParametro("ID", id));
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool ExcluirTaxaUsada(Locacao locacao)
+        {
+            try
+            {
+                Db.Delete(sqlExcluirTaxasServicosUsados, AdicionarParametro("ID", locacao.Id));
             }
             catch (Exception)
             {
@@ -120,6 +188,29 @@ namespace LocadoraVeiculos.Controladores.TaxasServicosModule
         public override List<TaxasServicos> SelecionarTodos()
         {
             return Db.GetAll(sqlSelecionarTodasTaxasServicos, ConverterEmTaxasServicos);
+        }
+
+        public List<TaxasServicos> SelecionarTaxasServicosUsados(int id)
+        {
+            return Db.GetAll(sqlSelecionarTaxasServicosUsados, ConverterEmTaxasServicosUsados, AdicionarParametro("ID", id));
+        }
+
+        private TaxasServicos ConverterEmTaxasServicosUsados(IDataReader reader)
+        {
+            if (reader["ID_TAXASSERVICOS"] == DBNull.Value)
+                return null;
+
+            return SelecionarPorId(Convert.ToInt32(reader["ID_TAXASSERVICOS"]));
+        }
+
+        private Dictionary<string, object> ObtemParametrosTaxasServicosUsados(Locacao locacao, TaxasServicos taxa)
+        {
+            var parametros = new Dictionary<string, object>();
+
+            parametros.Add("ID_TAXASSERVICOS", taxa.Id);
+            parametros.Add("ID_LOCACAO", locacao.Id);
+
+            return parametros;
         }
 
         private Dictionary<string, object> ObtemParametrosTaxasServicos(TaxasServicos grupoAutomoveis)

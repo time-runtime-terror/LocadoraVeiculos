@@ -56,6 +56,7 @@
     <Compile Include="CombustivelModule\Combustivel.cs" />
     <Compile Include="FuncionarioModule\Funcionario.cs" />
     <Compile Include="GrupoAutomoveisModule\GrupoAutomoveis.cs" />
+    <Compile Include="LocacaoModule\Locacao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shared\EntidadeBase.cs" />
     <Compile Include="TaxasServicosModule\TaxasServicos.cs" />
