@@ -33,7 +33,6 @@ namespace LocadoraVeiculos.WindowsApp
             this.panelTopo = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnLocacoes = new System.Windows.Forms.Button();
@@ -47,28 +46,30 @@ namespace LocadoraVeiculos.WindowsApp
             this.toolBoxAcoes = new System.Windows.Forms.ToolStrip();
             this.txtPesquisa = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripBtnAdicionar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripBtnEditar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripBtnExcluir = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripBtnFiltrar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripBtnAgrupar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripBtnDesagrupar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.panelRegistros = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.labelRodape = new System.Windows.Forms.ToolStripStatusLabel();
             this.btnCadastrarDevolucoes = new System.Windows.Forms.Button();
+            this.toolStripBtnAdicionar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripBtnEditar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripBtnExcluir = new System.Windows.Forms.ToolStripButton();
+            this.toolStripBtnFiltrar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripBtnAgrupar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripBtnDesagrupar = new System.Windows.Forms.ToolStripButton();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.toolStripBtnDevolucao = new System.Windows.Forms.ToolStripButton();
             this.panelTopo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelMenu.SuspendLayout();
             this.panel4.SuspendLayout();
             this.toolBoxAcoes.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTopo
@@ -104,16 +105,6 @@ namespace LocadoraVeiculos.WindowsApp
             this.label4.Size = new System.Drawing.Size(284, 28);
             this.label4.TabIndex = 7;
             this.label4.Text = "O carro certo para você!";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::LocadoraVeiculos.WindowsApp.Properties.Resources.sedan;
-            this.pictureBox1.Location = new System.Drawing.Point(45, -11);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(95, 82);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // panelMenu
             // 
@@ -279,7 +270,8 @@ namespace LocadoraVeiculos.WindowsApp
             this.toolStripBtnAgrupar,
             this.toolStripSeparator5,
             this.toolStripBtnDesagrupar,
-            this.toolStripSeparator7});
+            this.toolStripSeparator7,
+            this.toolStripBtnDevolucao});
             this.toolBoxAcoes.Location = new System.Drawing.Point(242, 60);
             this.toolBoxAcoes.Name = "toolBoxAcoes";
             this.toolBoxAcoes.Size = new System.Drawing.Size(827, 55);
@@ -302,103 +294,30 @@ namespace LocadoraVeiculos.WindowsApp
             this.toolStripSeparator6.Name = "toolStripSeparator6";
             this.toolStripSeparator6.Size = new System.Drawing.Size(6, 55);
             // 
-            // toolStripBtnAdicionar
-            // 
-            this.toolStripBtnAdicionar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripBtnAdicionar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripBtnAdicionar.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtnAdicionar.Image")));
-            this.toolStripBtnAdicionar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripBtnAdicionar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripBtnAdicionar.Name = "toolStripBtnAdicionar";
-            this.toolStripBtnAdicionar.Size = new System.Drawing.Size(52, 52);
-            this.toolStripBtnAdicionar.Text = "toolStripButton1";
-            this.toolStripBtnAdicionar.ToolTipText = "Adicionar";
-            this.toolStripBtnAdicionar.Click += new System.EventHandler(this.toolStripBtnAdicionar_Click);
-            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 55);
-            // 
-            // toolStripBtnEditar
-            // 
-            this.toolStripBtnEditar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripBtnEditar.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtnEditar.Image")));
-            this.toolStripBtnEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripBtnEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripBtnEditar.Name = "toolStripBtnEditar";
-            this.toolStripBtnEditar.Size = new System.Drawing.Size(52, 52);
-            this.toolStripBtnEditar.Text = "toolStripButton3";
-            this.toolStripBtnEditar.ToolTipText = "Editar";
-            this.toolStripBtnEditar.Click += new System.EventHandler(this.toolStripBtnEditar_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 55);
             // 
-            // toolStripBtnExcluir
-            // 
-            this.toolStripBtnExcluir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripBtnExcluir.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtnExcluir.Image")));
-            this.toolStripBtnExcluir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripBtnExcluir.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripBtnExcluir.Name = "toolStripBtnExcluir";
-            this.toolStripBtnExcluir.Size = new System.Drawing.Size(52, 52);
-            this.toolStripBtnExcluir.Text = "toolStripButton2";
-            this.toolStripBtnExcluir.ToolTipText = "Excluir";
-            this.toolStripBtnExcluir.Click += new System.EventHandler(this.toolStripBtnExcluir_Click);
-            // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(6, 55);
-            // 
-            // toolStripBtnFiltrar
-            // 
-            this.toolStripBtnFiltrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripBtnFiltrar.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtnFiltrar.Image")));
-            this.toolStripBtnFiltrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripBtnFiltrar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripBtnFiltrar.Name = "toolStripBtnFiltrar";
-            this.toolStripBtnFiltrar.Size = new System.Drawing.Size(52, 52);
-            this.toolStripBtnFiltrar.Text = "toolStripButton4";
-            this.toolStripBtnFiltrar.ToolTipText = "Filtrar";
-            this.toolStripBtnFiltrar.Click += new System.EventHandler(this.toolStripBtnFiltrar_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 55);
             // 
-            // toolStripBtnAgrupar
-            // 
-            this.toolStripBtnAgrupar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripBtnAgrupar.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtnAgrupar.Image")));
-            this.toolStripBtnAgrupar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripBtnAgrupar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripBtnAgrupar.Name = "toolStripBtnAgrupar";
-            this.toolStripBtnAgrupar.Size = new System.Drawing.Size(52, 52);
-            this.toolStripBtnAgrupar.Text = "toolStripButton5";
-            this.toolStripBtnAgrupar.ToolTipText = "Agrupar";
-            this.toolStripBtnAgrupar.Click += new System.EventHandler(this.toolStripBtnAgrupar_Click);
-            // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 55);
-            // 
-            // toolStripBtnDesagrupar
-            // 
-            this.toolStripBtnDesagrupar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripBtnDesagrupar.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtnDesagrupar.Image")));
-            this.toolStripBtnDesagrupar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripBtnDesagrupar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripBtnDesagrupar.Name = "toolStripBtnDesagrupar";
-            this.toolStripBtnDesagrupar.Size = new System.Drawing.Size(52, 52);
-            this.toolStripBtnDesagrupar.Text = "toolStripButton6";
-            this.toolStripBtnDesagrupar.ToolTipText = "Desagrupar";
-            this.toolStripBtnDesagrupar.Click += new System.EventHandler(this.toolStripBtnDesagrupar_Click);
             // 
             // toolStripSeparator7
             // 
@@ -449,6 +368,100 @@ namespace LocadoraVeiculos.WindowsApp
             this.btnCadastrarDevolucoes.UseVisualStyleBackColor = true;
             this.btnCadastrarDevolucoes.Click += new System.EventHandler(this.btnCadastrarDevolucoes_Click);
             // 
+            // toolStripBtnAdicionar
+            // 
+            this.toolStripBtnAdicionar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBtnAdicionar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripBtnAdicionar.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtnAdicionar.Image")));
+            this.toolStripBtnAdicionar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripBtnAdicionar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBtnAdicionar.Name = "toolStripBtnAdicionar";
+            this.toolStripBtnAdicionar.Size = new System.Drawing.Size(52, 52);
+            this.toolStripBtnAdicionar.Text = "toolStripButton1";
+            this.toolStripBtnAdicionar.ToolTipText = "Adicionar";
+            this.toolStripBtnAdicionar.Click += new System.EventHandler(this.toolStripBtnAdicionar_Click);
+            // 
+            // toolStripBtnEditar
+            // 
+            this.toolStripBtnEditar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBtnEditar.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtnEditar.Image")));
+            this.toolStripBtnEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripBtnEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBtnEditar.Name = "toolStripBtnEditar";
+            this.toolStripBtnEditar.Size = new System.Drawing.Size(52, 52);
+            this.toolStripBtnEditar.Text = "toolStripButton3";
+            this.toolStripBtnEditar.ToolTipText = "Editar";
+            this.toolStripBtnEditar.Click += new System.EventHandler(this.toolStripBtnEditar_Click);
+            // 
+            // toolStripBtnExcluir
+            // 
+            this.toolStripBtnExcluir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBtnExcluir.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtnExcluir.Image")));
+            this.toolStripBtnExcluir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripBtnExcluir.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBtnExcluir.Name = "toolStripBtnExcluir";
+            this.toolStripBtnExcluir.Size = new System.Drawing.Size(52, 52);
+            this.toolStripBtnExcluir.Text = "toolStripButton2";
+            this.toolStripBtnExcluir.ToolTipText = "Excluir";
+            this.toolStripBtnExcluir.Click += new System.EventHandler(this.toolStripBtnExcluir_Click);
+            // 
+            // toolStripBtnFiltrar
+            // 
+            this.toolStripBtnFiltrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBtnFiltrar.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtnFiltrar.Image")));
+            this.toolStripBtnFiltrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripBtnFiltrar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBtnFiltrar.Name = "toolStripBtnFiltrar";
+            this.toolStripBtnFiltrar.Size = new System.Drawing.Size(52, 52);
+            this.toolStripBtnFiltrar.Text = "toolStripButton4";
+            this.toolStripBtnFiltrar.ToolTipText = "Filtrar";
+            this.toolStripBtnFiltrar.Click += new System.EventHandler(this.toolStripBtnFiltrar_Click);
+            // 
+            // toolStripBtnAgrupar
+            // 
+            this.toolStripBtnAgrupar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBtnAgrupar.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtnAgrupar.Image")));
+            this.toolStripBtnAgrupar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripBtnAgrupar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBtnAgrupar.Name = "toolStripBtnAgrupar";
+            this.toolStripBtnAgrupar.Size = new System.Drawing.Size(52, 52);
+            this.toolStripBtnAgrupar.Text = "toolStripButton5";
+            this.toolStripBtnAgrupar.ToolTipText = "Agrupar";
+            this.toolStripBtnAgrupar.Click += new System.EventHandler(this.toolStripBtnAgrupar_Click);
+            // 
+            // toolStripBtnDesagrupar
+            // 
+            this.toolStripBtnDesagrupar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBtnDesagrupar.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtnDesagrupar.Image")));
+            this.toolStripBtnDesagrupar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripBtnDesagrupar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBtnDesagrupar.Name = "toolStripBtnDesagrupar";
+            this.toolStripBtnDesagrupar.Size = new System.Drawing.Size(52, 52);
+            this.toolStripBtnDesagrupar.Text = "toolStripButton6";
+            this.toolStripBtnDesagrupar.ToolTipText = "Desagrupar";
+            this.toolStripBtnDesagrupar.Click += new System.EventHandler(this.toolStripBtnDesagrupar_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::LocadoraVeiculos.WindowsApp.Properties.Resources.sedan;
+            this.pictureBox1.Location = new System.Drawing.Point(45, -11);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(95, 82);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // toolStripBtnDevolucao
+            // 
+            this.toolStripBtnDevolucao.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBtnDevolucao.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtnDevolucao.Image")));
+            this.toolStripBtnDevolucao.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBtnDevolucao.Name = "toolStripBtnDevolucao";
+            this.toolStripBtnDevolucao.Size = new System.Drawing.Size(24, 52);
+            this.toolStripBtnDevolucao.Text = "toolStripButton1";
+            this.toolStripBtnDevolucao.Visible = false;
+            this.toolStripBtnDevolucao.Click += new System.EventHandler(this.toolStripBtnDevolucao_Click);
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -468,7 +481,6 @@ namespace LocadoraVeiculos.WindowsApp
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Dashboard_FormClosed);
             this.panelTopo.ResumeLayout(false);
             this.panelTopo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelMenu.ResumeLayout(false);
             this.panelMenu.PerformLayout();
             this.panel4.ResumeLayout(false);
@@ -476,6 +488,7 @@ namespace LocadoraVeiculos.WindowsApp
             this.toolBoxAcoes.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -515,6 +528,7 @@ namespace LocadoraVeiculos.WindowsApp
         private System.Windows.Forms.Button btnTaxasServicos;
         private System.Windows.Forms.Button btnLocacoes;
         private System.Windows.Forms.Button btnCadastrarDevolucoes;
+        private System.Windows.Forms.ToolStripButton toolStripBtnDevolucao;
     }
 }
 

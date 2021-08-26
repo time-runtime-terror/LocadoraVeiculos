@@ -130,5 +130,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         {
             throw new NotImplementedException();
         }
+
+        internal void RegistrarDevolucao()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

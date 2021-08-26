@@ -27,7 +27,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
         public bool BotaoAdicionar => true;
 
-        public bool BotaoDevolucao => throw new NotImplementedException();
+        public bool BotaoDevolucao => true;
 
         public bool BotaoEditar => true;
 

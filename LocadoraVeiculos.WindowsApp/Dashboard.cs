@@ -173,6 +173,12 @@ namespace LocadoraVeiculos.WindowsApp
             txtPesquisa.Text = "Digite para Pesquisar";
             operacoes.DesagruparRegistros();
         }
+
+        private void toolStripBtnDevolucao_Click(object sender, EventArgs e)
+        {
+            if (operacoes is OperacoesLocacao)
+                ((OperacoesLocacao)operacoes).RegistrarDevolucao();
+        }
         #endregion
 
         #region Métodos Privados da Classe
@@ -218,6 +224,8 @@ namespace LocadoraVeiculos.WindowsApp
             toolStripBtnAgrupar.Enabled = configuracao.BotaoAgrupar;
             toolStripBtnDesagrupar.Enabled = configuracao.BotaoDesagrupar;
             toolStripBtnFiltrar.Enabled = configuracao.BotaoFiltrar;
+
+            toolStripBtnDevolucao.Visible = configuracao.BotaoDevolucao;
         }
 
         private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)
@@ -243,6 +251,5 @@ namespace LocadoraVeiculos.WindowsApp
             if (txtPesquisa.Text != "Digite para Pesquisar")
                 operacoes.Pesquisar(txtPesquisa.Text);
         }
-
     }
 }
