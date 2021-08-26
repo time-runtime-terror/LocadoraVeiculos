@@ -91,7 +91,7 @@ namespace LocadoraVeiculos.Dominio.LocacaoModule
             if (DataDevolucao == DateTime.MinValue)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Data de Devolução é obrigatório!";
 
-            if (DataDevolucao < DataSaida)
+            if (DataDevolucao.Date < DataSaida.Date)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Data de Devolução necessita ser maior que a de saida do veículo!";
 
             if(Caucao == 0)
