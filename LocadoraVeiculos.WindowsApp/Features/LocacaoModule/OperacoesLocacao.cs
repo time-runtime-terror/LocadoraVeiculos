@@ -3,6 +3,7 @@ using LocadoraVeiculos.Controladores.LocacaoModule;
 using LocadoraVeiculos.Controladores.TaxasServicosModule;
 using LocadoraVeiculos.Controladores.VeiculoModule;
 using LocadoraVeiculos.Dominio.LocacaoModule;
+using LocadoraVeiculos.WindowsApp.Features.DevolucaoModule;
 using LocadoraVeiculos.WindowsApp.Shared;
 using System;
 using System.Collections.Generic;
@@ -131,9 +132,36 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             throw new NotImplementedException();
         }
 
-        internal void RegistrarDevolucao()
+        public void RegistrarDevolucao()
         {
-            throw new NotImplementedException();
+            int id = tabelaLocacoes.ObtemIdSelecionado();
+
+            if (id == 0)
+            {
+                Dashboard.Instancia.AtualizarRodape($"Selecione um registro para poder devolver!");
+                return;
+            }
+
+            Locacao locacaoSelecionada = controladorLocacao.SelecionarPorId(id);
+
+            TelaRegistrarDevolucaoForm tela = new TelaRegistrarDevolucaoForm();
+
+            tela.Locacao = locacaoSelecionada;
+
+            if (tela.ShowDialog() == DialogResult.OK)
+            {
+                controladorLocacao.Editar(id, tela.Locacao);
+
+                controladorTaxasServicos.ExcluirTaxaUsada(tela.Locacao);
+
+                controladorTaxasServicos.InserirNovaTaxaUsada(tela.Locacao);
+
+                List<Locacao> locacoes = controladorLocacao.SelecionarTodos();
+
+                tabelaLocacoes.AtualizarRegistros(locacoes);
+
+                Dashboard.Instancia.AtualizarRodape($"Devolução da Locação: [{tela.Locacao.Id}] feita com sucesso!");
+            }
         }
     }
 }
