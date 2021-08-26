@@ -8,6 +8,7 @@ using LocadoraVeiculos.Dominio.LocacaoModule;
 namespace LocadoraVeiculos.Tests.LocacaoModule
 {
     [TestClass]
+    [TestCategory("Dominio")]
     public class LocacaoTest
     {
         byte[] foto = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20 };
