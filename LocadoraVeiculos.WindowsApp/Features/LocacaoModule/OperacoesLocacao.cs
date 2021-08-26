@@ -92,6 +92,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             {
                 controladorLocacao.Excluir(id);
 
+                controladorTaxasServicos.ExcluirTaxaUsada(locacaoSelecionada);
+
                 List<Locacao> locacoes = controladorLocacao.SelecionarTodos();
 
                 tabelaLocacoes.AtualizarRegistros(locacoes);
