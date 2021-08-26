@@ -72,6 +72,7 @@
     <Compile Include="GrupoAutomoveisModule\GrupoAutomoveisTest.cs" />
     <Compile Include="FuncionarioModule\ControladorFuncionarioTest.cs" />
     <Compile Include="LocacaoModule\LocacaoTest.cs" />
+    <Compile Include="LocacaoModule\ControladorLocacaoTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TaxasServicosModule\ControladorTaxasServicosTest.cs" />
     <Compile Include="TaxasServicosModule\TaxasServicosTest.cs" />

@@ -16,7 +16,7 @@ namespace LocadoraVeiculos.Tests.FuncionarioModule
         public ControladorFuncionarioTest()
         {
             controlador = new ControladorFuncionario();
-            Db.Update("DELETE FROM [TBCLIENTE]");
+            //Db.Update("DELETE FROM [TBCLIENTE]");
             Db.Update("DELETE FROM [TBFUNCIONARIO]");
         }
 
