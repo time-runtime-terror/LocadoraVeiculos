@@ -70,6 +70,9 @@ namespace LocadoraVeiculos.Dominio.LocacaoModule
             if (Cliente == null)
                 resultadoValidacao += "O Cliente deve ser inserido!";
 
+            else if(Cliente.TipoCadastro == "CNPJ" && Cliente.Empresa == null)
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "A empresa deve  ter um condutor!";
+
             if (Veiculo == null)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O Veículo deve ser inserido!";
 
