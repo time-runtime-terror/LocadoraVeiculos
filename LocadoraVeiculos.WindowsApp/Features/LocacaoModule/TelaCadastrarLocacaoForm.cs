@@ -19,6 +19,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         private readonly ControladorCliente controladorCliente;
         private readonly ControladorVeiculo controladorVeiculo;
 
+        private List<TaxasServicos> taxasSelecionadas;
+
         private Locacao locacao;
         public Locacao Locacao
         {
@@ -30,20 +32,25 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                 txtId.Text = locacao.Id.ToString();
 
-                cmbCliente.SelectedItem = (cmbCliente.Items.Contains(locacao.Cliente)) ?
-                    locacao.Cliente : null;
+                cmbCliente.SelectedItem = locacao.Cliente;
 
                 cmbVeiculo.SelectedItem = (cmbVeiculo.Items.Contains(locacao.Veiculo)) ? locacao.Veiculo : null;
 
                 cmbPlano.SelectedItem = (cmbPlano.Items.Contains(locacao.Plano)) ?
                     locacao.Plano : null;
-
+                
                 txtValorEntrada.Text = locacao.Caucao.ToString();
 
-                List<TaxasServicos> taxasUtilizdas = controladorTaxasServicos.SelecionarTaxasServicosUsados(locacao.Id);
+                dateDataSaida.Value = locacao.DataSaida;
 
-                foreach (var taxa in taxasUtilizdas)
-                    listaTaxasServicos.Items.Add(taxa);
+                dateDataDevolucao.Value = locacao.DataDevolucao;
+
+                taxasSelecionadas = locacao.Taxas;
+
+                if (taxasSelecionadas != null)
+                    foreach (var taxa in taxasSelecionadas)
+                        if (!listaTaxasServicos.Items.Contains(taxa))
+                            listaTaxasServicos.Items.Add(taxa);
             }
         }
 
@@ -57,8 +64,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
         private void TelaCadastrarLocacaoForm_Load(object sender, EventArgs e)
         {
-            foreach (var taxa in controladorTaxasServicos.SelecionarTodos())
-                listaTaxasServicos.Items.Add(taxa);
+            //foreach (var taxa in controladorTaxasServicos.SelecionarTodos())
+            //    listaTaxasServicos.Items.Add(taxa);
+
 
             List<Cliente> clientes = controladorCliente.SelecionarTodos();
 
@@ -96,21 +104,21 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
         }
 
-        private void listaTaxasServicos_ItemCheck(object sender, ItemCheckEventArgs e)
-        {
-            List<TaxasServicos> taxasSelecionadas = new List<TaxasServicos>();
+        //private void listaTaxasServicos_ItemCheck(object sender, ItemCheckEventArgs e)
+        //{
+        //    List<TaxasServicos> taxasSelecionadas = new List<TaxasServicos>();
 
-            foreach (var item in listaTaxasServicos.CheckedItems)
-                taxasSelecionadas.Add((TaxasServicos)item);
+        //    foreach (var item in listaTaxasServicos.CheckedItems)
+        //        taxasSelecionadas.Add((TaxasServicos)item);
 
-            if (e.NewValue == CheckState.Checked)
-                taxasSelecionadas.Add((TaxasServicos)listaTaxasServicos.Items[e.Index]);
+        //    if (e.NewValue == CheckState.Checked)
+        //        taxasSelecionadas.Add((TaxasServicos)listaTaxasServicos.Items[e.Index]);
 
-            else
-                taxasSelecionadas.Remove((TaxasServicos)listaTaxasServicos.Items[e.Index]);
+        //    else
+        //        taxasSelecionadas.Remove((TaxasServicos)listaTaxasServicos.Items[e.Index]);
 
-            CalcularValorTotal(taxasSelecionadas);
-        }
+        //    CalcularValorTotal(taxasSelecionadas);
+        //}
 
         private void CalcularValorTotal(List<TaxasServicos> taxasSelecionadas)
         {
@@ -143,7 +151,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             List<TaxasServicos> taxasSelecionadas = new List<TaxasServicos>();
 
-            foreach (var item in listaTaxasServicos.CheckedItems)
+            foreach (var item in listaTaxasServicos.Items)
                 taxasSelecionadas.Add((TaxasServicos)item);
 
             locacao = new Locacao(cliente, veiculo, taxasSelecionadas, dataSaida, dataDevolucao, caucao, plano);
@@ -167,6 +175,20 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             {
                 Dashboard.Instancia.AtualizarRodape("Valor de Entrada: Por favor, apenas números.");
                 txtValorEntrada.Text = txtValorEntrada.Text.Remove(txtValorEntrada.Text.Length - 1);
+            }
+        }
+
+        private void btnSelecionarTaxas_Click(object sender, EventArgs e)
+        {
+            TelaSelecaoTaxasForm tela = new TelaSelecaoTaxasForm();
+
+            if (tela.ShowDialog() == DialogResult.OK)
+            {
+                taxasSelecionadas = tela.TaxasSelecionadas;
+
+                if (taxasSelecionadas != null)
+                    foreach (var taxa in taxasSelecionadas)
+                        listaTaxasServicos.Items.Add(taxa);
             }
         }
     }
