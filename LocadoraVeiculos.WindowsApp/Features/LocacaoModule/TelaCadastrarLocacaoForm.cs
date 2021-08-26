@@ -31,10 +31,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                 locacao = value;
 
                 txtId.Text = locacao.Id.ToString();
-
-                cmbCliente.SelectedItem = locacao.Cliente;
-
-                cmbVeiculo.SelectedItem = (cmbVeiculo.Items.Contains(locacao.Veiculo)) ? locacao.Veiculo : null;
+                
 
                 cmbPlano.SelectedItem = (cmbPlano.Items.Contains(locacao.Plano)) ?
                     locacao.Plano : null;
@@ -77,6 +74,30 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             foreach (var v in veiculos)
                 cmbVeiculo.Items.Add(v);
+
+            CarregarCmbClientes();
+
+            CarregarCmbVeiculos();
+            
+        }
+
+        private void CarregarCmbClientes()
+        {
+           if(locacao != null)
+            {
+                cmbCliente.SelectedItem = locacao.Cliente;
+                   
+                    
+            }
+        }
+
+        private void CarregarCmbVeiculos()
+        {
+            if (locacao != null)
+            {
+                cmbVeiculo.SelectedItem = locacao.Veiculo;
+
+            }
         }
 
         private void cmbCliente_SelectedIndexChanged(object sender, EventArgs e)
