@@ -180,7 +180,17 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
         private void btnSelecionarTaxas_Click(object sender, EventArgs e)
         {
-            TelaSelecaoTaxasForm tela = new TelaSelecaoTaxasForm();
+            
+
+            List<TaxasServicos> taxasSelecionadas = new List<TaxasServicos>();
+
+            if(listaTaxasServicos.Items.Count!= 0)
+            {
+                foreach (var item in listaTaxasServicos.Items)
+                    taxasSelecionadas.Add((TaxasServicos)item);
+            }
+
+            TelaSelecaoTaxasForm tela = new TelaSelecaoTaxasForm(taxasSelecionadas);
 
             if (tela.ShowDialog() == DialogResult.OK)
             {

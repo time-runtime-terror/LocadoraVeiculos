@@ -15,6 +15,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
     public partial class TelaSelecaoTaxasForm : Form
     {
         private List<TaxasServicos> taxasSelecionadas;
+        private List<TaxasServicos> taxasVindas;
+
         private readonly ControladorTaxasServicos controladorTaxasServicos;
 
         public List<TaxasServicos> TaxasSelecionadas
@@ -25,17 +27,32 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             {
                 taxasSelecionadas = value;
 
-                //foreach (var item in taxasSelecionadas)
-                //{
-                //    item.
-                //}
+                
+
+                
             }
         }
 
-        public TelaSelecaoTaxasForm()
+        public TelaSelecaoTaxasForm(List<TaxasServicos> taxasVindas)
         {
             InitializeComponent();
             controladorTaxasServicos = new ControladorTaxasServicos();
+
+            this.taxasVindas = taxasVindas;
+            
+        }
+
+        private void CarregarCheckBoxMarcado()
+        {
+
+            for (int count = 0; count < listaTaxasServicos.Items.Count; count++)
+            {
+                if (taxasVindas.Contains(((TaxasServicos)listaTaxasServicos.Items[count])))
+                {
+                    listaTaxasServicos.SetItemChecked(count, true);
+                }
+            }
+
         }
 
         private void TelaSelecaoTaxasForm_Load(object sender, EventArgs e)
@@ -43,24 +60,11 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             foreach (var taxa in controladorTaxasServicos.SelecionarTodos())
                 listaTaxasServicos.Items.Add(taxa);
 
-            if (taxasSelecionadas != null)
-                for (int i = 0; i < listaTaxasServicos.Items.Count; i++)
-                {
-                    if (listaTaxasServicos.Items[i] == taxasSelecionadas[i])
-                        listaTaxasServicos.SetItemChecked(i, true);
-                }
-        }
-
-        private void listaTaxasServicos_ItemCheck(object sender, ItemCheckEventArgs e)
-        {
-            //List<TaxasServicos> taxasSelecionadas = new List<TaxasServicos>();
-
-
-            //if (e.NewValue == CheckState.Checked)
-            //    taxasSelecionadas.Add((TaxasServicos)listaTaxasServicos.Items[e.Index]);
-
-            //else
-            //    taxasSelecionadas.Remove((TaxasServicos)listaTaxasServicos.Items[e.Index]);
+            if(taxasVindas.Count != 0)
+            {
+                CarregarCheckBoxMarcado();
+            }
+            
         }
 
         private void btnGravarTaxas_Click(object sender, EventArgs e)
@@ -69,6 +73,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             foreach (var item in listaTaxasServicos.CheckedItems)
                 taxasSelecionadas.Add((TaxasServicos)item);
+
+            
         }
     }
 }

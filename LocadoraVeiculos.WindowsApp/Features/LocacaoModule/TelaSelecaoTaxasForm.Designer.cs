@@ -42,7 +42,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             this.listaTaxasServicos.Name = "listaTaxasServicos";
             this.listaTaxasServicos.Size = new System.Drawing.Size(278, 154);
             this.listaTaxasServicos.TabIndex = 18;
-            this.listaTaxasServicos.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.listaTaxasServicos_ItemCheck);
+           
             // 
             // btnGravarTaxas
             // 
