@@ -51,7 +51,7 @@ namespace LocadoraVeiculos.Tests.LocacaoModule
             GrupoAutomoveis grupoAutomovel = new GrupoAutomoveis("Econômico", 100, 120, 140, 160, 100, 180);
             controladorGrupoAutomoveis.InserirNovo(grupoAutomovel);
 
-            Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", "70L", "2000km", grupoAutomovel);
+            Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, grupoAutomovel);
             controladorVeiculo.InserirNovo(veiculo);
 
             // action
@@ -74,7 +74,7 @@ namespace LocadoraVeiculos.Tests.LocacaoModule
             GrupoAutomoveis grupoAutomovel = new GrupoAutomoveis("Econômico", 100, 120, 140, 160, 100, 180);
             controladorGrupoAutomoveis.InserirNovo(grupoAutomovel);
 
-            Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", "70L", "2000km", grupoAutomovel);
+            Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, grupoAutomovel);
             controladorVeiculo.InserirNovo(veiculo);
 
             Locacao locacao = new Locacao(cliente, veiculo, null, DateTime.Now.Date, DateTime.Now.AddDays(2).Date, 200, "Diário");
@@ -87,7 +87,7 @@ namespace LocadoraVeiculos.Tests.LocacaoModule
             GrupoAutomoveis novoGrupoAutomovel = new GrupoAutomoveis("SUV", 200, 220, 240, 260, 200, 280);
             controladorGrupoAutomoveis.InserirNovo(novoGrupoAutomovel);
 
-            Veiculo novoVeiculo = new Veiculo(foto, "DEF-5634", "uno", "Chevrolet", "Gasolina", "50L", "20000km", novoGrupoAutomovel);
+            Veiculo novoVeiculo = new Veiculo(foto, "DEF-5634", "uno", "Chevrolet", "Gasolina", 50, 20000, novoGrupoAutomovel);
             controladorVeiculo.InserirNovo(novoVeiculo);
 
             Locacao novaLocacao = new Locacao(novoCliente, novoVeiculo, null, DateTime.Now.Date, DateTime.Now.AddDays(2).Date, 200, "Controlado");
@@ -112,7 +112,7 @@ namespace LocadoraVeiculos.Tests.LocacaoModule
             GrupoAutomoveis grupoAutomovel = new GrupoAutomoveis("Econômico", 100, 120, 140, 160, 100, 180);
             controladorGrupoAutomoveis.InserirNovo(grupoAutomovel);
 
-            Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", "70L", "2000km", grupoAutomovel);
+            Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, grupoAutomovel);
             controladorVeiculo.InserirNovo(veiculo);
 
             Locacao locacao = new Locacao(cliente, veiculo, null, DateTime.Now.Date, DateTime.Now.AddDays(2).Date, 200, "Diário");
@@ -136,7 +136,7 @@ namespace LocadoraVeiculos.Tests.LocacaoModule
             GrupoAutomoveis grupoAutomovel = new GrupoAutomoveis("Econômico", 100, 120, 140, 160, 100, 180);
             controladorGrupoAutomoveis.InserirNovo(grupoAutomovel);
 
-            Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", "70L", "2000km", grupoAutomovel);
+            Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, grupoAutomovel);
             controladorVeiculo.InserirNovo(veiculo);
 
             Locacao locacao = new Locacao(cliente, veiculo, null, DateTime.Now.Date, DateTime.Now.AddDays(2).Date, 200, "Diário");
@@ -161,7 +161,7 @@ namespace LocadoraVeiculos.Tests.LocacaoModule
             GrupoAutomoveis grupoAutomovel = new GrupoAutomoveis("Econômico", 100, 120, 140, 160, 100, 180);
             controladorGrupoAutomoveis.InserirNovo(grupoAutomovel);
 
-            Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", "70L", "2000km", grupoAutomovel);
+            Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, grupoAutomovel);
             controladorVeiculo.InserirNovo(veiculo);
 
             //locacao 2
@@ -171,7 +171,7 @@ namespace LocadoraVeiculos.Tests.LocacaoModule
             GrupoAutomoveis novoGrupoAutomovel = new GrupoAutomoveis("SUV", 200, 220, 240, 260, 200, 280);
             controladorGrupoAutomoveis.InserirNovo(novoGrupoAutomovel);
 
-            Veiculo novoVeiculo = new Veiculo(foto, "DEF-5634", "uno", "Chevrolet", "Gasolina", "50L", "20000km", novoGrupoAutomovel);
+            Veiculo novoVeiculo = new Veiculo(foto, "DEF-5634", "uno", "Chevrolet", "Gasolina", 70, 2000, novoGrupoAutomovel);
             controladorVeiculo.InserirNovo(novoVeiculo);
 
             
