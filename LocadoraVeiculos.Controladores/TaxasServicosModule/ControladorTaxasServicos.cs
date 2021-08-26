@@ -62,6 +62,13 @@ namespace LocadoraVeiculos.Controladores.TaxasServicosModule
                     WHERE 
                         ID = @ID";
 
+        private const string sqlExcluirTaxasServicosUsados =
+            @"DELETE 
+	                FROM
+                        TBTAXASSERVICOS_USADOS
+                    WHERE 
+                        ID_LOCACAO = @ID";
+
         private const string sqlSelecionarTaxasServicosPorId =
             @"SELECT
                         [ID],
@@ -145,6 +152,20 @@ namespace LocadoraVeiculos.Controladores.TaxasServicosModule
             try
             {
                 Db.Delete(sqlExcluirTaxasServicos, AdicionarParametro("ID", id));
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool ExcluirTaxaUsada(Locacao locacao)
+        {
+            try
+            {
+                Db.Delete(sqlExcluirTaxasServicosUsados, AdicionarParametro("ID", locacao.Id));
             }
             catch (Exception)
             {

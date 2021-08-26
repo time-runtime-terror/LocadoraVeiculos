@@ -63,9 +63,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             {
                 controladorLocacao.Editar(id, tela.Locacao);
 
-                //controladorTaxasServicos.InserirNovaTaxaUsada(tela.Locacao);
+                controladorTaxasServicos.ExcluirTaxaUsada(tela.Locacao);
 
-                controladorTaxasServicos.EditarTaxasUsadas(tela.Locacao);
+                controladorTaxasServicos.InserirNovaTaxaUsada(tela.Locacao);
 
                 List<Locacao> locacoes = controladorLocacao.SelecionarTodos();
 

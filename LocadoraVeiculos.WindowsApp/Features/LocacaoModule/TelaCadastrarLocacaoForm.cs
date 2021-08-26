@@ -186,6 +186,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             {
                 taxasSelecionadas = tela.TaxasSelecionadas;
 
+                listaTaxasServicos.Items.Clear();
                 if (taxasSelecionadas != null)
                     foreach (var taxa in taxasSelecionadas)
                         listaTaxasServicos.Items.Add(taxa);
