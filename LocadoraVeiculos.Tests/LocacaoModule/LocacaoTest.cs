@@ -115,7 +115,7 @@ namespace LocadoraVeiculos.Tests.LocacaoModule
             string resultado = locacao.Validar();
 
             string resultadoEsperado = "O Cliente deve ser inserido!" 
-                + Environment.NewLine 
+                + Environment.NewLine
                 + "O Veículo deve ser inserido!"
                 + Environment.NewLine
                 + "O campo Data de Devolução é obrigatório!"

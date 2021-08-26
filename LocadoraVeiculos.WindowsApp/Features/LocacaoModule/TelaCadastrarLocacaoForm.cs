@@ -92,7 +92,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             {
                 cmbCondutor.Enabled = true;
                 foreach (var c in clientes)
-                    if (c.TipoCadastro == "CPF" && c.Empresa.Nome == cliente.Nome)
+                    if (c.Empresa != null && c.TipoCadastro == "CPF" && c.Empresa.Nome == cliente.Nome)
                         cmbCondutor.Items.Add(c);
             }
             else
@@ -130,7 +130,19 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             Veiculo veiculo = (Veiculo)cmbVeiculo.SelectedItem;
 
             string plano = (string)cmbPlano.SelectedItem;
-            double caucao = Convert.ToDouble(txtValorEntrada.Text);
+
+            string caucaoStr = txtValorEntrada.Text;
+
+            double caucao;
+            if (string.IsNullOrEmpty(caucaoStr))
+            {
+                caucao = 0;
+            }
+            else
+            {
+                caucao = Convert.ToDouble(caucaoStr);
+            }
+            
 
             DateTime dataSaida = dateDataSaida.Value;
             DateTime dataDevolucao = dateDataDevolucao.Value;

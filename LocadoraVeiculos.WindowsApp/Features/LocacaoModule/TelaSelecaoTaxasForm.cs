@@ -73,8 +73,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             foreach (var item in listaTaxasServicos.CheckedItems)
                 taxasSelecionadas.Add((TaxasServicos)item);
-
-            
         }
     }
 }
