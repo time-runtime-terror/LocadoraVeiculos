@@ -192,5 +192,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                         listaTaxasServicos.Items.Add(taxa);
             }
         }
+
     }
 }
