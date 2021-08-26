@@ -56,7 +56,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
             get { return true; }
         }
 
-        public bool BotaoCadastro
+        public bool BotaoDevolucao
         {
             get { return true; }
         }

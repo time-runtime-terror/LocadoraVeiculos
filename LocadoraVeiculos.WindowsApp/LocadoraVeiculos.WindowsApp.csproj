@@ -95,6 +95,13 @@
       <DependentUpon>CombustivelControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Features\CombustivelModule\ConfiguracaoCombustivelToolBox.cs" />
+    <Compile Include="Features\DevolucaoModule\ConfiguracoesDevolucaoToolBox.cs" />
+    <Compile Include="Features\DevolucaoModule\TelaRegistrarDevolucaoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\DevolucaoModule\TelaRegistrarDevolucaoForm.Designer.cs">
+      <DependentUpon>TelaRegistrarDevolucaoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Features\FuncionarioModule\ConfiguracaoFuncionarioToolBox.cs" />
     <Compile Include="Features\FuncionarioModule\OperacoesFuncionario.cs" />
     <Compile Include="Features\FuncionarioModule\TabelaFuncionarioControl.cs">
@@ -209,6 +216,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Features\CombustivelModule\CombustivelControl.resx">
       <DependentUpon>CombustivelControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\DevolucaoModule\TelaRegistrarDevolucaoForm.resx">
+      <DependentUpon>TelaRegistrarDevolucaoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Features\FuncionarioModule\TabelaFuncionarioControl.resx">
       <DependentUpon>TabelaFuncionarioControl.cs</DependentUpon>

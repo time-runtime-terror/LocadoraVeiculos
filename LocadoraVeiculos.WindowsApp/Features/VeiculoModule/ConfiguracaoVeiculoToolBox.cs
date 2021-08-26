@@ -39,7 +39,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
 
         public bool BotaoAdicionar => true;
 
-        public bool BotaoCadastro => true;
+        public bool BotaoDevolucao => true;
 
         public bool BotaoEditar => true;
 

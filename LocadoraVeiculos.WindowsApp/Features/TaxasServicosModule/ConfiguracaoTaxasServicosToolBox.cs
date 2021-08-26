@@ -27,7 +27,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule
 
         public bool BotaoAdicionar => true;
 
-        public bool BotaoCadastro => throw new NotImplementedException();
+        public bool BotaoDevolucao => throw new NotImplementedException();
 
         public bool BotaoEditar => true;
 

@@ -50,7 +50,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.CombustivelModule
             get { return false; }
         }
 
-        public bool BotaoCadastro
+        public bool BotaoDevolucao
         {
             get { return false; }
         }

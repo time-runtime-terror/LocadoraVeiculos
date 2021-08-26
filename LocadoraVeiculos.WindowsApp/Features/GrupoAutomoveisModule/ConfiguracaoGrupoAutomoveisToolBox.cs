@@ -27,7 +27,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
 
         public bool BotaoAdicionar => true;
 
-        public bool BotaoCadastro => true;
+        public bool BotaoDevolucao => true;
 
         public bool BotaoEditar => true;
 

@@ -18,7 +18,7 @@ namespace LocadoraVeiculos.WindowsApp.Shared
 
         bool BarraPesquisa { get; }
         bool BotaoAdicionar { get; }
-        bool BotaoCadastro { get; }
+        bool BotaoDevolucao { get; }
         bool BotaoEditar { get; }
         bool BotaoExcluir { get; }
         bool BotaoFiltrar { get; }

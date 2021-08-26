@@ -14,6 +14,7 @@ using LocadoraVeiculos.WindowsApp.Features.CombustivelModule;
 using LocadoraVeiculos.Controladores.CombustivelModule;
 using LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule;
 using LocadoraVeiculos.WindowsApp.Features.LocacaoModule;
+using LocadoraVeiculos.WindowsApp.Features.DevolucaoModule;
 
 namespace LocadoraVeiculos.WindowsApp
 {
@@ -48,6 +49,19 @@ namespace LocadoraVeiculos.WindowsApp
             operacoes = new OperacoesLocacao();
 
             ConfigurarPainelRegistros();
+        }
+
+        private void btnCadastrarDevolucoes_Click(object sender, EventArgs e)
+        {
+            //ConfiguracoesDevolucaoToolBox config = new ConfiguracoesDevolucaoToolBox();
+
+            //ConfigurarToolBox(config);
+
+            //AtualizarRodape(config.TipoCadastro);
+
+            //operacoes = new OperacoesDevolucao();
+
+            //ConfigurarPainelRegistros();
         }
 
         private void btnCadastroClientes_Click(object sender, System.EventArgs e)

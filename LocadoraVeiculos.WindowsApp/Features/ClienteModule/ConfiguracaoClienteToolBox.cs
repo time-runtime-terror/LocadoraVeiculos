@@ -22,7 +22,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 
         public bool BotaoAdicionar => true;
 
-        public bool BotaoCadastro => throw new System.NotImplementedException();
+        public bool BotaoDevolucao => throw new System.NotImplementedException();
 
         public bool BotaoEditar => true;
 
