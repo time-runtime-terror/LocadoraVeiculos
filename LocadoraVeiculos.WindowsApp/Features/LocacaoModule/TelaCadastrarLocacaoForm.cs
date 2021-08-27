@@ -246,15 +246,36 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
         private void VerificarDisponibilidadeDeVeiculo()
         {
-            foreach (var item in controladorLocacao.SelecionarTodos())
+            if(locacao != null)
             {
-                if (item.Id != locacao.Id && item.Devolucao == "Pendente")
-                    if (item.Veiculo.Id == locacao.Veiculo.Id)
-                    {
-                        Dashboard.Instancia.AtualizarRodape($"O Veículo: [{locacao.Veiculo}] não está disponível para locação!");
-                        DialogResult = DialogResult.None;
-                    }
+                foreach (var item in controladorLocacao.SelecionarTodos())
+                {
+                    if (item.Id != locacao.Id && item.Devolucao == "Pendente")
+                        if (item.Veiculo.Id == locacao.Veiculo.Id)
+                        {
+                            Dashboard.Instancia.AtualizarRodape($"O Veículo: [{locacao.Veiculo}] não está disponível para locação!");
+                            DialogResult = DialogResult.None;
+                        }
+                }
+
             }
+            else
+            {
+                if ((Veiculo)cmbVeiculo.SelectedItem != null)
+                {
+                    Veiculo v = (Veiculo)cmbVeiculo.SelectedItem;
+                    foreach (var item in controladorLocacao.SelecionarTodos())
+                    {
+                        if (item.Veiculo.Id == v.Id)
+                        {
+                            Dashboard.Instancia.AtualizarRodape($"O Veículo: [{v}] não está disponível para locação!");
+                            DialogResult = DialogResult.None;
+                        }
+                    }
+                }
+
+            }
+
         }
 
         private void CalcularValorTotal(List<TaxasServicos> taxasSelecionadas)
@@ -267,8 +288,12 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             else
                 caucao = Convert.ToDouble(strCaucao);
 
-            foreach (var item in taxasSelecionadas)
-                total += item.Taxa;
+            if(taxasSelecionadas != null)
+            {
+                foreach (var item in taxasSelecionadas)
+                    total += item.Taxa;
+            }
+            
 
             total += caucao;
 
