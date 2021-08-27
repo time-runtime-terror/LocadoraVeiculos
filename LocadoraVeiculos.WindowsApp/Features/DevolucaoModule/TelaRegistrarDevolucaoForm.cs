@@ -71,6 +71,23 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
 
             double diasPassados = (dateDataDevolucao.Value - locacao.DataSaida.Date).TotalDays;
 
+            switch (locacao.Plano)
+            {
+                case "Plano Diário":
+                    total += locacao.Veiculo.GrupoAutomoveis.PlanoDiarioUm * diasPassados;
+                    //total += (kmsRodados - locacao.Veiculo.Quilometragem) * locacao.Veiculo.GrupoAutomoveis.PlanoDiarioDois;
+                    break;
+
+                case "Km Controlado":
+                    total += locacao.Veiculo.GrupoAutomoveis.KmControladoUm * diasPassados;
+                    //total += (kmsRodados - (locacao.Veiculo.Quilometragem - 100)) * diasPassados;
+                    break;
+
+                case "Km Livre":
+                    total += locacao.Veiculo.GrupoAutomoveis.KmLivreUm * diasPassados;
+                    break;
+            }
+
             if (taxasSelecionadas != null || taxasSelecionadas.Count != 0)
                 foreach (var item in taxasSelecionadas)
                 {
