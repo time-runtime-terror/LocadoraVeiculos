@@ -66,7 +66,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         {
            
 
-
             List<Cliente> clientes = controladorCliente.SelecionarTodos();
 
             foreach (var c in clientes)
@@ -79,6 +78,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             CarregarCmbClientes();
 
+            
+
             CarregarCmbVeiculos();
             
         }
@@ -88,6 +89,17 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
            if(locacao != null)
             {
                 cmbCliente.SelectedItem = locacao.Cliente; 
+
+                if(locacao.Cliente.TipoCadastro == "CNPJ")
+                {
+                    cmbCondutor.Enabled = true;
+                    cmbCondutor.SelectedItem = locacao.Condutor;
+                    
+                }
+                else
+                {
+                    cmbCondutor.Enabled = false;
+                }
             }
         }
 
@@ -106,12 +118,16 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             Cliente cliente = (Cliente)cmbCliente.SelectedItem;
 
+            string condutor = null;
+
             if (cliente.TipoCadastro == "CNPJ")
             {
                 cmbCondutor.Enabled = true;
                 foreach (var c in clientes)
                     if (c.Empresa != null && c.TipoCadastro == "CPF" && c.Empresa.Nome == cliente.Nome)
-                        cmbCondutor.Items.Add(c);
+                        condutor = c.Nome;
+
+                        cmbCondutor.Items.Add(condutor);
             }
             else
             {
@@ -149,6 +165,18 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             string plano = (string)cmbPlano.SelectedItem;
 
+            string condutor = null;
+            if ((string)cmbCondutor.SelectedItem != null)
+            {
+                condutor = (string)cmbCondutor.SelectedItem;
+            }
+            
+          
+
+            //if ((string)cmbCondutor.SelectedItem != null) {
+            //    condutor = (
+            //}
+
             string caucaoStr = txtValorEntrada.Text;
 
             double caucao;
@@ -170,7 +198,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             foreach (var item in listaTaxasServicos.Items)
                 taxasSelecionadas.Add((TaxasServicos)item);
 
-            locacao = new Locacao(cliente, veiculo, taxasSelecionadas, dataSaida, dataDevolucao, caucao, plano);
+            locacao = new Locacao(cliente, veiculo, taxasSelecionadas, dataSaida, dataDevolucao, caucao, plano, condutor);
 
             string resultadoValidacao = locacao.Validar();
 

@@ -16,10 +16,11 @@ namespace LocadoraVeiculos.Dominio.LocacaoModule
         public DateTime DataDevolucao { get; set; }
         public double Caucao { get; set; }
         public string Plano { get; set; }
+        public string Condutor { get;  set; }
         public string Devolucao { get; set; }
 
         public Locacao(Cliente clienteEscolhido, Veiculo veiculoEscolhido, List<TaxasServicos> taxas,
-            DateTime dataSaida, DateTime dataDevolucao, double caucao, string planoEscolhido)
+            DateTime dataSaida, DateTime dataDevolucao, double caucao, string planoEscolhido, string condutor)
         {
             Cliente = clienteEscolhido;
             Veiculo = veiculoEscolhido;
@@ -28,6 +29,7 @@ namespace LocadoraVeiculos.Dominio.LocacaoModule
             DataDevolucao = dataDevolucao;
             Caucao = caucao;
             Plano = planoEscolhido;
+            Condutor = condutor;
         }
 
         public Locacao(Cliente clienteEscolhido, Veiculo veiculoEscolhido, List<TaxasServicos> taxas,
@@ -59,6 +61,9 @@ namespace LocadoraVeiculos.Dominio.LocacaoModule
                    DataSaida == locacao.DataSaida &&
                    DataDevolucao == locacao.DataDevolucao &&
                    Caucao == locacao.Caucao &&
+                   Plano == locacao.Plano &&
+                   Condutor == locacao.Condutor
+                   ;
                    Devolucao == locacao.Devolucao &&
                    Plano == locacao.Plano;
         }
@@ -85,7 +90,7 @@ namespace LocadoraVeiculos.Dominio.LocacaoModule
             if (Cliente == null)
                 resultadoValidacao += "O Cliente deve ser inserido!";
 
-            else if(Cliente.TipoCadastro == "CNPJ" && Cliente.Empresa == null)
+            else if(Cliente.TipoCadastro == "CNPJ" && Condutor == null)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "A empresa deve  ter um condutor!";
 
             if (Veiculo == null)

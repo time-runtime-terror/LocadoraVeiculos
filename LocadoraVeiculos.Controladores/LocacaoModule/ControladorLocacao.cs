@@ -24,6 +24,8 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
 		                [DATASAIDA],
                         [DATADEVOLUCAO], 
                         [CAUCAO],
+                        [CONDUTOR]
+                        [CAUCAO],
                         [DEVOLUCAO]
 	                ) 
 	                VALUES
@@ -33,6 +35,8 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
                         @PLANO,
 		                @DATASAIDA, 
 		                @DATADEVOLUCAO,
+                        @CAUCAO,
+                        @CONDUTOR
                         @CAUCAO,
                         @DEVOLUCAO
 	                )";
@@ -45,7 +49,8 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
 		                [PLANO] = @PLANO,
                         [DATASAIDA] = @DATASAIDA,
                         [DATADEVOLUCAO] = @DATADEVOLUCAO,
-                        [CAUCAO] = @CAUCAO
+                        [CAUCAO] = @CAUCAO,
+                        [CONDUTOR] = @CONDUTOR
                     WHERE 
                         ID = @ID";
 
@@ -72,6 +77,7 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
 		                LO.[DATADEVOLUCAO], 
 		                LO.[PLANO],
 		                LO.[CAUCAO],
+                        LO.[CONDUTOR],
                         LO.[DEVOLUCAO]
 	                FROM
                         [TBLOCACAO] AS LO JOIN
@@ -92,6 +98,9 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
 		                LO.[DATASAIDA], 
 		                LO.[DATADEVOLUCAO], 
 		                LO.[PLANO],
+		                LO.[CAUCAO],
+                        LO.[CONDUTOR]
+
 		                LO.[CAUCAO],
                         LO.[DEVOLUCAO]
 	                FROM
@@ -213,6 +222,7 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
             parametros.Add("DATASAIDA", locacao.DataSaida);
             parametros.Add("DATADEVOLUCAO", locacao.DataDevolucao);
             parametros.Add("CAUCAO", locacao.Caucao);
+            parametros.Add("CONDUTOR", locacao.Condutor);
             parametros.Add("DEVOLUCAO", "Pendente");
 
             return parametros;
@@ -223,11 +233,18 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
             int id = Convert.ToInt32(reader["ID"]);
             int idVeiculo = Convert.ToInt32(reader["ID_VEICULO"]);
             int idCliente = Convert.ToInt32(reader["ID_CLIENTE"]);
+            string condutor = "";
             string plano = Convert.ToString(reader["PLANO"]);
             DateTime dataSaida = Convert.ToDateTime(reader["DATASAIDA"]);
             DateTime dataDevolucao = Convert.ToDateTime(reader["DATADEVOLUCAO"]);
             double caucao = Convert.ToDouble(reader["CAUCAO"]);
             string devolucao = Convert.ToString(reader["DEVOLUCAO"]);
+
+            if(reader["CONDUTOR"] != DBNull.Value)
+            {
+                condutor = Convert.ToString(reader["CONDUTOR"]);
+            }
+
 
             Veiculo veiculo = controladorVeiculo.SelecionarPorId(idVeiculo);
             Cliente cliente = controladorCliente.SelecionarPorId(idCliente);
@@ -237,6 +254,7 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
             List<TaxasServicos> taxasSelecionadas = (taxas.Count == 0) ? null : taxas;
 
             Locacao locacao = new Locacao(cliente, veiculo, taxasSelecionadas, dataSaida, dataDevolucao,
+                caucao, plano, condutor);
                 caucao, plano, devolucao);
 
             locacao.Id = id;
