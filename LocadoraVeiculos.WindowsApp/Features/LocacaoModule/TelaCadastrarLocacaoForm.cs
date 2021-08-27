@@ -187,7 +187,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         {
             foreach (var item in controladorLocacao.SelecionarTodos())
             {
-                if (item.Veiculo.Modelo == locacao.Veiculo.Modelo)
+                if ((item.Id != locacao.Id && item.Devolucao == "Pendente") && item.Veiculo.Placa == locacao.Veiculo.Placa)
                 {
                     Dashboard.Instancia.AtualizarRodape($"O Veículo: [{locacao.Veiculo}] não está disponível para locação!");
                     DialogResult = DialogResult.None;
