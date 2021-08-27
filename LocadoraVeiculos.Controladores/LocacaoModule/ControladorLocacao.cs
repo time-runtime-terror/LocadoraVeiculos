@@ -108,6 +108,50 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
                     ON
                         VE.ID = LO.ID_VEICULO";
 
+        private const string sqlSelecionarTodasLocacoesConcluidas =
+            @"SELECT
+                        LO.[ID],
+		                LO.[ID_CLIENTE], 
+		                LO.[ID_VEICULO], 
+		                LO.[DATASAIDA], 
+		                LO.[DATADEVOLUCAO], 
+		                LO.[PLANO],
+		                LO.[CAUCAO],
+                        LO.[CONDUTOR],
+                        LO.[DEVOLUCAO]
+	                FROM
+                        [TBLOCACAO] AS LO JOIN
+                        [TBCLIENTE] AS CL
+                        ON
+                        CL.ID = LO.ID_CLIENTE JOIN
+                        [TBVEICULO] AS VE
+                    ON
+                        VE.ID = LO.ID_VEICULO
+                    WHERE
+                        LO.[DEVOLUCAO] != 'Pendente'";
+
+        private const string sqlSelecionarTodasLocacoesPendentes =
+            @"SELECT
+                        LO.[ID],
+		                LO.[ID_CLIENTE], 
+		                LO.[ID_VEICULO], 
+		                LO.[DATASAIDA], 
+		                LO.[DATADEVOLUCAO], 
+		                LO.[PLANO],
+		                LO.[CAUCAO],
+                        LO.[CONDUTOR],
+                        LO.[DEVOLUCAO]
+	                FROM
+                        [TBLOCACAO] AS LO JOIN
+                        [TBCLIENTE] AS CL
+                        ON
+                        CL.ID = LO.ID_CLIENTE JOIN
+                        [TBVEICULO] AS VE
+                    ON
+                        VE.ID = LO.ID_VEICULO
+                    WHERE
+                        LO.[DEVOLUCAO] = 'Pendente'";
+
         private const string sqlExisteLocacao =
             @"SELECT 
                 COUNT(*) 
@@ -201,6 +245,15 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
         {
             return Db.GetAll(sqlSelecionarTodasLocacoes, ConverterEmLocacao);
         }
+        public List<Locacao> SelecionarTodasLocacoesConcluidas()
+        {
+            return Db.GetAll(sqlSelecionarTodasLocacoesConcluidas, ConverterEmLocacao);
+        }
+
+        public List<Locacao> SelecionarTodasLocacoesPendentes()
+        {
+            return Db.GetAll(sqlSelecionarTodasLocacoesPendentes, ConverterEmLocacao);
+        }
 
         public override List<Locacao> Pesquisar(string texto)
         {
@@ -237,16 +290,7 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
             string devolucao = Convert.ToString(reader["DEVOLUCAO"]);
 
             if(reader["CONDUTOR"] != DBNull.Value)
-            {
                 condutor = Convert.ToString(reader["CONDUTOR"]);
-            }
-
-
-            if(reader["CONDUTOR"] != DBNull.Value)
-            {
-                condutor = Convert.ToString(reader["CONDUTOR"]);
-            }
-
 
             Veiculo veiculo = controladorVeiculo.SelecionarPorId(idVeiculo);
             Cliente cliente = controladorCliente.SelecionarPorId(idCliente);

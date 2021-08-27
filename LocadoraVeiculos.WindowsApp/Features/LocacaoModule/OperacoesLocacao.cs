@@ -114,11 +114,11 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                 switch (telaFiltro.TipoFiltro)
                 {
                     case FiltroLocacaoEnum.LocacoesConcluidas:
-                        locacoes = controladorLocacao.SelecionarTodos().FindAll(x => x.Devolucao != "Pendente");
+                        locacoes = controladorLocacao.SelecionarTodasLocacoesConcluidas();
                         break;
 
                     case FiltroLocacaoEnum.LocacoesPendentes:
-                        locacoes = controladorLocacao.SelecionarTodos().FindAll(x => x.Devolucao == "Pendente");
+                        locacoes = controladorLocacao.SelecionarTodasLocacoesPendentes();
                         break;
 
                     default:
@@ -168,7 +168,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                //controladorLocacao.Editar(id, tela.Locacao);
                 controladorLocacao.RegistrarDevolucao(tela.Locacao);
 
                 controladorTaxasServicos.ExcluirTaxaUsada(tela.Locacao);
