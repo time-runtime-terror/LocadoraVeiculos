@@ -41,6 +41,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             this.gridLocacoes.Name = "gridLocacoes";
             this.gridLocacoes.Size = new System.Drawing.Size(359, 278);
             this.gridLocacoes.TabIndex = 0;
+            this.gridLocacoes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridLocacoes_CellClick);
+            this.gridLocacoes.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridLocacoes_RowEnter);
             // 
             // TabelaLocacaoControl
             // 

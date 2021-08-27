@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculos.Controladores.ClienteModule;
+using LocadoraVeiculos.Controladores.LocacaoModule;
 using LocadoraVeiculos.Controladores.TaxasServicosModule;
 using LocadoraVeiculos.Controladores.VeiculoModule;
 using LocadoraVeiculos.Dominio.ClienteModule;
@@ -18,6 +19,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         private readonly ControladorTaxasServicos controladorTaxasServicos;
         private readonly ControladorCliente controladorCliente;
         private readonly ControladorVeiculo controladorVeiculo;
+        private readonly ControladorLocacao controladorLocacao;
 
         private List<TaxasServicos> taxasSelecionadas;
 
@@ -60,6 +62,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             controladorTaxasServicos = new ControladorTaxasServicos();
             controladorCliente = new ControladorCliente();
             controladorVeiculo = new ControladorVeiculo();
+            controladorLocacao = new ControladorLocacao(controladorCliente, controladorVeiculo, controladorTaxasServicos);
         }
 
         private void TelaCadastrarLocacaoForm_Load(object sender, EventArgs e)
@@ -120,23 +123,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         //    CalcularValorTotal(taxasSelecionadas);
         //}
 
-        private void CalcularValorTotal(List<TaxasServicos> taxasSelecionadas)
-        {
-            string strCaucao = txtValorEntrada.Text;
-            double caucao, total = 0;
-
-            if (string.IsNullOrEmpty(strCaucao))
-                caucao = 0;
-            else
-                caucao = Convert.ToDouble(strCaucao);
-
-            foreach (var item in taxasSelecionadas)
-                total += item.Taxa;
-
-            total += caucao;
-
-            lblValorTotal.Text = total.ToString();
-        }
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
@@ -157,6 +143,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             locacao = new Locacao(cliente, veiculo, taxasSelecionadas, dataSaida, dataDevolucao, caucao, plano);
 
             string resultadoValidacao = locacao.Validar();
+
+            VeriricarDisponibilidadeDeVeiculo();
 
             if (resultadoValidacao != "ESTA_VALIDO")
             {
@@ -190,7 +178,40 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                 if (taxasSelecionadas != null)
                     foreach (var taxa in taxasSelecionadas)
                         listaTaxasServicos.Items.Add(taxa);
+
+                CalcularValorTotal(taxasSelecionadas);
             }
         }
+
+        private void VeriricarDisponibilidadeDeVeiculo()
+        {
+            foreach (var item in controladorLocacao.SelecionarTodos())
+            {
+                if (item.Veiculo.Modelo == locacao.Veiculo.Modelo)
+                {
+                    Dashboard.Instancia.AtualizarRodape($"O Veículo: [{locacao.Veiculo}] não está disponível para locação!");
+                    DialogResult = DialogResult.None;
+                }
+            }
+        }
+
+        private void CalcularValorTotal(List<TaxasServicos> taxasSelecionadas)
+        {
+            string strCaucao = txtValorEntrada.Text;
+            double caucao, total = 0;
+
+            if (string.IsNullOrEmpty(strCaucao))
+                caucao = 0;
+            else
+                caucao = Convert.ToDouble(strCaucao);
+
+            foreach (var item in taxasSelecionadas)
+                total += item.Taxa;
+
+            total += caucao;
+
+            lblValorTotal.Text = total.ToString();
+        }
+
     }
 }

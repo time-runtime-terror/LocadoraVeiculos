@@ -90,6 +90,12 @@ namespace LocadoraVeiculos.WindowsApp
             ConfigurarPainelRegistros();
         }
 
+        internal void HabilitarBotoesIndisponiveisParaDevolucao()
+        {
+            toolStripBtnDevolucao.Enabled = true;
+            toolStripBtnEditar.Enabled = true;
+        }
+
         private void btnCadastroVeiculoModules_Click(object sender, System.EventArgs e)
         {
             ConfiguracaoVeiculoToolBox configuracao = new ConfiguracaoVeiculoToolBox();
@@ -155,6 +161,12 @@ namespace LocadoraVeiculos.WindowsApp
         private void toolStripBtnExcluir_Click(object sender, EventArgs e)
         {
             operacoes.ExcluirRegistro();
+        }
+
+        public void DesabilitarBotoesIndisponiveisParaDevolucao()
+        {
+            toolStripBtnDevolucao.Enabled = false;
+            toolStripBtnEditar.Enabled = false;
         }
 
         private void toolStripBtnFiltrar_Click(object sender, System.EventArgs e)

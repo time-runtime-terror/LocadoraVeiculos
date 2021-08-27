@@ -127,11 +127,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             return tabelaLocacoes;
         }
 
-        public void Pesquisar(string text)
-        {
-            throw new NotImplementedException();
-        }
-
         public void RegistrarDevolucao()
         {
             int id = tabelaLocacoes.ObtemIdSelecionado();
@@ -164,5 +159,11 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                 Dashboard.Instancia.AtualizarRodape($"Devolução da Locação: [{tela.Locacao.Id}] feita com sucesso!");
             }
         }
+
+        public void Pesquisar(string text)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

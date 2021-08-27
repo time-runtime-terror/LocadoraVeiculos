@@ -35,6 +35,7 @@ namespace LocadoraVeiculos.WindowsApp
             this.label4 = new System.Windows.Forms.Label();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.btnCadastrarDevolucoes = new System.Windows.Forms.Button();
             this.btnLocacoes = new System.Windows.Forms.Button();
             this.btnConfiguracoes = new System.Windows.Forms.Button();
             this.btnTaxasServicos = new System.Windows.Forms.Button();
@@ -55,15 +56,14 @@ namespace LocadoraVeiculos.WindowsApp
             this.panelRegistros = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.labelRodape = new System.Windows.Forms.ToolStripStatusLabel();
-            this.btnCadastrarDevolucoes = new System.Windows.Forms.Button();
             this.toolStripBtnAdicionar = new System.Windows.Forms.ToolStripButton();
             this.toolStripBtnEditar = new System.Windows.Forms.ToolStripButton();
             this.toolStripBtnExcluir = new System.Windows.Forms.ToolStripButton();
             this.toolStripBtnFiltrar = new System.Windows.Forms.ToolStripButton();
             this.toolStripBtnAgrupar = new System.Windows.Forms.ToolStripButton();
             this.toolStripBtnDesagrupar = new System.Windows.Forms.ToolStripButton();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.toolStripBtnDevolucao = new System.Windows.Forms.ToolStripButton();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelTopo.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -133,6 +133,21 @@ namespace LocadoraVeiculos.WindowsApp
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(233, 500);
             this.panel4.TabIndex = 1;
+            // 
+            // btnCadastrarDevolucoes
+            // 
+            this.btnCadastrarDevolucoes.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnCadastrarDevolucoes.FlatAppearance.BorderSize = 0;
+            this.btnCadastrarDevolucoes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCadastrarDevolucoes.Font = new System.Drawing.Font("Arial", 12F);
+            this.btnCadastrarDevolucoes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
+            this.btnCadastrarDevolucoes.Location = new System.Drawing.Point(0, 424);
+            this.btnCadastrarDevolucoes.Name = "btnCadastrarDevolucoes";
+            this.btnCadastrarDevolucoes.Size = new System.Drawing.Size(233, 60);
+            this.btnCadastrarDevolucoes.TabIndex = 8;
+            this.btnCadastrarDevolucoes.Text = "Devoluções";
+            this.btnCadastrarDevolucoes.UseVisualStyleBackColor = true;
+            this.btnCadastrarDevolucoes.Click += new System.EventHandler(this.btnCadastrarDevolucoes_Click);
             // 
             // btnLocacoes
             // 
@@ -353,21 +368,6 @@ namespace LocadoraVeiculos.WindowsApp
             this.labelRodape.Size = new System.Drawing.Size(90, 17);
             this.labelRodape.Text = "Tudo certo ;)";
             // 
-            // btnCadastrarDevolucoes
-            // 
-            this.btnCadastrarDevolucoes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnCadastrarDevolucoes.FlatAppearance.BorderSize = 0;
-            this.btnCadastrarDevolucoes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCadastrarDevolucoes.Font = new System.Drawing.Font("Arial", 12F);
-            this.btnCadastrarDevolucoes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
-            this.btnCadastrarDevolucoes.Location = new System.Drawing.Point(0, 424);
-            this.btnCadastrarDevolucoes.Name = "btnCadastrarDevolucoes";
-            this.btnCadastrarDevolucoes.Size = new System.Drawing.Size(233, 60);
-            this.btnCadastrarDevolucoes.TabIndex = 8;
-            this.btnCadastrarDevolucoes.Text = "Devoluções";
-            this.btnCadastrarDevolucoes.UseVisualStyleBackColor = true;
-            this.btnCadastrarDevolucoes.Click += new System.EventHandler(this.btnCadastrarDevolucoes_Click);
-            // 
             // toolStripBtnAdicionar
             // 
             this.toolStripBtnAdicionar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -441,6 +441,18 @@ namespace LocadoraVeiculos.WindowsApp
             this.toolStripBtnDesagrupar.ToolTipText = "Desagrupar";
             this.toolStripBtnDesagrupar.Click += new System.EventHandler(this.toolStripBtnDesagrupar_Click);
             // 
+            // toolStripBtnDevolucao
+            // 
+            this.toolStripBtnDevolucao.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBtnDevolucao.Image = global::LocadoraVeiculos.WindowsApp.Properties.Resources.outline_car_rental_black_24dp1;
+            this.toolStripBtnDevolucao.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripBtnDevolucao.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBtnDevolucao.Name = "toolStripBtnDevolucao";
+            this.toolStripBtnDevolucao.Size = new System.Drawing.Size(52, 52);
+            this.toolStripBtnDevolucao.Text = "toolStripButton1";
+            this.toolStripBtnDevolucao.Visible = false;
+            this.toolStripBtnDevolucao.Click += new System.EventHandler(this.toolStripBtnDevolucao_Click);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::LocadoraVeiculos.WindowsApp.Properties.Resources.sedan;
@@ -450,17 +462,6 @@ namespace LocadoraVeiculos.WindowsApp
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            // 
-            // toolStripBtnDevolucao
-            // 
-            this.toolStripBtnDevolucao.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripBtnDevolucao.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtnDevolucao.Image")));
-            this.toolStripBtnDevolucao.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripBtnDevolucao.Name = "toolStripBtnDevolucao";
-            this.toolStripBtnDevolucao.Size = new System.Drawing.Size(24, 52);
-            this.toolStripBtnDevolucao.Text = "toolStripButton1";
-            this.toolStripBtnDevolucao.Visible = false;
-            this.toolStripBtnDevolucao.Click += new System.EventHandler(this.toolStripBtnDevolucao_Click);
             // 
             // Dashboard
             // 
