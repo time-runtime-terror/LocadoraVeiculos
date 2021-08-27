@@ -35,7 +35,6 @@ namespace LocadoraVeiculos.WindowsApp
             this.label4 = new System.Windows.Forms.Label();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.btnCadastrarDevolucoes = new System.Windows.Forms.Button();
             this.btnLocacoes = new System.Windows.Forms.Button();
             this.btnConfiguracoes = new System.Windows.Forms.Button();
             this.btnTaxasServicos = new System.Windows.Forms.Button();
@@ -121,7 +120,6 @@ namespace LocadoraVeiculos.WindowsApp
             // 
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel4.Controls.Add(this.btnCadastrarDevolucoes);
             this.panel4.Controls.Add(this.btnLocacoes);
             this.panel4.Controls.Add(this.btnConfiguracoes);
             this.panel4.Controls.Add(this.btnTaxasServicos);
@@ -131,23 +129,8 @@ namespace LocadoraVeiculos.WindowsApp
             this.panel4.Controls.Add(this.btnCadastroClientes);
             this.panel4.Location = new System.Drawing.Point(3, 76);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(233, 500);
+            this.panel4.Size = new System.Drawing.Size(233, 431);
             this.panel4.TabIndex = 1;
-            // 
-            // btnCadastrarDevolucoes
-            // 
-            this.btnCadastrarDevolucoes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnCadastrarDevolucoes.FlatAppearance.BorderSize = 0;
-            this.btnCadastrarDevolucoes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCadastrarDevolucoes.Font = new System.Drawing.Font("Arial", 12F);
-            this.btnCadastrarDevolucoes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
-            this.btnCadastrarDevolucoes.Location = new System.Drawing.Point(0, 424);
-            this.btnCadastrarDevolucoes.Name = "btnCadastrarDevolucoes";
-            this.btnCadastrarDevolucoes.Size = new System.Drawing.Size(233, 60);
-            this.btnCadastrarDevolucoes.TabIndex = 8;
-            this.btnCadastrarDevolucoes.Text = "Devoluções";
-            this.btnCadastrarDevolucoes.UseVisualStyleBackColor = true;
-            this.btnCadastrarDevolucoes.Click += new System.EventHandler(this.btnCadastrarDevolucoes_Click);
             // 
             // btnLocacoes
             // 
@@ -528,7 +511,6 @@ namespace LocadoraVeiculos.WindowsApp
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnTaxasServicos;
         private System.Windows.Forms.Button btnLocacoes;
-        private System.Windows.Forms.Button btnCadastrarDevolucoes;
         private System.Windows.Forms.ToolStripButton toolStripBtnDevolucao;
     }
 }

@@ -105,7 +105,28 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
         public void FiltrarRegistros()
         {
-            throw new NotImplementedException();
+            FiltroLocacaoForm telaFiltro = new FiltroLocacaoForm();
+
+            if (telaFiltro.ShowDialog() == DialogResult.OK)
+            {
+                var locacoes = new List<Locacao>();
+
+                switch (telaFiltro.TipoFiltro)
+                {
+                    case FiltroLocacaoEnum.LocacoesConcluidas:
+                        locacoes = controladorLocacao.SelecionarTodos().FindAll(x => x.Devolucao != "Pendente");
+                        break;
+
+                    case FiltroLocacaoEnum.LocacoesPendentes:
+                        locacoes = controladorLocacao.SelecionarTodos().FindAll(x => x.Devolucao == "Pendente");
+                        break;
+
+                    default:
+                        break;
+                }
+
+                tabelaLocacoes.AtualizarRegistros(locacoes);
+            }
         }
 
         public void AgruparRegistros()
@@ -115,7 +136,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
         public void DesagruparRegistros()
         {
-            throw new NotImplementedException();
+            var locacoes = controladorLocacao.SelecionarTodos();
+
+            tabelaLocacoes.AtualizarRegistros(locacoes);
         }
 
         public UserControl ObterTabela()

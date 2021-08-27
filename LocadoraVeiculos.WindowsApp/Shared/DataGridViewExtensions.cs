@@ -62,6 +62,7 @@ namespace LocadoraVeiculos.WindowsApp.Shared
             {
                 grid.ClearSelection();
             };
+
         }
 
         public static T SelecionarId<T>(this DataGridView grid)

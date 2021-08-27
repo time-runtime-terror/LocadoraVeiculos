@@ -132,6 +132,13 @@
       <DependentUpon>TelaAgrupamentoGrupoAutomoveis.cs</DependentUpon>
     </Compile>
     <Compile Include="Features\LocacaoModule\ConfiguracoesLocacaoToolBox.cs" />
+    <Compile Include="Features\LocacaoModule\FiltroLocacaoEnum.cs" />
+    <Compile Include="Features\LocacaoModule\FiltroLocacaoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\LocacaoModule\FiltroLocacaoForm.Designer.cs">
+      <DependentUpon>FiltroLocacaoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Features\LocacaoModule\OperacoesLocacao.cs" />
     <Compile Include="Features\LocacaoModule\TabelaLocacaoControl.cs">
       <SubType>UserControl</SubType>
@@ -225,6 +232,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Features\FuncionarioModule\TelaCadastrarFuncionario.resx">
       <DependentUpon>TelaCadastrarFuncionario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\LocacaoModule\FiltroLocacaoForm.resx">
+      <DependentUpon>FiltroLocacaoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Features\LocacaoModule\TabelaLocacaoControl.resx">
       <DependentUpon>TabelaLocacaoControl.cs</DependentUpon>

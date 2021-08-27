@@ -36,6 +36,19 @@ namespace LocadoraVeiculos.WindowsApp
             labelRodape.Text = mensagem;
         }
 
+        public void DesabilitarBotoesIndisponiveisParaDevolucao()
+        {
+            toolStripBtnDevolucao.Enabled = false;
+            toolStripBtnEditar.Enabled = false;
+        }
+
+        public void HabilitarBotoesIndisponiveisParaDevolucao()
+        {
+            toolStripBtnDevolucao.Enabled = true;
+            toolStripBtnEditar.Enabled = true;
+        }
+
+
         #region Eventos de Click dos Botões do Menu Principal
 
         private void btnLocacoes_Click(object sender, EventArgs e)
@@ -49,19 +62,6 @@ namespace LocadoraVeiculos.WindowsApp
             operacoes = new OperacoesLocacao();
 
             ConfigurarPainelRegistros();
-        }
-
-        private void btnCadastrarDevolucoes_Click(object sender, EventArgs e)
-        {
-            //ConfiguracoesDevolucaoToolBox config = new ConfiguracoesDevolucaoToolBox();
-
-            //ConfigurarToolBox(config);
-
-            //AtualizarRodape(config.TipoCadastro);
-
-            //operacoes = new OperacoesDevolucao();
-
-            //ConfigurarPainelRegistros();
         }
 
         private void btnCadastroClientes_Click(object sender, System.EventArgs e)
@@ -88,12 +88,6 @@ namespace LocadoraVeiculos.WindowsApp
             operacoes = new OperacoesFuncionario(new ControladorFuncionario());
 
             ConfigurarPainelRegistros();
-        }
-
-        internal void HabilitarBotoesIndisponiveisParaDevolucao()
-        {
-            toolStripBtnDevolucao.Enabled = true;
-            toolStripBtnEditar.Enabled = true;
         }
 
         private void btnCadastroVeiculoModules_Click(object sender, System.EventArgs e)
@@ -161,12 +155,6 @@ namespace LocadoraVeiculos.WindowsApp
         private void toolStripBtnExcluir_Click(object sender, EventArgs e)
         {
             operacoes.ExcluirRegistro();
-        }
-
-        public void DesabilitarBotoesIndisponiveisParaDevolucao()
-        {
-            toolStripBtnDevolucao.Enabled = false;
-            toolStripBtnEditar.Enabled = false;
         }
 
         private void toolStripBtnFiltrar_Click(object sender, System.EventArgs e)
