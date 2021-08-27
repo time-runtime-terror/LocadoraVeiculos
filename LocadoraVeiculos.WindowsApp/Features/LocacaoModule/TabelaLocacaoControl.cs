@@ -55,7 +55,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                 gridLocacoes.Rows.Add(locacao.Id, locacao.Cliente, locacao.Veiculo, locacao.Plano, locacao.DataSaida.ToShortDateString(), locacao.DataDevolucao.ToShortDateString(), locacao.Devolucao);
             }
 
-            gridLocacoes.Rows[0].Selected = false;
+            
         }
 
         private void gridLocacoes_CellClick(object sender, DataGridViewCellEventArgs e)

@@ -30,6 +30,13 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             }
         }
 
+
+        public TelaSelecaoTaxasForm()
+        {
+            InitializeComponent();
+            controladorTaxasServicos = new ControladorTaxasServicos();
+        }
+
         public TelaSelecaoTaxasForm(List<TaxasServicos> taxasVindas)
         {
             InitializeComponent();
@@ -57,10 +64,14 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             foreach (var taxa in controladorTaxasServicos.SelecionarTodos())
                 listaTaxasServicos.Items.Add(taxa);
 
-            if(taxasVindas.Count != 0)
+            if(taxasVindas != null)
             {
-                CarregarCheckBoxMarcado();
+                if (taxasVindas.Count != 0)
+                {
+                    CarregarCheckBoxMarcado();
+                }
             }
+            
             
         }
 

@@ -198,7 +198,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             foreach (var item in listaTaxasServicos.Items)
                 taxasSelecionadas.Add((TaxasServicos)item);
 
-            locacao = new Locacao(cliente, veiculo, taxasSelecionadas, dataSaida, dataDevolucao, caucao, plano, condutor);
+            string devolucao = "Pendente";
+
+            locacao = new Locacao(cliente, veiculo, taxasSelecionadas, dataSaida, dataDevolucao, caucao, plano, condutor, devolucao);
 
             string resultadoValidacao = locacao.Validar();
 

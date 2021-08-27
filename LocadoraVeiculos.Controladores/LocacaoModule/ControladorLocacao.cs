@@ -24,8 +24,7 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
 		                [DATASAIDA],
                         [DATADEVOLUCAO], 
                         [CAUCAO],
-                        [CONDUTOR]
-                        [CAUCAO],
+                        [CONDUTOR],
                         [DEVOLUCAO]
 	                ) 
 	                VALUES
@@ -36,8 +35,7 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
 		                @DATASAIDA, 
 		                @DATADEVOLUCAO,
                         @CAUCAO,
-                        @CONDUTOR
-                        @CAUCAO,
+                        @CONDUTOR,
                         @DEVOLUCAO
 	                )";
 
@@ -99,9 +97,7 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
 		                LO.[DATADEVOLUCAO], 
 		                LO.[PLANO],
 		                LO.[CAUCAO],
-                        LO.[CONDUTOR]
-
-		                LO.[CAUCAO],
+                        LO.[CONDUTOR],
                         LO.[DEVOLUCAO]
 	                FROM
                         [TBLOCACAO] AS LO JOIN
@@ -254,8 +250,7 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
             List<TaxasServicos> taxasSelecionadas = (taxas.Count == 0) ? null : taxas;
 
             Locacao locacao = new Locacao(cliente, veiculo, taxasSelecionadas, dataSaida, dataDevolucao,
-                caucao, plano, condutor);
-                caucao, plano, devolucao);
+                caucao, plano, condutor, devolucao);
 
             locacao.Id = id;
 
