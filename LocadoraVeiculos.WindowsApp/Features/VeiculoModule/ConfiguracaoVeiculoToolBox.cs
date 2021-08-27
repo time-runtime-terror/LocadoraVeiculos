@@ -51,6 +51,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
 
         public bool BotaoDesagrupar => true;
 
+        public string ToolTipDevolucao => "";
+
         public string ObterDescricao()
         {
             return TipoCadastro;

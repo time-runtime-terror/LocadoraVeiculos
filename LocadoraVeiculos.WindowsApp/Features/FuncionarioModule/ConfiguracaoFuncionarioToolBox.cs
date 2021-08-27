@@ -84,5 +84,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
         {
             get { return false; }
         }
+
+        public string ToolTipDevolucao => "";
     }
 }

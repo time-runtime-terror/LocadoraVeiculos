@@ -33,5 +33,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
         public bool BotaoAgrupar => false;
 
         public bool BotaoDesagrupar => true;
+
+        public string ToolTipDevolucao => "";
     }
 }

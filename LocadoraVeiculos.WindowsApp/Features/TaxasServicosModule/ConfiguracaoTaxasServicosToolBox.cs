@@ -38,5 +38,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule
         public bool BotaoAgrupar => false;
 
         public bool BotaoDesagrupar => false;
+
+        public string ToolTipDevolucao => "";
     }
 }

@@ -213,6 +213,7 @@ namespace LocadoraVeiculos.WindowsApp
             toolStripBtnAdicionar.ToolTipText = configuracao.ToolTipAdicionar;
             toolStripBtnEditar.ToolTipText = configuracao.ToolTipEditar;
             toolStripBtnExcluir.ToolTipText = configuracao.ToolTipExcluir;
+            toolStripBtnDevolucao.ToolTipText = configuracao.ToolTipDevolucao;
 
             toolStripBtnAgrupar.ToolTipText = configuracao.ToolTipAgrupar;
             toolStripBtnDesagrupar.ToolTipText = configuracao.ToolTipDesagrupar;

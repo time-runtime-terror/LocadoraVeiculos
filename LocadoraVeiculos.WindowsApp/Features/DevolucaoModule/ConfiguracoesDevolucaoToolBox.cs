@@ -34,5 +34,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
         public bool BotaoAgrupar => false;
 
         public bool BotaoDesagrupar => false;
+
+        public string ToolTipDevolucao => throw new NotImplementedException();
     }
 }
