@@ -64,8 +64,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
         private void TelaCadastrarLocacaoForm_Load(object sender, EventArgs e)
         {
-            //foreach (var taxa in controladorTaxasServicos.SelecionarTodos())
-            //    listaTaxasServicos.Items.Add(taxa);
+           
 
 
             List<Cliente> clientes = controladorCliente.SelecionarTodos();
@@ -88,9 +87,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         {
            if(locacao != null)
             {
-                cmbCliente.SelectedItem = locacao.Cliente;
-                   
-                    
+                cmbCliente.SelectedItem = locacao.Cliente; 
             }
         }
 

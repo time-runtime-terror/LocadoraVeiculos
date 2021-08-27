@@ -27,9 +27,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             {
                 taxasSelecionadas = value;
 
-                
-
-                
             }
         }
 
