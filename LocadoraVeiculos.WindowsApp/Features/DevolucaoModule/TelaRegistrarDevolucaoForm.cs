@@ -47,6 +47,19 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             dateDataDevolucao.Value = DateTime.Today;
         }
 
+        private void btnGravar_Click(object sender, EventArgs e)
+        {
+            locacao.Taxas = taxasSelecionadas;
+            locacao.Devolucao = dateDataDevolucao.Value.ToShortDateString();
+        }
+
+        private void btnCalcularTotal_Click(object sender, EventArgs e)
+        {
+            lblValorTotal.Text = (CalcularValorDasTaxas(taxasSelecionadas) + CalcularValorDoPlano()).ToString();
+
+            btnGravar.Enabled = true;
+        }
+
         private void btnSelecionarTaxas_Click(object sender, EventArgs e)
         {
             TelaSelecaoTaxasForm tela = new TelaSelecaoTaxasForm();
@@ -58,14 +71,34 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
                 listaTaxasServicos.Items.Clear();
 
                 if (taxasSelecionadas != null)
-                {
                     foreach (var taxa in taxasSelecionadas)
                         listaTaxasServicos.Items.Add(taxa);
-
-                }
             }
         }
-        private void CalcularValorTotal(List<TaxasServicos> taxasSelecionadas)
+
+        private double CalcularValorDasTaxas(List<TaxasServicos> taxasSelecionadas)
+        {
+            double total = 0;
+
+            double diasPassados = (dateDataDevolucao.Value - locacao.DataSaida.Date).TotalDays;
+
+            if (taxasSelecionadas != null)
+                if (taxasSelecionadas.Count != 0)
+                    foreach (var item in taxasSelecionadas)
+                    {
+                        if (item.OpcaoServico == "Diário")
+                            total += item.Taxa * diasPassados;
+                        else
+                            total += item.Taxa;
+                    }
+
+            if (dateDataDevolucao.Value > locacao.DataDevolucao)
+                total += (10 / 100) * total;
+
+            return total;
+        }
+
+        private double CalcularValorDoPlano()
         {
             double total = 0;
 
@@ -88,33 +121,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
                     break;
             }
 
-            if (taxasSelecionadas != null)
-                if (taxasSelecionadas.Count != 0)
-                    foreach (var item in taxasSelecionadas)
-                    {
-                        if (item.OpcaoServico == "Diário")
-                            total += item.Taxa * diasPassados;
-                        else
-                            total += item.Taxa;
-                    }
-
-            if (dateDataDevolucao.Value > locacao.DataDevolucao)
-                total += (10 / 100) * total;
-                
-            lblValorTotal.Text = total.ToString();
-        }
-
-        private void btnGravar_Click(object sender, EventArgs e)
-        {
-            locacao.Taxas = taxasSelecionadas;
-            locacao.Devolucao = dateDataDevolucao.Value.ToShortDateString();
-        }
-
-        private void btnCalcularTotal_Click(object sender, EventArgs e)
-        {
-            CalcularValorTotal(taxasSelecionadas);
-
-            btnGravar.Enabled = true;
+            return total;
         }
     }
 }
