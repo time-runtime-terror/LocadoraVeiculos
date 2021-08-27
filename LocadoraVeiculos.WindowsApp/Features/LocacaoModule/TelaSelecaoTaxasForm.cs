@@ -35,6 +35,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         {
             InitializeComponent();
             controladorTaxasServicos = new ControladorTaxasServicos();
+
+            this.taxasVindas = taxasVindas;
+            
         }
 
         public TelaSelecaoTaxasForm(List<TaxasServicos> taxasVindas)
@@ -61,8 +64,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
         private void TelaSelecaoTaxasForm_Load(object sender, EventArgs e)
         {
-            foreach (var taxa in controladorTaxasServicos.SelecionarTodos())
-                listaTaxasServicos.Items.Add(taxa);
 
             if(taxasVindas != null)
             {

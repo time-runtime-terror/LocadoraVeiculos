@@ -242,6 +242,12 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
             }
 
 
+            if(reader["CONDUTOR"] != DBNull.Value)
+            {
+                condutor = Convert.ToString(reader["CONDUTOR"]);
+            }
+
+
             Veiculo veiculo = controladorVeiculo.SelecionarPorId(idVeiculo);
             Cliente cliente = controladorCliente.SelecionarPorId(idCliente);
 
