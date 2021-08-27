@@ -243,20 +243,20 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(358, 477);
+            this.lblTotal.Font = new System.Drawing.Font("Arial", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal.Location = new System.Drawing.Point(130, 509);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(68, 18);
+            this.lblTotal.Size = new System.Drawing.Size(71, 19);
             this.lblTotal.TabIndex = 19;
             this.lblTotal.Text = "Total: R$";
             // 
             // lblValorTotal
             // 
             this.lblValorTotal.AutoSize = true;
-            this.lblValorTotal.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblValorTotal.Location = new System.Drawing.Point(432, 477);
+            this.lblValorTotal.Font = new System.Drawing.Font("Arial", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblValorTotal.Location = new System.Drawing.Point(204, 509);
             this.lblValorTotal.Name = "lblValorTotal";
-            this.lblValorTotal.Size = new System.Drawing.Size(17, 18);
+            this.lblValorTotal.Size = new System.Drawing.Size(18, 19);
             this.lblValorTotal.TabIndex = 20;
             this.lblValorTotal.Text = "0";
             // 
@@ -273,7 +273,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             // btnSelecionarTaxas
             // 
             this.btnSelecionarTaxas.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSelecionarTaxas.Location = new System.Drawing.Point(167, 471);
+            this.btnSelecionarTaxas.Location = new System.Drawing.Point(167, 449);
             this.btnSelecionarTaxas.Name = "btnSelecionarTaxas";
             this.btnSelecionarTaxas.Size = new System.Drawing.Size(139, 31);
             this.btnSelecionarTaxas.TabIndex = 9;
@@ -284,18 +284,18 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             // listaTaxasServicos
             // 
             this.listaTaxasServicos.Enabled = false;
-            this.listaTaxasServicos.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listaTaxasServicos.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listaTaxasServicos.FormattingEnabled = true;
-            this.listaTaxasServicos.ItemHeight = 18;
+            this.listaTaxasServicos.ItemHeight = 16;
             this.listaTaxasServicos.Location = new System.Drawing.Point(167, 343);
             this.listaTaxasServicos.Name = "listaTaxasServicos";
-            this.listaTaxasServicos.Size = new System.Drawing.Size(282, 112);
+            this.listaTaxasServicos.Size = new System.Drawing.Size(282, 100);
             this.listaTaxasServicos.TabIndex = 8;
             // 
             // btnCalcularTotal
             // 
             this.btnCalcularTotal.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCalcularTotal.Location = new System.Drawing.Point(104, 531);
+            this.btnCalcularTotal.Location = new System.Drawing.Point(134, 531);
             this.btnCalcularTotal.Name = "btnCalcularTotal";
             this.btnCalcularTotal.Size = new System.Drawing.Size(139, 31);
             this.btnCalcularTotal.TabIndex = 10;

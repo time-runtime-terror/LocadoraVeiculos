@@ -26,7 +26,7 @@ namespace LocadoraVeiculos.Dominio.TaxasServicosModule
 
         public override string ToString()
         {
-            return $"{Servico}\t\tR$ {Taxa}";
+            return $"{Servico}\t{OpcaoServico}\tR$ {Taxa}";
         }
 
         public override bool Equals(object obj)

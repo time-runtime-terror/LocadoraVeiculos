@@ -45,7 +45,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             // listaTaxasServicos
             // 
             this.listaTaxasServicos.CheckOnClick = true;
-            this.listaTaxasServicos.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listaTaxasServicos.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listaTaxasServicos.FormattingEnabled = true;
             this.listaTaxasServicos.Location = new System.Drawing.Point(136, 75);
             this.listaTaxasServicos.Name = "listaTaxasServicos";
