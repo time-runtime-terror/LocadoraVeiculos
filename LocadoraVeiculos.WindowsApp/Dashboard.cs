@@ -64,6 +64,8 @@ namespace LocadoraVeiculos.WindowsApp
             operacoes = new OperacoesLocacao();
 
             ConfigurarPainelRegistros();
+
+            operacoes.DesagruparRegistros();
         }
 
         private void btnCadastroClientes_Click(object sender, System.EventArgs e)
