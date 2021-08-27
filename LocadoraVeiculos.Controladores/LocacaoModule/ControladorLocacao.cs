@@ -23,7 +23,8 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
 		                [PLANO], 
 		                [DATASAIDA],
                         [DATADEVOLUCAO], 
-                        [CAUCAO]
+                        [CAUCAO],
+                        [DEVOLUCAO]
 	                ) 
 	                VALUES
 	                (
@@ -32,7 +33,8 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
                         @PLANO,
 		                @DATASAIDA, 
 		                @DATADEVOLUCAO,
-                        @CAUCAO
+                        @CAUCAO,
+                        @DEVOLUCAO
 	                )";
 
         private const string sqlEditarLocacao =
@@ -46,6 +48,13 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
                         [CAUCAO] = @CAUCAO
                     WHERE 
                         ID = @ID";
+
+        private const string sqlRegistrarDevolucao =
+            @"UPDATE TBLOCACAO
+                    SET
+                        [DEVOLUCAO] = @DEVOLUCAO
+                    WHERE
+                        [ID] = @ID";
 
         private const string sqlExcluirLocacao =
             @"DELETE 
@@ -62,7 +71,8 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
 		                LO.[DATASAIDA], 
 		                LO.[DATADEVOLUCAO], 
 		                LO.[PLANO],
-		                LO.[CAUCAO]
+		                LO.[CAUCAO],
+                        LO.[DEVOLUCAO]
 	                FROM
                         [TBLOCACAO] AS LO JOIN
                         [TBCLIENTE] AS CL
@@ -82,7 +92,8 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
 		                LO.[DATASAIDA], 
 		                LO.[DATADEVOLUCAO], 
 		                LO.[PLANO],
-		                LO.[CAUCAO]
+		                LO.[CAUCAO],
+                        LO.[DEVOLUCAO]
 	                FROM
                         [TBLOCACAO] AS LO JOIN
                         [TBCLIENTE] AS CL
@@ -123,6 +134,23 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
             {
                 registro.Id = Db.Insert(sqlInserirLocacao, ObtemParametrosLocacao(registro));
             }
+
+            return resultadoValidacao;
+        }
+
+        public string RegistrarDevolucao(Locacao registro)
+        {
+            string resultadoValidacao = registro.Validar();
+
+            Dictionary<string, object> parametros = new Dictionary<string, object>();
+
+            var devolucao = (string.IsNullOrEmpty(registro.Devolucao)) ? null : registro.Devolucao;
+
+            parametros.Add("DEVOLUCAO", devolucao);
+            parametros.Add("ID", registro.Id);
+
+            if (resultadoValidacao == "ESTA_VALIDO")
+                Db.Update(sqlRegistrarDevolucao, parametros);
 
             return resultadoValidacao;
         }
@@ -185,6 +213,7 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
             parametros.Add("DATASAIDA", locacao.DataSaida);
             parametros.Add("DATADEVOLUCAO", locacao.DataDevolucao);
             parametros.Add("CAUCAO", locacao.Caucao);
+            parametros.Add("DEVOLUCAO", "Pendente");
 
             return parametros;
         }
@@ -198,6 +227,7 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
             DateTime dataSaida = Convert.ToDateTime(reader["DATASAIDA"]);
             DateTime dataDevolucao = Convert.ToDateTime(reader["DATADEVOLUCAO"]);
             double caucao = Convert.ToDouble(reader["CAUCAO"]);
+            string devolucao = Convert.ToString(reader["DEVOLUCAO"]);
 
             Veiculo veiculo = controladorVeiculo.SelecionarPorId(idVeiculo);
             Cliente cliente = controladorCliente.SelecionarPorId(idCliente);
@@ -207,7 +237,7 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
             List<TaxasServicos> taxasSelecionadas = (taxas.Count == 0) ? null : taxas;
 
             Locacao locacao = new Locacao(cliente, veiculo, taxasSelecionadas, dataSaida, dataDevolucao,
-                caucao, plano);
+                caucao, plano, devolucao);
 
             locacao.Id = id;
 

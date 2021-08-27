@@ -47,6 +47,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             this.lblModeloVeiculo = new System.Windows.Forms.Label();
             this.lblNomeCliente = new System.Windows.Forms.Label();
             this.lblEntrada = new System.Windows.Forms.Label();
+            this.btnCalcularTotal = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listaTaxasServicos
@@ -73,7 +74,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             // 
             this.lblValorTotal.AutoSize = true;
             this.lblValorTotal.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblValorTotal.Location = new System.Drawing.Point(338, 403);
+            this.lblValorTotal.Location = new System.Drawing.Point(86, 484);
             this.lblValorTotal.Name = "lblValorTotal";
             this.lblValorTotal.Size = new System.Drawing.Size(17, 18);
             this.lblValorTotal.TabIndex = 42;
@@ -83,7 +84,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             // 
             this.lblTotal.AutoSize = true;
             this.lblTotal.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(264, 403);
+            this.lblTotal.Location = new System.Drawing.Point(12, 484);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(68, 18);
             this.lblTotal.TabIndex = 41;
@@ -92,6 +93,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             // btnGravar
             // 
             this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnGravar.Enabled = false;
             this.btnGravar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGravar.Location = new System.Drawing.Point(238, 505);
             this.btnGravar.Name = "btnGravar";
@@ -185,11 +187,11 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             // 
             this.lblIdLocacao.AutoSize = true;
             this.lblIdLocacao.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIdLocacao.Location = new System.Drawing.Point(70, 55);
+            this.lblIdLocacao.Location = new System.Drawing.Point(156, 58);
             this.lblIdLocacao.Name = "lblIdLocacao";
-            this.lblIdLocacao.Size = new System.Drawing.Size(111, 18);
+            this.lblIdLocacao.Size = new System.Drawing.Size(24, 18);
             this.lblIdLocacao.TabIndex = 46;
-            this.lblIdLocacao.Text = "Id da Locação:";
+            this.lblIdLocacao.Text = "Id:";
             // 
             // lblNomePlano
             // 
@@ -231,11 +233,23 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             this.lblEntrada.TabIndex = 51;
             this.lblEntrada.Text = "valorEntrada";
             // 
+            // btnCalcularTotal
+            // 
+            this.btnCalcularTotal.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCalcularTotal.Location = new System.Drawing.Point(12, 505);
+            this.btnCalcularTotal.Name = "btnCalcularTotal";
+            this.btnCalcularTotal.Size = new System.Drawing.Size(139, 31);
+            this.btnCalcularTotal.TabIndex = 52;
+            this.btnCalcularTotal.Text = "Calcular Total";
+            this.btnCalcularTotal.UseVisualStyleBackColor = true;
+            this.btnCalcularTotal.Click += new System.EventHandler(this.btnCalcularTotal_Click);
+            // 
             // TelaRegistrarDevolucaoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(422, 548);
+            this.Controls.Add(this.btnCalcularTotal);
             this.Controls.Add(this.lblEntrada);
             this.Controls.Add(this.lblNomePlano);
             this.Controls.Add(this.lblModeloVeiculo);
@@ -288,5 +302,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
         private System.Windows.Forms.Label lblModeloVeiculo;
         private System.Windows.Forms.Label lblNomeCliente;
         private System.Windows.Forms.Label lblEntrada;
+        private System.Windows.Forms.Button btnCalcularTotal;
     }
 }

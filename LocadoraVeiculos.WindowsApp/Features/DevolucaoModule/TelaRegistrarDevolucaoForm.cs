@@ -21,7 +21,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             {
                 locacao = value;
 
-                lblIdLocacao.Text = locacao.Id.ToString();
+                txtIdLocacao.Text = locacao.Id.ToString();
 
                 lblNomeCliente.Text = locacao.Cliente.Nome;
                 lblModeloVeiculo.Text = locacao.Veiculo.Modelo;
@@ -62,7 +62,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
                     foreach (var taxa in taxasSelecionadas)
                         listaTaxasServicos.Items.Add(taxa);
 
-                    CalcularValorTotal(taxasSelecionadas);
                 }
             }
         }
@@ -72,13 +71,14 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
 
             double diasPassados = (dateDataDevolucao.Value - locacao.DataSaida.Date).TotalDays;
 
-            foreach (var item in taxasSelecionadas)
-            {
-                if (item.OpcaoServico == "Diário")
-                    total += item.Taxa * diasPassados;
-                else
-                    total += item.Taxa;
-            }
+            if (taxasSelecionadas != null || taxasSelecionadas.Count != 0)
+                foreach (var item in taxasSelecionadas)
+                {
+                    if (item.OpcaoServico == "Diário")
+                        total += item.Taxa * diasPassados;
+                    else
+                        total += item.Taxa;
+                }
 
             if (dateDataDevolucao.Value > locacao.DataDevolucao)
                 total += (10 / 100) * total;
@@ -88,7 +88,15 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
+            locacao.Taxas = taxasSelecionadas;
+            locacao.Devolucao = dateDataDevolucao.Value.ToShortDateString();
+        }
 
+        private void btnCalcularTotal_Click(object sender, EventArgs e)
+        {
+            CalcularValorTotal(taxasSelecionadas);
+
+            btnGravar.Enabled = true;
         }
     }
 }

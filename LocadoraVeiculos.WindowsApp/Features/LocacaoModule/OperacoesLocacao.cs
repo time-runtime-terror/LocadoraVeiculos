@@ -150,7 +150,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                controladorLocacao.Editar(id, tela.Locacao);
+                //controladorLocacao.Editar(id, tela.Locacao);
+                controladorLocacao.RegistrarDevolucao(tela.Locacao);
 
                 controladorTaxasServicos.ExcluirTaxaUsada(tela.Locacao);
 

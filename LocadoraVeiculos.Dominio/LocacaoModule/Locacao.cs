@@ -16,6 +16,7 @@ namespace LocadoraVeiculos.Dominio.LocacaoModule
         public DateTime DataDevolucao { get; set; }
         public double Caucao { get; set; }
         public string Plano { get; set; }
+        public string Devolucao { get; set; }
 
         public Locacao(Cliente clienteEscolhido, Veiculo veiculoEscolhido, List<TaxasServicos> taxas,
             DateTime dataSaida, DateTime dataDevolucao, double caucao, string planoEscolhido)
@@ -27,6 +28,19 @@ namespace LocadoraVeiculos.Dominio.LocacaoModule
             DataDevolucao = dataDevolucao;
             Caucao = caucao;
             Plano = planoEscolhido;
+        }
+
+        public Locacao(Cliente clienteEscolhido, Veiculo veiculoEscolhido, List<TaxasServicos> taxas,
+            DateTime dataSaida, DateTime dataDevolucao, double caucao, string planoEscolhido, string devolucao)
+        {
+            Cliente = clienteEscolhido;
+            Veiculo = veiculoEscolhido;
+            Taxas = taxas;
+            DataSaida = dataSaida;
+            DataDevolucao = dataDevolucao;
+            Caucao = caucao;
+            Plano = planoEscolhido;
+            Devolucao = devolucao;
         }
 
         public override bool Equals(object obj)
@@ -45,6 +59,7 @@ namespace LocadoraVeiculos.Dominio.LocacaoModule
                    DataSaida == locacao.DataSaida &&
                    DataDevolucao == locacao.DataDevolucao &&
                    Caucao == locacao.Caucao &&
+                   Devolucao == locacao.Devolucao &&
                    Plano == locacao.Plano;
         }
 
