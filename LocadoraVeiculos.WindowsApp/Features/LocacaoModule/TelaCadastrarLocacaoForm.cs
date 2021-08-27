@@ -33,11 +33,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                 locacao = value;
 
                 txtId.Text = locacao.Id.ToString();
-                
 
                 cmbPlano.SelectedItem = (cmbPlano.Items.Contains(locacao.Plano)) ?
                     locacao.Plano : null;
-                
+
                 txtValorEntrada.Text = locacao.Caucao.ToString();
 
                 dateDataSaida.Value = locacao.DataSaida;
@@ -51,14 +50,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                         if (!listaTaxasServicos.Items.Contains(taxa))
                             listaTaxasServicos.Items.Add(taxa);
 
-                cmbCliente.Enabled = false;
-                cmbVeiculo.Enabled = false;
-                cmbCondutor.Enabled = false;
-                cmbPlano.Enabled = false;
-                txtValorEntrada.Enabled = false;
-                dateDataSaida.Enabled = false;
-                btnSelecionarTaxas.Enabled = false;
-                btnCalcularTotal.Enabled = false;
+                DesabilitarBotoesParaEdicao();
 
                 CalcularValorTotal(taxasSelecionadas);
 
@@ -75,6 +67,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             controladorLocacao = new ControladorLocacao(controladorCliente, controladorVeiculo, controladorTaxasServicos);
         }
 
+        #region Eventos
         private void TelaCadastrarLocacaoForm_Load(object sender, EventArgs e)
         {
             List<Cliente> clientes = controladorCliente.SelecionarTodos();
@@ -91,28 +84,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             CarregarCmbVeiculos();
             
-        }
-
-        private void CarregarCmbClientes()
-        {
-           if (locacao != null)
-            {
-                cmbCliente.SelectedItem = locacao.Cliente; 
-
-                if (locacao.Cliente.TipoCadastro == "CNPJ")
-                {
-                    cmbCondutor.Enabled = true;
-                    cmbCondutor.SelectedItem = locacao.Condutor;
-                }
-                else
-                    cmbCondutor.Enabled = false;
-            }
-        }
-
-        private void CarregarCmbVeiculos()
-        {
-            if (locacao != null)
-                cmbVeiculo.SelectedItem = locacao.Veiculo;
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
@@ -133,47 +104,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                 DialogResult = DialogResult.None;
             }
 
-        }
-
-        private Locacao ObterLocacao()
-        {
-            Cliente cliente = (Cliente)cmbCliente.SelectedItem;
-            Veiculo veiculo = (Veiculo)cmbVeiculo.SelectedItem;
-
-            string plano = (string)cmbPlano.SelectedItem;
-
-            string condutor = null;
-            if ((string)cmbCondutor.SelectedItem != null)
-            {
-                condutor = (string)cmbCondutor.SelectedItem;
-            }
-
-            string caucaoStr = txtValorEntrada.Text;
-
-            double caucao;
-            if (string.IsNullOrEmpty(caucaoStr))
-                caucao = 0;
-            else
-                caucao = Convert.ToDouble(caucaoStr);
-
-            DateTime dataSaida = dateDataSaida.Value;
-            DateTime dataDevolucao = dateDataDevolucao.Value;
-
-            List<TaxasServicos> taxasSelecionadas = ObterTaxasSelecionadas();
-
-            string devolucao = "Pendente";
-
-            return new Locacao(cliente, veiculo, taxasSelecionadas, dataSaida, dataDevolucao, caucao, plano, condutor, devolucao);
-        }
-
-        private List<TaxasServicos> ObterTaxasSelecionadas()
-        {
-            List<TaxasServicos> taxasSelecionadas = new List<TaxasServicos>();
-
-            foreach (var item in listaTaxasServicos.Items)
-                taxasSelecionadas.Add((TaxasServicos)item);
-
-            return taxasSelecionadas;
         }
 
         private void btnCalcularTotal_Click(object sender, EventArgs e)
@@ -226,10 +156,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             btnGravar.Enabled = false;
 
             if(listaTaxasServicos.Items.Count!= 0)
-            {
                 foreach (var item in listaTaxasServicos.Items)
                     taxasSelecionadas.Add((TaxasServicos)item);
-            }
 
             TelaSelecaoTaxasForm tela = new TelaSelecaoTaxasForm(taxasSelecionadas);
 
@@ -243,39 +171,80 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                         listaTaxasServicos.Items.Add(taxa);
             }
         }
+        #endregion
+
+        private Locacao ObterLocacao()
+        {
+            Cliente cliente = (Cliente)cmbCliente.SelectedItem;
+            Veiculo veiculo = (Veiculo)cmbVeiculo.SelectedItem;
+
+            string plano = (string)cmbPlano.SelectedItem;
+
+            string condutor = null;
+            if ((string)cmbCondutor.SelectedItem != null)
+                condutor = (string)cmbCondutor.SelectedItem;
+
+            string caucaoStr = txtValorEntrada.Text;
+
+            double caucao;
+            if (string.IsNullOrEmpty(caucaoStr))
+                caucao = 0;
+            else
+                caucao = Convert.ToDouble(caucaoStr);
+
+            DateTime dataSaida = dateDataSaida.Value;
+            DateTime dataDevolucao = dateDataDevolucao.Value;
+
+            List<TaxasServicos> taxasSelecionadas = ObterTaxasSelecionadas();
+
+            string devolucao = "Pendente";
+
+            return new Locacao(cliente, veiculo, taxasSelecionadas, dataSaida, dataDevolucao, caucao, plano, condutor, devolucao);
+        }
+
+        private List<TaxasServicos> ObterTaxasSelecionadas()
+        {
+            List<TaxasServicos> taxasSelecionadas = new List<TaxasServicos>();
+
+            foreach (var item in listaTaxasServicos.Items)
+                taxasSelecionadas.Add((TaxasServicos)item);
+
+            return taxasSelecionadas;
+        }
 
         private void VerificarDisponibilidadeDeVeiculo()
         {
-            if(locacao != null)
-            {
-                foreach (var item in controladorLocacao.SelecionarTodos())
-                {
-                    if (item.Id != locacao.Id && item.Devolucao == "Pendente")
-                        if (item.Veiculo.Id == locacao.Veiculo.Id)
-                        {
-                            Dashboard.Instancia.AtualizarRodape($"O Veículo: [{locacao.Veiculo}] não está disponível para locação!");
-                            DialogResult = DialogResult.None;
-                        }
-                }
+            if (locacao != null)
+                VerificarDisponibilidadeParaEdicao();
 
-            }
-            else
+            else if ((Veiculo)cmbVeiculo.SelectedItem != null)
+                VerificarDisponibilidadeParaCadastro();
+        }
+
+        private void VerificarDisponibilidadeParaEdicao()
+        {
+            foreach (var item in controladorLocacao.SelecionarTodos())
             {
-                if ((Veiculo)cmbVeiculo.SelectedItem != null)
-                {
-                    Veiculo v = (Veiculo)cmbVeiculo.SelectedItem;
-                    foreach (var item in controladorLocacao.SelecionarTodos())
+                if (item.Id != locacao.Id && item.Devolucao == "Pendente")
+                    if (item.Veiculo.Id == locacao.Veiculo.Id)
                     {
-                        if (item.Veiculo.Id == v.Id)
-                        {
-                            Dashboard.Instancia.AtualizarRodape($"O Veículo: [{v}] não está disponível para locação!");
-                            DialogResult = DialogResult.None;
-                        }
+                        Dashboard.Instancia.AtualizarRodape($"O Veículo: [{locacao.Veiculo}] não está disponível para locação!");
+                        DialogResult = DialogResult.None;
                     }
-                }
-
             }
+        }
 
+        private void VerificarDisponibilidadeParaCadastro()
+        {
+            Veiculo v = (Veiculo)cmbVeiculo.SelectedItem;
+            foreach (var item in controladorLocacao.SelecionarTodos())
+            {
+                if (item.Veiculo.Id == v.Id)
+                {
+                    Dashboard.Instancia.AtualizarRodape($"O Veículo: [{v}] não está disponível para locação!");
+                    DialogResult = DialogResult.None;
+                }
+            }
         }
 
         private void CalcularValorTotal(List<TaxasServicos> taxasSelecionadas)
@@ -288,17 +257,47 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             else
                 caucao = Convert.ToDouble(strCaucao);
 
-            if(taxasSelecionadas != null)
-            {
+            if (taxasSelecionadas != null)
                 foreach (var item in taxasSelecionadas)
                     total += item.Taxa;
-            }
-            
 
             total += caucao;
 
             lblValorTotal.Text = total.ToString();
         }
 
+        private void DesabilitarBotoesParaEdicao()
+        {
+            cmbCliente.Enabled = false;
+            cmbVeiculo.Enabled = false;
+            cmbCondutor.Enabled = false;
+            cmbPlano.Enabled = false;
+            txtValorEntrada.Enabled = false;
+            dateDataSaida.Enabled = false;
+            btnSelecionarTaxas.Enabled = false;
+            btnCalcularTotal.Enabled = false;
+        }
+
+        private void CarregarCmbClientes()
+        {
+            if (locacao != null)
+            {
+                cmbCliente.SelectedItem = locacao.Cliente;
+
+                if (locacao.Cliente.TipoCadastro == "CNPJ")
+                {
+                    cmbCondutor.Enabled = true;
+                    cmbCondutor.SelectedItem = locacao.Condutor;
+                }
+                else
+                    cmbCondutor.Enabled = false;
+            }
+        }
+
+        private void CarregarCmbVeiculos()
+        {
+            if (locacao != null)
+                cmbVeiculo.SelectedItem = locacao.Veiculo;
+        }
     }
 }
