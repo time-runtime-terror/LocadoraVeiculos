@@ -51,6 +51,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             this.lblCondutor = new System.Windows.Forms.Label();
             this.btnSelecionarTaxas = new System.Windows.Forms.Button();
             this.listaTaxasServicos = new System.Windows.Forms.ListBox();
+            this.btnCalcularTotal = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblId
@@ -71,6 +72,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             this.txtValorEntrada.Size = new System.Drawing.Size(100, 26);
             this.txtValorEntrada.TabIndex = 1;
             this.txtValorEntrada.TextChanged += new System.EventHandler(this.txtCaucao_TextChanged);
+            this.txtValorEntrada.Enter += new System.EventHandler(this.txtValorEntrada_Enter);
             // 
             // btnCancelar
             // 
@@ -209,6 +211,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             // btnGravar
             // 
             this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnGravar.Enabled = false;
             this.btnGravar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGravar.Location = new System.Drawing.Point(238, 505);
             this.btnGravar.Name = "btnGravar";
@@ -238,7 +241,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             this.lblTotal.Size = new System.Drawing.Size(68, 18);
             this.lblTotal.TabIndex = 19;
             this.lblTotal.Text = "Total: R$";
-            this.lblTotal.Click += new System.EventHandler(this.label1_Click);
             // 
             // lblValorTotal
             // 
@@ -280,11 +282,23 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             this.listaTaxasServicos.Size = new System.Drawing.Size(282, 121);
             this.listaTaxasServicos.TabIndex = 23;
             // 
+            // btnCalcularTotal
+            // 
+            this.btnCalcularTotal.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCalcularTotal.Location = new System.Drawing.Point(12, 505);
+            this.btnCalcularTotal.Name = "btnCalcularTotal";
+            this.btnCalcularTotal.Size = new System.Drawing.Size(139, 31);
+            this.btnCalcularTotal.TabIndex = 24;
+            this.btnCalcularTotal.Text = "Calcular Total";
+            this.btnCalcularTotal.UseVisualStyleBackColor = true;
+            this.btnCalcularTotal.Click += new System.EventHandler(this.btnCalcularTotal_Click);
+            // 
             // TelaCadastrarLocacaoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(422, 548);
+            this.Controls.Add(this.btnCalcularTotal);
             this.Controls.Add(this.listaTaxasServicos);
             this.Controls.Add(this.btnSelecionarTaxas);
             this.Controls.Add(this.lblCondutor);
@@ -344,5 +358,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         private System.Windows.Forms.Label lblCondutor;
         private System.Windows.Forms.Button btnSelecionarTaxas;
         private System.Windows.Forms.ListBox listaTaxasServicos;
+        private System.Windows.Forms.Button btnCalcularTotal;
     }
 }

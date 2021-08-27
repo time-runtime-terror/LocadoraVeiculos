@@ -40,12 +40,14 @@ namespace LocadoraVeiculos.WindowsApp
         {
             toolStripBtnDevolucao.Enabled = false;
             toolStripBtnEditar.Enabled = false;
+            toolStripBtnExcluir.Enabled = true;
         }
 
         public void HabilitarBotoesIndisponiveisParaDevolucao()
         {
             toolStripBtnDevolucao.Enabled = true;
             toolStripBtnEditar.Enabled = true;
+            toolStripBtnExcluir.Enabled = false;
         }
 
 

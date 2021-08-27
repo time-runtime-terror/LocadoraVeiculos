@@ -64,8 +64,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
         private void TelaSelecaoTaxasForm_Load(object sender, EventArgs e)
         {
+            foreach (var taxa in controladorTaxasServicos.SelecionarTodos())
+                listaTaxasServicos.Items.Add(taxa);
 
-            if(taxasVindas != null)
+            if (taxasVindas != null)
             {
                 if (taxasVindas.Count != 0)
                 {

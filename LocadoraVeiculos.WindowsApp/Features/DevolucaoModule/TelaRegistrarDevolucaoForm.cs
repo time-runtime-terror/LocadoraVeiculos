@@ -88,14 +88,15 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
                     break;
             }
 
-            if (taxasSelecionadas != null || taxasSelecionadas.Count != 0)
-                foreach (var item in taxasSelecionadas)
-                {
-                    if (item.OpcaoServico == "Diário")
-                        total += item.Taxa * diasPassados;
-                    else
-                        total += item.Taxa;
-                }
+            if (taxasSelecionadas != null)
+                if (taxasSelecionadas.Count != 0)
+                    foreach (var item in taxasSelecionadas)
+                    {
+                        if (item.OpcaoServico == "Diário")
+                            total += item.Taxa * diasPassados;
+                        else
+                            total += item.Taxa;
+                    }
 
             if (dateDataDevolucao.Value > locacao.DataDevolucao)
                 total += (10 / 100) * total;
