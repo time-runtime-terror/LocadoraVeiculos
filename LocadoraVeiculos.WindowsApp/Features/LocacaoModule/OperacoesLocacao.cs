@@ -16,6 +16,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         private readonly ControladorLocacao controladorLocacao;
         private readonly ControladorTaxasServicos controladorTaxasServicos;
         private readonly TabelaLocacaoControl tabelaLocacoes;
+        private readonly ControladorVeiculo controladorVeiculo;
 
         public OperacoesLocacao()
         {
@@ -24,6 +25,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             controladorLocacao = new ControladorLocacao(new ControladorCliente(), new ControladorVeiculo(), controladorTaxasServicos);
 
             tabelaLocacoes = new TabelaLocacaoControl();
+
+            controladorVeiculo = new ControladorVeiculo();
         }
 
         public void InserirNovoRegistro()
@@ -173,6 +176,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                 controladorTaxasServicos.ExcluirTaxaUsada(tela.Locacao);
 
                 controladorTaxasServicos.InserirNovaTaxaUsada(tela.Locacao);
+
+                controladorVeiculo.AtualizarQuilometragem(tela.Locacao.Veiculo);
 
                 List<Locacao> locacoes = controladorLocacao.SelecionarTodos();
 

@@ -159,12 +159,12 @@ namespace LocadoraVeiculos.Controladores.VeiculoModule
             return resultadoValidacao;
         }
 
-        public void AtualizarQuilometragem(Veiculo veiculo, double quilometragem)
+        public void AtualizarQuilometragem(Veiculo veiculo)
         {
             var parametros = new Dictionary<string, object>();
 
             parametros.Add("ID", veiculo.Id);
-            parametros.Add("QUILOMETRAGEM", quilometragem);
+            parametros.Add("QUILOMETRAGEM", veiculo.Quilometragem);
 
             Db.Update(sqlAtualizarQuilometragem, parametros);
         }
