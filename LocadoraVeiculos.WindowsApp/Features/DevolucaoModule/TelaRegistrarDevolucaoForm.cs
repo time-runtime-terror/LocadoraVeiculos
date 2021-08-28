@@ -3,6 +3,7 @@ using LocadoraVeiculos.Dominio.TaxasServicosModule;
 using LocadoraVeiculos.WindowsApp.Features.LocacaoModule;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
@@ -34,6 +35,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
                     foreach (var taxa in taxasSelecionadas)
                         if (!listaTaxasServicos.Items.Contains(taxa))
                             listaTaxasServicos.Items.Add(taxa);
+
+                
+
+                
             }
         }
 
@@ -45,6 +50,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
         private void TelaRegistrarDevolucaoForm_Load(object sender, EventArgs e)
         {
             dateDataDevolucao.Value = DateTime.Today;
+            txbQuilometragemAtual.Minimum = locacao.Veiculo.Quilometragem;
+            
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
@@ -104,16 +111,37 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
 
             double diasPassados = (dateDataDevolucao.Value - locacao.DataSaida.Date).TotalDays;
 
+            
+
+            double kmAtual = PegaQuilometragemAtual();
+
+            
+            
             switch (locacao.Plano)
             {
                 case "Plano Diário":
                     total += locacao.Veiculo.GrupoAutomoveis.PlanoDiarioUm * diasPassados;
-                    //total += (kmsRodados - locacao.Veiculo.Quilometragem) * locacao.Veiculo.GrupoAutomoveis.PlanoDiarioDois;
+                    total += (kmAtual - locacao.Veiculo.Quilometragem) * locacao.Veiculo.GrupoAutomoveis.PlanoDiarioDois;
                     break;
 
                 case "Km Controlado":
-                    total += locacao.Veiculo.GrupoAutomoveis.KmControladoUm * diasPassados;
-                    //total += (kmsRodados - (locacao.Veiculo.Quilometragem - 100)) * diasPassados;
+                    double valorPorDia = locacao.Veiculo.GrupoAutomoveis.KmControladoUm * (diasPassados + 1);
+                    double quilometragem = locacao.Veiculo.Quilometragem;
+                    double descontoNafaixa = locacao.Veiculo.GrupoAutomoveis.KmControladoIncluida;
+                    double valorPorKmRodado = locacao.Veiculo.GrupoAutomoveis.KmControladoDois;
+                    double kmVeiculoMaisDeconto = quilometragem + descontoNafaixa;
+                    double valorTotalKmRodado = (kmAtual - kmVeiculoMaisDeconto) * valorPorKmRodado;
+                    
+
+                    // nao deixar se negativo, quando a soma da quilometragem mais o desconto na faixa, ser maior que a kmatual
+                    if (kmVeiculoMaisDeconto > kmAtual)
+                    {
+                        valorTotalKmRodado = 0;
+                    }
+
+                    //pagar pelo menos um dia
+                    total = valorTotalKmRodado + valorPorDia;
+
                     break;
 
                 case "Km Livre":
@@ -122,6 +150,23 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             }
 
             return total;
+        }
+
+        private double PegaQuilometragemAtual()
+        {
+            double kmAtual = Convert.ToDouble(txbQuilometragemAtual.Text);
+
+           
+            return kmAtual;
+        }
+
+        private void txbQuilometragemAtual_TextChanged(object sender, EventArgs e)
+        {
+            if (Regex.IsMatch(txbQuilometragemAtual.Text, "[^0-9]"))
+            {
+                Dashboard.Instancia.AtualizarRodape("Quilometragem do veículo: Por favor, apenas números.");
+                txbQuilometragemAtual.Text = txbQuilometragemAtual.Text.Remove(txbQuilometragemAtual.Text.Length - 1);
+            }
         }
     }
 }
