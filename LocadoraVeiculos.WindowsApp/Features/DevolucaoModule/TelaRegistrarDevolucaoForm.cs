@@ -125,7 +125,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
                     break;
 
                 case "Km Controlado":
-                    double valorPorDia = locacao.Veiculo.GrupoAutomoveis.KmControladoUm * (diasPassados + 1);
+                    double valorPorDia = locacao.Veiculo.GrupoAutomoveis.KmControladoUm * (diasPassados + 1);a
                     double quilometragem = locacao.Veiculo.Quilometragem;
                     double descontoNafaixa = locacao.Veiculo.GrupoAutomoveis.KmControladoIncluida;
                     double valorPorKmRodado = locacao.Veiculo.GrupoAutomoveis.KmControladoDois;
