@@ -53,6 +53,12 @@ namespace LocadoraVeiculos.Controladores.VeiculoModule
 
                 WHERE [ID] = @ID";
 
+        private const string sqlAtualizarQuilometragem =
+            @" UPDATE [TBVEICULO]
+                SET 
+                    [QUILOMETRAGEM] = @QUILOMETRAGEM
+                WHERE [ID] = @ID";
+
         private const string sqlExcluirVeiculo =
             @"DELETE FROM [TBVEICULO] 
                 WHERE [ID] = @ID";
@@ -151,6 +157,16 @@ namespace LocadoraVeiculos.Controladores.VeiculoModule
             }
 
             return resultadoValidacao;
+        }
+
+        public void AtualizarQuilometragem(Veiculo veiculo, double quilometragem)
+        {
+            var parametros = new Dictionary<string, object>();
+
+            parametros.Add("ID", veiculo.Id);
+            parametros.Add("QUILOMETRAGEM", quilometragem);
+
+            Db.Update(sqlAtualizarQuilometragem, parametros);
         }
 
         public override bool Excluir(int id)
