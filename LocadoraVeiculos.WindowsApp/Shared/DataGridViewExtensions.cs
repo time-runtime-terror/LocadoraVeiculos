@@ -44,6 +44,7 @@ namespace LocadoraVeiculos.WindowsApp.Shared
             grid.BorderStyle = BorderStyle.None;
             grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            grid.RowHeadersVisible = false;
 
             grid.MultiSelect = false;
             grid.ReadOnly = true;

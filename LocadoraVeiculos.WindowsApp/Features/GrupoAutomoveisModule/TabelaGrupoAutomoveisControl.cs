@@ -112,6 +112,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
                 foreach (DataGridViewColumn item in gridGrupoAutomoveis.Columns)
                     if (item.DataPropertyName == campo)
                         item.Visible = true;
+
+            gridGrupoAutomoveis.ClearSelection();
+            gridGrupoAutomoveis.RowHeadersVisible = false;
         }
 
         private void AgruparGrupoAutomoveis()

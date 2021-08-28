@@ -46,7 +46,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 
             foreach (Cliente cliente in clientes)
             {
-
                 var empresa = (cliente.Empresa != null) ? cliente.Empresa.Nome : null;
 
                 gridClientes.Rows.Add(cliente.Id, cliente.Nome, cliente.Telefone, cliente.TipoCadastro, cliente.NumeroCadastro, empresa);

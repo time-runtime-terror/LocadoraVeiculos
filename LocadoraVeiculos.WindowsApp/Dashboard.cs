@@ -195,6 +195,8 @@ namespace LocadoraVeiculos.WindowsApp
             panelRegistros.Controls.Clear();
 
             panelRegistros.Controls.Add(tabela);
+
+            operacoes.DesagruparRegistros();
         }
 
         private void ConfigurarPainelConfiguracoes()
