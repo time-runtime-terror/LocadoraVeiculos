@@ -83,7 +83,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             CarregarCmbClientes();
 
             CarregarCmbVeiculos();
-            
+
+
+            dateDataDevolucao.MinDate = DateTime.Now;
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
