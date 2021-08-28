@@ -109,7 +109,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
         {
             double total = 0;
 
-            double diasPassados = (dateDataDevolucao.Value - locacao.DataSaida.Date).TotalDays;
+            double diasPassados = (dateDataDevolucao.Value - locacao.DataSaida.Date).TotalDays + 1;
 
             
 
@@ -120,12 +120,14 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             switch (locacao.Plano)
             {
                 case "Plano Diário":
-                    total += locacao.Veiculo.GrupoAutomoveis.PlanoDiarioUm * diasPassados;
-                    total += (kmAtual - locacao.Veiculo.Quilometragem) * locacao.Veiculo.GrupoAutomoveis.PlanoDiarioDois;
+                    double valorPordia = locacao.Veiculo.GrupoAutomoveis.PlanoDiarioUm * diasPassados ;
+                    double kmRodado = (kmAtual - locacao.Veiculo.Quilometragem);
+                    double valorPorKm = kmRodado * locacao.Veiculo.GrupoAutomoveis.PlanoDiarioDois;
+                    total = valorPordia + valorPorKm;
                     break;
 
                 case "Km Controlado":
-                    double valorPorDia = locacao.Veiculo.GrupoAutomoveis.KmControladoUm * (diasPassados + 1);a
+                    double valorPorDia = locacao.Veiculo.GrupoAutomoveis.KmControladoUm * diasPassados;
                     double quilometragem = locacao.Veiculo.Quilometragem;
                     double descontoNafaixa = locacao.Veiculo.GrupoAutomoveis.KmControladoIncluida;
                     double valorPorKmRodado = locacao.Veiculo.GrupoAutomoveis.KmControladoDois;
@@ -145,7 +147,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
                     break;
 
                 case "Km Livre":
-                    total += locacao.Veiculo.GrupoAutomoveis.KmLivreUm * diasPassados;
+                    total = locacao.Veiculo.GrupoAutomoveis.KmLivreUm * diasPassados;
                     break;
             }
 
