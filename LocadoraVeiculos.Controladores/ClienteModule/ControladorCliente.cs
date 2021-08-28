@@ -96,6 +96,46 @@ namespace LocadoraVeiculos.Controladores.ClienteModule
                     ON
                         CE.ID = CL.ID_EMPRESA";
 
+        private const string sqlSelecionarTodasPessoasFisicas =
+            @"SELECT
+                        CL.[ID],
+		                CL.[NOME], 
+		                CL.[ENDERECO], 
+		                CL.[TELEFONE], 
+		                CL.[TIPOCADASTRO],
+                        CL.[NUMEROCADASTRO], 
+                        CL.[CNH],
+		                CL.[RG],
+		                CL.[DATAVENCIMENTOCNH],
+		                CL.[ID_EMPRESA]
+	                FROM
+                        [TBCLIENTE] AS CL LEFT JOIN
+                        [TBCLIENTE] AS CE
+                    ON
+                        CE.ID = CL.ID_EMPRESA
+                    WHERE
+                        CL.[TIPOCADASTRO] = 'CPF'";
+
+        private const string sqlSelecionarTodasPessoasJuridicas =
+            @"SELECT
+                        CL.[ID],
+		                CL.[NOME], 
+		                CL.[ENDERECO], 
+		                CL.[TELEFONE], 
+		                CL.[TIPOCADASTRO],
+                        CL.[NUMEROCADASTRO], 
+                        CL.[CNH],
+		                CL.[RG],
+		                CL.[DATAVENCIMENTOCNH],
+		                CL.[ID_EMPRESA]
+	                FROM
+                        [TBCLIENTE] AS CL LEFT JOIN
+                        [TBCLIENTE] AS CE
+                    ON
+                        CE.ID = CL.ID_EMPRESA
+                    WHERE
+                        CL.[TIPOCADASTRO] = 'CNPJ'";
+
         private const string sqlExisteCliente =
             @"SELECT 
                 COUNT(*) 
@@ -178,6 +218,16 @@ namespace LocadoraVeiculos.Controladores.ClienteModule
             return Db.GetAll(sqlSelecionarTodosClientes, ConverterEmCliente);
         }
 
+        public List<Cliente> SelecionarTodasPessoasFisicas()
+        {
+            return Db.GetAll(sqlSelecionarTodasPessoasFisicas, ConverterEmCliente);
+        }
+
+        public List<Cliente> SelecionarTodasPessoasJuridicas()
+        {
+            return Db.GetAll(sqlSelecionarTodasPessoasJuridicas, ConverterEmCliente);
+        }
+
         public override List<Cliente> Pesquisar(string nome)
         {
             return Db.GetAll(sqlPesquisarClientes, ConverterEmCliente, AdicionarParametro("NOME", nome + "%"));
@@ -219,12 +269,10 @@ namespace LocadoraVeiculos.Controladores.ClienteModule
             if (reader["DATAVENCIMENTOCNH"] != DBNull.Value)
                 vencimentoCnh = Convert.ToDateTime(reader["DATAVENCIMENTOCNH"]);
 
-
             Cliente empresa = null;
+
             if (reader["ID_EMPRESA"] != DBNull.Value)
-            {
                 empresa = this.SelecionarPorId(Convert.ToInt32(reader["ID_EMPRESA"]));
-            }
 
             Cliente cliente = new Cliente(nome, endereco, telefone, tipoCadastro, cnh, vencimentoCnh, documento, rg, empresa);
 
