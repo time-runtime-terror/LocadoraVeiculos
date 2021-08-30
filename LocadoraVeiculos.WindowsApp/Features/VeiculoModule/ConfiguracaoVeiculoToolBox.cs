@@ -35,7 +35,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
 
         public string ToolTipDesagrupar => "Desagrupar Veiculos";
 
-        public bool BarraPesquisa => true;
+        public bool BarraPesquisa => false;
 
         public bool BotaoAdicionar => true;
 
