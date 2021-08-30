@@ -225,6 +225,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
         private void VerificarDisponibilidadeParaEdicao()
         {
+            
             foreach (var item in controladorLocacao.SelecionarTodos())
             {
                 if (item.Id != locacao.Id && item.Devolucao == "Pendente")

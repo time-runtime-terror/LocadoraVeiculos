@@ -1,4 +1,6 @@
-﻿using LocadoraVeiculos.Dominio.LocacaoModule;
+﻿using LocadoraVeiculos.Controladores.CombustivelModule;
+using LocadoraVeiculos.Dominio.CombustivelModule;
+using LocadoraVeiculos.Dominio.LocacaoModule;
 using LocadoraVeiculos.Dominio.TaxasServicosModule;
 using LocadoraVeiculos.WindowsApp.Features.LocacaoModule;
 using System;
@@ -13,6 +15,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
         private List<TaxasServicos> taxasSelecionadas;
 
         private Locacao locacao;
+        private Combustivel combustivel;
+        private ControladorCombustivel controladorCombustivel;
 
         public Locacao Locacao
         {
@@ -36,15 +40,14 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
                         if (!listaTaxasServicos.Items.Contains(taxa))
                             listaTaxasServicos.Items.Add(taxa);
 
-                
-
-                
             }
         }
 
         public TelaRegistrarDevolucaoForm()
         {
             InitializeComponent();
+
+            controladorCombustivel = new ControladorCombustivel();
         }
 
         private void TelaRegistrarDevolucaoForm_Load(object sender, EventArgs e)
@@ -62,9 +65,32 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
 
         private void btnCalcularTotal_Click(object sender, EventArgs e)
         {
-            lblValorTotal.Text = (CalcularValorDasTaxas(taxasSelecionadas) + CalcularValorDoPlano()).ToString();
 
-            btnGravar.Enabled = true;
+
+
+
+            if(rdbCheio.Checked  || rdbTresQuartos.Checked || rdbMeio.Checked || rdbUmQuarto.Checked || rdbVazio.Checked)
+            {
+                pnlMedidasTanque.Enabled = false;
+                btHabilitarMedidas.Enabled = true;
+
+                double valorCombustivelAPagar = CalcularCombustivelAPagar();
+                double valorTaxas = CalcularValorDasTaxas(taxasSelecionadas);
+                double valorPlano = CalcularValorDoPlano();
+
+                double valorTotal = valorTaxas + valorPlano + valorCombustivelAPagar;
+
+                Dashboard.Instancia.AtualizarRodape("Cadastro de Locações");
+
+                lblValorTotal.Text = valorTotal.ToString();
+
+                btnGravar.Enabled = true;
+            }
+            else
+            {
+                Dashboard.Instancia.AtualizarRodape("Por favor selecione a quantidade do combustível no carro.");
+            }
+           
         }
 
         private void btnSelecionarTaxas_Click(object sender, EventArgs e)
@@ -170,5 +196,123 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
                 txbQuilometragemAtual.Text = txbQuilometragemAtual.Text.Remove(txbQuilometragemAtual.Text.Length - 1);
             }
         }
+
+
+        private double CalcularCombustivelAPagar()
+        {
+
+            double valorCombustivel = PegarValorCombustivel(), valorAPagar = 0, medidaTanque, tamanhoTanque, litrosQueFaltam;
+
+            if (rdbCheio.Checked)
+            {
+
+                valorAPagar = 0;
+
+                
+
+            }
+            if (rdbTresQuartos.Checked)
+            {
+                //pegar o tamanho do tanque
+                tamanhoTanque = locacao.Veiculo.CapacidadeTanque;
+
+                //fazer o calculo do de tres quartos pela capacidade do tanque
+                medidaTanque = tamanhoTanque * 0.75;
+
+                //diminuir o tres quartos do tanque pela capacidade do tanque
+                litrosQueFaltam = tamanhoTanque - medidaTanque;
+
+                //pegar o valor ad subtração feita, e multiplicar pelo tipo de combustivel
+                valorAPagar = litrosQueFaltam * valorCombustivel;
+
+               
+
+            }
+            if (rdbMeio.Checked)
+            {
+                //pegar o tamanho do tanque
+                tamanhoTanque = locacao.Veiculo.CapacidadeTanque;
+
+                //fazer o calculo do meio pela capacidade do tanque
+                medidaTanque = tamanhoTanque * 0.5;
+
+                //diminuir o meio pela capacidade do tanque
+                litrosQueFaltam = tamanhoTanque - medidaTanque;
+
+                //pegar o valor ad subtração feita, e multiplicar pelo tipo de combustivel
+                valorAPagar = litrosQueFaltam * valorCombustivel;
+
+               
+
+            }
+            if (rdbUmQuarto.Checked)
+            {
+                //pegar o tamanho do tanque
+                tamanhoTanque = locacao.Veiculo.CapacidadeTanque;
+
+                //fazer o calculo de 1/4 pela capacidade do tanque
+                medidaTanque = tamanhoTanque * 0.25;
+
+                //diminuir o 1/4 pela capacidade do tanque
+                litrosQueFaltam = tamanhoTanque - medidaTanque;
+
+                //pegar o valor ad subtração feita, e multiplicar pelo tipo de combustivel
+                valorAPagar = litrosQueFaltam * valorCombustivel;
+
+               
+
+            }
+
+            if (rdbVazio.Checked)
+            {
+                //pegar o tamanho do tanque
+                tamanhoTanque = locacao.Veiculo.CapacidadeTanque;
+                valorAPagar = tamanhoTanque * valorCombustivel;
+
+                
+            }
+
+            
+
+           
+
+            return valorAPagar;
+        }
+
+
+
+        private double PegarValorCombustivel()
+        {
+            double valorCombustivel = 0;
+
+            switch (locacao.Veiculo.TipoCombustivel)
+            {
+                case "Gasolina":
+                    valorCombustivel = Convert.ToDouble(controladorCombustivel.PegarValorGasolina());
+                    break;
+                case "Etanol":
+                    valorCombustivel = Convert.ToDouble(controladorCombustivel.PegarValorEtanol());
+                    break;
+                case "Diesel":
+                    valorCombustivel = Convert.ToDouble(controladorCombustivel.PegarValorDiesel());
+                    break;
+                case "Gnv":
+                    valorCombustivel = Convert.ToDouble(controladorCombustivel.PegarValorGnv());
+                    break;
+            }
+
+            return valorCombustivel;
+        }
+
+        private void btHabilitarMedidas_Click(object sender, EventArgs e)
+        {
+            //hablitar as medidas
+            pnlMedidasTanque.Enabled = true;
+
+            //desabilitar o calcularin
+            btnGravar.Enabled = false;
+        }
+
+       
     }
 }

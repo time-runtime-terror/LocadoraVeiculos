@@ -299,6 +299,8 @@
   <ItemGroup>
     <Content Include="Libs\DataGridViewGrouper.dll" />
     <Content Include="Resources\IconLogo.ico" />
+    <Content Include="Resources\tanqueCombustivel.jpg" />
+    <Content Include="Resources\tanqueCombustivel.png" />
     <None Include="Resources\outline_car_rental_black_24dp.png" />
     <None Include="Resources\outline_car_rental_black_24dp1.png" />
     <Content Include="Resources\round_close_fullscreen_black_24dp.png" />

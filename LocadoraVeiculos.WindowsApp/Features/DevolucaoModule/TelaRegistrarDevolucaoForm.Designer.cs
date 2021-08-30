@@ -56,9 +56,20 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             this.panel3 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.txbQuilometragemAtual = new System.Windows.Forms.NumericUpDown();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.rdbCheio = new System.Windows.Forms.RadioButton();
+            this.rdbTresQuartos = new System.Windows.Forms.RadioButton();
+            this.rdbMeio = new System.Windows.Forms.RadioButton();
+            this.rdbUmQuarto = new System.Windows.Forms.RadioButton();
+            this.rdbVazio = new System.Windows.Forms.RadioButton();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.pnlMedidasTanque = new System.Windows.Forms.Panel();
+            this.btHabilitarMedidas = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txbQuilometragemAtual)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.pnlMedidasTanque.SuspendLayout();
             this.SuspendLayout();
             // 
             // listaTaxasServicos
@@ -67,8 +78,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             this.listaTaxasServicos.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listaTaxasServicos.FormattingEnabled = true;
             this.listaTaxasServicos.ItemHeight = 18;
-            this.listaTaxasServicos.Location = new System.Drawing.Point(239, 399);
-            this.listaTaxasServicos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listaTaxasServicos.Location = new System.Drawing.Point(239, 807);
+            this.listaTaxasServicos.Margin = new System.Windows.Forms.Padding(4);
             this.listaTaxasServicos.Name = "listaTaxasServicos";
             this.listaTaxasServicos.Size = new System.Drawing.Size(375, 94);
             this.listaTaxasServicos.TabIndex = 2;
@@ -76,8 +87,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             // btnSelecionarTaxas
             // 
             this.btnSelecionarTaxas.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSelecionarTaxas.Location = new System.Drawing.Point(239, 509);
-            this.btnSelecionarTaxas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSelecionarTaxas.Location = new System.Drawing.Point(239, 909);
+            this.btnSelecionarTaxas.Margin = new System.Windows.Forms.Padding(4);
             this.btnSelecionarTaxas.Name = "btnSelecionarTaxas";
             this.btnSelecionarTaxas.Size = new System.Drawing.Size(185, 38);
             this.btnSelecionarTaxas.TabIndex = 3;
@@ -89,7 +100,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             // 
             this.lblValorTotal.AutoSize = true;
             this.lblValorTotal.Font = new System.Drawing.Font("Arial", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblValorTotal.Location = new System.Drawing.Point(308, 577);
+            this.lblValorTotal.Location = new System.Drawing.Point(308, 977);
             this.lblValorTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblValorTotal.Name = "lblValorTotal";
             this.lblValorTotal.Size = new System.Drawing.Size(24, 25);
@@ -100,7 +111,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             // 
             this.lblTotal.AutoSize = true;
             this.lblTotal.Font = new System.Drawing.Font("Arial", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(210, 577);
+            this.lblTotal.Location = new System.Drawing.Point(210, 977);
             this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(99, 25);
@@ -112,8 +123,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnGravar.Enabled = false;
             this.btnGravar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGravar.Location = new System.Drawing.Point(468, 604);
-            this.btnGravar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGravar.Location = new System.Drawing.Point(468, 1004);
+            this.btnGravar.Margin = new System.Windows.Forms.Padding(4);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(111, 38);
             this.btnGravar.TabIndex = 5;
@@ -138,7 +149,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             this.dateDataDevolucao.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateDataDevolucao.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateDataDevolucao.Location = new System.Drawing.Point(419, 281);
-            this.dateDataDevolucao.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateDataDevolucao.Margin = new System.Windows.Forms.Padding(4);
             this.dateDataDevolucao.MinDate = new System.DateTime(2021, 8, 26, 0, 0, 0, 0);
             this.dateDataDevolucao.Name = "dateDataDevolucao";
             this.dateDataDevolucao.Size = new System.Drawing.Size(160, 30);
@@ -192,8 +203,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(587, 604);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancelar.Location = new System.Drawing.Point(587, 1004);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(111, 38);
             this.btnCancelar.TabIndex = 6;
@@ -205,7 +216,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             this.txtIdLocacao.Enabled = false;
             this.txtIdLocacao.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIdLocacao.Location = new System.Drawing.Point(413, 91);
-            this.txtIdLocacao.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtIdLocacao.Margin = new System.Windows.Forms.Padding(4);
             this.txtIdLocacao.Name = "txtIdLocacao";
             this.txtIdLocacao.Size = new System.Drawing.Size(127, 30);
             this.txtIdLocacao.TabIndex = 47;
@@ -268,8 +279,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             // btnCalcularTotal
             // 
             this.btnCalcularTotal.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCalcularTotal.Location = new System.Drawing.Point(215, 604);
-            this.btnCalcularTotal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCalcularTotal.Location = new System.Drawing.Point(215, 1004);
+            this.btnCalcularTotal.Margin = new System.Windows.Forms.Padding(4);
             this.btnCalcularTotal.Name = "btnCalcularTotal";
             this.btnCalcularTotal.Size = new System.Drawing.Size(185, 38);
             this.btnCalcularTotal.TabIndex = 4;
@@ -285,7 +296,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             this.panel2.Controls.Add(this.label4);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(731, 74);
             this.panel2.TabIndex = 53;
@@ -294,7 +305,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             // 
             this.pictureBox1.Image = global::LocadoraVeiculos.WindowsApp.Properties.Resources.sedan;
             this.pictureBox1.Location = new System.Drawing.Point(17, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(91, 74);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -330,9 +341,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(66)))));
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 74);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(131, 602);
+            this.panel3.Size = new System.Drawing.Size(131, 981);
             this.panel3.TabIndex = 54;
             // 
             // label1
@@ -361,12 +372,117 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             this.txbQuilometragemAtual.Size = new System.Drawing.Size(166, 30);
             this.txbQuilometragemAtual.TabIndex = 57;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(138, 368);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(429, 380);
+            this.pictureBox2.TabIndex = 58;
+            this.pictureBox2.TabStop = false;
+            // 
+            // rdbCheio
+            // 
+            this.rdbCheio.AutoSize = true;
+            this.rdbCheio.Font = new System.Drawing.Font("Arial", 12F);
+            this.rdbCheio.Location = new System.Drawing.Point(16, 11);
+            this.rdbCheio.Name = "rdbCheio";
+            this.rdbCheio.Size = new System.Drawing.Size(81, 27);
+            this.rdbCheio.TabIndex = 59;
+            this.rdbCheio.TabStop = true;
+            this.rdbCheio.Text = "Cheio";
+            this.rdbCheio.UseVisualStyleBackColor = true;
+            // 
+            // rdbTresQuartos
+            // 
+            this.rdbTresQuartos.AutoSize = true;
+            this.rdbTresQuartos.Font = new System.Drawing.Font("Arial", 12F);
+            this.rdbTresQuartos.Location = new System.Drawing.Point(16, 87);
+            this.rdbTresQuartos.Name = "rdbTresQuartos";
+            this.rdbTresQuartos.Size = new System.Drawing.Size(59, 27);
+            this.rdbTresQuartos.TabIndex = 60;
+            this.rdbTresQuartos.TabStop = true;
+            this.rdbTresQuartos.Text = "3/4";
+            this.rdbTresQuartos.UseVisualStyleBackColor = true;
+            // 
+            // rdbMeio
+            // 
+            this.rdbMeio.AutoSize = true;
+            this.rdbMeio.Font = new System.Drawing.Font("Arial", 12F);
+            this.rdbMeio.Location = new System.Drawing.Point(16, 170);
+            this.rdbMeio.Name = "rdbMeio";
+            this.rdbMeio.Size = new System.Drawing.Size(74, 27);
+            this.rdbMeio.TabIndex = 61;
+            this.rdbMeio.TabStop = true;
+            this.rdbMeio.Text = "Meio";
+            this.rdbMeio.UseVisualStyleBackColor = true;
+            // 
+            // rdbUmQuarto
+            // 
+            this.rdbUmQuarto.AutoSize = true;
+            this.rdbUmQuarto.Font = new System.Drawing.Font("Arial", 12F);
+            this.rdbUmQuarto.Location = new System.Drawing.Point(16, 256);
+            this.rdbUmQuarto.Name = "rdbUmQuarto";
+            this.rdbUmQuarto.Size = new System.Drawing.Size(59, 27);
+            this.rdbUmQuarto.TabIndex = 62;
+            this.rdbUmQuarto.TabStop = true;
+            this.rdbUmQuarto.Text = "1/4";
+            this.rdbUmQuarto.UseVisualStyleBackColor = true;
+            // 
+            // rdbVazio
+            // 
+            this.rdbVazio.AutoSize = true;
+            this.rdbVazio.Font = new System.Drawing.Font("Arial", 12F);
+            this.rdbVazio.Location = new System.Drawing.Point(16, 331);
+            this.rdbVazio.Name = "rdbVazio";
+            this.rdbVazio.Size = new System.Drawing.Size(78, 27);
+            this.rdbVazio.TabIndex = 63;
+            this.rdbVazio.TabStop = true;
+            this.rdbVazio.Text = "Vazio";
+            this.rdbVazio.UseVisualStyleBackColor = true;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(200, 100);
+            this.flowLayoutPanel1.TabIndex = 64;
+            // 
+            // pnlMedidasTanque
+            // 
+            this.pnlMedidasTanque.Controls.Add(this.rdbCheio);
+            this.pnlMedidasTanque.Controls.Add(this.rdbTresQuartos);
+            this.pnlMedidasTanque.Controls.Add(this.rdbVazio);
+            this.pnlMedidasTanque.Controls.Add(this.rdbMeio);
+            this.pnlMedidasTanque.Controls.Add(this.rdbUmQuarto);
+            this.pnlMedidasTanque.Location = new System.Drawing.Point(593, 368);
+            this.pnlMedidasTanque.Name = "pnlMedidasTanque";
+            this.pnlMedidasTanque.Size = new System.Drawing.Size(117, 380);
+            this.pnlMedidasTanque.TabIndex = 65;
+            // 
+            // btHabilitarMedidas
+            // 
+            this.btHabilitarMedidas.Enabled = false;
+            this.btHabilitarMedidas.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btHabilitarMedidas.Location = new System.Drawing.Point(419, 762);
+            this.btHabilitarMedidas.Name = "btHabilitarMedidas";
+            this.btHabilitarMedidas.Size = new System.Drawing.Size(291, 38);
+            this.btHabilitarMedidas.TabIndex = 66;
+            this.btHabilitarMedidas.Text = "Modificar medidas";
+            this.btHabilitarMedidas.UseVisualStyleBackColor = true;
+            this.btHabilitarMedidas.Click += new System.EventHandler(this.btHabilitarMedidas_Click);
+            // 
             // TelaRegistrarDevolucaoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(731, 676);
+            this.ClientSize = new System.Drawing.Size(731, 1055);
+            this.Controls.Add(this.btHabilitarMedidas);
+            this.Controls.Add(this.pnlMedidasTanque);
+            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.txbQuilometragemAtual);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel3);
@@ -392,7 +508,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             this.Controls.Add(this.btnCancelar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TelaRegistrarDevolucaoForm";
@@ -404,6 +520,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txbQuilometragemAtual)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.pnlMedidasTanque.ResumeLayout(false);
+            this.pnlMedidasTanque.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -437,5 +556,14 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown txbQuilometragemAtual;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.RadioButton rdbCheio;
+        private System.Windows.Forms.RadioButton rdbTresQuartos;
+        private System.Windows.Forms.RadioButton rdbMeio;
+        private System.Windows.Forms.RadioButton rdbUmQuarto;
+        private System.Windows.Forms.RadioButton rdbVazio;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Panel pnlMedidasTanque;
+        private System.Windows.Forms.Button btHabilitarMedidas;
     }
 }
