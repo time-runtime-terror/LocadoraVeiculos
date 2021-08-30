@@ -128,19 +128,17 @@ namespace LocadoraVeiculos.WindowsApp
             // 
             // panel4
             // 
-            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel4.Controls.Add(this.btnLocacoes);
             this.panel4.Controls.Add(this.btnConfiguracoes);
             this.panel4.Controls.Add(this.btnTaxasServicos);
             this.panel4.Controls.Add(this.btnCadastroGrupoAutomoveis);
             this.panel4.Controls.Add(this.btnCadastroVeiculos);
             this.panel4.Controls.Add(this.btnCadastroFuncionarioModules);
             this.panel4.Controls.Add(this.btnCadastroClientes);
+            this.panel4.Controls.Add(this.btnLocacoes);
             this.panel4.Location = new System.Drawing.Point(3, 76);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(233, 431);
-            this.panel4.TabIndex = 1;
+            this.panel4.Size = new System.Drawing.Size(239, 434);
+            this.panel4.TabIndex = 0;
             // 
             // btnLocacoes
             // 
@@ -149,10 +147,10 @@ namespace LocadoraVeiculos.WindowsApp
             this.btnLocacoes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLocacoes.Font = new System.Drawing.Font("Arial", 12F);
             this.btnLocacoes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
-            this.btnLocacoes.Location = new System.Drawing.Point(0, 364);
+            this.btnLocacoes.Location = new System.Drawing.Point(0, 0);
             this.btnLocacoes.Name = "btnLocacoes";
-            this.btnLocacoes.Size = new System.Drawing.Size(233, 60);
-            this.btnLocacoes.TabIndex = 7;
+            this.btnLocacoes.Size = new System.Drawing.Size(239, 60);
+            this.btnLocacoes.TabIndex = 1;
             this.btnLocacoes.Text = "Locações";
             this.btnLocacoes.UseVisualStyleBackColor = true;
             this.btnLocacoes.Click += new System.EventHandler(this.btnLocacoes_Click);
@@ -164,10 +162,10 @@ namespace LocadoraVeiculos.WindowsApp
             this.btnConfiguracoes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfiguracoes.Font = new System.Drawing.Font("Arial", 12F);
             this.btnConfiguracoes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
-            this.btnConfiguracoes.Location = new System.Drawing.Point(0, 304);
+            this.btnConfiguracoes.Location = new System.Drawing.Point(0, 364);
             this.btnConfiguracoes.Name = "btnConfiguracoes";
-            this.btnConfiguracoes.Size = new System.Drawing.Size(233, 60);
-            this.btnConfiguracoes.TabIndex = 6;
+            this.btnConfiguracoes.Size = new System.Drawing.Size(239, 60);
+            this.btnConfiguracoes.TabIndex = 7;
             this.btnConfiguracoes.Text = "Configurações";
             this.btnConfiguracoes.UseVisualStyleBackColor = true;
             this.btnConfiguracoes.Click += new System.EventHandler(this.btnConfiguracoes_Click);
@@ -179,10 +177,10 @@ namespace LocadoraVeiculos.WindowsApp
             this.btnTaxasServicos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTaxasServicos.Font = new System.Drawing.Font("Arial", 12F);
             this.btnTaxasServicos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
-            this.btnTaxasServicos.Location = new System.Drawing.Point(0, 244);
+            this.btnTaxasServicos.Location = new System.Drawing.Point(0, 304);
             this.btnTaxasServicos.Name = "btnTaxasServicos";
-            this.btnTaxasServicos.Size = new System.Drawing.Size(233, 60);
-            this.btnTaxasServicos.TabIndex = 5;
+            this.btnTaxasServicos.Size = new System.Drawing.Size(239, 60);
+            this.btnTaxasServicos.TabIndex = 6;
             this.btnTaxasServicos.Text = "Taxas e serviços";
             this.btnTaxasServicos.UseVisualStyleBackColor = true;
             this.btnTaxasServicos.Click += new System.EventHandler(this.btnTaxasServicos_Click);
@@ -194,10 +192,10 @@ namespace LocadoraVeiculos.WindowsApp
             this.btnCadastroGrupoAutomoveis.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCadastroGrupoAutomoveis.Font = new System.Drawing.Font("Arial", 12F);
             this.btnCadastroGrupoAutomoveis.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
-            this.btnCadastroGrupoAutomoveis.Location = new System.Drawing.Point(0, 183);
+            this.btnCadastroGrupoAutomoveis.Location = new System.Drawing.Point(0, 243);
             this.btnCadastroGrupoAutomoveis.Name = "btnCadastroGrupoAutomoveis";
-            this.btnCadastroGrupoAutomoveis.Size = new System.Drawing.Size(233, 61);
-            this.btnCadastroGrupoAutomoveis.TabIndex = 4;
+            this.btnCadastroGrupoAutomoveis.Size = new System.Drawing.Size(239, 61);
+            this.btnCadastroGrupoAutomoveis.TabIndex = 5;
             this.btnCadastroGrupoAutomoveis.Text = "Grupo Automóveis";
             this.btnCadastroGrupoAutomoveis.UseVisualStyleBackColor = true;
             this.btnCadastroGrupoAutomoveis.Click += new System.EventHandler(this.btnCadastroGrupoAutomoveis_Click);
@@ -209,10 +207,10 @@ namespace LocadoraVeiculos.WindowsApp
             this.btnCadastroVeiculos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCadastroVeiculos.Font = new System.Drawing.Font("Arial", 12F);
             this.btnCadastroVeiculos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
-            this.btnCadastroVeiculos.Location = new System.Drawing.Point(0, 122);
+            this.btnCadastroVeiculos.Location = new System.Drawing.Point(0, 182);
             this.btnCadastroVeiculos.Name = "btnCadastroVeiculos";
-            this.btnCadastroVeiculos.Size = new System.Drawing.Size(233, 61);
-            this.btnCadastroVeiculos.TabIndex = 3;
+            this.btnCadastroVeiculos.Size = new System.Drawing.Size(239, 61);
+            this.btnCadastroVeiculos.TabIndex = 4;
             this.btnCadastroVeiculos.Text = "Veículos";
             this.btnCadastroVeiculos.UseVisualStyleBackColor = true;
             this.btnCadastroVeiculos.Click += new System.EventHandler(this.btnCadastroVeiculoModules_Click);
@@ -224,10 +222,10 @@ namespace LocadoraVeiculos.WindowsApp
             this.btnCadastroFuncionarioModules.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCadastroFuncionarioModules.Font = new System.Drawing.Font("Arial", 12F);
             this.btnCadastroFuncionarioModules.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
-            this.btnCadastroFuncionarioModules.Location = new System.Drawing.Point(0, 61);
+            this.btnCadastroFuncionarioModules.Location = new System.Drawing.Point(0, 121);
             this.btnCadastroFuncionarioModules.Name = "btnCadastroFuncionarioModules";
-            this.btnCadastroFuncionarioModules.Size = new System.Drawing.Size(233, 61);
-            this.btnCadastroFuncionarioModules.TabIndex = 2;
+            this.btnCadastroFuncionarioModules.Size = new System.Drawing.Size(239, 61);
+            this.btnCadastroFuncionarioModules.TabIndex = 3;
             this.btnCadastroFuncionarioModules.Text = "Funcionários";
             this.btnCadastroFuncionarioModules.UseMnemonic = false;
             this.btnCadastroFuncionarioModules.UseVisualStyleBackColor = true;
@@ -240,10 +238,10 @@ namespace LocadoraVeiculos.WindowsApp
             this.btnCadastroClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCadastroClientes.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCadastroClientes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
-            this.btnCadastroClientes.Location = new System.Drawing.Point(0, 0);
+            this.btnCadastroClientes.Location = new System.Drawing.Point(0, 60);
             this.btnCadastroClientes.Name = "btnCadastroClientes";
-            this.btnCadastroClientes.Size = new System.Drawing.Size(233, 61);
-            this.btnCadastroClientes.TabIndex = 1;
+            this.btnCadastroClientes.Size = new System.Drawing.Size(239, 61);
+            this.btnCadastroClientes.TabIndex = 2;
             this.btnCadastroClientes.Text = "Clientes";
             this.btnCadastroClientes.UseVisualStyleBackColor = true;
             this.btnCadastroClientes.Click += new System.EventHandler(this.btnCadastroClientes_Click);
