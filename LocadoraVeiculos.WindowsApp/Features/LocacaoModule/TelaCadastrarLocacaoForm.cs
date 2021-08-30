@@ -75,18 +75,19 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             foreach (var c in clientes)
                 cmbCliente.Items.Add(c);
 
-            List<Veiculo> veiculos = controladorVeiculo.SelecionarTodos();
+            List<Veiculo> veiculosDisponiveis = ObterVeiculosDisponiveis();
 
-            foreach (var v in veiculos)
-                cmbVeiculo.Items.Add(v);
+            if (veiculosDisponiveis != null)
+                foreach (var v in veiculosDisponiveis)
+                    cmbVeiculo.Items.Add(v);
 
             CarregarCmbClientes();
 
             CarregarCmbVeiculos();
 
-
             dateDataDevolucao.MinDate = DateTime.Now;
         }
+
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
@@ -95,7 +96,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             locacao = ObterLocacao();
 
             string resultadoValidacao = locacao.Validar();
-
 
             if (resultadoValidacao != "ESTA_VALIDO")
             {
@@ -174,6 +174,29 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             }
         }
         #endregion
+
+        private List<Veiculo> ObterVeiculosDisponiveis()
+        {
+            List<Veiculo> veiculosDisponiveis = new List<Veiculo>();
+
+
+            foreach (Locacao l in controladorLocacao.SelecionarTodos())
+                if (!VeiculoEstaAlugado(l.Veiculo) && !veiculosDisponiveis.Contains(l.Veiculo))
+                    veiculosDisponiveis.Add(l.Veiculo);
+
+            return veiculosDisponiveis;
+        }
+
+        public bool VeiculoEstaAlugado(Veiculo v)
+        {
+            var locacoesPendentes = controladorLocacao.SelecionarTodasLocacoesPendentes();
+
+            foreach (var l in locacoesPendentes)
+                if (v.Id == l.Veiculo.Id)
+                    return true;
+
+            return false;
+        }
 
         private Locacao ObterLocacao()
         {
