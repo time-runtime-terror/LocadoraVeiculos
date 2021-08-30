@@ -97,7 +97,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
 
         private void btnSelecionarTaxas_Click(object sender, EventArgs e)
         {
-            TelaSelecaoTaxasForm tela = new TelaSelecaoTaxasForm(taxasSelecionadas);
+            TelaSelecaoTaxasForm tela = new TelaSelecaoTaxasForm(taxasSelecionadas, "Devolução");
 
             if (tela.ShowDialog() == DialogResult.OK)
             {

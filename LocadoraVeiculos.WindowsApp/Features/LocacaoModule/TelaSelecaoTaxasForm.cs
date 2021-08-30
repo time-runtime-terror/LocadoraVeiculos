@@ -55,21 +55,21 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
         private void VerificarLocalTaxa()
         {
-            if (localTaxa == "Locação")
-            {
-                for (int i = 0; i < controladorTaxasServicos.SelecionarTodos().Count; i++)
-                {
-                    if (controladorTaxasServicos.SelecionarTodos().Contains(((TaxasServicos)listaTaxasServicos.Items[i])))
-                    { 
-                        if (controladorTaxasServicos.SelecionarTodos()[i].LocalServico == "Devolução")
-                        {
-                            //desabilitar checkbox 
-                            listaTaxasServicos.SetItemCheckState(i, CheckState.Indeterminate);
-                        }
+            //if (localTaxa == "Locação")
+            //{
+            //    for (int i = 0; i < controladorTaxasServicos.SelecionarTodos().Count; i++)
+            //    {
+            //        if (controladorTaxasServicos.SelecionarTodos().Contains(((TaxasServicos)listaTaxasServicos.Items[i])))
+            //        { 
+            //            if (controladorTaxasServicos.SelecionarTodos()[i].LocalServico == "Devolução")
+            //            {
+            //                //desabilitar checkbox 
+            //                listaTaxasServicos.SetItemCheckState(i, CheckState.Indeterminate);
+            //            }
                     
-                    }
-                }
-            }
+            //        }
+            //    }
+            //}
         }
 
         private void CarregarCheckBoxMarcado()
