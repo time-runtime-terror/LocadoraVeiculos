@@ -19,7 +19,7 @@ namespace LocadoraVeiculos.Tests.LocacaoModule
             Cliente cliente = new Cliente("Testador 1", "Maria de Melo Kuster", "(49) 9805-6251", "CPF", "123123124", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
             Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, null);
 
-            Locacao locacao = new Locacao(cliente, veiculo, null, DateTime.Now, DateTime.Now.AddDays(2), 200, "Diário");
+            Locacao locacao = new Locacao(cliente, veiculo, null, DateTime.Now, DateTime.Now.AddDays(2), 200, "Diário", null, null);
 
             string resultado = locacao.Validar();
 
@@ -32,7 +32,7 @@ namespace LocadoraVeiculos.Tests.LocacaoModule
             
             Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, null);
 
-            Locacao locacao = new Locacao(null, veiculo, null, DateTime.Now, DateTime.Now.AddDays(2), 200, "Diário");
+            Locacao locacao = new Locacao(null, veiculo, null, DateTime.Now, DateTime.Now.AddDays(2), 200, "Diário", null, null);
 
             string resultado = locacao.Validar();
 
@@ -44,7 +44,7 @@ namespace LocadoraVeiculos.Tests.LocacaoModule
         {
             Cliente cliente = new Cliente("Testador 1", "Maria de Melo Kuster", "(49) 9805-6251", "CPF", "123123124", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
 
-            Locacao locacao = new Locacao(cliente, null, null, DateTime.Now, DateTime.Now.AddDays(2), 200, "Diário");
+            Locacao locacao = new Locacao(cliente, null, null, DateTime.Now, DateTime.Now.AddDays(2), 200, "Diário", null, null);
 
             string resultado = locacao.Validar();
 
@@ -58,7 +58,7 @@ namespace LocadoraVeiculos.Tests.LocacaoModule
 
             Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, null);
 
-            Locacao locacao = new Locacao(cliente, veiculo, null, DateTime.MinValue, DateTime.MinValue, 200, "Diário");
+            Locacao locacao = new Locacao(cliente, veiculo, null, DateTime.MinValue, DateTime.MinValue, 200, "Diário", null, null);
 
             string resultado = locacao.Validar();
 
@@ -72,7 +72,7 @@ namespace LocadoraVeiculos.Tests.LocacaoModule
 
             Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, null);
 
-            Locacao locacao = new Locacao(cliente, veiculo, null, new DateTime(2021, 09, 20), new DateTime(2021, 09, 15), 200, "Diário");
+            Locacao locacao = new Locacao(cliente, veiculo, null, new DateTime(2021, 09, 20), new DateTime(2021, 09, 15), 200, "Diário", null, null);
 
             string resultado = locacao.Validar();
 
@@ -86,7 +86,7 @@ namespace LocadoraVeiculos.Tests.LocacaoModule
 
             Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, null);
 
-            Locacao locacao = new Locacao(cliente, veiculo, null, DateTime.Now, DateTime.Now.AddDays(2), 0, "Diário");
+            Locacao locacao = new Locacao(cliente, veiculo, null, DateTime.Now, DateTime.Now.AddDays(2), 0, "Diário", null, null);
 
             string resultado = locacao.Validar();
 
@@ -99,7 +99,7 @@ namespace LocadoraVeiculos.Tests.LocacaoModule
             Cliente cliente = new Cliente("Testador 1", "Maria de Melo Kuster", "(49) 9805-6251", "CPF", "123123124", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
             Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, null);
 
-            Locacao locacao = new Locacao(cliente, veiculo, null, DateTime.Now, DateTime.Now.AddDays(2), 200, null);
+            Locacao locacao = new Locacao(cliente, veiculo, null, DateTime.Now, DateTime.Now.AddDays(2), 200, null, null, null);
 
             string resultado = locacao.Validar();
 
@@ -110,7 +110,7 @@ namespace LocadoraVeiculos.Tests.LocacaoModule
         public void NaoDeveValidarTodosOsCampos()
         {
             
-            Locacao locacao = new Locacao(null, null, null, new DateTime(2002, 02, 22), DateTime.MinValue, 0, null);
+            Locacao locacao = new Locacao(null, null, null, new DateTime(2002, 02, 22), DateTime.MinValue, 0, null, null, null);
 
             string resultado = locacao.Validar();
 

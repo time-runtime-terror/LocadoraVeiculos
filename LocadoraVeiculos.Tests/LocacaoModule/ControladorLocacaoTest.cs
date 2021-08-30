@@ -55,7 +55,7 @@ namespace LocadoraVeiculos.Tests.LocacaoModule
             controladorVeiculo.InserirNovo(veiculo);
 
             // action
-            Locacao locacao = new Locacao(cliente, veiculo, null, DateTime.Now.Date, DateTime.Now.AddDays(2).Date, 200, "Diário");
+            Locacao locacao = new Locacao(cliente, veiculo, null, DateTime.Now.Date, DateTime.Now.AddDays(2).Date, 200, "Diário", null, null);
             controladorLocacao.InserirNovo(locacao);
 
 
@@ -77,7 +77,7 @@ namespace LocadoraVeiculos.Tests.LocacaoModule
             Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, grupoAutomovel);
             controladorVeiculo.InserirNovo(veiculo);
 
-            Locacao locacao = new Locacao(cliente, veiculo, null, DateTime.Now.Date, DateTime.Now.AddDays(2).Date, 200, "Diário");
+            Locacao locacao = new Locacao(cliente, veiculo, null, DateTime.Now.Date, DateTime.Now.AddDays(2).Date, 200, "Diário", "", "Pendente");
             controladorLocacao.InserirNovo(locacao);
 
             // action
@@ -90,7 +90,7 @@ namespace LocadoraVeiculos.Tests.LocacaoModule
             Veiculo novoVeiculo = new Veiculo(foto, "DEF-5634", "uno", "Chevrolet", "Gasolina", 50, 20000, novoGrupoAutomovel);
             controladorVeiculo.InserirNovo(novoVeiculo);
 
-            Locacao novaLocacao = new Locacao(novoCliente, novoVeiculo, null, DateTime.Now.Date, DateTime.Now.AddDays(2).Date, 200, "Controlado");
+            Locacao novaLocacao = new Locacao(novoCliente, novoVeiculo, null, DateTime.Now.Date, DateTime.Now.AddDays(2).Date, 200, "Controlado", null, null);
             controladorLocacao.InserirNovo(novaLocacao);
 
             controladorLocacao.Editar(locacao.Id, novaLocacao);
@@ -115,7 +115,7 @@ namespace LocadoraVeiculos.Tests.LocacaoModule
             Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, grupoAutomovel);
             controladorVeiculo.InserirNovo(veiculo);
 
-            Locacao locacao = new Locacao(cliente, veiculo, null, DateTime.Now.Date, DateTime.Now.AddDays(2).Date, 200, "Diário");
+            Locacao locacao = new Locacao(cliente, veiculo, null, DateTime.Now.Date, DateTime.Now.AddDays(2).Date, 200, "Diário", null, null);
             controladorLocacao.InserirNovo(locacao);
 
             // action
@@ -139,7 +139,7 @@ namespace LocadoraVeiculos.Tests.LocacaoModule
             Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, grupoAutomovel);
             controladorVeiculo.InserirNovo(veiculo);
 
-            Locacao locacao = new Locacao(cliente, veiculo, null, DateTime.Now.Date, DateTime.Now.AddDays(2).Date, 200, "Diário");
+            Locacao locacao = new Locacao(cliente, veiculo, null, DateTime.Now.Date, DateTime.Now.AddDays(2).Date, 200, "Diário", null, null);
             controladorLocacao.InserirNovo(locacao);
 
             // action
@@ -178,9 +178,9 @@ namespace LocadoraVeiculos.Tests.LocacaoModule
 
             var locacaoes = new List<Locacao>
             {
-                new Locacao(cliente, veiculo, null, DateTime.Now.Date, DateTime.Now.AddDays(2).Date, 200, "Diário"),
+                new Locacao(cliente, veiculo, null, DateTime.Now.Date, DateTime.Now.AddDays(2).Date, 200, "Diário", null, null),
 
-                new Locacao(novoCliente, novoVeiculo, null, DateTime.Now.Date, DateTime.Now.AddDays(2).Date, 200, "Controlado")
+                new Locacao(novoCliente, novoVeiculo, null, DateTime.Now.Date, DateTime.Now.AddDays(2).Date, 200, "Controlado", null, null)
             };
 
             foreach (var l in locacaoes)
