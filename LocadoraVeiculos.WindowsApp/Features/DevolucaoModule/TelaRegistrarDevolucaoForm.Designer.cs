@@ -138,7 +138,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             // 
             // dateDataDevolucao
             // 
-            this.dateDataDevolucao.Enabled = false;
             this.dateDataDevolucao.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateDataDevolucao.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateDataDevolucao.Location = new System.Drawing.Point(346, 202);

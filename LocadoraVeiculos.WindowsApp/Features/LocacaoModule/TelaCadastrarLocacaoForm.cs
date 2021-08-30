@@ -278,6 +278,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         {
             string strCaucao = txtValorEntrada.Text;
             double caucao, total = 0;
+            double diasPassados = (dateDataDevolucao.Value - dateDataSaida.Value).TotalDays + 1;
 
             if (string.IsNullOrEmpty(strCaucao))
                 caucao = 0;
@@ -286,7 +287,12 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             if (taxasSelecionadas != null)
                 foreach (var item in taxasSelecionadas)
-                    total += item.Taxa;
+                {
+                    if (item.OpcaoServico == "Diário")
+                        total += item.Taxa * diasPassados;
+                    else if (item.OpcaoServico == "Fixo")
+                        total += item.Taxa;
+                }
 
             total += caucao;
 

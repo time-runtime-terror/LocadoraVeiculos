@@ -52,6 +52,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
 
         private void TelaRegistrarDevolucaoForm_Load(object sender, EventArgs e)
         {
+            dateDataDevolucao.MinDate =  DateTime.Today;
             dateDataDevolucao.Value = DateTime.Today;
             txbQuilometragemAtual.Minimum = locacao.Veiculo.Quilometragem;
             
@@ -96,6 +97,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
 
         private void btnSelecionarTaxas_Click(object sender, EventArgs e)
         {
+            btnGravar.Enabled = false;
             TelaSelecaoTaxasForm tela = new TelaSelecaoTaxasForm(taxasSelecionadas, "Devolução");
 
             if (tela.ShowDialog() == DialogResult.OK)
