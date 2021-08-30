@@ -1,7 +1,9 @@
 ﻿using LocadoraVeiculos.Controladores.LocacaoModule;
 using LocadoraVeiculos.Dominio.LocacaoModule;
 using LocadoraVeiculos.WindowsApp.Shared;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
@@ -54,13 +56,22 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             {
                 gridLocacoes.Rows.Add(locacao.Id, locacao.Cliente, locacao.Veiculo, locacao.Plano, locacao.DataSaida.ToShortDateString(), locacao.DataDevolucao.ToShortDateString(), locacao.Devolucao);
             }
+
+            DestacarCoresPorStatusDevolucao();
+        }
+        private void DestacarCoresPorStatusDevolucao()
+        {
+            foreach (DataGridViewRow row in gridLocacoes.Rows)
+            {
+                if (row.Cells[6].Value.ToString() != "Pendente")
+                    row.DefaultCellStyle.BackColor = Color.LightGreen;
+                else
+                    row.DefaultCellStyle.BackColor = Color.PaleGoldenrod;
+            }
         }
 
         private void gridLocacoes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex != 5)
-                return;
-
             int id = ObtemIdSelecionado();
 
             var locacao = controladorLocacao.SelecionarPorId(id);
