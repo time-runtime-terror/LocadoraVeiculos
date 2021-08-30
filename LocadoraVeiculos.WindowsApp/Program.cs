@@ -11,7 +11,9 @@ namespace LocadoraVeiculos.WindowsApp
 {
     static class Program
     {
-         static string sqlInserirAdmin = 
+        #region Queries para setup inicial das tabelas
+
+        static string sqlInserirAdmin = 
             @"INSERT INTO TBFUNCIONARIO 
                     (
                         [NOME],
@@ -71,6 +73,60 @@ namespace LocadoraVeiculos.WindowsApp
             WHERE 
                 [NOME] = @NOME";
 
+        private const string sqlInserirTaxasServicos =
+        @"INSERT INTO TBTAXASSERVICOS
+	                (
+		                [SERVICO], 
+		                [TAXA], 
+		                [OPCAOSERVICO],
+                        [LOCALSERVICO]
+	                ) 
+	                VALUES
+	                (
+                        'Seguro para Cliente', 
+                        70,
+                        'Fixo', 
+                        'Locação'
+	                )";
+
+        static string sqlExisteTaxa =
+        @"SELECT 
+                COUNT(*) 
+            FROM 
+                [TBTAXASSERVICOS]
+            WHERE 
+                [SERVICO] = @SERVICO";
+
+        private const string sqlInserirGrupoAutomoveis =
+        @"INSERT INTO TBGRUPOAUTOMOVEIS 
+	                (
+		                [NOMEGRUPO], 
+		                [PLANODIARIOUM], 
+		                [PLANODIARIODOIS],
+                        [KMCONTROLADOUM], 
+		                [KMCONTROLADODOIS],
+                        [KMLIVREUM],
+                        [KMCONTROLADOINCLUIDO]
+	                ) 
+	                VALUES
+	                (
+                        'Popular', 
+                        200,
+                        10,
+		                200, 
+		                10,
+                        500,
+                        100
+	                )";
+
+        static string sqlExisteGrupoAutomovel =
+        @"SELECT 
+                COUNT(*) 
+            FROM 
+                [TBGRUPOAUTOMOVEIS]
+            WHERE 
+                [NOMEGRUPO] = @NOMEGRUPO";
+        #endregion
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -82,6 +138,12 @@ namespace LocadoraVeiculos.WindowsApp
 
             if (!Db.Exists(sqlExisteCliente, new Dictionary<string, object>() { { "NOME", "Rech" } }))
                 Db.Update(sqlInserirCliente);
+
+            if (!Db.Exists(sqlExisteTaxa, new Dictionary<string, object>() { { "SERVICO", "Seguro para Cliente" } }))
+                Db.Update(sqlInserirTaxasServicos);
+
+            if (!Db.Exists(sqlExisteGrupoAutomovel, new Dictionary<string, object>() { { "NOMEGRUPO", "Popular" } }))
+                Db.Update(sqlInserirGrupoAutomoveis);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
