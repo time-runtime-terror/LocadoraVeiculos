@@ -15,7 +15,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
         private List<TaxasServicos> taxasSelecionadas;
 
         private Locacao locacao;
-        private Combustivel combustivel;
+        
         private ControladorCombustivel controladorCombustivel;
 
         public Locacao Locacao
@@ -61,6 +61,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
         {
             locacao.Taxas = taxasSelecionadas;
             locacao.Devolucao = dateDataDevolucao.Value.ToShortDateString();
+
+            
         }
 
         private void btnCalcularTotal_Click(object sender, EventArgs e)
