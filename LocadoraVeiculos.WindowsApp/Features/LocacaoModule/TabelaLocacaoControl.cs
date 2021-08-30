@@ -58,6 +58,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
         private void gridLocacoes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.ColumnIndex != 5)
+                return;
+
             int id = ObtemIdSelecionado();
 
             var locacao = controladorLocacao.SelecionarPorId(id);

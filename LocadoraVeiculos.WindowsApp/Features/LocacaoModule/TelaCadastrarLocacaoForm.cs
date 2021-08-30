@@ -179,10 +179,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         {
             List<Veiculo> veiculosDisponiveis = new List<Veiculo>();
 
-
-            foreach (Locacao l in controladorLocacao.SelecionarTodos())
-                if (!VeiculoEstaAlugado(l.Veiculo) && !veiculosDisponiveis.Contains(l.Veiculo))
-                    veiculosDisponiveis.Add(l.Veiculo);
+            foreach (Veiculo v in controladorVeiculo.SelecionarTodos())
+                if (!VeiculoEstaAlugado(v) && !veiculosDisponiveis.Contains(v))
+                    veiculosDisponiveis.Add(v);
 
             return veiculosDisponiveis;
         }
