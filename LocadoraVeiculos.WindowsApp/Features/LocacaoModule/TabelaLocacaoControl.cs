@@ -3,6 +3,7 @@ using LocadoraVeiculos.Dominio.LocacaoModule;
 using LocadoraVeiculos.WindowsApp.Shared;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -58,7 +59,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             }
 
             DestacarCoresPorStatusDevolucao();
+
+            gridLocacoes.Sort(gridLocacoes.Columns[6], ListSortDirection.Descending);
         }
+
         private void DestacarCoresPorStatusDevolucao()
         {
             foreach (DataGridViewRow row in gridLocacoes.Rows)
@@ -73,6 +77,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         private void gridLocacoes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int id = ObtemIdSelecionado();
+
+            if (id == 0)
+                return;
 
             var locacao = controladorLocacao.SelecionarPorId(id);
 
