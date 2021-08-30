@@ -240,7 +240,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         private void VerificarDisponibilidadeParaCadastro()
         {
             Veiculo v = (Veiculo)cmbVeiculo.SelectedItem;
-            foreach (var item in controladorLocacao.SelecionarTodos())
+            foreach (var item in controladorLocacao.SelecionarTodasLocacoesPendentes())
             {
                 if (item.Veiculo.Id == v.Id)
                 {
