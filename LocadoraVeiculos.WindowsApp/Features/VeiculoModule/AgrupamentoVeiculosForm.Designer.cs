@@ -45,10 +45,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             // rdbAgrupar
             // 
             this.rdbAgrupar.AutoSize = true;
-            this.rdbAgrupar.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbAgrupar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdbAgrupar.Location = new System.Drawing.Point(125, 83);
             this.rdbAgrupar.Name = "rdbAgrupar";
-            this.rdbAgrupar.Size = new System.Drawing.Size(321, 27);
+            this.rdbAgrupar.Size = new System.Drawing.Size(318, 22);
             this.rdbAgrupar.TabIndex = 0;
             this.rdbAgrupar.TabStop = true;
             this.rdbAgrupar.Text = "Agrupar veículos por grupo de automóveis";
