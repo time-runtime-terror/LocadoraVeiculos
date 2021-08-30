@@ -161,7 +161,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                 foreach (var item in listaTaxasServicos.Items)
                     taxasSelecionadas.Add((TaxasServicos)item);
 
-            TelaSelecaoTaxasForm tela = new TelaSelecaoTaxasForm(taxasSelecionadas);
+
+            string localTaxa = "Locação";
+            TelaSelecaoTaxasForm tela = new TelaSelecaoTaxasForm(taxasSelecionadas, localTaxa);
 
             if (tela.ShowDialog() == DialogResult.OK)
             {

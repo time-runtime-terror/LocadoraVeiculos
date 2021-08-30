@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
@@ -16,6 +17,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
     {
         private List<TaxasServicos> taxasSelecionadas;
         private List<TaxasServicos> taxasVindas;
+        private string localTaxa;
 
         private readonly ControladorTaxasServicos controladorTaxasServicos;
 
@@ -40,13 +42,34 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             
         }
 
-        public TelaSelecaoTaxasForm(List<TaxasServicos> taxasVindas)
+        public TelaSelecaoTaxasForm(List<TaxasServicos> taxasVindas, string localTaxa)
         {
             InitializeComponent();
             controladorTaxasServicos = new ControladorTaxasServicos();
 
             this.taxasVindas = taxasVindas;
+
+            this.localTaxa = localTaxa;
             
+        }
+
+        private void VerificarLocalTaxa()
+        {
+            if (localTaxa == "Locação")
+            {
+                for (int i = 0; i < controladorTaxasServicos.SelecionarTodos().Count; i++)
+                {
+                    if (controladorTaxasServicos.SelecionarTodos().Contains(((TaxasServicos)listaTaxasServicos.Items[i])))
+                    { 
+                        if (controladorTaxasServicos.SelecionarTodos()[i].LocalServico == "Devolução")
+                        {
+                            //desabilitar checkbox 
+                            listaTaxasServicos.SetItemCheckState(i, CheckState.Indeterminate);
+                        }
+                    
+                    }
+                }
+            }
         }
 
         private void CarregarCheckBoxMarcado()
@@ -57,6 +80,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                 if (taxasVindas.Contains(((TaxasServicos)listaTaxasServicos.Items[count])))
                 {
                     listaTaxasServicos.SetItemChecked(count, true);
+                    
                 }
             }
 
@@ -74,6 +98,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                     CarregarCheckBoxMarcado();
                 }
             }
+
+            VerificarLocalTaxa();
             
             
         }

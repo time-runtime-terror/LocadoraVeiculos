@@ -36,9 +36,20 @@ namespace LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule
             string taxastr = txtTaxa.Text;
             string opcaoServico = cmbTipo.Text;
 
+            string localServico = null;
+
+            if (rdbLocacao.Checked)
+            {
+                localServico = "Locação";
+            }
+            else if (rdbDevolucao.Checked)
+            {
+                localServico = "Devolução";
+            }
+
             double taxa = validarGrupos(taxastr);
 
-            taxasServicos = new TaxasServicos(servico, taxa, opcaoServico);
+            taxasServicos = new TaxasServicos(servico, taxa, opcaoServico, localServico);
 
             string resultadoValidacao = taxasServicos.Validar();
 
