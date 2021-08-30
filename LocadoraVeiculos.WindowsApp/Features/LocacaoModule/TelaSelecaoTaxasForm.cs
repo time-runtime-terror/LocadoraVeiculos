@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
@@ -50,7 +51,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             this.taxasVindas = taxasVindas;
 
             this.localTaxa = localTaxa;
+
             
+
         }
 
         private void VerificarLocalTaxa()
@@ -60,16 +63,17 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             //    for (int i = 0; i < controladorTaxasServicos.SelecionarTodos().Count; i++)
             //    {
             //        if (controladorTaxasServicos.SelecionarTodos().Contains(((TaxasServicos)listaTaxasServicos.Items[i])))
-            //        { 
+            //        {
             //            if (controladorTaxasServicos.SelecionarTodos()[i].LocalServico == "Devolução")
             //            {
-            //                //desabilitar checkbox 
-            //                listaTaxasServicos.SetItemCheckState(i, CheckState.Indeterminate);
+            //                listaTaxasServicos.Items.Remove(listaTaxasServicos.Items[i]);
+                           
             //            }
-                    
             //        }
             //    }
             //}
+
+            
         }
 
         private void CarregarCheckBoxMarcado()
@@ -100,8 +104,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             }
 
             VerificarLocalTaxa();
-            
-            
         }
 
         private void btnGravarTaxas_Click(object sender, EventArgs e)

@@ -62,7 +62,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             this.rdbMeio = new System.Windows.Forms.RadioButton();
             this.rdbUmQuarto = new System.Windows.Forms.RadioButton();
             this.rdbVazio = new System.Windows.Forms.RadioButton();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlMedidasTanque = new System.Windows.Forms.Panel();
             this.btHabilitarMedidas = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
@@ -441,13 +440,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             this.rdbVazio.Text = "Vazio";
             this.rdbVazio.UseVisualStyleBackColor = true;
             // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(200, 100);
-            this.flowLayoutPanel1.TabIndex = 64;
-            // 
             // pnlMedidasTanque
             // 
             this.pnlMedidasTanque.Controls.Add(this.rdbCheio);
@@ -481,7 +473,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             this.ClientSize = new System.Drawing.Size(731, 1055);
             this.Controls.Add(this.btHabilitarMedidas);
             this.Controls.Add(this.pnlMedidasTanque);
-            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.txbQuilometragemAtual);
             this.Controls.Add(this.label1);
@@ -562,7 +553,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
         private System.Windows.Forms.RadioButton rdbMeio;
         private System.Windows.Forms.RadioButton rdbUmQuarto;
         private System.Windows.Forms.RadioButton rdbVazio;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel pnlMedidasTanque;
         private System.Windows.Forms.Button btHabilitarMedidas;
     }
