@@ -112,22 +112,21 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
 
         private double CalcularValorDasTaxas(List<TaxasServicos> taxasSelecionadas)
         {
-            double total;
+            double total =0;
 
             double diasPassados = (dateDataDevolucao.Value - locacao.DataSaida.Date).TotalDays + 1;
-            double totalDiario = 0, totalFixo = 0;
 
             if (taxasSelecionadas != null)
                 if (taxasSelecionadas.Count != 0)
                     foreach (var item in taxasSelecionadas)
                     {
                         if (item.OpcaoServico == "Diário")
-                            totalDiario = item.Taxa * diasPassados;
+                            total += item.Taxa * diasPassados;
                         else if(item.OpcaoServico == "Fixo")
-                            totalFixo = item.Taxa;
+                            total += item.Taxa;
                     }
 
-            total = totalDiario + totalFixo;
+            
 
             if (dateDataDevolucao.Value > locacao.DataDevolucao)
                 total += (10 / 100) * total;
