@@ -58,20 +58,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                 gridLocacoes.Rows.Add(locacao.Id, locacao.Cliente, locacao.Veiculo, locacao.Plano, locacao.DataSaida.ToShortDateString(), locacao.DataDevolucao.ToShortDateString(), locacao.Devolucao);
             }
 
-            DestacarCoresPorStatusDevolucao();
-
             gridLocacoes.Sort(gridLocacoes.Columns[6], ListSortDirection.Descending);
-        }
-
-        private void DestacarCoresPorStatusDevolucao()
-        {
-            foreach (DataGridViewRow row in gridLocacoes.Rows)
-            {
-                if (row.Cells[6].Value.ToString() != "Pendente")
-                    row.DefaultCellStyle.BackColor = Color.LightGreen;
-                else
-                    row.DefaultCellStyle.BackColor = Color.PaleGoldenrod;
-            }
         }
 
         private void gridLocacoes_CellClick(object sender, DataGridViewCellEventArgs e)
