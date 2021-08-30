@@ -97,7 +97,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             // 
             this.lblValorTotal.AutoSize = true;
             this.lblValorTotal.Font = new System.Drawing.Font("Arial", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblValorTotal.Location = new System.Drawing.Point(191, 547);
+            this.lblValorTotal.Location = new System.Drawing.Point(191, 535);
             this.lblValorTotal.Name = "lblValorTotal";
             this.lblValorTotal.Size = new System.Drawing.Size(18, 19);
             this.lblValorTotal.TabIndex = 42;
@@ -107,7 +107,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             // 
             this.lblTotal.AutoSize = true;
             this.lblTotal.Font = new System.Drawing.Font("Arial", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(118, 547);
+            this.lblTotal.Location = new System.Drawing.Point(118, 535);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(71, 19);
             this.lblTotal.TabIndex = 41;
@@ -118,7 +118,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnGravar.Enabled = false;
             this.btnGravar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGravar.Location = new System.Drawing.Point(368, 566);
+            this.btnGravar.Location = new System.Drawing.Point(368, 554);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(83, 31);
             this.btnGravar.TabIndex = 6;
@@ -191,7 +191,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(457, 566);
+            this.btnCancelar.Location = new System.Drawing.Point(457, 554);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(83, 31);
             this.btnCancelar.TabIndex = 7;
@@ -260,7 +260,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             // btnCalcularTotal
             // 
             this.btnCalcularTotal.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCalcularTotal.Location = new System.Drawing.Point(121, 566);
+            this.btnCalcularTotal.Location = new System.Drawing.Point(121, 554);
             this.btnCalcularTotal.Name = "btnCalcularTotal";
             this.btnCalcularTotal.Size = new System.Drawing.Size(139, 31);
             this.btnCalcularTotal.TabIndex = 5;
@@ -318,7 +318,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 48);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(98, 561);
+            this.panel3.Size = new System.Drawing.Size(98, 545);
             this.panel3.TabIndex = 54;
             // 
             // label1
@@ -457,7 +457,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(552, 609);
+            this.ClientSize = new System.Drawing.Size(552, 593);
             this.Controls.Add(this.btHabilitarMedidas);
             this.Controls.Add(this.pnlMedidasTanque);
             this.Controls.Add(this.pictureBox2);
