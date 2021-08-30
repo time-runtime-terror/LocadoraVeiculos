@@ -66,7 +66,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             double kmLivreUm = validarGrupos(kmLivreUmstr);
 
             GrupoAutomoveis = new GrupoAutomoveis(nomeGrupo, planoDiarioUm, planoDiarioDois, kmControladoUm, kmControladoDois,
-                kmCotroladaIncluida, kmLivreUm);
+               kmLivreUm, kmCotroladaIncluida);
 
             string resultadoValidacao = grupoAutomoveis.Validar();
 

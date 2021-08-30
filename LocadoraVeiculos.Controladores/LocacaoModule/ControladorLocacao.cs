@@ -23,7 +23,9 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
 		                [PLANO], 
 		                [DATASAIDA],
                         [DATADEVOLUCAO], 
-                        [CAUCAO]
+                        [CAUCAO],
+                        [CONDUTOR],
+                        [DEVOLUCAO]
 	                ) 
 	                VALUES
 	                (
@@ -32,7 +34,9 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
                         @PLANO,
 		                @DATASAIDA, 
 		                @DATADEVOLUCAO,
-                        @CAUCAO
+                        @CAUCAO,
+                        @CONDUTOR,
+                        @DEVOLUCAO
 	                )";
 
         private const string sqlEditarLocacao =
@@ -43,9 +47,17 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
 		                [PLANO] = @PLANO,
                         [DATASAIDA] = @DATASAIDA,
                         [DATADEVOLUCAO] = @DATADEVOLUCAO,
-                        [CAUCAO] = @CAUCAO
+                        [CAUCAO] = @CAUCAO,
+                        [CONDUTOR] = @CONDUTOR
                     WHERE 
                         ID = @ID";
+
+        private const string sqlRegistrarDevolucao =
+            @"UPDATE TBLOCACAO
+                    SET
+                        [DEVOLUCAO] = @DEVOLUCAO
+                    WHERE
+                        [ID] = @ID";
 
         private const string sqlExcluirLocacao =
             @"DELETE 
@@ -62,7 +74,9 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
 		                LO.[DATASAIDA], 
 		                LO.[DATADEVOLUCAO], 
 		                LO.[PLANO],
-		                LO.[CAUCAO]
+		                LO.[CAUCAO],
+                        LO.[CONDUTOR],
+                        LO.[DEVOLUCAO]
 	                FROM
                         [TBLOCACAO] AS LO JOIN
                         [TBCLIENTE] AS CL
@@ -82,7 +96,9 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
 		                LO.[DATASAIDA], 
 		                LO.[DATADEVOLUCAO], 
 		                LO.[PLANO],
-		                LO.[CAUCAO]
+		                LO.[CAUCAO],
+                        LO.[CONDUTOR],
+                        LO.[DEVOLUCAO]
 	                FROM
                         [TBLOCACAO] AS LO JOIN
                         [TBCLIENTE] AS CL
@@ -91,6 +107,50 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
                         [TBVEICULO] AS VE
                     ON
                         VE.ID = LO.ID_VEICULO";
+
+        private const string sqlSelecionarTodasLocacoesConcluidas =
+            @"SELECT
+                        LO.[ID],
+		                LO.[ID_CLIENTE], 
+		                LO.[ID_VEICULO], 
+		                LO.[DATASAIDA], 
+		                LO.[DATADEVOLUCAO], 
+		                LO.[PLANO],
+		                LO.[CAUCAO],
+                        LO.[CONDUTOR],
+                        LO.[DEVOLUCAO]
+	                FROM
+                        [TBLOCACAO] AS LO JOIN
+                        [TBCLIENTE] AS CL
+                        ON
+                        CL.ID = LO.ID_CLIENTE JOIN
+                        [TBVEICULO] AS VE
+                    ON
+                        VE.ID = LO.ID_VEICULO
+                    WHERE
+                        LO.[DEVOLUCAO] != 'Pendente'";
+
+        private const string sqlSelecionarTodasLocacoesPendentes =
+            @"SELECT
+                        LO.[ID],
+		                LO.[ID_CLIENTE], 
+		                LO.[ID_VEICULO], 
+		                LO.[DATASAIDA], 
+		                LO.[DATADEVOLUCAO], 
+		                LO.[PLANO],
+		                LO.[CAUCAO],
+                        LO.[CONDUTOR],
+                        LO.[DEVOLUCAO]
+	                FROM
+                        [TBLOCACAO] AS LO JOIN
+                        [TBCLIENTE] AS CL
+                        ON
+                        CL.ID = LO.ID_CLIENTE JOIN
+                        [TBVEICULO] AS VE
+                    ON
+                        VE.ID = LO.ID_VEICULO
+                    WHERE
+                        LO.[DEVOLUCAO] = 'Pendente'";
 
         private const string sqlExisteLocacao =
             @"SELECT 
@@ -123,6 +183,23 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
             {
                 registro.Id = Db.Insert(sqlInserirLocacao, ObtemParametrosLocacao(registro));
             }
+
+            return resultadoValidacao;
+        }
+
+        public string RegistrarDevolucao(Locacao registro)
+        {
+            string resultadoValidacao = registro.Validar();
+
+            Dictionary<string, object> parametros = new Dictionary<string, object>();
+
+            var devolucao = (string.IsNullOrEmpty(registro.Devolucao)) ? null : registro.Devolucao;
+
+            parametros.Add("DEVOLUCAO", devolucao);
+            parametros.Add("ID", registro.Id);
+
+            if (resultadoValidacao == "ESTA_VALIDO")
+                Db.Update(sqlRegistrarDevolucao, parametros);
 
             return resultadoValidacao;
         }
@@ -168,6 +245,15 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
         {
             return Db.GetAll(sqlSelecionarTodasLocacoes, ConverterEmLocacao);
         }
+        public List<Locacao> SelecionarTodasLocacoesConcluidas()
+        {
+            return Db.GetAll(sqlSelecionarTodasLocacoesConcluidas, ConverterEmLocacao);
+        }
+
+        public List<Locacao> SelecionarTodasLocacoesPendentes()
+        {
+            return Db.GetAll(sqlSelecionarTodasLocacoesPendentes, ConverterEmLocacao);
+        }
 
         public override List<Locacao> Pesquisar(string texto)
         {
@@ -185,6 +271,8 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
             parametros.Add("DATASAIDA", locacao.DataSaida);
             parametros.Add("DATADEVOLUCAO", locacao.DataDevolucao);
             parametros.Add("CAUCAO", locacao.Caucao);
+            parametros.Add("CONDUTOR", locacao.Condutor);
+            parametros.Add("DEVOLUCAO", "Pendente");
 
             return parametros;
         }
@@ -194,10 +282,15 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
             int id = Convert.ToInt32(reader["ID"]);
             int idVeiculo = Convert.ToInt32(reader["ID_VEICULO"]);
             int idCliente = Convert.ToInt32(reader["ID_CLIENTE"]);
+            string condutor = "";
             string plano = Convert.ToString(reader["PLANO"]);
             DateTime dataSaida = Convert.ToDateTime(reader["DATASAIDA"]);
             DateTime dataDevolucao = Convert.ToDateTime(reader["DATADEVOLUCAO"]);
             double caucao = Convert.ToDouble(reader["CAUCAO"]);
+            string devolucao = Convert.ToString(reader["DEVOLUCAO"]);
+
+            if(reader["CONDUTOR"] != DBNull.Value)
+                condutor = Convert.ToString(reader["CONDUTOR"]);
 
             Veiculo veiculo = controladorVeiculo.SelecionarPorId(idVeiculo);
             Cliente cliente = controladorCliente.SelecionarPorId(idCliente);
@@ -207,7 +300,7 @@ namespace LocadoraVeiculos.Controladores.LocacaoModule
             List<TaxasServicos> taxasSelecionadas = (taxas.Count == 0) ? null : taxas;
 
             Locacao locacao = new Locacao(cliente, veiculo, taxasSelecionadas, dataSaida, dataDevolucao,
-                caucao, plano);
+                caucao, plano, condutor, devolucao);
 
             locacao.Id = id;
 

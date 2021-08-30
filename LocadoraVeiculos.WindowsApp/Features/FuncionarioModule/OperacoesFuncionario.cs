@@ -114,7 +114,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
 
         public void DesagruparRegistros()
         {
-            throw new NotImplementedException();
+            List<Funcionario> funcionarios = controlador.SelecionarTodos();
+
+            tabelaFuncionario.AtualizarRegistros(funcionarios);
         }
 
         public void Pesquisar(string text)

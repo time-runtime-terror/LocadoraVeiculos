@@ -100,7 +100,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule
 
         public void DesagruparRegistros()
         {
-            
+            tabelaTaxasServicos.AtualizarRegistros();
         }
 
         public void Pesquisar(string text)

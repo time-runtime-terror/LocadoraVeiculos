@@ -143,6 +143,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
                 foreach (DataGridViewColumn item in gridVeiculos.Columns)
                     if (item.DataPropertyName == campo)
                         item.Visible = true;
+
+            gridVeiculos.ClearSelection();
+            gridVeiculos.RowHeadersVisible = false;
+
         }
 
         private void InitializeComponent()

@@ -9,11 +9,12 @@ namespace LocadoraVeiculos.Dominio.TaxasServicosModule
 {
     public class TaxasServicos : EntidadeBase, IEquatable<TaxasServicos>
     {
-        public TaxasServicos(string servico, double taxa, string opcaoServico)
+        public TaxasServicos(string servico, double taxa, string opcaoServico, string localServico)
         {
             Servico = servico;
             Taxa = taxa;
             OpcaoServico = opcaoServico;
+            LocalServico = localServico;
         }
 
         public new int Id { get; set; }
@@ -24,9 +25,11 @@ namespace LocadoraVeiculos.Dominio.TaxasServicosModule
 
         public string OpcaoServico { get; }
 
+        public string LocalServico { get; }
+
         public override string ToString()
         {
-            return $"{Servico}\t\tR$ {Taxa}";
+            return $"{Servico}\t{OpcaoServico}\tR$ {Taxa}";
         }
 
         public override bool Equals(object obj)
@@ -40,7 +43,8 @@ namespace LocadoraVeiculos.Dominio.TaxasServicosModule
               && Id == other.Id
               && Servico == other.Servico
               && Taxa == other.Taxa
-              && OpcaoServico == other.OpcaoServico;
+              && OpcaoServico == other.OpcaoServico
+              && LocalServico == other.LocalServico;
         }
 
         public override int GetHashCode()
@@ -50,6 +54,7 @@ namespace LocadoraVeiculos.Dominio.TaxasServicosModule
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Servico);
             hashCode = hashCode * -1521134295 + Taxa.GetHashCode();
             hashCode = hashCode * -1521134295 + OpcaoServico.GetHashCode();
+            hashCode = hashCode * -1521134295 + LocalServico.GetHashCode();
             return hashCode;
         }
 
@@ -65,6 +70,9 @@ namespace LocadoraVeiculos.Dominio.TaxasServicosModule
 
             if (string.IsNullOrEmpty(OpcaoServico))
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo tipo do serviço é obrigatório";
+
+            if (string.IsNullOrEmpty(LocalServico))
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O local do serviço é obrigatório";
 
             if (resultadoValidacao == "")
                 resultadoValidacao = "ESTA_VALIDO";

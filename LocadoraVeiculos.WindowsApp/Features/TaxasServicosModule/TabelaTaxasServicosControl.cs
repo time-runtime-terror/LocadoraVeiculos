@@ -34,6 +34,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "opcaoServico", HeaderText = "Plano"},
 
+                 new DataGridViewTextBoxColumn { DataPropertyName = "localServico", HeaderText = "Local Serviço"}
+
             };
 
             return colunas;

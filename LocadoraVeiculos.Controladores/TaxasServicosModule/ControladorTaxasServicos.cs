@@ -15,13 +15,15 @@ namespace LocadoraVeiculos.Controladores.TaxasServicosModule
 	                (
 		                [SERVICO], 
 		                [TAXA], 
-		                [OPCAOSERVICO]
+		                [OPCAOSERVICO],
+                        [LOCALSERVICO]
 	                ) 
 	                VALUES
 	                (
                         @SERVICO, 
                         @TAXA,
-                        @OPCAOSERVICO
+                        @OPCAOSERVICO, 
+                        @LOCALSERVICO
 	                )";
 
         private const string sqlInserirTaxasServicosUsados =
@@ -41,7 +43,8 @@ namespace LocadoraVeiculos.Controladores.TaxasServicosModule
                     SET
                         [SERVICO] = @SERVICO,
 		                [TAXA] = @TAXA, 
-		                [OPCAOSERVICO] = @OPCAOSERVICO
+		                [OPCAOSERVICO] = @OPCAOSERVICO,
+                        [LOCALSERVICO] = @LOCALSERVICO
 
                     WHERE 
                         ID = @ID";
@@ -74,7 +77,8 @@ namespace LocadoraVeiculos.Controladores.TaxasServicosModule
                         [ID],
 		                [SERVICO], 
 		                [TAXA], 
-		                [OPCAOSERVICO]
+		                [OPCAOSERVICO], 
+                        [LOCALSERVICO]
 	                FROM
                         TBTAXASSERVICOS
                     WHERE 
@@ -86,7 +90,8 @@ namespace LocadoraVeiculos.Controladores.TaxasServicosModule
                         [ID],
 		                [SERVICO], 
 		                [TAXA], 
-		                [OPCAOSERVICO]
+		                [OPCAOSERVICO],
+                        [LOCALSERVICO]
 	                FROM
                         TBTAXASSERVICOS";
 
@@ -213,14 +218,15 @@ namespace LocadoraVeiculos.Controladores.TaxasServicosModule
             return parametros;
         }
 
-        private Dictionary<string, object> ObtemParametrosTaxasServicos(TaxasServicos grupoAutomoveis)
+        private Dictionary<string, object> ObtemParametrosTaxasServicos(TaxasServicos taxasServicos)
         {
             var parametros = new Dictionary<string, object>();
 
-            parametros.Add("ID", grupoAutomoveis.Id);
-            parametros.Add("SERVICO", grupoAutomoveis.Servico);
-            parametros.Add("TAXA", grupoAutomoveis.Taxa);
-            parametros.Add("OPCAOSERVICO", grupoAutomoveis.OpcaoServico);
+            parametros.Add("ID", taxasServicos.Id);
+            parametros.Add("SERVICO", taxasServicos.Servico);
+            parametros.Add("TAXA", taxasServicos.Taxa);
+            parametros.Add("OPCAOSERVICO", taxasServicos.OpcaoServico);
+            parametros.Add("LOCALSERVICO", taxasServicos.LocalServico);
 
             return parametros;
         }
@@ -231,8 +237,9 @@ namespace LocadoraVeiculos.Controladores.TaxasServicosModule
             string servico = Convert.ToString(reader["SERVICO"]);
             double taxa = Convert.ToDouble(reader["TAXA"]);
             string opcaoServico = Convert.ToString(reader["OPCAOSERVICO"]);
+            string localServico = Convert.ToString(reader["LOCALSERVICO"]);
 
-            TaxasServicos taxasServicos = new TaxasServicos(servico, taxa, opcaoServico);
+            TaxasServicos taxasServicos = new TaxasServicos(servico, taxa, opcaoServico, localServico);
 
             taxasServicos.Id = id;
 

@@ -22,7 +22,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 
         public bool BotaoAdicionar => true;
 
-        public bool BotaoCadastro => throw new System.NotImplementedException();
+        public bool BotaoDevolucao => false;
 
         public bool BotaoEditar => true;
 
@@ -33,5 +33,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
         public bool BotaoAgrupar => false;
 
         public bool BotaoDesagrupar => true;
+
+        public string ToolTipDevolucao => "";
     }
 }

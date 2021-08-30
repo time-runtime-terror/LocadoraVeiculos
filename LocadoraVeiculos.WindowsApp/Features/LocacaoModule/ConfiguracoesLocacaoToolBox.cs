@@ -17,26 +17,28 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
         public string ToolTipExcluir => "Excluir uma locação";
 
-        public string ToolTipFiltrar => "Indisponível";
+        public string ToolTipFiltrar => "Fitrar locações";
 
         public string ToolTipAgrupar => "Indisponível";
 
-        public string ToolTipDesagrupar => "Indisponível";
+        public string ToolTipDesagrupar => "Desagrupar locações";
 
         public bool BarraPesquisa => false;
 
         public bool BotaoAdicionar => true;
 
-        public bool BotaoCadastro => throw new NotImplementedException();
+        public bool BotaoDevolucao => true;
 
         public bool BotaoEditar => true;
 
         public bool BotaoExcluir => true;
 
-        public bool BotaoFiltrar => false;
+        public bool BotaoFiltrar => true;
 
         public bool BotaoAgrupar => false;
 
-        public bool BotaoDesagrupar => false;
+        public bool BotaoDesagrupar => true;
+
+        public string ToolTipDevolucao => "Registrar Devolução";
     }
 }

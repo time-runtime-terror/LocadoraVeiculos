@@ -61,7 +61,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 
                 Dashboard.Instancia.AtualizarRodape($"Cliente: [{tela.Cliente.Nome}] inserido com sucesso");
             }
-
         }
 
         public void ExcluirRegistro()
@@ -84,8 +83,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
                 List<Cliente> clientes = controladorCliente.SelecionarTodos();
 
                 tabelaClientes.AtualizarRegistros(clientes);
-
-
             }
         }
 
@@ -101,11 +98,11 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
                 switch (telaFiltro.TipoFiltro)
                 {
                     case FiltroClienteEnum.PessoasFisicas:
-                        clientes = controladorCliente.SelecionarTodos().FindAll(x => x.TipoCadastro == "CPF");
+                        clientes = controladorCliente.SelecionarTodasPessoasFisicas();
                         break;
 
                     case FiltroClienteEnum.PessoasJuridicas:
-                        clientes = controladorCliente.SelecionarTodos().FindAll(x => x.TipoCadastro == "CNPJ");
+                        clientes = controladorCliente.SelecionarTodasPessoasJuridicas();
                         break;
 
                     default:

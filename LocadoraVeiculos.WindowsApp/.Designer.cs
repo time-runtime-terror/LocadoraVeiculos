@@ -36,6 +36,7 @@ namespace LocadoraVeiculos.WindowsApp
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.btnLocacoes = new System.Windows.Forms.Button();
             this.btnConfiguracoes = new System.Windows.Forms.Button();
             this.btnTaxasServicos = new System.Windows.Forms.Button();
             this.btnCadastroGrupoAutomoveis = new System.Windows.Forms.Button();
@@ -58,10 +59,10 @@ namespace LocadoraVeiculos.WindowsApp
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripBtnDesagrupar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripBtnDevolucao = new System.Windows.Forms.ToolStripButton();
             this.panelRegistros = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.labelRodape = new System.Windows.Forms.ToolStripStatusLabel();
-            this.btnLocacoes = new System.Windows.Forms.Button();
             this.panelTopo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelMenu.SuspendLayout();
@@ -122,24 +123,37 @@ namespace LocadoraVeiculos.WindowsApp
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 60);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(242, 518);
+            this.panelMenu.Size = new System.Drawing.Size(242, 588);
             this.panelMenu.TabIndex = 3;
             // 
             // panel4
             // 
-            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel4.Controls.Add(this.btnLocacoes);
             this.panel4.Controls.Add(this.btnConfiguracoes);
             this.panel4.Controls.Add(this.btnTaxasServicos);
             this.panel4.Controls.Add(this.btnCadastroGrupoAutomoveis);
             this.panel4.Controls.Add(this.btnCadastroVeiculos);
             this.panel4.Controls.Add(this.btnCadastroFuncionarioModules);
             this.panel4.Controls.Add(this.btnCadastroClientes);
+            this.panel4.Controls.Add(this.btnLocacoes);
             this.panel4.Location = new System.Drawing.Point(3, 76);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(233, 430);
-            this.panel4.TabIndex = 1;
+            this.panel4.Size = new System.Drawing.Size(239, 434);
+            this.panel4.TabIndex = 0;
+            // 
+            // btnLocacoes
+            // 
+            this.btnLocacoes.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnLocacoes.FlatAppearance.BorderSize = 0;
+            this.btnLocacoes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLocacoes.Font = new System.Drawing.Font("Arial", 12F);
+            this.btnLocacoes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
+            this.btnLocacoes.Location = new System.Drawing.Point(0, 0);
+            this.btnLocacoes.Name = "btnLocacoes";
+            this.btnLocacoes.Size = new System.Drawing.Size(239, 60);
+            this.btnLocacoes.TabIndex = 1;
+            this.btnLocacoes.Text = "Locações";
+            this.btnLocacoes.UseVisualStyleBackColor = true;
+            this.btnLocacoes.Click += new System.EventHandler(this.btnLocacoes_Click);
             // 
             // btnConfiguracoes
             // 
@@ -148,10 +162,10 @@ namespace LocadoraVeiculos.WindowsApp
             this.btnConfiguracoes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfiguracoes.Font = new System.Drawing.Font("Arial", 12F);
             this.btnConfiguracoes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
-            this.btnConfiguracoes.Location = new System.Drawing.Point(0, 304);
+            this.btnConfiguracoes.Location = new System.Drawing.Point(0, 364);
             this.btnConfiguracoes.Name = "btnConfiguracoes";
-            this.btnConfiguracoes.Size = new System.Drawing.Size(233, 60);
-            this.btnConfiguracoes.TabIndex = 6;
+            this.btnConfiguracoes.Size = new System.Drawing.Size(239, 60);
+            this.btnConfiguracoes.TabIndex = 7;
             this.btnConfiguracoes.Text = "Configurações";
             this.btnConfiguracoes.UseVisualStyleBackColor = true;
             this.btnConfiguracoes.Click += new System.EventHandler(this.btnConfiguracoes_Click);
@@ -163,10 +177,10 @@ namespace LocadoraVeiculos.WindowsApp
             this.btnTaxasServicos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTaxasServicos.Font = new System.Drawing.Font("Arial", 12F);
             this.btnTaxasServicos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
-            this.btnTaxasServicos.Location = new System.Drawing.Point(0, 244);
+            this.btnTaxasServicos.Location = new System.Drawing.Point(0, 304);
             this.btnTaxasServicos.Name = "btnTaxasServicos";
-            this.btnTaxasServicos.Size = new System.Drawing.Size(233, 60);
-            this.btnTaxasServicos.TabIndex = 5;
+            this.btnTaxasServicos.Size = new System.Drawing.Size(239, 60);
+            this.btnTaxasServicos.TabIndex = 6;
             this.btnTaxasServicos.Text = "Taxas e serviços";
             this.btnTaxasServicos.UseVisualStyleBackColor = true;
             this.btnTaxasServicos.Click += new System.EventHandler(this.btnTaxasServicos_Click);
@@ -178,10 +192,10 @@ namespace LocadoraVeiculos.WindowsApp
             this.btnCadastroGrupoAutomoveis.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCadastroGrupoAutomoveis.Font = new System.Drawing.Font("Arial", 12F);
             this.btnCadastroGrupoAutomoveis.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
-            this.btnCadastroGrupoAutomoveis.Location = new System.Drawing.Point(0, 183);
+            this.btnCadastroGrupoAutomoveis.Location = new System.Drawing.Point(0, 243);
             this.btnCadastroGrupoAutomoveis.Name = "btnCadastroGrupoAutomoveis";
-            this.btnCadastroGrupoAutomoveis.Size = new System.Drawing.Size(233, 61);
-            this.btnCadastroGrupoAutomoveis.TabIndex = 4;
+            this.btnCadastroGrupoAutomoveis.Size = new System.Drawing.Size(239, 61);
+            this.btnCadastroGrupoAutomoveis.TabIndex = 5;
             this.btnCadastroGrupoAutomoveis.Text = "Grupo Automóveis";
             this.btnCadastroGrupoAutomoveis.UseVisualStyleBackColor = true;
             this.btnCadastroGrupoAutomoveis.Click += new System.EventHandler(this.btnCadastroGrupoAutomoveis_Click);
@@ -193,10 +207,10 @@ namespace LocadoraVeiculos.WindowsApp
             this.btnCadastroVeiculos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCadastroVeiculos.Font = new System.Drawing.Font("Arial", 12F);
             this.btnCadastroVeiculos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
-            this.btnCadastroVeiculos.Location = new System.Drawing.Point(0, 122);
+            this.btnCadastroVeiculos.Location = new System.Drawing.Point(0, 182);
             this.btnCadastroVeiculos.Name = "btnCadastroVeiculos";
-            this.btnCadastroVeiculos.Size = new System.Drawing.Size(233, 61);
-            this.btnCadastroVeiculos.TabIndex = 3;
+            this.btnCadastroVeiculos.Size = new System.Drawing.Size(239, 61);
+            this.btnCadastroVeiculos.TabIndex = 4;
             this.btnCadastroVeiculos.Text = "Veículos";
             this.btnCadastroVeiculos.UseVisualStyleBackColor = true;
             this.btnCadastroVeiculos.Click += new System.EventHandler(this.btnCadastroVeiculoModules_Click);
@@ -208,10 +222,10 @@ namespace LocadoraVeiculos.WindowsApp
             this.btnCadastroFuncionarioModules.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCadastroFuncionarioModules.Font = new System.Drawing.Font("Arial", 12F);
             this.btnCadastroFuncionarioModules.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
-            this.btnCadastroFuncionarioModules.Location = new System.Drawing.Point(0, 61);
+            this.btnCadastroFuncionarioModules.Location = new System.Drawing.Point(0, 121);
             this.btnCadastroFuncionarioModules.Name = "btnCadastroFuncionarioModules";
-            this.btnCadastroFuncionarioModules.Size = new System.Drawing.Size(233, 61);
-            this.btnCadastroFuncionarioModules.TabIndex = 2;
+            this.btnCadastroFuncionarioModules.Size = new System.Drawing.Size(239, 61);
+            this.btnCadastroFuncionarioModules.TabIndex = 3;
             this.btnCadastroFuncionarioModules.Text = "Funcionários";
             this.btnCadastroFuncionarioModules.UseMnemonic = false;
             this.btnCadastroFuncionarioModules.UseVisualStyleBackColor = true;
@@ -224,10 +238,10 @@ namespace LocadoraVeiculos.WindowsApp
             this.btnCadastroClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCadastroClientes.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCadastroClientes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
-            this.btnCadastroClientes.Location = new System.Drawing.Point(0, 0);
+            this.btnCadastroClientes.Location = new System.Drawing.Point(0, 60);
             this.btnCadastroClientes.Name = "btnCadastroClientes";
-            this.btnCadastroClientes.Size = new System.Drawing.Size(233, 61);
-            this.btnCadastroClientes.TabIndex = 1;
+            this.btnCadastroClientes.Size = new System.Drawing.Size(239, 61);
+            this.btnCadastroClientes.TabIndex = 2;
             this.btnCadastroClientes.Text = "Clientes";
             this.btnCadastroClientes.UseVisualStyleBackColor = true;
             this.btnCadastroClientes.Click += new System.EventHandler(this.btnCadastroClientes_Click);
@@ -262,7 +276,8 @@ namespace LocadoraVeiculos.WindowsApp
             this.toolStripBtnAgrupar,
             this.toolStripSeparator5,
             this.toolStripBtnDesagrupar,
-            this.toolStripSeparator7});
+            this.toolStripSeparator7,
+            this.toolStripBtnDevolucao});
             this.toolBoxAcoes.Location = new System.Drawing.Point(242, 60);
             this.toolBoxAcoes.Name = "toolBoxAcoes";
             this.toolBoxAcoes.Size = new System.Drawing.Size(827, 55);
@@ -388,13 +403,25 @@ namespace LocadoraVeiculos.WindowsApp
             this.toolStripSeparator7.Name = "toolStripSeparator7";
             this.toolStripSeparator7.Size = new System.Drawing.Size(6, 55);
             // 
+            // toolStripBtnDevolucao
+            // 
+            this.toolStripBtnDevolucao.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBtnDevolucao.Image = global::LocadoraVeiculos.WindowsApp.Properties.Resources.outline_car_rental_black_24dp1;
+            this.toolStripBtnDevolucao.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripBtnDevolucao.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBtnDevolucao.Name = "toolStripBtnDevolucao";
+            this.toolStripBtnDevolucao.Size = new System.Drawing.Size(52, 52);
+            this.toolStripBtnDevolucao.Text = "toolStripButton1";
+            this.toolStripBtnDevolucao.Visible = false;
+            this.toolStripBtnDevolucao.Click += new System.EventHandler(this.toolStripBtnDevolucao_Click);
+            // 
             // panelRegistros
             // 
             this.panelRegistros.BackColor = System.Drawing.Color.Silver;
             this.panelRegistros.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelRegistros.Location = new System.Drawing.Point(242, 115);
             this.panelRegistros.Name = "panelRegistros";
-            this.panelRegistros.Size = new System.Drawing.Size(827, 463);
+            this.panelRegistros.Size = new System.Drawing.Size(827, 533);
             this.panelRegistros.TabIndex = 5;
             // 
             // statusStrip1
@@ -403,7 +430,7 @@ namespace LocadoraVeiculos.WindowsApp
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.labelRodape});
-            this.statusStrip1.Location = new System.Drawing.Point(242, 556);
+            this.statusStrip1.Location = new System.Drawing.Point(242, 626);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 10, 0);
             this.statusStrip1.Size = new System.Drawing.Size(827, 22);
@@ -417,26 +444,11 @@ namespace LocadoraVeiculos.WindowsApp
             this.labelRodape.Size = new System.Drawing.Size(90, 17);
             this.labelRodape.Text = "Tudo certo ;)";
             // 
-            // btnLocacoes
-            // 
-            this.btnLocacoes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnLocacoes.FlatAppearance.BorderSize = 0;
-            this.btnLocacoes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLocacoes.Font = new System.Drawing.Font("Arial", 12F);
-            this.btnLocacoes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
-            this.btnLocacoes.Location = new System.Drawing.Point(0, 364);
-            this.btnLocacoes.Name = "btnLocacoes";
-            this.btnLocacoes.Size = new System.Drawing.Size(233, 60);
-            this.btnLocacoes.TabIndex = 7;
-            this.btnLocacoes.Text = "Locações";
-            this.btnLocacoes.UseVisualStyleBackColor = true;
-            this.btnLocacoes.Click += new System.EventHandler(this.btnLocacoes_Click);
-            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1069, 578);
+            this.ClientSize = new System.Drawing.Size(1069, 648);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.panelRegistros);
             this.Controls.Add(this.toolBoxAcoes);
@@ -497,6 +509,7 @@ namespace LocadoraVeiculos.WindowsApp
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnTaxasServicos;
         private System.Windows.Forms.Button btnLocacoes;
+        private System.Windows.Forms.ToolStripButton toolStripBtnDevolucao;
     }
 }
 

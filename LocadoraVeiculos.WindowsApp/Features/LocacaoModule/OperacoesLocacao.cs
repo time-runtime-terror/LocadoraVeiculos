@@ -3,6 +3,7 @@ using LocadoraVeiculos.Controladores.LocacaoModule;
 using LocadoraVeiculos.Controladores.TaxasServicosModule;
 using LocadoraVeiculos.Controladores.VeiculoModule;
 using LocadoraVeiculos.Dominio.LocacaoModule;
+using LocadoraVeiculos.WindowsApp.Features.DevolucaoModule;
 using LocadoraVeiculos.WindowsApp.Shared;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         private readonly ControladorLocacao controladorLocacao;
         private readonly ControladorTaxasServicos controladorTaxasServicos;
         private readonly TabelaLocacaoControl tabelaLocacoes;
+        private readonly ControladorVeiculo controladorVeiculo;
 
         public OperacoesLocacao()
         {
@@ -23,6 +25,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             controladorLocacao = new ControladorLocacao(new ControladorCliente(), new ControladorVeiculo(), controladorTaxasServicos);
 
             tabelaLocacoes = new TabelaLocacaoControl();
+
+            controladorVeiculo = new ControladorVeiculo();
         }
 
         public void InserirNovoRegistro()
@@ -104,7 +108,28 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
         public void FiltrarRegistros()
         {
-            throw new NotImplementedException();
+            FiltroLocacaoForm telaFiltro = new FiltroLocacaoForm();
+
+            if (telaFiltro.ShowDialog() == DialogResult.OK)
+            {
+                var locacoes = new List<Locacao>();
+
+                switch (telaFiltro.TipoFiltro)
+                {
+                    case FiltroLocacaoEnum.LocacoesConcluidas:
+                        locacoes = controladorLocacao.SelecionarTodasLocacoesConcluidas();
+                        break;
+
+                    case FiltroLocacaoEnum.LocacoesPendentes:
+                        locacoes = controladorLocacao.SelecionarTodasLocacoesPendentes();
+                        break;
+
+                    default:
+                        break;
+                }
+
+                tabelaLocacoes.AtualizarRegistros(locacoes);
+            }
         }
 
         public void AgruparRegistros()
@@ -114,7 +139,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
         public void DesagruparRegistros()
         {
-            throw new NotImplementedException();
+            var locacoes = controladorLocacao.SelecionarTodos();
+
+            tabelaLocacoes.AtualizarRegistros(locacoes);
         }
 
         public UserControl ObterTabela()
@@ -126,9 +153,44 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             return tabelaLocacoes;
         }
 
+        public void RegistrarDevolucao()
+        {
+            int id = tabelaLocacoes.ObtemIdSelecionado();
+
+            if (id == 0)
+            {
+                Dashboard.Instancia.AtualizarRodape($"Selecione um registro para poder devolver!");
+                return;
+            }
+
+            Locacao locacaoSelecionada = controladorLocacao.SelecionarPorId(id);
+
+            TelaRegistrarDevolucaoForm tela = new TelaRegistrarDevolucaoForm();
+
+            tela.Locacao = locacaoSelecionada;
+
+            if (tela.ShowDialog() == DialogResult.OK)
+            {
+                controladorLocacao.RegistrarDevolucao(tela.Locacao);
+
+                controladorTaxasServicos.ExcluirTaxaUsada(tela.Locacao);
+
+                controladorTaxasServicos.InserirNovaTaxaUsada(tela.Locacao);
+
+                controladorVeiculo.AtualizarQuilometragem(tela.Locacao.Veiculo);
+
+                List<Locacao> locacoes = controladorLocacao.SelecionarTodos();
+
+                tabelaLocacoes.AtualizarRegistros(locacoes);
+
+                Dashboard.Instancia.AtualizarRodape($"Devolução da Locação: [{tela.Locacao.Id}] feita com sucesso!");
+            }
+        }
+
         public void Pesquisar(string text)
         {
             throw new NotImplementedException();
         }
+
     }
 }

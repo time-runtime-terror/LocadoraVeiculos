@@ -56,6 +56,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             this.cbTipoVeiculo = new System.Windows.Forms.ComboBox();
             this.imgCarro = new System.Windows.Forms.PictureBox();
             this.cmbTipoCombustivel = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgCarro)).BeginInit();
@@ -70,7 +72,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(627, 60);
+            this.panel2.Size = new System.Drawing.Size(650, 60);
             this.panel2.TabIndex = 5;
             // 
             // pictureBox1
@@ -318,12 +320,36 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             this.cmbTipoCombustivel.Size = new System.Drawing.Size(197, 26);
             this.cmbTipoCombustivel.TabIndex = 39;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(617, 308);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(17, 18);
+            this.label11.TabIndex = 41;
+            this.label11.Text = "L";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(617, 348);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(32, 18);
+            this.label13.TabIndex = 42;
+            this.label13.Text = "KM";
+            // 
             // TelaCadastrarVeiculos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(627, 479);
+            this.ClientSize = new System.Drawing.Size(650, 479);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.cmbTipoCombustivel);
             this.Controls.Add(this.imgCarro);
             this.Controls.Add(this.cbTipoVeiculo);
@@ -392,5 +418,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
         private System.Windows.Forms.ComboBox cbTipoVeiculo;
         private System.Windows.Forms.PictureBox imgCarro;
         private System.Windows.Forms.ComboBox cmbTipoCombustivel;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label13;
     }
 }

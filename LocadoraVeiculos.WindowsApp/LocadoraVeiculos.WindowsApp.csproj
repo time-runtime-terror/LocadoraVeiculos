@@ -46,6 +46,7 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -95,6 +96,13 @@
       <DependentUpon>CombustivelControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Features\CombustivelModule\ConfiguracaoCombustivelToolBox.cs" />
+    <Compile Include="Features\DevolucaoModule\ConfiguracoesDevolucaoToolBox.cs" />
+    <Compile Include="Features\DevolucaoModule\TelaRegistrarDevolucaoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\DevolucaoModule\TelaRegistrarDevolucaoForm.Designer.cs">
+      <DependentUpon>TelaRegistrarDevolucaoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Features\FuncionarioModule\ConfiguracaoFuncionarioToolBox.cs" />
     <Compile Include="Features\FuncionarioModule\OperacoesFuncionario.cs" />
     <Compile Include="Features\FuncionarioModule\TabelaFuncionarioControl.cs">
@@ -125,6 +133,13 @@
       <DependentUpon>TelaAgrupamentoGrupoAutomoveis.cs</DependentUpon>
     </Compile>
     <Compile Include="Features\LocacaoModule\ConfiguracoesLocacaoToolBox.cs" />
+    <Compile Include="Features\LocacaoModule\FiltroLocacaoEnum.cs" />
+    <Compile Include="Features\LocacaoModule\FiltroLocacaoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\LocacaoModule\FiltroLocacaoForm.Designer.cs">
+      <DependentUpon>FiltroLocacaoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Features\LocacaoModule\OperacoesLocacao.cs" />
     <Compile Include="Features\LocacaoModule\TabelaLocacaoControl.cs">
       <SubType>UserControl</SubType>
@@ -210,11 +225,17 @@
     <EmbeddedResource Include="Features\CombustivelModule\CombustivelControl.resx">
       <DependentUpon>CombustivelControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Features\DevolucaoModule\TelaRegistrarDevolucaoForm.resx">
+      <DependentUpon>TelaRegistrarDevolucaoForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Features\FuncionarioModule\TabelaFuncionarioControl.resx">
       <DependentUpon>TabelaFuncionarioControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Features\FuncionarioModule\TelaCadastrarFuncionario.resx">
       <DependentUpon>TelaCadastrarFuncionario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\LocacaoModule\FiltroLocacaoForm.resx">
+      <DependentUpon>FiltroLocacaoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Features\LocacaoModule\TabelaLocacaoControl.resx">
       <DependentUpon>TabelaLocacaoControl.cs</DependentUpon>
@@ -279,6 +300,10 @@
   <ItemGroup>
     <Content Include="Libs\DataGridViewGrouper.dll" />
     <Content Include="Resources\IconLogo.ico" />
+    <Content Include="Resources\tanqueCombustivel.jpg" />
+    <Content Include="Resources\tanqueCombustivel.png" />
+    <None Include="Resources\outline_car_rental_black_24dp.png" />
+    <None Include="Resources\outline_car_rental_black_24dp1.png" />
     <Content Include="Resources\round_close_fullscreen_black_24dp.png" />
     <Content Include="Resources\round_delete_black_24dp.png" />
     <Content Include="Resources\round_edit_black_24dp.png" />

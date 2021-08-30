@@ -27,7 +27,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
 
         public bool BotaoAdicionar => true;
 
-        public bool BotaoCadastro => true;
+        public bool BotaoDevolucao => false;
 
         public bool BotaoEditar => true;
 
@@ -38,5 +38,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
         public bool BotaoAgrupar => true;
 
         public bool BotaoDesagrupar => true;
+
+        public string ToolTipDevolucao => "";
     }
 }

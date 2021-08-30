@@ -14,6 +14,7 @@ using LocadoraVeiculos.WindowsApp.Features.CombustivelModule;
 using LocadoraVeiculos.Controladores.CombustivelModule;
 using LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule;
 using LocadoraVeiculos.WindowsApp.Features.LocacaoModule;
+using LocadoraVeiculos.WindowsApp.Features.DevolucaoModule;
 
 namespace LocadoraVeiculos.WindowsApp
 {
@@ -35,6 +36,21 @@ namespace LocadoraVeiculos.WindowsApp
             labelRodape.Text = mensagem;
         }
 
+        public void DesabilitarBotoesIndisponiveisParaDevolucao()
+        {
+            toolStripBtnDevolucao.Enabled = false;
+            toolStripBtnEditar.Enabled = false;
+            toolStripBtnExcluir.Enabled = true;
+        }
+
+        public void HabilitarBotoesIndisponiveisParaDevolucao()
+        {
+            toolStripBtnDevolucao.Enabled = true;
+            toolStripBtnEditar.Enabled = true;
+            toolStripBtnExcluir.Enabled = false;
+        }
+
+
         #region Eventos de Click dos Botões do Menu Principal
 
         private void btnLocacoes_Click(object sender, EventArgs e)
@@ -48,6 +64,8 @@ namespace LocadoraVeiculos.WindowsApp
             operacoes = new OperacoesLocacao();
 
             ConfigurarPainelRegistros();
+
+            operacoes.DesagruparRegistros();
         }
 
         private void btnCadastroClientes_Click(object sender, System.EventArgs e)
@@ -159,6 +177,12 @@ namespace LocadoraVeiculos.WindowsApp
             txtPesquisa.Text = "Digite para Pesquisar";
             operacoes.DesagruparRegistros();
         }
+
+        private void toolStripBtnDevolucao_Click(object sender, EventArgs e)
+        {
+            if (operacoes is OperacoesLocacao)
+                ((OperacoesLocacao)operacoes).RegistrarDevolucao();
+        }
         #endregion
 
         #region Métodos Privados da Classe
@@ -171,6 +195,8 @@ namespace LocadoraVeiculos.WindowsApp
             panelRegistros.Controls.Clear();
 
             panelRegistros.Controls.Add(tabela);
+
+            operacoes.DesagruparRegistros();
         }
 
         private void ConfigurarPainelConfiguracoes()
@@ -191,6 +217,7 @@ namespace LocadoraVeiculos.WindowsApp
             toolStripBtnAdicionar.ToolTipText = configuracao.ToolTipAdicionar;
             toolStripBtnEditar.ToolTipText = configuracao.ToolTipEditar;
             toolStripBtnExcluir.ToolTipText = configuracao.ToolTipExcluir;
+            toolStripBtnDevolucao.ToolTipText = configuracao.ToolTipDevolucao;
 
             toolStripBtnAgrupar.ToolTipText = configuracao.ToolTipAgrupar;
             toolStripBtnDesagrupar.ToolTipText = configuracao.ToolTipDesagrupar;
@@ -204,6 +231,8 @@ namespace LocadoraVeiculos.WindowsApp
             toolStripBtnAgrupar.Enabled = configuracao.BotaoAgrupar;
             toolStripBtnDesagrupar.Enabled = configuracao.BotaoDesagrupar;
             toolStripBtnFiltrar.Enabled = configuracao.BotaoFiltrar;
+
+            toolStripBtnDevolucao.Visible = configuracao.BotaoDevolucao;
         }
 
         private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)
@@ -229,6 +258,5 @@ namespace LocadoraVeiculos.WindowsApp
             if (txtPesquisa.Text != "Digite para Pesquisar")
                 operacoes.Pesquisar(txtPesquisa.Text);
         }
-
     }
 }

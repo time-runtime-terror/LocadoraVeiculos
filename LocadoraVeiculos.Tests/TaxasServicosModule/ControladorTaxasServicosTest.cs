@@ -22,7 +22,7 @@ namespace LocadoraVeiculos.Tests.TaxasServicosModule
         public void DeveInserir_TaxasServicos()
         {
             //arrange
-            var novoTaxaServico = new TaxasServicos("GPS", 200, "Diário");
+            var novoTaxaServico = new TaxasServicos("GPS", 200, "Diário", "Locação");
 
             //action
             controlador.InserirNovo(novoTaxaServico);
@@ -36,10 +36,10 @@ namespace LocadoraVeiculos.Tests.TaxasServicosModule
         public void DeveAtualizar_TaxasServicos()
         {
             //arrange
-            var taxasServicos = new TaxasServicos("GPS", 140, "Fixo");
+            var taxasServicos = new TaxasServicos("GPS", 140, "Fixo", "Locação");
             controlador.InserirNovo(taxasServicos);
 
-            var novoTaxasServicos = new TaxasServicos("GPS", 140, "Diário");
+            var novoTaxasServicos = new TaxasServicos("GPS", 140, "Diário", "Locação");
 
             //action
             controlador.Editar(taxasServicos.Id, novoTaxasServicos);
@@ -53,7 +53,7 @@ namespace LocadoraVeiculos.Tests.TaxasServicosModule
         public void DeveExcluir_TaxasServicos()
         {
             //arrange            
-            var taxasServicos = new TaxasServicos("GPS", 130, "Fixo");
+            var taxasServicos = new TaxasServicos("GPS", 130, "Fixo", "Locação");
             controlador.InserirNovo(taxasServicos);
 
             //action            
@@ -68,7 +68,7 @@ namespace LocadoraVeiculos.Tests.TaxasServicosModule
         public void DeveSelecionar_TaxasServicos_PorId()
         {
             //arrange
-            var taxasServicos = new TaxasServicos("GPS", 240, "Diário");
+            var taxasServicos = new TaxasServicos("GPS", 240, "Diário", "Locação");
             controlador.InserirNovo(taxasServicos);
 
             //action

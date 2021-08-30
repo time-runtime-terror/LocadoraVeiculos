@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculos.Controladores.ClienteModule;
+using LocadoraVeiculos.Controladores.LocacaoModule;
 using LocadoraVeiculos.Controladores.TaxasServicosModule;
 using LocadoraVeiculos.Controladores.VeiculoModule;
 using LocadoraVeiculos.Dominio.ClienteModule;
@@ -18,6 +19,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         private readonly ControladorTaxasServicos controladorTaxasServicos;
         private readonly ControladorCliente controladorCliente;
         private readonly ControladorVeiculo controladorVeiculo;
+        private readonly ControladorLocacao controladorLocacao;
 
         private List<TaxasServicos> taxasSelecionadas;
 
@@ -32,13 +34,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                 txtId.Text = locacao.Id.ToString();
 
-                cmbCliente.SelectedItem = locacao.Cliente;
-
-                cmbVeiculo.SelectedItem = (cmbVeiculo.Items.Contains(locacao.Veiculo)) ? locacao.Veiculo : null;
-
                 cmbPlano.SelectedItem = (cmbPlano.Items.Contains(locacao.Plano)) ?
                     locacao.Plano : null;
-                
+
                 txtValorEntrada.Text = locacao.Caucao.ToString();
 
                 dateDataSaida.Value = locacao.DataSaida;
@@ -51,6 +49,12 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                     foreach (var taxa in taxasSelecionadas)
                         if (!listaTaxasServicos.Items.Contains(taxa))
                             listaTaxasServicos.Items.Add(taxa);
+
+                DesabilitarBotoesParaEdicao();
+
+                CalcularValorTotal(taxasSelecionadas);
+
+                btnGravar.Enabled = true;
             }
         }
 
@@ -60,101 +64,36 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             controladorTaxasServicos = new ControladorTaxasServicos();
             controladorCliente = new ControladorCliente();
             controladorVeiculo = new ControladorVeiculo();
+            controladorLocacao = new ControladorLocacao(controladorCliente, controladorVeiculo, controladorTaxasServicos);
         }
 
+        #region Eventos
         private void TelaCadastrarLocacaoForm_Load(object sender, EventArgs e)
         {
-            //foreach (var taxa in controladorTaxasServicos.SelecionarTodos())
-            //    listaTaxasServicos.Items.Add(taxa);
-
-
             List<Cliente> clientes = controladorCliente.SelecionarTodos();
 
             foreach (var c in clientes)
                 cmbCliente.Items.Add(c);
 
-            List<Veiculo> veiculos = controladorVeiculo.SelecionarTodos();
+            List<Veiculo> veiculosDisponiveis = ObterVeiculosDisponiveis();
 
-            foreach (var v in veiculos)
-                cmbVeiculo.Items.Add(v);
+            if (veiculosDisponiveis != null)
+                foreach (var v in veiculosDisponiveis)
+                    cmbVeiculo.Items.Add(v);
+
+            CarregarCmbClientes();
+
+            CarregarCmbVeiculos();
+
+            dateDataDevolucao.MinDate = DateTime.Now;
         }
 
-        private void cmbCliente_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            List<Cliente> clientes = controladorCliente.SelecionarTodos();
-
-            Cliente cliente = (Cliente)cmbCliente.SelectedItem;
-
-            if (cliente.TipoCadastro == "CNPJ")
-            {
-                cmbCondutor.Enabled = true;
-                foreach (var c in clientes)
-                    if (c.TipoCadastro == "CPF" && c.Empresa.Nome == cliente.Nome)
-                        cmbCondutor.Items.Add(c);
-            }
-            else
-            {
-                cmbCondutor.Enabled = false;
-                cmbCondutor.Items.Clear();
-            }
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        //private void listaTaxasServicos_ItemCheck(object sender, ItemCheckEventArgs e)
-        //{
-        //    List<TaxasServicos> taxasSelecionadas = new List<TaxasServicos>();
-
-        //    foreach (var item in listaTaxasServicos.CheckedItems)
-        //        taxasSelecionadas.Add((TaxasServicos)item);
-
-        //    if (e.NewValue == CheckState.Checked)
-        //        taxasSelecionadas.Add((TaxasServicos)listaTaxasServicos.Items[e.Index]);
-
-        //    else
-        //        taxasSelecionadas.Remove((TaxasServicos)listaTaxasServicos.Items[e.Index]);
-
-        //    CalcularValorTotal(taxasSelecionadas);
-        //}
-
-        private void CalcularValorTotal(List<TaxasServicos> taxasSelecionadas)
-        {
-            string strCaucao = txtValorEntrada.Text;
-            double caucao, total = 0;
-
-            if (string.IsNullOrEmpty(strCaucao))
-                caucao = 0;
-            else
-                caucao = Convert.ToDouble(strCaucao);
-
-            foreach (var item in taxasSelecionadas)
-                total += item.Taxa;
-
-            total += caucao;
-
-            lblValorTotal.Text = total.ToString();
-        }
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            Cliente cliente = (Cliente)cmbCliente.SelectedItem;
-            Veiculo veiculo = (Veiculo)cmbVeiculo.SelectedItem;
+            VerificarDisponibilidadeDeVeiculo();
 
-            string plano = (string)cmbPlano.SelectedItem;
-            double caucao = Convert.ToDouble(txtValorEntrada.Text);
-
-            DateTime dataSaida = dateDataSaida.Value;
-            DateTime dataDevolucao = dateDataDevolucao.Value;
-
-            List<TaxasServicos> taxasSelecionadas = new List<TaxasServicos>();
-
-            foreach (var item in listaTaxasServicos.Items)
-                taxasSelecionadas.Add((TaxasServicos)item);
-
-            locacao = new Locacao(cliente, veiculo, taxasSelecionadas, dataSaida, dataDevolucao, caucao, plano);
+            locacao = ObterLocacao();
 
             string resultadoValidacao = locacao.Validar();
 
@@ -169,6 +108,42 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
         }
 
+        private void btnCalcularTotal_Click(object sender, EventArgs e)
+        {
+            CalcularValorTotal(taxasSelecionadas);
+
+            btnGravar.Enabled = true;
+        }
+
+        private void cmbCliente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<Cliente> clientes = controladorCliente.SelecionarTodos();
+
+            Cliente cliente = (Cliente)cmbCliente.SelectedItem;
+
+            string condutor = null;
+
+            if (cliente.TipoCadastro == "CNPJ")
+            {
+                cmbCondutor.Enabled = true;
+                foreach (var c in clientes)
+                    if (c.Empresa != null && c.TipoCadastro == "CPF" && c.Empresa.Nome == cliente.Nome)
+                        condutor = c.Nome;
+
+                cmbCondutor.Items.Add(condutor);
+            }
+            else
+            {
+                cmbCondutor.Enabled = false;
+                cmbCondutor.Items.Clear();
+            }
+        }
+
+        private void txtValorEntrada_Enter(object sender, EventArgs e)
+        {
+            btnGravar.Enabled = false;
+        }
+
         private void txtCaucao_TextChanged(object sender, EventArgs e)
         {
             if (Regex.IsMatch(txtValorEntrada.Text, "[^0-9]"))
@@ -180,7 +155,15 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
         private void btnSelecionarTaxas_Click(object sender, EventArgs e)
         {
-            TelaSelecaoTaxasForm tela = new TelaSelecaoTaxasForm();
+            btnGravar.Enabled = false;
+
+            if(listaTaxasServicos.Items.Count!= 0)
+                foreach (var item in listaTaxasServicos.Items)
+                    taxasSelecionadas.Add((TaxasServicos)item);
+
+
+            string localTaxa = "Locação";
+            TelaSelecaoTaxasForm tela = new TelaSelecaoTaxasForm(taxasSelecionadas, localTaxa);
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
@@ -191,6 +174,157 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                     foreach (var taxa in taxasSelecionadas)
                         listaTaxasServicos.Items.Add(taxa);
             }
+        }
+        #endregion
+
+        private List<Veiculo> ObterVeiculosDisponiveis()
+        {
+            List<Veiculo> veiculosDisponiveis = new List<Veiculo>();
+
+            foreach (Veiculo v in controladorVeiculo.SelecionarTodos())
+                if (!VeiculoEstaAlugado(v) && !veiculosDisponiveis.Contains(v))
+                    veiculosDisponiveis.Add(v);
+
+            return veiculosDisponiveis;
+        }
+
+        public bool VeiculoEstaAlugado(Veiculo v)
+        {
+            var locacoesPendentes = controladorLocacao.SelecionarTodasLocacoesPendentes();
+
+            foreach (var l in locacoesPendentes)
+                if (v.Id == l.Veiculo.Id)
+                    return true;
+
+            return false;
+        }
+
+        private Locacao ObterLocacao()
+        {
+            Cliente cliente = (Cliente)cmbCliente.SelectedItem;
+            Veiculo veiculo = (Veiculo)cmbVeiculo.SelectedItem;
+
+            string plano = (string)cmbPlano.SelectedItem;
+
+            string condutor = null;
+            if ((string)cmbCondutor.SelectedItem != null)
+                condutor = (string)cmbCondutor.SelectedItem;
+
+            string caucaoStr = txtValorEntrada.Text;
+
+            double caucao;
+            if (string.IsNullOrEmpty(caucaoStr))
+                caucao = 0;
+            else
+                caucao = Convert.ToDouble(caucaoStr);
+
+            DateTime dataSaida = dateDataSaida.Value;
+            DateTime dataDevolucao = dateDataDevolucao.Value;
+
+            List<TaxasServicos> taxasSelecionadas = ObterTaxasSelecionadas();
+
+            string devolucao = "Pendente";
+
+            return new Locacao(cliente, veiculo, taxasSelecionadas, dataSaida, dataDevolucao, caucao, plano, condutor, devolucao);
+        }
+
+        private List<TaxasServicos> ObterTaxasSelecionadas()
+        {
+            List<TaxasServicos> taxasSelecionadas = new List<TaxasServicos>();
+
+            foreach (var item in listaTaxasServicos.Items)
+                taxasSelecionadas.Add((TaxasServicos)item);
+
+            return taxasSelecionadas;
+        }
+
+        private void VerificarDisponibilidadeDeVeiculo()
+        {
+            if (locacao != null)
+                VerificarDisponibilidadeParaEdicao();
+
+            else if ((Veiculo)cmbVeiculo.SelectedItem != null)
+                VerificarDisponibilidadeParaCadastro();
+        }
+
+        private void VerificarDisponibilidadeParaEdicao()
+        {
+            
+            foreach (var item in controladorLocacao.SelecionarTodos())
+            {
+                if (item.Id != locacao.Id && item.Devolucao == "Pendente")
+                    if (item.Veiculo.Id == locacao.Veiculo.Id)
+                    {
+                        Dashboard.Instancia.AtualizarRodape($"O Veículo: [{locacao.Veiculo}] não está disponível para locação!");
+                        DialogResult = DialogResult.None;
+                    }
+            }
+        }
+
+        private void VerificarDisponibilidadeParaCadastro()
+        {
+            Veiculo v = (Veiculo)cmbVeiculo.SelectedItem;
+            foreach (var item in controladorLocacao.SelecionarTodasLocacoesPendentes())
+            {
+                if (item.Veiculo.Id == v.Id)
+                {
+                    Dashboard.Instancia.AtualizarRodape($"O Veículo: [{v}] não está disponível para locação!");
+                    DialogResult = DialogResult.None;
+                }
+            }
+        }
+
+        private void CalcularValorTotal(List<TaxasServicos> taxasSelecionadas)
+        {
+            string strCaucao = txtValorEntrada.Text;
+            double caucao, total = 0;
+
+            if (string.IsNullOrEmpty(strCaucao))
+                caucao = 0;
+            else
+                caucao = Convert.ToDouble(strCaucao);
+
+            if (taxasSelecionadas != null)
+                foreach (var item in taxasSelecionadas)
+                    total += item.Taxa;
+
+            total += caucao;
+
+            lblValorTotal.Text = total.ToString();
+        }
+
+        private void DesabilitarBotoesParaEdicao()
+        {
+            cmbCliente.Enabled = false;
+            cmbVeiculo.Enabled = false;
+            cmbCondutor.Enabled = false;
+            cmbPlano.Enabled = false;
+            txtValorEntrada.Enabled = false;
+            dateDataSaida.Enabled = false;
+            btnSelecionarTaxas.Enabled = false;
+            btnCalcularTotal.Enabled = false;
+        }
+
+        private void CarregarCmbClientes()
+        {
+            if (locacao != null)
+            {
+                cmbCliente.SelectedItem = locacao.Cliente;
+
+                if (locacao.Cliente.TipoCadastro == "CNPJ")
+                {
+                    cmbCondutor.Enabled = true;
+                    cmbCondutor.SelectedItem = locacao.Condutor;
+                }
+                else
+                    cmbCondutor.Enabled = false;
+            }
+        }
+
+        private void CarregarCmbVeiculos()
+        {
+            if (locacao != null)
+                cmbVeiculo.SelectedItem = locacao.Veiculo;
         }
 
     }

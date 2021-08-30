@@ -56,9 +56,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
             get { return true; }
         }
 
-        public bool BotaoCadastro
+        public bool BotaoDevolucao
         {
-            get { return true; }
+            get { return false; }
         }
 
         public bool BotaoEditar
@@ -84,5 +84,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
         {
             get { return false; }
         }
+
+        public string ToolTipDevolucao => "";
     }
 }

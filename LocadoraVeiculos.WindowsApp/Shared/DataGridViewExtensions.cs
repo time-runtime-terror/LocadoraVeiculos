@@ -19,7 +19,7 @@ namespace LocadoraVeiculos.WindowsApp.Shared
                 BackColor = Color.LightGray,
                 Font = font,
                 ForeColor = Color.Black,
-                SelectionBackColor = Color.LightYellow,
+                SelectionBackColor = Color.MediumPurple,
                 SelectionForeColor = Color.Black
             };
 
@@ -29,7 +29,7 @@ namespace LocadoraVeiculos.WindowsApp.Shared
             {
                 BackColor = Color.White,
                 Font = font,
-                SelectionBackColor = Color.LightYellow,
+                SelectionBackColor = Color.MediumPurple,
                 SelectionForeColor = Color.Black
             };
 
@@ -44,6 +44,7 @@ namespace LocadoraVeiculos.WindowsApp.Shared
             grid.BorderStyle = BorderStyle.None;
             grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            grid.RowHeadersVisible = false;
 
             grid.MultiSelect = false;
             grid.ReadOnly = true;
@@ -62,6 +63,7 @@ namespace LocadoraVeiculos.WindowsApp.Shared
             {
                 grid.ClearSelection();
             };
+
         }
 
         public static T SelecionarId<T>(this DataGridView grid)

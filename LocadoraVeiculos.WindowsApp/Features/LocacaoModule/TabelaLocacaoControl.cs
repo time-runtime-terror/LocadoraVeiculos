@@ -1,18 +1,25 @@
-﻿using LocadoraVeiculos.Dominio.LocacaoModule;
+﻿using LocadoraVeiculos.Controladores.LocacaoModule;
+using LocadoraVeiculos.Dominio.LocacaoModule;
 using LocadoraVeiculos.WindowsApp.Shared;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 {
     public partial class TabelaLocacaoControl : UserControl
     {
+        private readonly ControladorLocacao controladorLocacao;
+
         public TabelaLocacaoControl()
         {
             InitializeComponent();
             gridLocacoes.ConfigurarGridZebrado();
             gridLocacoes.ConfigurarGridSomenteLeitura();
             gridLocacoes.Columns.AddRange(ObterColunas());
+            controladorLocacao = new ControladorLocacao(new Controladores.ClienteModule.ControladorCliente(), new Controladores.VeiculoModule.ControladorVeiculo(), new Controladores.TaxasServicosModule.ControladorTaxasServicos());
         }
 
         public DataGridViewColumn[] ObterColunas()
@@ -29,7 +36,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                 new DataGridViewTextBoxColumn {DataPropertyName = "DataSaida", HeaderText = "Data de Saída"},
 
-                new DataGridViewTextBoxColumn {DataPropertyName = "DataDevolucao", HeaderText = "Devolução"}
+                new DataGridViewTextBoxColumn {DataPropertyName = "DataDevolucao", HeaderText = "Previsão de Devolução"},
+
+                new DataGridViewTextBoxColumn {DataPropertyName = "Devolucao", HeaderText = "Devolução"}
             };
 
             return colunas;
@@ -46,9 +55,38 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             foreach (Locacao locacao in locacoes)
             {
-                gridLocacoes.Rows.Add(locacao.Id, locacao.Cliente, locacao.Veiculo, locacao.Plano, locacao.DataSaida.ToShortDateString(), locacao.DataDevolucao.ToShortDateString());
+                gridLocacoes.Rows.Add(locacao.Id, locacao.Cliente, locacao.Veiculo, locacao.Plano, locacao.DataSaida.ToShortDateString(), locacao.DataDevolucao.ToShortDateString(), locacao.Devolucao);
             }
 
+            DestacarCoresPorStatusDevolucao();
+
+            gridLocacoes.Sort(gridLocacoes.Columns[6], ListSortDirection.Descending);
+        }
+
+        private void DestacarCoresPorStatusDevolucao()
+        {
+            foreach (DataGridViewRow row in gridLocacoes.Rows)
+            {
+                if (row.Cells[6].Value.ToString() != "Pendente")
+                    row.DefaultCellStyle.BackColor = Color.LightGreen;
+                else
+                    row.DefaultCellStyle.BackColor = Color.PaleGoldenrod;
+            }
+        }
+
+        private void gridLocacoes_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int id = ObtemIdSelecionado();
+
+            if (id == 0)
+                return;
+
+            var locacao = controladorLocacao.SelecionarPorId(id);
+
+            if (locacao.Devolucao != "Pendente")
+                Dashboard.Instancia.DesabilitarBotoesIndisponiveisParaDevolucao();
+            else
+                Dashboard.Instancia.HabilitarBotoesIndisponiveisParaDevolucao();
         }
     }
 }

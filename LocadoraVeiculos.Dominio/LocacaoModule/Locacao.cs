@@ -16,9 +16,11 @@ namespace LocadoraVeiculos.Dominio.LocacaoModule
         public DateTime DataDevolucao { get; set; }
         public double Caucao { get; set; }
         public string Plano { get; set; }
+        public string Condutor { get;  set; }
+        public string Devolucao { get; set; }
 
         public Locacao(Cliente clienteEscolhido, Veiculo veiculoEscolhido, List<TaxasServicos> taxas,
-            DateTime dataSaida, DateTime dataDevolucao, double caucao, string planoEscolhido)
+            DateTime dataSaida, DateTime dataDevolucao, double caucao, string planoEscolhido, string condutor, string devolucao)
         {
             Cliente = clienteEscolhido;
             Veiculo = veiculoEscolhido;
@@ -27,7 +29,10 @@ namespace LocadoraVeiculos.Dominio.LocacaoModule
             DataDevolucao = dataDevolucao;
             Caucao = caucao;
             Plano = planoEscolhido;
+            Condutor = condutor;
+            Devolucao = devolucao;
         }
+
 
         public override bool Equals(object obj)
         {
@@ -45,6 +50,9 @@ namespace LocadoraVeiculos.Dominio.LocacaoModule
                    DataSaida == locacao.DataSaida &&
                    DataDevolucao == locacao.DataDevolucao &&
                    Caucao == locacao.Caucao &&
+                   Plano == locacao.Plano &&
+                   Condutor == locacao.Condutor &&
+                   Devolucao == locacao.Devolucao &&
                    Plano == locacao.Plano;
         }
 
@@ -70,13 +78,16 @@ namespace LocadoraVeiculos.Dominio.LocacaoModule
             if (Cliente == null)
                 resultadoValidacao += "O Cliente deve ser inserido!";
 
+            else if(Cliente.TipoCadastro == "CNPJ" && Condutor == null)
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "A empresa deve  ter um condutor!";
+
             if (Veiculo == null)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O Veículo deve ser inserido!";
 
             if (DataDevolucao == DateTime.MinValue)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Data de Devolução é obrigatório!";
 
-            if (DataDevolucao < DataSaida)
+            if (DataDevolucao.Date < DataSaida.Date)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Data de Devolução necessita ser maior que a de saida do veículo!";
 
             if(Caucao == 0)
