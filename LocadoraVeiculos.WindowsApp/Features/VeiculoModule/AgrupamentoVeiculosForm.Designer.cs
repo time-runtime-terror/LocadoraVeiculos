@@ -59,10 +59,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             // 
             this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnGravar.Font = new System.Drawing.Font("Arial Narrow", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGravar.Location = new System.Drawing.Point(259, 141);
+            this.btnGravar.Location = new System.Drawing.Point(190, 122);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(85, 33);
-            this.btnGravar.TabIndex = 36;
+            this.btnGravar.TabIndex = 1;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
             // 
@@ -70,10 +70,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Font = new System.Drawing.Font("Arial Narrow", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(167, 141);
+            this.btnCancelar.Location = new System.Drawing.Point(281, 122);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(86, 33);
-            this.btnCancelar.TabIndex = 35;
+            this.btnCancelar.TabIndex = 2;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -104,7 +104,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(91)))), ((int)(((byte)(235)))));
-            this.label3.Location = new System.Drawing.Point(87, 14);
+            this.label3.Location = new System.Drawing.Point(87, 17);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(222, 29);
             this.label3.TabIndex = 6;
@@ -115,7 +115,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label4.Location = new System.Drawing.Point(313, 29);
+            this.label4.Location = new System.Drawing.Point(312, 28);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(147, 15);
             this.label4.TabIndex = 5;
@@ -127,7 +127,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 60);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(98, 146);
+            this.panel3.Size = new System.Drawing.Size(98, 108);
             this.panel3.TabIndex = 38;
             // 
             // AgrupamentoVeiculosForm
@@ -135,7 +135,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(462, 206);
+            this.ClientSize = new System.Drawing.Size(462, 168);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.btnGravar);
