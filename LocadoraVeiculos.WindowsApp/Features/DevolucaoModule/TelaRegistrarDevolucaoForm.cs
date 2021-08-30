@@ -70,7 +70,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
 
 
 
-
             if(rdbCheio.Checked  || rdbTresQuartos.Checked || rdbMeio.Checked || rdbUmQuarto.Checked || rdbVazio.Checked)
             {
                 pnlMedidasTanque.Enabled = false;
@@ -113,9 +112,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
 
         private double CalcularValorDasTaxas(List<TaxasServicos> taxasSelecionadas)
         {
-            double total = 0;
+            double total =0;
 
-            double diasPassados = (dateDataDevolucao.Value - locacao.DataSaida.Date).TotalDays;
+            double diasPassados = (dateDataDevolucao.Value - locacao.DataSaida.Date).TotalDays + 1;
 
             if (taxasSelecionadas != null)
                 if (taxasSelecionadas.Count != 0)
@@ -123,9 +122,11 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
                     {
                         if (item.OpcaoServico == "Diário")
                             total += item.Taxa * diasPassados;
-                        else
+                        else if(item.OpcaoServico == "Fixo")
                             total += item.Taxa;
                     }
+
+            
 
             if (dateDataDevolucao.Value > locacao.DataDevolucao)
                 total += (10 / 100) * total;
