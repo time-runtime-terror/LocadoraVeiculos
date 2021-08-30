@@ -19,7 +19,7 @@ namespace LocadoraVeiculos.WindowsApp.Shared
                 BackColor = Color.LightGray,
                 Font = font,
                 ForeColor = Color.Black,
-                SelectionBackColor = Color.LightYellow,
+                SelectionBackColor = Color.MediumPurple,
                 SelectionForeColor = Color.Black
             };
 
@@ -29,7 +29,7 @@ namespace LocadoraVeiculos.WindowsApp.Shared
             {
                 BackColor = Color.White,
                 Font = font,
-                SelectionBackColor = Color.LightYellow,
+                SelectionBackColor = Color.MediumPurple,
                 SelectionForeColor = Color.Black
             };
 
