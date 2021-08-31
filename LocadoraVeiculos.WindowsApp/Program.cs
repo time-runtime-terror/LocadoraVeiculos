@@ -1,10 +1,6 @@
 ﻿using LocadoraVeiculos.Controladores.Shared;
-using LocadoraVeiculos.WindowsApp;
-using LocadoraVeiculos.WindowsApp.Features.LocacaoModule;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WindowsApp
@@ -133,22 +129,66 @@ namespace LocadoraVeiculos.WindowsApp
         [STAThread]
         static void Main()
         {
-            if (!Db.Exists(sqlExisteAdmin, new Dictionary<string, object>() { { "NOMEUSUARIO", "admin" } }))
-                Db.Update(sqlInserirAdmin);
+            ObterLoginAdmin();
 
-            if (!Db.Exists(sqlExisteCliente, new Dictionary<string, object>() { { "NOME", "Rech" } }))
-                Db.Update(sqlInserirCliente);
+            ObterPrimeiroCliente();
 
-            if (!Db.Exists(sqlExisteTaxa, new Dictionary<string, object>() { { "SERVICO", "Seguro para Cliente" } }))
-                Db.Update(sqlInserirTaxasServicos);
+            ObterPrimeiraTaxa();
 
-            if (!Db.Exists(sqlExisteGrupoAutomovel, new Dictionary<string, object>() { { "NOMEGRUPO", "Popular" } }))
-                Db.Update(sqlInserirGrupoAutomoveis);
+            ObterPrimeiroGrupoAutomoveis();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LoginForm());
             //Application.Run(new TelaCadastrarLocacaoForm());
         }
+
+        #region Métodos de setup inicial das tabelas
+
+        private static bool ExistePrimeiroGrupoAutomoveis()
+        {
+            return Db.Exists(sqlExisteGrupoAutomovel, new Dictionary<string, object>() { { "NOMEGRUPO", "Popular" } });
+        }
+
+        private static void ObterPrimeiroGrupoAutomoveis()
+        {
+            if (!ExistePrimeiroGrupoAutomoveis())
+                Db.Update(sqlInserirGrupoAutomoveis);
+        }
+
+        private static bool ExistePrimeiraTaxa()
+        {
+            return Db.Exists(sqlExisteTaxa, new Dictionary<string, object>() { { "SERVICO", "Seguro para Cliente" } });
+        }
+
+        private static void ObterPrimeiraTaxa()
+        {
+            if (!ExistePrimeiraTaxa())
+                Db.Update(sqlInserirTaxasServicos);
+        }
+
+        private static bool ExistePrimeiroCliente()
+        {
+            return Db.Exists(sqlExisteCliente, new Dictionary<string, object>() { { "NOME", "Rech" } });
+        }
+
+        private static void ObterPrimeiroCliente()
+        {
+            if (!ExistePrimeiroCliente())
+                Db.Update(sqlInserirCliente);
+        }
+
+        private static bool ExisteAdmin()
+        {
+            return Db.Exists(sqlExisteAdmin, new Dictionary<string, object>() { { "NOMEUSUARIO", "admin" } });
+        }
+
+        private static void ObterLoginAdmin()
+        {
+            if (!ExisteAdmin())
+                Db.Update(sqlInserirAdmin);
+        }
+
+        #endregion
     }
 }
