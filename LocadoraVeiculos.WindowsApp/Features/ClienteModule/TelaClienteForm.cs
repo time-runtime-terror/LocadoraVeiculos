@@ -83,7 +83,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 
         private void TelaClienteForm_Load(object sender, EventArgs e)
         {
-            var clientes = controladorCliente.SelecionarTodos().FindAll(x => x.TipoCadastro == "CNPJ");
+            var clientes = controladorCliente.SelecionarTodasPessoasJuridicas();
 
             foreach (var cliente in clientes)
             {
