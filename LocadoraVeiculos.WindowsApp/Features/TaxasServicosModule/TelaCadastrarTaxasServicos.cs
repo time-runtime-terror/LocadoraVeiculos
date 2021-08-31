@@ -77,5 +77,14 @@ namespace LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule
 
             return plano;
         }
+
+        private void txtTaxa_TextChanged(object sender, EventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(txtTaxa.Text, "[^0-9]"))
+            {
+                Dashboard.Instancia.AtualizarRodape("Taxa: Por favor digite apenas números!");
+                txtTaxa.Text = txtTaxa.Text.Remove(txtTaxa.Text.Length - 1);
+            }
+        }
     }
 }
