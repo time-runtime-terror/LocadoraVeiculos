@@ -9,8 +9,11 @@
     [Cnh]               VARCHAR (50) NULL,
     [DataVencimentoCNH] DATE         NULL,
     [Id_Empresa]        INT          NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC)
+    [Email]             VARCHAR (50) NOT NULL,
+    CONSTRAINT [PK__TBCLIENT__3214EC07606B65EC] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
+
+
 
 
 
