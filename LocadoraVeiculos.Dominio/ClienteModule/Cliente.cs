@@ -15,6 +15,7 @@ namespace LocadoraVeiculos.Dominio.ClienteModule
         public string CNH { get; }
         public DateTime? VencimentoCnh { get; }
         public string RG { get; }
+        public string Email { get; }
         public Cliente Empresa { get; set; }
 
         public Cliente(string nome, string endereco, string telefone, string tipoPessoa,
