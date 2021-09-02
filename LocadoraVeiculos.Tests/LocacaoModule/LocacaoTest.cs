@@ -4,6 +4,8 @@ using FluentAssertions;
 using LocadoraVeiculos.Dominio.ClienteModule;
 using LocadoraVeiculos.Dominio.VeiculoModule;
 using LocadoraVeiculos.Dominio.LocacaoModule;
+using LocadoraVeiculos.Dominio.GrupoAutomoveisModule;
+using LocadoraVeiculos.Controladores.VeiculoModule;
 
 namespace LocadoraVeiculos.Tests.LocacaoModule
 {
@@ -130,5 +132,23 @@ namespace LocadoraVeiculos.Tests.LocacaoModule
             resultado.Should().Be(resultadoEsperado);
         }
 
+        [TestMethod]
+        public void DeveGerar_RelatorioLocacao()
+        {
+            // arrange
+            Cliente cliente = new Cliente("Tiago Santini", "Maria de Melo Kuster", "(49) 9805-6251", "CPF", "123123124", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
+
+            GrupoAutomoveis grupoAutomovel = new GrupoAutomoveis("Econômico", 100, 120, 140, 160, 100, 180);
+
+            Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, grupoAutomovel);
+
+            Locacao locacao = new Locacao(cliente, veiculo, null, DateTime.Now.Date, DateTime.Now.AddDays(2).Date, 200, "Diário", "", "Pendente");
+
+            // action
+            locacao.GerarPDF();
+
+            // assert
+
+        }
     }
 }

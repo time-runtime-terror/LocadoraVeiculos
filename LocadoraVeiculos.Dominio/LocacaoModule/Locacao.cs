@@ -1,4 +1,6 @@
-﻿using LocadoraVeiculos.Dominio.ClienteModule;
+﻿using ceTe.DynamicPDF;
+using ceTe.DynamicPDF.PageElements;
+using LocadoraVeiculos.Dominio.ClienteModule;
 using LocadoraVeiculos.Dominio.Shared;
 using LocadoraVeiculos.Dominio.TaxasServicosModule;
 using LocadoraVeiculos.Dominio.VeiculoModule;
@@ -33,6 +35,47 @@ namespace LocadoraVeiculos.Dominio.LocacaoModule
             Devolucao = devolucao;
         }
 
+        public void GerarPDF()
+        {
+            Document document = new Document();
+
+            Page page = new Page(PageSize.Letter, PageOrientation.Portrait, 54.0f);
+            document.Pages.Add(page);
+
+            string labelText = "Relatório de Locação\nLocadora Rech";
+            Label label = new Label(labelText, 0, 0, 504, 100, Font.HelveticaBold, 18, TextAlign.Center);
+            
+            page.Elements.Add(label);
+
+            string novaLabelText = $"Seguem os dados da locação feita em nome do cliente: {Cliente}";
+            Label novaLabel = new Label(novaLabelText, 0, 120, 504, 100, Font.HelveticaBold, 12, TextAlign.Center);
+
+            page.Elements.Add(novaLabel);
+
+            float alturaLabel = 160;
+
+            foreach (var prop in this.GetType().GetProperties())
+            {
+                if (prop.Name == "Id")
+                    continue;
+
+                var valor = prop.GetValue(this, null);
+
+                if (valor is DateTime)
+                    valor = Convert.ToDateTime(valor).ToShortDateString();
+
+                string dadosPropriedade = $"{prop.Name}: {valor}";
+
+                Label labelPropriedades = new Label(dadosPropriedade, 0, alturaLabel, 504, 100, Font.Helvetica, 12, TextAlign.Left);
+
+                page.Elements.Add(labelPropriedades);
+
+                alturaLabel += 20;
+            }
+
+            string pastaTemp = System.IO.Path.GetTempPath();
+            document.Draw($"{pastaTemp}relatorioLocacao.pdf");
+        }
 
         public override bool Equals(object obj)
         {

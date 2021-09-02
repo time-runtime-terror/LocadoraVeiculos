@@ -106,6 +106,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                 DialogResult = DialogResult.None;
             }
 
+            locacao.GerarPDF();
         }
 
         private void btnCalcularTotal_Click(object sender, EventArgs e)
