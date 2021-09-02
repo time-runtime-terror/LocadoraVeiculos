@@ -274,7 +274,7 @@ namespace LocadoraVeiculos.Controladores.ClienteModule
             if (reader["ID_EMPRESA"] != DBNull.Value)
                 empresa = this.SelecionarPorId(Convert.ToInt32(reader["ID_EMPRESA"]));
 
-            Cliente cliente = new Cliente(nome, endereco, telefone, tipoCadastro, cnh, vencimentoCnh, documento, rg, empresa);
+            Cliente cliente = new Cliente(nome,endereco, telefone, tipoCadastro, cnh, vencimentoCnh, documento, rg, empresa);
 
             cliente.Id = id;
 
