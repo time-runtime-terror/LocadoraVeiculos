@@ -46,7 +46,8 @@ namespace LocadoraVeiculos.WindowsApp
                         [CNH],
 		                [RG],
 		                [DATAVENCIMENTOCNH],
-		                [ID_EMPRESA]
+		                [ID_EMPRESA],
+                        [EMAIL]
 	                ) 
 	                VALUES
 	                (
@@ -58,7 +59,8 @@ namespace LocadoraVeiculos.WindowsApp
                         '111123333',
 		                '1111111',
 		                '2025-12-31',
-		                null
+		                null,
+                        'lucas@gmail.com'
 	                )";
 
         static string sqlExisteCliente =
