@@ -6,6 +6,7 @@ using LocadoraVeiculos.Dominio.VeiculoModule;
 using LocadoraVeiculos.Dominio.LocacaoModule;
 using LocadoraVeiculos.Dominio.GrupoAutomoveisModule;
 using LocadoraVeiculos.Controladores.VeiculoModule;
+using System.IO;
 
 namespace LocadoraVeiculos.Tests.LocacaoModule
 {
@@ -148,7 +149,8 @@ namespace LocadoraVeiculos.Tests.LocacaoModule
             locacao.GerarPDF();
 
             // assert
-
+            string caminhoArquivo = $"{Path.GetTempPath()}relatorioLocacao.pdf";
+            File.Exists(caminhoArquivo).Should().BeTrue();
         }
     }
 }
