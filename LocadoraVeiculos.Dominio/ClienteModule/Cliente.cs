@@ -1,6 +1,7 @@
 ﻿using LocadoraVeiculos.Dominio.Shared;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace LocadoraVeiculos.Dominio.ClienteModule
 {
@@ -8,6 +9,7 @@ namespace LocadoraVeiculos.Dominio.ClienteModule
     {
 
         public string Nome { get; }
+        public string Email { get; }
         public string Endereco { get; }
         public string Telefone { get; }
         public string TipoCadastro { get; }
@@ -15,13 +17,14 @@ namespace LocadoraVeiculos.Dominio.ClienteModule
         public string CNH { get; }
         public DateTime? VencimentoCnh { get; }
         public string RG { get; }
-        public string Email { get; }
+        
         public Cliente Empresa { get; set; }
 
-        public Cliente(string nome, string endereco, string telefone, string tipoPessoa,
+        public Cliente(string nome, string email, string endereco, string telefone, string tipoPessoa,
             string cnh, DateTime? vencimentoCnh, string cadastro, string rg, Cliente empresa) 
         {
             Nome = nome;
+            Email = email;
             Endereco = endereco;
             Telefone = telefone;
             TipoCadastro = tipoPessoa;
@@ -39,10 +42,14 @@ namespace LocadoraVeiculos.Dominio.ClienteModule
 
         public override string Validar()
         {
+            Regex templateEmail = new Regex(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$");
             string resultadoValidacao = "";
 
             if (string.IsNullOrEmpty(Nome))
                 resultadoValidacao = "O campo Nome é obrigatório";
+
+            if(templateEmail.IsMatch(Email) == false)
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Email está inválido";
 
             if (string.IsNullOrEmpty(Endereco))
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Endereço é obrigatório";
@@ -79,6 +86,7 @@ namespace LocadoraVeiculos.Dominio.ClienteModule
             return other is Cliente cliente &&
                    Id == cliente.Id &&
                    Nome == cliente.Nome &&
+                   Email == cliente.Email &&
                    Endereco == cliente.Endereco &&
                    Telefone == cliente.Telefone &&
                    TipoCadastro == cliente.TipoCadastro &&
@@ -94,6 +102,7 @@ namespace LocadoraVeiculos.Dominio.ClienteModule
             int hashCode = 2119485743;
             hashCode = hashCode * -1521134295 + Id.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Nome);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Email);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Endereco);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Telefone);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(TipoCadastro);
