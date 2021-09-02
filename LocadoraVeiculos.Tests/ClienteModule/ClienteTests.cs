@@ -73,9 +73,9 @@ namespace LocadoraVeiculos.Tests.ClienteModule
 
             string camposEsperados = "O campo Nome é obrigatório"
                 + Environment.NewLine
-                + "O campo Endereço é obrigatório"
-                + Environment.NewLine
                 + "O campo Email está inválido"
+                + Environment.NewLine
+                + "O campo Endereço é obrigatório"
                 + Environment.NewLine
                 + "O campo Telefone é obrigatório";
 
