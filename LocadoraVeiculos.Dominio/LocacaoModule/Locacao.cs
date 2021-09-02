@@ -48,29 +48,49 @@ namespace LocadoraVeiculos.Dominio.LocacaoModule
             page.Elements.Add(label);
 
             string novaLabelText = $"Seguem os dados da locação feita em nome do cliente: {Cliente}";
-            Label novaLabel = new Label(novaLabelText, 0, 120, 504, 100, Font.HelveticaBold, 12, TextAlign.Center);
+            Label novaLabel = new Label(novaLabelText, 0, 120, 504, 100, Font.HelveticaBold, 14, TextAlign.Center);
 
             page.Elements.Add(novaLabel);
 
+            string[] dadosCliente = new string[]
+            {
+                $"Veículo: {Veiculo}",
+                $"Condutor: {Condutor}",
+                $"Plano: {Plano}",
+                $"Valor da Caução: R$ {Caucao}",
+                $"Data de Saída: {DataSaida.ToShortDateString()}",
+                $"Data Prevista de Devolução: {DataDevolucao.ToShortDateString()}",
+                $"Data de Devolução: {Devolucao}"
+            };
+
             float alturaLabel = 160;
 
-            foreach (var prop in this.GetType().GetProperties())
+            for (int i = 0; i < dadosCliente.Length; i++)
             {
-                if (prop.Name == "Id")
-                    continue;
-
-                var valor = prop.GetValue(this, null);
-
-                if (valor is DateTime)
-                    valor = Convert.ToDateTime(valor).ToShortDateString();
-
-                string dadosPropriedade = $"{prop.Name}: {valor}";
-
-                Label labelPropriedades = new Label(dadosPropriedade, 0, alturaLabel, 504, 100, Font.Helvetica, 12, TextAlign.Left);
-
+                Label labelPropriedades = new Label(dadosCliente[i], 0, alturaLabel, 504, 100, Font.Helvetica, 12, TextAlign.Left);
                 page.Elements.Add(labelPropriedades);
 
                 alturaLabel += 20;
+            }
+
+            if (Taxas != null || Taxas.Count != 0)
+            {
+                alturaLabel += 30;
+
+                Label labelTaxasAplicadas = new Label("Taxas Aplicadas:", 0, alturaLabel, 504, 100, Font.HelveticaBold, 14, TextAlign.Left);
+
+                page.Elements.Add(labelTaxasAplicadas);
+
+                foreach (TaxasServicos taxa in Taxas)
+                {
+                    string dadosTaxas = $"{taxa.Servico}\t\tR$ {taxa.Taxa}\t\tTipo de Serviço: {taxa.OpcaoServico}";
+
+                    Label labelTaxa = new Label(dadosTaxas, 0, alturaLabel + 20, 504, 100, Font.Helvetica, 12, TextAlign.Left);
+                    labelTaxa.TextColor = RgbColor.ForestGreen;
+                    page.Elements.Add(labelTaxa);
+
+                    alturaLabel += 20;
+                }
             }
 
             string pastaTemp = System.IO.Path.GetTempPath();
