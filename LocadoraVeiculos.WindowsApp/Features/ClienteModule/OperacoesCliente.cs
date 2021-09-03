@@ -75,6 +75,12 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 
             Cliente clienteSelecionado = controladorCliente.SelecionarPorId(id);
 
+            if (clienteSelecionado.TemLocacaoAtiva)
+            {
+                Dashboard.Instancia.AtualizarRodape($"Cliente: [{clienteSelecionado}] não pôde ser excluído pois está em uma locação ativa!");
+                return;
+            }
+
             if (MessageBox.Show($"Tem certeza que deseja excluir o cliente: [{clienteSelecionado.Nome}] ?",
                 "Exclusão de Clientes", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {

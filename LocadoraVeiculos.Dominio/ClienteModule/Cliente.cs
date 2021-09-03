@@ -20,6 +20,8 @@ namespace LocadoraVeiculos.Dominio.ClienteModule
         
         public Cliente Empresa { get; set; }
 
+        public bool TemLocacaoAtiva { get; set; }
+
         public Cliente(string nome, string email, string endereco, string telefone, string tipoPessoa,
             string cnh, DateTime? vencimentoCnh, string cadastro, string rg, Cliente empresa) 
         {

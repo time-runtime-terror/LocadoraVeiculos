@@ -54,6 +54,13 @@ namespace LocadoraVeiculos.Controladores.ClienteModule
                     WHERE 
                         ID = @ID";
 
+        private const string sqlAtualizarStatusLocacao =
+            @"UPDATE TBCLIENTE
+                    SET
+                        [TEM_LOCACAO] = @TEM_LOCACAO
+                    WHERE 
+                        ID = @ID";
+
         private const string sqlExcluirCliente =
             @"DELETE 
 	                FROM
@@ -73,7 +80,8 @@ namespace LocadoraVeiculos.Controladores.ClienteModule
 		                CL.[RG],
 		                CL.[DATAVENCIMENTOCNH],
 		                CL.[ID_EMPRESA],
-                        CL.[EMAIL]
+                        CL.[EMAIL],
+                        CL.[TEM_LOCACAO]
 	                FROM
                         [TBCLIENTE] AS CL LEFT JOIN
                         [TBCLIENTE] AS CE
@@ -94,7 +102,8 @@ namespace LocadoraVeiculos.Controladores.ClienteModule
 		                CL.[RG],
 		                CL.[DATAVENCIMENTOCNH],
 		                CL.[ID_EMPRESA],
-                        CL.[EMAIL]
+                        CL.[EMAIL],
+                        CL.[TEM_LOCACAO]
 	                FROM
                         [TBCLIENTE] AS CL LEFT JOIN
                         [TBCLIENTE] AS CE
@@ -113,7 +122,8 @@ namespace LocadoraVeiculos.Controladores.ClienteModule
 		                CL.[RG],
 		                CL.[DATAVENCIMENTOCNH],
 		                CL.[ID_EMPRESA],
-                        CL.[EMAIL]
+                        CL.[EMAIL],
+                        CL.[TEM_LOCACAO]
 	                FROM
                         [TBCLIENTE] AS CL LEFT JOIN
                         [TBCLIENTE] AS CE
@@ -134,7 +144,8 @@ namespace LocadoraVeiculos.Controladores.ClienteModule
 		                CL.[RG],
 		                CL.[DATAVENCIMENTOCNH],
 		                CL.[ID_EMPRESA],
-                        CL.[EMAIL]
+                        CL.[EMAIL],
+                        CL.[TEM_LOCACAO]
 	                FROM
                         [TBCLIENTE] AS CL LEFT JOIN
                         [TBCLIENTE] AS CE
@@ -163,7 +174,8 @@ namespace LocadoraVeiculos.Controladores.ClienteModule
 		                CL.[RG],
 		                CL.[DATAVENCIMENTOCNH],
 		                CL.[ID_EMPRESA],
-                        CL.[EMAIL]
+                        CL.[EMAIL],
+                        CL.[TEM_LOCACAO]
 	                FROM
                         [TBCLIENTE] AS CL LEFT JOIN
                         [TBCLIENTE] AS CE
@@ -195,6 +207,16 @@ namespace LocadoraVeiculos.Controladores.ClienteModule
             }
 
             return resultadoValidacao;
+        }
+
+        public void AtualizarStatusLocacaoAtiva(Cliente cliente)
+        {
+            var parametros = new Dictionary<string, object>();
+
+            parametros.Add("ID", cliente.Id);
+            parametros.Add("TEM_LOCACAO", cliente.TemLocacaoAtiva);
+
+            Db.Update(sqlAtualizarStatusLocacao, parametros);
         }
 
         public override bool Excluir(int id)
@@ -275,6 +297,7 @@ namespace LocadoraVeiculos.Controladores.ClienteModule
             string documento = Convert.ToString(reader["NUMEROCADASTRO"]);
             string rg = Convert.ToString(reader["RG"]);
             DateTime? vencimentoCnh = null;
+            bool temLocacaoAtiva = Convert.ToBoolean(reader["TEM_LOCACAO"]);
 
             if (reader["DATAVENCIMENTOCNH"] != DBNull.Value)
                 vencimentoCnh = Convert.ToDateTime(reader["DATAVENCIMENTOCNH"]);
@@ -287,6 +310,7 @@ namespace LocadoraVeiculos.Controladores.ClienteModule
             Cliente cliente = new Cliente(nome, email, endereco, telefone, tipoCadastro, cnh, vencimentoCnh, documento, rg, empresa);
 
             cliente.Id = id;
+            cliente.TemLocacaoAtiva = temLocacaoAtiva;
 
             return cliente;
         }
