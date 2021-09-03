@@ -39,6 +39,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                 txtValorEntrada.Text = locacao.Caucao.ToString();
 
+
                 dateDataSaida.Value = locacao.DataSaida;
 
                 dateDataDevolucao.Value = locacao.DataDevolucao;
@@ -329,7 +330,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         private void CarregarCmbVeiculos()
         {
             if (locacao != null)
+            {
+                cmbVeiculo.Items.Add(locacao.Veiculo);
                 cmbVeiculo.SelectedItem = locacao.Veiculo;
+            }
         }
 
     }
