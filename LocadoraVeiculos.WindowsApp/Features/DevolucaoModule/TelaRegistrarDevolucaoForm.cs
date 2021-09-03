@@ -68,7 +68,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             locacao.Taxas = taxasSelecionadas;
             locacao.Devolucao = dateDataDevolucao.Value.ToShortDateString();
 
+
             email.enviaEmail(locacao, "Teste.pdf");
+
+            MessageBox.Show("Enviado o recibo sobre a locação, no email " + locacao.Cliente.Email);
 
             
         }

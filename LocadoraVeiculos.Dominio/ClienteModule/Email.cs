@@ -39,8 +39,8 @@ namespace LocadoraVeiculos.Dominio.ClienteModule
                     mail.To.Add(new MailAddress(email));
 
 
-                    mail.Subject = "O PDF";
-                    mail.Body = "TESTE TESTE TESTE TESTE TESTE TESTE \n TESTE TESTE TESTE TESTE TESTE TESTE \n";
+                    mail.Subject = "Locadora Rech, devolução realizada com sucesso";
+                    mail.Body = "Olá " + locacao.Cliente.Nome + " agradecemos a preferência. \n Segue em anexo o arquivo contendo o recibo da locação.";
 
                     if (nomeArquivo != null)
                         mail.Attachments.Add(new Attachment(nomeArquivo));
