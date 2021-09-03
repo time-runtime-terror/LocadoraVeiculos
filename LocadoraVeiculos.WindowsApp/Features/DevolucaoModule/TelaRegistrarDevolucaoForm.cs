@@ -1,6 +1,7 @@
 ﻿using LocadoraVeiculos.Controladores.CombustivelModule;
 using LocadoraVeiculos.Dominio.CombustivelModule;
 using LocadoraVeiculos.Dominio.LocacaoModule;
+using LocadoraVeiculos.Dominio.ClienteModule;
 using LocadoraVeiculos.Dominio.TaxasServicosModule;
 using LocadoraVeiculos.WindowsApp.Features.LocacaoModule;
 using System;
@@ -15,7 +16,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
         private List<TaxasServicos> taxasSelecionadas;
 
         private Locacao locacao;
-        
+
+        private Email email;
+
         private ControladorCombustivel controladorCombustivel;
 
         public Locacao Locacao
@@ -48,6 +51,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             InitializeComponent();
 
             controladorCombustivel = new ControladorCombustivel();
+
+            email = new Email();
         }
 
         private void TelaRegistrarDevolucaoForm_Load(object sender, EventArgs e)
@@ -62,6 +67,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
         {
             locacao.Taxas = taxasSelecionadas;
             locacao.Devolucao = dateDataDevolucao.Value.ToShortDateString();
+
+            email.enviaEmail(locacao);
 
             
         }
