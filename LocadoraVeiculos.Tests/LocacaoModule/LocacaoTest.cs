@@ -137,7 +137,7 @@ namespace LocadoraVeiculos.Tests.LocacaoModule
         public void DeveGerar_RelatorioLocacao()
         {
             // arrange
-            Cliente cliente = new Cliente("Tiago Santini", "Maria de Melo Kuster", "(49) 9805-6251", "CPF", "123123124", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
+            Cliente cliente = new Cliente("Tiago Santini", "tiagosantiniathayde@gmail.com", "Maria de Melo Kuster", "(49) 9805-6251", "CPF", "123123124", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
 
             GrupoAutomoveis grupoAutomovel = new GrupoAutomoveis("Econômico", 100, 120, 140, 160, 100, 180);
 
