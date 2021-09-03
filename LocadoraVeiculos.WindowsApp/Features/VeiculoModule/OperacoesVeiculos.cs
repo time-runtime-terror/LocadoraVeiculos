@@ -75,6 +75,12 @@ namespace LocadoraVeiculos.WindowsApp.Feature.VeiculoModule
 
             Veiculo veiculoSelecionado = controlador.SelecionarPorId(id);
 
+            if (veiculoSelecionado.EstaAlugado)
+            {
+                Dashboard.Instancia.AtualizarRodape($"Veículo: [{veiculoSelecionado.Modelo}] não pôde ser excluído pois está alugado!");
+                return;
+            }
+
             if (MessageBox.Show($"Tem certeza que deseja excluir o Veiculo: [{veiculoSelecionado.Id}] ?",
                 "Exclusão de Veiculos", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {

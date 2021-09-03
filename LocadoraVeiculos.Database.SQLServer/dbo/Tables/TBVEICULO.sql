@@ -8,6 +8,7 @@
     [CapacidadeTanque]   INT             NOT NULL,
     [Quilometragem]      INT             NOT NULL,
     [Id_GrupoAutomoveis] INT             NULL,
+    [Esta_Alugado]       BIT             DEFAULT 'FALSE',
     CONSTRAINT [PK__TBVEICUL__3214EC0792D2BD47] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 

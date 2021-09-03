@@ -58,6 +58,12 @@ namespace LocadoraVeiculos.Controladores.VeiculoModule
                 SET 
                     [QUILOMETRAGEM] = @QUILOMETRAGEM
                 WHERE [ID] = @ID";
+        
+        private const string sqlAtualizarStatusAlugado =
+            @" UPDATE [TBVEICULO]
+                    SET 
+                        [ESTA_ALUGADO] = @ESTA_ALUGADO
+                    WHERE [ID] = @ID";
 
         private const string sqlExcluirVeiculo =
             @"DELETE FROM [TBVEICULO] 
@@ -73,7 +79,8 @@ namespace LocadoraVeiculos.Controladores.VeiculoModule
                     VE.[TIPOCOMBUSTIVEL],
                     VE.[CAPACIDADETANQUE],
                     VE.[QUILOMETRAGEM],
-                    VE.[ID_GRUPOAUTOMOVEIS]
+                    VE.[ID_GRUPOAUTOMOVEIS],
+                    VE.[ESTA_ALUGADO]
             FROM
                     [TBVEICULO] AS VE LEFT JOIN
                     [TBGRUPOAUTOMOVEIS] AS GA
@@ -90,7 +97,8 @@ namespace LocadoraVeiculos.Controladores.VeiculoModule
                     VE.[TIPOCOMBUSTIVEL],
                     VE.[CAPACIDADETANQUE],
                     VE.[QUILOMETRAGEM],
-                    VE.[ID_GRUPOAUTOMOVEIS]
+                    VE.[ID_GRUPOAUTOMOVEIS],
+                    VE.[ESTA_ALUGADO]
             FROM
                     [TBVEICULO] AS VE LEFT JOIN
                     [TBGRUPOAUTOMOVEIS] AS GA
@@ -168,6 +176,15 @@ namespace LocadoraVeiculos.Controladores.VeiculoModule
 
             Db.Update(sqlAtualizarQuilometragem, parametros);
         }
+        public void AtualizarStatusAluguel(Veiculo veiculo)
+        {
+            var parametros = new Dictionary<string, object>();
+
+            parametros.Add("ID", veiculo.Id);
+            parametros.Add("ESTA_ALUGADO", veiculo.EstaAlugado);
+
+            Db.Update(sqlAtualizarStatusAlugado, parametros);
+        }
 
         public override bool Excluir(int id)
         {
@@ -208,6 +225,12 @@ namespace LocadoraVeiculos.Controladores.VeiculoModule
             var capacidadeTanque = Convert.ToInt32(reader["CAPACIDADETANQUE"]);
             var quilometragem = Convert.ToInt32(reader["QUILOMETRAGEM"]);
 
+
+            bool estaAlugado = false;
+
+            if (reader["ESTA_ALUGADO"] != DBNull.Value)
+                estaAlugado = Convert.ToBoolean(reader["ESTA_ALUGADO"]);
+
             GrupoAutomoveis grupo = null;
 
             if (reader["ID_GRUPOAUTOMOVEIS"] != DBNull.Value)
@@ -216,6 +239,7 @@ namespace LocadoraVeiculos.Controladores.VeiculoModule
             Veiculo veiculo = new Veiculo(foto, placa, modelo, marca, tipoCombustivel, capacidadeTanque, quilometragem, grupo);
 
             veiculo.Id = Convert.ToInt32(reader["ID"]);
+            veiculo.EstaAlugado = estaAlugado;
 
             return veiculo;
         }

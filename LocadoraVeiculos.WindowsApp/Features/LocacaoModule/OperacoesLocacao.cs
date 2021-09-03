@@ -41,6 +41,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                 List<Locacao> locacoes = controladorLocacao.SelecionarTodos();
 
+                tela.Locacao.Veiculo.EstaAlugado = true;
+
+                controladorVeiculo.AtualizarStatusAluguel(tela.Locacao.Veiculo);
+
                 tabelaLocacoes.AtualizarRegistros(locacoes);
 
                 Dashboard.Instancia.AtualizarRodape($"Locação: [{tela.Locacao.Id}] inserida com sucesso!");
@@ -178,6 +182,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                 controladorTaxasServicos.InserirNovaTaxaUsada(tela.Locacao);
 
                 controladorVeiculo.AtualizarQuilometragem(tela.Locacao.Veiculo);
+
+                tela.Locacao.Veiculo.EstaAlugado = false;
+
+                controladorVeiculo.AtualizarStatusAluguel(tela.Locacao.Veiculo);
 
                 List<Locacao> locacoes = controladorLocacao.SelecionarTodos();
 

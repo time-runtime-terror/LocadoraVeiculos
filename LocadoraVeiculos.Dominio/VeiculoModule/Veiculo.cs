@@ -45,6 +45,7 @@ namespace LocadoraVeiculos.Dominio.VeiculoModule
         public int CapacidadeTanque { get; }
         public int Quilometragem { get; }
         public GrupoAutomoveis GrupoAutomoveis { get; }
+        public bool EstaAlugado { get; set; }
 
         public string NomeGrupo 
         {
