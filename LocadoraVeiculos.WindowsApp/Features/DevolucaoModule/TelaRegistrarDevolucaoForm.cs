@@ -69,13 +69,14 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             locacao.Devolucao = dateDataDevolucao.Value.ToShortDateString();
             locacao.Total = Convert.ToDouble(lblValorTotal.Text);
 
+            string pdf = locacao.GerarPDF();
 
-            email.enviaEmail(locacao, "Teste.pdf");
+            email.enviaEmail(locacao, pdf);
 
             MessageBox.Show("Enviado o recibo sobre a locação, no email " + locacao.Cliente.Email);
 
             
-            locacao.GerarPDF();
+           
         }
 
         private void btnCalcularTotal_Click(object sender, EventArgs e)

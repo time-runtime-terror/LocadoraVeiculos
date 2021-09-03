@@ -36,7 +36,7 @@ namespace LocadoraVeiculos.Dominio.LocacaoModule
             Devolucao = devolucao;
         }
 
-        public void GerarPDF()
+        public string GerarPDF()
         {
             float posicaoVertical = 300;
             float posicaoHorizontal = 50;
@@ -92,6 +92,11 @@ namespace LocadoraVeiculos.Dominio.LocacaoModule
 
             string pastaTemp = System.IO.Path.GetTempPath();
             document.Draw($"{pastaTemp}relatorioLocacao.pdf");
+
+            string caminhoCompleto = $"{pastaTemp}relatorioLocacao.pdf";
+
+            return caminhoCompleto;
+
         }
 
         public override bool Equals(object obj)
