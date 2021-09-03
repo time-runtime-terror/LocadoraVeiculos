@@ -59,6 +59,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             }
 
             gridLocacoes.Sort(gridLocacoes.Columns[6], ListSortDirection.Descending);
+
+            gridLocacoes.ClearSelection();
         }
 
         private void gridLocacoes_CellClick(object sender, DataGridViewCellEventArgs e)
