@@ -30,6 +30,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
                 txtId.Text = cliente.Id.ToString();
 
                 txtNome.Text = cliente.Nome;
+                txtEmail.Text = cliente.Email;
                 txtEndereco.Text = cliente.Endereco;
                 txtTelefone.Text = cliente.Telefone;
                 txtDocumento.Text = cliente.NumeroCadastro;
@@ -54,7 +55,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 
             Cliente empresa = listaEmpresas.Find(x => x.TipoCadastro == "CNPJ" && x.Nome == (string)cmbEmpresa.SelectedItem);
 
-            cliente = new Cliente(txtNome.Text, txtEndereco.Text, txtTelefone.Text, tipoPessoa, txtCNH.Text, vencimentoCnh, txtDocumento.Text, txtRg.Text, empresa);
+            string email = txtEmail.Text;
+
+            cliente = new Cliente(txtNome.Text, email, txtEndereco.Text, txtTelefone.Text, tipoPessoa, txtCNH.Text, vencimentoCnh, txtDocumento.Text, txtRg.Text, empresa);
 
             string resultadoValidacao = cliente.Validar();
 

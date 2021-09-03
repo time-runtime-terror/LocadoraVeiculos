@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClienteModule\Cliente.cs" />
+    <Compile Include="ClienteModule\Email.cs" />
     <Compile Include="CombustivelModule\Combustivel.cs" />
     <Compile Include="DevolucaoModule\Devolucao.cs" />
     <Compile Include="FuncionarioModule\Funcionario.cs" />

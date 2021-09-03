@@ -45,7 +45,7 @@ namespace LocadoraVeiculos.Tests.LocacaoModule
         public void DeveInserir_Locacao()
         {
             // arrange
-            Cliente cliente = new Cliente("Tiago Santini", "Maria de Melo Kuster", "(49) 9805-6251", "CPF", "123123124", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
+            Cliente cliente = new Cliente("Tiago Santini", "testador@ndd.com", "Maria de Melo Kuster", "(49) 9805-6251", "CPF", "123123124", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
             controladorCliente.InserirNovo(cliente);
 
             GrupoAutomoveis grupoAutomovel = new GrupoAutomoveis("Econômico", 100, 120, 140, 160, 100, 180);
@@ -68,7 +68,7 @@ namespace LocadoraVeiculos.Tests.LocacaoModule
         public void DeveEditar_Locacao()
         {
             // arrange
-            Cliente cliente = new Cliente("Tiago Santini", "Maria de Melo Kuster", "(49) 9805-6251", "CPF", "123123124", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
+            Cliente cliente = new Cliente("Tiago Santini", "testador@ndd.com", "Maria de Melo Kuster", "(49) 9805-6251", "CPF", "123123124", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
             controladorCliente.InserirNovo(cliente);
 
             GrupoAutomoveis grupoAutomovel = new GrupoAutomoveis("Econômico", 100, 120, 140, 160, 100, 180);
@@ -81,7 +81,7 @@ namespace LocadoraVeiculos.Tests.LocacaoModule
             controladorLocacao.InserirNovo(locacao);
 
             // action
-            Cliente novoCliente = new Cliente("Lucas", "Teste", "(49) 9805-6251", "CPF", "1212432433", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
+            Cliente novoCliente = new Cliente("Lucas", "testador@ndd.com", "Teste", "(49) 9805-6251", "CPF", "1212432433", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
             controladorCliente.InserirNovo(novoCliente);
 
             GrupoAutomoveis novoGrupoAutomovel = new GrupoAutomoveis("SUV", 200, 220, 240, 260, 200, 280);
@@ -106,7 +106,7 @@ namespace LocadoraVeiculos.Tests.LocacaoModule
         public void DeveExcluir_Locacao()
         {
             // arrange
-            Cliente cliente = new Cliente("Tiago Santini", "Maria de Melo Kuster", "(49) 9805-6251", "CPF", "123123124", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
+            Cliente cliente = new Cliente("Tiago Santini", "testador@ndd.com", "Maria de Melo Kuster", "(49) 9805-6251", "CPF", "123123124", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
             controladorCliente.InserirNovo(cliente);
 
             GrupoAutomoveis grupoAutomovel = new GrupoAutomoveis("Econômico", 100, 120, 140, 160, 100, 180);
@@ -130,7 +130,7 @@ namespace LocadoraVeiculos.Tests.LocacaoModule
         public void DeveSelecionar_Locacao_PorId()
         {
             // arrange
-            Cliente cliente = new Cliente("Tiago Santini", "Maria de Melo Kuster", "(49) 9805-6251", "CPF", "123123124", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
+            Cliente cliente = new Cliente("Tiago Santini", "testador@ndd.com", "Maria de Melo Kuster", "(49) 9805-6251", "CPF", "123123124", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
             controladorCliente.InserirNovo(cliente);
 
             GrupoAutomoveis grupoAutomovel = new GrupoAutomoveis("Econômico", 100, 120, 140, 160, 100, 180);
@@ -155,7 +155,7 @@ namespace LocadoraVeiculos.Tests.LocacaoModule
             // arrange
             // arrange
             //locacao 1
-            Cliente cliente = new Cliente("Tiago Santini", "Maria de Melo Kuster", "(49) 9805-6251", "CPF", "123123124", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
+            Cliente cliente = new Cliente("Tiago Santini", "testador@ndd.com", "Maria de Melo Kuster", "(49) 9805-6251", "CPF", "123123124", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
             controladorCliente.InserirNovo(cliente);
 
             GrupoAutomoveis grupoAutomovel = new GrupoAutomoveis("Econômico", 100, 120, 140, 160, 100, 180);
@@ -165,7 +165,7 @@ namespace LocadoraVeiculos.Tests.LocacaoModule
             controladorVeiculo.InserirNovo(veiculo);
 
             //locacao 2
-            Cliente novoCliente = new Cliente("Lucas", "Teste", "(49) 9805-6251", "CPF", "1212432433", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
+            Cliente novoCliente = new Cliente("Lucas", "testador@ndd.com", "Teste", "(49) 9805-6251", "CPF", "1212432433", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
             controladorCliente.InserirNovo(novoCliente);
 
             GrupoAutomoveis novoGrupoAutomovel = new GrupoAutomoveis("SUV", 200, 220, 240, 260, 200, 280);
