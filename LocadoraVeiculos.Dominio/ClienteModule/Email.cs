@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Mail;
+
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,12 +14,9 @@ namespace LocadoraVeiculos.Dominio.ClienteModule
     {
 
 
-        public Email()
-        {
-            
-        }
+        //private void ConfiguraServidor(Action<SmtpClient> action
 
-        public void enviaEmail(Locacao locacao)
+        public void enviaEmail(Locacao locacao, string nomeArquivo)
         {
             string email = locacao.Cliente.Email;
 
@@ -27,25 +26,24 @@ namespace LocadoraVeiculos.Dominio.ClienteModule
                 smtp.Port = 587;
                 smtp.EnableSsl = true;
                 smtp.UseDefaultCredentials = false;
-                smtp.Credentials = new System.Net.NetworkCredential("runtimeterror73@gmail.com", "Runtimeterror");
-
+                smtp.Credentials = new NetworkCredential("runtimeterror903@gmail.com", "Runtimeterror");
+                
 
                 using (MailMessage mail = new MailMessage())
                 {
-                    mail.From = new MailAddress(email);
+
+                    //de
+                    mail.From = new MailAddress("runtimeterror903@gmail.com");
 
                    //para
-                    mail.To.Add(new System.Net.Mail.MailAddress("Para: " + locacao.Cliente.Email));
-
-                   
-                    //if (!string.IsNullOrWhiteSpace(textBoxCC.Text))
-                    //    mail.CC.Add(new System.Net.Mail.MailAddress(textBoxCC.Text));
-                    //if (!string.IsNullOrWhiteSpace(textBoxCCo.Text))
-                    //    mail.Bcc.Add(new System.Net.Mail.MailAddress(textBoxCCo.Text));
+                    mail.To.Add(new MailAddress(email));
 
 
                     mail.Subject = "O PDF";
-                    mail.Body = "TESTE TESTE TESTE TESTE TESTE TESTE \n TESTE TESTE TESTE TESTE TESTE TESTE \n TESTE TESTE TESTE TESTE TESTE TESTE \n";
+                    mail.Body = "TESTE TESTE TESTE TESTE TESTE TESTE \n TESTE TESTE TESTE TESTE TESTE TESTE \n";
+
+                    if (nomeArquivo != null)
+                        mail.Attachments.Add(new Attachment(nomeArquivo));
 
                     smtp.Send(mail);
                 }
