@@ -20,6 +20,7 @@ namespace LocadoraVeiculos.Dominio.LocacaoModule
         public string Plano { get; set; }
         public string Condutor { get;  set; }
         public string Devolucao { get; set; }
+        public double Total { get; set; }
 
         public Locacao(Cliente clienteEscolhido, Veiculo veiculoEscolhido, List<TaxasServicos> taxas,
             DateTime dataSaida, DateTime dataDevolucao, double caucao, string planoEscolhido, string condutor, string devolucao)
@@ -37,61 +38,57 @@ namespace LocadoraVeiculos.Dominio.LocacaoModule
 
         public void GerarPDF()
         {
+            float posicaoVertical = 300;
+            float posicaoHorizontal = 50;
+
             Document document = new Document();
 
-            Page page = new Page(PageSize.Letter, PageOrientation.Portrait, 54.0f);
+            Page page = new Page(PageSize.A4, PageOrientation.Portrait, 54.0f);
             document.Pages.Add(page);
 
-            string labelText = "Relatório de Locação\nLocadora Rech";
-            Label label = new Label(labelText, 0, 0, 504, 100, Font.HelveticaBold, 18, TextAlign.Center);
-            
-            page.Elements.Add(label);
+            string strTitulo = "Relatório de Locação\nLocadora Rech";
+            Label titulo = new Label(strTitulo, 0, 120, 504, 100, Font.HelveticaBold, 18, TextAlign.Center);
 
-            string novaLabelText = $"Seguem os dados da locação feita em nome do cliente: {Cliente}";
-            Label novaLabel = new Label(novaLabelText, 0, 120, 504, 100, Font.HelveticaBold, 14, TextAlign.Center);
+            page.Elements.Add(titulo);
+
+            string strSubtitulo = $"Seguem os dados da locação feita em nome do cliente: {Cliente}";
+            Label novaLabel = new Label(strSubtitulo, posicaoHorizontal, 240, 400, 100, Font.HelveticaBold, 14, TextAlign.Left);
 
             page.Elements.Add(novaLabel);
 
-            string[] dadosCliente = new string[]
-            {
-                $"Veículo: {Veiculo}",
-                $"Condutor: {Condutor}",
-                $"Plano: {Plano}",
-                $"Valor da Caução: R$ {Caucao}",
-                $"Data de Saída: {DataSaida.ToShortDateString()}",
-                $"Data Prevista de Devolução: {DataDevolucao.ToShortDateString()}",
-                $"Data de Devolução: {Devolucao}"
-            };
+            string[] dadosLocacao = ObtemDadosDaLocacao();
 
-            float alturaLabel = 160;
-
-            for (int i = 0; i < dadosCliente.Length; i++)
+            for (int i = 0; i < dadosLocacao.Length; i++)
             {
-                Label labelPropriedades = new Label(dadosCliente[i], 0, alturaLabel, 504, 100, Font.Helvetica, 12, TextAlign.Left);
+                Label labelPropriedades = new Label(dadosLocacao[i], posicaoHorizontal, posicaoVertical, 504, 100, Font.Helvetica, 12, TextAlign.Left);
                 page.Elements.Add(labelPropriedades);
 
-                alturaLabel += 20;
+                posicaoVertical += 20;
             }
 
-            if (Taxas != null || Taxas.Count != 0)
+            if (Taxas != null)
             {
-                alturaLabel += 30;
+                posicaoVertical += 30;
 
-                Label labelTaxasAplicadas = new Label("Taxas Aplicadas:", 0, alturaLabel, 504, 100, Font.HelveticaBold, 14, TextAlign.Left);
+                Label taxasAplicadas = new Label("Taxas Aplicadas:", posicaoHorizontal, posicaoVertical, 504, 100, Font.HelveticaBold, 14, TextAlign.Left);
 
-                page.Elements.Add(labelTaxasAplicadas);
+                page.Elements.Add(taxasAplicadas);
 
                 foreach (TaxasServicos taxa in Taxas)
                 {
-                    string dadosTaxas = $"{taxa.Servico}\t\tR$ {taxa.Taxa}\t\tTipo de Serviço: {taxa.OpcaoServico}";
+                    string dadosTaxas = $"{taxa.Servico}\t\tTipo de Serviço: {taxa.OpcaoServico}\t\tR$ {taxa.Taxa}";
 
-                    Label labelTaxa = new Label(dadosTaxas, 0, alturaLabel + 20, 504, 100, Font.Helvetica, 12, TextAlign.Left);
-                    labelTaxa.TextColor = RgbColor.ForestGreen;
+                    Label labelTaxa = new Label(dadosTaxas, posicaoHorizontal, posicaoVertical + 20, 504, 100, Font.Helvetica, 12, TextAlign.Left);
                     page.Elements.Add(labelTaxa);
 
-                    alturaLabel += 20;
+                    posicaoVertical += 20;
                 }
             }
+
+            Label total = new Label($"Total: R$ {Total}", posicaoHorizontal, posicaoVertical + 50, 504, 100, Font.HelveticaBold, 14, TextAlign.Left);
+            total.TextColor = RgbColor.ForestGreen;
+
+            page.Elements.Add(total);
 
             string pastaTemp = System.IO.Path.GetTempPath();
             document.Draw($"{pastaTemp}relatorioLocacao.pdf");
@@ -166,6 +163,21 @@ namespace LocadoraVeiculos.Dominio.LocacaoModule
             return resultadoValidacao;
         }
 
+        #region Métodos privados
 
+        private string[] ObtemDadosDaLocacao()
+        {
+            return new string[]
+            {
+                $"Veículo: {Veiculo}",
+                $"Condutor: {Condutor}",
+                $"Plano: {Plano}",
+                $"Valor da Caução: R$ {Caucao}",
+                $"Data de Saída: {DataSaida.ToShortDateString()}",
+                $"Data Prevista de Devolução: {DataDevolucao.ToShortDateString()}",
+                $"Data de Devolução: {Devolucao}"
+            };
+        }
+        #endregion
     }
 }

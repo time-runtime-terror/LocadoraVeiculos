@@ -145,6 +145,8 @@ namespace LocadoraVeiculos.Tests.LocacaoModule
 
             Locacao locacao = new Locacao(cliente, veiculo, null, DateTime.Now.Date, DateTime.Now.AddDays(2).Date, 200, "Diário", "", "Pendente");
 
+            locacao.Total = 100;
+
             // action
             locacao.GerarPDF();
 

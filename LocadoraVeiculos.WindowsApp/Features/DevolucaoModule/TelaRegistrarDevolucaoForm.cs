@@ -62,8 +62,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
         {
             locacao.Taxas = taxasSelecionadas;
             locacao.Devolucao = dateDataDevolucao.Value.ToShortDateString();
+            locacao.Total = Convert.ToDouble(lblValorTotal.Text);
 
-            
+            locacao.GerarPDF();
         }
 
         private void btnCalcularTotal_Click(object sender, EventArgs e)
