@@ -1,12 +1,13 @@
 ﻿using LocadoraVeiculos.Dominio.LocacaoModule;
 using System.Net;
 using System.Net.Mail;
+using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.Dominio.ClienteModule
 {
     public class Email
     {
-        public async void EnviarEmailAsync(Locacao locacao, string nomeArquivo)
+        public async Task EnviarEmailAsync(Locacao locacao, string nomeArquivo)
         {
             string email = locacao.Cliente.Email;
 

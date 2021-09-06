@@ -63,7 +63,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             
         }
 
-        private void btnGravar_Click(object sender, EventArgs e)
+        private async void btnGravar_Click(object sender, EventArgs e)
         {
             locacao.Taxas = taxasSelecionadas;
             locacao.Devolucao = dateDataDevolucao.Value.ToShortDateString();
@@ -71,7 +71,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
 
             string pdf = locacao.GerarPDF();
 
-            email.EnviarEmailAsync(locacao, pdf);
+            await email.EnviarEmailAsync(locacao, pdf);
 
             string mensagem = $"O recibo da locação foi enviado ao email {locacao.Cliente.Email}";
             MessageBox.Show(mensagem, "Notificação de Envio de Email", MessageBoxButtons.OK, MessageBoxIcon.Information);
