@@ -6,7 +6,7 @@ namespace LocadoraVeiculos.Dominio.ClienteModule
 {
     public class Email
     {
-        public async void EnviarEmail(Locacao locacao, string nomeArquivo)
+        public async void EnviarEmailAsync(Locacao locacao, string nomeArquivo)
         {
             string email = locacao.Cliente.Email;
 
