@@ -21,8 +21,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         private readonly ControladorVeiculo controladorVeiculo;
         private readonly ControladorLocacao controladorLocacao;
 
-        private Veiculo veiculoSelecionado;
-
         private List<TaxasServicos> taxasSelecionadas;
 
         private Locacao locacao;
