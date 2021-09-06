@@ -136,7 +136,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
 
         private double CalcularValorDasTaxas(List<TaxasServicos> taxasSelecionadas)
         {
-            double total =0;
+            double total = 0;
 
             double diasPassados = (dateDataDevolucao.Value - locacao.DataSaida.Date).TotalDays + 1;
 
@@ -288,10 +288,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
 
                 
             }
-
-            
-
-           
 
             return valorAPagar;
         }
