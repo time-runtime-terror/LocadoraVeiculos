@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Net.Mail;
 
 namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
 {
@@ -71,10 +72,23 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
 
             string pdf = locacao.GerarPDF();
 
-            await email.EnviarEmailAsync(locacao, pdf);
+            try
+            {
+                await email.EnviarEmailAsync(locacao, pdf);
 
-            string mensagem = $"O recibo da locação foi enviado ao email {locacao.Cliente.Email}";
-            MessageBox.Show(mensagem, "Notificação de Envio de Email", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                string mensagem = $"O recibo da locação foi enviado ao email {locacao.Cliente.Email}";
+
+                MessageBox.Show(mensagem, "Notificação de Envio de Email", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (SmtpException ex)
+            {
+                string mensagem = $"Falha ao conectar com o servidor de email, verifique sua conexão de internet e tente novamente!\n\n{ex.Message}";
+
+                MessageBox.Show(mensagem, "Erro de Conexão", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                DialogResult = DialogResult.None;
+                return;
+            }
         }
 
         private void btnCalcularTotal_Click(object sender, EventArgs e)

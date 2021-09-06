@@ -24,7 +24,7 @@ namespace LocadoraVeiculos.Dominio.ClienteModule
                     //de
                     mail.From = new MailAddress("runtimeterror903@gmail.com");
 
-                   //para
+                    //para
                     mail.To.Add(new MailAddress(email));
 
                     mail.Subject = "Locadora Rech: Devolução realizada com sucesso";
@@ -42,7 +42,14 @@ namespace LocadoraVeiculos.Dominio.ClienteModule
                     if (nomeArquivo != null)
                         mail.Attachments.Add(new Attachment(nomeArquivo));
 
-                    await smtp.SendMailAsync(mail);
+                    try
+                    {
+                        await smtp.SendMailAsync(mail);
+                    }
+                    catch (SmtpException ex)
+                    {
+                        throw ex;
+                    }
                 }
             }
         }
