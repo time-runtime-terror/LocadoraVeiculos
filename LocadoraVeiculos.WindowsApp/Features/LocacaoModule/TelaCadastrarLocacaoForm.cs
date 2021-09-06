@@ -21,6 +21,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         private readonly ControladorVeiculo controladorVeiculo;
         private readonly ControladorLocacao controladorLocacao;
 
+        private Veiculo veiculoSelecionado;
+
         private List<TaxasServicos> taxasSelecionadas;
 
         private Locacao locacao;
@@ -53,7 +55,11 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                 DesabilitarBotoesParaEdicao();
 
+                CarregarCmbVeiculos();
+
                 CalcularValorTotal(taxasSelecionadas);
+
+                btnCalcularTotal.Enabled = true;
 
                 btnGravar.Enabled = true;
             }
@@ -71,6 +77,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         #region Eventos
         private void TelaCadastrarLocacaoForm_Load(object sender, EventArgs e)
         {
+            dateDataSaida.MaxDate = dateDataDevolucao.Value;
+
             List<Cliente> clientes = controladorCliente.SelecionarTodos();
 
             foreach (var c in clientes)
@@ -84,7 +92,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             CarregarCmbClientes();
 
-            CarregarCmbVeiculos();
+            //CarregarCmbVeiculos();
 
             dateDataDevolucao.MinDate = DateTime.Now;
         }
@@ -296,7 +304,44 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             total += caucao;
 
+            total += CalcularValorDoPlano();
+
             lblValorTotal.Text = total.ToString();
+        }
+
+        private double CalcularValorDoPlano()
+        {
+            double total = 0;
+
+            double diasPassados = (dateDataDevolucao.Value.Date - dateDataSaida.Value.Date).TotalDays + 1;
+
+            string plano = (string)cmbPlano.SelectedItem;
+
+           Veiculo veiculo =  (Veiculo) cmbVeiculo.SelectedItem;
+
+            switch (plano)
+            {
+                case "Plano Diário":
+                    double valorPordia = veiculo.GrupoAutomoveis.PlanoDiarioUm * diasPassados;
+                    total = valorPordia;
+
+                    break;
+
+                case "Km Controlado":
+                    double valorPorDia = veiculo.GrupoAutomoveis.KmControladoUm * diasPassados;
+
+                    //pagar pelo menos um dia
+                    total = valorPorDia;
+
+                    break;
+
+                case "Km Livre":
+                    
+                    total = veiculo.GrupoAutomoveis.KmLivreUm * diasPassados;
+                    break;
+            }
+
+            return total;
         }
 
         private void DesabilitarBotoesParaEdicao()
@@ -333,8 +378,30 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             {
                 cmbVeiculo.Items.Add(locacao.Veiculo);
                 cmbVeiculo.SelectedItem = locacao.Veiculo;
+                
             }
         }
 
+
+        private void dateDataSaida_ValueChanged(object sender, EventArgs e)
+        {
+            btnGravar.Enabled = false;
+        }
+
+        private void dateDataDevolucao_ValueChanged(object sender, EventArgs e)
+        {
+            btnGravar.Enabled = false;
+            dateDataSaida.MaxDate = dateDataDevolucao.Value;
+        }
+
+        private void cmbVeiculo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnGravar.Enabled = false;
+        }
+
+        private void cmbPlano_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnGravar.Enabled = false;
+        }
     }
 }
