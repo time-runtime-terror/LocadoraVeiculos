@@ -71,7 +71,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
 
             string pdf = locacao.GerarPDF();
 
-            email.enviaEmail(locacao, pdf);
+            email.EnviarEmail(locacao, pdf);
 
             string mensagem = $"O recibo da locação foi enviado ao email {locacao.Cliente.Email}";
             MessageBox.Show(mensagem, "Notificação de Envio de Email", MessageBoxButtons.OK, MessageBoxIcon.Information);
