@@ -1,5 +1,4 @@
 ﻿using LocadoraVeiculos.Controladores.CombustivelModule;
-using LocadoraVeiculos.Dominio.CombustivelModule;
 using LocadoraVeiculos.Dominio.LocacaoModule;
 using LocadoraVeiculos.Dominio.ClienteModule;
 using LocadoraVeiculos.Dominio.TaxasServicosModule;
@@ -17,8 +16,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
         private List<TaxasServicos> taxasSelecionadas;
 
         private Locacao locacao;
-
-        private Email email;
 
         private ControladorCombustivel controladorCombustivel;
 
@@ -43,7 +40,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
                     foreach (var taxa in taxasSelecionadas)
                         if (!listaTaxasServicos.Items.Contains(taxa))
                             listaTaxasServicos.Items.Add(taxa);
-
             }
         }
 
@@ -52,8 +48,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             InitializeComponent();
 
             controladorCombustivel = new ControladorCombustivel();
-
-            email = new Email();
         }
 
         private void TelaRegistrarDevolucaoForm_Load(object sender, EventArgs e)
@@ -61,7 +55,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             dateDataDevolucao.MinDate =  DateTime.Today;
             dateDataDevolucao.Value = DateTime.Today;
             txbQuilometragemAtual.Minimum = locacao.Veiculo.Quilometragem;
-            
         }
 
         private async void btnGravar_Click(object sender, EventArgs e)
@@ -74,7 +67,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
 
             try
             {
-                await email.EnviarEmailAsync(locacao, pdf);
+                await Email.EnviarEmailAsync(locacao, pdf);
 
                 string mensagem = $"O recibo da locação foi enviado ao email {locacao.Cliente.Email}";
 
@@ -111,10 +104,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
                 btnGravar.Enabled = true;
             }
             else
-            {
                 Dashboard.Instancia.AtualizarRodape("Por favor selecione a quantidade do combustível no carro.");
-            }
-           
         }
 
         private void btnSelecionarTaxas_Click(object sender, EventArgs e)
@@ -180,17 +170,11 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
                     double valorPorKmRodado = locacao.Veiculo.GrupoAutomoveis.KmControladoDois;
                     double kmVeiculoMaisDeconto = quilometragem + descontoNafaixa;
                     double valorTotalKmRodado = (kmAtual - kmVeiculoMaisDeconto) * valorPorKmRodado;
-                    
 
-                    // nao deixar se negativo, quando a soma da quilometragem mais o desconto na faixa, ser maior que a kmatual
                     if (kmVeiculoMaisDeconto > kmAtual)
-                    {
                         valorTotalKmRodado = 0;
-                    }
 
-                    //pagar pelo menos um dia
                     total = valorTotalKmRodado + valorPorDia;
-
                     break;
 
                 case "Km Livre":
@@ -204,7 +188,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
         private double PegaQuilometragemAtual()
         {
             double kmAtual = Convert.ToDouble(txbQuilometragemAtual.Text);
-
            
             return kmAtual;
         }
@@ -258,8 +241,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
 
                 //pegar o valor ad subtração feita, e multiplicar pelo tipo de combustivel
                 valorAPagar = litrosQueFaltam * valorCombustivel;
-
-               
 
             }
             if (rdbUmQuarto.Checked)
@@ -325,7 +306,5 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             //desabilitar o calcularin
             btnGravar.Enabled = false;
         }
-
-       
     }
 }
