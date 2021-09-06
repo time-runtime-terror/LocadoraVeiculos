@@ -73,17 +73,12 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
 
             email.enviaEmail(locacao, pdf);
 
-            MessageBox.Show("Enviado o recibo sobre a locação, no email " + locacao.Cliente.Email);
-
-            
-           
+            string mensagem = $"O recibo da locação foi enviado ao email {locacao.Cliente.Email}";
+            MessageBox.Show(mensagem, "Notificação de Envio de Email", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnCalcularTotal_Click(object sender, EventArgs e)
         {
-
-
-
             if(rdbCheio.Checked  || rdbTresQuartos.Checked || rdbMeio.Checked || rdbUmQuarto.Checked || rdbVazio.Checked)
             {
                 pnlMedidasTanque.Enabled = false;
@@ -141,8 +136,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
                             total += item.Taxa;
                     }
 
-            
-
             if (dateDataDevolucao.Value > locacao.DataDevolucao)
                 total += (10 / 100) * total;
 
@@ -155,12 +148,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
 
             double diasPassados = (dateDataDevolucao.Value - locacao.DataSaida.Date).TotalDays + 1;
 
-            
-
             double kmAtual = PegaQuilometragemAtual();
 
-            
-            
             switch (locacao.Plano)
             {
                 case "Plano Diário":
@@ -223,11 +212,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
 
             if (rdbCheio.Checked)
             {
-
                 valorAPagar = 0;
-
-                
-
             }
             if (rdbTresQuartos.Checked)
             {
