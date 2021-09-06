@@ -63,7 +63,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             locacao.Devolucao = dateDataDevolucao.Value.ToShortDateString();
             locacao.Total = Convert.ToDouble(lblValorTotal.Text);
 
-            string pdf = locacao.GerarPDF();
+            string pdf = locacao.GerarRecibo();
 
             try
             {

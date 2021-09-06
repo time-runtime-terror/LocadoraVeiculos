@@ -148,7 +148,7 @@ namespace LocadoraVeiculos.Tests.LocacaoModule
             locacao.Total = 100;
 
             // action
-            locacao.GerarPDF();
+            locacao.GerarRecibo();
 
             // assert
             string caminhoArquivo = $"{Path.GetTempPath()}relatorioLocacao.pdf";

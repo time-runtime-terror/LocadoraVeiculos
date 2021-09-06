@@ -36,7 +36,7 @@ namespace LocadoraVeiculos.Dominio.LocacaoModule
             Devolucao = devolucao;
         }
 
-        public string GerarPDF()
+        public string GerarRecibo()
         {
             float posicaoVertical = 300;
             float posicaoHorizontal = 50;
@@ -46,7 +46,7 @@ namespace LocadoraVeiculos.Dominio.LocacaoModule
             Page page = new Page(PageSize.A4, PageOrientation.Portrait, 54.0f);
             document.Pages.Add(page);
 
-            string strTitulo = "Relatório de Locação\nLocadora Rech";
+            string strTitulo = "Recibo de Locação\nLocadora Rech";
             Label titulo = new Label(strTitulo, 0, 120, 504, 100, Font.HelveticaBold, 18, TextAlign.Center);
 
             page.Elements.Add(titulo);
@@ -91,12 +91,12 @@ namespace LocadoraVeiculos.Dominio.LocacaoModule
             page.Elements.Add(total);
 
             string pastaTemp = System.IO.Path.GetTempPath();
-            document.Draw($"{pastaTemp}relatorioLocacao.pdf");
 
-            string caminhoCompleto = $"{pastaTemp}relatorioLocacao.pdf";
+            document.Draw($"{pastaTemp}reciboLocacao.pdf");
+
+            string caminhoCompleto = $"{pastaTemp}rebicoLocacao.pdf";
 
             return caminhoCompleto;
-
         }
 
         public override bool Equals(object obj)
