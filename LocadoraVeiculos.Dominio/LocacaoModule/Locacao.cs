@@ -94,7 +94,7 @@ namespace LocadoraVeiculos.Dominio.LocacaoModule
 
             document.Draw($"{pastaTemp}reciboLocacao.pdf");
 
-            string caminhoCompleto = $"{pastaTemp}rebicoLocacao.pdf";
+            string caminhoCompleto = $"{pastaTemp}reciboLocacao.pdf";
 
             return caminhoCompleto;
         }
