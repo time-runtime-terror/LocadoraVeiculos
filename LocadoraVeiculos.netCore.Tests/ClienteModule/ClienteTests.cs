@@ -3,7 +3,7 @@ using FluentAssertions;
 using LocadoraVeiculos.Dominio.ClienteModule;
 using System;
 
-namespace LocadoraVeiculos.netCore.Tests.ClienteModule
+namespace LocadoraVeiculos.Tests.ClienteModule
 {
     [TestClass]
     [TestCategory("Dominio")]

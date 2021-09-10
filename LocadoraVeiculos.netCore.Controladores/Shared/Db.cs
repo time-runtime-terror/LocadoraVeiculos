@@ -1,30 +1,32 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.IO;
 
-namespace LocadoraVeiculos.Controladores.Shared
+namespace LocadoraVeiculos.netCore.Controladores.Shared
 {
     public delegate T ConverterDelegate<T>(IDataReader reader);
 
     public static class Db
     {
-        private static readonly string database = string.Empty;
         private static readonly string connectionString = string.Empty;
         private static readonly string providerName = string.Empty;
         private static DbProviderFactory providerFactory;
 
         static Db()
         {
-            database = ConfigurationManager.AppSettings["currentDatabase"];
+            var config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false);
 
-            connectionString = ConfigurationManager.ConnectionStrings[database].ConnectionString;
+            connectionString = config.Build().GetConnectionString("SqlServer");
 
-            providerName = ConfigurationManager.ConnectionStrings[database].ProviderName;
+            providerName = config.Build().GetSection("providerName").Value;
 
-            DbProviderFactories.RegisterFactory("System.Data.SqlClient", SqlClientFactory.Instance);
+            DbProviderFactories.RegisterFactory(providerName, SqlClientFactory.Instance);
 
             providerFactory = DbProviderFactories.GetFactory(providerName);
         }
@@ -179,5 +181,5 @@ namespace LocadoraVeiculos.Controladores.Shared
                     value == null;
         }
 
-    }
+    } 
 }

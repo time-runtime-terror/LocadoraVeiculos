@@ -2,8 +2,11 @@
 using System;
 using FluentAssertions;
 using System.Collections.Generic;
+using LocadoraVeiculos.netCore.Controladores.ClienteModule;
+using LocadoraVeiculos.netCore.Controladores.Shared;
+using LocadoraVeiculos.Dominio.ClienteModule;
 
-namespace LocadoraVeiculos.netCore.Tests.ClienteModule
+namespace LocadoraVeiculos.Tests.ClienteModule
 {
     [TestClass]
     [TestCategory("Controladores")]

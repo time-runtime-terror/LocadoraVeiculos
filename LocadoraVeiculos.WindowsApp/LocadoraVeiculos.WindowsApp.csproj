@@ -1,309 +1,48 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{548F4EF2-E115-47BA-8C4A-53D69BE752B4}</ProjectGuid>
+    <TargetFramework>net5.0-windows</TargetFramework>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>LocadoraVeiculos.WindowsApp</RootNamespace>
-    <AssemblyName>LocadoraVeiculos.WindowsApp</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Deterministic>true</Deterministic>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWindowsForms>true</UseWindowsForms>
+    <UseWPF>true</UseWPF>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+    <StartupObject>LocadoraVeiculos.WindowsApp.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DataGridViewGrouper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libs\DataGridViewGrouper.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="PresentationFramework" />
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dashboard.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include=".Designer.cs">
-      <DependentUpon>Dashboard.cs</DependentUpon>
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Features\ClienteModule\ConfiguracaoClienteToolBox.cs" />
-    <Compile Include="Features\ClienteModule\FiltroClienteEnum.cs" />
-    <Compile Include="Features\ClienteModule\FiltroClienteForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Features\ClienteModule\FiltroClienteForm.Designer.cs">
-      <DependentUpon>FiltroClienteForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\ClienteModule\OperacoesCliente.cs" />
-    <Compile Include="Features\ClienteModule\TabelaClienteControl.cs">
+    <Compile Update="Features\ClienteModule\TabelaClienteControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Features\ClienteModule\TabelaClienteControl.Designer.cs">
-      <DependentUpon>TabelaClienteControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\ClienteModule\TelaClienteForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Features\ClienteModule\TelaClienteForm.Designer.cs">
-      <DependentUpon>TelaClienteForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\CombustivelModule\CombustivelControl.cs">
+    <Compile Update="Features\CombustivelModule\CombustivelControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Features\CombustivelModule\CombustivelControl.Designer.cs">
-      <DependentUpon>CombustivelControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\CombustivelModule\ConfiguracaoCombustivelToolBox.cs" />
-    <Compile Include="Features\DevolucaoModule\ConfiguracoesDevolucaoToolBox.cs" />
-    <Compile Include="Features\DevolucaoModule\TelaRegistrarDevolucaoForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Features\DevolucaoModule\TelaRegistrarDevolucaoForm.Designer.cs">
-      <DependentUpon>TelaRegistrarDevolucaoForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\FuncionarioModule\ConfiguracaoFuncionarioToolBox.cs" />
-    <Compile Include="Features\FuncionarioModule\OperacoesFuncionario.cs" />
-    <Compile Include="Features\FuncionarioModule\TabelaFuncionarioControl.cs">
+    <Compile Update="Features\FuncionarioModule\TabelaFuncionarioControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Features\FuncionarioModule\TabelaFuncionarioControl.Designer.cs">
-      <DependentUpon>TabelaFuncionarioControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\FuncionarioModule\TelaCadastrarFuncionario.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Features\FuncionarioModule\TelaCadastrarFuncionario.Designer.cs">
-      <DependentUpon>TelaCadastrarFuncionario.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\GrupoAutomoveisModule\AgrupamentoGrupoAutomoveisEnum.cs" />
-    <Compile Include="Features\GrupoAutomoveisModule\ConfiguracaoGrupoAutomoveisToolBox.cs" />
-    <Compile Include="Features\GrupoAutomoveisModule\OperacoesGrupoAutomoveis.cs" />
-    <Compile Include="Features\GrupoAutomoveisModule\TabelaGrupoAutomoveisControl.cs">
+    <Compile Update="Features\GrupoAutomoveisModule\TabelaGrupoAutomoveisControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Features\GrupoAutomoveisModule\TabelaGrupoAutomoveisControl.Designer.cs">
-      <DependentUpon>TabelaGrupoAutomoveisControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\GrupoAutomoveisModule\TelaAgrupamentoGrupoAutomoveis.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Features\GrupoAutomoveisModule\TelaAgrupamentoGrupoAutomoveis.Designer.cs">
-      <DependentUpon>TelaAgrupamentoGrupoAutomoveis.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\LocacaoModule\ConfiguracoesLocacaoToolBox.cs" />
-    <Compile Include="Features\LocacaoModule\FiltroLocacaoEnum.cs" />
-    <Compile Include="Features\LocacaoModule\FiltroLocacaoForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Features\LocacaoModule\FiltroLocacaoForm.Designer.cs">
-      <DependentUpon>FiltroLocacaoForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\LocacaoModule\OperacoesLocacao.cs" />
-    <Compile Include="Features\LocacaoModule\TabelaLocacaoControl.cs">
+    <Compile Update="Features\LocacaoModule\TabelaLocacaoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Features\LocacaoModule\TabelaLocacaoControl.Designer.cs">
-      <DependentUpon>TabelaLocacaoControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\LocacaoModule\TelaCadastrarLocacaoForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Features\LocacaoModule\TelaCadastrarLocacaoForm.Designer.cs">
-      <DependentUpon>TelaCadastrarLocacaoForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\LocacaoModule\TelaSelecaoTaxasForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Features\LocacaoModule\TelaSelecaoTaxasForm.Designer.cs">
-      <DependentUpon>TelaSelecaoTaxasForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\TaxasServicosModule\ConfiguracaoTaxasServicosToolBox.cs" />
-    <Compile Include="Features\TaxasServicosModule\OperacoesTaxasServicos.cs" />
-    <Compile Include="Features\TaxasServicosModule\TabelaTaxasServicosControl.cs">
+    <Compile Update="Features\TaxasServicosModule\TabelaTaxasServicosControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Features\TaxasServicosModule\TabelaTaxasServicosControl.Designer.cs">
-      <DependentUpon>TabelaTaxasServicosControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\TaxasServicosModule\TelaCadastrarTaxasServicos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Features\TaxasServicosModule\TelaCadastrarTaxasServicos.Designer.cs">
-      <DependentUpon>TelaCadastrarTaxasServicos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\VeiculoModule\AgrupamentoVeiculosEnum.cs" />
-    <Compile Include="Features\VeiculoModule\AgrupamentoVeiculosForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Features\VeiculoModule\AgrupamentoVeiculosForm.Designer.cs">
-      <DependentUpon>AgrupamentoVeiculosForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\VeiculoModule\ConfiguracaoVeiculoToolBox.cs" />
-    <Compile Include="Features\VeiculoModule\OperacoesVeiculos.cs" />
-    <Compile Include="Features\VeiculoModule\TabelaVeiculosControl.cs">
+    <Compile Update="Features\VeiculoModule\TabelaVeiculosControl.cs">
       <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Features\VeiculoModule\TelaCadastrarVeiculos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Features\VeiculoModule\TelaCadastrarVeiculos.Designer.cs">
-      <DependentUpon>TelaCadastrarVeiculos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\GrupoAutomoveisModule\TelaCadastroGrupoAutomoveis.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Features\GrupoAutomoveisModule\TelaCadastroGrupoAutomoveis.Designer.cs">
-      <DependentUpon>TelaCadastroGrupoAutomoveis.cs</DependentUpon>
-    </Compile>
-    <Compile Include="LoginForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="LoginForm.Designer.cs">
-      <DependentUpon>LoginForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Shared\ConfiguracaoEstadoBotoes.cs" />
-    <Compile Include="Shared\ConfiguracaoToolTips.cs" />
-    <Compile Include="Shared\DataGridViewExtensions.cs" />
-    <Compile Include="Shared\ICadastravel.cs" />
-    <Compile Include="Shared\IConfiguracaoToolBox.cs" />
-    <EmbeddedResource Include="Dashboard.resx">
-      <DependentUpon>Dashboard.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\ClienteModule\FiltroClienteForm.resx">
-      <DependentUpon>FiltroClienteForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\ClienteModule\TabelaClienteControl.resx">
-      <DependentUpon>TabelaClienteControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\ClienteModule\TelaClienteForm.resx">
-      <DependentUpon>TelaClienteForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\CombustivelModule\CombustivelControl.resx">
-      <DependentUpon>CombustivelControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\DevolucaoModule\TelaRegistrarDevolucaoForm.resx">
-      <DependentUpon>TelaRegistrarDevolucaoForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\FuncionarioModule\TabelaFuncionarioControl.resx">
-      <DependentUpon>TabelaFuncionarioControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\FuncionarioModule\TelaCadastrarFuncionario.resx">
-      <DependentUpon>TelaCadastrarFuncionario.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\LocacaoModule\FiltroLocacaoForm.resx">
-      <DependentUpon>FiltroLocacaoForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\LocacaoModule\TabelaLocacaoControl.resx">
-      <DependentUpon>TabelaLocacaoControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\LocacaoModule\TelaCadastrarLocacaoForm.resx">
-      <DependentUpon>TelaCadastrarLocacaoForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\LocacaoModule\TelaSelecaoTaxasForm.resx">
-      <DependentUpon>TelaSelecaoTaxasForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\TaxasServicosModule\TabelaTaxasServicosControl.resx">
-      <DependentUpon>TabelaTaxasServicosControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\TaxasServicosModule\TelaCadastrarTaxasServicos.resx">
-      <DependentUpon>TelaCadastrarTaxasServicos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\VeiculoModule\AgrupamentoVeiculosForm.resx">
-      <DependentUpon>AgrupamentoVeiculosForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\VeiculoModule\TabelaVeiculosControl.resx">
-      <DependentUpon>TabelaVeiculosControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\GrupoAutomoveisModule\TabelaGrupoAutomoveisControl.resx">
-      <DependentUpon>TabelaGrupoAutomoveisControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\GrupoAutomoveisModule\TelaAgrupamentoGrupoAutomoveis.resx">
-      <DependentUpon>TelaAgrupamentoGrupoAutomoveis.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\GrupoAutomoveisModule\TelaCadastroGrupoAutomoveis.resx">
-      <DependentUpon>TelaCadastroGrupoAutomoveis.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\VeiculoModule\TelaCadastrarVeiculos.resx">
-      <DependentUpon>TelaCadastrarVeiculos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="LoginForm.resx">
-      <DependentUpon>LoginForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="appsettings.json" />
     <Content Include="Libs\DataGridViewGrouper.dll" />
     <Content Include="Resources\IconLogo.ico" />
     <Content Include="Resources\tanqueCombustivel.jpg" />
     <Content Include="Resources\tanqueCombustivel.png" />
-    <None Include="Resources\outline_car_rental_black_24dp.png" />
-    <None Include="Resources\outline_car_rental_black_24dp1.png" />
     <Content Include="Resources\round_close_fullscreen_black_24dp.png" />
     <Content Include="Resources\round_delete_black_24dp.png" />
     <Content Include="Resources\round_edit_black_24dp.png" />
@@ -311,27 +50,24 @@
     <Content Include="Resources\round_local_hospital_black_24dp.png" />
     <Content Include="Resources\round_search_black_24dp.png" />
     <Content Include="Resources\round_sort_by_alpha_black_24dp.png" />
-    <None Include="Resources\sedan.png" />
-    <None Include="Resources\sedan2.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LocadoraVeiculos.Controladores\LocadoraVeiculos.Controladores.csproj">
-      <Project>{834adc7c-dcd2-4409-a546-c3d58adb97b2}</Project>
-      <Name>LocadoraVeiculos.Controladores</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LocadoraVeiculos.Dominio\LocadoraVeiculos.Dominio.csproj">
-      <Project>{de9a2fab-893c-427c-abff-92b196453eaf}</Project>
-      <Name>LocadoraVeiculos.Dominio</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\LocadoraVeiculos.Controladores\LocadoraVeiculos.Controladores.csproj" />
+    <ProjectReference Include="..\LocadoraVeiculos.Dominio\LocadoraVeiculos.Dominio.csproj" />
   </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
-    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
-  </Target>
-  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <ItemGroup>
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.3.242703">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Windows.Compatibility" Version="5.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Features\CombustivelModule\TelaControleCombustível.Designer.cs" />
+    <Compile Remove="Features\VeiculoModule\TabelaVeiculosControl.Designer.Designer.cs" />
+    <EmbeddedResource Remove=".Designer.resx" />
+  </ItemGroup>
 </Project>
