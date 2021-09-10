@@ -1,5 +1,5 @@
-﻿using LocadoraVeiculos.Dominio.GrupoAutomoveisModule;
-using LocadoraVeiculos.Dominio.VeiculoModule;
+﻿using LocadoraVeiculos.netCore.Dominio.GrupoAutomoveisModule;
+using LocadoraVeiculos.netCore.Dominio.VeiculoModule;
 using LocadoraVeiculos.netCore.Controladores.GrupoAutomoveisModule;
 using LocadoraVeiculos.netCore.Controladores.Shared;
 using System;

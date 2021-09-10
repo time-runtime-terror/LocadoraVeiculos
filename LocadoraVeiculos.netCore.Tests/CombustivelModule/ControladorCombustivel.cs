@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using LocadoraVeiculos.Dominio.CombustivelModule;
+using LocadoraVeiculos.netCore.Dominio.CombustivelModule;
 using LocadoraVeiculos.netCore.Controladores.CombustivelModule;
 using FluentAssertions;
 

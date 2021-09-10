@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using LocadoraVeiculos.Dominio.TaxasServicosModule;
+using LocadoraVeiculos.netCore.Dominio.TaxasServicosModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 

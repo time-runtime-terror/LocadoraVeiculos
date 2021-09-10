@@ -1,11 +1,22 @@
-﻿using LocadoraVeiculos.Dominio.CombustivelModule;
+﻿using LocadoraVeiculos.netCore.Dominio.CombustivelModule;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.Json;
+using Newtonsoft.Json;
 using System;
-using System.Configuration;
+using System.IO;
 
 namespace LocadoraVeiculos.netCore.Controladores.CombustivelModule
 {
     public class ControladorCombustivel
     {
+        static IConfigurationBuilder configuracao;
+
+        static ControladorCombustivel()
+        {
+            configuracao = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+        }
 
         public string GravarCombustivel(Combustivel registro)
         {
@@ -27,31 +38,27 @@ namespace LocadoraVeiculos.netCore.Controladores.CombustivelModule
 
         public string PegarValorGasolina()
         {
-            return ConfigurationManager.AppSettings["gasolina"];
+            return configuracao.Build().GetSection("gasolina").Value;
         }
 
         public string PegarValorEtanol()
         {
-            return ConfigurationManager.AppSettings["etanol"];
+            return configuracao.Build().GetSection("etanol").Value;
         }
 
         public string PegarValorDiesel()
         {
-            return ConfigurationManager.AppSettings["diesel"];
+            return configuracao.Build().GetSection("diesel").Value;
         }
 
         public string PegarValorGnv()
         {
-            return ConfigurationManager.AppSettings["gnv"];
+            return configuracao.Build().GetSection("gnv").Value;
         }
 
         private static void SalvandoAppConfig(string key, string value)
         {
-            Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            configuration.AppSettings.Settings[key].Value = value;
-            configuration.Save();
-
-            ConfigurationManager.RefreshSection("appSettings");
+            configuracao.Build().GetSection(key).Value = value;
         }
     }
 }

@@ -1,7 +1,7 @@
-﻿using LocadoraVeiculos.Dominio.ClienteModule;
-using LocadoraVeiculos.Dominio.LocacaoModule;
-using LocadoraVeiculos.Dominio.TaxasServicosModule;
-using LocadoraVeiculos.Dominio.VeiculoModule;
+﻿using LocadoraVeiculos.netCore.Dominio.ClienteModule;
+using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
+using LocadoraVeiculos.netCore.Dominio.TaxasServicosModule;
+using LocadoraVeiculos.netCore.Dominio.VeiculoModule;
 using LocadoraVeiculos.netCore.Controladores.ClienteModule;
 using LocadoraVeiculos.netCore.Controladores.Shared;
 using LocadoraVeiculos.netCore.Controladores.TaxasServicosModule;

@@ -1,4 +1,4 @@
-﻿using LocadoraVeiculos.Dominio.GrupoAutomoveisModule;
+﻿using LocadoraVeiculos.netCore.Dominio.GrupoAutomoveisModule;
 using LocadoraVeiculos.netCore.Controladores.Shared;
 using System;
 using System.Collections.Generic;

@@ -1,5 +1,5 @@
-﻿using LocadoraVeiculos.Controladores.ClienteModule;
-using LocadoraVeiculos.Dominio.ClienteModule;
+﻿using LocadoraVeiculos.netCore.Controladores.ClienteModule;
+using LocadoraVeiculos.netCore.Dominio.ClienteModule;
 using System;
 using System.Collections.Generic;
 using System.IO;

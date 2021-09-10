@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using LocadoraVeiculos.Dominio.FuncionarioModule;
+using LocadoraVeiculos.netCore.Dominio.FuncionarioModule;
 
 namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
 {

@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using LocadoraVeiculos.Dominio.GrupoAutomoveisModule;
+using LocadoraVeiculos.netCore.Dominio.GrupoAutomoveisModule;
 using FluentAssertions;
 
 namespace LocadoraVeiculos.netCore.Tests.GrupoAutomoveisModule

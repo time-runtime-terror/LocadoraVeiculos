@@ -1,5 +1,5 @@
 ﻿using LocadoraVeiculos.WindowsApp;
-using LocadoraVeiculos.Dominio.FuncionarioModule;
+using LocadoraVeiculos.netCore.Dominio.FuncionarioModule;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

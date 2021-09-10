@@ -1,4 +1,4 @@
-﻿using LocadoraVeiculos.Controladores.FuncionarioModule;
+﻿using LocadoraVeiculos.netCore.Controladores.FuncionarioModule;
 using System;
 using System.Windows.Forms;
 

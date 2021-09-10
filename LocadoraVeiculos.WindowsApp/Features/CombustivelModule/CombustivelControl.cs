@@ -8,8 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using LocadoraVeiculos.Controladores.CombustivelModule;
-using LocadoraVeiculos.Dominio.CombustivelModule;
+using LocadoraVeiculos.netCore.Controladores.CombustivelModule;
+using LocadoraVeiculos.netCore.Dominio.CombustivelModule;
 
 namespace LocadoraVeiculos.WindowsApp.Features.CombustivelModule
 {

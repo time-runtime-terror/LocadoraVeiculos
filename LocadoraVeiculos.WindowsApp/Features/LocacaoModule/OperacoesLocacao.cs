@@ -1,8 +1,8 @@
-﻿using LocadoraVeiculos.Controladores.ClienteModule;
-using LocadoraVeiculos.Controladores.LocacaoModule;
-using LocadoraVeiculos.Controladores.TaxasServicosModule;
-using LocadoraVeiculos.Controladores.VeiculoModule;
-using LocadoraVeiculos.Dominio.LocacaoModule;
+﻿using LocadoraVeiculos.netCore.Controladores.ClienteModule;
+using LocadoraVeiculos.netCore.Controladores.LocacaoModule;
+using LocadoraVeiculos.netCore.Controladores.TaxasServicosModule;
+using LocadoraVeiculos.netCore.Controladores.VeiculoModule;
+using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
 using LocadoraVeiculos.WindowsApp.Features.DevolucaoModule;
 using LocadoraVeiculos.WindowsApp.Shared;
 using System;

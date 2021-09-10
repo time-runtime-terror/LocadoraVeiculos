@@ -1,8 +1,8 @@
 ﻿using FluentAssertions;
-using LocadoraVeiculos.Dominio.GrupoAutomoveisModule;
-using LocadoraVeiculos.Dominio.VeiculoModule;
+using LocadoraVeiculos.netCore.Dominio.GrupoAutomoveisModule;
+using LocadoraVeiculos.netCore.Dominio.VeiculoModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using LocadoraVeiculos.Dominio.CombustivelModule;
+using LocadoraVeiculos.netCore.Dominio.CombustivelModule;
 using LocadoraVeiculos.netCore.Controladores.CombustivelModule;
 using LocadoraVeiculos.netCore.Controladores.VeiculoModule;
 using LocadoraVeiculos.netCore.Controladores.GrupoAutomoveisModule;

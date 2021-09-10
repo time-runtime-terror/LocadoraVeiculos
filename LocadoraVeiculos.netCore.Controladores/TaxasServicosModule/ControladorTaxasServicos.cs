@@ -1,5 +1,5 @@
-﻿using LocadoraVeiculos.Dominio.LocacaoModule;
-using LocadoraVeiculos.Dominio.TaxasServicosModule;
+﻿using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
+using LocadoraVeiculos.netCore.Dominio.TaxasServicosModule;
 using LocadoraVeiculos.netCore.Controladores.Shared;
 using System;
 using System.Collections.Generic;

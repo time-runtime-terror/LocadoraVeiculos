@@ -38,7 +38,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="appsettings.json" />
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Libs\DataGridViewGrouper.dll" />
     <Content Include="Resources\IconLogo.ico" />
     <Content Include="Resources\tanqueCombustivel.jpg" />
@@ -50,10 +52,6 @@
     <Content Include="Resources\round_local_hospital_black_24dp.png" />
     <Content Include="Resources\round_search_black_24dp.png" />
     <Content Include="Resources\round_sort_by_alpha_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\LocadoraVeiculos.Controladores\LocadoraVeiculos.Controladores.csproj" />
-    <ProjectReference Include="..\LocadoraVeiculos.Dominio\LocadoraVeiculos.Dominio.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
@@ -69,5 +67,9 @@
     <Compile Remove="Features\CombustivelModule\TelaControleCombustível.Designer.cs" />
     <Compile Remove="Features\VeiculoModule\TabelaVeiculosControl.Designer.Designer.cs" />
     <EmbeddedResource Remove=".Designer.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LocadoraVeiculos.netCore.Controladores\LocadoraVeiculos.netCore.Controladores.csproj" />
+    <ProjectReference Include="..\LocadoraVeiculos.netCore.Dominio\LocadoraVeiculos.netCore.Dominio.csproj" />
   </ItemGroup>
 </Project>

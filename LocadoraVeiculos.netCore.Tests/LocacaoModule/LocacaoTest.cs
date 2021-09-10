@@ -1,10 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using FluentAssertions;
-using LocadoraVeiculos.Dominio.ClienteModule;
-using LocadoraVeiculos.Dominio.VeiculoModule;
-using LocadoraVeiculos.Dominio.LocacaoModule;
-using LocadoraVeiculos.Dominio.GrupoAutomoveisModule;
+using LocadoraVeiculos.netCore.Dominio.ClienteModule;
+using LocadoraVeiculos.netCore.Dominio.VeiculoModule;
+using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
+using LocadoraVeiculos.netCore.Dominio.GrupoAutomoveisModule;
 using System.IO;
 
 namespace LocadoraVeiculos.netCore.Tests.LocacaoModule

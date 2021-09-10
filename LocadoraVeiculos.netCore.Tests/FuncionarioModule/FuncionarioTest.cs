@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using LocadoraVeiculos.Dominio.FuncionarioModule;
+using LocadoraVeiculos.netCore.Dominio.FuncionarioModule;
 using FluentAssertions;
 
 namespace LocadoraVeiculos.netCore.Tests.FuncionarioModule

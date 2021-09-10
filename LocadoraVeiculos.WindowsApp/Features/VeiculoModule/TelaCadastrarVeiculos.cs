@@ -4,10 +4,10 @@ using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using LocadoraVeiculos.Dominio.VeiculoModule;
-using LocadoraVeiculos.Controladores.GrupoAutomoveisModule;
-using LocadoraVeiculos.Dominio.GrupoAutomoveisModule;
-using LocadoraVeiculos.Controladores.CombustivelModule;
+using LocadoraVeiculos.netCore.Dominio.VeiculoModule;
+using LocadoraVeiculos.netCore.Controladores.GrupoAutomoveisModule;
+using LocadoraVeiculos.netCore.Dominio.GrupoAutomoveisModule;
+using LocadoraVeiculos.netCore.Controladores.CombustivelModule;
 
 namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
 {

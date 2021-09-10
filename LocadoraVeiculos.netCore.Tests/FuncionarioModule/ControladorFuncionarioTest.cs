@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using FluentAssertions;
-using LocadoraVeiculos.Dominio.FuncionarioModule;
+using LocadoraVeiculos.netCore.Dominio.FuncionarioModule;
 using LocadoraVeiculos.netCore.Controladores.FuncionarioModule;
 using LocadoraVeiculos.netCore.Controladores.Shared;
 

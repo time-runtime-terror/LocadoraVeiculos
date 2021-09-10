@@ -1,5 +1,5 @@
-﻿using LocadoraVeiculos.Controladores.LocacaoModule;
-using LocadoraVeiculos.Dominio.LocacaoModule;
+﻿using LocadoraVeiculos.netCore.Controladores.LocacaoModule;
+using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
 using LocadoraVeiculos.WindowsApp.Shared;
 using System;
 using System.Collections.Generic;
@@ -19,7 +19,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             gridLocacoes.ConfigurarGridZebrado();
             gridLocacoes.ConfigurarGridSomenteLeitura();
             gridLocacoes.Columns.AddRange(ObterColunas());
-            controladorLocacao = new ControladorLocacao(new Controladores.ClienteModule.ControladorCliente(), new Controladores.VeiculoModule.ControladorVeiculo(), new Controladores.TaxasServicosModule.ControladorTaxasServicos());
+            controladorLocacao = new ControladorLocacao(new netCore.Controladores.ClienteModule.ControladorCliente(), new netCore.Controladores.VeiculoModule.ControladorVeiculo(), new netCore.Controladores.TaxasServicosModule.ControladorTaxasServicos());
         }
 
         public DataGridViewColumn[] ObterColunas()

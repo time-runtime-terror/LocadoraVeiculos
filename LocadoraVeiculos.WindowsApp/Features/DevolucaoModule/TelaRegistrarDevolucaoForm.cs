@@ -1,7 +1,7 @@
-﻿using LocadoraVeiculos.Controladores.CombustivelModule;
-using LocadoraVeiculos.Dominio.LocacaoModule;
-using LocadoraVeiculos.Dominio.ClienteModule;
-using LocadoraVeiculos.Dominio.TaxasServicosModule;
+﻿using LocadoraVeiculos.netCore.Controladores.CombustivelModule;
+using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
+using LocadoraVeiculos.netCore.Dominio.ClienteModule;
+using LocadoraVeiculos.netCore.Dominio.TaxasServicosModule;
 using LocadoraVeiculos.WindowsApp.Features.LocacaoModule;
 using System;
 using System.Collections.Generic;

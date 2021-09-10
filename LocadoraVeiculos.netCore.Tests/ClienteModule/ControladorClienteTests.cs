@@ -4,7 +4,7 @@ using FluentAssertions;
 using System.Collections.Generic;
 using LocadoraVeiculos.netCore.Controladores.ClienteModule;
 using LocadoraVeiculos.netCore.Controladores.Shared;
-using LocadoraVeiculos.Dominio.ClienteModule;
+using LocadoraVeiculos.netCore.Dominio.ClienteModule;
 
 namespace LocadoraVeiculos.Tests.ClienteModule
 {

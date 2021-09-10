@@ -1,4 +1,4 @@
-﻿using LocadoraVeiculos.Controladores.Shared;
+﻿using LocadoraVeiculos.netCore.Controladores.Shared;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
