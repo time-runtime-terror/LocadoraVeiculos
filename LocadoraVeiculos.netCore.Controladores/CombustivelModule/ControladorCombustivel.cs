@@ -1,8 +1,5 @@
 ﻿using LocadoraVeiculos.netCore.Dominio.CombustivelModule;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.Json;
 using System.Text.Json;
-using System;
 using System.IO;
 
 namespace LocadoraVeiculos.netCore.Controladores.CombustivelModule
@@ -11,16 +8,14 @@ namespace LocadoraVeiculos.netCore.Controladores.CombustivelModule
     {
         private Combustivel Combustivel;
         private string ArquivoJson { get; set; }
-        private static string Caminho { get; set; }
+        private string Caminho { get; set; }
 
         public ControladorCombustivel()
         {
             Caminho = $"{Directory.GetCurrentDirectory()}\\configCombustivel.json";
 
-            Combustivel template = new Combustivel(0, 0, 0, 0);
-
             if (!File.Exists(Caminho))
-                SalvarConfiguracoes(template);
+                SalvarConfiguracoes(new Combustivel(0, 0, 0, 0));
 
             ArquivoJson = File.ReadAllText(Caminho);
         }
@@ -33,15 +28,6 @@ namespace LocadoraVeiculos.netCore.Controladores.CombustivelModule
                 SalvarConfiguracoes(registro);
 
             return resultadoValidacao;
-        }
-
-        private static void SalvarConfiguracoes(Combustivel registro)
-        {
-            JsonSerializerOptions options = new JsonSerializerOptions { WriteIndented = true };
-
-            string json = JsonSerializer.Serialize(registro, options);
-
-            File.WriteAllText(Caminho, json);
         }
 
         public string PegarValorGasolina()
@@ -66,6 +52,16 @@ namespace LocadoraVeiculos.netCore.Controladores.CombustivelModule
         {
             Combustivel = JsonSerializer.Deserialize<Combustivel>(ArquivoJson);
             return Combustivel.Gnv.ToString();
+        }
+
+        private void SalvarConfiguracoes(Combustivel registro)
+        {
+            JsonSerializerOptions opcoesSerializacao 
+                = new JsonSerializerOptions { WriteIndented = true };
+
+            string json = JsonSerializer.Serialize(registro, opcoesSerializacao);
+
+            File.WriteAllText(Caminho, json);
         }
     }
 }
