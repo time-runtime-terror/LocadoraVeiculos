@@ -72,4 +72,8 @@
     <ProjectReference Include="..\LocadoraVeiculos.netCore.Controladores\LocadoraVeiculos.netCore.Controladores.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.netCore.Dominio\LocadoraVeiculos.netCore.Dominio.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\net5.0-windows\bin\Debug\" />
+    <Folder Include="bin\Debug\net5.0-windows\runtimes\" />
+  </ItemGroup>
 </Project>

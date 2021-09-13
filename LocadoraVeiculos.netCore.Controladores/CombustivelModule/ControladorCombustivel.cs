@@ -1,7 +1,7 @@
 ﻿using LocadoraVeiculos.netCore.Dominio.CombustivelModule;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Json;
-using Newtonsoft.Json;
+using System.Text.Json;
 using System;
 using System.IO;
 
@@ -9,13 +9,20 @@ namespace LocadoraVeiculos.netCore.Controladores.CombustivelModule
 {
     public class ControladorCombustivel
     {
-        static IConfigurationBuilder configuracao;
+        private Combustivel Combustivel;
+        private string ArquivoJson { get; set; }
+        private static string Caminho { get; set; }
 
-        static ControladorCombustivel()
+        public ControladorCombustivel()
         {
-            configuracao = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+            Caminho = $"{Directory.GetCurrentDirectory()}\\configCombustivel.json";
+
+            Combustivel template = new Combustivel(0, 0, 0, 0);
+
+            if (!File.Exists(Caminho))
+                SalvarConfiguracoes(template);
+
+            ArquivoJson = File.ReadAllText(Caminho);
         }
 
         public string GravarCombustivel(Combustivel registro)
@@ -23,42 +30,42 @@ namespace LocadoraVeiculos.netCore.Controladores.CombustivelModule
             string resultadoValidacao = registro.Validar();
 
             if (resultadoValidacao == "ESTA_VALIDO")
-            {
-                //salvar os dados dentro do app config
-                string gasolina = Convert.ToString(registro.Gasolina);
-                SalvandoAppConfig("gasolina", gasolina);
-                SalvandoAppConfig("etanol", Convert.ToString(registro.Etanol));
-                SalvandoAppConfig("diesel", Convert.ToString(registro.Diesel));
-                SalvandoAppConfig("gnv", Convert.ToString(registro.Gnv));
-            }
+                SalvarConfiguracoes(registro);
 
             return resultadoValidacao;
         }
 
+        private static void SalvarConfiguracoes(Combustivel registro)
+        {
+            JsonSerializerOptions options = new JsonSerializerOptions { WriteIndented = true };
+
+            string json = JsonSerializer.Serialize(registro, options);
+
+            File.WriteAllText(Caminho, json);
+        }
 
         public string PegarValorGasolina()
         {
-            return configuracao.Build().GetSection("gasolina").Value;
+            Combustivel = JsonSerializer.Deserialize<Combustivel>(ArquivoJson);
+            return Combustivel.Gasolina.ToString();
         }
 
         public string PegarValorEtanol()
         {
-            return configuracao.Build().GetSection("etanol").Value;
+            Combustivel = JsonSerializer.Deserialize<Combustivel>(ArquivoJson);
+            return Combustivel.Etanol.ToString();
         }
 
         public string PegarValorDiesel()
         {
-            return configuracao.Build().GetSection("diesel").Value;
+            Combustivel = JsonSerializer.Deserialize<Combustivel>(ArquivoJson);
+            return Combustivel.Diesel.ToString();
         }
 
         public string PegarValorGnv()
         {
-            return configuracao.Build().GetSection("gnv").Value;
-        }
-
-        private static void SalvandoAppConfig(string key, string value)
-        {
-            configuracao.Build().GetSection(key).Value = value;
+            Combustivel = JsonSerializer.Deserialize<Combustivel>(ArquivoJson);
+            return Combustivel.Gnv.ToString();
         }
     }
 }
