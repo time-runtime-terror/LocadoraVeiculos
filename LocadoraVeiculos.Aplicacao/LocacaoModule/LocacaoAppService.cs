@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
+using System.Diagnostics;
 
 namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 {
@@ -36,7 +37,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
                     notificadorEmail.EnviarEmailAsync(caminhoRecibo);
                 else
                 {
-                    // Criar Log
+                    Debug.WriteLine("Não há conexão com a internet!");
                 }
             }
 
