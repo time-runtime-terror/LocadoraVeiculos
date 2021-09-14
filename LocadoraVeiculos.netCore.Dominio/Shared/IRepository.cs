@@ -7,7 +7,7 @@ namespace LocadoraVeiculos.netCore.Dominio.Shared
     {
         void InserirNovo(EntidadeBase registro);
 
-        string Editar(int id, EntidadeBase registro);
+        void Editar(int id, EntidadeBase registro);
 
         bool Excluir(int id);
 

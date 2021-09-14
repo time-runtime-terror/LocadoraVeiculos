@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.netCore.Controladores.ClienteModule;
+﻿using LocadoraVeiculos.Infra.SQL.Shared;
+using LocadoraVeiculos.netCore.Controladores.ClienteModule;
 using LocadoraVeiculos.netCore.Controladores.TaxasServicosModule;
 using LocadoraVeiculos.netCore.Controladores.VeiculoModule;
 using LocadoraVeiculos.netCore.Dominio.ClienteModule;
@@ -12,7 +13,7 @@ using System.Data;
 
 namespace LocadoraVeiculos.Infra.SQL.LocacaoModule
 {
-    public class LocacaoDAO : ILocacaoRepository
+    public class LocacaoDAO : BaseDAO, ILocacaoRepository
     {
         #region Queries
         private const string sqlInserirLocacao =
@@ -77,6 +78,13 @@ namespace LocadoraVeiculos.Infra.SQL.LocacaoModule
                         TBLOCACAO
                     WHERE 
                         ID = @ID";
+
+        private const string sqlExcluirTaxasServicosUsados =
+            @"DELETE 
+	                FROM
+                        TBTAXASSERVICOS_USADOS
+                    WHERE 
+                        ID_LOCACAO = @ID";
 
         private const string sqlSelecionarLocacaoPorId =
             @"SELECT
@@ -202,10 +210,8 @@ namespace LocadoraVeiculos.Infra.SQL.LocacaoModule
             }
         }
 
-        public string RegistrarDevolucao(Locacao registro)
+        public void RegistrarDevolucao(Locacao registro)
         {
-            string resultadoValidacao = registro.Validar();
-
             Dictionary<string, object> parametros = new Dictionary<string, object>();
 
             var devolucao = (string.IsNullOrEmpty(registro.Devolucao)) ? null : registro.Devolucao;
@@ -213,23 +219,15 @@ namespace LocadoraVeiculos.Infra.SQL.LocacaoModule
             parametros.Add("DEVOLUCAO", devolucao);
             parametros.Add("ID", registro.Id);
 
-            if (resultadoValidacao == "ESTA_VALIDO")
-                Db.Update(sqlRegistrarDevolucao, parametros);
+            Db.Update(sqlRegistrarDevolucao, parametros);
 
-            return resultadoValidacao;
+            Db.Delete(sqlExcluirTaxasServicosUsados, AdicionarParametro("ID", registro.Id));
         }
 
-        public string Editar(int id, Locacao registro)
+        public void Editar(int id, Locacao registro)
         {
-            string resultadoValidacao = registro.Validar();
-
-            if (resultadoValidacao == "ESTA_VALIDO")
-            {
-                registro.Id = id;
-                Db.Update(sqlEditarLocacao, ObtemParametrosRegistro(registro));
-            }
-
-            return resultadoValidacao;
+            registro.Id = id;
+            Db.Update(sqlEditarLocacao, ObtemParametrosRegistro(registro));
         }
 
         public bool Excluir(int id)
@@ -321,11 +319,6 @@ namespace LocadoraVeiculos.Infra.SQL.LocacaoModule
             locacao.Id = id;
 
             return locacao;
-        }
-
-        private Dictionary<string, object> AdicionarParametro(string campo, object valor)
-        {
-            return new Dictionary<string, object>() { { campo, valor } };
         }
     }
 }
