@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.netCore.Controladores.TaxasServicosModule;
+﻿using LocadoraVeiculos.Aplicacao.TaxasServicosModule;
+using LocadoraVeiculos.netCore.Controladores.TaxasServicosModule;
 using LocadoraVeiculos.netCore.Dominio.TaxasServicosModule;
 using LocadoraVeiculos.WindowsApp.Shared;
 using System.Windows.Forms;
@@ -7,13 +8,13 @@ namespace LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule
 {
     public class OperacoesTaxasServicos : ICadastravel
     {
-        private readonly ControladorTaxasServicos controlador = null;
+        private readonly TaxasServicosAppService taxasServicosAppService = null;
         private readonly TabelaTaxasServicosControl tabelaTaxasServicos = null;
 
-        public OperacoesTaxasServicos(ControladorTaxasServicos controladorTaxasServicos)
+        public OperacoesTaxasServicos(TaxasServicosAppService taxasServicosAppService)
         {
-            controlador = controladorTaxasServicos;
-            tabelaTaxasServicos = new TabelaTaxasServicosControl(controladorTaxasServicos);
+            this.taxasServicosAppService = taxasServicosAppService;
+            tabelaTaxasServicos = new TabelaTaxasServicosControl(taxasServicosAppService);
         }
 
         public void InserirNovoRegistro()
@@ -23,7 +24,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                controlador.InserirNovo(tela.TaxasServicos);
+                taxasServicosAppService.RegistrarNovaTaxa(tela.TaxasServicos);
 
                 tabelaTaxasServicos.AtualizarRegistros();
 
@@ -42,7 +43,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule
                 return;
             }
 
-            TaxasServicos taxasServicosSelecionado = controlador.SelecionarPorId(id);
+            TaxasServicos taxasServicosSelecionado = taxasServicosAppService.SelecionarPorId(id);
 
             TelaCadastrarTaxasServicos tela = new TelaCadastrarTaxasServicos();
 
@@ -50,7 +51,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                controlador.Editar(id, tela.TaxasServicos);
+                taxasServicosAppService.Editar(id, tela.TaxasServicos);
 
                 tabelaTaxasServicos.AtualizarRegistros();
 
@@ -69,12 +70,12 @@ namespace LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule
                 return;
             }
 
-            TaxasServicos taxasServicosSelecionado = controlador.SelecionarPorId(id);
+            TaxasServicos taxasServicosSelecionado = taxasServicosAppService.SelecionarPorId(id);
 
             if (MessageBox.Show($"Tem certeza que deseja excluir esse Serviço?: [{taxasServicosSelecionado.Servico}] ?",
                 "Exclusão de Taxas e Serviços", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                controlador.Excluir(id);
+                taxasServicosAppService.Excluir(id);
 
                 tabelaTaxasServicos.AtualizarRegistros();
 

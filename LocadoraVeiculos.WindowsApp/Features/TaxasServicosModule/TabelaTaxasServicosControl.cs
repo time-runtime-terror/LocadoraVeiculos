@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.netCore.Controladores.TaxasServicosModule;
+﻿using LocadoraVeiculos.Aplicacao.TaxasServicosModule;
+using LocadoraVeiculos.netCore.Controladores.TaxasServicosModule;
 using LocadoraVeiculos.netCore.Dominio.TaxasServicosModule;
 using LocadoraVeiculos.WindowsApp.Shared;
 using System;
@@ -9,16 +10,16 @@ namespace LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule
 {
     public partial class TabelaTaxasServicosControl : UserControl
     {
-        private readonly ControladorTaxasServicos controladorTaxasServicos;
+        private readonly TaxasServicosAppService taxasServicosAppService;
 
-        public TabelaTaxasServicosControl(ControladorTaxasServicos controladorTaxasServicos)
+        public TabelaTaxasServicosControl(TaxasServicosAppService taxasServicosAppService)
         {
             InitializeComponent();
             gridTaxasServicos.ConfigurarGridZebrado();
             gridTaxasServicos.ConfigurarGridSomenteLeitura();
             gridTaxasServicos.Columns.AddRange(ObterColunas());
 
-            this.controladorTaxasServicos = controladorTaxasServicos;
+            this.taxasServicosAppService = taxasServicosAppService;
         }
 
         public DataGridViewColumn[] ObterColunas()
@@ -42,7 +43,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule
 
         public void AtualizarRegistros()
         {
-            List<TaxasServicos> taxasServicos = controladorTaxasServicos.SelecionarTodos();
+            List<TaxasServicos> taxasServicos = taxasServicosAppService.SelecionarTodos();
 
             CarregarTabela(taxasServicos);
         }
