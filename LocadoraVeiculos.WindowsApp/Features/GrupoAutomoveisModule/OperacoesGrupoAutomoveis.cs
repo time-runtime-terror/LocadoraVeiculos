@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.netCore.Controladores.GrupoAutomoveisModule;
+﻿using LocadoraVeiculos.Aplicacao.GrupoAutomoveisModule;
+using LocadoraVeiculos.netCore.Controladores.GrupoAutomoveisModule;
 using LocadoraVeiculos.netCore.Dominio.GrupoAutomoveisModule;
 using LocadoraVeiculos.WindowsApp.Shared;
 using System;
@@ -9,13 +10,13 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
 {
     public class OperacoesGrupoAutomoveis : ICadastravel
     {
-        private readonly ControladorGrupoAutomoveis controlador = null;
+        private readonly GrupoAutomoveisAppService grupoAutomoveisService = null;
         private readonly TabelaGrupoAutomoveisControl tabelaGrupoAutomoveis = null;
 
-        public OperacoesGrupoAutomoveis(ControladorGrupoAutomoveis controladorGrupoAutomoveis)
+        public OperacoesGrupoAutomoveis(GrupoAutomoveisAppService GrupoAutomoveisAppService)
         {
-            controlador = controladorGrupoAutomoveis;
-            tabelaGrupoAutomoveis = new TabelaGrupoAutomoveisControl(controladorGrupoAutomoveis);
+            grupoAutomoveisService = GrupoAutomoveisAppService;
+            tabelaGrupoAutomoveis = new TabelaGrupoAutomoveisControl(GrupoAutomoveisAppService);
         }
 
         public void InserirNovoRegistro()
@@ -25,7 +26,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                controlador.InserirNovo(tela.GrupoAutomoveis);
+                grupoAutomoveisService.InserirNovo(tela.GrupoAutomoveis);
 
                 tabelaGrupoAutomoveis.AtualizarRegistros();
 
@@ -44,7 +45,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
                 return;
             }
 
-            GrupoAutomoveis grupoAutomoveisSelecionado = controlador.SelecionarPorId(id);
+            GrupoAutomoveis grupoAutomoveisSelecionado = grupoAutomoveisService.SelecionarPorId(id);
 
             TelaCadastroGrupoAutomoveis tela = new TelaCadastroGrupoAutomoveis();
 
@@ -52,7 +53,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                controlador.Editar(id, tela.GrupoAutomoveis);
+                grupoAutomoveisService.Editar(id, tela.GrupoAutomoveis);
 
                 tabelaGrupoAutomoveis.AtualizarRegistros();
 
@@ -71,12 +72,12 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
                 return;
             }
 
-            GrupoAutomoveis grupoAutomoveisSelecionado = controlador.SelecionarPorId(id);
+            GrupoAutomoveis grupoAutomoveisSelecionado = grupoAutomoveisService.SelecionarPorId(id);
 
             if (MessageBox.Show($"Tem certeza que deseja excluir o Grupo de Automóveis: [{grupoAutomoveisSelecionado.NomeGrupo}] ?",
                 "Exclusão de Grupo de Automóveis", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                controlador.Excluir(id);
+                grupoAutomoveisService.Excluir(id);
 
                 tabelaGrupoAutomoveis.AtualizarRegistros();
 
