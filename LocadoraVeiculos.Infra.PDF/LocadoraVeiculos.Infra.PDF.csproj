@@ -5,7 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="LocacaoModule\" />
+    <PackageReference Include="ceTe.DynamicPDF.CoreSuite.NET" Version="11.17.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LocadoraVeiculos.netCore.Dominio\LocadoraVeiculos.netCore.Dominio.csproj" />
   </ItemGroup>
 
 </Project>

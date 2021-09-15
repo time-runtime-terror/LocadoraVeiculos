@@ -6,6 +6,7 @@ using LocadoraVeiculos.netCore.Dominio.VeiculoModule;
 using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
 using LocadoraVeiculos.netCore.Dominio.GrupoAutomoveisModule;
 using System.IO;
+using LocadoraVeiculos.Infra.PDF.LocacaoModule;
 
 namespace LocadoraVeiculos.netCore.Tests.LocacaoModule
 {
@@ -147,10 +148,10 @@ namespace LocadoraVeiculos.netCore.Tests.LocacaoModule
             locacao.Total = 100;
 
             // action
-            locacao.GerarRecibo();
+            GeradorRecibo geradorRecibo = new GeradorRecibo();
+            string caminhoArquivo = geradorRecibo.GerarRecibo(locacao);
 
             // assert
-            string caminhoArquivo = $"{Path.GetTempPath()}relatorioLocacao.pdf";
             File.Exists(caminhoArquivo).Should().BeTrue();
         }
     }
