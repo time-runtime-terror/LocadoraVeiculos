@@ -1,6 +1,8 @@
-﻿using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
-using LocadoraVeiculos.netCore.Dominio.TaxasServicosModule;
+﻿using LocadoraVeiculos.Infra.SQL.Shared;
 using LocadoraVeiculos.netCore.Controladores.Shared;
+using LocadoraVeiculos.netCore.Dominio.FuncionarioModule;
+using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
+using LocadoraVeiculos.netCore.Dominio.TaxasServicosModule;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,10 +10,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocadoraVeiculos.netCore.Controladores.TaxasServicosModule
+namespace LocadoraVeiculos.Infra.SQL.TaxasServicosModule
 {
-    public class ControladorTaxasServicos : Controlador<TaxasServicos>
+    public class TaxasServicosDAO : BaseDAO, ITaxasServicosRepository
     {
+
         #region Queries
         private const string sqlInserirTaxasServicos =
             @"INSERT INTO TBTAXASSERVICOS
@@ -118,44 +121,30 @@ namespace LocadoraVeiculos.netCore.Controladores.TaxasServicosModule
                 [ID] = @ID";
         #endregion
 
-        public override string InserirNovo(TaxasServicos registro)
+        public void InserirNovo(TaxasServicos registro)
         {
-            string resultadoValidacao = registro.Validar();
-
-            if (resultadoValidacao == "ESTA_VALIDO")
-            {
-                registro.Id = Db.Insert(sqlInserirTaxasServicos, ObtemParametrosTaxasServicos(registro));
-            }
-
-            return resultadoValidacao;
+            registro.Id = Db.Insert(sqlInserirTaxasServicos, ObtemParametrosRegistro(registro));
         }
 
         public void InserirNovaTaxaUsada(Locacao registro)
         {
-            if (registro.Taxas != null)
-                foreach (TaxasServicos taxa in registro.Taxas)
-                    Db.Insert(sqlInserirTaxasServicosUsados, ObtemParametrosTaxasServicosUsados(registro, taxa));
+            foreach (TaxasServicos taxa in registro.Taxas)
+                Db.Insert(sqlInserirTaxasServicosUsados, ObtemParametrosTaxasServicosUsados(registro, taxa));
         }
 
-        public override string Editar(int id, TaxasServicos registro)
+        public void Editar(int id, TaxasServicos registro)
         {
-            string resultadoValidacao = registro.Validar();
-
-            if (resultadoValidacao == "ESTA_VALIDO")
-            {
-                registro.Id = id;
-                Db.Update(sqlEditarTaxasServicos, ObtemParametrosTaxasServicos(registro));
-            }
-
-            return resultadoValidacao;
+            registro.Id = id;
+            Db.Update(sqlEditarTaxasServicos, ObtemParametrosRegistro(registro));
         }
+
         public void EditarTaxasUsadas(Locacao locacao)
         {
             foreach (TaxasServicos taxa in locacao.Taxas)
                 Db.Update(sqlEditarTaxasServicosUsados, ObtemParametrosTaxasServicosUsados(locacao, taxa));
         }
 
-        public override bool Excluir(int id)
+        public bool Excluir(int id)
         {
             try
             {
@@ -183,19 +172,19 @@ namespace LocadoraVeiculos.netCore.Controladores.TaxasServicosModule
             return true;
         }
 
-        public override bool Existe(int id)
+        public bool Existe(int id)
         {
             return Db.Exists(sqlExisteTaxasServicos, AdicionarParametro("ID", id));
         }
 
-        public override TaxasServicos SelecionarPorId(int id)
+        public TaxasServicos SelecionarPorId(int id)
         {
-            return Db.Get(sqlSelecionarTaxasServicosPorId, ConverterEmTaxasServicos, AdicionarParametro("ID", id));
+            return Db.Get(sqlSelecionarTaxasServicosPorId, ConverterEmRegistro, AdicionarParametro("ID", id));
         }
 
-        public override List<TaxasServicos> SelecionarTodos()
+        public IList<TaxasServicos> SelecionarTodos()
         {
-            return Db.GetAll(sqlSelecionarTodasTaxasServicos, ConverterEmTaxasServicos);
+            return Db.GetAll(sqlSelecionarTodasTaxasServicos, ConverterEmRegistro);
         }
 
         public List<TaxasServicos> SelecionarTaxasServicosUsados(int id)
@@ -203,16 +192,7 @@ namespace LocadoraVeiculos.netCore.Controladores.TaxasServicosModule
             return Db.GetAll(sqlSelecionarTaxasServicosUsados, ConverterEmTaxasServicosUsados, AdicionarParametro("ID", id));
         }
 
-        private TaxasServicos ConverterEmTaxasServicosUsados(IDataReader reader)
-        {
-            if (reader["ID_TAXASSERVICOS"] == DBNull.Value)
-                return null;
-
-            return SelecionarPorId(Convert.ToInt32(reader["ID_TAXASSERVICOS"]));
-        }
-
-
-        private Dictionary<string, object> ObtemParametrosTaxasServicos(TaxasServicos taxasServicos)
+        public Dictionary<string, object> ObtemParametrosRegistro(TaxasServicos taxasServicos)
         {
             var parametros = new Dictionary<string, object>();
 
@@ -225,7 +205,7 @@ namespace LocadoraVeiculos.netCore.Controladores.TaxasServicosModule
             return parametros;
         }
 
-        private Dictionary<string, object> ObtemParametrosTaxasServicosUsados(Locacao locacao, TaxasServicos taxa)
+        public Dictionary<string, object> ObtemParametrosTaxasServicosUsados(Locacao locacao, TaxasServicos taxa)
         {
             var parametros = new Dictionary<string, object>();
 
@@ -235,9 +215,7 @@ namespace LocadoraVeiculos.netCore.Controladores.TaxasServicosModule
             return parametros;
         }
 
-        
-
-        private TaxasServicos ConverterEmTaxasServicos(IDataReader reader)
+        public TaxasServicos ConverterEmRegistro(IDataReader reader)
         {
             int id = Convert.ToInt32(reader["ID"]);
             string servico = Convert.ToString(reader["SERVICO"]);
@@ -252,9 +230,18 @@ namespace LocadoraVeiculos.netCore.Controladores.TaxasServicosModule
             return taxasServicos;
         }
 
-        public override List<TaxasServicos> Pesquisar(string texto)
+        public TaxasServicos ConverterEmTaxasServicosUsados(IDataReader reader)
+        {
+            if (reader["ID_TAXASSERVICOS"] == DBNull.Value)
+                return null;
+
+            return SelecionarPorId(Convert.ToInt32(reader["ID_TAXASSERVICOS"]));
+        }
+
+        public IList<TaxasServicos> Pesquisar(string texto)
         {
             throw new NotImplementedException();
         }
     }
+
 }
