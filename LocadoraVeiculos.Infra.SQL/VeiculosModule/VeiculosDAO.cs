@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.Infra.SQL.Shared;
+﻿using LocadoraVeiculos.Aplicacao.GrupoAutomoveisModule;
+using LocadoraVeiculos.Infra.SQL.Shared;
 using LocadoraVeiculos.netCore.Dominio.GrupoAutomoveisModule;
 using LocadoraVeiculos.netCore.Dominio.VeiculoModule;
 using LocadoraVeiculos.netCore.Infra.SQL.Shared;
@@ -134,6 +135,13 @@ namespace LocadoraVeiculos.Infra.SQL.VeiculosModule
                     VE.[MODELO] LIKE @MODELO";
         #endregion
 
+        private readonly IGrupoAutomoveisRepository grupoAutomoveisRepository;
+
+        public VeiculosDAO(IGrupoAutomoveisRepository grupoAutomoveisRepository)
+        {
+            this.grupoAutomoveisRepository = grupoAutomoveisRepository;
+        }
+
         public void InserirNovo(Veiculo registro)
         {          
            registro.Id = Db.Insert(sqlInserirVeiculo, ObtemParametrosRegistro(registro));      
@@ -212,7 +220,8 @@ namespace LocadoraVeiculos.Infra.SQL.VeiculosModule
             GrupoAutomoveis grupo = null;
 
             if (reader["ID_GRUPOAUTOMOVEIS"] != DBNull.Value)
-                grupo = ControladorGrupoAutomoveis.SelecionarPorId(Convert.ToInt32(reader["ID_GRUPOAUTOMOVEIS"]));
+                grupo =
+                    grupoAutomoveisRepository.SelecionarPorId(Convert.ToInt32(reader["ID_GRUPOAUTOMOVEIS"]));
 
             Veiculo veiculo = new Veiculo(foto, placa, modelo, marca, tipoCombustivel, capacidadeTanque, quilometragem, grupo);
 

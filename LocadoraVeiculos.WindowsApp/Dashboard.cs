@@ -118,7 +118,9 @@ namespace LocadoraVeiculos.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            VeiculosDAO veiculosRepo = new VeiculosDAO();
+            GrupoAutomoveisDAO grupoAutomoveisRepo = new GrupoAutomoveisDAO();
+
+            VeiculosDAO veiculosRepo = new VeiculosDAO(grupoAutomoveisRepo);
 
             VeiculosAppService veiculosService = new VeiculosAppService(veiculosRepo);
 
