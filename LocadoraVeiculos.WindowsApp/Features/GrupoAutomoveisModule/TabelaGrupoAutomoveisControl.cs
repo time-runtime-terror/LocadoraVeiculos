@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.netCore.Controladores.GrupoAutomoveisModule;
+﻿using LocadoraVeiculos.Aplicacao.GrupoAutomoveisModule;
+using LocadoraVeiculos.netCore.Controladores.GrupoAutomoveisModule;
 using LocadoraVeiculos.netCore.Dominio.GrupoAutomoveisModule;
 using LocadoraVeiculos.WindowsApp.Shared;
 using System;
@@ -9,12 +10,12 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
 {
     public partial class TabelaGrupoAutomoveisControl : UserControl
     {
-        private readonly ControladorGrupoAutomoveis controladorGrupoAutomoveis;
+        private readonly GrupoAutomoveisAppService GrupoAutomoveisAppService;
         private Subro.Controls.DataGridViewGrouper gridGrupoAutomoveisAgrupados;
 
         private AgrupamentoGrupoAutomoveisEnum tipoAgrupamento;
 
-        public TabelaGrupoAutomoveisControl(ControladorGrupoAutomoveis controladorGrupoAutomoveis)
+        public TabelaGrupoAutomoveisControl(GrupoAutomoveisAppService GrupoAutomoveisAppService)
         {
             InitializeComponent();
             gridGrupoAutomoveis.ConfigurarGridZebrado();
@@ -23,7 +24,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
 
             tipoAgrupamento = AgrupamentoGrupoAutomoveisEnum.TodosOsGrupoAutomoveis;
 
-            this.controladorGrupoAutomoveis = controladorGrupoAutomoveis;
+            this.GrupoAutomoveisAppService = GrupoAutomoveisAppService;
         }
 
         public DataGridViewColumn[] ObterColunas()
@@ -54,7 +55,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
         {
             DesagruparGrupoAutomoveis();
 
-            List<GrupoAutomoveis> grupoAutomoveis = controladorGrupoAutomoveis.SelecionarTodos();
+            List<GrupoAutomoveis> grupoAutomoveis = GrupoAutomoveisAppService.SelecionarTodos();
 
             CarregarTabela(grupoAutomoveis);
 
