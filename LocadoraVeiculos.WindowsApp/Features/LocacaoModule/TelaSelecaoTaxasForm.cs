@@ -38,9 +38,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         {
             InitializeComponent();
             controladorTaxasServicos = new ControladorTaxasServicos();
-
-            this.taxasVindas = taxasVindas;
-            
         }
 
         public TelaSelecaoTaxasForm(List<TaxasServicos> taxasVindas, string localTaxa)

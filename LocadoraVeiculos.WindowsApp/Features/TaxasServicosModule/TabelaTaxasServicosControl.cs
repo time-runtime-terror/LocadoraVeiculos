@@ -10,7 +10,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule
     public partial class TabelaTaxasServicosControl : UserControl
     {
         private readonly ControladorTaxasServicos controladorTaxasServicos;
-        private Subro.Controls.DataGridViewGrouper gridGrupoAutomoveisAgrupados;
 
         public TabelaTaxasServicosControl(ControladorTaxasServicos controladorTaxasServicos)
         {

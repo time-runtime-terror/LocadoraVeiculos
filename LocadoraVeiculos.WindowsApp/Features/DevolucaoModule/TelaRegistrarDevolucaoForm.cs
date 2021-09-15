@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Net.Mail;
+using LocadoraVeiculos.Infra.PDF.LocacaoModule;
 
 namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
 {
@@ -63,7 +64,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             locacao.Devolucao = dateDataDevolucao.Value.ToShortDateString();
             locacao.Total = Convert.ToDouble(lblValorTotal.Text);
 
-            string pdf = locacao.GerarRecibo();
+            GeradorRecibo geradorRecibo = new GeradorRecibo();
+
+            string pdf = geradorRecibo.GerarRecibo(locacao);
 
             try
             {

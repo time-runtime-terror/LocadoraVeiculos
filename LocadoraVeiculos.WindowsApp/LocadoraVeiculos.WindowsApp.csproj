@@ -69,6 +69,8 @@
     <EmbeddedResource Remove=".Designer.resx" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LocadoraVeiculos.Infra.InternetServices\LocadoraVeiculos.Infra.InternetServices.csproj" />
+    <ProjectReference Include="..\LocadoraVeiculos.Infra.PDF\LocadoraVeiculos.Infra.PDF.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.netCore.Controladores\LocadoraVeiculos.netCore.Controladores.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.netCore.Dominio\LocadoraVeiculos.netCore.Dominio.csproj" />
   </ItemGroup>
