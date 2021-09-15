@@ -1,5 +1,4 @@
-﻿using LocadoraVeiculos.netCore.Controladores.ClienteModule;
-using LocadoraVeiculos.netCore.Controladores.Shared;
+﻿using LocadoraVeiculos.Aplicacao.ClienteModule;
 using LocadoraVeiculos.netCore.Dominio.ClienteModule;
 using LocadoraVeiculos.WindowsApp.Shared;
 using System;
@@ -10,12 +9,12 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 {
     public class OperacoesCliente : ICadastravel
     {
-        private readonly ControladorCliente controladorCliente;
+        private readonly ClienteAppService clienteService;
         private readonly TabelaClienteControl tabelaClientes;
 
-        public OperacoesCliente()
+        public OperacoesCliente(ClienteAppService clienteService)
         {
-            controladorCliente = new ControladorCliente();
+            this.clienteService = clienteService;
             tabelaClientes = new TabelaClienteControl();
         }
 
@@ -25,9 +24,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                controladorCliente.InserirNovo(tela.Cliente);
+                clienteService.InserirNovo(tela.Cliente);
 
-                List<Cliente> clientes = controladorCliente.SelecionarTodos();
+                List<Cliente> clientes = clienteService.SelecionarTodos();
 
                 tabelaClientes.AtualizarRegistros(clientes);
 
@@ -45,7 +44,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
                 return;
             }
 
-            Cliente clienteSelecionado = controladorCliente.SelecionarPorId(id);
+            Cliente clienteSelecionado = clienteService.SelecionarPorId(id);
 
             TelaClienteForm tela = new TelaClienteForm();
 
@@ -53,9 +52,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                controladorCliente.Editar(id, tela.Cliente);
+                clienteService.Editar(id, tela.Cliente);
 
-                List<Cliente> clientes = controladorCliente.SelecionarTodos();
+                List<Cliente> clientes = clienteService.SelecionarTodos();
 
                 tabelaClientes.AtualizarRegistros(clientes);
 
@@ -73,7 +72,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
                 return;
             }
 
-            Cliente clienteSelecionado = controladorCliente.SelecionarPorId(id);
+            Cliente clienteSelecionado = clienteService.SelecionarPorId(id);
 
             if (clienteSelecionado.TemLocacaoAtiva)
             {
@@ -84,9 +83,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             if (MessageBox.Show($"Tem certeza que deseja excluir o cliente: [{clienteSelecionado.Nome}] ?",
                 "Exclusão de Clientes", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                controladorCliente.Excluir(id);
+                clienteService.Excluir(id);
 
-                List<Cliente> clientes = controladorCliente.SelecionarTodos();
+                List<Cliente> clientes = clienteService.SelecionarTodos();
 
                 tabelaClientes.AtualizarRegistros(clientes);
             }
@@ -100,15 +99,14 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             {
                 List<Cliente> clientes = new List<Cliente>();
 
-
                 switch (telaFiltro.TipoFiltro)
                 {
                     case FiltroClienteEnum.PessoasFisicas:
-                        clientes = controladorCliente.SelecionarTodasPessoasFisicas();
+                        clientes = clienteService.SelecionarTodasPessoasFisicas();
                         break;
 
                     case FiltroClienteEnum.PessoasJuridicas:
-                        clientes = controladorCliente.SelecionarTodasPessoasJuridicas();
+                        clientes = clienteService.SelecionarTodasPessoasJuridicas();
                         break;
 
                     default:
@@ -126,14 +124,14 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 
         public void DesagruparRegistros()
         {
-            var clientes = controladorCliente.SelecionarTodos();
+            var clientes = clienteService.SelecionarTodos();
 
             tabelaClientes.AtualizarRegistros(clientes);
         }
 
         public UserControl ObterTabela()
         {
-            List<Cliente> clientes = controladorCliente.SelecionarTodos();
+            List<Cliente> clientes = clienteService.SelecionarTodos();
 
             tabelaClientes.AtualizarRegistros(clientes);
 
@@ -142,7 +140,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 
         public void Pesquisar(string text)
         {
-            List<Cliente> clientesSelecionados = controladorCliente.Pesquisar(text);
+            List<Cliente> clientesSelecionados = clienteService.Pesquisar(text);
 
             tabelaClientes.AtualizarRegistros(clientesSelecionados);
         }
