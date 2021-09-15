@@ -1,6 +1,9 @@
-﻿using LocadoraVeiculos.Infra.SQL.Shared;
-using LocadoraVeiculos.netCore.Controladores.ClienteModule;
-using LocadoraVeiculos.netCore.Controladores.TaxasServicosModule;
+﻿using LocadoraVeiculos.Aplicacao.ClienteModule;
+using LocadoraVeiculos.Aplicacao.TaxasServicosModule;
+using LocadoraVeiculos.Infra.SQL.ClienteModule;
+using LocadoraVeiculos.Infra.SQL.Shared;
+using LocadoraVeiculos.Infra.SQL.TaxasServicosModule;
+using LocadoraVeiculos.Infra.SQL.VeiculosModule;
 using LocadoraVeiculos.netCore.Controladores.VeiculoModule;
 using LocadoraVeiculos.netCore.Dominio.ClienteModule;
 using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
@@ -41,15 +44,15 @@ namespace LocadoraVeiculos.Infra.SQL.LocacaoModule
 	                )";
 
         private const string sqlInserirTaxaSelecionada =
-            @"INSERT INTO [TBTAXASELECIONADA]
+            @"INSERT INTO [TBTAXASSERVICOS_USADOS]
                     (
-                       [LOCACAO_ID]
-                      ,[TAXA_ID]
+                       [ID_LOCACAO],
+                       [ID_TAXASSERVICOS]
                     )
                  VALUES
                     (
-                      @LOCACAO_ID,
-                      @TAXA_ID
+                      @ID_LOCACAO,
+                      @ID_TAXASSERVICOS
 	                )";
 
         private const string sqlEditarLocacao =
@@ -184,11 +187,11 @@ namespace LocadoraVeiculos.Infra.SQL.LocacaoModule
 
         #endregion
 
-        private readonly ControladorCliente _clienteRepository;
-        private readonly ControladorVeiculo _veiculoRepository;
-        private readonly ControladorTaxasServicos _taxaRepository;
+        private readonly ClienteDAO _clienteRepository;
+        private readonly VeiculosDAO _veiculoRepository;
+        private readonly TaxasServicosDAO _taxaRepository;
 
-        public LocacaoDAO(ControladorCliente clienteRepo, ControladorVeiculo veiculoRepo, ControladorTaxasServicos taxaRepo)
+        public LocacaoDAO(ClienteDAO clienteRepo, VeiculosDAO veiculoRepo, TaxasServicosDAO taxaRepo)
         {
             _clienteRepository = clienteRepo;
             _veiculoRepository = veiculoRepo;
@@ -203,8 +206,8 @@ namespace LocadoraVeiculos.Infra.SQL.LocacaoModule
             {
                 var parametros = new Dictionary<string, object>();
 
-                parametros.Add("LOCACAO_ID", locacao.Id);
-                parametros.Add("TAXA_ID", taxa.Id);
+                parametros.Add("ID_LOCACAO", locacao.Id);
+                parametros.Add("ID_TAXASSERVICOS", taxa.Id);
 
                 Db.Insert(sqlInserirTaxaSelecionada, parametros);
             }

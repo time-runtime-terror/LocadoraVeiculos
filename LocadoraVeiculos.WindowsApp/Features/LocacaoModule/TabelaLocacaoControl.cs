@@ -1,4 +1,11 @@
-﻿using LocadoraVeiculos.netCore.Controladores.LocacaoModule;
+﻿using LocadoraVeiculos.Aplicacao.LocacaoModule;
+using LocadoraVeiculos.Infra.InternetServices.LocacaoModule;
+using LocadoraVeiculos.Infra.PDF.LocacaoModule;
+using LocadoraVeiculos.Infra.SQL.ClienteModule;
+using LocadoraVeiculos.Infra.SQL.GrupoAutomoveisModule;
+using LocadoraVeiculos.Infra.SQL.LocacaoModule;
+using LocadoraVeiculos.Infra.SQL.TaxasServicosModule;
+using LocadoraVeiculos.Infra.SQL.VeiculosModule;
 using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
 using LocadoraVeiculos.WindowsApp.Shared;
 using System;
@@ -11,7 +18,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 {
     public partial class TabelaLocacaoControl : UserControl
     {
-        private readonly ControladorLocacao controladorLocacao;
+        private readonly LocacaoAppService locacaoService;
 
         public TabelaLocacaoControl()
         {
@@ -19,7 +26,11 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             gridLocacoes.ConfigurarGridZebrado();
             gridLocacoes.ConfigurarGridSomenteLeitura();
             gridLocacoes.Columns.AddRange(ObterColunas());
-            controladorLocacao = new ControladorLocacao(new netCore.Controladores.ClienteModule.ControladorCliente(), new netCore.Controladores.VeiculoModule.ControladorVeiculo(), new netCore.Controladores.TaxasServicosModule.ControladorTaxasServicos());
+
+            LocacaoDAO locacaoRepo
+    = new LocacaoDAO(new ClienteDAO(), new VeiculosDAO(new GrupoAutomoveisDAO()), new TaxasServicosDAO());
+
+            locacaoService = new LocacaoAppService(locacaoRepo, new GeradorRecibo(), new NotificadorEmail(), new VerificadorConexao());
         }
 
         public DataGridViewColumn[] ObterColunas()
@@ -70,7 +81,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             if (id == 0)
                 return;
 
-            var locacao = controladorLocacao.SelecionarPorId(id);
+            var locacao = locacaoService.SelecionarPorId(id);
 
             if (locacao.Devolucao != "Pendente")
                 Dashboard.Instancia.DesabilitarBotoesIndisponiveisParaDevolucao();

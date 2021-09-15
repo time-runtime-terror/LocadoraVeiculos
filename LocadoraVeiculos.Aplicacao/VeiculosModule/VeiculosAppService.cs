@@ -16,6 +16,16 @@ namespace LocadoraVeiculos.Aplicacao.VeiculosModule
             this.veiculoRepository = veiculosRepository;
         }
 
+        public void AtualizarQuilometragem(Veiculo veiculo)
+        {
+            veiculoRepository.AtualizarQuilometragem(veiculo);
+        }
+
+        public void AtualizarStatusAluguel(Veiculo veiculo)
+        {
+            veiculoRepository.AtualizarStatusAluguel(veiculo);
+        }
+
         public string InserirNovo(Veiculo veiculo)
         {
             string resultadoValidacao = veiculo.Validar();

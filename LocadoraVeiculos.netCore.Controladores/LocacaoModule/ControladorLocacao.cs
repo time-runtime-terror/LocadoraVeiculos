@@ -165,10 +165,10 @@ namespace LocadoraVeiculos.netCore.Controladores.LocacaoModule
         #endregion
 
         private readonly ControladorCliente controladorCliente;
-        private readonly ControladorVeiculo controladorVeiculo;
+        private readonly VeiculoDAO controladorVeiculo;
         private readonly ControladorTaxasServicos controladorTaxasServicos;
 
-        public ControladorLocacao(ControladorCliente ctrlC, ControladorVeiculo ctrlV, ControladorTaxasServicos ctrlT)
+        public ControladorLocacao(ControladorCliente ctrlC, VeiculoDAO ctrlV, ControladorTaxasServicos ctrlT)
         {
             controladorCliente = ctrlC;
             controladorVeiculo = ctrlV;

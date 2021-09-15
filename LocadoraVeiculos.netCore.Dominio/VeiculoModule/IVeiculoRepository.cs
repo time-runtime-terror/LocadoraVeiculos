@@ -9,6 +9,8 @@ namespace LocadoraVeiculos.netCore.Dominio.VeiculoModule
 {
     public interface IVeiculoRepository : IRepository<Veiculo>
     {
+        void AtualizarStatusAluguel(Veiculo veiculo);
+        void AtualizarQuilometragem(Veiculo veiculo);
 
     }
 }

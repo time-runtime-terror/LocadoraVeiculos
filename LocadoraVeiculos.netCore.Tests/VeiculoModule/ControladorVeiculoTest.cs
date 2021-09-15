@@ -18,7 +18,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
         ControladorCombustivel controladorCombustivel = null;
         
 
-        ControladorVeiculo controlador = null;
+        VeiculoDAO controlador = null;
         byte[] imagem = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20 };
 
         ControladorGrupoAutomoveis controlodarGrupoAutomoveis = null;
@@ -26,7 +26,7 @@ namespace LocadoraVeiculos.Tests.VeiculoModule
 
          public ControladorVeiculoTest()
          {
-            controlador = new ControladorVeiculo();
+            controlador = new VeiculoDAO();
             controlodarGrupoAutomoveis = new ControladorGrupoAutomoveis();
             controladorCombustivel = new ControladorCombustivel();
             Db.Update("DELETE FROM [TBVEICULO]");

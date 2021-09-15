@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.netCore.Controladores.VeiculoModule
 {
-    public class ControladorVeiculo : Controlador<Veiculo>
+    public class VeiculoDAO : Controlador<Veiculo>
     {
         #region Queries
         private const string sqlInserirVeiculo =
@@ -136,7 +136,7 @@ namespace LocadoraVeiculos.netCore.Controladores.VeiculoModule
 
         private ControladorGrupoAutomoveis controladorGrupoAutomoveis;
 
-        public ControladorVeiculo()
+        public VeiculoDAO()
         {
             controladorGrupoAutomoveis = new ControladorGrupoAutomoveis();
         }

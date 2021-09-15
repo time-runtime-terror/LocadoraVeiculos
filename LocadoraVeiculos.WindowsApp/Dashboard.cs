@@ -6,7 +6,6 @@ using LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule;
 using System;
 using System.Windows.Forms;
 using LocadoraVeiculos.WindowsApp.Shared;
-using LocadoraVeiculos.netCore.Controladores.VeiculoModule;
 using LocadoraVeiculos.WindowsApp.Feature.VeiculoModule;
 using LocadoraVeiculos.WindowsApp.Features.VeiculoModule;
 using LocadoraVeiculos.netCore.Controladores.FuncionarioModule;
@@ -26,6 +25,10 @@ using LocadoraVeiculos.Aplicacao.FuncionarioModule;
 using LocadoraVeiculos.Infra.SQL.FuncionarioModule;
 using LocadoraVeiculos.Infra.SQL.TaxasServicosModule;
 using LocadoraVeiculos.Aplicacao.TaxasServicosModule;
+using LocadoraVeiculos.Infra.SQL.LocacaoModule;
+using LocadoraVeiculos.Aplicacao.LocacaoModule;
+using LocadoraVeiculos.Infra.PDF.LocacaoModule;
+using LocadoraVeiculos.Infra.InternetServices.LocacaoModule;
 
 namespace LocadoraVeiculos.WindowsApp
 {
@@ -72,7 +75,18 @@ namespace LocadoraVeiculos.WindowsApp
 
             AtualizarRodape(config.TipoCadastro);
 
-            operacoes = new OperacoesLocacao();
+            LocacaoDAO locacaoRepo 
+                = new LocacaoDAO(new ClienteDAO(), new VeiculosDAO(new GrupoAutomoveisDAO()), new TaxasServicosDAO());
+
+            LocacaoAppService locacaoService = new LocacaoAppService(locacaoRepo, new GeradorRecibo(), new NotificadorEmail(), new VerificadorConexao());
+
+            TaxasServicosAppService taxaService = new TaxasServicosAppService(new TaxasServicosDAO());
+
+            VeiculosAppService veiculoService = new VeiculosAppService(new VeiculosDAO(new GrupoAutomoveisDAO()));
+
+            ClienteAppService clienteService = new ClienteAppService(new ClienteDAO());
+
+            operacoes = new OperacoesLocacao(locacaoService, taxaService, veiculoService, clienteService);
 
             ConfigurarPainelRegistros();
 

@@ -18,7 +18,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
     {
         private readonly ControladorTaxasServicos controladorTaxasServicos;
         private readonly ControladorCliente controladorCliente;
-        private readonly ControladorVeiculo controladorVeiculo;
+        private readonly VeiculoDAO controladorVeiculo;
         private readonly ControladorLocacao controladorLocacao;
 
         private List<TaxasServicos> taxasSelecionadas;
@@ -68,7 +68,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             InitializeComponent();
             controladorTaxasServicos = new ControladorTaxasServicos();
             controladorCliente = new ControladorCliente();
-            controladorVeiculo = new ControladorVeiculo();
+            controladorVeiculo = new VeiculoDAO();
             controladorLocacao = new ControladorLocacao(controladorCliente, controladorVeiculo, controladorTaxasServicos);
         }
 

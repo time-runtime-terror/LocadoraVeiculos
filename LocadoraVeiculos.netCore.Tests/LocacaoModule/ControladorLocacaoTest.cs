@@ -20,7 +20,7 @@ namespace LocadoraVeiculos.netCore.Tests.LocacaoModule
     {
         byte[] foto = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20 };
         private ControladorCliente controladorCliente;
-        private ControladorVeiculo controladorVeiculo;
+        private VeiculoDAO controladorVeiculo;
         private ControladorGrupoAutomoveis controladorGrupoAutomoveis;
         private ControladorTaxasServicos controladorTaxasServicos;
         private ControladorLocacao controladorLocacao;
@@ -34,7 +34,7 @@ namespace LocadoraVeiculos.netCore.Tests.LocacaoModule
             Db.Update("DELETE FROM [TBLOCACAO]");
 
             controladorCliente = new ControladorCliente();
-            controladorVeiculo = new ControladorVeiculo();
+            controladorVeiculo = new VeiculoDAO();
             controladorGrupoAutomoveis = new ControladorGrupoAutomoveis();
             controladorTaxasServicos = new ControladorTaxasServicos();
 

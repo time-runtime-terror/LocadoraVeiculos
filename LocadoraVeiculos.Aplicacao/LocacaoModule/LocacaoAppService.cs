@@ -78,6 +78,11 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             return false;
         }
 
+        public Locacao SelecionarPorId(int id)
+        {
+            return locacaoRepository.SelecionarPorId(id);
+        }
+
         public IList<Locacao> SelecionarTodos()
         {
             return locacaoRepository.SelecionarTodos();
