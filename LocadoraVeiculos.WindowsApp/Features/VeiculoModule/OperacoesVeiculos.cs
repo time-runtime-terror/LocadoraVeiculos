@@ -4,19 +4,19 @@ using LocadoraVeiculos.netCore.Dominio.VeiculoModule;
 using LocadoraVeiculos.WindowsApp.Features.VeiculoModule;
 using System.Collections.Generic;
 using System.Windows.Forms;
-
+using LocadoraVeiculos.Aplicacao.VeiculosModule;
 
 namespace LocadoraVeiculos.WindowsApp.Feature.VeiculoModule
 {
     public class OperacoesVeiculos : ICadastravel
     {
-        private readonly ControladorVeiculo controlador = null;
+        private readonly VeiculosAppService veiculosService = null;
         private readonly TabelaVeiculosControl tabelaVeiculo = null;
 
-        public OperacoesVeiculos(ControladorVeiculo controladorVeiculo)
+        public OperacoesVeiculos(VeiculosAppService veiculosAppService)
         {
-            controlador = controladorVeiculo;
-            tabelaVeiculo = new TabelaVeiculosControl(controladorVeiculo);
+            veiculosService = veiculosAppService;
+            tabelaVeiculo = new TabelaVeiculosControl(veiculosAppService);
         }
 
         public void InserirNovoRegistro()
@@ -25,9 +25,9 @@ namespace LocadoraVeiculos.WindowsApp.Feature.VeiculoModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                controlador.InserirNovo(tela.Veiculo);
+                veiculosService.InserirNovo(tela.Veiculo);
 
-                List<Veiculo> veiculos = controlador.SelecionarTodos();
+                List<Veiculo> veiculos = veiculosService.SelecionarTodos();
 
                 tabelaVeiculo.AtualizarRegistros();
 
@@ -46,7 +46,7 @@ namespace LocadoraVeiculos.WindowsApp.Feature.VeiculoModule
                 return;
             }
 
-            Veiculo veiculoSelecionado = controlador.SelecionarPorId(id);
+            Veiculo veiculoSelecionado = veiculosService.SelecionarPorId(id);
 
             TelaCadastrarVeiculos tela = new TelaCadastrarVeiculos();
 
@@ -54,7 +54,7 @@ namespace LocadoraVeiculos.WindowsApp.Feature.VeiculoModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                controlador.Editar(id, tela.Veiculo);
+                veiculosService.Editar(id, tela.Veiculo);
 
                 tabelaVeiculo.AtualizarRegistros();
 
@@ -73,7 +73,7 @@ namespace LocadoraVeiculos.WindowsApp.Feature.VeiculoModule
                 return;
             }
 
-            Veiculo veiculoSelecionado = controlador.SelecionarPorId(id);
+            Veiculo veiculoSelecionado = veiculosService.SelecionarPorId(id);
 
             if (veiculoSelecionado.EstaAlugado)
             {
@@ -84,9 +84,9 @@ namespace LocadoraVeiculos.WindowsApp.Feature.VeiculoModule
             if (MessageBox.Show($"Tem certeza que deseja excluir o Veiculo: [{veiculoSelecionado.Id}] ?",
                 "Exclusão de Veiculos", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                controlador.Excluir(id);
+                veiculosService.Excluir(id);
 
-                List<Veiculo> veiculos = controlador.SelecionarTodos();
+                List<Veiculo> veiculos = veiculosService.SelecionarTodos();
 
                 tabelaVeiculo.AtualizarRegistros();
 
@@ -96,7 +96,7 @@ namespace LocadoraVeiculos.WindowsApp.Feature.VeiculoModule
 
         public UserControl ObterTabela()
         {
-            List<Veiculo> veiculos = controlador.SelecionarTodos();
+            List<Veiculo> veiculos = veiculosService.SelecionarTodos();
 
             tabelaVeiculo.AtualizarRegistros();
 
@@ -125,7 +125,7 @@ namespace LocadoraVeiculos.WindowsApp.Feature.VeiculoModule
 
         public void Pesquisar(string text)
         {
-            List<Veiculo> veiculosEncontrados = controlador.Pesquisar(text);
+            List<Veiculo> veiculosEncontrados = veiculosService.Pesquisar(text);
 
             tabelaVeiculo.AtualizarRegistros(veiculosEncontrados);
         }

@@ -15,6 +15,8 @@ using LocadoraVeiculos.netCore.Controladores.CombustivelModule;
 using LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule;
 using LocadoraVeiculos.WindowsApp.Features.LocacaoModule;
 using LocadoraVeiculos.WindowsApp.Features.DevolucaoModule;
+using LocadoraVeiculos.Infra.SQL.VeiculosModule;
+using LocadoraVeiculos.Aplicacao.VeiculosModule;
 using LocadoraVeiculos.netCore.Dominio.ClienteModule;
 using LocadoraVeiculos.Aplicacao.ClienteModule;
 using LocadoraVeiculos.Infra.SQL.ClienteModule;
@@ -114,7 +116,11 @@ namespace LocadoraVeiculos.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = new OperacoesVeiculos(new ControladorVeiculo());
+            VeiculosDAO veiculosRepo = new VeiculosDAO();
+
+            VeiculosAppService veiculosService = new VeiculosAppService(veiculosRepo);
+
+            operacoes = new OperacoesVeiculos(veiculosService);
 
             ConfigurarPainelRegistros();
         }

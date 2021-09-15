@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LocadoraVeiculos.Aplicacao\LocadoraVeiculos.Aplicacao.csproj" />
+    <ProjectReference Include="..\LocadoraVeiculos.Aplicacao\LocadoraVeiculos.Aplicacao.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.Infra.SQL\LocadoraVeiculos.Infra.SQL.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.Aplicacao\LocadoraVeiculos.Aplicacao.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.Infra.InternetServices\LocadoraVeiculos.Infra.InternetServices.csproj" />
