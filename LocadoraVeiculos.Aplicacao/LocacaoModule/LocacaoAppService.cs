@@ -36,7 +36,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
                 bool temInternet = verificadorConexao.TemConexaoComInternet();
 
                 if (temInternet)
-                    notificadorEmail.EnviarEmailAsync(caminhoRecibo);
+                    notificadorEmail.EnviarEmailAsync(locacao, caminhoRecibo);
                 else
                 {
                     Debug.WriteLine("Não há conexão com a internet!");

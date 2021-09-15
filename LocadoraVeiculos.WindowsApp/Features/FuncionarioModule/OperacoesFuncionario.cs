@@ -8,17 +8,20 @@ using System.Windows.Forms;
 using LocadoraVeiculos.netCore.Controladores.FuncionarioModule;
 using LocadoraVeiculos.netCore.Dominio.FuncionarioModule;
 using LocadoraVeiculos.WindowsApp;
+using LocadoraVeiculos.Aplicacao.FuncionarioModule;
 
 namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
 {
     public class OperacoesFuncionario : ICadastravel
     {
-        private readonly ControladorFuncionario controlador = null;
+        
+        private readonly FuncionarioAppService funcionarioAppService = null;
         private readonly TabelaFuncionarioControl tabelaFuncionario = null;
 
-        public OperacoesFuncionario(ControladorFuncionario ctrlFuncionario)
+        public OperacoesFuncionario(FuncionarioAppService funcionarioApp)
         {
-            controlador = ctrlFuncionario;
+            
+            funcionarioAppService = funcionarioApp;
             tabelaFuncionario = new TabelaFuncionarioControl();
         }
 
@@ -28,9 +31,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                controlador.InserirNovo(tela.Funcionario);
+                funcionarioAppService.RegistrarNovoFuncionario(tela.Funcionario);
 
-                List<Funcionario> funcionarios = controlador.SelecionarTodos();
+                List<Funcionario> funcionarios = funcionarioAppService.SelecionarTodos();
 
                 tabelaFuncionario.AtualizarRegistros(funcionarios);
 
@@ -49,7 +52,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
                 return;
             }
 
-            Funcionario funcionarioSelecionado = controlador.SelecionarPorId(id);
+            Funcionario funcionarioSelecionado = funcionarioAppService.SelecionarPorId(id);
 
             TelaCadastrarFuncionario tela = new TelaCadastrarFuncionario();
 
@@ -57,9 +60,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                controlador.Editar(id, tela.Funcionario);
+                funcionarioAppService.Editar(id, tela.Funcionario);
 
-                List<Funcionario> funcionarios = controlador.SelecionarTodos();
+                List<Funcionario> funcionarios = funcionarioAppService.SelecionarTodos();
 
                 tabelaFuncionario.AtualizarRegistros(funcionarios);
 
@@ -78,14 +81,14 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
                 return;
             }
 
-            Funcionario funcionarioSelecionado = controlador.SelecionarPorId(id);
+            Funcionario funcionarioSelecionado = funcionarioAppService.SelecionarPorId(id);
 
             if (MessageBox.Show($"Tem certeza que deseja excluir o funcionário: [{funcionarioSelecionado.Nome}] ?",
                 "Exclusão de Funcionários", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                controlador.Excluir(id);
+                funcionarioAppService.Excluir(id);
 
-                List<Funcionario> funcionarios = controlador.SelecionarTodos();
+                List<Funcionario> funcionarios = funcionarioAppService.SelecionarTodos();
 
                 tabelaFuncionario.AtualizarRegistros(funcionarios);
 
@@ -95,7 +98,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
 
         public UserControl ObterTabela()
         {
-            List<Funcionario> funcionarios = controlador.SelecionarTodos();
+            List<Funcionario> funcionarios = funcionarioAppService.SelecionarTodos();
 
             tabelaFuncionario.AtualizarRegistros(funcionarios);
 
@@ -114,14 +117,14 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
 
         public void DesagruparRegistros()
         {
-            List<Funcionario> funcionarios = controlador.SelecionarTodos();
+            List<Funcionario> funcionarios = funcionarioAppService.SelecionarTodos();
 
             tabelaFuncionario.AtualizarRegistros(funcionarios);
         }
 
         public void Pesquisar(string text)
         {
-            List<Funcionario> clientesSelecionados = controlador.Pesquisar(text);
+            List<Funcionario> clientesSelecionados = funcionarioAppService.Pesquisar(text);
 
             tabelaFuncionario.AtualizarRegistros(clientesSelecionados);
         }

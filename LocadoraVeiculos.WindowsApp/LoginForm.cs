@@ -1,4 +1,6 @@
-﻿using LocadoraVeiculos.netCore.Controladores.FuncionarioModule;
+﻿using LocadoraVeiculos.Aplicacao.FuncionarioModule;
+using LocadoraVeiculos.Infra.SQL.FuncionarioModule;
+using LocadoraVeiculos.netCore.Controladores.FuncionarioModule;
 using System;
 using System.Windows.Forms;
 
@@ -6,11 +8,13 @@ namespace LocadoraVeiculos.WindowsApp
 {
     public partial class LoginForm : Form
     {
-        private readonly ControladorFuncionario controlador;
+        private readonly FuncionarioAppService funcionarioAppService;
+        private readonly FuncionarioDAO funcionarioDAO;
         public LoginForm()
         {
             InitializeComponent();
-            controlador = new ControladorFuncionario();
+            funcionarioDAO = new FuncionarioDAO();
+            funcionarioAppService = new FuncionarioAppService(funcionarioDAO);
         }
 
         private void btnEntrar_Click(object sender, EventArgs e)
@@ -24,7 +28,7 @@ namespace LocadoraVeiculos.WindowsApp
                 MessageBox.Show("Preencha todos os campos");
             else
             {
-                bool existeFuncionario = controlador.ExisteFuncionario(usuario, senha);
+                bool existeFuncionario = funcionarioAppService.ExisteFuncionario(usuario, senha);
 
                 if (existeFuncionario == true)
                 {
