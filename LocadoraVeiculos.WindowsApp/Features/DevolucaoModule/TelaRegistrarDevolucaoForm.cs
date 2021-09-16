@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Net.Mail;
 using LocadoraVeiculos.Infra.PDF.LocacaoModule;
+using LocadoraVeiculos.Infra.InternetServices.LocacaoModule;
 
 namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
 {
@@ -68,9 +69,11 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
 
             string pdf = geradorRecibo.GerarRecibo(locacao);
 
+            NotificadorEmail notificador = new NotificadorEmail();
+
             try
             {
-                await Email.EnviarEmailAsync(locacao, pdf);
+                await notificador.EnviarEmailAsync(locacao, pdf);
 
                 string mensagem = $"O recibo da locação foi enviado ao email {locacao.Cliente.Email}";
 
