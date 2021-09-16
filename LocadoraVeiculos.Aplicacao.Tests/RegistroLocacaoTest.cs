@@ -37,7 +37,7 @@ namespace LocadoraVeiculos.Aplicacao.Tests
         }
 
         [TestMethod]
-        public void Deve_Gerar_Email_Locacao()
+        public void Deve_Enviar_Email_Locacao()
         {
             // arrange
             Cliente cliente = new Cliente("Testador 1", "testador@ndd.com", "Maria de Melo Kuster", "(49) 9805-6251", "CPF", "123123124", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
