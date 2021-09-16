@@ -36,6 +36,10 @@ namespace LocadoraVeiculos.netCore.Dominio.LocacaoModule
             Devolucao = devolucao;
         }
 
+        public Locacao()
+        {
+        }
+
         public override bool Equals(object obj)
         {
             return Equals(obj as Locacao);
