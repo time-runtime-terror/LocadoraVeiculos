@@ -6,7 +6,7 @@ namespace LocadoraVeiculos.netCore.Dominio.ClienteModule
     public interface IClienteRepository : IRepository<Cliente>
     {
         void AtualizarStatusLocacaoAtiva(Cliente cliente);
-        IList<Cliente> SelecionarTodasPessoasFisicas();
-        IList<Cliente> SelecionarTodasPessoasJuridicas();
+        List<Cliente> SelecionarTodasPessoasFisicas();
+        List<Cliente> SelecionarTodasPessoasJuridicas();
     }
 }

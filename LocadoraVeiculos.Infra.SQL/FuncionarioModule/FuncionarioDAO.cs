@@ -4,9 +4,6 @@ using LocadoraVeiculos.netCore.Dominio.FuncionarioModule;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.Infra.SQL.FuncionarioModule
 {
@@ -138,19 +135,17 @@ namespace LocadoraVeiculos.Infra.SQL.FuncionarioModule
         }
 
 
-        public IList<Funcionario> SelecionarTodos()
+        public List<Funcionario> SelecionarTodos()
         {
             return Db.GetAll(sqlSelecionarTodosFuncionarios, ConverterEmRegistro);
         }
-
-
 
         public Funcionario SelecionarPorId(int id)
         {
             return Db.Get(sqlSelecionarFuncionarioPorId, ConverterEmRegistro, AdicionarParametro("ID", id));
         }
 
-        public IList<Funcionario> Pesquisar(string texto)
+        public List<Funcionario> Pesquisar(string texto)
         {
             throw new NotImplementedException();
         }
@@ -194,7 +189,5 @@ namespace LocadoraVeiculos.Infra.SQL.FuncionarioModule
         {
             return new Dictionary<string, object>() { { campoUsuario, valorUsuario }, { campoSenha, valorSenha } };
         }
-
-        
     }
 }

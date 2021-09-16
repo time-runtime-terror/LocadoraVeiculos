@@ -1,20 +1,15 @@
 ﻿using LocadoraVeiculos.Infra.SQL.Shared;
 using LocadoraVeiculos.netCore.Controladores.Shared;
-using LocadoraVeiculos.netCore.Dominio.FuncionarioModule;
 using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
 using LocadoraVeiculos.netCore.Dominio.TaxasServicosModule;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.Infra.SQL.TaxasServicosModule
 {
     public class TaxasServicosDAO : BaseDAO, ITaxasServicosRepository
     {
-
         #region Queries
         private const string sqlInserirTaxasServicos =
             @"INSERT INTO TBTAXASSERVICOS
@@ -182,9 +177,14 @@ namespace LocadoraVeiculos.Infra.SQL.TaxasServicosModule
             return Db.Get(sqlSelecionarTaxasServicosPorId, ConverterEmRegistro, AdicionarParametro("ID", id));
         }
 
-        public IList<TaxasServicos> SelecionarTodos()
+        public List<TaxasServicos> SelecionarTodos()
         {
             return Db.GetAll(sqlSelecionarTodasTaxasServicos, ConverterEmRegistro);
+        }
+
+        public List<TaxasServicos> Pesquisar(string texto)
+        {
+            throw new NotImplementedException();
         }
 
         public List<TaxasServicos> SelecionarTaxasServicosUsados(int id)
@@ -237,11 +237,5 @@ namespace LocadoraVeiculos.Infra.SQL.TaxasServicosModule
 
             return SelecionarPorId(Convert.ToInt32(reader["ID_TAXASSERVICOS"]));
         }
-
-        public IList<TaxasServicos> Pesquisar(string texto)
-        {
-            throw new NotImplementedException();
-        }
     }
-
 }

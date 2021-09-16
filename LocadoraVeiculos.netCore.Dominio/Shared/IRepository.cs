@@ -3,24 +3,24 @@ using System.Data;
 
 namespace LocadoraVeiculos.netCore.Dominio.Shared
 {
-    public interface IRepository<EntidadeBase>
+    public interface IRepository<T> where T : EntidadeBase
     {
-        void InserirNovo(EntidadeBase registro);
+        void InserirNovo(T registro);
 
-        void Editar(int id, EntidadeBase registro);
+        void Editar(int id, T registro);
 
         bool Excluir(int id);
 
         bool Existe(int id);
 
-        EntidadeBase SelecionarPorId(int id);
+        T SelecionarPorId(int id);
 
-        IList<EntidadeBase> SelecionarTodos();
+        List<T> SelecionarTodos();
 
-        IList<EntidadeBase> Pesquisar(string texto);
+        List<T> Pesquisar(string texto);
 
-        Dictionary<string, object> ObtemParametrosRegistro(EntidadeBase registro);
+        Dictionary<string, object> ObtemParametrosRegistro(T registro);
 
-        EntidadeBase ConverterEmRegistro(IDataReader reader);
+        T ConverterEmRegistro(IDataReader reader);
     }
 }

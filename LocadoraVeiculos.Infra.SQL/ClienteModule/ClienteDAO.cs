@@ -195,12 +195,12 @@ namespace LocadoraVeiculos.Infra.SQL.ClienteModule
             Db.Update(sqlAtualizarStatusLocacao, parametros);
         }
 
-        public IList<Cliente> SelecionarTodasPessoasFisicas()
+        public List<Cliente> SelecionarTodasPessoasFisicas()
         {
             return Db.GetAll(sqlSelecionarTodasPessoasFisicas, ConverterEmRegistro);
         }
 
-        public IList<Cliente> SelecionarTodasPessoasJuridicas()
+        public List<Cliente> SelecionarTodasPessoasJuridicas()
         {
             return Db.GetAll(sqlSelecionarTodasPessoasJuridicas, ConverterEmRegistro);
         }
@@ -236,7 +236,7 @@ namespace LocadoraVeiculos.Infra.SQL.ClienteModule
         }
 
 
-        public IList<Cliente> Pesquisar(string texto)
+        public List<Cliente> Pesquisar(string texto)
         {
             return Db.GetAll(sqlPesquisarClientes, ConverterEmRegistro, AdicionarParametro("NOME", texto + "%"));
         }
@@ -246,7 +246,7 @@ namespace LocadoraVeiculos.Infra.SQL.ClienteModule
             return Db.Get(sqlSelecionarClientePorId, ConverterEmRegistro, AdicionarParametro("ID", id));
         }
 
-        public IList<Cliente> SelecionarTodos()
+        public List<Cliente> SelecionarTodos()
         {
             return Db.GetAll(sqlSelecionarTodosClientes, ConverterEmRegistro);
         }

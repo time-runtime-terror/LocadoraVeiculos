@@ -191,7 +191,7 @@ namespace LocadoraVeiculos.Infra.SQL.VeiculosModule
             return Db.Exists(sqlExisteTarefa, AdicionarParametro("ID", id));
         }
 
-        public IList<Veiculo> SelecionarTodos()
+        public List<Veiculo> SelecionarTodos()
         {
             return Db.GetAll(sqlSelecionarTodosVeiculos, ConverterEmRegistro);
         }
@@ -199,6 +199,11 @@ namespace LocadoraVeiculos.Infra.SQL.VeiculosModule
         public Veiculo SelecionarPorId(int id)
         {
             return Db.Get(sqlSelecionarVeiculoPorId, ConverterEmRegistro, AdicionarParametro("ID", id));
+        }
+
+        public List<Veiculo> Pesquisar(string modelo)
+        {
+            return Db.GetAll(sqlPesquisarVeiculos, ConverterEmRegistro, AdicionarParametro("MODELO", modelo + "%"));
         }
 
         public Veiculo ConverterEmRegistro(IDataReader reader)
@@ -249,11 +254,6 @@ namespace LocadoraVeiculos.Infra.SQL.VeiculosModule
             parametros.Add("ID_GRUPOAUTOMOVEIS", idGrupoAutomoveis);
 
             return parametros;
-        }
-
-        public IList<Veiculo> Pesquisar(string modelo)
-        {
-            return Db.GetAll(sqlPesquisarVeiculos, ConverterEmRegistro, AdicionarParametro("MODELO", modelo + "%"));
         }
     }
 }

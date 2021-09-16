@@ -97,6 +97,7 @@ namespace LocadoraVeiculos.Infra.SQL.GrupoAutomoveisModule
         {
             registro.Id = Db.Insert(sqlInserirGrupoAutomoveis, ObtemParametrosRegistro(registro));
         }
+
         public void Editar(int id, GrupoAutomoveis registro)
         {
             registro.Id = id;
@@ -127,9 +128,14 @@ namespace LocadoraVeiculos.Infra.SQL.GrupoAutomoveisModule
             return Db.Get(sqlSelecionarGrupoAutomoveisPorId, ConverterEmRegistro, AdicionarParametro("ID", id));
         }
 
-        public IList<GrupoAutomoveis> SelecionarTodos()
+        public List<GrupoAutomoveis> SelecionarTodos()
         {
             return Db.GetAll(sqlSelecionarTodosGruposAutomoveis, ConverterEmRegistro);
+        }
+
+        public List<GrupoAutomoveis> Pesquisar(string texto)
+        {
+            throw new NotImplementedException();
         }
 
         public Dictionary<string, object> ObtemParametrosRegistro(GrupoAutomoveis grupoAutomoveis)
@@ -167,9 +173,5 @@ namespace LocadoraVeiculos.Infra.SQL.GrupoAutomoveisModule
             return grupoAutomoveis;
         }
 
-        public IList<GrupoAutomoveis> Pesquisar(string texto)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

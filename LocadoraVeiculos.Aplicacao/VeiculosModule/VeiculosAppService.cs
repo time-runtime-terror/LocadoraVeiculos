@@ -61,12 +61,12 @@ namespace LocadoraVeiculos.Aplicacao.VeiculosModule
 
         public List<Veiculo> SelecionarTodos()
         {
-            return (List<Veiculo>)veiculoRepository.SelecionarTodos();
+            return veiculoRepository.SelecionarTodos();
         }
 
         public List<Veiculo> Pesquisar(string texto)
         {
-            return (List<Veiculo>)veiculoRepository.Pesquisar(texto);
+            return veiculoRepository.Pesquisar(texto);
         }
     }
 }

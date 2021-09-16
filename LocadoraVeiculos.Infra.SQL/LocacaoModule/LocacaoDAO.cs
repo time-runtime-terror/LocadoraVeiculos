@@ -1,10 +1,7 @@
-﻿using LocadoraVeiculos.Aplicacao.ClienteModule;
-using LocadoraVeiculos.Aplicacao.TaxasServicosModule;
-using LocadoraVeiculos.Infra.SQL.ClienteModule;
+﻿using LocadoraVeiculos.Infra.SQL.ClienteModule;
 using LocadoraVeiculos.Infra.SQL.Shared;
 using LocadoraVeiculos.Infra.SQL.TaxasServicosModule;
 using LocadoraVeiculos.Infra.SQL.VeiculosModule;
-using LocadoraVeiculos.netCore.Controladores.VeiculoModule;
 using LocadoraVeiculos.netCore.Dominio.ClienteModule;
 using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
 using LocadoraVeiculos.netCore.Dominio.TaxasServicosModule;
@@ -257,22 +254,22 @@ namespace LocadoraVeiculos.Infra.SQL.LocacaoModule
             return Db.Get(sqlSelecionarLocacaoPorId, ConverterEmRegistro, AdicionarParametro("ID", id));
         }
 
-        public IList<Locacao> SelecionarTodos()
+        public List<Locacao> SelecionarTodos()
         {
             return Db.GetAll(sqlSelecionarTodasLocacoes, ConverterEmRegistro);
         }
 
-        public IList<Locacao> SelecionarTodasLocacoesConcluidas()
+        public List<Locacao> SelecionarTodasLocacoesConcluidas()
         {
             return Db.GetAll(sqlSelecionarTodasLocacoesConcluidas, ConverterEmRegistro);
         }
 
-        public IList<Locacao> SelecionarTodasLocacoesPendentes()
+        public List<Locacao> SelecionarTodasLocacoesPendentes()
         {
             return Db.GetAll(sqlSelecionarTodasLocacoesPendentes, ConverterEmRegistro);
         }
 
-        public IList<Locacao> Pesquisar(string texto)
+        public List<Locacao> Pesquisar(string texto)
         {
             throw new NotImplementedException();
         }
