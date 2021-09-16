@@ -50,9 +50,6 @@ namespace LocadoraVeiculos.Aplicacao.Tests
 
             Mock<INotificadorEmail> notificadorEmailMock = new Mock<INotificadorEmail>();
 
-            
-
-
             Mock<IVerificadorConexao> verificadorConexaoInternetMock = new Mock<IVerificadorConexao>();
 
             verificadorConexaoInternetMock.Setup(x => x.TemConexaoComInternet())
@@ -60,7 +57,6 @@ namespace LocadoraVeiculos.Aplicacao.Tests
                 {
                     return true;
                 });
-
 
             LocacaoAppService locacaoService = new LocacaoAppService(locacaoDaoMock.Object, Mock.Of<IGeradorRecibo>(), notificadorEmailMock.Object, verificadorConexaoInternetMock.Object);
 
