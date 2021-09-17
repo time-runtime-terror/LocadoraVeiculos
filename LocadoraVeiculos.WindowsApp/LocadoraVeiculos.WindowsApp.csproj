@@ -71,12 +71,12 @@
   <ItemGroup>
     <ProjectReference Include="..\LocadoraVeiculos.Aplicacao\LocadoraVeiculos.Aplicacao.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.Aplicacao\LocadoraVeiculos.Aplicacao.csproj" />
+    <ProjectReference Include="..\LocadoraVeiculos.Infra.Configuration\LocadoraVeiculos.Infra.Configuration.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.Infra.SQL\LocadoraVeiculos.Infra.SQL.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.Aplicacao\LocadoraVeiculos.Aplicacao.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.Infra.InternetServices\LocadoraVeiculos.Infra.InternetServices.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.Infra.PDF\LocadoraVeiculos.Infra.PDF.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.Infra.SQL\LocadoraVeiculos.Infra.SQL.csproj" />
-    <ProjectReference Include="..\LocadoraVeiculos.netCore.Controladores\LocadoraVeiculos.netCore.Controladores.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.netCore.Dominio\LocadoraVeiculos.netCore.Dominio.csproj" />
   </ItemGroup>
   <ItemGroup>

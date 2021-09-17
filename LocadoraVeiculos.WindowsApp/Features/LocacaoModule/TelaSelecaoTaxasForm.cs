@@ -1,15 +1,8 @@
-﻿using LocadoraVeiculos.netCore.Controladores.TaxasServicosModule;
+﻿using LocadoraVeiculos.Aplicacao.TaxasServicosModule;
+using LocadoraVeiculos.Infra.SQL.TaxasServicosModule;
 using LocadoraVeiculos.netCore.Dominio.TaxasServicosModule;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
@@ -20,7 +13,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         private List<TaxasServicos> taxasVindas;
         private string localTaxa;
 
-        private readonly ControladorTaxasServicos controladorTaxasServicos;
+        private readonly TaxasServicosAppService taxaService;
 
         public List<TaxasServicos> TaxasSelecionadas
         {
@@ -37,20 +30,18 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         public TelaSelecaoTaxasForm()
         {
             InitializeComponent();
-            controladorTaxasServicos = new ControladorTaxasServicos();
+            taxaService = new TaxasServicosAppService(new TaxasServicosDAO());
         }
 
         public TelaSelecaoTaxasForm(List<TaxasServicos> taxasVindas, string localTaxa)
         {
             InitializeComponent();
-            controladorTaxasServicos = new ControladorTaxasServicos();
+
+            taxaService = new TaxasServicosAppService(new TaxasServicosDAO());
 
             this.taxasVindas = taxasVindas;
 
             this.localTaxa = localTaxa;
-
-            
-
         }
 
         private void VerificarLocalTaxa()
@@ -89,7 +80,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
         private void TelaSelecaoTaxasForm_Load(object sender, EventArgs e)
         {
-            foreach (var taxa in controladorTaxasServicos.SelecionarTodos())
+            foreach (var taxa in taxaService.SelecionarTodos())
                 listaTaxasServicos.Items.Add(taxa);
 
             if (taxasVindas != null)

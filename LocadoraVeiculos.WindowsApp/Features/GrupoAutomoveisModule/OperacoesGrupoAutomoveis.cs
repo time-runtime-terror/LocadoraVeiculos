@@ -1,9 +1,7 @@
 ﻿using LocadoraVeiculos.Aplicacao.GrupoAutomoveisModule;
-using LocadoraVeiculos.netCore.Controladores.GrupoAutomoveisModule;
 using LocadoraVeiculos.netCore.Dominio.GrupoAutomoveisModule;
 using LocadoraVeiculos.WindowsApp.Shared;
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule

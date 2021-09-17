@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using LocadoraVeiculos.netCore.Dominio.VeiculoModule;
-using LocadoraVeiculos.netCore.Controladores.GrupoAutomoveisModule;
 using LocadoraVeiculos.netCore.Dominio.GrupoAutomoveisModule;
-using LocadoraVeiculos.netCore.Controladores.CombustivelModule;
+using LocadoraVeiculos.Aplicacao.GrupoAutomoveisModule;
+using LocadoraVeiculos.Infra.SQL.GrupoAutomoveisModule;
 
 namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
 {
@@ -17,12 +16,12 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
         private Veiculo veiculo;
         private byte[] imagemSelecionada;
 
-        private readonly ControladorGrupoAutomoveis controladorGrupoAutomoveis;
+        private readonly GrupoAutomoveisAppService grupoAutomoveisService;
 
         public TelaCadastrarVeiculos()
         {
             InitializeComponent();
-            controladorGrupoAutomoveis = new ControladorGrupoAutomoveis();
+            grupoAutomoveisService = new GrupoAutomoveisAppService(new GrupoAutomoveisDAO());
             PopularGruposDeAutomoveis();
             PopularTiposCombustivel();
          
@@ -30,7 +29,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
 
         private void PopularGruposDeAutomoveis()
         {
-            foreach (var grupoAutomoveis in controladorGrupoAutomoveis.SelecionarTodos())
+            foreach (var grupoAutomoveis in grupoAutomoveisService.SelecionarTodos())
                 if (!cbTipoVeiculo.Items.Contains(grupoAutomoveis.NomeGrupo))
                     cbTipoVeiculo.Items.Add(grupoAutomoveis.NomeGrupo);
         }
@@ -123,7 +122,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
             }
 
 
-            var listaGrupos = controladorGrupoAutomoveis.SelecionarTodos();
+            var listaGrupos = grupoAutomoveisService.SelecionarTodos();
 
             GrupoAutomoveis grupo = listaGrupos.Find(x => x.NomeGrupo == (string)cbTipoVeiculo.SelectedItem); ;
 

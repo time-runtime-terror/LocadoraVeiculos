@@ -1,6 +1,5 @@
 ﻿using LocadoraVeiculos.Aplicacao.FuncionarioModule;
 using LocadoraVeiculos.Infra.SQL.FuncionarioModule;
-using LocadoraVeiculos.netCore.Controladores.FuncionarioModule;
 using System;
 using System.Windows.Forms;
 
