@@ -31,7 +31,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                funcionarioAppService.RegistrarNovoFuncionario(tela.Funcionario);
+                funcionarioAppService.InserirNovo(tela.Funcionario);
 
                 List<Funcionario> funcionarios = funcionarioAppService.SelecionarTodos();
 

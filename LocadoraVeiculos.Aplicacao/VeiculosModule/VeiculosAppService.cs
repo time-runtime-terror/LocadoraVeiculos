@@ -1,17 +1,14 @@
-﻿using LocadoraVeiculos.netCore.Dominio.VeiculoModule;
-using System;
+﻿using LocadoraVeiculos.Aplicacao.Shared;
+using LocadoraVeiculos.netCore.Dominio.VeiculoModule;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.Aplicacao.VeiculosModule
 {
-    public class VeiculosAppService
+    public class VeiculoAppService : BaseAppService<Veiculo>
     {
         private readonly IVeiculoRepository veiculoRepository;
 
-        public VeiculosAppService(IVeiculoRepository veiculosRepository)
+        public VeiculoAppService(IVeiculoRepository veiculosRepository) : base(veiculosRepository)
         {
             this.veiculoRepository = veiculosRepository;
         }
@@ -24,49 +21,6 @@ namespace LocadoraVeiculos.Aplicacao.VeiculosModule
         public void AtualizarStatusAluguel(Veiculo veiculo)
         {
             veiculoRepository.AtualizarStatusAluguel(veiculo);
-        }
-
-        public string InserirNovo(Veiculo veiculo)
-        {
-            string resultadoValidacao = veiculo.Validar();
-
-            if (resultadoValidacao == "ESTA_VALIDO")
-                veiculoRepository.InserirNovo(veiculo);
-
-            return resultadoValidacao;
-        }
-
-        public string Editar(int id, Veiculo veiculo)
-        {
-            string resultadoValidacao = veiculo.Validar();
-
-            if (resultadoValidacao == "ESTA_VALIDO")
-                veiculoRepository.Editar(id, veiculo);
-
-            return resultadoValidacao;
-        }
-
-        public bool Excluir(int id)
-        {
-            if (veiculoRepository.Excluir(id))
-                return true;
-
-            return false;
-        }
-
-        public Veiculo SelecionarPorId(int id)
-        {
-            return veiculoRepository.SelecionarPorId(id);
-        }
-
-        public List<Veiculo> SelecionarTodos()
-        {
-            return veiculoRepository.SelecionarTodos();
-        }
-
-        public List<Veiculo> Pesquisar(string texto)
-        {
-            return veiculoRepository.Pesquisar(texto);
         }
     }
 }
