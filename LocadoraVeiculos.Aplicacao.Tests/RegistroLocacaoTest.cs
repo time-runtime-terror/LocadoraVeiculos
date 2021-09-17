@@ -87,7 +87,6 @@ namespace LocadoraVeiculos.Aplicacao.Tests
                     return true;
                 });
 
-            LocacaoAppService locacaoService = new LocacaoAppService(locacaoDaoMock.Object, Mock.Of<IGeradorRecibo>(), notificadorEmailMock.Object, verificadorConexaoInternetMock.Object);
             LocacaoAppService locacaoService = new LocacaoAppService(locacaoDaoMock.Object, Mock.Of<IGeradorRecibo>(), Mock.Of<INotificadorEmail>(), verificadorConexaoInternetMock.Object);
 
             // action
@@ -95,29 +94,6 @@ namespace LocadoraVeiculos.Aplicacao.Tests
 
             // assert
             verificadorConexaoInternetMock.Verify(x => x.TemConexaoComInternet());
-        }
-
-        [TestMethod]
-        public void Deveria_Verificar_Conexao_Internet()
-        {
-            // arrange
-            Cliente cliente = new Cliente("Testador 1", "testador@ndd.com", "Maria de Melo Kuster", "(49) 9805-6251", "CPF", "123123124", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
-
-            Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, null);
-
-            Locacao locacao = new Locacao(cliente, veiculo, null, DateTime.Now, DateTime.Now.AddDays(2), 200, "Diário", null, null);
-
-            Mock<ILocacaoRepository> locacaoDaoMock = new Mock<ILocacaoRepository>();
-
-            Mock<IVerificadorConexao> verificadorConexaoInternetMock = new Mock<IVerificadorConexao>();
-
-            LocacaoAppService locacaoService = new LocacaoAppService(locacaoDaoMock.Object, Mock.Of<IGeradorRecibo>(), Mock.Of<INotificadorEmail>(), verificadorConexaoInternetMock.Object);
-
-            // action
-            locacaoService.RegistrarNovaLocacao(locacao);
-
-            // assert
-            verificadorConexaoInternetMock.Verify(x => x.TemConexaoComInternet());
-        }
+        } 
     }
 }
