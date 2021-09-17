@@ -1,6 +1,5 @@
 ﻿using LocadoraVeiculos.Aplicacao.Shared;
 using LocadoraVeiculos.netCore.Dominio.ClienteModule;
-using System;
 using System.Collections.Generic;
 
 namespace LocadoraVeiculos.Aplicacao.ClienteModule
