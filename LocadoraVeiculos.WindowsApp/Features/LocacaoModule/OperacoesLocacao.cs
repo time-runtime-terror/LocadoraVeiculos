@@ -13,16 +13,12 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 {
     public class OperacoesLocacao : ICadastravel
     {
-        //private readonly ControladorLocacao controladorLocacao;
-        //private readonly ControladorTaxasServicos controladorTaxasServicos;
-        //private readonly ControladorVeiculo controladorVeiculo;
-        //private readonly ControladorCliente controladorCliente;
-        private readonly TabelaLocacaoControl tabelaLocacoes;
-
         private readonly LocacaoAppService locacaoService;
         private readonly TaxasServicosAppService taxaService;
         private readonly VeiculoAppService veiculoService;
         private readonly ClienteAppService clienteService;
+
+        private readonly TabelaLocacaoControl tabelaLocacoes;
 
         public OperacoesLocacao(LocacaoAppService locacaoS, TaxasServicosAppService taxaS, VeiculoAppService veiculoS, ClienteAppService clienteS)
         {
@@ -31,15 +27,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             veiculoService = veiculoS;
             clienteService = clienteS;
 
-            //controladorTaxasServicos = new ControladorTaxasServicos();
-
-            //controladorLocacao = new ControladorLocacao(new ControladorCliente(), new ControladorVeiculo(), controladorTaxasServicos);
-
             tabelaLocacoes = new TabelaLocacaoControl();
-
-            //controladorVeiculo = new ControladorVeiculo();
-
-            //controladorCliente = new ControladorCliente();
         }
 
         public void InserirNovoRegistro()
@@ -49,8 +37,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             if (tela.ShowDialog() == DialogResult.OK)
             {
                 locacaoService.RegistrarNovaLocacao(tela.Locacao);
-
-                //controladorTaxasServicos.InserirNovaTaxaUsada(tela.Locacao);
 
                 List<Locacao> locacoes = (List<Locacao>)locacaoService.SelecionarTodos();
 
@@ -194,10 +180,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             {
                 locacaoService.RegistrarDevolucao(tela.Locacao);
 
-                //controladorTaxasServicos.ExcluirTaxaUsada(tela.Locacao);
-
-                //controladorTaxasServicos.InserirNovaTaxaUsada(tela.Locacao);
-
                 veiculoService.AtualizarQuilometragem(tela.Locacao.Veiculo);
 
                 tela.Locacao.Veiculo.EstaAlugado = false;
@@ -220,6 +202,5 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         {
             throw new NotImplementedException();
         }
-
     }
 }
