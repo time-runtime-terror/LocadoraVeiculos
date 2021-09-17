@@ -47,12 +47,12 @@ namespace LocadoraVeiculos.Aplicacao.Shared
 
         public List<T> SelecionarTodos()
         {
-            return (List<T>)repositorio.SelecionarTodos();
+            return repositorio.SelecionarTodos();
         }
 
         public List<T> Pesquisar(string texto)
         {
-            return (List<T>)repositorio.Pesquisar(texto);
+            return repositorio.Pesquisar(texto);
         }
     }
 }
