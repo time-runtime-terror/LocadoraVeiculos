@@ -89,8 +89,6 @@ namespace LocadoraVeiculos.WindowsApp
             operacoes = new OperacoesLocacao(locacaoService, taxaService, veiculoService, clienteService);
 
             ConfigurarPainelRegistros();
-
-            operacoes.DesagruparRegistros();
         }
 
         private void btnCadastroClientes_Click(object sender, System.EventArgs e)
