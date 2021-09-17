@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <Folder Include="CombustivelModule\" />
+    <Folder Include="GrupoAutomoveisModule\" />
     <Folder Include="FuncionarioModule\" />
     <Folder Include="VeiculoModule\" />
     <Folder Include="TaxasServicosModule\" />
