@@ -19,8 +19,11 @@
     <Folder Include="FuncionarioModule\" />
     <Folder Include="GrupoAutomoveisModule\" />
     <Folder Include="LocacaoModule\" />
-    <Folder Include="VeiculoModule\" />
     <Folder Include="TaxasServicosModule\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LocadoraVeiculos.netCore.Dominio\LocadoraVeiculos.netCore.Dominio.csproj" />
   </ItemGroup>
 
 </Project>
