@@ -6,15 +6,15 @@ using LocadoraVeiculos.Infra.SQL.ClienteModule;
 using LocadoraVeiculos.netCore.Infra.SQL.Shared;
 using LocadoraVeiculos.Infra.SQL.FuncionarioModule;
 
-namespace LocadoraVeiculos.netCore.Tests.FuncionarioModule
+namespace LocadoraVeiculos.IntegrationTests.FuncionarioModule
 {
     [TestClass]
-    [TestCategory("Controladores")]
-    public class ControladorFuncionarioTest
+    [TestCategory("DAO")]
+    public class FuncionarioDAOTests
     {
         private FuncionarioDAO funcionarioRepository;
 
-        public ControladorFuncionarioTest()
+        public FuncionarioDAOTests()
         {
             funcionarioRepository = new FuncionarioDAO();
             //Db.Update("DELETE FROM [TBCLIENTE]");
@@ -22,7 +22,7 @@ namespace LocadoraVeiculos.netCore.Tests.FuncionarioModule
         }
 
         [TestMethod]
-        [TestCategory("DAO")]
+        
         public void DeveInserir_Funcionario()
         {
             //arrange
