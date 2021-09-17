@@ -20,7 +20,6 @@
     <Folder Include="LocacaoModule\" />
     <Folder Include="GrupoAutomoveisModule\" />
     <Folder Include="VeiculoModule\" />
-    <Folder Include="TaxasServicosModule\" />
   </ItemGroup>
 
   <ItemGroup>

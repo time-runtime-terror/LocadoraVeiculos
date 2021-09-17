@@ -6,6 +6,7 @@ using LocadoraVeiculos.netCore.Dominio.VeiculoModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
+using FluentAssertions;
 
 namespace LocadoraVeiculos.UnitTests.LocacaoModule
 {
