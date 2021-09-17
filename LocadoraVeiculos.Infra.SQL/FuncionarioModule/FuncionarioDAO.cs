@@ -1,6 +1,6 @@
 ﻿using LocadoraVeiculos.Infra.SQL.Shared;
-using LocadoraVeiculos.netCore.Controladores.Shared;
 using LocadoraVeiculos.netCore.Dominio.FuncionarioModule;
+using LocadoraVeiculos.netCore.Infra.SQL.Shared;
 using System;
 using System.Collections.Generic;
 using System.Data;

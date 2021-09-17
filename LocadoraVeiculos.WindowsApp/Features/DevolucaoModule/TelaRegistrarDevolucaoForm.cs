@@ -1,6 +1,4 @@
-﻿using LocadoraVeiculos.netCore.Controladores.CombustivelModule;
-using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
-using LocadoraVeiculos.netCore.Dominio.ClienteModule;
+﻿using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
 using LocadoraVeiculos.netCore.Dominio.TaxasServicosModule;
 using LocadoraVeiculos.WindowsApp.Features.LocacaoModule;
 using System;
@@ -10,6 +8,7 @@ using System.Windows.Forms;
 using System.Net.Mail;
 using LocadoraVeiculos.Infra.PDF.LocacaoModule;
 using LocadoraVeiculos.Infra.InternetServices.LocacaoModule;
+using LocadoraVeiculos.Infra.Configuration.CombustivelModule;
 
 namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
 {
@@ -19,7 +18,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
 
         private Locacao locacao;
 
-        private ControladorCombustivel controladorCombustivel;
+        private CombustivelConfiguration configCombustivel;
 
         public Locacao Locacao
         {
@@ -49,7 +48,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
         {
             InitializeComponent();
 
-            controladorCombustivel = new ControladorCombustivel();
+            configCombustivel = new CombustivelConfiguration();
         }
 
         private void TelaRegistrarDevolucaoForm_Load(object sender, EventArgs e)
@@ -288,16 +287,16 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             switch (locacao.Veiculo.TipoCombustivel)
             {
                 case "Gasolina":
-                    valorCombustivel = Convert.ToDouble(controladorCombustivel.PegarValorGasolina());
+                    valorCombustivel = Convert.ToDouble(configCombustivel.PegarValorGasolina());
                     break;
                 case "Etanol":
-                    valorCombustivel = Convert.ToDouble(controladorCombustivel.PegarValorEtanol());
+                    valorCombustivel = Convert.ToDouble(configCombustivel.PegarValorEtanol());
                     break;
                 case "Diesel":
-                    valorCombustivel = Convert.ToDouble(controladorCombustivel.PegarValorDiesel());
+                    valorCombustivel = Convert.ToDouble(configCombustivel.PegarValorDiesel());
                     break;
                 case "Gnv":
-                    valorCombustivel = Convert.ToDouble(controladorCombustivel.PegarValorGnv());
+                    valorCombustivel = Convert.ToDouble(configCombustivel.PegarValorGnv());
                     break;
             }
 

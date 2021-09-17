@@ -1,24 +1,18 @@
-﻿using LocadoraVeiculos.netCore.Controladores.TaxasServicosModule;
-using LocadoraVeiculos.WindowsApp.Features.ClienteModule;
+﻿using LocadoraVeiculos.WindowsApp.Features.ClienteModule;
 using LocadoraVeiculos.WindowsApp.Features.FuncionarioModule;
-using LocadoraVeiculos.netCore.Controladores.GrupoAutomoveisModule;
 using LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule;
 using System;
 using System.Windows.Forms;
 using LocadoraVeiculos.WindowsApp.Shared;
 using LocadoraVeiculos.WindowsApp.Feature.VeiculoModule;
 using LocadoraVeiculos.WindowsApp.Features.VeiculoModule;
-using LocadoraVeiculos.netCore.Controladores.FuncionarioModule;
 using LocadoraVeiculos.WindowsApp.Features.CombustivelModule;
-using LocadoraVeiculos.netCore.Controladores.CombustivelModule;
 using LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule;
 using LocadoraVeiculos.WindowsApp.Features.LocacaoModule;
-using LocadoraVeiculos.WindowsApp.Features.DevolucaoModule;
 using LocadoraVeiculos.Infra.SQL.GrupoAutomoveisModule;
 using LocadoraVeiculos.Aplicacao.GrupoAutomoveisModule;
 using LocadoraVeiculos.Infra.SQL.VeiculosModule;
 using LocadoraVeiculos.Aplicacao.VeiculosModule;
-using LocadoraVeiculos.netCore.Dominio.ClienteModule;
 using LocadoraVeiculos.Aplicacao.ClienteModule;
 using LocadoraVeiculos.Infra.SQL.ClienteModule;
 using LocadoraVeiculos.Aplicacao.FuncionarioModule;
@@ -29,6 +23,7 @@ using LocadoraVeiculos.Infra.SQL.LocacaoModule;
 using LocadoraVeiculos.Aplicacao.LocacaoModule;
 using LocadoraVeiculos.Infra.PDF.LocacaoModule;
 using LocadoraVeiculos.Infra.InternetServices.LocacaoModule;
+using LocadoraVeiculos.Infra.Configuration.CombustivelModule;
 
 namespace LocadoraVeiculos.WindowsApp
 {
@@ -242,7 +237,7 @@ namespace LocadoraVeiculos.WindowsApp
 
         private void ConfigurarPainelConfiguracoes()
         {
-            UserControl tela = new CombustivelControl(new ControladorCombustivel());
+            UserControl tela = new CombustivelControl(new CombustivelConfiguration());
 
             tela.Dock = DockStyle.Fill;
 

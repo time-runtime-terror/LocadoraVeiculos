@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using LocadoraVeiculos.netCore.Controladores.CombustivelModule;
+using LocadoraVeiculos.Infra.Configuration.CombustivelModule;
 using LocadoraVeiculos.netCore.Dominio.CombustivelModule;
 
 namespace LocadoraVeiculos.WindowsApp.Features.CombustivelModule
@@ -16,16 +9,17 @@ namespace LocadoraVeiculos.WindowsApp.Features.CombustivelModule
     public partial class CombustivelControl : UserControl
     {
         private Combustivel combustivel;
-        private readonly ControladorCombustivel controlador = null;
-        public CombustivelControl(ControladorCombustivel ctrlCombustivel)
+        private readonly CombustivelConfiguration configCombustivel = null;
+
+        public CombustivelControl(CombustivelConfiguration configCombustivel)
         {
             InitializeComponent();
-            controlador = ctrlCombustivel;
+            this.configCombustivel = configCombustivel;
 
-            txbGasolina.Text = controlador.PegarValorGasolina();
-            txbEtanol.Text = controlador.PegarValorEtanol();
-            txbDiesel.Text = controlador.PegarValorDiesel();
-            txbGnv.Text = controlador.PegarValorGnv();
+            txbGasolina.Text = configCombustivel.PegarValorGasolina();
+            txbEtanol.Text = configCombustivel.PegarValorEtanol();
+            txbDiesel.Text = configCombustivel.PegarValorDiesel();
+            txbGnv.Text = configCombustivel.PegarValorGnv();
 
             //colocando os zeros, se for necessário
             txbGasolina.Text = PadronizarTextBox(txbGasolina.Text);
@@ -82,7 +76,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.CombustivelModule
                 }
                 else
                 {
-                    controlador.GravarCombustivel(combustivel);
+                    configCombustivel.GravarCombustivel(combustivel);
                     
                     Dashboard.Instancia.AtualizarRodape("Combustiveis gravados com sucesso");
                 }

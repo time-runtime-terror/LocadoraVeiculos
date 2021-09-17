@@ -1,7 +1,14 @@
-﻿using LocadoraVeiculos.netCore.Controladores.ClienteModule;
-using LocadoraVeiculos.netCore.Controladores.LocacaoModule;
-using LocadoraVeiculos.netCore.Controladores.TaxasServicosModule;
-using LocadoraVeiculos.netCore.Controladores.VeiculoModule;
+﻿using LocadoraVeiculos.Aplicacao.ClienteModule;
+using LocadoraVeiculos.Aplicacao.LocacaoModule;
+using LocadoraVeiculos.Aplicacao.TaxasServicosModule;
+using LocadoraVeiculos.Aplicacao.VeiculosModule;
+using LocadoraVeiculos.Infra.InternetServices.LocacaoModule;
+using LocadoraVeiculos.Infra.PDF.LocacaoModule;
+using LocadoraVeiculos.Infra.SQL.ClienteModule;
+using LocadoraVeiculos.Infra.SQL.GrupoAutomoveisModule;
+using LocadoraVeiculos.Infra.SQL.LocacaoModule;
+using LocadoraVeiculos.Infra.SQL.TaxasServicosModule;
+using LocadoraVeiculos.Infra.SQL.VeiculosModule;
 using LocadoraVeiculos.netCore.Dominio.ClienteModule;
 using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
 using LocadoraVeiculos.netCore.Dominio.TaxasServicosModule;
@@ -16,10 +23,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 {
     public partial class TelaCadastrarLocacaoForm : Form
     {
-        private readonly ControladorTaxasServicos controladorTaxasServicos;
-        private readonly ControladorCliente controladorCliente;
-        private readonly VeiculoDAO controladorVeiculo;
-        private readonly ControladorLocacao controladorLocacao;
+        private readonly TaxasServicosAppService taxasService;
+        private readonly ClienteAppService clienteService;
+        private readonly VeiculoAppService veiculoService;
+        private readonly LocacaoAppService locacaoService;
 
         private List<TaxasServicos> taxasSelecionadas;
 
@@ -66,10 +73,18 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         public TelaCadastrarLocacaoForm()
         {
             InitializeComponent();
-            controladorTaxasServicos = new ControladorTaxasServicos();
-            controladorCliente = new ControladorCliente();
-            controladorVeiculo = new VeiculoDAO();
-            controladorLocacao = new ControladorLocacao(controladorCliente, controladorVeiculo, controladorTaxasServicos);
+
+            ClienteDAO clienteRepository = new ClienteDAO();
+            VeiculosDAO veiculoRepository = new VeiculosDAO(new GrupoAutomoveisDAO());
+            TaxasServicosDAO taxaRepository = new TaxasServicosDAO();
+
+            clienteService = new ClienteAppService(clienteRepository);
+            veiculoService = new VeiculoAppService(veiculoRepository);
+            taxasService = new TaxasServicosAppService(taxaRepository);
+
+            LocacaoDAO locacaoRepository = new LocacaoDAO(clienteRepository, veiculoRepository, taxaRepository);
+
+            locacaoService = new LocacaoAppService(locacaoRepository, new GeradorRecibo(), new NotificadorEmail(), new VerificadorConexao());
         }
 
         #region Eventos
@@ -77,7 +92,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         {
             dateDataSaida.MaxDate = dateDataDevolucao.Value;
 
-            List<Cliente> clientes = controladorCliente.SelecionarTodos();
+            List<Cliente> clientes = clienteService.SelecionarTodos();
 
             foreach (var c in clientes)
                 cmbCliente.Items.Add(c);
@@ -123,7 +138,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
         private void cmbCliente_SelectedIndexChanged(object sender, EventArgs e)
         {
-            List<Cliente> clientes = controladorCliente.SelecionarTodos();
+            List<Cliente> clientes = clienteService.SelecionarTodos();
 
             Cliente cliente = (Cliente)cmbCliente.SelectedItem;
 
@@ -187,7 +202,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         {
             List<Veiculo> veiculosDisponiveis = new List<Veiculo>();
 
-            foreach (Veiculo v in controladorVeiculo.SelecionarTodos())
+            foreach (Veiculo v in veiculoService.SelecionarTodos())
                 if (!VeiculoEstaAlugado(v) && !veiculosDisponiveis.Contains(v))
                     veiculosDisponiveis.Add(v);
 
@@ -196,7 +211,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
         public bool VeiculoEstaAlugado(Veiculo v)
         {
-            var locacoesPendentes = controladorLocacao.SelecionarTodasLocacoesPendentes();
+            var locacoesPendentes = locacaoService.SelecionarTodasLocacoesPendentes();
 
             foreach (var l in locacoesPendentes)
                 if (v.Id == l.Veiculo.Id)
@@ -256,7 +271,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         private void VerificarDisponibilidadeParaEdicao()
         {
             
-            foreach (var item in controladorLocacao.SelecionarTodos())
+            foreach (var item in locacaoService.SelecionarTodos())
             {
                 if (item.Id != locacao.Id && item.Devolucao == "Pendente")
                     if (item.Veiculo.Id == locacao.Veiculo.Id)
@@ -270,7 +285,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         private void VerificarDisponibilidadeParaCadastro()
         {
             Veiculo v = (Veiculo)cmbVeiculo.SelectedItem;
-            foreach (var item in controladorLocacao.SelecionarTodasLocacoesPendentes())
+            foreach (var item in locacaoService.SelecionarTodasLocacoesPendentes())
             {
                 if (item.Veiculo.Id == v.Id)
                 {

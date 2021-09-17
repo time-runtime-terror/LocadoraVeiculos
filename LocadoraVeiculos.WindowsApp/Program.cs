@@ -1,4 +1,4 @@
-﻿using LocadoraVeiculos.netCore.Controladores.Shared;
+﻿using LocadoraVeiculos.netCore.Infra.SQL.Shared;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -144,7 +144,6 @@ namespace LocadoraVeiculos.WindowsApp
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LoginForm());
-            //Application.Run(new TelaCadastrarLocacaoForm());
         }
 
         #region Métodos de setup inicial das tabelas

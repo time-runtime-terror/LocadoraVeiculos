@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.netCore.Controladores.ClienteModule;
+﻿using LocadoraVeiculos.Aplicacao.ClienteModule;
+using LocadoraVeiculos.Infra.SQL.ClienteModule;
 using LocadoraVeiculos.netCore.Dominio.ClienteModule;
 using System;
 using System.Collections.Generic;
@@ -10,13 +11,12 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
     public partial class TelaClienteForm : Form
     {
         private Cliente cliente;
-        private readonly ControladorCliente controladorCliente;
+        private readonly ClienteAppService clienteService;
 
         public TelaClienteForm()
         {
             InitializeComponent();
-            controladorCliente = new ControladorCliente();
-
+            clienteService = new ClienteAppService(new ClienteDAO());
         }
 
         public Cliente Cliente
@@ -51,7 +51,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 
             DateTime? vencimentoCnh = dateVencimentoCnh.Value;
 
-            List<Cliente> listaEmpresas = controladorCliente.SelecionarTodos();
+            List<Cliente> listaEmpresas = clienteService.SelecionarTodos();
 
             Cliente empresa = listaEmpresas.Find(x => x.TipoCadastro == "CNPJ" && x.Nome == (string)cmbEmpresa.SelectedItem);
 
@@ -86,7 +86,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 
         private void TelaClienteForm_Load(object sender, EventArgs e)
         {
-            var clientes = controladorCliente.SelecionarTodasPessoasJuridicas();
+            var clientes = clienteService.SelecionarTodasPessoasJuridicas();
 
             foreach (var cliente in clientes)
             {
