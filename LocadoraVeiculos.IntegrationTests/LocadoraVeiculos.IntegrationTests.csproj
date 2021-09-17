@@ -33,7 +33,6 @@
   <ItemGroup>
     <Folder Include="GrupoAutomoveisModule\" />
     <Folder Include="FuncionarioModule\" />
-    <Folder Include="VeiculoModule\" />
   </ItemGroup>
 
   <ItemGroup>
