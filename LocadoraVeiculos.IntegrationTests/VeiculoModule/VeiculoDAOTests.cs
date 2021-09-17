@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using LocadoraVeiculos.Infra.Configuration.CombustivelModule;
+using LocadoraVeiculos.Infra.JSON.CombustivelModule;
 using LocadoraVeiculos.Infra.SQL.GrupoAutomoveisModule;
 using LocadoraVeiculos.Infra.SQL.VeiculosModule;
 using LocadoraVeiculos.netCore.Dominio.CombustivelModule;

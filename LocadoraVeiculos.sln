@@ -51,9 +51,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraVeiculos.UnitTests"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraVeiculos.IntegrationTests", "LocadoraVeiculos.IntegrationTests\LocadoraVeiculos.IntegrationTests.csproj", "{8420F2C7-EF91-4157-8E27-0CC5EBFF1D11}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.4 - Configuration", "4.4 - Configuration", "{59487653-3916-4A60-9AD9-B3C6A5EF07F7}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.4 - JSON", "4.4 - JSON", "{59487653-3916-4A60-9AD9-B3C6A5EF07F7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraVeiculos.Infra.Configuration", "LocadoraVeiculos.Infra.Configuration\LocadoraVeiculos.Infra.Configuration.csproj", "{8D86ACDB-04B5-4FB9-99C6-304273D3A162}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraVeiculos.Infra.JSON", "LocadoraVeiculos.Infra.Configuration\LocadoraVeiculos.Infra.JSON.csproj", "{8D86ACDB-04B5-4FB9-99C6-304273D3A162}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraVeiculos.Aplicacao.Tests", "LocadoraVeiculos.Aplicacao.Tests\LocadoraVeiculos.Aplicacao.Tests.csproj", "{C99FB390-BD75-4512-AAA6-2831591F1173}"
 EndProject

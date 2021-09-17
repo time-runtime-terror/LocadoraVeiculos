@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using LocadoraVeiculos.Infra.Configuration.CombustivelModule;
+using LocadoraVeiculos.Infra.JSON.CombustivelModule;
 using LocadoraVeiculos.netCore.Dominio.CombustivelModule;
 
 namespace LocadoraVeiculos.WindowsApp.Features.CombustivelModule

@@ -23,7 +23,7 @@ using LocadoraVeiculos.Infra.SQL.LocacaoModule;
 using LocadoraVeiculos.Aplicacao.LocacaoModule;
 using LocadoraVeiculos.Infra.PDF.LocacaoModule;
 using LocadoraVeiculos.Infra.InternetServices.LocacaoModule;
-using LocadoraVeiculos.Infra.Configuration.CombustivelModule;
+using LocadoraVeiculos.Infra.JSON.CombustivelModule;
 
 namespace LocadoraVeiculos.WindowsApp
 {

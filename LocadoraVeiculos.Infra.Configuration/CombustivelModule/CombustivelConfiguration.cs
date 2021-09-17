@@ -2,9 +2,9 @@
 using System.IO;
 using System.Text.Json;
 
-namespace LocadoraVeiculos.Infra.Configuration.CombustivelModule
+namespace LocadoraVeiculos.Infra.JSON.CombustivelModule
 {
-    public class CombustivelConfiguration
+    public class CombustivelConfiguration : ICombustivelConfiguration
     {
         private Combustivel Combustivel;
         private string ArquivoJson { get; set; }

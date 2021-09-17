@@ -36,7 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LocadoraVeiculos.Infra.Configuration\LocadoraVeiculos.Infra.Configuration.csproj" />
+    <ProjectReference Include="..\LocadoraVeiculos.Infra.Configuration\LocadoraVeiculos.Infra.JSON.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.Infra.SQL\LocadoraVeiculos.Infra.SQL.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.netCore.Dominio\LocadoraVeiculos.netCore.Dominio.csproj" />
   </ItemGroup>
