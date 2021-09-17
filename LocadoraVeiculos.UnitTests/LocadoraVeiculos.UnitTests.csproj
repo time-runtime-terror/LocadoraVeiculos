@@ -18,9 +18,12 @@
     <Folder Include="CombustivelModule\" />
     <Folder Include="FuncionarioModule\" />
     <Folder Include="GrupoAutomoveisModule\" />
-    <Folder Include="LocacaoModule\" />
     <Folder Include="VeiculoModule\" />
     <Folder Include="TaxasServicosModule\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LocadoraVeiculos.Infra.PDF\LocadoraVeiculos.Infra.PDF.csproj" />
   </ItemGroup>
 
 </Project>
