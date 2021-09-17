@@ -13,6 +13,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="appsettings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="6.1.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.1.1" />
@@ -23,6 +33,7 @@
   <ItemGroup>
     <Folder Include="CombustivelModule\" />
     <Folder Include="GrupoAutomoveisModule\" />
+    <Folder Include="FuncionarioModule\" />
     <Folder Include="VeiculoModule\" />
   </ItemGroup>
 
