@@ -18,12 +18,17 @@
     <Folder Include="ClienteModule\" />
     <Folder Include="CombustivelModule\" />
     <Folder Include="LocacaoModule\" />
+    <Folder Include="GrupoAutomoveisModule\" />
     <Folder Include="VeiculoModule\" />
     <Folder Include="TaxasServicosModule\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\LocadoraVeiculos.netCore.Dominio\LocadoraVeiculos.netCore.Dominio.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LocadoraVeiculos.Infra.PDF\LocadoraVeiculos.Infra.PDF.csproj" />
   </ItemGroup>
 
 </Project>
