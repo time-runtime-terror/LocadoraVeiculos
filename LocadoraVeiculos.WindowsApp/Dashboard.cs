@@ -82,7 +82,7 @@ namespace LocadoraVeiculos.WindowsApp
 
             TaxasServicosAppService taxaService = new TaxasServicosAppService(new TaxasServicosDAO());
 
-            VeiculosAppService veiculoService = new VeiculosAppService(new VeiculosDAO(new GrupoAutomoveisDAO()));
+            VeiculoAppService veiculoService = new VeiculoAppService(new VeiculosDAO(new GrupoAutomoveisDAO()));
 
             ClienteAppService clienteService = new ClienteAppService(new ClienteDAO());
 
@@ -137,7 +137,7 @@ namespace LocadoraVeiculos.WindowsApp
 
             VeiculosDAO veiculosRepo = new VeiculosDAO(grupoAutomoveisRepo);
 
-            VeiculosAppService veiculosService = new VeiculosAppService(veiculosRepo);
+            VeiculoAppService veiculosService = new VeiculoAppService(veiculosRepo);
 
             operacoes = new OperacoesVeiculos(veiculosService);
 

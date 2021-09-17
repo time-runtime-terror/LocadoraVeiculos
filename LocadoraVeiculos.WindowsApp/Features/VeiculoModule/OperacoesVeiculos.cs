@@ -10,10 +10,10 @@ namespace LocadoraVeiculos.WindowsApp.Feature.VeiculoModule
 {
     public class OperacoesVeiculos : ICadastravel
     {
-        private readonly VeiculosAppService veiculosService = null;
+        private readonly VeiculoAppService veiculosService = null;
         private readonly TabelaVeiculosControl tabelaVeiculo = null;
 
-        public OperacoesVeiculos(VeiculosAppService veiculosAppService)
+        public OperacoesVeiculos(VeiculoAppService veiculosAppService)
         {
             veiculosService = veiculosAppService;
             tabelaVeiculo = new TabelaVeiculosControl(veiculosAppService);

@@ -12,11 +12,11 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
         private DataGridView gridVeiculos;
         private AgrupamentoVeiculosEnum tipoAgrupamento;
 
-        private readonly VeiculosAppService veiculosAppService;
+        private readonly VeiculoAppService veiculosAppService;
 
         private Subro.Controls.DataGridViewGrouper gridVeiculosAgrupados;
 
-        public TabelaVeiculosControl(VeiculosAppService veiculosAppService)
+        public TabelaVeiculosControl(VeiculoAppService veiculosAppService)
         {
             InitializeComponent();
             gridVeiculos.ConfigurarGridZebrado();

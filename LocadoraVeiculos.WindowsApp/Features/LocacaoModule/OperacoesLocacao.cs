@@ -21,10 +21,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
         private readonly LocacaoAppService locacaoService;
         private readonly TaxasServicosAppService taxaService;
-        private readonly VeiculosAppService veiculoService;
+        private readonly VeiculoAppService veiculoService;
         private readonly ClienteAppService clienteService;
 
-        public OperacoesLocacao(LocacaoAppService locacaoS, TaxasServicosAppService taxaS, VeiculosAppService veiculoS, ClienteAppService clienteS)
+        public OperacoesLocacao(LocacaoAppService locacaoS, TaxasServicosAppService taxaS, VeiculoAppService veiculoS, ClienteAppService clienteS)
         {
             locacaoService = locacaoS;
             taxaService = taxaS;
