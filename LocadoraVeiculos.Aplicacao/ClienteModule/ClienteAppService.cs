@@ -1,59 +1,17 @@
-﻿using LocadoraVeiculos.netCore.Dominio.ClienteModule;
+﻿using LocadoraVeiculos.Aplicacao.Shared;
+using LocadoraVeiculos.netCore.Dominio.ClienteModule;
 using System;
 using System.Collections.Generic;
 
 namespace LocadoraVeiculos.Aplicacao.ClienteModule
 {
-    public class ClienteAppService
+    public class ClienteAppService : BaseAppService<Cliente>
     {
         private readonly IClienteRepository clienteRepository;
 
-        public ClienteAppService(IClienteRepository clienteRepo)
+        public ClienteAppService(IClienteRepository clienteRepo) : base(clienteRepo)
         {
             clienteRepository = clienteRepo;
-        }
-
-        public string InserirNovo(Cliente cliente)
-        {
-            string resultadoValidacao = cliente.Validar();
-
-            if (resultadoValidacao == "ESTA_VALIDO")
-                clienteRepository.InserirNovo(cliente);
-
-            return resultadoValidacao;
-        }
-
-        public string Editar(int id, Cliente cliente)
-        {
-            string resultadoValidacao = cliente.Validar();
-
-            if (resultadoValidacao == "ESTA_VALIDO")
-                clienteRepository.Editar(id, cliente);
-
-            return resultadoValidacao;
-        }
-
-        public bool Excluir(int id)
-        {
-            if (clienteRepository.Excluir(id))
-                return true;
-
-            return false;
-        }
-
-        public Cliente SelecionarPorId(int id)
-        {
-            return clienteRepository.SelecionarPorId(id);
-        }
-
-        public List<Cliente> SelecionarTodos()
-        {
-            return (List<Cliente>)clienteRepository.SelecionarTodos();
-        }
-
-        public List<Cliente> Pesquisar(string texto)
-        {
-            return (List<Cliente>)clienteRepository.Pesquisar(texto);
         }
 
         public void AtualizarStatusLocacaoAtiva(Cliente cliente)
@@ -63,12 +21,12 @@ namespace LocadoraVeiculos.Aplicacao.ClienteModule
 
         public List<Cliente> SelecionarTodasPessoasFisicas()
         {
-            return (List<Cliente>)clienteRepository.SelecionarTodasPessoasFisicas();
+            return clienteRepository.SelecionarTodasPessoasFisicas();
         }
 
         public List<Cliente> SelecionarTodasPessoasJuridicas()
         {
-            return (List<Cliente>)clienteRepository.SelecionarTodasPessoasJuridicas();
+            return clienteRepository.SelecionarTodasPessoasJuridicas();
         }
     }
 }
