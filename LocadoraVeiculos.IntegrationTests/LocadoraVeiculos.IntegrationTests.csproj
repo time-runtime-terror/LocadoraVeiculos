@@ -34,10 +34,10 @@
     <Folder Include="CombustivelModule\" />
     <Folder Include="GrupoAutomoveisModule\" />
     <Folder Include="FuncionarioModule\" />
-    <Folder Include="VeiculoModule\" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LocadoraVeiculos.Infra.Configuration\LocadoraVeiculos.Infra.Configuration.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.Infra.SQL\LocadoraVeiculos.Infra.SQL.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.netCore.Dominio\LocadoraVeiculos.netCore.Dominio.csproj" />
   </ItemGroup>
