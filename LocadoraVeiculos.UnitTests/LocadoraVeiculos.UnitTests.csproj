@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <Folder Include="ClienteModule\" />
-    <Folder Include="CombustivelModule\" />
     <Folder Include="LocacaoModule\" />
     <Folder Include="GrupoAutomoveisModule\" />
     <Folder Include="VeiculoModule\" />
