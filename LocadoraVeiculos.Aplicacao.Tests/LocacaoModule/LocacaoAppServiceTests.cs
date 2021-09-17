@@ -1,4 +1,4 @@
-using LocadoraVeiculos.Aplicacao.LocacaoModule;
+﻿using LocadoraVeiculos.Aplicacao.LocacaoModule;
 using LocadoraVeiculos.netCore.Dominio.ClienteModule;
 using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
 using LocadoraVeiculos.netCore.Dominio.VeiculoModule;
@@ -6,14 +6,15 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
 
-namespace LocadoraVeiculos.Aplicacao.Tests
+namespace LocadoraVeiculos.Aplicacao.Tests.LocacaoModule
 {
     [TestClass]
-    public class RegistroLocacaoTest
+    public class LocacaoAppServiceTests
     {
         byte[] foto = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20 };
 
         [TestMethod]
+        [TestCategory("Aplicação")]
         public void Deve_Gerar_Recibo_Locacao()
         {
             // arrange
@@ -21,7 +22,7 @@ namespace LocadoraVeiculos.Aplicacao.Tests
 
             Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, null);
 
-            Locacao locacao = new Locacao(cliente, veiculo, null, DateTime.Now, DateTime.Now.AddDays(2), 200, "Di�rio", null, null);
+            Locacao locacao = new Locacao(cliente, veiculo, null, DateTime.Now, DateTime.Now.AddDays(2), 200, "Diário", null, null);
 
             Mock<ILocacaoRepository> locacaoDaoMock = new Mock<ILocacaoRepository>();
 
@@ -37,6 +38,7 @@ namespace LocadoraVeiculos.Aplicacao.Tests
         }
 
         [TestMethod]
+        [TestCategory("Aplicação")]
         public void Deve_Enviar_Email_Locacao()
         {
             // arrange
@@ -44,7 +46,7 @@ namespace LocadoraVeiculos.Aplicacao.Tests
 
             Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, null);
 
-            Locacao locacao = new Locacao(cliente, veiculo, null, DateTime.Now, DateTime.Now.AddDays(2), 200, "Di�rio", null, null);
+            Locacao locacao = new Locacao(cliente, veiculo, null, DateTime.Now, DateTime.Now.AddDays(2), 200, "Diário", null, null);
 
             Mock<ILocacaoRepository> locacaoDaoMock = new Mock<ILocacaoRepository>();
 
@@ -68,6 +70,7 @@ namespace LocadoraVeiculos.Aplicacao.Tests
         }
 
         [TestMethod]
+        [TestCategory("Aplicação")]
         public void Deveria_Verificar_Conexao_Internet()
         {
             // arrange
@@ -75,7 +78,7 @@ namespace LocadoraVeiculos.Aplicacao.Tests
 
             Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, null);
 
-            Locacao locacao = new Locacao(cliente, veiculo, null, DateTime.Now, DateTime.Now.AddDays(2), 200, "Di�rio", null, null);
+            Locacao locacao = new Locacao(cliente, veiculo, null, DateTime.Now, DateTime.Now.AddDays(2), 200, "Diário", null, null);
 
             Mock<ILocacaoRepository> locacaoDaoMock = new Mock<ILocacaoRepository>();
 
