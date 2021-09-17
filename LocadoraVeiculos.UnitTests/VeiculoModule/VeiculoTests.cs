@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculos.netCore.Dominio.VeiculoModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using FluentAssertions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
