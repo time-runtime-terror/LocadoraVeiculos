@@ -178,7 +178,22 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                locacaoService.RegistrarDevolucao(tela.Locacao);
+                try
+                {
+                    locacaoService.RegistrarDevolucao(tela.Locacao);
+
+                    string mensagem = $"O recibo da locação foi enviado ao email {tela.Locacao.Cliente.Email}";
+
+                    MessageBox.Show(mensagem, "Notificação de Envio de Email", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    string mensagem = $"Falha ao conectar com o servidor de email, verifique sua conexão de internet e tente novamente!\n\n{ex.Message}";
+
+                    MessageBox.Show(mensagem, "Erro de Conexão", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    return;
+                }
 
                 veiculoService.AtualizarQuilometragem(tela.Locacao.Veiculo);
 

@@ -64,29 +64,29 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             locacao.Devolucao = dateDataDevolucao.Value.ToShortDateString();
             locacao.Total = Convert.ToDouble(lblValorTotal.Text);
 
-            GeradorRecibo geradorRecibo = new GeradorRecibo();
+            //GeradorRecibo geradorRecibo = new GeradorRecibo();
 
-            string pdf = geradorRecibo.GerarRecibo(locacao);
+            //string pdf = geradorRecibo.GerarRecibo(locacao);
 
-            NotificadorEmail notificador = new NotificadorEmail();
+            //NotificadorEmail notificador = new NotificadorEmail();
 
-            try
-            {
-                await notificador.EnviarEmailAsync(locacao, pdf);
+            //try
+            //{
+            //    await notificador.EnviarEmailAsync(locacao, pdf);
 
-                string mensagem = $"O recibo da locação foi enviado ao email {locacao.Cliente.Email}";
+            //    string mensagem = $"O recibo da locação foi enviado ao email {locacao.Cliente.Email}";
 
-                MessageBox.Show(mensagem, "Notificação de Envio de Email", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (SmtpException ex)
-            {
-                string mensagem = $"Falha ao conectar com o servidor de email, verifique sua conexão de internet e tente novamente!\n\n{ex.Message}";
+            //    MessageBox.Show(mensagem, "Notificação de Envio de Email", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
+            //catch (SmtpException ex)
+            //{
+            //    string mensagem = $"Falha ao conectar com o servidor de email, verifique sua conexão de internet e tente novamente!\n\n{ex.Message}";
 
-                MessageBox.Show(mensagem, "Erro de Conexão", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    MessageBox.Show(mensagem, "Erro de Conexão", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                DialogResult = DialogResult.None;
-                return;
-            }
+            //    DialogResult = DialogResult.None;
+            //    return;
+            //}
         }
 
         private void btnCalcularTotal_Click(object sender, EventArgs e)

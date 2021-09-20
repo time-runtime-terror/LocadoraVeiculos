@@ -28,20 +28,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             string resultadoValidacao = locacao.Validar();
 
             if (resultadoValidacao == "ESTA_VALIDO")
-            {
                 locacaoRepository.InserirNovo(locacao);
-
-                string caminhoRecibo = geradorRecibo.GerarRecibo(locacao);
-
-                bool temInternet = verificadorConexao.TemConexaoComInternet();
-
-                if (temInternet)
-                    notificadorEmail.EnviarEmailAsync(locacao,caminhoRecibo);
-                else
-                {
-                    Debug.WriteLine("Não há conexão com a internet!");
-                }
-            }
 
             return resultadoValidacao;
         }
@@ -51,7 +38,20 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             string resultadoValidacao = locacao.Validar();
 
             if (resultadoValidacao == "ESTA_VALIDO")
+            {
                 locacaoRepository.RegistrarDevolucao(locacao);
+
+                string caminhoRecibo = geradorRecibo.GerarRecibo(locacao);
+
+                bool temInternet = verificadorConexao.TemConexaoComInternet();
+
+                if (temInternet)
+                    notificadorEmail.EnviarEmailAsync(locacao, caminhoRecibo);
+                else
+                {
+                    throw new Exception("Não foi possível se conectar ao serviço de email.");
+                }
+            }
             else
             {
                 // Log
