@@ -1,7 +1,6 @@
 ﻿using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 {
@@ -83,22 +82,22 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             return locacaoRepository.SelecionarPorId(id);
         }
 
-        public IList<Locacao> SelecionarTodos()
+        public List<Locacao> SelecionarTodos()
         {
             return locacaoRepository.SelecionarTodos();
         }
 
-        public IList<Locacao> SelecionarTodasLocacoesConcluidas()
+        public List<Locacao> SelecionarTodasLocacoesConcluidas()
         {
             return locacaoRepository.SelecionarTodasLocacoesConcluidas();
         }
 
-        public IList<Locacao> SelecionarTodasLocacoesPendentes()
+        public List<Locacao> SelecionarTodasLocacoesPendentes()
         {
             return locacaoRepository.SelecionarTodasLocacoesPendentes();
         }
 
-        public IList<Locacao> Pesquisar(string texto)
+        public List<Locacao> Pesquisar(string texto)
         {
             throw new NotImplementedException();
         }

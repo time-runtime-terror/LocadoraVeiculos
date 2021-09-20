@@ -38,7 +38,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             {
                 locacaoService.RegistrarNovaLocacao(tela.Locacao);
 
-                List<Locacao> locacoes = (List<Locacao>)locacaoService.SelecionarTodos();
+                List<Locacao> locacoes = locacaoService.SelecionarTodos();
 
                 tela.Locacao.Veiculo.EstaAlugado = true;
 
@@ -78,7 +78,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                 taxaService.RegistrarTaxaUsada(tela.Locacao);
 
-                List<Locacao> locacoes = (List<Locacao>)locacaoService.SelecionarTodos();
+                List<Locacao> locacoes = locacaoService.SelecionarTodos();
 
                 tabelaLocacoes.AtualizarRegistros(locacoes);
 
@@ -105,7 +105,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                 taxaService.ExcluirTaxaUsada(locacaoSelecionada);
 
-                List<Locacao> locacoes = (List<Locacao>)locacaoService.SelecionarTodos();
+                List<Locacao> locacoes = locacaoService.SelecionarTodos();
 
                 tabelaLocacoes.AtualizarRegistros(locacoes);
 
@@ -124,11 +124,11 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                 switch (telaFiltro.TipoFiltro)
                 {
                     case FiltroLocacaoEnum.LocacoesConcluidas:
-                        locacoes = (List<Locacao>)locacaoService.SelecionarTodasLocacoesConcluidas();
+                        locacoes = locacaoService.SelecionarTodasLocacoesConcluidas();
                         break;
 
                     case FiltroLocacaoEnum.LocacoesPendentes:
-                        locacoes = (List<Locacao>)locacaoService.SelecionarTodasLocacoesPendentes();
+                        locacoes = locacaoService.SelecionarTodasLocacoesPendentes();
                         break;
 
                     default:
@@ -146,14 +146,14 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
         public void DesagruparRegistros()
         {
-            List<Locacao> locacoes = (List<Locacao>)locacaoService.SelecionarTodos();
+            List<Locacao> locacoes = locacaoService.SelecionarTodos();
 
             tabelaLocacoes.AtualizarRegistros(locacoes);
         }
 
         public UserControl ObterTabela()
         {
-            List<Locacao> locacoes = (List<Locacao>)locacaoService.SelecionarTodos();
+            List<Locacao> locacoes = locacaoService.SelecionarTodos();
 
             tabelaLocacoes.AtualizarRegistros(locacoes);
 
@@ -205,7 +205,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                 clienteService.AtualizarStatusLocacaoAtiva(tela.Locacao.Cliente);
 
-                List<Locacao> locacoes = (List<Locacao>)locacaoService.SelecionarTodos();
+                List<Locacao> locacoes = locacaoService.SelecionarTodos();
 
                 tabelaLocacoes.AtualizarRegistros(locacoes);
 
