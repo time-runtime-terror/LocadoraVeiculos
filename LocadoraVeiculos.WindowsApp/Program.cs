@@ -1,14 +1,12 @@
-﻿using LocadoraVeiculos.netCore.Infra.SQL.Shared;
+﻿using LocadoraVeiculos.Infra.Logging;
+using LocadoraVeiculos.netCore.Infra.SQL.Shared;
 using log4net;
 using log4net.Config;
-using log4net.Core;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
-
-
 
 namespace LocadoraVeiculos.WindowsApp
 {
@@ -139,7 +137,6 @@ namespace LocadoraVeiculos.WindowsApp
         [STAThread]
         static void Main()
         {
-
             ObterLoginAdmin();
 
             ObterPrimeiroCliente();
@@ -148,16 +145,11 @@ namespace LocadoraVeiculos.WindowsApp
 
             ObterPrimeiroGrupoAutomoveis();
 
+            LoggerInit.ConfigurarLogger();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LoginForm());
-            ConfigurarLogger();
-        }
-
-        private static void ConfigurarLogger()
-        {
-            var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
-            XmlConfigurator.Configure(logRepository, new FileInfo("log4net.config"));
         }
 
         #region Métodos de setup inicial das tabelas

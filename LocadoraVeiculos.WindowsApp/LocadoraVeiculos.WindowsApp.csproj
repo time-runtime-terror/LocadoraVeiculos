@@ -9,6 +9,12 @@
     <StartupObject>LocadoraVeiculos.WindowsApp.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="bin\**" />
+    <EmbeddedResource Remove="bin\**" />
+    <None Remove="bin\**" />
+    <Page Remove="bin\**" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="DataGridViewGrouper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libs\DataGridViewGrouper.dll</HintPath>
@@ -70,26 +76,15 @@
     <EmbeddedResource Remove=".Designer.resx" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="log4net.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\LocadoraVeiculos.Aplicacao\LocadoraVeiculos.Aplicacao.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.Aplicacao\LocadoraVeiculos.Aplicacao.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.Infra.Configuration\LocadoraVeiculos.Infra.JSON.csproj" />
+    <ProjectReference Include="..\LocadoraVeiculos.Infra.Logging\LocadoraVeiculos.Infra.Logging.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.Infra.SQL\LocadoraVeiculos.Infra.SQL.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.Aplicacao\LocadoraVeiculos.Aplicacao.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.Infra.InternetServices\LocadoraVeiculos.Infra.InternetServices.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.Infra.PDF\LocadoraVeiculos.Infra.PDF.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.Infra.SQL\LocadoraVeiculos.Infra.SQL.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.netCore.Dominio\LocadoraVeiculos.netCore.Dominio.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="bin\Debug\net5.0-windows\bin\Debug\" />
-    <Folder Include="bin\Debug\net5.0-windows\runtimes\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="log4net.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 </Project>
