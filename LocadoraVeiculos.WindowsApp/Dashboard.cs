@@ -24,12 +24,19 @@ using LocadoraVeiculos.Aplicacao.LocacaoModule;
 using LocadoraVeiculos.Infra.PDF.LocacaoModule;
 using LocadoraVeiculos.Infra.InternetServices.LocacaoModule;
 using LocadoraVeiculos.Infra.JSON.CombustivelModule;
+using log4net.Core;
+using log4net;
+using System.Reflection;
+using System.IO;
+using log4net.Config;
 
 namespace LocadoraVeiculos.WindowsApp
 {
     public partial class Dashboard : Form
     {
-        private ICadastravel operacoes; 
+        private ICadastravel operacoes;
+            
+        private static ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         public static Dashboard Instancia { get; set; }
 
@@ -38,6 +45,8 @@ namespace LocadoraVeiculos.WindowsApp
             InitializeComponent();
 
             Instancia = this;
+
+            logger.Info("Executando a tela de dashboard...");
         }
 
         public void AtualizarRodape(string mensagem)

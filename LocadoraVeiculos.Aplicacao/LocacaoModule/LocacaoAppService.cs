@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
+using log4net.Core;
 using System;
 using System.Collections.Generic;
 
@@ -10,6 +11,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
         private readonly IGeradorRecibo geradorRecibo;
         private readonly INotificadorEmail notificadorEmail;
         private readonly IVerificadorConexao verificadorConexao;
+        private static readonly ILogger logger = LoggerManager.GetLogger("", typeof(LocacaoAppService));
 
         public LocacaoAppService(ILocacaoRepository locacaoRepository, 
             IGeradorRecibo geradorRecibo,
@@ -28,6 +30,8 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
             if (resultadoValidacao == "ESTA_VALIDO")
                 locacaoRepository.InserirNovo(locacao);
+            else
+                logger.Log(null, Level.Warn, "Falha ao registrar devolução!", null);
 
             return resultadoValidacao;
         }
@@ -45,16 +49,21 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
                 bool temInternet = verificadorConexao.TemConexaoComInternet();
 
                 if (temInternet)
-                    notificadorEmail.EnviarEmailAsync(locacao, caminhoRecibo);
-                else
                 {
-                    throw new Exception("Não foi possível se conectar ao serviço de email.");
+                    try
+                    {
+                        notificadorEmail.EnviarEmailAsync(locacao, caminhoRecibo);
+                    }
+                    catch (Exception ex)
+                    {
+                        logger.Log(null, Level.Error, "Falha ao tentar se conectar com o serviço de email!", ex);
+                    }
                 }
+                else
+                    logger.Log(null, Level.Warn, "Não há conexão com a internet!", null);
             }
             else
-            {
-                // Log
-            }
+                logger.Log(null, Level.Warn, "Falha ao registrar devolução!", null);
 
             return resultadoValidacao;
         }

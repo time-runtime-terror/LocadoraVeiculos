@@ -37,7 +37,7 @@ namespace LocadoraVeiculos.Infra.ORM.LocacaoModule
             throw new NotImplementedException();
         }
 
-        public IList<Locacao> Pesquisar(string texto)
+        public List<Locacao> Pesquisar(string texto)
         {
             throw new NotImplementedException();
         }
@@ -52,17 +52,17 @@ namespace LocadoraVeiculos.Infra.ORM.LocacaoModule
             throw new NotImplementedException();
         }
 
-        public IList<Locacao> SelecionarTodasLocacoesConcluidas()
+        public List<Locacao> SelecionarTodasLocacoesConcluidas()
         {
             throw new NotImplementedException();
         }
 
-        public IList<Locacao> SelecionarTodasLocacoesPendentes()
+        public List<Locacao> SelecionarTodasLocacoesPendentes()
         {
             throw new NotImplementedException();
         }
 
-        public IList<Locacao> SelecionarTodos()
+        public List<Locacao> SelecionarTodos()
         {
             throw new NotImplementedException();
         }
