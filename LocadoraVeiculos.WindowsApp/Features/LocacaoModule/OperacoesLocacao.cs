@@ -5,8 +5,10 @@ using LocadoraVeiculos.Aplicacao.VeiculosModule;
 using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
 using LocadoraVeiculos.WindowsApp.Features.DevolucaoModule;
 using LocadoraVeiculos.WindowsApp.Shared;
+using log4net;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
@@ -19,6 +21,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         private readonly ClienteAppService clienteService;
 
         private readonly TabelaLocacaoControl tabelaLocacoes;
+
+        private static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         public OperacoesLocacao(LocacaoAppService locacaoS, TaxasServicosAppService taxaS, VeiculoAppService veiculoS, ClienteAppService clienteS)
         {
@@ -180,18 +184,15 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             {
                 try
                 {
-                    locacaoService.RegistrarDevolucao(tela.Locacao);
+                    string resultadoDevolucao = locacaoService.RegistrarDevolucao(tela.Locacao);
 
-                    string mensagem = $"O recibo da locação foi enviado ao email {tela.Locacao.Cliente.Email}";
-
-                    MessageBox.Show(mensagem, "Notificação de Envio de Email", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (resultadoDevolucao == "ESTA_VALIDO")
+                        Dashboard.Instancia.AtualizarRodape($"O recibo da locação foi enviado ao email {tela.Locacao.Cliente.Email}");
                 }
                 catch (Exception ex)
                 {
-                    string mensagem = $"Falha ao conectar com o servidor de email, verifique sua conexão de internet e tente novamente!\n\n{ex.Message}";
-
-                    MessageBox.Show(mensagem, "Erro de Conexão", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                    logger.Error(ex.Message, ex);
+                    Dashboard.Instancia.AtualizarRodape(ex.Message);
                     return;
                 }
 

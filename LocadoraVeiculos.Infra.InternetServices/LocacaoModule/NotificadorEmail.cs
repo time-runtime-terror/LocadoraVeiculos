@@ -54,5 +54,10 @@ namespace LocadoraVeiculos.Infra.InternetServices.LocacaoModule
                 }
             }
         }
+
+        public void AgendarEnvioEmail(Locacao locacao, string caminho)
+        {
+
+        }
     }
 }

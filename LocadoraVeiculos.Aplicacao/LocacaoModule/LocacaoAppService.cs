@@ -2,6 +2,7 @@
 using log4net;
 using System;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using System.Reflection;
 
 namespace LocadoraVeiculos.Aplicacao.LocacaoModule
@@ -57,14 +58,14 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
                     }
                     catch (Exception ex)
                     {
-                        logger.Error("Falha ao tentar se conectar com o serviço de email!", ex);
+                        throw new Exception(ex.Message);
                     }
                 }
                 else
-                    logger.Warn("Não há conexão com a internet!");
+                    throw new PingException("Não foi possível estabelecer conexão com a internet");
             }
             else
-                logger.Warn("Falha ao registrar devolução!");
+                throw new ArgumentException("Falha ao validar devolução!");
 
             return resultadoValidacao;
         }
