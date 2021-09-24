@@ -201,15 +201,16 @@ namespace LocadoraVeiculos.Infra.SQL.LocacaoModule
             {
                 locacao.Id = Db.Insert(sqlInserirLocacao, ObtemParametrosRegistro(locacao));
 
-                foreach (TaxasServicos taxa in locacao.Taxas)
-                {
-                    var parametros = new Dictionary<string, object>();
+                if (locacao.Taxas != null)
+                    foreach (TaxasServicos taxa in locacao.Taxas)
+                    {
+                        var parametros = new Dictionary<string, object>();
 
-                    parametros.Add("ID_LOCACAO", locacao.Id);
-                    parametros.Add("ID_TAXASSERVICOS", taxa.Id);
+                        parametros.Add("ID_LOCACAO", locacao.Id);
+                        parametros.Add("ID_TAXASSERVICOS", taxa.Id);
 
-                    Db.Insert(sqlInserirTaxaSelecionada, parametros);
-                }
+                        Db.Insert(sqlInserirTaxaSelecionada, parametros);
+                    }
             }
             catch (Exception ex)
             {
