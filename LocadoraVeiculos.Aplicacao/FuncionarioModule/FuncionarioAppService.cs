@@ -1,12 +1,15 @@
 ﻿using LocadoraVeiculos.Aplicacao.Shared;
 using LocadoraVeiculos.netCore.Dominio.FuncionarioModule;
+using log4net;
 using System;
+using System.Reflection;
 
 namespace LocadoraVeiculos.Aplicacao.FuncionarioModule
 {
     public class FuncionarioAppService : BaseAppService<Funcionario>
     {
         private readonly IFuncionarioRepository funcionarioRepository;
+        
 
         public FuncionarioAppService(IFuncionarioRepository funcionarioRepository)
             : base(funcionarioRepository)

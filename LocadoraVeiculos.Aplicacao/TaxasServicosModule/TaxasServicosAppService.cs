@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
+﻿using LocadoraVeiculos.Aplicacao.Shared;
+using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
 using LocadoraVeiculos.netCore.Dominio.TaxasServicosModule;
 using System;
 using System.Collections.Generic;
@@ -8,89 +9,72 @@ using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.Aplicacao.TaxasServicosModule
 {
-    public class TaxasServicosAppService
+    public class TaxasServicosAppService : BaseAppService<TaxasServicos>
     {
 
         private readonly ITaxasServicosRepository taxasRepository;
 
-        public TaxasServicosAppService(ITaxasServicosRepository taxasRepository)
+        public TaxasServicosAppService(ITaxasServicosRepository taxasRepository) : base(taxasRepository)
         {
             this.taxasRepository = taxasRepository;
         }
 
-        public string RegistrarNovaTaxa(TaxasServicos taxas)
+        public override string InserirNovo(TaxasServicos registro)
         {
-            string resultadoValidacao = taxas.Validar();
-
-            if (resultadoValidacao == "ESTA_VALIDO")
-            {
-                taxasRepository.InserirNovo(taxas);
-            }
-
-            return resultadoValidacao;
+            throw new Exception("Teste taxas");
         }
+
+
 
         public void RegistrarTaxaUsada(Locacao registro)
         {
-            if (registro.Taxas != null)
-                taxasRepository.InserirNovaTaxaUsada(registro);
+            try
+            {
+                if (registro.Taxas != null)
+                    taxasRepository.InserirNovaTaxaUsada(registro);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
         }
-
-
-        public string Editar(int id, TaxasServicos taxa)
-        {
-            string resultadoValidacao = taxa.Validar();
-
-            if (resultadoValidacao == "ESTA_VALIDO")
-                taxasRepository.Editar(id, taxa);
-
-            return resultadoValidacao;
-        }
-
         public void EditarTaxasUsadas(Locacao locacao)
         {
-            foreach (TaxasServicos taxa in locacao.Taxas)
-                taxasRepository.EditarTaxasUsadas(locacao);
+            try
+            {
+                foreach (TaxasServicos taxa in locacao.Taxas)
+                    taxasRepository.EditarTaxasUsadas(locacao);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
-
-        public bool Excluir(int id)
-        {
-
-            if (taxasRepository.Excluir(id))
-                return true;
-
-            return false;
-            
-        }
-
         public bool ExcluirTaxaUsada(Locacao locacao)
         {
-
-            if (taxasRepository.ExcluirTaxaUsada(locacao))
-                return true;
-
+            try
+            {
+                if (taxasRepository.ExcluirTaxaUsada(locacao))
+                    return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
             return false;
             
         }
-
-        public  bool Existe(int id)
-        {
-            return taxasRepository.Existe(id);
-        }
-
-        public TaxasServicos SelecionarPorId(int id)
-        {
-            return taxasRepository.SelecionarPorId(id);
-        }
-
-        public  List<TaxasServicos> SelecionarTodos()
-        {
-            return (List<TaxasServicos>)taxasRepository.SelecionarTodos();
-        }
-
         public List<TaxasServicos> SelecionarTaxasServicosUsados(int id)
         {
-            return taxasRepository.SelecionarTaxasServicosUsados(id);
+            try
+            {
+                return taxasRepository.SelecionarTaxasServicosUsados(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

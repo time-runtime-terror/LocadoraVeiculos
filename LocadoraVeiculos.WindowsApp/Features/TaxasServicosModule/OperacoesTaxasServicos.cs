@@ -1,6 +1,9 @@
 ﻿using LocadoraVeiculos.Aplicacao.TaxasServicosModule;
 using LocadoraVeiculos.netCore.Dominio.TaxasServicosModule;
 using LocadoraVeiculos.WindowsApp.Shared;
+using log4net;
+using System;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule
@@ -9,6 +12,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule
     {
         private readonly TaxasServicosAppService taxasServicosAppService = null;
         private readonly TabelaTaxasServicosControl tabelaTaxasServicos = null;
+        private static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         public OperacoesTaxasServicos(TaxasServicosAppService taxasServicosAppService)
         {
@@ -23,11 +27,21 @@ namespace LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                taxasServicosAppService.RegistrarNovaTaxa(tela.TaxasServicos);
+                try
+                {
+                    taxasServicosAppService.InserirNovo(tela.TaxasServicos);
 
-                tabelaTaxasServicos.AtualizarRegistros();
+                    tabelaTaxasServicos.AtualizarRegistros();
 
-                Dashboard.Instancia.AtualizarRodape($"Taxa/Serviço: [{tela.TaxasServicos.Servico}] inserido com sucesso");
+                    Dashboard.Instancia.AtualizarRodape($"Taxa/Serviço: [{tela.TaxasServicos.Servico}] inserido com sucesso");
+                }
+                catch (Exception ex)
+                {
+                    logger.Error(ex.Message, ex);
+
+                    Dashboard.Instancia.AtualizarRodape(ex.Message);
+                    return;
+                }
             }
         }
 
@@ -41,8 +55,20 @@ namespace LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
+            TaxasServicos taxasServicosSelecionado;
 
-            TaxasServicos taxasServicosSelecionado = taxasServicosAppService.SelecionarPorId(id);
+            try
+            {
+                taxasServicosSelecionado = taxasServicosAppService.SelecionarPorId(id);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message, ex);
+
+                Dashboard.Instancia.AtualizarRodape(ex.Message);
+
+                return;
+            }
 
             TelaCadastrarTaxasServicos tela = new TelaCadastrarTaxasServicos();
 
@@ -50,11 +76,22 @@ namespace LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                taxasServicosAppService.Editar(id, tela.TaxasServicos);
+                try
+                {
+                    taxasServicosAppService.Editar(id, tela.TaxasServicos);
 
-                tabelaTaxasServicos.AtualizarRegistros();
+                    tabelaTaxasServicos.AtualizarRegistros();
 
-                Dashboard.Instancia.AtualizarRodape($"Taxa/Serviço: [{tela.TaxasServicos.Servico}] editado com sucesso");
+                    Dashboard.Instancia.AtualizarRodape($"Taxa/Serviço: [{tela.TaxasServicos.Servico}] editado com sucesso");
+                }
+                catch (Exception ex)
+                {
+                    logger.Error(ex.Message, ex);
+
+                    Dashboard.Instancia.AtualizarRodape(ex.Message);
+
+                    return;
+                }
             }
         }
 
@@ -68,17 +105,44 @@ namespace LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
+            
 
-            TaxasServicos taxasServicosSelecionado = taxasServicosAppService.SelecionarPorId(id);
+            TaxasServicos taxasServicosSelecionado;
+
+            try
+            {
+                taxasServicosSelecionado = taxasServicosAppService.SelecionarPorId(id);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message, ex);
+
+                Dashboard.Instancia.AtualizarRodape(ex.Message);
+
+                return;
+            }
 
             if (MessageBox.Show($"Tem certeza que deseja excluir esse Serviço?: [{taxasServicosSelecionado.Servico}] ?",
                 "Exclusão de Taxas e Serviços", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                taxasServicosAppService.Excluir(id);
+                try
+                {
+                    taxasServicosAppService.Excluir(id);
 
-                tabelaTaxasServicos.AtualizarRegistros();
+                    tabelaTaxasServicos.AtualizarRegistros();
 
-                Dashboard.Instancia.AtualizarRodape($"Taxa/Serviço: [{taxasServicosSelecionado.Servico}] removido com sucesso");
+                    Dashboard.Instancia.AtualizarRodape($"Taxa/Serviço: [{taxasServicosSelecionado.Servico}] removido com sucesso");
+
+                }
+                catch (Exception ex)
+                {
+                    logger.Error(ex.Message, ex);
+
+                    Dashboard.Instancia.AtualizarRodape(ex.Message);
+
+                    return;
+                }
+
             }
         }
 
@@ -93,14 +157,34 @@ namespace LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule
 
         public UserControl ObterTabela()
         {
-            tabelaTaxasServicos.AtualizarRegistros();
+            try
+            {
+                tabelaTaxasServicos.AtualizarRegistros();
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message, ex);
+
+                Dashboard.Instancia.AtualizarRodape(ex.Message);
+            }
+            
 
             return tabelaTaxasServicos;
         }
 
         public void DesagruparRegistros()
         {
-            tabelaTaxasServicos.AtualizarRegistros();
+            try
+            {
+                tabelaTaxasServicos.AtualizarRegistros();
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message, ex);
+
+                Dashboard.Instancia.AtualizarRodape(ex.Message);
+            }
+
         }
 
         public void Pesquisar(string text)
