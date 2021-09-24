@@ -2,6 +2,7 @@
 using LocadoraVeiculos.netCore.Dominio.ClienteModule;
 using log4net;
 using log4net.Core;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -18,17 +19,44 @@ namespace LocadoraVeiculos.Aplicacao.ClienteModule
 
         public void AtualizarStatusLocacaoAtiva(Cliente cliente)
         {
-            clienteRepository.AtualizarStatusLocacaoAtiva(cliente);
+            try
+            {
+                clienteRepository.AtualizarStatusLocacaoAtiva(cliente);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public List<Cliente> SelecionarTodasPessoasFisicas()
         {
-            return clienteRepository.SelecionarTodasPessoasFisicas();
+            List<Cliente> pessoasFisicas;
+            try
+            {
+                pessoasFisicas = clienteRepository.SelecionarTodasPessoasFisicas();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return pessoasFisicas;
         }
 
         public List<Cliente> SelecionarTodasPessoasJuridicas()
         {
-            return clienteRepository.SelecionarTodasPessoasJuridicas();
+            List<Cliente> pessoasJuridicas;
+            try
+            {
+                pessoasJuridicas = clienteRepository.SelecionarTodasPessoasJuridicas();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return pessoasJuridicas;
         }
     }
 }

@@ -1,5 +1,8 @@
 ﻿using LocadoraVeiculos.netCore.Dominio.Shared;
+using log4net;
+using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace LocadoraVeiculos.Aplicacao.Shared
 {
@@ -17,12 +20,21 @@ namespace LocadoraVeiculos.Aplicacao.Shared
         /// </summary>
         /// <param name="registro"></param>
         /// <returns>Resultado da validação do registro inserido</returns>
-        public string InserirNovo(T registro)
+        public virtual string InserirNovo(T registro)
         {
             string resultadoValidacao = registro.Validar();
 
             if (resultadoValidacao == "ESTA_VALIDO")
-                repositorio.InserirNovo(registro);
+            {
+                try
+                {
+                    repositorio.InserirNovo(registro);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
 
             return resultadoValidacao;
         }
@@ -33,12 +45,19 @@ namespace LocadoraVeiculos.Aplicacao.Shared
         /// <param name="id">Identificador primário do registro a ser editado</param>
         /// <param name="registro">Novo registro <typeparamref name="T"/> que irá substituir o antigo</param>
         /// <returns></returns>
-        public string Editar(int id, T registro)
+        public virtual string Editar(int id, T registro)
         {
             string resultadoValidacao = registro.Validar();
 
-            if (resultadoValidacao == "ESTA_VALIDO")
-                repositorio.Editar(id, registro);
+            try
+            {
+                if (resultadoValidacao == "ESTA_VALIDO")
+                    repositorio.Editar(id, registro);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
 
             return resultadoValidacao;
         }
@@ -48,11 +67,18 @@ namespace LocadoraVeiculos.Aplicacao.Shared
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Valor <typeparamref name="bool"/> indicando se a exclusão foi bem-sucedida</returns>
-        public bool Excluir(int id)
+        public virtual bool Excluir(int id)
         {
-            if (repositorio.Excluir(id))
-                return true;
-
+            try
+            { 
+                if (repositorio.Excluir(id))
+                    return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            
             return false;
         }
 
@@ -63,7 +89,17 @@ namespace LocadoraVeiculos.Aplicacao.Shared
         /// <returns>Registro <typeparamref name="T"/> ou <typeparamref name="null"/>, caso o registro não for encontrado.</returns>
         public T SelecionarPorId(int id)
         {
-            return repositorio.SelecionarPorId(id);
+            T registro;
+            try
+            {
+                registro = repositorio.SelecionarPorId(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return registro;
         }
 
         /// <summary>
@@ -72,7 +108,17 @@ namespace LocadoraVeiculos.Aplicacao.Shared
         /// <returns>Lista de registros do tipo <typeparamref name="T"/> ou uma lista vazia, caso nenhum registro for encontrado.</returns>
         public List<T> SelecionarTodos()
         {
-            return repositorio.SelecionarTodos();
+            List<T> registros;
+            try
+            {
+                registros = repositorio.SelecionarTodos();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return registros;
         }
 
         /// <summary>
@@ -82,7 +128,17 @@ namespace LocadoraVeiculos.Aplicacao.Shared
         /// <returns>Lista de registros do tipo <typeparamref name="T"/> ou uma lista vazia, caso nenhum registro for encontrado.</returns>
         public List<T> Pesquisar(string texto)
         {
-            return repositorio.Pesquisar(texto);
+            List<T> registrosEncontrados;
+            try
+            {
+                registrosEncontrados = repositorio.Pesquisar(texto);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return registrosEncontrados;
         }
     }
 }

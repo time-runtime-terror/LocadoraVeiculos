@@ -1,8 +1,10 @@
 ﻿using LocadoraVeiculos.Aplicacao.ClienteModule;
 using LocadoraVeiculos.netCore.Dominio.ClienteModule;
 using LocadoraVeiculos.WindowsApp.Shared;
+using log4net;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
@@ -11,6 +13,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
     {
         private readonly ClienteAppService clienteService;
         private readonly TabelaClienteControl tabelaClientes;
+        private static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         public OperacoesCliente(ClienteAppService clienteService)
         {
@@ -24,13 +27,24 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                clienteService.InserirNovo(tela.Cliente);
+                try
+                {
+                    clienteService.InserirNovo(tela.Cliente);
 
-                List<Cliente> clientes = clienteService.SelecionarTodos();
+                    List<Cliente> clientes = clienteService.SelecionarTodos();
 
-                tabelaClientes.AtualizarRegistros(clientes);
+                    tabelaClientes.AtualizarRegistros(clientes);
 
-                Dashboard.Instancia.AtualizarRodape($"Cliente: [{tela.Cliente.Nome}] inserido com sucesso!");
+                    Dashboard.Instancia.AtualizarRodape($"Cliente: [{tela.Cliente.Nome}] inserido com sucesso!");
+                }
+                catch (Exception ex)
+                {
+                    logger.Error(ex.Message, ex);
+
+                    Dashboard.Instancia.AtualizarRodape(ex.Message);
+
+                    return;
+                }
             }
         }
 
@@ -52,13 +66,24 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                clienteService.Editar(id, tela.Cliente);
+                try
+                {
+                    clienteService.Editar(id, tela.Cliente);
 
-                List<Cliente> clientes = clienteService.SelecionarTodos();
+                    List<Cliente> clientes = clienteService.SelecionarTodos();
 
-                tabelaClientes.AtualizarRegistros(clientes);
+                    tabelaClientes.AtualizarRegistros(clientes);
 
-                Dashboard.Instancia.AtualizarRodape($"Cliente: [{tela.Cliente.Nome}] inserido com sucesso");
+                    Dashboard.Instancia.AtualizarRodape($"Cliente: [{tela.Cliente.Nome}] inserido com sucesso");
+                }
+                catch (Exception ex)
+                {
+                    logger.Error(ex.Message, ex);
+
+                    Dashboard.Instancia.AtualizarRodape(ex.Message);
+
+                    return;
+                }
             }
         }
 
