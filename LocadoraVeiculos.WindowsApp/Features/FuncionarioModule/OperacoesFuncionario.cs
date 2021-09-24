@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using LocadoraVeiculos.netCore.Dominio.FuncionarioModule;
 using LocadoraVeiculos.Aplicacao.FuncionarioModule;
+using log4net;
+using System.Reflection;
 
 namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
 {
@@ -12,6 +14,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
         
         private readonly FuncionarioAppService funcionarioAppService = null;
         private readonly TabelaFuncionarioControl tabelaFuncionario = null;
+        private static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         public OperacoesFuncionario(FuncionarioAppService funcionarioApp)
         {
@@ -26,13 +29,24 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                funcionarioAppService.InserirNovo(tela.Funcionario);
+                try
+                {
+                    funcionarioAppService.InserirNovo(tela.Funcionario);
 
-                List<Funcionario> funcionarios = funcionarioAppService.SelecionarTodos();
+                    List<Funcionario> funcionarios = funcionarioAppService.SelecionarTodos();
 
-                tabelaFuncionario.AtualizarRegistros(funcionarios);
+                    tabelaFuncionario.AtualizarRegistros(funcionarios);
 
-                Dashboard.Instancia.AtualizarRodape($"Funcionário: [{tela.Funcionario.Nome}] inserido com sucesso");
+                    Dashboard.Instancia.AtualizarRodape($"Funcionário: [{tela.Funcionario.Nome}] inserido com sucesso");
+                }catch(Exception ex)
+                {
+                    logger.Error(ex.Message, ex);
+
+                    Dashboard.Instancia.AtualizarRodape(ex.Message);
+
+                    return;
+                }
+                
             }
         }
 
@@ -47,7 +61,21 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
                 return;
             }
 
-            Funcionario funcionarioSelecionado = funcionarioAppService.SelecionarPorId(id);
+
+            Funcionario funcionarioSelecionado;
+
+            try
+            {
+                funcionarioSelecionado = funcionarioAppService.SelecionarPorId(id);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message, ex);
+
+                Dashboard.Instancia.AtualizarRodape(ex.Message);
+
+                return;
+            }
 
             TelaCadastrarFuncionario tela = new TelaCadastrarFuncionario();
 
@@ -55,13 +83,22 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                funcionarioAppService.Editar(id, tela.Funcionario);
+                try
+                {
+                    funcionarioAppService.Editar(id, tela.Funcionario);
 
-                List<Funcionario> funcionarios = funcionarioAppService.SelecionarTodos();
+                    List<Funcionario> funcionarios = funcionarioAppService.SelecionarTodos();
 
-                tabelaFuncionario.AtualizarRegistros(funcionarios);
+                    tabelaFuncionario.AtualizarRegistros(funcionarios);
 
-                Dashboard.Instancia.AtualizarRodape($"Tarefa: [{tela.Funcionario.Nome}] editado com sucesso");
+                    Dashboard.Instancia.AtualizarRodape($"Tarefa: [{tela.Funcionario.Nome}] editado com sucesso");
+                }catch(Exception ex)
+                {
+                    logger.Error(ex.Message, ex);
+
+                    Dashboard.Instancia.AtualizarRodape(ex.Message);
+                }
+                
             }
         }
 
@@ -75,27 +112,61 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
+            Funcionario funcionarioSelecionado;
+            try
+            {
+                funcionarioSelecionado = funcionarioAppService.SelecionarPorId(id);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message, ex);
 
-            Funcionario funcionarioSelecionado = funcionarioAppService.SelecionarPorId(id);
+                Dashboard.Instancia.AtualizarRodape(ex.Message);
+
+                return;
+            }
+
+           
 
             if (MessageBox.Show($"Tem certeza que deseja excluir o funcionário: [{funcionarioSelecionado.Nome}] ?",
                 "Exclusão de Funcionários", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                funcionarioAppService.Excluir(id);
 
-                List<Funcionario> funcionarios = funcionarioAppService.SelecionarTodos();
+                try
+                {
+                    funcionarioAppService.Excluir(id);
 
-                tabelaFuncionario.AtualizarRegistros(funcionarios);
+                    List<Funcionario> funcionarios = funcionarioAppService.SelecionarTodos();
 
-               Dashboard.Instancia.AtualizarRodape($"Funcionário: [{funcionarioSelecionado.Nome}] removido com sucesso");
+                    tabelaFuncionario.AtualizarRegistros(funcionarios);
+
+                    Dashboard.Instancia.AtualizarRodape($"Funcionário: [{funcionarioSelecionado.Nome}] removido com sucesso");
+                }
+                catch(Exception ex)
+                {
+                    logger.Error(ex.Message, ex);
+
+                    Dashboard.Instancia.AtualizarRodape(ex.Message);
+                }
+                
             }
         }
 
         public UserControl ObterTabela()
         {
-            List<Funcionario> funcionarios = funcionarioAppService.SelecionarTodos();
+            try
+            {
+                List<Funcionario> funcionarios = funcionarioAppService.SelecionarTodos();
 
-            tabelaFuncionario.AtualizarRegistros(funcionarios);
+                tabelaFuncionario.AtualizarRegistros(funcionarios);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message, ex);
+
+                Dashboard.Instancia.AtualizarRodape(ex.Message);
+            }
+
 
             return tabelaFuncionario;
         }
@@ -112,16 +183,35 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
 
         public void DesagruparRegistros()
         {
-            List<Funcionario> funcionarios = funcionarioAppService.SelecionarTodos();
+            try
+            {
+                List<Funcionario> funcionarios = funcionarioAppService.SelecionarTodos();
 
-            tabelaFuncionario.AtualizarRegistros(funcionarios);
+                tabelaFuncionario.AtualizarRegistros(funcionarios);
+            }catch (Exception ex)
+            {
+                logger.Error(ex.Message, ex);
+
+                Dashboard.Instancia.AtualizarRodape(ex.Message);
+            }
+
+
         }
 
         public void Pesquisar(string text)
         {
-            List<Funcionario> clientesSelecionados = funcionarioAppService.Pesquisar(text);
+            try
+            {
+                List<Funcionario> clientesSelecionados = funcionarioAppService.Pesquisar(text);
 
-            tabelaFuncionario.AtualizarRegistros(clientesSelecionados);
+                tabelaFuncionario.AtualizarRegistros(clientesSelecionados);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message, ex);
+
+                Dashboard.Instancia.AtualizarRodape(ex.Message);
+            }
         }
     }
 }

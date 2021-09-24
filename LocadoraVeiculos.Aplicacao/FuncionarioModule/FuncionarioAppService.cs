@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculos.Aplicacao.Shared;
 using LocadoraVeiculos.netCore.Dominio.FuncionarioModule;
+using System;
 
 namespace LocadoraVeiculos.Aplicacao.FuncionarioModule
 {
@@ -15,7 +16,17 @@ namespace LocadoraVeiculos.Aplicacao.FuncionarioModule
 
         public bool ExisteFuncionario(string usuario, string senha)
         {
-            return funcionarioRepository.ExisteFuncionario(usuario, senha);
+            try
+            {
+                return funcionarioRepository.ExisteFuncionario(usuario, senha);
+
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            
         }
     }
 }
