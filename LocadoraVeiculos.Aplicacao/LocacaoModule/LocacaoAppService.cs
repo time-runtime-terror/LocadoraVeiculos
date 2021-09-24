@@ -26,19 +26,26 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             this.verificadorConexao = verificadorConexao;
         }
 
-        public string RegistrarNovaLocacao(Locacao locacao)
+        public void RegistrarNovaLocacao(Locacao locacao)
         {
             string resultadoValidacao = locacao.Validar();
 
             if (resultadoValidacao == "ESTA_VALIDO")
-                locacaoRepository.InserirNovo(locacao);
+            {
+                try
+                {
+                    locacaoRepository.InserirNovo(locacao);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
             else
-                logger.Warn("Falha ao registrar devolução!");
-
-            return resultadoValidacao;
+               throw new ArgumentException("Falha ao registrar devolução!");
         }
 
-        public string RegistrarDevolucao(Locacao locacao)
+        public void RegistrarDevolucao(Locacao locacao)
         {
             string resultadoValidacao = locacao.Validar();
 
@@ -66,8 +73,6 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             }
             else
                 throw new ArgumentException("Falha ao validar devolução!");
-
-            return resultadoValidacao;
         }
 
         public string Editar(int id, Locacao registro)
@@ -75,37 +80,95 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             string resultadoValidacao = registro.Validar();
 
             if (resultadoValidacao == "ESTA_VALIDO")
-                locacaoRepository.Editar(id, registro);
+            {
+                try
+                {
+                    locacaoRepository.Editar(id, registro);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+            else
+                throw new ArgumentException("Falha ao validar registro.");
 
             return resultadoValidacao;
         }
 
         public bool Excluir(int id)
         {
-            if (locacaoRepository.Excluir(id))
-                return true;
+            try
+            {
+                if (locacaoRepository.Excluir(id))
+                    return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
 
             return false;
         }
 
         public Locacao SelecionarPorId(int id)
         {
-            return locacaoRepository.SelecionarPorId(id);
+            Locacao locacaoSelecionada;
+            try
+            {
+                locacaoSelecionada = locacaoRepository.SelecionarPorId(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return locacaoSelecionada;
         }
 
         public List<Locacao> SelecionarTodos()
         {
-            return locacaoRepository.SelecionarTodos();
+            List<Locacao> locacoesSelecionadas;
+            try
+            {
+                locacoesSelecionadas = locacaoRepository.SelecionarTodos();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return locacoesSelecionadas;
         }
 
         public List<Locacao> SelecionarTodasLocacoesConcluidas()
         {
-            return locacaoRepository.SelecionarTodasLocacoesConcluidas();
+            List<Locacao> locacoesConcluidas;
+            try
+            {
+                locacoesConcluidas = locacaoRepository.SelecionarTodasLocacoesConcluidas();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return locacoesConcluidas;
         }
 
         public List<Locacao> SelecionarTodasLocacoesPendentes()
         {
-            return locacaoRepository.SelecionarTodasLocacoesPendentes();
+            List<Locacao> locacoesPendentes;
+            try
+            {
+                locacoesPendentes = locacaoRepository.SelecionarTodasLocacoesPendentes();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return locacoesPendentes;
         }
 
         public List<Locacao> Pesquisar(string texto)
