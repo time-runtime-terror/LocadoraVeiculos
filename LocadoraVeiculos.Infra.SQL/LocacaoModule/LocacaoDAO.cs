@@ -197,16 +197,25 @@ namespace LocadoraVeiculos.Infra.SQL.LocacaoModule
 
         public void InserirNovo(Locacao locacao)
         {
-            locacao.Id = Db.Insert(sqlInserirLocacao, ObtemParametrosRegistro(locacao));
-
-            foreach (TaxasServicos taxa in locacao.Taxas)
+            try
             {
-                var parametros = new Dictionary<string, object>();
+                locacao.Id = Db.Insert(sqlInserirLocacao, ObtemParametrosRegistro(locacao));
 
-                parametros.Add("ID_LOCACAO", locacao.Id);
-                parametros.Add("ID_TAXASSERVICOS", taxa.Id);
+                foreach (TaxasServicos taxa in locacao.Taxas)
+                {
+                    var parametros = new Dictionary<string, object>();
 
-                Db.Insert(sqlInserirTaxaSelecionada, parametros);
+                    parametros.Add("ID_LOCACAO", locacao.Id);
+                    parametros.Add("ID_TAXASSERVICOS", taxa.Id);
+
+                    Db.Insert(sqlInserirTaxaSelecionada, parametros);
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Add("sqlQuery1", sqlInserirLocacao);
+                ex.Data.Add("sqlQuery2", sqlInserirTaxaSelecionada);
+                throw ex;
             }
         }
 
@@ -219,15 +228,34 @@ namespace LocadoraVeiculos.Infra.SQL.LocacaoModule
             parametros.Add("DEVOLUCAO", devolucao);
             parametros.Add("ID", registro.Id);
 
-            Db.Update(sqlRegistrarDevolucao, parametros);
+            try
+            {
+                Db.Update(sqlRegistrarDevolucao, parametros);
 
-            Db.Delete(sqlExcluirTaxasServicosUsados, AdicionarParametro("ID", registro.Id));
+                Db.Delete(sqlExcluirTaxasServicosUsados, AdicionarParametro("ID", registro.Id));
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Add("sqlQuery1", sqlRegistrarDevolucao);
+                ex.Data.Add("sqlQuery2", sqlExcluirTaxasServicosUsados);
+                throw ex;
+            }
+
         }
 
         public void Editar(int id, Locacao registro)
         {
             registro.Id = id;
-            Db.Update(sqlEditarLocacao, ObtemParametrosRegistro(registro));
+
+            try
+            {
+                Db.Update(sqlEditarLocacao, ObtemParametrosRegistro(registro));
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Add("sqlQuery", sqlEditarLocacao);
+                throw ex;
+            }
         }
 
         public bool Excluir(int id)
@@ -236,9 +264,10 @@ namespace LocadoraVeiculos.Infra.SQL.LocacaoModule
             {
                 Db.Delete(sqlExcluirLocacao, AdicionarParametro("ID", id));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return false;
+                ex.Data.Add("sqlQuery", sqlExcluirLocacao);
+                throw ex;
             }
 
             return true;
@@ -246,27 +275,67 @@ namespace LocadoraVeiculos.Infra.SQL.LocacaoModule
 
         public bool Existe(int id)
         {
-            return Db.Exists(sqlExisteLocacao, AdicionarParametro("ID", id));
+            try
+            {
+                return Db.Exists(sqlExisteLocacao, AdicionarParametro("ID", id));
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Add("sqlQuery", sqlExisteLocacao);
+                throw ex;
+            }
         }
 
         public Locacao SelecionarPorId(int id)
         {
-            return Db.Get(sqlSelecionarLocacaoPorId, ConverterEmRegistro, AdicionarParametro("ID", id));
+            try
+            {
+                return Db.Get(sqlSelecionarLocacaoPorId, ConverterEmRegistro, AdicionarParametro("ID", id));
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Add("sqlQuery", sqlSelecionarLocacaoPorId);
+                throw ex;
+            }
         }
 
         public List<Locacao> SelecionarTodos()
         {
-            return Db.GetAll(sqlSelecionarTodasLocacoes, ConverterEmRegistro);
+            try
+            {
+                return Db.GetAll(sqlSelecionarTodasLocacoes, ConverterEmRegistro);
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Add("sqlQuery", sqlSelecionarTodasLocacoes);
+                throw ex;
+            }
         }
 
         public List<Locacao> SelecionarTodasLocacoesConcluidas()
         {
-            return Db.GetAll(sqlSelecionarTodasLocacoesConcluidas, ConverterEmRegistro);
+            try
+            {
+                return Db.GetAll(sqlSelecionarTodasLocacoesConcluidas, ConverterEmRegistro);
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Add("sqlQuery", sqlSelecionarTodasLocacoesConcluidas);
+                throw ex;
+            }
         }
 
         public List<Locacao> SelecionarTodasLocacoesPendentes()
         {
-            return Db.GetAll(sqlSelecionarTodasLocacoesPendentes, ConverterEmRegistro);
+            try
+            {
+                return Db.GetAll(sqlSelecionarTodasLocacoesPendentes, ConverterEmRegistro);
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Add("sqlQuery", sqlSelecionarTodasLocacoesPendentes);
+                throw ex;
+            }
         }
 
         public List<Locacao> Pesquisar(string texto)

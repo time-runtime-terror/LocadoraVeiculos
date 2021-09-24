@@ -40,10 +40,12 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                try
-                {
-                    locacaoService.RegistrarNovaLocacao(tela.Locacao);
+                logger.Info("Inserindo nova locação...");
 
+                bool conseguiuRegistrar = locacaoService.RegistrarNovaLocacao(tela.Locacao);
+
+                if (conseguiuRegistrar)
+                {
                     List<Locacao> locacoes = locacaoService.SelecionarTodos();
 
                     veiculoService.AtualizarStatusAluguel(tela.Locacao.Veiculo, true);
@@ -53,14 +55,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                     tabelaLocacoes.AtualizarRegistros(locacoes);
 
                     Dashboard.Instancia.AtualizarRodape($"Locação: [{tela.Locacao.Id}] inserida com sucesso!");
-                }
-                catch (Exception ex)
-                {
-                    logger.Error(ex.Message, ex);
 
-                    Dashboard.Instancia.AtualizarRodape(ex.Message);
-
-                    return;
+                    logger.Info($"Locação: [{tela.Locacao.Id}] inserida com sucesso!");
                 }
             }
         }
@@ -75,20 +71,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                 return;
             }
 
-            Locacao locacaoSelecionada;
-
-            try
-            {
-                locacaoSelecionada = locacaoService.SelecionarPorId(id);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message, ex);
-
-                Dashboard.Instancia.AtualizarRodape(ex.Message);
-
-                return;
-            }
+            Locacao locacaoSelecionada = locacaoService.SelecionarPorId(id);
 
             TelaCadastrarLocacaoForm tela = new TelaCadastrarLocacaoForm();
 
@@ -96,10 +79,12 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                try
-                {
-                    locacaoService.Editar(id, tela.Locacao);
+                logger.Info("Editando locação...");
 
+                bool conseguiuEditar = locacaoService.Editar(id, tela.Locacao);
+
+                if (conseguiuEditar)
+                {
                     taxaService.ExcluirTaxaUsada(tela.Locacao);
 
                     taxaService.RegistrarTaxaUsada(tela.Locacao);
@@ -109,12 +94,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                     tabelaLocacoes.AtualizarRegistros(locacoes);
 
                     Dashboard.Instancia.AtualizarRodape($"Locação: [{tela.Locacao.Id}] editada com sucesso!");
-                }
-                catch (Exception ex)
-                {
-                    logger.Error(ex.Message, ex);
 
-                    Dashboard.Instancia.AtualizarRodape(ex.Message);
+                    logger.Info($"Locação: [{tela.Locacao.Id}] editada com sucesso!");
                 }
             }
         }
@@ -129,28 +110,17 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                 return;
             }
 
-            Locacao locacaoSelecionada;
+            Locacao locacaoSelecionada = locacaoService.SelecionarPorId(id);
 
-            try
-            {
-                locacaoSelecionada = locacaoService.SelecionarPorId(id);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message, ex);
-
-                Dashboard.Instancia.AtualizarRodape(ex.Message);
-
-                return;
-            }
-
-            if (MessageBox.Show($"Tem certeza que deseja excluir a locação: [{locacaoSelecionada.Id}] ?",
+            if (MessageBox.Show($"Tem certeza que deseja excluir a locação: [{locacaoSelecionada.Id}]?",
                 "Exclusão de Locações", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                try
-                {
-                    locacaoService.Excluir(id);
+                logger.Info("Excluindo locação...");
+                
+                bool conseguiuExcluir = locacaoService.Excluir(id);
 
+                if (conseguiuExcluir)
+                {
                     taxaService.ExcluirTaxaUsada(locacaoSelecionada);
 
                     List<Locacao> locacoes = locacaoService.SelecionarTodos();
@@ -158,12 +128,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                     tabelaLocacoes.AtualizarRegistros(locacoes);
 
                     Dashboard.Instancia.AtualizarRodape($"Locação: [{locacaoSelecionada.Id}] excluída com sucesso!");
-                }
-                catch (Exception ex)
-                {
-                    logger.Error(ex.Message, ex);
 
-                    Dashboard.Instancia.AtualizarRodape(ex.Message);
+                    logger.Info($"Locação: [{locacaoSelecionada.Id}] excluída com sucesso!");
                 }
             }
         }
@@ -176,27 +142,16 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             {
                 var locacoes = new List<Locacao>();
 
-                try
+                switch (telaFiltro.TipoFiltro)
                 {
-                    switch (telaFiltro.TipoFiltro)
-                    {
-                        case FiltroLocacaoEnum.LocacoesConcluidas:
-                            locacoes = locacaoService.SelecionarTodasLocacoesConcluidas();
-                            break;
-                        case FiltroLocacaoEnum.LocacoesPendentes:
-                            locacoes = locacaoService.SelecionarTodasLocacoesPendentes();
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    logger.Error(ex.Message, ex);
-
-                    Dashboard.Instancia.AtualizarRodape(ex.Message);
-
-                    return;
+                    case FiltroLocacaoEnum.LocacoesConcluidas:
+                        locacoes = locacaoService.SelecionarTodasLocacoesConcluidas();
+                        break;
+                    case FiltroLocacaoEnum.LocacoesPendentes:
+                        locacoes = locacaoService.SelecionarTodasLocacoesPendentes();
+                        break;
+                    default:
+                        break;
                 }
 
                 tabelaLocacoes.AtualizarRegistros(locacoes);
@@ -210,34 +165,16 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
         public void DesagruparRegistros()
         {
-            try
-            {
-                List<Locacao> locacoes = locacaoService.SelecionarTodos();
+            List<Locacao> locacoes = locacaoService.SelecionarTodos();
 
-                tabelaLocacoes.AtualizarRegistros(locacoes);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message, ex);
-
-                Dashboard.Instancia.AtualizarRodape(ex.Message);
-            }
+            tabelaLocacoes.AtualizarRegistros(locacoes);
         }
 
         public UserControl ObterTabela()
         {
-            try
-            {
-                List<Locacao> locacoes = locacaoService.SelecionarTodos();
+            List<Locacao> locacoes = locacaoService.SelecionarTodos();
 
-                tabelaLocacoes.AtualizarRegistros(locacoes);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message, ex);
-
-                Dashboard.Instancia.AtualizarRodape(ex.Message);
-            }
+            tabelaLocacoes.AtualizarRegistros(locacoes);
 
             return tabelaLocacoes;
         }
@@ -252,19 +189,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                 return;
             }
 
-            Locacao locacaoSelecionada;
-            try
-            {
-                locacaoSelecionada = locacaoService.SelecionarPorId(id);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message, ex);
-
-                Dashboard.Instancia.AtualizarRodape(ex.Message);
-
-                return;
-            }
+            Locacao locacaoSelecionada = locacaoService.SelecionarPorId(id);
 
             TelaRegistrarDevolucaoForm tela = new TelaRegistrarDevolucaoForm();
 
@@ -272,10 +197,12 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                try
-                {
-                    locacaoService.RegistrarDevolucao(tela.Locacao);
+                logger.Info("Registrando devolução...");
 
+                string resultadoDevolucao = locacaoService.RegistrarDevolucao(tela.Locacao);
+
+                if (resultadoDevolucao != "ERRO_INSERCAO")
+                {
                     veiculoService.AtualizarQuilometragem(tela.Locacao.Veiculo);
 
                     veiculoService.AtualizarStatusAluguel(tela.Locacao.Veiculo, false);
@@ -286,15 +213,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                     tabelaLocacoes.AtualizarRegistros(locacoes);
 
-                    Dashboard.Instancia.AtualizarRodape($"Devolução da Locação: [{tela.Locacao.Id}] concluída! Recibo da locação foi enviado ao email {tela.Locacao.Cliente.Email}");
-                }
-                catch (Exception ex)
-                {
-                    logger.Error(ex.Message, ex);
+                    Dashboard.Instancia.AtualizarRodape(resultadoDevolucao);
 
-                    Dashboard.Instancia.AtualizarRodape(ex.Message);
-
-                    return;
+                    logger.Info($"ID: [{tela.Locacao.Id}]. {resultadoDevolucao}");
                 }
             }
         }

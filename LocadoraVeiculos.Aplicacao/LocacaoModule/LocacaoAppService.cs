@@ -2,7 +2,6 @@
 using log4net;
 using System;
 using System.Collections.Generic;
-using System.Net.NetworkInformation;
 using System.Reflection;
 
 namespace LocadoraVeiculos.Aplicacao.LocacaoModule
@@ -26,7 +25,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             this.verificadorConexao = verificadorConexao;
         }
 
-        public void RegistrarNovaLocacao(Locacao locacao)
+        public bool RegistrarNovaLocacao(Locacao locacao)
         {
             string resultadoValidacao = locacao.Validar();
 
@@ -38,44 +37,47 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception(ex.Message);
+                    logger.Error("Falha ao tentar registrar locação", ex);
+                    return false;
                 }
             }
-            else
-               throw new ArgumentException("Falha ao registrar devolução!");
+
+            return true;
         }
 
-        public void RegistrarDevolucao(Locacao locacao)
+        public string RegistrarDevolucao(Locacao locacao)
         {
             string resultadoValidacao = locacao.Validar();
 
             if (resultadoValidacao == "ESTA_VALIDO")
             {
-                locacaoRepository.RegistrarDevolucao(locacao);
-
-                string caminhoRecibo = geradorRecibo.GerarRecibo(locacao);
-
-                bool temInternet = verificadorConexao.TemConexaoComInternet();
-
-                if (temInternet)
+                try
                 {
-                    try
+                    locacaoRepository.RegistrarDevolucao(locacao);
+
+                    string caminhoRecibo = geradorRecibo.GerarRecibo(locacao);
+
+                    bool temInternet = verificadorConexao.TemConexaoComInternet();
+
+                    if (temInternet)
                     {
                         notificadorEmail.EnviarEmailAsync(locacao, caminhoRecibo);
+                        resultadoValidacao = $"Devolução concluída com sucesso! O recibo de devolução foi enviado para o email {locacao.Cliente.Email}";
                     }
-                    catch (Exception ex)
-                    {
-                        throw new Exception(ex.Message);
-                    }
+                    else
+                        resultadoValidacao = "Devolução concluída com sucesso! Sem conexão com a internet; o recibo de devolução não foi enviado.";
                 }
-                else
-                    throw new PingException("Não foi possível estabelecer conexão com a internet");
+                catch (Exception ex)
+                {
+                    resultadoValidacao = "ERRO_INSERCAO";
+                    logger.Error("Falha ao tentar registrar devolução", ex);
+                }
             }
-            else
-                throw new ArgumentException("Falha ao validar devolução!");
+
+            return resultadoValidacao;
         }
 
-        public string Editar(int id, Locacao registro)
+        public bool Editar(int id, Locacao registro)
         {
             string resultadoValidacao = registro.Validar();
 
@@ -84,16 +86,15 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
                 try
                 {
                     locacaoRepository.Editar(id, registro);
+                    return true;
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception(ex.Message);
+                    logger.Error("Falha ao tentar editar devolução", ex);
                 }
             }
-            else
-                throw new ArgumentException("Falha ao validar registro.");
 
-            return resultadoValidacao;
+            return false;
         }
 
         public bool Excluir(int id)
@@ -105,7 +106,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                logger.Error("Falha ao tentar excluir devolução", ex);
             }
 
             return false;
@@ -113,62 +114,58 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
         public Locacao SelecionarPorId(int id)
         {
-            Locacao locacaoSelecionada;
             try
             {
-                locacaoSelecionada = locacaoRepository.SelecionarPorId(id);
+                return locacaoRepository.SelecionarPorId(id);
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                logger.Error(ex.Message);
             }
 
-            return locacaoSelecionada;
+            return null;
         }
 
         public List<Locacao> SelecionarTodos()
         {
-            List<Locacao> locacoesSelecionadas;
             try
             {
-                locacoesSelecionadas = locacaoRepository.SelecionarTodos();
+                return locacaoRepository.SelecionarTodos();
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                logger.Error(ex.Message);
             }
 
-            return locacoesSelecionadas;
+            return null;
         }
 
         public List<Locacao> SelecionarTodasLocacoesConcluidas()
         {
-            List<Locacao> locacoesConcluidas;
             try
             {
-                locacoesConcluidas = locacaoRepository.SelecionarTodasLocacoesConcluidas();
+                return locacaoRepository.SelecionarTodasLocacoesConcluidas();
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                logger.Error(ex.Message);
             }
 
-            return locacoesConcluidas;
+            return null;
         }
 
         public List<Locacao> SelecionarTodasLocacoesPendentes()
         {
-            List<Locacao> locacoesPendentes;
             try
             {
-                locacoesPendentes = locacaoRepository.SelecionarTodasLocacoesPendentes();
+                return locacaoRepository.SelecionarTodasLocacoesPendentes();
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                logger.Error(ex.Message);
             }
 
-            return locacoesPendentes;
+            return null;
         }
 
         public List<Locacao> Pesquisar(string texto)
