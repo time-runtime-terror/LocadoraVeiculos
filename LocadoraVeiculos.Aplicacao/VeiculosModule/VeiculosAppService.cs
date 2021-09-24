@@ -1,6 +1,6 @@
 ﻿using LocadoraVeiculos.Aplicacao.Shared;
 using LocadoraVeiculos.netCore.Dominio.VeiculoModule;
-using System.Collections.Generic;
+using System;
 
 namespace LocadoraVeiculos.Aplicacao.VeiculosModule
 {
@@ -15,12 +15,26 @@ namespace LocadoraVeiculos.Aplicacao.VeiculosModule
 
         public void AtualizarQuilometragem(Veiculo veiculo)
         {
-            veiculoRepository.AtualizarQuilometragem(veiculo);
+            try
+            {
+                veiculoRepository.AtualizarQuilometragem(veiculo);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public void AtualizarStatusAluguel(Veiculo veiculo)
         {
-            veiculoRepository.AtualizarStatusAluguel(veiculo);
+            try
+            {
+                veiculoRepository.AtualizarStatusAluguel(veiculo);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }
