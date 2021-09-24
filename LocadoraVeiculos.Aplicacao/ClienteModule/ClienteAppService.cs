@@ -17,8 +17,10 @@ namespace LocadoraVeiculos.Aplicacao.ClienteModule
             clienteRepository = clienteRepo;
         }
 
-        public void AtualizarStatusLocacaoAtiva(Cliente cliente)
+        public void AtualizarStatusLocacaoAtiva(Cliente cliente, bool temLocacao)
         {
+            cliente.TemLocacaoAtiva = temLocacao;
+
             try
             {
                 clienteRepository.AtualizarStatusLocacaoAtiva(cliente);

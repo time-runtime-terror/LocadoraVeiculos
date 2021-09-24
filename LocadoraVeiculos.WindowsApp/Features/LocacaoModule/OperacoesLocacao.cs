@@ -46,13 +46,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                     List<Locacao> locacoes = locacaoService.SelecionarTodos();
 
-                    tela.Locacao.Veiculo.EstaAlugado = true;
+                    veiculoService.AtualizarStatusAluguel(tela.Locacao.Veiculo, true);
 
-                    veiculoService.AtualizarStatusAluguel(tela.Locacao.Veiculo);
-
-                    tela.Locacao.Cliente.TemLocacaoAtiva = true;
-
-                    clienteService.AtualizarStatusLocacaoAtiva(tela.Locacao.Cliente);
+                    clienteService.AtualizarStatusLocacaoAtiva(tela.Locacao.Cliente, true);
 
                     tabelaLocacoes.AtualizarRegistros(locacoes);
 
@@ -282,13 +278,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                     veiculoService.AtualizarQuilometragem(tela.Locacao.Veiculo);
 
-                    tela.Locacao.Veiculo.EstaAlugado = false;
+                    veiculoService.AtualizarStatusAluguel(tela.Locacao.Veiculo, false);
 
-                    veiculoService.AtualizarStatusAluguel(tela.Locacao.Veiculo);
-
-                    tela.Locacao.Cliente.TemLocacaoAtiva = false;
-
-                    clienteService.AtualizarStatusLocacaoAtiva(tela.Locacao.Cliente);
+                    clienteService.AtualizarStatusLocacaoAtiva(tela.Locacao.Cliente, false);
 
                     List<Locacao> locacoes = locacaoService.SelecionarTodos();
 

@@ -25,8 +25,10 @@ namespace LocadoraVeiculos.Aplicacao.VeiculosModule
             }
         }
 
-        public void AtualizarStatusAluguel(Veiculo veiculo)
+        public void AtualizarStatusAluguel(Veiculo veiculo, bool estaAlugado)
         {
+            veiculo.EstaAlugado = estaAlugado;
+
             try
             {
                 veiculoRepository.AtualizarStatusAluguel(veiculo);
