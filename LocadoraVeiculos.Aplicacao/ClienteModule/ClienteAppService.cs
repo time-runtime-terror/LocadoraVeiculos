@@ -2,6 +2,7 @@
 using LocadoraVeiculos.netCore.Dominio.ClienteModule;
 using log4net;
 using log4net.Core;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -27,38 +28,36 @@ namespace LocadoraVeiculos.Aplicacao.ClienteModule
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                Log.Error(ex, "Falha a atualizar status de locação do Cliente Id: {Id}", cliente.Id);
             }
         }
 
         public List<Cliente> SelecionarTodasPessoasFisicas()
         {
-            List<Cliente> pessoasFisicas;
             try
             {
-                pessoasFisicas = clienteRepository.SelecionarTodasPessoasFisicas();
+                return clienteRepository.SelecionarTodasPessoasFisicas();
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                Log.Error(ex, ex.Message);
             }
 
-            return pessoasFisicas;
+            return null;
         }
 
         public List<Cliente> SelecionarTodasPessoasJuridicas()
         {
-            List<Cliente> pessoasJuridicas;
             try
             {
-                pessoasJuridicas = clienteRepository.SelecionarTodasPessoasJuridicas();
+                return clienteRepository.SelecionarTodasPessoasJuridicas();
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                Log.Error(ex, ex.Message);
             }
 
-            return pessoasJuridicas;
+            return null;
         }
     }
 }

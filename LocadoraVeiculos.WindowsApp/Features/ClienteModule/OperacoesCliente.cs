@@ -2,6 +2,7 @@
 using LocadoraVeiculos.netCore.Dominio.ClienteModule;
 using LocadoraVeiculos.WindowsApp.Shared;
 using log4net;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -27,24 +28,15 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                try
-                {
-                    clienteService.InserirNovo(tela.Cliente);
+                Log.Information("Inserindo novo cliente...");
 
-                    List<Cliente> clientes = clienteService.SelecionarTodos();
+                clienteService.InserirNovo(tela.Cliente);
 
-                    tabelaClientes.AtualizarRegistros(clientes);
+                List<Cliente> clientes = clienteService.SelecionarTodos();
 
-                    Dashboard.Instancia.AtualizarRodape($"Cliente: [{tela.Cliente.Nome}] inserido com sucesso!");
-                }
-                catch (Exception ex)
-                {
-                    logger.Error(ex.Message, ex);
+                tabelaClientes.AtualizarRegistros(clientes);
 
-                    Dashboard.Instancia.AtualizarRodape(ex.Message);
-
-                    return;
-                }
+                Dashboard.Instancia.AtualizarRodape($"Cliente: [{tela.Cliente.Nome}] inserido com sucesso!");
             }
         }
 
@@ -66,24 +58,15 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                try
-                {
-                    clienteService.Editar(id, tela.Cliente);
+                Log.Information("Editando cliente...");
 
-                    List<Cliente> clientes = clienteService.SelecionarTodos();
+                clienteService.Editar(id, tela.Cliente);
 
-                    tabelaClientes.AtualizarRegistros(clientes);
+                List<Cliente> clientes = clienteService.SelecionarTodos();
 
-                    Dashboard.Instancia.AtualizarRodape($"Cliente: [{tela.Cliente.Nome}] inserido com sucesso");
-                }
-                catch (Exception ex)
-                {
-                    logger.Error(ex.Message, ex);
+                tabelaClientes.AtualizarRegistros(clientes);
 
-                    Dashboard.Instancia.AtualizarRodape(ex.Message);
-
-                    return;
-                }
+                Dashboard.Instancia.AtualizarRodape($"Cliente: [{tela.Cliente.Nome}] inserido com sucesso");
             }
         }
 
@@ -97,31 +80,24 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
                 return;
             }
 
-            try
+            Cliente clienteSelecionado = clienteService.SelecionarPorId(id);
+
+            if (clienteSelecionado.TemLocacaoAtiva)
             {
-                Cliente clienteSelecionado = clienteService.SelecionarPorId(id);
-
-                if (clienteSelecionado.TemLocacaoAtiva)
-                {
-                    Dashboard.Instancia.AtualizarRodape($"Cliente: [{clienteSelecionado}] não pôde ser excluído pois está em uma locação ativa!");
-                    return;
-                }
-
-                if (MessageBox.Show($"Tem certeza que deseja excluir o cliente: [{clienteSelecionado.Nome}] ?",
-                    "Exclusão de Clientes", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-                {
-                    clienteService.Excluir(id);
-
-                    List<Cliente> clientes = clienteService.SelecionarTodos();
-
-                    tabelaClientes.AtualizarRegistros(clientes);
-                }
+                Dashboard.Instancia.AtualizarRodape($"Cliente: [{clienteSelecionado}] não pôde ser excluído pois está em uma locação ativa!");
+                return;
             }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message, ex);
 
-                Dashboard.Instancia.AtualizarRodape(ex.Message);
+            if (MessageBox.Show($"Tem certeza que deseja excluir o cliente: [{clienteSelecionado.Nome}] ?",
+                "Exclusão de Clientes", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                Log.Information("Excluindo cliente...");
+
+                clienteService.Excluir(id);
+
+                List<Cliente> clientes = clienteService.SelecionarTodos();
+
+                tabelaClientes.AtualizarRegistros(clientes);
             }
         }
 
@@ -129,38 +105,25 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
         {
             FiltroClienteForm telaFiltro = new FiltroClienteForm();
 
-            try
+            if (telaFiltro.ShowDialog() == DialogResult.OK)
             {
-                if (telaFiltro.ShowDialog() == DialogResult.OK)
+                List<Cliente> clientes = new List<Cliente>();
+
+                switch (telaFiltro.TipoFiltro)
                 {
-                    List<Cliente> clientes = new List<Cliente>();
+                    case FiltroClienteEnum.PessoasFisicas:
+                        clientes = clienteService.SelecionarTodasPessoasFisicas();
+                        break;
 
-                    switch (telaFiltro.TipoFiltro)
-                    {
-                        case FiltroClienteEnum.PessoasFisicas:
-                            clientes = clienteService.SelecionarTodasPessoasFisicas();
-                            break;
+                    case FiltroClienteEnum.PessoasJuridicas:
+                        clientes = clienteService.SelecionarTodasPessoasJuridicas();
+                        break;
 
-                        case FiltroClienteEnum.PessoasJuridicas:
-                            clientes = clienteService.SelecionarTodasPessoasJuridicas();
-                            break;
-
-                        default:
-                            break;
-                    }
-
-                    tabelaClientes.AtualizarRegistros(clientes);
+                    default:
+                        break;
                 }
+                tabelaClientes.AtualizarRegistros(clientes);
             }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message, ex);
-
-                Dashboard.Instancia.AtualizarRodape(ex.Message);
-
-                return;
-            }
-   
         }
 
         public void AgruparRegistros()
@@ -170,54 +133,25 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 
         public void DesagruparRegistros()
         {
-            try
-            {
-                var clientes = clienteService.SelecionarTodos();
+            var clientes = clienteService.SelecionarTodos();
 
-                tabelaClientes.AtualizarRegistros(clientes);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message, ex);
-
-                Dashboard.Instancia.AtualizarRodape(ex.Message);
-
-                return;
-            }
+            tabelaClientes.AtualizarRegistros(clientes);
         }
 
         public UserControl ObterTabela()
         {
-            try
-            {
-                List<Cliente> clientes = clienteService.SelecionarTodos();
+            List<Cliente> clientes = clienteService.SelecionarTodos();
 
-                tabelaClientes.AtualizarRegistros(clientes);
-            }
-            catch (Exception ex)
-            {
-                logger.Fatal(ex.Message, ex);
-
-                Dashboard.Instancia.AtualizarRodape(ex.Message);
-            }
+            tabelaClientes.AtualizarRegistros(clientes);
 
             return tabelaClientes;
         }
 
         public void Pesquisar(string text)
         {
-            try
-            {
-                List<Cliente> clientesSelecionados = clienteService.Pesquisar(text);
+            List<Cliente> clientesSelecionados = clienteService.Pesquisar(text);
 
-                tabelaClientes.AtualizarRegistros(clientesSelecionados);
-            }
-            catch (Exception ex)
-            {
-                logger.Fatal(ex.Message, ex);
-
-                Dashboard.Instancia.AtualizarRodape(ex.Message);
-            }
+            tabelaClientes.AtualizarRegistros(clientesSelecionados);
         }
     }
 }

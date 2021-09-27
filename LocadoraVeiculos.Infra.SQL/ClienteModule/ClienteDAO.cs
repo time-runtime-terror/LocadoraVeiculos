@@ -192,28 +192,72 @@ namespace LocadoraVeiculos.Infra.SQL.ClienteModule
             parametros.Add("ID", cliente.Id);
             parametros.Add("TEM_LOCACAO", cliente.TemLocacaoAtiva);
 
-            Db.Update(sqlAtualizarStatusLocacao, parametros);
+            try
+            {
+                Db.Update(sqlAtualizarStatusLocacao, parametros);
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Add("sqlAtualizarStatusLocacao", sqlAtualizarStatusLocacao);
+                ex.Data.Add("parametros", parametros);
+                throw ex;
+            }
         }
 
         public List<Cliente> SelecionarTodasPessoasFisicas()
         {
-            return Db.GetAll(sqlSelecionarTodasPessoasFisicas, ConverterEmRegistro);
+            try
+            {
+                return Db.GetAll(sqlSelecionarTodasPessoasFisicas, ConverterEmRegistro);
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Add("sqlSelecionarTodasPessoasFisicas", sqlSelecionarTodasPessoasFisicas);
+                throw ex;
+            }
         }
 
         public List<Cliente> SelecionarTodasPessoasJuridicas()
         {
-            return Db.GetAll(sqlSelecionarTodasPessoasJuridicas, ConverterEmRegistro);
+            try
+            {
+                return Db.GetAll(sqlSelecionarTodasPessoasJuridicas, ConverterEmRegistro);
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Add("sqlSelecionarTodasPessoasJuridicas", sqlSelecionarTodasPessoasJuridicas);
+                throw ex;
+            }
         }
 
         public void InserirNovo(Cliente registro)
         {
-            registro.Id = Db.Insert(sqlInserirCliente, ObtemParametrosRegistro(registro));
+            try
+            {
+                registro.Id = Db.Insert(sqlInserirCliente, ObtemParametrosRegistro(registro));
+            }
+
+            catch (Exception ex)
+            {
+                ex.Data.Add("sqlInserirCliente", sqlInserirCliente);
+                throw ex;
+            }
         }
 
         public void Editar(int id, Cliente registro)
         {
             registro.Id = id;
-            Db.Update(sqlEditarCliente, ObtemParametrosRegistro(registro));
+
+            try
+            {
+                Db.Update(sqlEditarCliente, ObtemParametrosRegistro(registro));
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Add("sqlEditarCliente", sqlEditarCliente);
+                ex.Data.Add("idCliente", id);
+                throw ex;
+            }
         }
 
         public bool Excluir(int id)
@@ -222,8 +266,10 @@ namespace LocadoraVeiculos.Infra.SQL.ClienteModule
             {
                 Db.Delete(sqlExcluirCliente, AdicionarParametro("ID", id));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                ex.Data.Add("sqlEditarCliente", sqlEditarCliente);
+                ex.Data.Add("idCliente", id);
                 return false;
             }
 
@@ -232,23 +278,57 @@ namespace LocadoraVeiculos.Infra.SQL.ClienteModule
 
         public bool Existe(int id)
         {
-            return Db.Exists(sqlExisteCliente, AdicionarParametro("ID", id));
+            try
+            {
+                return Db.Exists(sqlExisteCliente, AdicionarParametro("ID", id));
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Add("sqlExisteCliente", sqlExisteCliente);
+                ex.Data.Add("idCliente", id);
+                throw ex;
+            }
         }
-
 
         public List<Cliente> Pesquisar(string texto)
         {
-            return Db.GetAll(sqlPesquisarClientes, ConverterEmRegistro, AdicionarParametro("NOME", texto + "%"));
+            try
+            {
+                return Db.GetAll(sqlPesquisarClientes, ConverterEmRegistro, AdicionarParametro("NOME", texto + "%"));
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Add("sqlPesquisarClientes", sqlPesquisarClientes);
+                ex.Data.Add("parametroPesquisa", texto);
+                throw ex;
+            }
         }
 
         public Cliente SelecionarPorId(int id)
         {
-            return Db.Get(sqlSelecionarClientePorId, ConverterEmRegistro, AdicionarParametro("ID", id));
+            try
+            {
+                return Db.Get(sqlSelecionarClientePorId, ConverterEmRegistro, AdicionarParametro("ID", id));
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Add("sqlSelecionarClientePorId", sqlSelecionarClientePorId);
+                ex.Data.Add("idCliente", id);
+                throw ex;
+            }
         }
 
         public List<Cliente> SelecionarTodos()
         {
-            return Db.GetAll(sqlSelecionarTodosClientes, ConverterEmRegistro);
+            try
+            {
+                return Db.GetAll(sqlSelecionarTodosClientes, ConverterEmRegistro);
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Add("sqlSelecionarTodosClientes", sqlSelecionarTodosClientes);
+                throw ex;
+            }
         }
 
         public Dictionary<string, object> ObtemParametrosRegistro(Cliente registro)
