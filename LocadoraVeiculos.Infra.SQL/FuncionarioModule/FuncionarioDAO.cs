@@ -106,13 +106,30 @@ namespace LocadoraVeiculos.Infra.SQL.FuncionarioModule
 
         public void InserirNovo(Funcionario funcionario)
         {
-            funcionario.Id = Db.Insert(sqlInserirFuncionario, ObtemParametrosRegistro(funcionario));
+            try
+            {
+                funcionario.Id = Db.Insert(sqlInserirFuncionario, ObtemParametrosRegistro(funcionario));
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Add("sqlInserirFuncionario", sqlInserirFuncionario);
+                throw ex;
+            }
+
         }
 
         public void Editar(int id, Funcionario funcionario)
         {
             funcionario.Id = id;
-            Db.Update(sqlEditarFuncionario, ObtemParametrosRegistro(funcionario));
+            try
+            {
+                Db.Update(sqlEditarFuncionario, ObtemParametrosRegistro(funcionario));
+            }catch (Exception ex)
+            {
+                ex.Data.Add("sqlEditarFuncionario", sqlEditarFuncionario);
+                throw ex;
+            }
+
         }
 
         public bool Excluir(int id)
@@ -121,9 +138,10 @@ namespace LocadoraVeiculos.Infra.SQL.FuncionarioModule
             {
                 Db.Delete(sqlExcluirFuncionario, AdicionarParametro("ID", id));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return false;
+                ex.Data.Add("sqlExcluirFuncionario", sqlExcluirFuncionario);
+                throw ex;
             }
 
             return true;
@@ -131,18 +149,44 @@ namespace LocadoraVeiculos.Infra.SQL.FuncionarioModule
 
         public bool Existe(int id)
         {
-            return Db.Exists(sqlExisteFuncionario, AdicionarParametro("ID", id));
+            try
+            {
+                return Db.Exists(sqlExisteFuncionario, AdicionarParametro("ID", id));
+            }
+            catch(Exception ex)
+            {
+                ex.Data.Add("sqlExisteFuncionario", sqlExisteFuncionario);
+                throw ex;
+            }
+            
         }
 
 
         public List<Funcionario> SelecionarTodos()
         {
-            return Db.GetAll(sqlSelecionarTodosFuncionarios, ConverterEmRegistro);
+            try
+            {
+                return Db.GetAll(sqlSelecionarTodosFuncionarios, ConverterEmRegistro);
+            }
+            catch(Exception ex)
+            {
+                ex.Data.Add("sqlSelecionarTodosFuncionarios", sqlSelecionarTodosFuncionarios);
+                throw ex;
+            }
+            
         }
 
         public Funcionario SelecionarPorId(int id)
         {
-            return Db.Get(sqlSelecionarFuncionarioPorId, ConverterEmRegistro, AdicionarParametro("ID", id));
+            try
+            {
+                return Db.Get(sqlSelecionarFuncionarioPorId, ConverterEmRegistro, AdicionarParametro("ID", id));
+            }
+            catch(Exception ex)
+            {
+                ex.Data.Add("sqlSelecionarFuncionarioPorId", sqlSelecionarFuncionarioPorId);
+                throw ex;
+            }
         }
 
         public List<Funcionario> Pesquisar(string texto)
@@ -182,7 +226,16 @@ namespace LocadoraVeiculos.Infra.SQL.FuncionarioModule
 
         public bool ExisteFuncionario(string usuario, string senha)
         {
-            return Db.Exists(sqlExisteFuncionarioLogin, AdicionarParametroFuncionario("NOMEUSUARIO", usuario, "SENHA", senha));
+            try
+            {
+                return Db.Exists(sqlExisteFuncionarioLogin, AdicionarParametroFuncionario("NOMEUSUARIO", usuario, "SENHA", senha));
+            }
+            catch(Exception ex)
+            {
+                ex.Data.Add("sqlExisteFuncionarioLogin", sqlExisteFuncionarioLogin);
+                throw ex;
+            }
+            
         }
 
         public Dictionary<string, object> AdicionarParametroFuncionario(string campoUsuario, object valorUsuario, string campoSenha, object valorSenha)
