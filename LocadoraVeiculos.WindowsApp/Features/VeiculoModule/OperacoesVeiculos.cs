@@ -7,6 +7,7 @@ using LocadoraVeiculos.Aplicacao.VeiculosModule;
 using log4net;
 using System.Reflection;
 using System;
+using Serilog;
 
 namespace LocadoraVeiculos.WindowsApp.Feature.VeiculoModule
 {
@@ -14,7 +15,6 @@ namespace LocadoraVeiculos.WindowsApp.Feature.VeiculoModule
     {
         private readonly VeiculoAppService veiculosService = null;
         private readonly TabelaVeiculosControl tabelaVeiculo = null;
-        private static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         public OperacoesVeiculos(VeiculoAppService veiculosAppService)
         {
@@ -28,28 +28,21 @@ namespace LocadoraVeiculos.WindowsApp.Feature.VeiculoModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                try
-                {
-                    veiculosService.InserirNovo(tela.Veiculo);
+                Log.Information("Inserindo veiculo...");
 
-                    List<Veiculo> veiculos = veiculosService.SelecionarTodos();
+                veiculosService.InserirNovo(tela.Veiculo);
 
-                    tabelaVeiculo.AtualizarRegistros();
+                List<Veiculo> veiculos = veiculosService.SelecionarTodos();
 
-                    Dashboard.Instancia.AtualizarRodape($"Veículo: [{tela.Veiculo.Modelo}] inserido com sucesso");
-                }
-                catch (Exception ex)
-                {
-                    logger.Error(ex.Message);
+                tabelaVeiculo.AtualizarRegistros();
 
-                    Dashboard.Instancia.AtualizarRodape(ex.Message);
-                }
+                Dashboard.Instancia.AtualizarRodape($"Veículo: [{tela.Veiculo.Modelo}] inserido com sucesso");
             }
         }
 
         public void EditarRegistro()
         {
-            int id = tabelaVeiculo.ObtemIdSelecionado();
+            int id = tabelaVeiculo.ObtemIdSelecionado();            
 
             if (id == 0)
             {
@@ -58,29 +51,23 @@ namespace LocadoraVeiculos.WindowsApp.Feature.VeiculoModule
                 return;
             }
 
-            try
+            Veiculo veiculoSelecionado = veiculosService.SelecionarPorId(id);
+
+            TelaCadastrarVeiculos tela = new TelaCadastrarVeiculos();
+
+            tela.Veiculo = veiculoSelecionado;
+
+            if (tela.ShowDialog() == DialogResult.OK)
             {
-                Veiculo veiculoSelecionado = veiculosService.SelecionarPorId(id);
+                Log.Information("Editando veiculo...");
 
-                TelaCadastrarVeiculos tela = new TelaCadastrarVeiculos();
+                veiculosService.Editar(id, tela.Veiculo);
 
-                tela.Veiculo = veiculoSelecionado;
+                tabelaVeiculo.AtualizarRegistros();
 
-                if (tela.ShowDialog() == DialogResult.OK)
-                {
-                    veiculosService.Editar(id, tela.Veiculo);
-
-                    tabelaVeiculo.AtualizarRegistros();
-
-                    Dashboard.Instancia.AtualizarRodape($"Veículo: [{tela.Veiculo.Modelo}] editado com sucesso");
-                }
+                Dashboard.Instancia.AtualizarRodape($"Veículo: [{tela.Veiculo.Modelo}] editado com sucesso");
             }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message, ex);
-
-                Dashboard.Instancia.AtualizarRodape(ex.Message);
-            }
+           
         }
 
         public void ExcluirRegistro()
@@ -92,52 +79,35 @@ namespace LocadoraVeiculos.WindowsApp.Feature.VeiculoModule
                 MessageBox.Show("Selecione um veiculo para poder excluir!", "Exclusão de Veiculos",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
-            }
+            }   Veiculo veiculoSelecionado = veiculosService.SelecionarPorId(id);
 
-            try
+            if (veiculoSelecionado.EstaAlugado)
             {
-                Veiculo veiculoSelecionado = veiculosService.SelecionarPorId(id);
-
-                if (veiculoSelecionado.EstaAlugado)
-                {
-                    Dashboard.Instancia.AtualizarRodape($"Veículo: [{veiculoSelecionado.Modelo}] não pôde ser excluído pois está alugado!");
-                    return;
-                }
-
-                if (MessageBox.Show($"Tem certeza que deseja excluir o Veiculo: [{veiculoSelecionado.Id}] ?",
-                    "Exclusão de Veiculos", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-                {
-                    veiculosService.Excluir(id);
-
-                    List<Veiculo> veiculos = veiculosService.SelecionarTodos();
-
-                    tabelaVeiculo.AtualizarRegistros();
-
-                    Dashboard.Instancia.AtualizarRodape($"Veículo: [{veiculoSelecionado.Modelo}] removido com sucesso");
-                }
+                Dashboard.Instancia.AtualizarRodape($"Veículo: [{veiculoSelecionado.Modelo}] não pôde ser excluído pois está alugado!");
+                return;
             }
-            catch (Exception ex)
+
+            if (MessageBox.Show($"Tem certeza que deseja excluir o Veiculo: [{veiculoSelecionado.Id}] ?",
+                "Exclusão de Veiculos", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                logger.Error(ex.Message, ex);
+                Log.Information("Excluindo veiculo...");
 
-                Dashboard.Instancia.AtualizarRodape(ex.Message);
+                veiculosService.Excluir(id);
+
+                List<Veiculo> veiculos = veiculosService.SelecionarTodos();
+
+                tabelaVeiculo.AtualizarRegistros();
+
+                Dashboard.Instancia.AtualizarRodape($"Veículo: [{veiculoSelecionado.Modelo}] removido com sucesso");
             }
+            
         }
 
         public UserControl ObterTabela()
         {
-            try
-            {
-                List<Veiculo> veiculos = veiculosService.SelecionarTodos();
+            List<Veiculo> veiculos = veiculosService.SelecionarTodos();
 
-                tabelaVeiculo.AtualizarRegistros();
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message, ex);
-
-                Dashboard.Instancia.AtualizarRodape(ex.Message);
-            }
+            tabelaVeiculo.AtualizarRegistros();            
 
             return tabelaVeiculo;
         }
@@ -146,33 +116,16 @@ namespace LocadoraVeiculos.WindowsApp.Feature.VeiculoModule
         {
             AgrupamentoVeiculosForm telaFiltro = new AgrupamentoVeiculosForm();
 
-            try
+            if (telaFiltro.ShowDialog() == DialogResult.OK)
             {
-                if (telaFiltro.ShowDialog() == DialogResult.OK)
-                {
-                    tabelaVeiculo.AgruparVeiculos(telaFiltro.TipoAgrupamento);
-                }
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message, ex);
-
-                Dashboard.Instancia.AtualizarRodape(ex.Message);
-            }
+                tabelaVeiculo.AgruparVeiculos(telaFiltro.TipoAgrupamento);
+            }        
+                
         }
 
         public void DesagruparRegistros()
         {
-            try
-            {
-                tabelaVeiculo.DesagruparVeiculos();
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message, ex);
-
-                Dashboard.Instancia.AtualizarRodape(ex.Message);
-            }
+            tabelaVeiculo.DesagruparVeiculos();          
         }
 
         public void FiltrarRegistros()
@@ -182,18 +135,9 @@ namespace LocadoraVeiculos.WindowsApp.Feature.VeiculoModule
 
         public void Pesquisar(string text)
         {
-            try
-            {
-                List<Veiculo> veiculosEncontrados = veiculosService.Pesquisar(text);
+            List<Veiculo> veiculosEncontrados = veiculosService.Pesquisar(text);
 
-                tabelaVeiculo.AtualizarRegistros(veiculosEncontrados);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message, ex);
-
-                Dashboard.Instancia.AtualizarRodape(ex.Message);
-            }
+            tabelaVeiculo.AtualizarRegistros(veiculosEncontrados);
         }
     }
 }

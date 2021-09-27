@@ -143,14 +143,32 @@ namespace LocadoraVeiculos.Infra.SQL.VeiculosModule
         }
 
         public void InserirNovo(Veiculo registro)
-        {          
-           registro.Id = Db.Insert(sqlInserirVeiculo, ObtemParametrosRegistro(registro));      
+        {                 
+            try
+            {
+                registro.Id = Db.Insert(sqlInserirVeiculo, ObtemParametrosRegistro(registro));
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Add("sqlInserirVeiculo", sqlInserirVeiculo);
+                throw ex;
+            }
         }
 
         public void Editar(int id, Veiculo registro)
         {
-             registro.Id = id;
+            registro.Id = id;
+
+            try
+            {
                 Db.Update(sqlEditarVeiculo, ObtemParametrosRegistro(registro));
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Add("sqlEditarVeiculo", sqlEditarVeiculo);
+                ex.Data.Add("idVeiculo", id);
+                throw ex;
+            }
         }
 
         public void AtualizarQuilometragem(Veiculo veiculo)
@@ -178,27 +196,55 @@ namespace LocadoraVeiculos.Infra.SQL.VeiculosModule
             {
                 Db.Delete(sqlExcluirVeiculo, AdicionarParametro("ID", id));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return false;
+                ex.Data.Add("sqlExcluirVeiculo", sqlExcluirVeiculo);
+                ex.Data.Add("idVeiculo", id);
+                throw ex;
             }
 
             return true;
         }
 
         public bool Existe(int id)
-        {
-            return Db.Exists(sqlExisteTarefa, AdicionarParametro("ID", id));
+        {            
+            try
+            {
+                return Db.Exists(sqlExisteTarefa, AdicionarParametro("ID", id));
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Add("sqlExisteTarefa", sqlExisteTarefa);
+                ex.Data.Add("idVeiculo", id);
+                throw ex;
+            }
         }
 
         public List<Veiculo> SelecionarTodos()
-        {
-            return Db.GetAll(sqlSelecionarTodosVeiculos, ConverterEmRegistro);
+        {            
+            try
+            {
+                return Db.GetAll(sqlSelecionarTodosVeiculos, ConverterEmRegistro);
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Add("sqlSelecionarTodosVeiculos", sqlSelecionarTodosVeiculos);
+                throw ex;
+            }
         }
 
         public Veiculo SelecionarPorId(int id)
-        {
-            return Db.Get(sqlSelecionarVeiculoPorId, ConverterEmRegistro, AdicionarParametro("ID", id));
+        {            
+            try
+            {
+                return Db.Get(sqlSelecionarVeiculoPorId, ConverterEmRegistro, AdicionarParametro("ID", id));
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Add("sqlSelecionarVeiculoPorId", sqlSelecionarVeiculoPorId);
+                ex.Data.Add("idVeiculo", id);
+                throw ex;
+            }
         }
 
         public List<Veiculo> Pesquisar(string modelo)
