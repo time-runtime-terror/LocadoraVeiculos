@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculos.Aplicacao.Shared;
 using LocadoraVeiculos.netCore.Dominio.VeiculoModule;
+using Serilog;
 using System;
 
 namespace LocadoraVeiculos.Aplicacao.VeiculosModule
@@ -21,7 +22,7 @@ namespace LocadoraVeiculos.Aplicacao.VeiculosModule
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                Log.Error(ex, "Falha ao tentar atualizar quilometragem do Veiculo id:{id}", veiculo.Id);
             }
         }
 
@@ -35,7 +36,7 @@ namespace LocadoraVeiculos.Aplicacao.VeiculosModule
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                Log.Error(ex, "Falha ao tentar atualizar status do aluguel do Veiculo id:{id}", veiculo.Id);
             }
         }
     }
