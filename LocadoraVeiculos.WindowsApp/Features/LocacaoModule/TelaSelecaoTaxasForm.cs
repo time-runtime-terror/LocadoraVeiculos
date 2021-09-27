@@ -60,7 +60,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             //        }
             //    }
             //}
-
             
         }
 
