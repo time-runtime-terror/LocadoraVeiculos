@@ -2,6 +2,8 @@
 using LocadoraVeiculos.netCore.Infra.SQL.Shared;
 using log4net;
 using log4net.Config;
+using Serilog;
+using Serilog.Events;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -143,7 +145,9 @@ namespace LocadoraVeiculos.WindowsApp
 
             ObterPrimeiroGrupoAutomoveis();
 
-            LoggerInit.ConfigurarLogger();
+            SerilogInit.ConfigurarLogger();
+
+            Log.Information("Logando através do serilog");
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

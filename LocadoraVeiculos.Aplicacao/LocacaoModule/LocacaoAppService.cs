@@ -1,8 +1,7 @@
 ﻿using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
-using log4net;
+using Serilog;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 
 namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 {
@@ -12,8 +11,6 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
         private readonly IGeradorRecibo geradorRecibo;
         private readonly INotificadorEmail notificadorEmail;
         private readonly IVerificadorConexao verificadorConexao;
-        private static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-
         public LocacaoAppService(ILocacaoRepository locacaoRepository, 
             IGeradorRecibo geradorRecibo,
             INotificadorEmail notificadorEmail,
@@ -33,11 +30,12 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             {
                 try
                 {
-                    locacaoRepository.InserirNovo(locacao);
+                    //locacaoRepository.InserirNovo(locacao);
+                    throw new Exception();
                 }
                 catch (Exception ex)
                 {
-                    logger.Error("Falha ao tentar registrar locação", ex);
+                    Log.Error(ex, "Falha ao tentar registrar locação");
                     return false;
                 }
             }
@@ -70,7 +68,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
                 catch (Exception ex)
                 {
                     resultadoValidacao = "ERRO_INSERCAO";
-                    logger.Error("Falha ao tentar registrar devolução", ex);
+                    Log.Error(ex, "Falha ao tentar registrar devolução");
                 }
             }
 
@@ -90,7 +88,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
                 }
                 catch (Exception ex)
                 {
-                    logger.Error("Falha ao tentar editar devolução", ex);
+                    Log.Error(ex, "Falha ao tentar editar devolução");
                 }
             }
 
@@ -106,7 +104,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             }
             catch (Exception ex)
             {
-                logger.Error("Falha ao tentar excluir devolução", ex);
+                Log.Error(ex, "Falha ao tentar excluir devolução");
             }
 
             return false;
@@ -120,7 +118,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             }
             catch (Exception ex)
             {
-                logger.Error(ex.Message);
+                Log.Error(ex.Message);
             }
 
             return null;
@@ -134,7 +132,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             }
             catch (Exception ex)
             {
-                logger.Error(ex.Message);
+                Log.Error(ex.Message);
             }
 
             return null;
@@ -148,7 +146,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             }
             catch (Exception ex)
             {
-                logger.Error(ex.Message);
+                Log.Error(ex.Message);
             }
 
             return null;
@@ -162,7 +160,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             }
             catch (Exception ex)
             {
-                logger.Error(ex.Message);
+                Log.Error(ex.Message);
             }
 
             return null;

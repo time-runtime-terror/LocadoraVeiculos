@@ -5,10 +5,9 @@ using LocadoraVeiculos.Aplicacao.VeiculosModule;
 using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
 using LocadoraVeiculos.WindowsApp.Features.DevolucaoModule;
 using LocadoraVeiculos.WindowsApp.Shared;
-using log4net;
+using Serilog;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
@@ -22,8 +21,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
         private readonly TabelaLocacaoControl tabelaLocacoes;
 
-        private static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-
         public OperacoesLocacao(LocacaoAppService locacaoS, TaxasServicosAppService taxaS, VeiculoAppService veiculoS, ClienteAppService clienteS)
         {
             locacaoService = locacaoS;
@@ -32,6 +29,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             clienteService = clienteS;
 
             tabelaLocacoes = new TabelaLocacaoControl();
+            Log.Information("Atribuindo OperacoesLocacao ao dashboard");
         }
 
         public void InserirNovoRegistro()
@@ -40,7 +38,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                logger.Info("Inserindo nova locação...");
+                Log.Information("Inserindo nova locação...");
 
                 bool conseguiuRegistrar = locacaoService.RegistrarNovaLocacao(tela.Locacao);
 
@@ -56,7 +54,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                     Dashboard.Instancia.AtualizarRodape($"Locação: [{tela.Locacao.Id}] inserida com sucesso!");
 
-                    logger.Info($"Locação: [{tela.Locacao.Id}] inserida com sucesso!");
+                    Log.Information($"Locação: [{tela.Locacao.Id}] inserida com sucesso!");
                 }
             }
         }
@@ -79,7 +77,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                logger.Info("Editando locação...");
+                Log.Information("Editando locação...");
 
                 bool conseguiuEditar = locacaoService.Editar(id, tela.Locacao);
 
@@ -95,7 +93,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                     Dashboard.Instancia.AtualizarRodape($"Locação: [{tela.Locacao.Id}] editada com sucesso!");
 
-                    logger.Info($"Locação: [{tela.Locacao.Id}] editada com sucesso!");
+                    Log.Information($"Locação: [{tela.Locacao.Id}] editada com sucesso!");
                 }
             }
         }
@@ -115,7 +113,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             if (MessageBox.Show($"Tem certeza que deseja excluir a locação: [{locacaoSelecionada.Id}]?",
                 "Exclusão de Locações", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                logger.Info("Excluindo locação...");
+                Log.Information("Excluindo locação...");
                 
                 bool conseguiuExcluir = locacaoService.Excluir(id);
 
@@ -129,7 +127,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                     Dashboard.Instancia.AtualizarRodape($"Locação: [{locacaoSelecionada.Id}] excluída com sucesso!");
 
-                    logger.Info($"Locação: [{locacaoSelecionada.Id}] excluída com sucesso!");
+                    Log.Information($"Locação: [{locacaoSelecionada.Id}] excluída com sucesso!");
                 }
             }
         }
@@ -197,7 +195,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                logger.Info("Registrando devolução...");
+                Log.Information("Registrando devolução...");
 
                 string resultadoDevolucao = locacaoService.RegistrarDevolucao(tela.Locacao);
 
@@ -215,7 +213,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                     Dashboard.Instancia.AtualizarRodape(resultadoDevolucao);
 
-                    logger.Info($"ID: [{tela.Locacao.Id}]. {resultadoDevolucao}");
+                    Log.Information($"ID: [{tela.Locacao.Id}]. {resultadoDevolucao}");
                 }
             }
         }
