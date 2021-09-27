@@ -1,9 +1,6 @@
 ﻿using LocadoraVeiculos.Infra.Logging;
 using LocadoraVeiculos.netCore.Infra.SQL.Shared;
-using log4net;
-using log4net.Config;
 using Serilog;
-using Serilog.Events;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -137,21 +134,26 @@ namespace LocadoraVeiculos.WindowsApp
         [STAThread]
         static void Main()
         {
-            ObterLoginAdmin();
-
-            ObterPrimeiroCliente();
-
-            ObterPrimeiraTaxa();
-
-            ObterPrimeiroGrupoAutomoveis();
-
+            Log.Debug("Configurando Serilog...");
             SerilogInit.ConfigurarLogger();
 
-            Log.Information("Logando através do serilog");
+            Log.Debug("Serilog configurado. Criando registros básicos...");
+            ObterLoginAdmin();
+            ObterPrimeiroCliente();
+            ObterPrimeiraTaxa();
+            ObterPrimeiroGrupoAutomoveis();
 
+            Log.Debug("Registros básicos criados. Executando aplicação...");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm());
+            try
+            {
+                Application.Run(new LoginForm());
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal(ex, "Houve um erro fatal, por favor contate o suporte!");
+            }
         }
 
         #region Métodos de setup inicial das tabelas

@@ -24,6 +24,8 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
         public bool RegistrarNovaLocacao(Locacao locacao)
         {
+            Log.Debug("Registrando nova locação do Cliente: {Cliente}", locacao.Cliente);
+
             string resultadoValidacao = locacao.Validar();
 
             if (resultadoValidacao == "ESTA_VALIDO")
@@ -35,7 +37,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex, "Falha ao tentar registrar locação");
+                    Log.Error(ex, "Falha ao tentar registrar locação do Cliente: {Cliente}", locacao.Cliente);
                     return false;
                 }
             }
@@ -45,6 +47,8 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
         public string RegistrarDevolucao(Locacao locacao)
         {
+            Log.Debug("Registrando devolução do Cliente: {Cliente}", locacao.Cliente);
+
             string resultadoValidacao = locacao.Validar();
 
             if (resultadoValidacao == "ESTA_VALIDO")
@@ -68,7 +72,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
                 catch (Exception ex)
                 {
                     resultadoValidacao = "ERRO_INSERCAO";
-                    Log.Error(ex, "Falha ao tentar registrar devolução");
+                    Log.Error(ex, "Falha ao tentar registrar devolução do Cliente: {Cliente}", locacao.Cliente);
                 }
             }
 
@@ -77,6 +81,8 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
         public bool Editar(int id, Locacao registro)
         {
+            Log.Debug("Editando locação Id: {Id}", id);
+
             string resultadoValidacao = registro.Validar();
 
             if (resultadoValidacao == "ESTA_VALIDO")
@@ -88,7 +94,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex, "Falha ao tentar editar devolução");
+                    Log.Error(ex, "Falha ao tentar editar devolução do Cliente: {Cliente}", registro.Cliente);
                 }
             }
 
@@ -97,6 +103,8 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
         public bool Excluir(int id)
         {
+            Log.Debug("Excluindo locação Id: {Id}", id);
+
             try
             {
                 if (locacaoRepository.Excluir(id))
@@ -104,7 +112,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "Falha ao tentar excluir devolução");
+                Log.Error(ex, "Falha ao tentar excluir locação Id: {Id}", id);
             }
 
             return false;
@@ -112,6 +120,8 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
         public Locacao SelecionarPorId(int id)
         {
+            Log.Debug("Selecionando locação Id: {Id}", id);
+
             try
             {
                 return locacaoRepository.SelecionarPorId(id);
@@ -126,6 +136,8 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
         public List<Locacao> SelecionarTodos()
         {
+            Log.Debug("Selecionando todas as locações");
+
             try
             {
                 return locacaoRepository.SelecionarTodos();
@@ -140,6 +152,8 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
         public List<Locacao> SelecionarTodasLocacoesConcluidas()
         {
+            Log.Debug("Selecionando todas as locações concluídas");
+
             try
             {
                 return locacaoRepository.SelecionarTodasLocacoesConcluidas();
@@ -154,6 +168,8 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
         public List<Locacao> SelecionarTodasLocacoesPendentes()
         {
+            Log.Debug("Selecionando todas as locações pendentes");
+
             try
             {
                 return locacaoRepository.SelecionarTodasLocacoesPendentes();

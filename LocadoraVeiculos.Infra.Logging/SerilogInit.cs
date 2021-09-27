@@ -1,5 +1,6 @@
 ﻿using Serilog;
 using Serilog.Events;
+using Serilog.Exceptions;
 
 namespace LocadoraVeiculos.Infra.Logging
 {
@@ -8,6 +9,11 @@ namespace LocadoraVeiculos.Infra.Logging
         public static void ConfigurarLogger()
         {
             Log.Logger = new LoggerConfiguration()
+                .Enrich.FromLogContext()
+                .Enrich.WithExceptionDetails()
+                .Enrich.WithEnvironmentUserName()
+                .Enrich.WithThreadId()
+                .Enrich.WithThreadName()
                 .WriteTo.File("info.log",
                     rollingInterval: RollingInterval.Day,
                     restrictedToMinimumLevel: LogEventLevel.Debug)
