@@ -63,9 +63,13 @@ namespace LocadoraVeiculos.Infra.PDF.LocacaoModule
 
             string pastaTemp = System.IO.Path.GetTempPath();
 
-            document.Draw($"{pastaTemp}reciboLocacao.pdf");
+            var dataAtual = System.DateTime.Now.Ticks;
 
-            return $"{pastaTemp}reciboLocacao.pdf";
+            string nomeArquivo = $"{pastaTemp}reciboLocacao{locacao.Id}-{dataAtual}.pdf";
+
+            document.Draw(nomeArquivo);
+
+            return nomeArquivo;
         }
 
         #region Métodos privados

@@ -135,7 +135,7 @@ namespace LocadoraVeiculos.WindowsApp
         static void Main()
         {
             Log.Debug("Configurando Serilog...");
-            LocadoraLog.ConfigurarLogger();
+            LocadoraLog.CriarLogger();
 
             Log.Debug("Serilog configurado. Criando registros básicos...");
             ObterLoginAdmin();
