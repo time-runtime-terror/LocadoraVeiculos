@@ -8,6 +8,7 @@ using log4net;
 using System.Reflection;
 using System;
 using Serilog;
+using System.Diagnostics;
 
 namespace LocadoraVeiculos.WindowsApp.Feature.VeiculoModule
 {
@@ -29,6 +30,7 @@ namespace LocadoraVeiculos.WindowsApp.Feature.VeiculoModule
             if (tela.ShowDialog() == DialogResult.OK)
             {
                 Log.Information("Inserindo veiculo...");
+                Stopwatch watch = Stopwatch.StartNew();
 
                 veiculosService.InserirNovo(tela.Veiculo);
 
@@ -37,6 +39,10 @@ namespace LocadoraVeiculos.WindowsApp.Feature.VeiculoModule
                 tabelaVeiculo.AtualizarRegistros();
 
                 Dashboard.Instancia.AtualizarRodape($"Veículo: [{tela.Veiculo.Modelo}] inserido com sucesso");
+
+                watch.Stop();
+
+                Log.Information("Veiculo: [{idVeiculo}] inserido com sucesso! ({Ms}ms)", tela.Veiculo.Id, watch.ElapsedMilliseconds);
             }
         }
 
@@ -61,11 +67,18 @@ namespace LocadoraVeiculos.WindowsApp.Feature.VeiculoModule
             {
                 Log.Information("Editando veiculo...");
 
+                Stopwatch watch = Stopwatch.StartNew();
+
                 veiculosService.Editar(id, tela.Veiculo);
 
                 tabelaVeiculo.AtualizarRegistros();
 
                 Dashboard.Instancia.AtualizarRodape($"Veículo: [{tela.Veiculo.Modelo}] editado com sucesso");
+
+                watch.Stop();
+
+                Log.Information("Veiculo: [{idVeiculo}] editado com sucesso! ({Ms}ms)", tela.Veiculo.Id, watch.ElapsedMilliseconds);
+
             }
            
         }
@@ -92,6 +105,8 @@ namespace LocadoraVeiculos.WindowsApp.Feature.VeiculoModule
             {
                 Log.Information("Excluindo veiculo...");
 
+                Stopwatch watch = Stopwatch.StartNew();
+
                 veiculosService.Excluir(id);
 
                 List<Veiculo> veiculos = veiculosService.SelecionarTodos();
@@ -99,6 +114,11 @@ namespace LocadoraVeiculos.WindowsApp.Feature.VeiculoModule
                 tabelaVeiculo.AtualizarRegistros();
 
                 Dashboard.Instancia.AtualizarRodape($"Veículo: [{veiculoSelecionado.Modelo}] removido com sucesso");
+
+                watch.Stop();
+
+                Log.Information("Veiculo: [{idVeiculo}] excluido com sucesso! ({Ms}ms)", id, watch.ElapsedMilliseconds);
+
             }
             
         }
