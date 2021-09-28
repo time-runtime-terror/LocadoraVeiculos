@@ -1,14 +1,23 @@
 ﻿using Serilog;
+using Serilog.Core;
 using Serilog.Events;
 using Serilog.Exceptions;
 
 namespace LocadoraVeiculos.Infra.Logging
 {
-    public static class SerilogInit
+    public static class LocadoraLog
     {
-        public static void ConfigurarLogger()
+        private static LoggingLevelSwitch LevelSwitch { get; set; } = new LoggingLevelSwitch();
+
+        static LocadoraLog()
+        {
+            LevelSwitch.MinimumLevel = LogEventLevel.Information;
+        }
+
+        public static void CriarLogger()
         {
             Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.ControlledBy(LevelSwitch)
                 .Enrich.FromLogContext()
                 .Enrich.WithExceptionDetails()
                 .Enrich.WithEnvironmentUserName()
@@ -21,8 +30,14 @@ namespace LocadoraVeiculos.Infra.Logging
                     rollingInterval: RollingInterval.Day,
                     restrictedToMinimumLevel: LogEventLevel.Warning)
                 .WriteTo.Seq("http://20.195.229.236:5341",
-                    restrictedToMinimumLevel: LogEventLevel.Information)
+                    apiKey: "7vhi2xy0pSo6lsVGHzi2",
+                    controlLevelSwitch: LevelSwitch)
                 .CreateLogger();
+        }
+
+        public static void ConfigurarNivel(LogEventLevel nivel)
+        {
+            LevelSwitch.MinimumLevel = nivel;
         }
     }
 }

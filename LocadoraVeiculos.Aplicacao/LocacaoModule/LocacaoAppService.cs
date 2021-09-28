@@ -1,5 +1,7 @@
-﻿using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
+﻿using LocadoraVeiculos.Infra.Logging;
+using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
 using Serilog;
+using Serilog.Events;
 using System;
 using System.Collections.Generic;
 
