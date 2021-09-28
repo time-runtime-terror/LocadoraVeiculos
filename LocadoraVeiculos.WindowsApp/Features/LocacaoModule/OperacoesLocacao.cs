@@ -166,9 +166,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                         break;
                 }
 
-                watch.Stop();
-
                 tabelaLocacoes.AtualizarRegistros(locacoes);
+
+                watch.Stop();
 
                 Log.ForContext("TipoFiltro", telaFiltro.TipoFiltro).Information("Locação: [{numeroRegistros}] registros filtrados carregados na tabela. ({Ms}ms)", locacoes.Count, watch.ElapsedMilliseconds);
             }
