@@ -150,6 +150,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             if (telaFiltro.ShowDialog() == DialogResult.OK)
             {
+                Stopwatch watch = Stopwatch.StartNew();
+
                 var locacoes = new List<Locacao>();
 
                 switch (telaFiltro.TipoFiltro)
@@ -164,7 +166,11 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                         break;
                 }
 
+                watch.Stop();
+
                 tabelaLocacoes.AtualizarRegistros(locacoes);
+
+                Log.ForContext("TipoFiltro", telaFiltro.TipoFiltro).Information("Locação: [{numeroRegistros}] registros filtrados carregados na tabela. ({Ms}ms)", locacoes.Count, watch.ElapsedMilliseconds);
             }
         }
 
@@ -175,9 +181,15 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
         public void DesagruparRegistros()
         {
+            Stopwatch watch = Stopwatch.StartNew();
+
             List<Locacao> locacoes = locacaoService.SelecionarTodos();
 
             tabelaLocacoes.AtualizarRegistros(locacoes);
+
+            watch.Stop();
+
+            Log.Information("Locação: [{numeroRegistros}] registros desagrupados carregados na tabela. ({Ms}ms)", locacoes.Count, watch.ElapsedMilliseconds);
         }
 
         public UserControl ObterTabela()
