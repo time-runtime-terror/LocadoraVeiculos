@@ -5,7 +5,7 @@ using log4net;
 using Serilog;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
@@ -29,6 +29,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             {
                 Log.Information("Inserindo novo cliente...");
 
+                Stopwatch watch = Stopwatch.StartNew();
+
                 clienteService.InserirNovo(tela.Cliente);
 
                 List<Cliente> clientes = clienteService.SelecionarTodos();
@@ -37,7 +39,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 
                 Dashboard.Instancia.AtualizarRodape($"Cliente: [{tela.Cliente.Nome}] inserido com sucesso!");
 
-                Log.Information($"Cliente: [{tela.Cliente.Id}] inserido com sucesso!");
+                watch.Stop();
+
+                Log.Information("Cliente: [{idCliente}] inserido com sucesso! ({Ms}ms)", tela.Cliente.Id, watch.ElapsedMilliseconds);
             }
         }
 
@@ -61,15 +65,19 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             {
                 Log.Information("Editando cliente...");
 
+                Stopwatch watch = Stopwatch.StartNew();
+
                 clienteService.Editar(id, tela.Cliente);
 
                 List<Cliente> clientes = clienteService.SelecionarTodos();
 
                 tabelaClientes.AtualizarRegistros(clientes);
 
-                Dashboard.Instancia.AtualizarRodape($"Cliente: [{tela.Cliente.Nome}] inserido com sucesso");
+                Dashboard.Instancia.AtualizarRodape($"Cliente: [{tela.Cliente.Nome}] editado com sucesso");
 
-                Log.Information($"Cliente: [{tela.Cliente.Id}] editado com sucesso!");
+                watch.Stop();
+
+                Log.Information("Cliente: [{idCliente}] editado com sucesso! ({Ms}ms)", id, watch.ElapsedMilliseconds);
             }
         }
 
@@ -96,13 +104,19 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
             {
                 Log.Information("Excluindo cliente...");
 
+                Stopwatch watch = Stopwatch.StartNew();
+
                 clienteService.Excluir(id);
 
                 List<Cliente> clientes = clienteService.SelecionarTodos();
 
                 tabelaClientes.AtualizarRegistros(clientes);
 
-                Log.Information($"Cliente: [{id}] excluído com sucesso!");
+                Dashboard.Instancia.AtualizarRodape($"Cliente: [{id}] excluído com sucesso!");
+
+                watch.Stop();
+
+                Log.Information("Cliente: [{id}] excluído com sucesso! ({Ms}ms)", id, watch.ElapsedMilliseconds);
             }
         }
 
