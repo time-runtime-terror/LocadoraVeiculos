@@ -14,7 +14,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
     {
         private readonly ClienteAppService clienteService;
         private readonly TabelaClienteControl tabelaClientes;
-        private static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         public OperacoesCliente(ClienteAppService clienteService)
         {
@@ -37,6 +36,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
                 tabelaClientes.AtualizarRegistros(clientes);
 
                 Dashboard.Instancia.AtualizarRodape($"Cliente: [{tela.Cliente.Nome}] inserido com sucesso!");
+
+                Log.Information($"Cliente: [{tela.Cliente.Id}] inserido com sucesso!");
             }
         }
 
@@ -67,6 +68,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
                 tabelaClientes.AtualizarRegistros(clientes);
 
                 Dashboard.Instancia.AtualizarRodape($"Cliente: [{tela.Cliente.Nome}] inserido com sucesso");
+
+                Log.Information($"Cliente: [{tela.Cliente.Id}] editado com sucesso!");
             }
         }
 
@@ -98,6 +101,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
                 List<Cliente> clientes = clienteService.SelecionarTodos();
 
                 tabelaClientes.AtualizarRegistros(clientes);
+
+                Log.Information($"Cliente: [{id}] excluído com sucesso!");
             }
         }
 

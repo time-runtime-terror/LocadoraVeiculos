@@ -26,14 +26,13 @@ using LocadoraVeiculos.Infra.InternetServices.LocacaoModule;
 using LocadoraVeiculos.Infra.JSON.CombustivelModule;
 using log4net;
 using System.Reflection;
+using Serilog;
 
 namespace LocadoraVeiculos.WindowsApp
 {
     public partial class Dashboard : Form
     {
         private ICadastravel operacoes;
-            
-        private static ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         public static Dashboard Instancia { get; set; }
         public string Usuario { get; set; }
@@ -44,7 +43,7 @@ namespace LocadoraVeiculos.WindowsApp
 
             Instancia = this;
             Usuario = usuario;
-            logger.Info($"Usuário ({ Usuario }): Login completo... Executando o Dashboard.");
+            Log.Information($"Usuário ({ Usuario }): Login completo... Executando o Dashboard.");
         }
 
         public void AtualizarRodape(string mensagem)
@@ -280,7 +279,7 @@ namespace LocadoraVeiculos.WindowsApp
 
         private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)
         {
-            logger.Info($"Usuário ({ Usuario }): Encerrando a execução...");
+            Log.Information($"Usuário ({ Usuario }): Encerrando a execução...");
             Application.Exit();
         }
         #endregion
