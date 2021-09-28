@@ -182,9 +182,15 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
         public UserControl ObterTabela()
         {
+            Stopwatch watch = Stopwatch.StartNew();
+
             List<Locacao> locacoes = locacaoService.SelecionarTodos();
 
             tabelaLocacoes.AtualizarRegistros(locacoes);
+
+            watch.Stop();
+
+            Log.Information("Locação: [{numeroRegistros}] registros carregados na tabela. ({Ms}ms)", locacoes.Count, watch.ElapsedMilliseconds);
 
             return tabelaLocacoes;
         }
