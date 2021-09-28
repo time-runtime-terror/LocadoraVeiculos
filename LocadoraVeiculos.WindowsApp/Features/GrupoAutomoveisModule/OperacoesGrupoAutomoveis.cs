@@ -3,6 +3,7 @@ using LocadoraVeiculos.netCore.Dominio.GrupoAutomoveisModule;
 using LocadoraVeiculos.WindowsApp.Shared;
 using Serilog;
 using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
@@ -26,13 +27,17 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             {
                 Log.Information("Inserindo novo grupo de automoveis...");
 
+                Stopwatch watch = Stopwatch.StartNew();
+
                 grupoAutomoveisService.InserirNovo(tela.GrupoAutomoveis);
 
                 tabelaGrupoAutomoveis.AtualizarRegistros();
 
                 Dashboard.Instancia.AtualizarRodape($"Grupo Automóvel: [{tela.GrupoAutomoveis.NomeGrupo}] inserido com sucesso");
 
-                Log.Information($"Grupo Automóvel: [{tela.GrupoAutomoveis.NomeGrupo}] inserido com sucesso");
+                watch.Stop();
+
+                Log.Information("Grupo Automóvel: [{tela.GrupoAutomoveis.NomeGrupo}] inserido com sucesso ({Ms}ms)", tela.GrupoAutomoveis.Id, watch.ElapsedMilliseconds);
             }
         }
 
@@ -57,13 +62,17 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             {
                 Log.Information("Editando grupo de automoveis...");
 
+                Stopwatch watch = Stopwatch.StartNew();
+
                 grupoAutomoveisService.Editar(id, tela.GrupoAutomoveis);
 
                 tabelaGrupoAutomoveis.AtualizarRegistros();
 
                 Dashboard.Instancia.AtualizarRodape($"Grupo Automóvel: [{tela.GrupoAutomoveis.NomeGrupo}] editado com sucesso");
 
-                Log.Information($"Grupo Automóvel: [{tela.GrupoAutomoveis.NomeGrupo}] editado com sucesso");
+                watch.Stop();
+
+                Log.Information("Grupo Automóvel: [{tela.GrupoAutomoveis.NomeGrupo}] editado com sucesso ({Ms}ms)", id, watch.ElapsedMilliseconds);
             }
         }
 
@@ -85,13 +94,17 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             {
                 Log.Information("Excluindo grupo de automóveis...");
 
+                Stopwatch watch = Stopwatch.StartNew();
+
                 grupoAutomoveisService.Excluir(id);
 
                 tabelaGrupoAutomoveis.AtualizarRegistros();
 
                 Dashboard.Instancia.AtualizarRodape($"Grupo Automóvel: [{grupoAutomoveisSelecionado.NomeGrupo}] removido com sucesso");
 
-                Log.Information($"Grupo Automóvel: [{grupoAutomoveisSelecionado.NomeGrupo}] removido com sucesso");
+                watch.Stop();
+
+                Log.Information("Grupo Automóvel: [{tela.GrupoAutomoveis.NomeGrupo}] excluído com sucesso ({Ms}ms)", id, watch.ElapsedMilliseconds);
             }
         }
 
