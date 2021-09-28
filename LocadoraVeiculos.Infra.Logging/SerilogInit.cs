@@ -21,7 +21,7 @@ namespace LocadoraVeiculos.Infra.Logging
                     rollingInterval: RollingInterval.Day,
                     restrictedToMinimumLevel: LogEventLevel.Warning)
                 .WriteTo.Seq("http://20.195.229.236:5341",
-                    restrictedToMinimumLevel: LogEventLevel.Error)
+                    restrictedToMinimumLevel: LogEventLevel.Information)
                 .CreateLogger();
         }
     }
