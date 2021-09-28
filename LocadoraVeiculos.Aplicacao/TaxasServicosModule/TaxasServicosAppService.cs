@@ -1,6 +1,7 @@
 ﻿using LocadoraVeiculos.Aplicacao.Shared;
 using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
 using LocadoraVeiculos.netCore.Dominio.TaxasServicosModule;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,13 +20,6 @@ namespace LocadoraVeiculos.Aplicacao.TaxasServicosModule
             this.taxasRepository = taxasRepository;
         }
 
-        public override string InserirNovo(TaxasServicos registro)
-        {
-            throw new Exception("Teste taxas");
-        }
-
-
-
         public void RegistrarTaxaUsada(Locacao registro)
         {
             try
@@ -35,7 +29,7 @@ namespace LocadoraVeiculos.Aplicacao.TaxasServicosModule
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                Log.Error(ex, "Falha ao tentar registrar uma taxa usada na locaçao de Id: {Id},", registro.Id);
             }
 
         }
@@ -48,7 +42,7 @@ namespace LocadoraVeiculos.Aplicacao.TaxasServicosModule
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                Log.Error(ex, "Falha ao tentar editar uma taxa usada na locaçao de Id: {Id},", locacao.Id);
             }
         }
         public bool ExcluirTaxaUsada(Locacao locacao)
@@ -60,7 +54,7 @@ namespace LocadoraVeiculos.Aplicacao.TaxasServicosModule
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                Log.Error(ex, "Falha ao tentar excluir uma taxa usada na locaçao de Id: {Id},", locacao.Id);
             }
             return false;
             
@@ -73,8 +67,10 @@ namespace LocadoraVeiculos.Aplicacao.TaxasServicosModule
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                Log.Error(ex, "Falha ao tentar selecionar uma taxa usada na locaçao de Id: {Id},", id);
             }
+
+            return null;
         }
     }
 }
