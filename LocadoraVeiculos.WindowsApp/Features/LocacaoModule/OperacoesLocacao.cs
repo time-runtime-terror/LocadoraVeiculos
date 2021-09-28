@@ -30,7 +30,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             clienteService = clienteS;
 
             tabelaLocacoes = new TabelaLocacaoControl();
-            Log.Information("Atribuindo OperacoesLocacao ao dashboard");
         }
 
         public void InserirNovoRegistro()
