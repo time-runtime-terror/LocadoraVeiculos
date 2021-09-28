@@ -95,13 +95,29 @@ namespace LocadoraVeiculos.Infra.SQL.GrupoAutomoveisModule
 
         public void InserirNovo(GrupoAutomoveis registro)
         {
-            registro.Id = Db.Insert(sqlInserirGrupoAutomoveis, ObtemParametrosRegistro(registro));
+            try
+            {
+                registro.Id = Db.Insert(sqlInserirGrupoAutomoveis, ObtemParametrosRegistro(registro));
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Add("sqlInserirGrupoAutomoveis", sqlInserirGrupoAutomoveis);
+                throw ex;
+            }
         }
 
         public void Editar(int id, GrupoAutomoveis registro)
         {
             registro.Id = id;
-            Db.Update(sqlEditarGrupoAutomoveis, ObtemParametrosRegistro(registro));
+            try
+            {
+                Db.Update(sqlEditarGrupoAutomoveis, ObtemParametrosRegistro(registro));
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Add("sqlEditarGrupoAutomoveis", sqlEditarGrupoAutomoveis);
+                throw ex;
+            }
         }
 
         public bool Excluir(int id)
@@ -110,9 +126,10 @@ namespace LocadoraVeiculos.Infra.SQL.GrupoAutomoveisModule
             {
                 Db.Delete(sqlExcluirGrupoAutomoveis, AdicionarParametro("ID", id));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return false;
+                ex.Data.Add("sqlExcluirGrupoAutomoveis", sqlExcluirGrupoAutomoveis);
+                throw ex;
             }
 
             return true;
@@ -120,17 +137,41 @@ namespace LocadoraVeiculos.Infra.SQL.GrupoAutomoveisModule
 
         public bool Existe(int id)
         {
-            return Db.Exists(sqlExisteGrupoAutomoveis, AdicionarParametro("ID", id));
+            try
+            {
+                return Db.Exists(sqlExisteGrupoAutomoveis, AdicionarParametro("ID", id));
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Add("sqlExisteGrupoAutomoveis", sqlExisteGrupoAutomoveis);
+                throw ex;
+            }
         }
 
         public GrupoAutomoveis SelecionarPorId(int id)
         {
-            return Db.Get(sqlSelecionarGrupoAutomoveisPorId, ConverterEmRegistro, AdicionarParametro("ID", id));
+            try
+            {
+                return Db.Get(sqlSelecionarGrupoAutomoveisPorId, ConverterEmRegistro, AdicionarParametro("ID", id));
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Add("sqlSelecionarGrupoAutomoveisPorId", sqlSelecionarGrupoAutomoveisPorId);
+                throw ex;
+            }
         }
 
         public List<GrupoAutomoveis> SelecionarTodos()
         {
-            return Db.GetAll(sqlSelecionarTodosGruposAutomoveis, ConverterEmRegistro);
+            try
+            {
+                return Db.GetAll(sqlSelecionarTodosGruposAutomoveis, ConverterEmRegistro);
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Add("sqlSelecionarTodosGruposAutomoveis", sqlSelecionarTodosGruposAutomoveis);
+                throw ex;
+            }
         }
 
         public List<GrupoAutomoveis> Pesquisar(string texto)

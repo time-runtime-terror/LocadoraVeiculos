@@ -1,6 +1,7 @@
 ﻿using LocadoraVeiculos.Aplicacao.GrupoAutomoveisModule;
 using LocadoraVeiculos.netCore.Dominio.GrupoAutomoveisModule;
 using LocadoraVeiculos.WindowsApp.Shared;
+using Serilog;
 using System;
 using System.Windows.Forms;
 
@@ -19,16 +20,19 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
 
         public void InserirNovoRegistro()
         { 
-
             TelaCadastroGrupoAutomoveis tela = new TelaCadastroGrupoAutomoveis();
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
+                Log.Information("Inserindo novo grupo de automoveis...");
+
                 grupoAutomoveisService.InserirNovo(tela.GrupoAutomoveis);
 
                 tabelaGrupoAutomoveis.AtualizarRegistros();
 
                 Dashboard.Instancia.AtualizarRodape($"Grupo Automóvel: [{tela.GrupoAutomoveis.NomeGrupo}] inserido com sucesso");
+
+                Log.Information($"Grupo Automóvel: [{tela.GrupoAutomoveis.NomeGrupo}] inserido com sucesso");
             }
         }
 
@@ -51,11 +55,15 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
+                Log.Information("Editando grupo de automoveis...");
+
                 grupoAutomoveisService.Editar(id, tela.GrupoAutomoveis);
 
                 tabelaGrupoAutomoveis.AtualizarRegistros();
 
                 Dashboard.Instancia.AtualizarRodape($"Grupo Automóvel: [{tela.GrupoAutomoveis.NomeGrupo}] editado com sucesso");
+
+                Log.Information($"Grupo Automóvel: [{tela.GrupoAutomoveis.NomeGrupo}] editado com sucesso");
             }
         }
 
@@ -75,11 +83,15 @@ namespace LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule
             if (MessageBox.Show($"Tem certeza que deseja excluir o Grupo de Automóveis: [{grupoAutomoveisSelecionado.NomeGrupo}] ?",
                 "Exclusão de Grupo de Automóveis", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
+                Log.Information("Excluindo grupo de automóveis...");
+
                 grupoAutomoveisService.Excluir(id);
 
                 tabelaGrupoAutomoveis.AtualizarRegistros();
 
                 Dashboard.Instancia.AtualizarRodape($"Grupo Automóvel: [{grupoAutomoveisSelecionado.NomeGrupo}] removido com sucesso");
+
+                Log.Information($"Grupo Automóvel: [{grupoAutomoveisSelecionado.NomeGrupo}] removido com sucesso");
             }
         }
 
