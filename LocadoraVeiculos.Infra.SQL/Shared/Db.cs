@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -46,7 +47,19 @@ namespace LocadoraVeiculos.netCore.Infra.SQL.Shared
 
             connection.Open();
 
-            id = Convert.ToInt32(command.ExecuteScalar());
+            IDbTransaction transaction = connection.BeginTransaction();
+            command.Transaction = transaction;
+
+            try
+            {
+                id = Convert.ToInt32(command.ExecuteScalar());
+                transaction.Commit();
+            }
+            catch (SqlException ex)
+            {
+                transaction.Rollback();
+                throw ex;
+            }
 
             connection.Close();
 
@@ -66,7 +79,19 @@ namespace LocadoraVeiculos.netCore.Infra.SQL.Shared
 
             connection.Open();
 
-            command.ExecuteNonQuery();
+            IDbTransaction transaction = connection.BeginTransaction();
+            command.Transaction = transaction;
+
+            try
+            {
+                command.ExecuteNonQuery();
+                transaction.Commit();
+            }
+            catch (SqlException ex)
+            {
+                transaction.Rollback();
+                throw ex;
+            }
 
             connection.Close();
         }
