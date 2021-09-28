@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
+using System;
 using System.Net.NetworkInformation;
 
 namespace LocadoraVeiculos.Infra.InternetServices.LocacaoModule
@@ -18,7 +19,11 @@ namespace LocadoraVeiculos.Infra.InternetServices.LocacaoModule
                 if (reply.Status == IPStatus.Success)
                     return true;
             }
-            catch { }
+            catch (Exception ex)
+            {
+                ex.Data.Add("host", "www.google.com.br");
+                throw ex;
+            }
 
             return result;
         }
