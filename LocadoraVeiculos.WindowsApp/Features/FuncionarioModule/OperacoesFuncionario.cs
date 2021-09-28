@@ -7,6 +7,7 @@ using LocadoraVeiculos.Aplicacao.FuncionarioModule;
 using log4net;
 using System.Reflection;
 using Serilog;
+using System.Diagnostics;
 
 namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
 {
@@ -31,6 +32,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
             if (tela.ShowDialog() == DialogResult.OK)
             {
                 Log.Information("Inserindo novo funcionário...");
+                Stopwatch watch = Stopwatch.StartNew();
 
                 funcionarioAppService.InserirNovo(tela.Funcionario);
 
@@ -39,6 +41,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
                 tabelaFuncionario.AtualizarRegistros(funcionarios);
 
                 Dashboard.Instancia.AtualizarRodape($"Funcionário: [{tela.Funcionario.Nome}] inserido com sucesso");
+
+                watch.Stop();
+
+                Log.Information("Funcionario: [{idFuncionario}] inserido com sucesso! ({Ms}ms)", tela.Funcionario.Id, watch.ElapsedMilliseconds);
             }
         }
 
@@ -64,6 +70,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
             if (tela.ShowDialog() == DialogResult.OK)
             {
                 Log.Information("Editando um funcionário");
+                Stopwatch watch = Stopwatch.StartNew();
+
                 funcionarioAppService.Editar(id, tela.Funcionario);
 
                 List<Funcionario> funcionarios = funcionarioAppService.SelecionarTodos();
@@ -71,8 +79,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
                 tabelaFuncionario.AtualizarRegistros(funcionarios);
 
                 Dashboard.Instancia.AtualizarRodape($"Tarefa: [{tela.Funcionario.Nome}] editado com sucesso");
-              
 
+                watch.Stop();
+
+                Log.Information("Funcionario: [{idFuncionario}] editado com sucesso! ({Ms}ms)", tela.Funcionario.Id, watch.ElapsedMilliseconds);
             }
         }
 
@@ -92,6 +102,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
                 "Exclusão de Funcionários", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 Log.Information("Excluindo locação...");
+                Stopwatch watch = Stopwatch.StartNew();
 
                 funcionarioAppService.Excluir(id);
 
@@ -100,8 +111,11 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
                 tabelaFuncionario.AtualizarRegistros(funcionarios);
 
                 Dashboard.Instancia.AtualizarRodape($"Funcionário: [{funcionarioSelecionado.Nome}] removido com sucesso");
-                
-                
+
+                watch.Stop();
+
+                Log.Information("Funcionario: [{idFuncionario}] excluido com sucesso! ({Ms}ms)", id, watch.ElapsedMilliseconds);
+
             }
         }
 
