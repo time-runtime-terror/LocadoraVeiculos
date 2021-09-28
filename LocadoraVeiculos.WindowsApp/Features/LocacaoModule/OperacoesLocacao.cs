@@ -8,6 +8,7 @@ using LocadoraVeiculos.WindowsApp.Shared;
 using Serilog;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
@@ -39,6 +40,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             if (tela.ShowDialog() == DialogResult.OK)
             {
                 Log.Information("Inserindo nova locação...");
+                Stopwatch watch = Stopwatch.StartNew();
 
                 bool conseguiuRegistrar = locacaoService.RegistrarNovaLocacao(tela.Locacao);
 
@@ -54,7 +56,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                     Dashboard.Instancia.AtualizarRodape($"Locação: [{tela.Locacao.Id}] inserida com sucesso!");
 
-                    Log.Information($"Locação: [{tela.Locacao.Id}] inserida com sucesso!");
+                    watch.Stop();
+
+                    Log.Information("Locação: [{idLocacao}] inserida com sucesso! ({Ms}ms)", tela.Locacao.Id, watch.ElapsedMilliseconds);
                 }
             }
         }
@@ -79,6 +83,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             {
                 Log.Information("Editando locação...");
 
+                Stopwatch watch = Stopwatch.StartNew();
+
                 bool conseguiuEditar = locacaoService.Editar(id, tela.Locacao);
 
                 if (conseguiuEditar)
@@ -93,7 +99,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                     Dashboard.Instancia.AtualizarRodape($"Locação: [{tela.Locacao.Id}] editada com sucesso!");
 
-                    Log.Information($"Locação: [{tela.Locacao.Id}] editada com sucesso!");
+                    watch.Stop();
+
+                    Log.Information("Locação: [{idLocacao}] editada com sucesso! ({Ms}ms)", tela.Locacao.Id, watch.ElapsedMilliseconds);
                 }
             }
         }
@@ -114,6 +122,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                 "Exclusão de Locações", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 Log.Information("Excluindo locação...");
+
+                Stopwatch watch = Stopwatch.StartNew();
                 
                 bool conseguiuExcluir = locacaoService.Excluir(id);
 
@@ -127,7 +137,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                     Dashboard.Instancia.AtualizarRodape($"Locação: [{locacaoSelecionada.Id}] excluída com sucesso!");
 
-                    Log.Information($"Locação: [{locacaoSelecionada.Id}] excluída com sucesso!");
+                    watch.Stop();
+
+                    Log.Information("Locação: [{idLocacao}] excluída com sucesso! ({Ms}ms)",
+                        id, watch.ElapsedMilliseconds);
                 }
             }
         }
@@ -197,6 +210,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             {
                 Log.Information("Registrando devolução...");
 
+                Stopwatch watch = Stopwatch.StartNew();
+
                 string resultadoDevolucao = locacaoService.RegistrarDevolucao(tela.Locacao);
 
                 if (resultadoDevolucao != "ERRO_INSERCAO")
@@ -213,7 +228,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                     Dashboard.Instancia.AtualizarRodape(resultadoDevolucao);
 
-                    Log.Information($"ID: [{tela.Locacao.Id}]. {resultadoDevolucao}");
+                    watch.Stop();
+
+                    Log.Information("Locação: [{idLocacao}] concluída com sucesso!. {resultadoDevolucao}. ({Ms}ms)", tela.Locacao.Id, resultadoDevolucao, watch.ElapsedMilliseconds);
                 }
             }
         }
