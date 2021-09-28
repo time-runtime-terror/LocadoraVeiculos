@@ -32,8 +32,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             {
                 try
                 {
-                    //locacaoRepository.InserirNovo(locacao);
-                    throw new Exception();
+                    locacaoRepository.InserirNovo(locacao);
                 }
                 catch (Exception ex)
                 {

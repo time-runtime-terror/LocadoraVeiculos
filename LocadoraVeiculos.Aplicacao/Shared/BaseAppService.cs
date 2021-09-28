@@ -1,8 +1,7 @@
 ﻿using LocadoraVeiculos.netCore.Dominio.Shared;
-using log4net;
+using Serilog;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 
 namespace LocadoraVeiculos.Aplicacao.Shared
 {
@@ -32,7 +31,7 @@ namespace LocadoraVeiculos.Aplicacao.Shared
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception(ex.Message);
+                    Log.Error(ex, "Falha ao tentar inserir novo registro do tipo {T},", registro.GetType().ToString());
                 }
             }
 
@@ -56,7 +55,7 @@ namespace LocadoraVeiculos.Aplicacao.Shared
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                Log.Error(ex, "Falha ao tentar editar registro do tipo {T} - ID: {Id}", registro.GetType().ToString(), id);
             }
 
             return resultadoValidacao;
@@ -76,7 +75,7 @@ namespace LocadoraVeiculos.Aplicacao.Shared
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                Log.Error(ex, "Falha ao tentar excluir registro ID: {Id}", id);
             }
             
             return false;
@@ -89,17 +88,16 @@ namespace LocadoraVeiculos.Aplicacao.Shared
         /// <returns>Registro <typeparamref name="T"/> ou <typeparamref name="null"/>, caso o registro não for encontrado.</returns>
         public T SelecionarPorId(int id)
         {
-            T registro;
             try
             {
-                registro = repositorio.SelecionarPorId(id);
+                return repositorio.SelecionarPorId(id);
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                Log.Error(ex, "Falha ao tentar selecionar registro ID: {Id}", id);
             }
 
-            return registro;
+            return null;
         }
 
         /// <summary>
@@ -108,17 +106,16 @@ namespace LocadoraVeiculos.Aplicacao.Shared
         /// <returns>Lista de registros do tipo <typeparamref name="T"/> ou uma lista vazia, caso nenhum registro for encontrado.</returns>
         public List<T> SelecionarTodos()
         {
-            List<T> registros;
             try
             {
-                registros = repositorio.SelecionarTodos();
+                return repositorio.SelecionarTodos();
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                Log.Error(ex, "Falha ao tentar selecionar registros");
             }
 
-            return registros;
+            return null;
         }
 
         /// <summary>
@@ -128,17 +125,16 @@ namespace LocadoraVeiculos.Aplicacao.Shared
         /// <returns>Lista de registros do tipo <typeparamref name="T"/> ou uma lista vazia, caso nenhum registro for encontrado.</returns>
         public List<T> Pesquisar(string texto)
         {
-            List<T> registrosEncontrados;
             try
             {
-                registrosEncontrados = repositorio.Pesquisar(texto);
+                return repositorio.Pesquisar(texto);
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                Log.Error(ex, "Falha ao tentar pesquisar registros");
             }
 
-            return registrosEncontrados;
+            return null;
         }
     }
 }

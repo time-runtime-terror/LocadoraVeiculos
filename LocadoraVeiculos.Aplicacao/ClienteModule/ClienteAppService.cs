@@ -1,11 +1,8 @@
 ﻿using LocadoraVeiculos.Aplicacao.Shared;
 using LocadoraVeiculos.netCore.Dominio.ClienteModule;
-using log4net;
-using log4net.Core;
 using Serilog;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 
 namespace LocadoraVeiculos.Aplicacao.ClienteModule
 {
