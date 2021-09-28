@@ -118,25 +118,62 @@ namespace LocadoraVeiculos.Infra.SQL.TaxasServicosModule
 
         public void InserirNovo(TaxasServicos registro)
         {
-            registro.Id = Db.Insert(sqlInserirTaxasServicos, ObtemParametrosRegistro(registro));
+            try
+            {
+                registro.Id = Db.Insert(sqlInserirTaxasServicos, ObtemParametrosRegistro(registro));
+            }
+            catch(Exception ex)
+            {
+                ex.Data.Add("sqlInserirTaxasServicos", sqlInserirTaxasServicos);
+                throw ex;
+            }
+            
         }
 
         public void InserirNovaTaxaUsada(Locacao registro)
         {
-            foreach (TaxasServicos taxa in registro.Taxas)
-                Db.Insert(sqlInserirTaxasServicosUsados, ObtemParametrosTaxasServicosUsados(registro, taxa));
+            try
+            {
+                foreach (TaxasServicos taxa in registro.Taxas)
+                    Db.Insert(sqlInserirTaxasServicosUsados, ObtemParametrosTaxasServicosUsados(registro, taxa));
+            }
+            catch(Exception ex)
+            {
+                ex.Data.Add("sqlInserirTaxasServicosUsados", sqlInserirTaxasServicosUsados);
+                
+                throw ex;
+            }
         }
 
         public void Editar(int id, TaxasServicos registro)
         {
             registro.Id = id;
-            Db.Update(sqlEditarTaxasServicos, ObtemParametrosRegistro(registro));
+            try
+            {
+                Db.Update(sqlEditarTaxasServicos, ObtemParametrosRegistro(registro));
+            }
+            catch(Exception ex)
+            {
+                ex.Data.Add("sqlEditarTaxasServicos", sqlEditarTaxasServicos);
+                ex.Data.Add("idTaxa", id);
+                throw ex;
+            }
+            
         }
 
         public void EditarTaxasUsadas(Locacao locacao)
         {
-            foreach (TaxasServicos taxa in locacao.Taxas)
-                Db.Update(sqlEditarTaxasServicosUsados, ObtemParametrosTaxasServicosUsados(locacao, taxa));
+            try
+            {
+                foreach (TaxasServicos taxa in locacao.Taxas)
+                    Db.Update(sqlEditarTaxasServicosUsados, ObtemParametrosTaxasServicosUsados(locacao, taxa));
+            }
+            catch(Exception ex)
+            {
+                ex.Data.Add("sqlEditarTaxasServicosUsados", sqlEditarTaxasServicosUsados);
+                
+                throw ex;
+            }
         }
 
         public bool Excluir(int id)
@@ -145,9 +182,11 @@ namespace LocadoraVeiculos.Infra.SQL.TaxasServicosModule
             {
                 Db.Delete(sqlExcluirTaxasServicos, AdicionarParametro("ID", id));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return false;
+                ex.Data.Add("sqlExcluirTaxasServicos", sqlExcluirTaxasServicos);
+                ex.Data.Add("idTaxa", id);
+                throw ex;
             }
 
             return true;
@@ -159,9 +198,11 @@ namespace LocadoraVeiculos.Infra.SQL.TaxasServicosModule
             {
                 Db.Delete(sqlExcluirTaxasServicosUsados, AdicionarParametro("ID", locacao.Id));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return false;
+                ex.Data.Add("sqlExcluirTaxasServicosUsados", sqlExcluirTaxasServicosUsados);
+                
+                throw ex;
             }
 
             return true;
@@ -169,17 +210,44 @@ namespace LocadoraVeiculos.Infra.SQL.TaxasServicosModule
 
         public bool Existe(int id)
         {
-            return Db.Exists(sqlExisteTaxasServicos, AdicionarParametro("ID", id));
+            try
+            {
+                return Db.Exists(sqlExisteTaxasServicos, AdicionarParametro("ID", id));
+            }
+            catch(Exception ex)
+            {
+                ex.Data.Add("sqlExisteTaxasServicos", sqlExisteTaxasServicos);
+                ex.Data.Add("idTaxa", id);
+                throw ex;
+            }
         }
 
         public TaxasServicos SelecionarPorId(int id)
         {
-            return Db.Get(sqlSelecionarTaxasServicosPorId, ConverterEmRegistro, AdicionarParametro("ID", id));
+            try
+            {
+                return Db.Get(sqlSelecionarTaxasServicosPorId, ConverterEmRegistro, AdicionarParametro("ID", id));
+            }
+            catch(Exception ex)
+            {
+                ex.Data.Add("sqlSelecionarTaxasServicosPorId", sqlSelecionarTaxasServicosPorId);
+                ex.Data.Add("idTaxa", id);
+                throw ex;
+            }
+            
         }
 
         public List<TaxasServicos> SelecionarTodos()
         {
-            return Db.GetAll(sqlSelecionarTodasTaxasServicos, ConverterEmRegistro);
+            try
+            {
+                return Db.GetAll(sqlSelecionarTodasTaxasServicos, ConverterEmRegistro);
+            }
+            catch(Exception ex)
+            {
+                ex.Data.Add("sqlSelecionarTodasTaxasServicos", sqlSelecionarTodasTaxasServicos);
+                throw ex;
+            }
         }
 
         public List<TaxasServicos> Pesquisar(string texto)
@@ -189,7 +257,17 @@ namespace LocadoraVeiculos.Infra.SQL.TaxasServicosModule
 
         public List<TaxasServicos> SelecionarTaxasServicosUsados(int id)
         {
-            return Db.GetAll(sqlSelecionarTaxasServicosUsados, ConverterEmTaxasServicosUsados, AdicionarParametro("ID", id));
+            try
+            {
+                return Db.GetAll(sqlSelecionarTaxasServicosUsados, ConverterEmTaxasServicosUsados, AdicionarParametro("ID", id));
+            }
+            catch(Exception ex)
+            {
+                ex.Data.Add("sqlSelecionarTaxasServicosUsados", sqlSelecionarTaxasServicosUsados);
+                ex.Data.Add("idTaxa", id);
+                throw ex;
+            }
+            
         }
 
         public Dictionary<string, object> ObtemParametrosRegistro(TaxasServicos taxasServicos)
