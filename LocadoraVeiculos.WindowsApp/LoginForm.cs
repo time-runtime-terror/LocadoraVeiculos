@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculos.Aplicacao.FuncionarioModule;
 using LocadoraVeiculos.Infra.SQL.FuncionarioModule;
+using Serilog;
 using System;
 using System.Windows.Forms;
 
@@ -36,7 +37,10 @@ namespace LocadoraVeiculos.WindowsApp
                     tela.ShowDialog();
                 }
                 else
+                {
                     MessageBox.Show("Campos inválidos, por favor tente novamente");
+                    Log.Warning("Usuário [{usuario}]: Falha de autenticação", usuario);
+                }
 
                 txbUsuario.Text = "";
                 txbSenha.Text = "";
