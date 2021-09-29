@@ -4,6 +4,8 @@ namespace LocadoraVeiculos.netCore.Dominio.LocacaoModule
 {
     public interface INotificadorEmail
     {
-        Task EnviarEmailAsync(Locacao locacao, string nomeArquivo);
+        Task EnviarEmailAsync(Email email, string nomeArquivo);
+        Task AgendarEnvioEmailAsync(Email email, string nomeArquivo);
+        Task EnviarEmailsAgendadosAsync();
     }
 }
