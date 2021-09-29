@@ -50,19 +50,12 @@ namespace LocadoraVeiculos.WindowsApp
             verificadorConexao = new VerificadorConexao();
 
             if (verificadorConexao.TemConexaoComInternet())
+            {
                 EnviarEmailsAgendados();
-        }
-
-        private void EnviarEmailsAgendados()
-        {
-            try
-            {
-                notificadorEmail.EnviarEmailsAgendadosAsync();
+                Instancia.AtualizarRodape("Conexão estabelecida! Emails agendados enviados com sucesso.");
             }
-            catch (Exception ex)
-            {
-                Log.Error(ex, "Falha ao tentar enviar emails agendados.");
-            }
+            else
+                Instancia.AtualizarRodape("Sem conexão com a internet! Não foi possível enviar emails agendados.");
         }
 
         public void AtualizarRodape(string mensagem)
@@ -247,6 +240,19 @@ namespace LocadoraVeiculos.WindowsApp
         #endregion
 
         #region Métodos Privados da Classe
+
+        private void EnviarEmailsAgendados()
+        {
+            try
+            {
+                notificadorEmail.EnviarEmailsAgendadosAsync();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "Falha ao tentar enviar emails agendados.");
+            }
+        }
+
         private void ConfigurarPainelRegistros()
         {
             UserControl tabela = operacoes.ObterTabela();
