@@ -59,7 +59,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraVeiculos.Aplicacao.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.5 - Logs", "4.5 - Logs", "{D362D5DD-23E1-4B0D-A1EF-D83B1B299B3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraVeiculos.Infra.Logging", "LocadoraVeiculos.Infra.Logging\LocadoraVeiculos.Infra.Logging.csproj", "{3618A213-F696-415F-9F61-49A1FFB3BABB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraVeiculos.Infra.Logging", "LocadoraVeiculos.Infra.Logging\LocadoraVeiculos.Infra.Logging.csproj", "{3618A213-F696-415F-9F61-49A1FFB3BABB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.6 - Extension Methods", "4.6 - Extension Methods", "{E02141EA-9335-49B3-B909-2E83F1A8735D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraVeiculos.Infra.ExtensionMethods", "LocadoraVeiculos.Infra.ExtensionMethods\LocadoraVeiculos.Infra.ExtensionMethods.csproj", "{4E3074A4-2F3F-4F91-ACBD-74720EDFFC2D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -125,6 +129,10 @@ Global
 		{3618A213-F696-415F-9F61-49A1FFB3BABB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3618A213-F696-415F-9F61-49A1FFB3BABB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3618A213-F696-415F-9F61-49A1FFB3BABB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E3074A4-2F3F-4F91-ACBD-74720EDFFC2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E3074A4-2F3F-4F91-ACBD-74720EDFFC2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E3074A4-2F3F-4F91-ACBD-74720EDFFC2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E3074A4-2F3F-4F91-ACBD-74720EDFFC2D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -157,6 +165,8 @@ Global
 		{C99FB390-BD75-4512-AAA6-2831591F1173} = {CD178A3F-6C93-4122-A452-763A1DC407DF}
 		{D362D5DD-23E1-4B0D-A1EF-D83B1B299B3E} = {B79FD61E-1A7F-40A7-A2E5-745627C33EBB}
 		{3618A213-F696-415F-9F61-49A1FFB3BABB} = {D362D5DD-23E1-4B0D-A1EF-D83B1B299B3E}
+		{E02141EA-9335-49B3-B909-2E83F1A8735D} = {B79FD61E-1A7F-40A7-A2E5-745627C33EBB}
+		{4E3074A4-2F3F-4F91-ACBD-74720EDFFC2D} = {E02141EA-9335-49B3-B909-2E83F1A8735D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A8DAF387-4312-4A1E-9DBA-2EE0FEDD6AB0}
