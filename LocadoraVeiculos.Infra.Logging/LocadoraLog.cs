@@ -11,7 +11,7 @@ namespace LocadoraVeiculos.Infra.Logging
 
         static LocadoraLog()
         {
-            LevelSwitch.MinimumLevel = LogEventLevel.Information;
+            ConfigurarNivel(LogEventLevel.Information);
         }
 
         public static void CriarLogger()
