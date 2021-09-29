@@ -178,8 +178,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             tabelaLocacoes.AtualizarRegistros(locacoes);
 
-            Log.Logger.Aqui().FuncionalidadeUsada();
-
             return tabelaLocacoes;
         }
 
