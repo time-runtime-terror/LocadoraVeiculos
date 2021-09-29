@@ -44,7 +44,7 @@ namespace LocadoraVeiculos.WindowsApp
 
             Instancia = this;
             Usuario = usuario;
-            Log.Information($"Usuário [{ Usuario }]: Login completo... Executando o Dashboard.");
+            Log.Debug($"Usuário [{ Usuario }]: Login completo... Executando o Dashboard.");
 
             notificadorEmail = new NotificadorEmail();
             verificadorConexao = new VerificadorConexao();
@@ -304,7 +304,7 @@ namespace LocadoraVeiculos.WindowsApp
 
         private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Log.Information($"Usuário [{ Usuario }]: Encerrando a execução...");
+            Log.Debug($"Usuário [{ Usuario }]: Encerrando a execução...");
             Application.Exit();
         }
         #endregion

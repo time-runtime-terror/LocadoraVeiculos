@@ -38,7 +38,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                Log.Information("Inserindo nova locação...");
+                Log.Debug("Inserindo nova locação...");
+
                 Stopwatch watch = Stopwatch.StartNew();
 
                 bool conseguiuRegistrar = locacaoService.RegistrarNovaLocacao(tela.Locacao);
@@ -57,7 +58,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                     watch.Stop();
 
-                    Log.Information("Locação: [{idLocacao}] inserida com sucesso! ({Ms}ms)", tela.Locacao.Id, watch.ElapsedMilliseconds);
+                    Log.Debug("Locação: [{idLocacao}] inserida com sucesso! ({Ms}ms)", tela.Locacao.Id, watch.ElapsedMilliseconds);
                 }
             }
         }
@@ -80,7 +81,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                Log.Information("Editando locação...");
+                Log.Debug("Editando locação...");
 
                 Stopwatch watch = Stopwatch.StartNew();
 
@@ -100,7 +101,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                     watch.Stop();
 
-                    Log.Information("Locação: [{idLocacao}] editada com sucesso! ({Ms}ms)", tela.Locacao.Id, watch.ElapsedMilliseconds);
+                    Log.Debug("Locação: [{idLocacao}] editada com sucesso! ({Ms}ms)", tela.Locacao.Id, watch.ElapsedMilliseconds);
                 }
             }
         }
@@ -120,7 +121,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             if (MessageBox.Show($"Tem certeza que deseja excluir a locação: [{locacaoSelecionada.Id}]?",
                 "Exclusão de Locações", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                Log.Information("Excluindo locação...");
+                Log.Debug("Excluindo locação...");
 
                 Stopwatch watch = Stopwatch.StartNew();
                 
@@ -138,7 +139,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                     watch.Stop();
 
-                    Log.Information("Locação: [{idLocacao}] excluída com sucesso! ({Ms}ms)",
+                    Log.Debug("Locação: [{idLocacao}] excluída com sucesso! ({Ms}ms)",
                         id, watch.ElapsedMilliseconds);
                 }
             }
@@ -170,7 +171,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                 watch.Stop();
 
-                Log.ForContext("TipoFiltro", telaFiltro.TipoFiltro).Information("Locação: [{numeroRegistros}] registros filtrados carregados na tabela. ({Ms}ms)", locacoes.Count, watch.ElapsedMilliseconds);
+                Log.ForContext("TipoFiltro", telaFiltro.TipoFiltro).Debug("Locação: [{numeroRegistros}] registros filtrados carregados na tabela. ({Ms}ms)", locacoes.Count, watch.ElapsedMilliseconds);
             }
         }
 
@@ -189,7 +190,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             watch.Stop();
 
-            Log.Information("Locação: [{numeroRegistros}] registros desagrupados carregados na tabela. ({Ms}ms)", locacoes.Count, watch.ElapsedMilliseconds);
+            Log.Debug("Locação: [{numeroRegistros}] registros desagrupados carregados na tabela. ({Ms}ms)", locacoes.Count, watch.ElapsedMilliseconds);
         }
 
         public UserControl ObterTabela()
@@ -202,7 +203,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             watch.Stop();
 
-            Log.Information("Locação: [{numeroRegistros}] registros carregados na tabela. ({Ms}ms)", locacoes.Count, watch.ElapsedMilliseconds);
+            Log.Debug("Locação: [{numeroRegistros}] registros carregados na tabela. ({Ms}ms)", locacoes.Count, watch.ElapsedMilliseconds);
 
             return tabelaLocacoes;
         }
@@ -225,7 +226,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                Log.Information("Registrando devolução...");
+                Log.Debug("Registrando devolução...");
 
                 Stopwatch watch = Stopwatch.StartNew();
 
@@ -247,7 +248,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                     watch.Stop();
 
-                    Log.Information("Locação: [{idLocacao}] concluída com sucesso!. {resultadoDevolucao}. ({Ms}ms)", tela.Locacao.Id, resultadoDevolucao, watch.ElapsedMilliseconds);
+                    Log.Debug("Locação: [{idLocacao}] concluída com sucesso!. {resultadoDevolucao}. ({Ms}ms)", tela.Locacao.Id, resultadoDevolucao, watch.ElapsedMilliseconds);
                 }
             }
         }
