@@ -1,7 +1,6 @@
-﻿using LocadoraVeiculos.Infra.Logging;
+﻿using LocadoraVeiculos.Infra.ExtensionMethods;
 using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
 using Serilog;
-using Serilog.Events;
 using System;
 using System.Collections.Generic;
 
@@ -13,6 +12,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
         private readonly IGeradorRecibo geradorRecibo;
         private readonly INotificadorEmail notificadorEmail;
         private readonly IVerificadorConexao verificadorConexao;
+
         public LocacaoAppService(ILocacaoRepository locacaoRepository, 
             IGeradorRecibo geradorRecibo,
             INotificadorEmail notificadorEmail,
@@ -26,7 +26,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
         public bool RegistrarNovaLocacao(Locacao locacao)
         {
-            Log.Debug("Registrando nova locação do Cliente: {Cliente}", locacao.Cliente);
+            Log.Logger.Aqui().Debug("Registrando nova locação: {@Locacao}", locacao);
 
             string resultadoValidacao = locacao.Validar();
 
@@ -48,7 +48,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
         public string RegistrarDevolucao(Locacao locacao)
         {
-            Log.Debug("Registrando devolução do Cliente: {Cliente}", locacao.Cliente);
+            Log.Logger.Aqui().Debug("Registrando devolução da locação: {@Locacao}", locacao);
 
             string resultadoValidacao = locacao.Validar();
 
@@ -92,7 +92,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
         public bool Editar(int id, Locacao registro)
         {
-            Log.Debug("Editando locação Id: {Id}", id);
+            Log.Logger.Aqui().Debug("Editando locação: {@Locacao}", registro);
 
             string resultadoValidacao = registro.Validar();
 
@@ -114,7 +114,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
         public bool Excluir(int id)
         {
-            Log.Debug("Excluindo locação Id: {Id}", id);
+            Log.Logger.Aqui().Debug("Excluindo locação: {IdLocacao}", id);
 
             try
             {
@@ -131,7 +131,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
         public Locacao SelecionarPorId(int id)
         {
-            Log.Debug("Selecionando locação Id: {Id}", id);
+            Log.Logger.Aqui().Debug("Selecionando locação Id: {Id}", id);
 
             try
             {
@@ -147,7 +147,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
         public List<Locacao> SelecionarTodos()
         {
-            Log.Debug("Selecionando todas as locações");
+            Log.Logger.Aqui().Debug("Selecionando todas as locações");
 
             try
             {
@@ -163,7 +163,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
         public List<Locacao> SelecionarTodasLocacoesConcluidas()
         {
-            Log.Debug("Selecionando todas as locações concluídas");
+            Log.Logger.Aqui().Debug("Selecionando todas as locações concluídas");
 
             try
             {
@@ -179,7 +179,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
         public List<Locacao> SelecionarTodasLocacoesPendentes()
         {
-            Log.Debug("Selecionando todas as locações pendentes");
+            Log.Logger.Aqui().Debug("Selecionando todas as locações pendentes");
 
             try
             {

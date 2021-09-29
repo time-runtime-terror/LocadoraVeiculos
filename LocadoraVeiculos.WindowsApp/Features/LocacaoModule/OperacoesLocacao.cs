@@ -2,6 +2,7 @@
 using LocadoraVeiculos.Aplicacao.LocacaoModule;
 using LocadoraVeiculos.Aplicacao.TaxasServicosModule;
 using LocadoraVeiculos.Aplicacao.VeiculosModule;
+using LocadoraVeiculos.Infra.ExtensionMethods;
 using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
 using LocadoraVeiculos.WindowsApp.Features.DevolucaoModule;
 using LocadoraVeiculos.WindowsApp.Shared;
@@ -38,10 +39,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                Log.Debug("Inserindo nova locação...");
-
-                Stopwatch watch = Stopwatch.StartNew();
-
                 bool conseguiuRegistrar = locacaoService.RegistrarNovaLocacao(tela.Locacao);
 
                 if (conseguiuRegistrar)
@@ -56,9 +53,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                     Dashboard.Instancia.AtualizarRodape($"Locação: [{tela.Locacao.Id}] inserida com sucesso!");
 
-                    watch.Stop();
-
-                    Log.Debug("Locação: [{idLocacao}] inserida com sucesso! ({Ms}ms)", tela.Locacao.Id, watch.ElapsedMilliseconds);
+                    Log.Logger.Aqui().FuncionalidadeUsada();
                 }
             }
         }
@@ -81,10 +76,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                Log.Debug("Editando locação...");
-
-                Stopwatch watch = Stopwatch.StartNew();
-
                 bool conseguiuEditar = locacaoService.Editar(id, tela.Locacao);
 
                 if (conseguiuEditar)
@@ -99,9 +90,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                     Dashboard.Instancia.AtualizarRodape($"Locação: [{tela.Locacao.Id}] editada com sucesso!");
 
-                    watch.Stop();
-
-                    Log.Debug("Locação: [{idLocacao}] editada com sucesso! ({Ms}ms)", tela.Locacao.Id, watch.ElapsedMilliseconds);
+                    Log.Logger.Aqui().FuncionalidadeUsada();
                 }
             }
         }
@@ -121,8 +110,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             if (MessageBox.Show($"Tem certeza que deseja excluir a locação: [{locacaoSelecionada.Id}]?",
                 "Exclusão de Locações", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                Log.Debug("Excluindo locação...");
-
                 Stopwatch watch = Stopwatch.StartNew();
                 
                 bool conseguiuExcluir = locacaoService.Excluir(id);
@@ -139,8 +126,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                     watch.Stop();
 
-                    Log.Debug("Locação: [{idLocacao}] excluída com sucesso! ({Ms}ms)",
-                        id, watch.ElapsedMilliseconds);
+                    Log.Logger.Aqui().FuncionalidadeUsada();
                 }
             }
         }
@@ -151,8 +137,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             if (telaFiltro.ShowDialog() == DialogResult.OK)
             {
-                Stopwatch watch = Stopwatch.StartNew();
-
                 var locacoes = new List<Locacao>();
 
                 switch (telaFiltro.TipoFiltro)
@@ -169,9 +153,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                 tabelaLocacoes.AtualizarRegistros(locacoes);
 
-                watch.Stop();
-
-                Log.ForContext("TipoFiltro", telaFiltro.TipoFiltro).Debug("Locação: [{numeroRegistros}] registros filtrados carregados na tabela. ({Ms}ms)", locacoes.Count, watch.ElapsedMilliseconds);
+                Log.Logger.Aqui().FuncionalidadeUsada();
             }
         }
 
@@ -182,28 +164,21 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
         public void DesagruparRegistros()
         {
-            Stopwatch watch = Stopwatch.StartNew();
 
             List<Locacao> locacoes = locacaoService.SelecionarTodos();
 
             tabelaLocacoes.AtualizarRegistros(locacoes);
 
-            watch.Stop();
-
-            Log.Debug("Locação: [{numeroRegistros}] registros desagrupados carregados na tabela. ({Ms}ms)", locacoes.Count, watch.ElapsedMilliseconds);
+            Log.Logger.Aqui().FuncionalidadeUsada();
         }
 
         public UserControl ObterTabela()
         {
-            Stopwatch watch = Stopwatch.StartNew();
-
             List<Locacao> locacoes = locacaoService.SelecionarTodos();
 
             tabelaLocacoes.AtualizarRegistros(locacoes);
 
-            watch.Stop();
-
-            Log.Debug("Locação: [{numeroRegistros}] registros carregados na tabela. ({Ms}ms)", locacoes.Count, watch.ElapsedMilliseconds);
+            Log.Logger.Aqui().FuncionalidadeUsada();
 
             return tabelaLocacoes;
         }
@@ -226,10 +201,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                Log.Debug("Registrando devolução...");
-
-                Stopwatch watch = Stopwatch.StartNew();
-
                 string resultadoDevolucao = locacaoService.RegistrarDevolucao(tela.Locacao);
 
                 if (resultadoDevolucao != "ERRO_INSERCAO")
@@ -246,9 +217,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                     Dashboard.Instancia.AtualizarRodape(resultadoDevolucao);
 
-                    watch.Stop();
-
-                    Log.Debug("Locação: [{idLocacao}] concluída com sucesso!. {resultadoDevolucao}. ({Ms}ms)", tela.Locacao.Id, resultadoDevolucao, watch.ElapsedMilliseconds);
+                    Log.Logger.Aqui().FuncionalidadeUsada();
                 }
             }
         }

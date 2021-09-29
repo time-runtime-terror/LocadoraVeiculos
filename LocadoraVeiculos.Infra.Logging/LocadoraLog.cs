@@ -14,7 +14,7 @@ namespace LocadoraVeiculos.Infra.Logging
             // Configurando o nível de logging dinamicamente
             // Padrão: LogEventLevel.Error
             // Debug: LogEventLevel.Debug
-            ConfigurarNivel(LogEventLevel.Error);
+            ConfigurarNivel(LogEventLevel.Debug);
         }
 
         public static void CriarLogger()

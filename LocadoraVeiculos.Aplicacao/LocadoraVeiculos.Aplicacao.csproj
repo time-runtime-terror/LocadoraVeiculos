@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LocadoraVeiculos.Infra.ExtensionMethods\LocadoraVeiculos.Infra.ExtensionMethods.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.Infra.Logging\LocadoraVeiculos.Infra.Logging.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.netCore.Dominio\LocadoraVeiculos.netCore.Dominio.csproj" />
   </ItemGroup>
