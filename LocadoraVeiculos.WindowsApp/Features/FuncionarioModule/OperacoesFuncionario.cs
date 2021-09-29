@@ -8,6 +8,7 @@ using log4net;
 using System.Reflection;
 using Serilog;
 using System.Diagnostics;
+using LocadoraVeiculos.Infra.ExtensionMethods;
 
 namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
 {
@@ -31,7 +32,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                Log.Information("Inserindo novo funcionário...");
+                //Log.Information("Inserindo novo funcionário...");
+                Log.Logger.Aqui().FuncionalidadeUsada();
                 Stopwatch watch = Stopwatch.StartNew();
 
                 funcionarioAppService.InserirNovo(tela.Funcionario);
@@ -69,7 +71,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                Log.Information("Editando um funcionário");
+                //Log.Information("Editando um funcionário");
+                Log.Logger.Aqui().FuncionalidadeUsada();
                 Stopwatch watch = Stopwatch.StartNew();
 
                 funcionarioAppService.Editar(id, tela.Funcionario);
@@ -101,7 +104,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.FuncionarioModule
             if (MessageBox.Show($"Tem certeza que deseja excluir o funcionário: [{funcionarioSelecionado.Nome}] ?",
                 "Exclusão de Funcionários", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                Log.Information("Excluindo locação...");
+                //Log.Information("Excluindo locação...");
+                Log.Logger.Aqui().FuncionalidadeUsada();
                 Stopwatch watch = Stopwatch.StartNew();
 
                 funcionarioAppService.Excluir(id);
