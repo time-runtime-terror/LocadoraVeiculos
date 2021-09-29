@@ -60,15 +60,14 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
                     string caminhoRecibo = geradorRecibo.GerarRecibo(locacao);
 
-                    //bool temInternet = verificadorConexao.TemConexaoComInternet();
-                    bool temInternet = false;
-
                     Email emailCliente = new Email
                     { 
                         NomeCliente = locacao.Cliente.Nome,
                         EmailCliente = locacao.Cliente.Email,
                         CaminhoArquivo = caminhoRecibo 
                     };
+
+                    bool temInternet = verificadorConexao.TemConexaoComInternet();
 
                     if (temInternet)
                     {
