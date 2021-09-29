@@ -22,7 +22,7 @@ namespace LocadoraVeiculos.Aplicacao.Shared
         /// <returns>Resultado da validação do registro inserido</returns>
         public virtual string InserirNovo(T registro)
         {
-            Log.Logger.Aqui().Debug("Inserindo novo registro do tipo {TipoRegistro}: {@Registro}",
+            Log.Logger.Aqui().Debug("Inserindo novo(a) {TipoRegistro}: {@Registro}",
                 typeof(T).Name, registro);
 
             string resultadoValidacao = registro.Validar();
@@ -32,10 +32,12 @@ namespace LocadoraVeiculos.Aplicacao.Shared
                 try
                 {
                     repositorio.InserirNovo(registro);
+
+                    Log.Logger.Aqui().Debug("Inserção de {TipoRegistro} concluída com sucesso! ID: {IdRegistro}", typeof(T).Name, registro.Id);
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex, "Falha ao tentar inserir novo registro do tipo {T},", registro.GetType().ToString());
+                    Log.Error(ex, "Falha ao tentar inserir {TipoRegistro}! ID: {IdRegistro}", typeof(T).Name, registro.Id);
                 }
             }
 
@@ -50,18 +52,22 @@ namespace LocadoraVeiculos.Aplicacao.Shared
         /// <returns></returns>
         public virtual string Editar(int id, T registro)
         {
-            Log.Logger.Aqui().Debug("Editando registro do tipo {TipoRegistro}: {@Registro}", typeof(T).Name, registro);
+            Log.Logger.Aqui().Debug("Editando registro de {TipoRegistro}: {@Registro}", typeof(T).Name, registro);
 
             string resultadoValidacao = registro.Validar();
 
             try
             {
                 if (resultadoValidacao == "ESTA_VALIDO")
+                {
                     repositorio.Editar(id, registro);
+
+                    Log.Logger.Aqui().Debug("Edição de {TipoRegistro} concluída com sucesso! ID: {IdRegistro}", typeof(T).Name, registro.Id);
+                }
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "Falha ao tentar editar registro do tipo {T} - ID: {Id}", registro.GetType().ToString(), id);
+                Log.Error(ex, "Falha ao tentar editar {TipoRegistro}! ID: {Id}", typeof(T).Name, id);
             }
 
             return resultadoValidacao;
@@ -74,16 +80,20 @@ namespace LocadoraVeiculos.Aplicacao.Shared
         /// <returns>Valor <typeparamref name="bool"/> indicando se a exclusão foi bem-sucedida</returns>
         public virtual bool Excluir(int id)
         {
-            Log.Logger.Aqui().Debug("Editando registro do tipo {TipoRegistro} ID: {@IdRegistro}", typeof(T).Name, id);
+            Log.Logger.Aqui().Debug("Excluindo registro de {TipoRegistro} ID: {@IdRegistro}", typeof(T).Name, id);
 
             try
             { 
                 if (repositorio.Excluir(id))
+                {
+                    Log.Logger.Aqui().Debug("Exclusão de {TipoRegistro} concluída com sucesso! ID: {IdRegistro}", typeof(T).Name, id);
+
                     return true;
+                }
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "Falha ao tentar excluir registro ID: {Id}", id);
+                Log.Error(ex, "Falha ao tentar excluir {TipoRegistro}! ID: {IdRegistro}", typeof(T).Name, id);
             }
             
             return false;
@@ -96,7 +106,7 @@ namespace LocadoraVeiculos.Aplicacao.Shared
         /// <returns>Registro <typeparamref name="T"/> ou <typeparamref name="null"/>, caso o registro não for encontrado.</returns>
         public T SelecionarPorId(int id)
         {
-            Log.Logger.Aqui().Debug("Selecionando registro do tipo {TipoRegistro} por ID: {@IdRegistro}", typeof(T).Name, id);
+            Log.Logger.Aqui().Debug("Selecionando {TipoRegistro} por ID: {@IdRegistro}", typeof(T).Name, id);
 
             try
             {
@@ -104,7 +114,7 @@ namespace LocadoraVeiculos.Aplicacao.Shared
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "Falha ao tentar selecionar registro ID: {Id}", id);
+                Log.Error(ex, "Falha ao tentar selecionar {TipoRegistro}! ID: {Id}", typeof(T).Name, id);
             }
 
             return null;
@@ -116,7 +126,7 @@ namespace LocadoraVeiculos.Aplicacao.Shared
         /// <returns>Lista de registros do tipo <typeparamref name="T"/> ou uma lista vazia, caso nenhum registro for encontrado.</returns>
         public List<T> SelecionarTodos()
         {
-            Log.Logger.Aqui().Debug("Selecionando todos os registros do tipo {TipoRegistro}", typeof(T).Name);
+            Log.Logger.Aqui().Debug("Selecionando todos os registros de {TipoRegistro}", typeof(T).Name);
 
             try
             {
@@ -124,7 +134,7 @@ namespace LocadoraVeiculos.Aplicacao.Shared
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "Falha ao tentar selecionar registros");
+                Log.Error(ex, "Falha ao tentar selecionar registros de {TipoRegistro}!", typeof(T).Name);
             }
 
             return null;
@@ -137,7 +147,7 @@ namespace LocadoraVeiculos.Aplicacao.Shared
         /// <returns>Lista de registros do tipo <typeparamref name="T"/> ou uma lista vazia, caso nenhum registro for encontrado.</returns>
         public List<T> Pesquisar(string texto)
         {
-            Log.Logger.Aqui().Debug("Pesquisando registros do tipo {TipoRegistro}", typeof(T).Name);
+            Log.Logger.Aqui().Debug("Pesquisando registros de {TipoRegistro}", typeof(T).Name);
 
             try
             {
@@ -145,7 +155,7 @@ namespace LocadoraVeiculos.Aplicacao.Shared
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "Falha ao tentar pesquisar registros");
+                Log.Error(ex, "Falha ao tentar pesquisar registros de {TipoRegistro}", typeof(T).Name);
             }
 
             return null;

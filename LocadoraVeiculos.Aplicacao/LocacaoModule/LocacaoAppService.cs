@@ -26,7 +26,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
         public bool RegistrarNovaLocacao(Locacao locacao)
         {
-            Log.Logger.Aqui().Debug("Registrando nova locação: {@Locacao}", locacao);
+            Log.Logger.Aqui().Debug("Inserindo nova {TipoRegistro}: {@Locacao}", "Locacao", locacao);
 
             string resultadoValidacao = locacao.Validar();
 
@@ -36,11 +36,11 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
                 {
                     locacaoRepository.InserirNovo(locacao);
 
-                    Log.Logger.Aqui().Debug("Locação registrada com sucesso! ID: {IdLocacao}", locacao.Id);
+                    Log.Logger.Aqui().Debug("{TipoRegistro} registrada com sucesso! ID: {IdLocacao}", "Locacao", locacao.Id);
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex, "Falha ao tentar registrar locação do Cliente: {Cliente}", locacao.Cliente);
+                    Log.Error(ex, "Falha ao tentar registrar {TipoRegistro}! ID: {IdLocacao}", "Locacao", locacao.Id);
                     return false;
                 }
             }
@@ -50,7 +50,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
         public string RegistrarDevolucao(Locacao locacao)
         {
-            Log.Logger.Aqui().Debug("Registrando devolução da locação: {@Locacao}", locacao);
+            Log.Logger.Aqui().Debug("Registrando devolução da {TipoRegistro} ID: {IdLocacao}", "Locacao", locacao.Id);
 
             string resultadoValidacao = locacao.Validar();
 
@@ -91,7 +91,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
                 catch (Exception ex)
                 {
                     resultadoValidacao = "ERRO_INSERCAO";
-                    Log.Error(ex, "Falha ao tentar registrar devolução do Cliente: {Cliente}", locacao.Cliente);
+                    Log.Error(ex, "Falha ao tentar registrar devolução de {TipoRegistro}! ID: {IdLocacao}", locacao.Id);
                 }
             }
 
@@ -145,7 +145,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
         public Locacao SelecionarPorId(int id)
         {
-            Log.Logger.Aqui().Debug("Selecionando locação. ID: {IdLocacao}", id);
+            Log.Logger.Aqui().Debug("Selecionando {TipoRegistro} por ID: {IdLocacao}", "Locacao", id);
 
             try
             {
@@ -153,7 +153,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "Falha ao tentar selecionar locação. ID: {IdLocacao}", id);
+                Log.Error(ex, "Falha ao tentar selecionar {TipoRegistro}! ID: {IdLocacao}", "Locacao", id);
             }
 
             return null;
@@ -161,7 +161,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
         public List<Locacao> SelecionarTodos()
         {
-            Log.Logger.Aqui().Debug("Selecionando todas as locações");
+            Log.Logger.Aqui().Debug("Selecionando todos os registros de {TipoRegistro}", "Locacao");
 
             try
             {
@@ -169,7 +169,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "Falha ao tentar selecionar todas as locações");
+                Log.Error(ex, "Falha ao tentar selecionar registros de {TipoRegistro}!", "Locacao");
             }
 
             return null;
@@ -185,7 +185,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "Falha ao tentar selecionar todas as locações concluídas");
+                Log.Error(ex, "Falha ao tentar selecionar todas as locações concluídas!");
             }
 
             return null;
@@ -201,7 +201,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "Falha ao tentar selecionar todas as locações pendentes");
+                Log.Error(ex, "Falha ao tentar selecionar todas as locações pendentes!");
             }
 
             return null;
