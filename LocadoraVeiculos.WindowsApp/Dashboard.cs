@@ -24,15 +24,16 @@ using LocadoraVeiculos.Aplicacao.LocacaoModule;
 using LocadoraVeiculos.Infra.PDF.LocacaoModule;
 using LocadoraVeiculos.Infra.InternetServices.LocacaoModule;
 using LocadoraVeiculos.Infra.JSON.CombustivelModule;
-using log4net;
-using System.Reflection;
 using Serilog;
+using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
 
 namespace LocadoraVeiculos.WindowsApp
 {
     public partial class Dashboard : Form
     {
         private ICadastravel operacoes;
+        private INotificadorEmail notificadorEmail;
+        private IVerificadorConexao verificadorConexao;
 
         public static Dashboard Instancia { get; set; }
         public string Usuario { get; set; }
@@ -44,6 +45,24 @@ namespace LocadoraVeiculos.WindowsApp
             Instancia = this;
             Usuario = usuario;
             Log.Information($"Usuário [{ Usuario }]: Login completo... Executando o Dashboard.");
+
+            notificadorEmail = new NotificadorEmail();
+            verificadorConexao = new VerificadorConexao();
+
+            if (verificadorConexao.TemConexaoComInternet())
+                EnviarEmailsAgendados();
+        }
+
+        private void EnviarEmailsAgendados()
+        {
+            try
+            {
+                notificadorEmail.EnviarEmailsAgendadosAsync();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "Falha ao tentar enviar emails agendados.");
+            }
         }
 
         public void AtualizarRodape(string mensagem)

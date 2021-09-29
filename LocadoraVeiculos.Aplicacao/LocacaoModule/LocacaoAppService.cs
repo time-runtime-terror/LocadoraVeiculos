@@ -60,15 +60,26 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
                     string caminhoRecibo = geradorRecibo.GerarRecibo(locacao);
 
-                    bool temInternet = verificadorConexao.TemConexaoComInternet();
+                    //bool temInternet = verificadorConexao.TemConexaoComInternet();
+                    bool temInternet = false;
+
+                    Email emailCliente = new Email
+                    { 
+                        NomeCliente = locacao.Cliente.Nome,
+                        EmailCliente = locacao.Cliente.Email,
+                        CaminhoArquivo = caminhoRecibo 
+                    };
 
                     if (temInternet)
                     {
-                        notificadorEmail.EnviarEmailAsync(locacao, caminhoRecibo);
+                        notificadorEmail.EnviarEmailAsync(emailCliente, caminhoRecibo);
                         resultadoValidacao = $"Devolução concluída com sucesso! O recibo de devolução foi enviado para o email {locacao.Cliente.Email}";
                     }
                     else
-                        resultadoValidacao = "Devolução concluída com sucesso! Sem conexão com a internet; o recibo de devolução não foi enviado.";
+                    {
+                        notificadorEmail.AgendarEnvioEmailAsync(emailCliente, caminhoRecibo);
+                        resultadoValidacao = "Devolução concluída com sucesso! Sem conexão com a internet; o envio do recibo foi agendado para mais tarde";
+                    }
                 }
                 catch (Exception ex)
                 {
