@@ -19,7 +19,15 @@ namespace LocadoraVeiculos.Infra.ExtensionMethods
 
         public static void FuncionalidadeUsada(this ILogger logger)
         {
-            logger.Information("Funcionalidade {MemberName} utilizada");
+            logger.Information("Funcionalidade {MemberName} executada com sucesso");
+        }
+
+        public static void FuncionalidadeUsada(this ILogger logger,
+            long milisegundos,
+            [CallerMemberName] string memberName = "")
+        {
+
+            logger.Information("Funcionalidade {MemberName} executada com sucesso ({TempoExecucao}ms)", memberName, milisegundos);
         }
     }
 }

@@ -35,6 +35,8 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
                 try
                 {
                     locacaoRepository.InserirNovo(locacao);
+
+                    Log.Logger.Aqui().Debug("Locação registrada com sucesso! ID: {IdLocacao}", locacao.Id);
                 }
                 catch (Exception ex)
                 {
@@ -72,12 +74,18 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
                     if (temInternet)
                     {
                         notificadorEmail.EnviarEmailAsync(emailCliente, caminhoRecibo);
+
                         resultadoValidacao = $"Devolução concluída com sucesso! O recibo de devolução foi enviado para o email {locacao.Cliente.Email}";
+
+                        Log.Logger.Aqui().Debug("Devolução concluída com sucesso! Email enviado com sucesso. ID: {IdLocacao}", locacao.Id);
                     }
                     else
                     {
                         notificadorEmail.AgendarEnvioEmailAsync(emailCliente, caminhoRecibo);
+
                         resultadoValidacao = "Devolução concluída com sucesso! Sem conexão com a internet; o envio do recibo foi agendado para mais tarde";
+
+                        Log.Logger.Aqui().Debug("Devolução concluída com sucesso! Envio de email agendado... ID: {IdLocacao}", locacao.Id);
                     }
                 }
                 catch (Exception ex)
@@ -101,6 +109,9 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
                 try
                 {
                     locacaoRepository.Editar(id, registro);
+
+                    Log.Logger.Aqui().Debug("Edição concluída com sucesso! ID: {IdLocacao}", id);
+
                     return true;
                 }
                 catch (Exception ex)
@@ -119,11 +130,14 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             try
             {
                 if (locacaoRepository.Excluir(id))
+                {
+                    Log.Logger.Aqui().Debug("Exclusão concluída com sucesso! ID: {IdLocacao}", id);
                     return true;
+                }
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "Falha ao tentar excluir locação Id: {Id}", id);
+                Log.Error(ex, "Falha ao tentar excluir locação. ID: {IdLocacao}", id);
             }
 
             return false;
@@ -131,7 +145,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
         public Locacao SelecionarPorId(int id)
         {
-            Log.Logger.Aqui().Debug("Selecionando locação Id: {Id}", id);
+            Log.Logger.Aqui().Debug("Selecionando locação. ID: {IdLocacao}", id);
 
             try
             {
@@ -139,7 +153,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             }
             catch (Exception ex)
             {
-                Log.Error(ex.Message);
+                Log.Error(ex, "Falha ao tentar selecionar locação. ID: {IdLocacao}", id);
             }
 
             return null;
@@ -155,7 +169,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             }
             catch (Exception ex)
             {
-                Log.Error(ex.Message);
+                Log.Error(ex, "Falha ao tentar selecionar todas as locações");
             }
 
             return null;
@@ -171,7 +185,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             }
             catch (Exception ex)
             {
-                Log.Error(ex.Message);
+                Log.Error(ex, "Falha ao tentar selecionar todas as locações concluídas");
             }
 
             return null;
@@ -187,7 +201,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             }
             catch (Exception ex)
             {
-                Log.Error(ex.Message);
+                Log.Error(ex, "Falha ao tentar selecionar todas as locações pendentes");
             }
 
             return null;
