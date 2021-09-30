@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculos.Aplicacao.TaxasServicosModule;
+using LocadoraVeiculos.Infra.ExtensionMethods;
 using LocadoraVeiculos.netCore.Dominio.TaxasServicosModule;
 using LocadoraVeiculos.WindowsApp.Shared;
 using log4net;
@@ -29,7 +30,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                Log.Information("Inserindo nova taxa...");
+                //Log.Information("Inserindo nova taxa...");
+                Log.Logger.Aqui().FuncionalidadeUsada();
                 Stopwatch watch = Stopwatch.StartNew();
 
                 taxasServicosAppService.InserirNovo(tela.TaxasServicos);
@@ -65,7 +67,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                Log.Information("Editando taxa...");
+                //Log.Information("Editando taxa...");
+                Log.Logger.Aqui().FuncionalidadeUsada();
                 Stopwatch watch = Stopwatch.StartNew();
 
                 taxasServicosAppService.Editar(id, tela.TaxasServicos);
@@ -100,7 +103,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule
             if (MessageBox.Show($"Tem certeza que deseja excluir esse Serviço?: [{taxasServicosSelecionado.Servico}] ?",
                 "Exclusão de Taxas e Serviços", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                Log.Information("Excluindo taxa...");
+                //Log.Information("Excluindo taxa...");
+                Log.Logger.Aqui().FuncionalidadeUsada();
                 Stopwatch watch = Stopwatch.StartNew();
                 taxasServicosAppService.Excluir(id);
 

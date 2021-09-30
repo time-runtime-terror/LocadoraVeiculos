@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculos.Aplicacao.Shared;
+using LocadoraVeiculos.Infra.ExtensionMethods;
 using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
 using LocadoraVeiculos.netCore.Dominio.TaxasServicosModule;
 using Serilog;
@@ -22,6 +23,8 @@ namespace LocadoraVeiculos.Aplicacao.TaxasServicosModule
 
         public void RegistrarTaxaUsada(Locacao registro)
         {
+            Log.Logger.Aqui().Debug("Registrando taxas usadas: {@Taxas}", registro.Taxas);
+
             try
             {
                 if (registro.Taxas != null)
@@ -35,6 +38,8 @@ namespace LocadoraVeiculos.Aplicacao.TaxasServicosModule
         }
         public void EditarTaxasUsadas(Locacao locacao)
         {
+            Log.Logger.Aqui().Debug("Editando taxas usadas: {@Taxas}", locacao.Taxas);
+
             try
             {
                 foreach (TaxasServicos taxa in locacao.Taxas)
@@ -47,6 +52,7 @@ namespace LocadoraVeiculos.Aplicacao.TaxasServicosModule
         }
         public bool ExcluirTaxaUsada(Locacao locacao)
         {
+            Log.Logger.Aqui().Debug("Excluindo taxas usadas: {@Taxas}", locacao.Taxas);
             try
             {
                 if (taxasRepository.ExcluirTaxaUsada(locacao))
@@ -61,6 +67,7 @@ namespace LocadoraVeiculos.Aplicacao.TaxasServicosModule
         }
         public List<TaxasServicos> SelecionarTaxasServicosUsados(int id)
         {
+            Log.Logger.Aqui().Debug("Selecionando todas as taxas usadas");
             try
             {
                 return taxasRepository.SelecionarTaxasServicosUsados(id);
