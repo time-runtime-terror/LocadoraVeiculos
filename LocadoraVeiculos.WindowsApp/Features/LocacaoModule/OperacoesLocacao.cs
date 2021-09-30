@@ -39,6 +39,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
+                Stopwatch watch = Stopwatch.StartNew(); ;
+
                 bool conseguiuRegistrar = locacaoService.RegistrarNovaLocacao(tela.Locacao);
 
                 if (conseguiuRegistrar)
@@ -53,7 +55,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                     Dashboard.Instancia.AtualizarRodape($"Locação: [{tela.Locacao.Id}] inserida com sucesso!");
 
-                    Log.Logger.Aqui().FuncionalidadeUsada();
+                    watch.Stop();
+
+                    Log.Logger.Aqui().FuncionalidadeUsada(watch.ElapsedMilliseconds);
                 }
             }
         }
@@ -76,6 +80,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
+                Stopwatch watch = Stopwatch.StartNew();
+
                 bool conseguiuEditar = locacaoService.Editar(id, tela.Locacao);
 
                 if (conseguiuEditar)
@@ -90,7 +96,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                     Dashboard.Instancia.AtualizarRodape($"Locação: [{tela.Locacao.Id}] editada com sucesso!");
 
-                    Log.Logger.Aqui().FuncionalidadeUsada();
+                    watch.Stop();
+
+                    Log.Logger.Aqui().FuncionalidadeUsada(watch.ElapsedMilliseconds);
                 }
             }
         }
@@ -111,7 +119,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                 "Exclusão de Locações", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 Stopwatch watch = Stopwatch.StartNew();
-                
+
                 bool conseguiuExcluir = locacaoService.Excluir(id);
 
                 if (conseguiuExcluir)
@@ -126,7 +134,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                     watch.Stop();
 
-                    Log.Logger.Aqui().FuncionalidadeUsada();
+                    Log.Logger.Aqui().FuncionalidadeUsada(watch.ElapsedMilliseconds);
                 }
             }
         }
@@ -137,6 +145,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             if (telaFiltro.ShowDialog() == DialogResult.OK)
             {
+                Stopwatch watch = Stopwatch.StartNew();
+
                 var locacoes = new List<Locacao>();
 
                 switch (telaFiltro.TipoFiltro)
@@ -153,7 +163,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                 tabelaLocacoes.AtualizarRegistros(locacoes);
 
-                Log.Logger.Aqui().FuncionalidadeUsada();
+                watch.Stop();
+
+                Log.Logger.Aqui().FuncionalidadeUsada(watch.ElapsedMilliseconds);
             }
         }
 
@@ -164,12 +176,15 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
         public void DesagruparRegistros()
         {
+            Stopwatch watch = Stopwatch.StartNew();
 
             List<Locacao> locacoes = locacaoService.SelecionarTodos();
 
             tabelaLocacoes.AtualizarRegistros(locacoes);
 
-            Log.Logger.Aqui().FuncionalidadeUsada();
+            watch.Stop();
+
+            Log.Logger.Aqui().FuncionalidadeUsada(watch.ElapsedMilliseconds);
         }
 
         public UserControl ObterTabela()
@@ -199,6 +214,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
+                Stopwatch watch = Stopwatch.StartNew();
+
                 string resultadoDevolucao = locacaoService.RegistrarDevolucao(tela.Locacao);
 
                 if (resultadoDevolucao != "ERRO_INSERCAO")
@@ -215,7 +232,9 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                     Dashboard.Instancia.AtualizarRodape(resultadoDevolucao);
 
-                    Log.Logger.Aqui().FuncionalidadeUsada();
+                    watch.Stop();
+
+                    Log.Logger.Aqui().FuncionalidadeUsada(watch.ElapsedMilliseconds);
                 }
             }
         }
