@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.netCore.Dominio.FuncionarioModule
 {
-    public class Funcionario : EntidadeBase, IEquatable<Funcionario>
+    public class FuncionarioEntity : IEntity, IEquatable<Funcionario>
     {
         //Devem ser registrados nome, usuário de acesso,
         //senha de acesso, data de entrada na empresa e o salário do funcionário.
-        public Funcionario(string nome, string nomeUsuario, string senha, DateTime dataEntrada, string salario)
+        public FuncionarioEntity(string nome, string nomeUsuario, string senha, DateTime dataEntrada, string salario)
         {
             Nome = nome;
             NomeUsuario = nomeUsuario;
@@ -19,6 +19,8 @@ namespace LocadoraVeiculos.netCore.Dominio.FuncionarioModule
             DataEntrada = dataEntrada;
             Salario = salario;
         }
+
+        public int Id { get; set; }
 
         public string Nome { get; }
 
@@ -47,7 +49,37 @@ namespace LocadoraVeiculos.netCore.Dominio.FuncionarioModule
                && Salario == other.Salario;
         }
 
-        public override string Validar()
+        //public override string Validar()
+        //{
+        //    string resultadoValidacao = "";
+
+        //    if (string.IsNullOrEmpty(Nome))
+        //        resultadoValidacao = "O campo Nome é obrigatório";
+
+        //    if (string.IsNullOrEmpty(NomeUsuario))
+        //        resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Nome de Usuário é obrigatório";
+
+        //    if (Senha.Length < 3)
+        //        resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Senha necessita ter ao mínimo 3 caracteres";
+
+        //    if (DataEntrada == DateTime.MinValue)
+        //        resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Data de Entrada é obrigatório";
+
+        //    if(DataEntrada > DateTime.Now)
+        //        resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Data de Entrada aceita apenas datas menores que a atual";
+
+
+        //    if (string.IsNullOrEmpty(Salario))
+        //        resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Salário é obrigatório";
+
+
+        //    if (resultadoValidacao == "")
+        //        resultadoValidacao = "ESTA_VALIDO";
+
+        //    return resultadoValidacao;
+        //}
+
+        public string Validar()
         {
             string resultadoValidacao = "";
 
@@ -77,6 +109,15 @@ namespace LocadoraVeiculos.netCore.Dominio.FuncionarioModule
             return resultadoValidacao;
         }
 
+        protected string QuebraDeLinha(string resultadoValidacao)
+        {
+            string quebraDeLinha = "";
+
+            if (string.IsNullOrEmpty(resultadoValidacao) == false)
+                quebraDeLinha = Environment.NewLine;
+
+            return quebraDeLinha;
+        }
 
         public override int GetHashCode()
         {

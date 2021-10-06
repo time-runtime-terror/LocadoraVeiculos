@@ -17,8 +17,6 @@ namespace LocadoraVeiculos.netCore.Dominio.Shared
         bool Excluir(int id);
 
        
-        
-
         TEntity SelecionarPorId(int id);
 
         
