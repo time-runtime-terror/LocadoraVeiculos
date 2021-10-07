@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.Infra.ORM.Configurations
 {
-    public class GrupoAutomoveisConfiguration : IEntityTypeConfiguration<GrupoAutomoveisEntity>
+    public class GrupoAutomoveisConfiguration : IEntityTypeConfiguration<GrupoAutomoveis>
     {
-        public void Configure(EntityTypeBuilder<GrupoAutomoveisEntity> builder)
+        public void Configure(EntityTypeBuilder<GrupoAutomoveis> builder)
         {
             builder.ToTable("TBGRUPOAUTOMOVEIS");
 
