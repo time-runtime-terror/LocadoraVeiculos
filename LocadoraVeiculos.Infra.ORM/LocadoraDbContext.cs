@@ -6,7 +6,7 @@ using System.IO;
 
 namespace LocadoraVeiculos.Infra.ORM
 {
-    public class FuncionarioDbContext : DbContext
+    public class LocadoraDbContext : DbContext
     {
         public DbSet<Funcionario> Funcionarios {get; set; }
 
@@ -24,7 +24,7 @@ namespace LocadoraVeiculos.Infra.ORM
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(FuncionarioDbContext).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(LocadoraDbContext).Assembly);
         }
     }
 }

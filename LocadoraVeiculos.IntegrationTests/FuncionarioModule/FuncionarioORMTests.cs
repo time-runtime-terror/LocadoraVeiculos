@@ -17,11 +17,11 @@ namespace LocadoraVeiculos.IntegrationTests.FuncionarioModule
     {
 
         private IFuncionarioRepository funcionarioRepository;
-        private FuncionarioDbContext dbContext ;
+        private LocadoraDbContext dbContext ;
 
         public FuncionarioORMTests()
         {
-            dbContext = new FuncionarioDbContext();
+            dbContext = new LocadoraDbContext();
 
             DeletarLinhasTabela();
 

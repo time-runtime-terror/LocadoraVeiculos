@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LocadoraVeiculos.Infra.ORM.Migrations
 {
-    [DbContext(typeof(FuncionarioDbContext))]
+    [DbContext(typeof(LocadoraDbContext))]
     [Migration("20211006191638_TabelaFuncionarioAdicionada")]
     partial class TabelaFuncionarioAdicionada
     {
