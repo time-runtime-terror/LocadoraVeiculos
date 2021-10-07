@@ -9,5 +9,7 @@ namespace LocadoraVeiculos.netCore.Dominio.FuncionarioModule
 {
     public interface IFuncionarioRepositoryEntity : IRepositoryEntity<FuncionarioEntity>
     {
+
+        //método, existe funcionário, deve ser colocado aqui
     }
 }

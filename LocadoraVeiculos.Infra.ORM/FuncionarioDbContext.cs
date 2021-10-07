@@ -10,7 +10,7 @@ namespace LocadoraVeiculos.Infra.ORM
 {
     public class FuncionarioDbContext : DbContext
     {
-        public DbSet<FuncionarioEntity> Funcionarios {get; set; }
+        public DbSet<Funcionario> Funcionarios {get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

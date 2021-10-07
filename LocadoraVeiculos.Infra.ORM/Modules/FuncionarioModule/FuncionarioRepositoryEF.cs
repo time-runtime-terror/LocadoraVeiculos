@@ -9,12 +9,22 @@ using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.Infra.ORM.Modules.FuncionarioModule
 {
-    public class FuncionarioRepositoryEF : BaseRepository<FuncionarioEntity>, IFuncionarioRepositoryEntity
+    public class FuncionarioRepositoryEF : BaseRepository<Funcionario>, IFuncionarioRepository
     {
 
         public FuncionarioRepositoryEF(FuncionarioDbContext dbContext) : base(dbContext)
         {
 
+        }
+
+        public Dictionary<string, object> AdicionarParametroFuncionario(string campoUsuario, object valorUsuario, string campoSenha, object valorSenha)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool ExisteFuncionario(string usuario, string senha)
+        {
+            throw new NotImplementedException();
         }
     }
 }

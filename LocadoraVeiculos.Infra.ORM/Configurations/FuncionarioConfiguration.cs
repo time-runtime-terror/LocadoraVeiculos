@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.Infra.ORM.Configurations
 {
-    public class FuncionarioConfiguration : IEntityTypeConfiguration<FuncionarioEntity>
+    public class FuncionarioConfiguration : IEntityTypeConfiguration<Funcionario>
     {
-        public void Configure(EntityTypeBuilder<FuncionarioEntity> builder)
+        public void Configure(EntityTypeBuilder<Funcionario> builder)
         {
             builder.ToTable("TBFUNCIONARIO");
 

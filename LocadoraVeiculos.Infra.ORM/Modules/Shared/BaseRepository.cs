@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.Infra.ORM.Modules.Shared
 {
-    public class BaseRepository<TEntity> : IRepositoryEntity<TEntity> where TEntity : class, IEntity
+    public class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : EntidadeBase
     {
 
         private readonly DbContext _dbContext;
@@ -21,7 +21,7 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.Shared
             _dbSet = dbContext.Set<TEntity>();
         }
 
-        public void InserirNovo(TEntity registro)
+        public virtual void InserirNovo(TEntity registro)
         {
             try
             {
@@ -35,7 +35,7 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.Shared
             }
         }
 
-        public void Editar(int id, TEntity registro)
+        public virtual void Editar(int id, TEntity registro)
         {
             try
             {
@@ -49,7 +49,7 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.Shared
             }
         }
 
-        public bool Excluir(int id)
+        public virtual bool Excluir(int id)
         {
             try
             {
@@ -72,7 +72,7 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.Shared
             return true;
         }
 
-        public TEntity SelecionarPorId(int id)
+        public virtual TEntity SelecionarPorId(int id)
         {
             try
             {
@@ -84,7 +84,7 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.Shared
             }
         }
 
-        public List<TEntity> SelecionarTodos()
+        public virtual List<TEntity> SelecionarTodos()
         {
             try
             {
@@ -97,11 +97,14 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.Shared
         }
 
 
-        public List<TEntity> Pesquisar(string texto)
+        public virtual List<TEntity> Pesquisar(string texto)
         {
             throw new NotImplementedException();
         }
 
-       
+        public virtual bool Existe(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
