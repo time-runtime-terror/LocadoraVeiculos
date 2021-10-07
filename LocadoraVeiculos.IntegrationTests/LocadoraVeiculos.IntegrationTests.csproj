@@ -32,6 +32,7 @@
 
   <ItemGroup>
     <Folder Include="FuncionarioModule\" />
+    <Folder Include="GrupoAutomoveisModule\" />
   </ItemGroup>
 
   <ItemGroup>

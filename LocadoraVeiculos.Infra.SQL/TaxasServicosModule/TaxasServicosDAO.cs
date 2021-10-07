@@ -8,7 +8,7 @@ using System.Data;
 
 namespace LocadoraVeiculos.Infra.SQL.TaxasServicosModule
 {
-    public class TaxasServicosDAO : BaseDAO, ITaxasServicosRepository
+    public class TaxasServicosDAO : BaseDAO<TaxasServicos>, ITaxasServicosRepository
     {
         #region Queries
         private const string sqlInserirTaxasServicos =
@@ -270,7 +270,7 @@ namespace LocadoraVeiculos.Infra.SQL.TaxasServicosModule
             
         }
 
-        public Dictionary<string, object> ObtemParametrosRegistro(TaxasServicos taxasServicos)
+        public override Dictionary<string, object> ObtemParametrosRegistro(TaxasServicos taxasServicos)
         {
             var parametros = new Dictionary<string, object>();
 
@@ -293,7 +293,7 @@ namespace LocadoraVeiculos.Infra.SQL.TaxasServicosModule
             return parametros;
         }
 
-        public TaxasServicos ConverterEmRegistro(IDataReader reader)
+        public override TaxasServicos ConverterEmRegistro(IDataReader reader)
         {
             int id = Convert.ToInt32(reader["ID"]);
             string servico = Convert.ToString(reader["SERVICO"]);

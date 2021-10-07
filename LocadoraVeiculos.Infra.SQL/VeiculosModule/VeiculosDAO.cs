@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.Infra.SQL.VeiculosModule
 {
-    public class VeiculosDAO : BaseDAO, IVeiculoRepository
+    public class VeiculosDAO : BaseDAO<Veiculo>, IVeiculoRepository
     {
         #region Queries
         private const string sqlInserirVeiculo =
@@ -252,7 +252,7 @@ namespace LocadoraVeiculos.Infra.SQL.VeiculosModule
             return Db.GetAll(sqlPesquisarVeiculos, ConverterEmRegistro, AdicionarParametro("MODELO", modelo + "%"));
         }
 
-        public Veiculo ConverterEmRegistro(IDataReader reader)
+        public override Veiculo ConverterEmRegistro(IDataReader reader)
         {
             var placa = Convert.ToString(reader["PLACA"]);
             byte[] foto = (byte[])reader["FOTO"];
@@ -282,7 +282,7 @@ namespace LocadoraVeiculos.Infra.SQL.VeiculosModule
             return veiculo;
         }
 
-        public Dictionary<string, object> ObtemParametrosRegistro(Veiculo veiculo)
+        public override Dictionary<string, object> ObtemParametrosRegistro(Veiculo veiculo)
         {
             var parametros = new Dictionary<string, object>();
 
