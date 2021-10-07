@@ -31,12 +31,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="GrupoAutomoveisModule\" />
     <Folder Include="FuncionarioModule\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\LocadoraVeiculos.Infra.Configuration\LocadoraVeiculos.Infra.JSON.csproj" />
+    <ProjectReference Include="..\LocadoraVeiculos.Infra.ORM\LocadoraVeiculos.Infra.ORM.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.Infra.SQL\LocadoraVeiculos.Infra.SQL.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.netCore.Dominio\LocadoraVeiculos.netCore.Dominio.csproj" />
   </ItemGroup>

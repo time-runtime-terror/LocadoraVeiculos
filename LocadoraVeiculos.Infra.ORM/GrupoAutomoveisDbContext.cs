@@ -14,8 +14,14 @@ namespace LocadoraVeiculos.Infra.ORM
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            var config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false);
+
+            string connectionString = config.Build().GetConnectionString("SqlServerEF");
+
             optionsBuilder
-                .UseSqlServer(@"Data Source=(LocalDb)\MSSqlLocalDB;Initial Catalog=DBLocadoraVeiculosEntity");
+                .UseSqlServer(connectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
