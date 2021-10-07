@@ -51,19 +51,5 @@ namespace LocadoraVeiculos.netCore.Dominio.Shared
         /// <param name="texto">String que servirá como filtro para a pesquisa</param>
         /// <returns>Lista de registros do tipo <typeparamref name="T"/> ou uma lista vazia, caso nenhum registro for encontrado.</returns>
         List<T> Pesquisar(string texto);
-
-        /// <summary>
-        /// Extrai as propriedades de um registro do tipo <typeparamref name="T"/> e as retorna como um dicionário
-        /// </summary>
-        /// <param name="registro">Registro à ser extraído</param>
-        /// <returns>Dicionário contendo as propriedades ou atributos do registro separados por chave e valor</returns>
-        Dictionary<string, object> ObtemParametrosRegistro(T registro);
-
-        /// <summary>
-        /// Converte os dados vindos de um objeto <typeparamref name="IDataReader"/> para um registro <typeparamref name="T"/>
-        /// </summary>
-        /// <param name="reader">Objeto <typeparamref name="IDataReader"/> que será convertido em <typeparamref name="T"/></param>
-        /// <returns>Registro do tipo <typeparamref name="T"/> convertido</returns>
-        T ConverterEmRegistro(IDataReader reader);
     }
 }

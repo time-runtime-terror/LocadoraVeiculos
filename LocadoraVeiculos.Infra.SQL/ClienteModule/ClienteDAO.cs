@@ -7,7 +7,7 @@ using System.Data;
 
 namespace LocadoraVeiculos.Infra.SQL.ClienteModule
 {
-    public class ClienteDAO : BaseDAO, IClienteRepository
+    public class ClienteDAO : BaseDAO<Cliente>, IClienteRepository
     {
         #region Queries
         private const string sqlInserirCliente =
@@ -331,7 +331,7 @@ namespace LocadoraVeiculos.Infra.SQL.ClienteModule
             }
         }
 
-        public Dictionary<string, object> ObtemParametrosRegistro(Cliente registro)
+        public override Dictionary<string, object> ObtemParametrosRegistro(Cliente registro)
         {
             var parametros = new Dictionary<string, object>();
 
@@ -353,7 +353,7 @@ namespace LocadoraVeiculos.Infra.SQL.ClienteModule
             return parametros;
         }
 
-        public Cliente ConverterEmRegistro(IDataReader reader)
+        public override Cliente ConverterEmRegistro(IDataReader reader)
         {
             int id = Convert.ToInt32(reader["ID"]);
             string nome = Convert.ToString(reader["NOME"]);

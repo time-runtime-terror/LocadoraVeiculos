@@ -13,7 +13,7 @@ using System.Data;
 
 namespace LocadoraVeiculos.Infra.SQL.LocacaoModule
 {
-    public class LocacaoDAO : BaseDAO, ILocacaoRepository
+    public class LocacaoDAO : BaseDAO<Locacao>, ILocacaoRepository
     {
         #region Queries
         private const string sqlInserirLocacao =
@@ -344,7 +344,7 @@ namespace LocadoraVeiculos.Infra.SQL.LocacaoModule
             throw new NotImplementedException();
         }
 
-        public Dictionary<string, object> ObtemParametrosRegistro(Locacao locacao)
+        public override Dictionary<string, object> ObtemParametrosRegistro(Locacao locacao)
         {
             var parametros = new Dictionary<string, object>();
 
@@ -361,7 +361,7 @@ namespace LocadoraVeiculos.Infra.SQL.LocacaoModule
             return parametros;
         }
 
-        public Locacao ConverterEmRegistro(IDataReader reader)
+        public override Locacao ConverterEmRegistro(IDataReader reader)
         {
             int id = Convert.ToInt32(reader["ID"]);
             int idVeiculo = Convert.ToInt32(reader["ID_VEICULO"]);
