@@ -1,10 +1,8 @@
 ﻿using LocadoraVeiculos.netCore.Dominio.FuncionarioModule;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using System.IO;
+
 
 namespace LocadoraVeiculos.Infra.ORM
 {
@@ -14,8 +12,14 @@ namespace LocadoraVeiculos.Infra.ORM
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            var config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false);
+
+            string connectionString = config.Build().GetConnectionString("SqlServerEF");
+
             optionsBuilder
-                .UseSqlServer(@"Data Source=(LocalDb)\MSSqlLocalDB;Initial Catalog=DBLocadoraVeiculosEntity");
+                .UseSqlServer(connectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
