@@ -10,7 +10,7 @@ namespace LocadoraVeiculos.Infra.ORM
 {
     public class GrupoAutomoveisDbContext : DbContext
     {
-        public DbSet<GrupoAutomoveisEntity> GrupoAutomoveis { get; set; }
+        public DbSet<GrupoAutomoveis> GrupoAutomoveis { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
