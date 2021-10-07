@@ -48,7 +48,6 @@ namespace LocadoraVeiculos.netCore.Dominio.LocacaoModule
         public bool Equals(Locacao obj)
         {
             return obj is Locacao locacao &&
-                   id == locacao.id &&
                    Id == locacao.Id &&
                    EqualityComparer<Cliente>.Default.Equals(Cliente, locacao.Cliente) &&
                    EqualityComparer<Veiculo>.Default.Equals(Veiculo, locacao.Veiculo) &&
@@ -65,7 +64,7 @@ namespace LocadoraVeiculos.netCore.Dominio.LocacaoModule
         public override int GetHashCode()
         {
             int hashCode = -465531437;
-            hashCode = hashCode * -1521134295 + id.GetHashCode();
+            
             hashCode = hashCode * -1521134295 + Id.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<Cliente>.Default.GetHashCode(Cliente);
             hashCode = hashCode * -1521134295 + EqualityComparer<Veiculo>.Default.GetHashCode(Veiculo);
