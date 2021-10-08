@@ -15,7 +15,7 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.Shared
             {
                 try
                 {
-                    db.Set<TEntity>().Add(registro);
+                    db.Attach(registro).State = EntityState.Added;
 
                     db.SaveChanges();
                 }
@@ -32,7 +32,7 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.Shared
             {
                 try
                 {
-                    var idExiste = SelecionarTodos().Where(x => x.Id == id).Any();
+                    var idExiste = db.Set<TEntity>().Any();
 
                     if (idExiste == true)
                     {
