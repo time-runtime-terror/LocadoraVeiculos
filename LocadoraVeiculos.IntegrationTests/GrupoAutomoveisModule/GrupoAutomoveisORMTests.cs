@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace LocadoraVeiculos.IntegrationTests.GrupoAutomoveisModule
 {
     [TestClass]
-    [TestCategory("ORM")]
+    [TestCategory("ORM/GrupoAutomoveis")]
     public class GrupoAutomoveisORMTests
     {
         private IGrupoAutomoveisRepository grupoAutomoveisRepository;

@@ -6,10 +6,9 @@ using LocadoraVeiculos.Infra.JSON.CombustivelModule;
 namespace LocadoraVeiculos.IntegrationTests.CombustivelModule
 {
     [TestClass]
-    [TestCategory("DAO")]
+    [TestCategory("DAO/Combustivel")]
     public class ControladorCombustivelTests
     {
-
         private CombustivelConfiguration combustivelConfig;
         public ControladorCombustivelTests()
         {

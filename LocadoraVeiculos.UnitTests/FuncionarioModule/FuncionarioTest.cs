@@ -6,7 +6,7 @@ using FluentAssertions;
 namespace LocadoraVeiculos.UnitTests.FuncionarioModule
 {
     [TestClass]
-    [TestCategory("Dominio")]
+    [TestCategory("Dominio/Funcionario")]
     public class FuncionarioTest
     {
         [TestMethod]

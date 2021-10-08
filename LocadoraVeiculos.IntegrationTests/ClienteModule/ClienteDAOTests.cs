@@ -9,6 +9,7 @@ using LocadoraVeiculos.netCore.Infra.SQL.Shared;
 namespace LocadoraVeiculos.IntegrationTests.ClienteModule
 {
     [TestClass]
+    [TestCategory("DAO/Cliente")]
     public class ClienteDAOTests
     {
         private ClienteDAO clienteRepository;
@@ -22,7 +23,6 @@ namespace LocadoraVeiculos.IntegrationTests.ClienteModule
         }
 
         [TestMethod]
-        [TestCategory("DAO")]
         public void DeveInserir_Cliente()
         {
             // arrange
@@ -40,7 +40,6 @@ namespace LocadoraVeiculos.IntegrationTests.ClienteModule
         }
 
         [TestMethod]
-        [TestCategory("DAO")]
         public void DeveEditar_Cliente()
         {
             // arrange
@@ -62,7 +61,6 @@ namespace LocadoraVeiculos.IntegrationTests.ClienteModule
         }
 
         [TestMethod]
-        [TestCategory("DAO")]
         public void DeveExcluir_Cliente()
         {
             // arrange
@@ -79,7 +77,6 @@ namespace LocadoraVeiculos.IntegrationTests.ClienteModule
         }
 
         [TestMethod]
-        [TestCategory("DAO")]
         public void DeveSelecionar_Cliente_PorId()
         {
             // arrange
@@ -96,7 +93,6 @@ namespace LocadoraVeiculos.IntegrationTests.ClienteModule
         }
 
         [TestMethod]
-        [TestCategory("DAO")]
         public void DeveSelecionar_Todos_Clientes()
         {
             // arrange

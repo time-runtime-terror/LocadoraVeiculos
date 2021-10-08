@@ -9,12 +9,12 @@ using System;
 namespace LocadoraVeiculos.Aplicacao.Tests.LocacaoModule
 {
     [TestClass]
+    [TestCategory("Aplicao/Locacao")]
     public class LocacaoAppServiceTests
     {
         byte[] foto = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20 };
 
         [TestMethod]
-        [TestCategory("Aplicação")]
         public void Deve_Gerar_Recibo_Locacao()
         {
             // arrange
@@ -38,7 +38,6 @@ namespace LocadoraVeiculos.Aplicacao.Tests.LocacaoModule
         }
 
         [TestMethod]
-        [TestCategory("Aplicação")]
         public void Deve_Enviar_Email_Locacao()
         {
             // arrange
@@ -70,7 +69,6 @@ namespace LocadoraVeiculos.Aplicacao.Tests.LocacaoModule
         }
 
         [TestMethod]
-        [TestCategory("Aplicação")]
         public void Deveria_Verificar_Conexao_Internet()
         {
             // arrange

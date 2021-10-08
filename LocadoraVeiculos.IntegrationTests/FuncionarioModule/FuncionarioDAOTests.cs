@@ -9,7 +9,7 @@ using LocadoraVeiculos.Infra.SQL.FuncionarioModule;
 namespace LocadoraVeiculos.IntegrationTests.FuncionarioModule
 {
     [TestClass]
-    [TestCategory("DAO")]
+    [TestCategory("DAO/Funcionario")]
     public class FuncionarioDAOTests
     {
         private FuncionarioDAO funcionarioRepository;

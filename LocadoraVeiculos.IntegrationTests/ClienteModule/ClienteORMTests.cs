@@ -9,7 +9,7 @@ using System.Collections.Generic;
 namespace LocadoraVeiculos.IntegrationTests.ClienteModule
 {
     [TestClass]
-    [TestCategory("ORM")]
+    [TestCategory("ORM/Cliente")]
 
     public class ClienteORMTests
     {

@@ -11,6 +11,7 @@ using FluentAssertions;
 namespace LocadoraVeiculos.UnitTests.LocacaoModule
 {
     [TestClass]
+    [TestCategory("Dominio/Locacao")]
     public class LocacaoTests
     {
         byte[] foto = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20 };

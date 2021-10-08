@@ -11,8 +11,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace LocadoraVeiculos.IntegrationTests.VeiculoModule
 {
     [TestClass]
-    [TestCategory("DAO")]
-
+    [TestCategory("DAO/Veiculo")]
     public class VeiculoDAOTests
     {
         CombustivelConfiguration configCombustivel = null;

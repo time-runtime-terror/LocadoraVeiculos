@@ -6,7 +6,7 @@ using System;
 namespace LocadoraVeiculos.UnitTests.TaxasServicosModule
 {
     [TestClass]
-    [TestCategory("Dominio")]
+    [TestCategory("Dominio/TaxasServicos")]
     public class TaxasServicosTest
     {
         [TestMethod]
