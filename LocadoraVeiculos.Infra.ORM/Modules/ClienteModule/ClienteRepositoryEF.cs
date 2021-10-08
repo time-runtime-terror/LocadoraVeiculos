@@ -11,42 +11,43 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.ClienteModule
 {
     public class ClienteRepositoryEF : BaseRepository<Cliente>, IClienteRepository
     {
-        private readonly LocadoraDbContext _dbContext;
-        private readonly DbSet<Cliente> _dbSet;
-
-        public ClienteRepositoryEF(LocadoraDbContext dbContext) : base(dbContext)
+        public ClienteRepositoryEF()
         {
-            _dbContext = dbContext;
-            _dbSet = dbContext.Set<Cliente>();
         }
 
         public override Cliente SelecionarPorId(int id)
         {
-            try
+            using (LocadoraDbContext db = new LocadoraDbContext())
             {
-                return _dbSet
-                    .Where(x => x.Id == id)
-                    .Include(e => e.Empresa)
-                    .FirstOrDefault();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                try
+                {
+                    return db.Clientes
+                        .Where(x => x.Id == id)
+                        .Include(e => e.Empresa)
+                        .FirstOrDefault();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
         }
 
         public override List<Cliente> SelecionarTodos()
         {
-            try
+            using (LocadoraDbContext db = new LocadoraDbContext())
             {
-                return _dbSet
-                    .OrderBy(x => x.Id)
-                    .Include(e => e.Empresa)
-                    .ToList();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                try
+                {
+                    return db.Clientes
+                        .OrderBy(x => x.Id)
+                        .Include(e => e.Empresa)
+                        .ToList();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
         }
 

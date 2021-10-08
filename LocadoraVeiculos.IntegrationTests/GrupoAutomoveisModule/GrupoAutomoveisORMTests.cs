@@ -24,15 +24,16 @@ namespace LocadoraVeiculos.IntegrationTests.GrupoAutomoveisModule
 
             DeletarLinhasTabela();
 
-            grupoAutomoveisRepository = new GrupoAutomoveisRepositoryEF(dbContext);
-
+            grupoAutomoveisRepository = new GrupoAutomoveisRepositoryEF();
         }
 
         private void DeletarLinhasTabela()
         {
-
-            var list = dbContext.GrupoAutomoveis;
-            dbContext.GrupoAutomoveis.RemoveRange(list);
+            using (LocadoraDbContext _dbContext = new LocadoraDbContext())
+            {
+                var list = dbContext.GrupoAutomoveis;
+                dbContext.GrupoAutomoveis.RemoveRange(list);
+            }
 
         }
 

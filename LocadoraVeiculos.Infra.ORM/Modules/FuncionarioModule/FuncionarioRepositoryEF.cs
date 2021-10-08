@@ -15,7 +15,7 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.FuncionarioModule
         private readonly DbContext _dbContext;
         private readonly DbSet<Funcionario> _dbSet;
 
-        public FuncionarioRepositoryEF(LocadoraDbContext dbContext) : base(dbContext)
+        public FuncionarioRepositoryEF(LocadoraDbContext dbContext)
         {
             _dbContext = dbContext;
             _dbSet = dbContext.Set<Funcionario>();

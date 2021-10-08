@@ -15,19 +15,20 @@ namespace LocadoraVeiculos.IntegrationTests.ClienteModule
     {
 
         private readonly IClienteRepository clienteRepository;
-        private readonly LocadoraDbContext dbContext;
 
         public ClienteORMTests()
         {
-            dbContext = new LocadoraDbContext();
-            clienteRepository = new ClienteRepositoryEF(dbContext);
+            clienteRepository = new ClienteRepositoryEF();
             DeletarLinhasTabela();
         }
 
         public void DeletarLinhasTabela()
         {
-            var list = dbContext.Clientes;
-            dbContext.Clientes.RemoveRange(list);
+            using (LocadoraDbContext _dbContext = new LocadoraDbContext())
+            {
+                var list = _dbContext.Clientes;
+                _dbContext.Clientes.RemoveRange(list);
+            }
         }
 
         [TestMethod]
