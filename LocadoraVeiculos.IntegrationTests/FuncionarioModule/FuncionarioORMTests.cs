@@ -26,7 +26,6 @@ namespace LocadoraVeiculos.IntegrationTests.FuncionarioModule
             DeletarLinhasTabela();
 
             funcionarioRepository = new FuncionarioRepositoryEF(dbContext);
-            
         }
 
         private void DeletarLinhasTabela()
@@ -51,6 +50,7 @@ namespace LocadoraVeiculos.IntegrationTests.FuncionarioModule
             var funcionarioEncontrado = funcionarioRepository.SelecionarPorId(novoFuncionario.Id);
             funcionarioEncontrado.Should().Be(novoFuncionario);
         }
+
         [TestMethod]
         public void DeveAtualizar_Funcionario()
         {

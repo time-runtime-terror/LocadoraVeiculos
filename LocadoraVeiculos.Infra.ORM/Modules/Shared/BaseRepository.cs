@@ -39,9 +39,18 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.Shared
         {
             try
             {
-                _dbSet.Update(registro);
-                _dbContext.SaveChanges();
-                _dbContext.Entry(registro).State = EntityState.Detached;
+                using (LocadoraDbContext db = new LocadoraDbContext())
+                {
+                    var idExiste = SelecionarTodos().Where(x => x.Id == id).Any();
+
+                    if(idExiste == true)
+                    {
+                        registro.Id = id;
+                        db.Set<TEntity>().Update(registro);
+                        
+                        db.SaveChanges();
+                    }
+                }
             }
             catch (Exception ex)
             {
