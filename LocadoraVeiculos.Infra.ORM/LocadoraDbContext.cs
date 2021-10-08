@@ -1,14 +1,16 @@
-﻿using LocadoraVeiculos.netCore.Dominio.FuncionarioModule;
+﻿using LocadoraVeiculos.Infra.ORM.Configurations;
+using LocadoraVeiculos.netCore.Dominio.ClienteModule;
+using LocadoraVeiculos.netCore.Dominio.FuncionarioModule;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.IO;
-
 
 namespace LocadoraVeiculos.Infra.ORM
 {
     public class LocadoraDbContext : DbContext
     {
         public DbSet<Funcionario> Funcionarios {get; set; }
+        public DbSet<Cliente> Clientes { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -24,7 +26,8 @@ namespace LocadoraVeiculos.Infra.ORM
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(LocadoraDbContext).Assembly);
+            modelBuilder.ApplyConfiguration(new FuncionarioConfiguration());
+            modelBuilder.ApplyConfiguration(new ClienteConfiguration());
         }
     }
 }
