@@ -15,25 +15,25 @@ namespace LocadoraVeiculos.IntegrationTests.FuncionarioModule
     [TestCategory("ORM")]
     public class FuncionarioORMTests
     {
-
         private IFuncionarioRepository funcionarioRepository;
-        private LocadoraDbContext dbContext ;
 
         public FuncionarioORMTests()
         {
-            dbContext = new LocadoraDbContext();
 
             DeletarLinhasTabela();
 
-            funcionarioRepository = new FuncionarioRepositoryEF(dbContext);
+            funcionarioRepository = new FuncionarioRepositoryEF();
         }
 
         private void DeletarLinhasTabela()
-        { 
+        {
+            using (LocadoraDbContext db = new LocadoraDbContext())
+            {
+                var list = db.Funcionarios;
+                db.Funcionarios.RemoveRange(list);
 
-            var list = dbContext.Funcionarios;
-            dbContext.Funcionarios.RemoveRange(list);
-           
+                db.SaveChanges();
+            }
         }
 
         [TestMethod]

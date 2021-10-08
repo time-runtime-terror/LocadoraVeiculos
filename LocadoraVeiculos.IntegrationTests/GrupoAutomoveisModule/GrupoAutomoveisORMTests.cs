@@ -16,30 +16,26 @@ namespace LocadoraVeiculos.IntegrationTests.GrupoAutomoveisModule
     public class GrupoAutomoveisORMTests
     {
         private IGrupoAutomoveisRepository grupoAutomoveisRepository;
-        private GrupoAutomoveisDbContext dbContext;
 
         public GrupoAutomoveisORMTests()
         {
-            dbContext = new GrupoAutomoveisDbContext();
-
-            DeletarLinhasTabela();
-
             grupoAutomoveisRepository = new GrupoAutomoveisRepositoryEF();
+            DeletarLinhasTabela();
         }
 
         private void DeletarLinhasTabela()
         {
-            using (LocadoraDbContext _dbContext = new LocadoraDbContext())
+            using (LocadoraDbContext db = new LocadoraDbContext())
             {
-                var list = dbContext.GrupoAutomoveis;
-                dbContext.GrupoAutomoveis.RemoveRange(list);
-            }
+                var list = db.GrupoAutomoveis;
+                db.GrupoAutomoveis.RemoveRange(list);
 
+                db.SaveChanges();
+            }
         }
 
         [TestMethod]
-
-        public void DeveInserir_Funcionario()
+        public void DeveInserir_GrupoAutomoveis()
         {
             //arrange
             var novoGrupo = new GrupoAutomoveis("Popular", 10, 10, 10, 10, 10, 50);

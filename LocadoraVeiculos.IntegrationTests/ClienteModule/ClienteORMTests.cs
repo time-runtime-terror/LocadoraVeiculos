@@ -28,6 +28,8 @@ namespace LocadoraVeiculos.IntegrationTests.ClienteModule
             {
                 var list = _dbContext.Clientes;
                 _dbContext.Clientes.RemoveRange(list);
+
+                _dbContext.SaveChanges();
             }
         }
 
