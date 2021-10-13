@@ -4,8 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.Infra.ORM.Modules.ClienteModule
 {
@@ -42,6 +40,7 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.ClienteModule
                     return db.Clientes
                         .OrderBy(x => x.Id)
                         .Include(e => e.Empresa)
+                        .AsSplitQuery()
                         .ToList();
                 }
                 catch (Exception ex)
@@ -53,17 +52,59 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.ClienteModule
 
         public void AtualizarStatusLocacaoAtiva(Cliente cliente)
         {
-            throw new NotImplementedException();
+            using (LocadoraDbContext db = new LocadoraDbContext())
+            {
+                try
+                {
+                    db.Entry(cliente).State = EntityState.Modified;
+
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
         }
 
         public List<Cliente> SelecionarTodasPessoasFisicas()
         {
-            throw new NotImplementedException();
+            using (LocadoraDbContext db = new LocadoraDbContext())
+            {
+                try
+                {
+                    return db.Clientes
+                        .OrderBy(x => x.Id)
+                        .Include(x => x.Empresa)
+                        .AsSplitQuery()
+                        .Where(x => x.TipoCadastro == "CPF")
+                        .ToList();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
         }
 
         public List<Cliente> SelecionarTodasPessoasJuridicas()
         {
-            throw new NotImplementedException();
+            using (LocadoraDbContext db = new LocadoraDbContext())
+            {
+                try
+                {
+                    return db.Clientes
+                        .OrderBy(x => x.Id)
+                        .Include(x => x.Empresa)
+                        .AsSplitQuery()
+                        .Where(x => x.TipoCadastro == "CNPJ")
+                        .ToList();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
         }
     }
 }

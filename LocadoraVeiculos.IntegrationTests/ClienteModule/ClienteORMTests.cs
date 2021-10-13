@@ -27,6 +27,7 @@ namespace LocadoraVeiculos.IntegrationTests.ClienteModule
             using (LocadoraDbContext _dbContext = new LocadoraDbContext())
             {
                 var list = _dbContext.Clientes;
+
                 _dbContext.Clientes.RemoveRange(list);
 
                 _dbContext.SaveChanges();

@@ -4,6 +4,7 @@ using LocadoraVeiculos.netCore.Dominio.FuncionarioModule;
 using LocadoraVeiculos.netCore.Dominio.GrupoAutomoveisModule;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System;
 using System.IO;
 
 namespace LocadoraVeiculos.Infra.ORM
@@ -23,7 +24,11 @@ namespace LocadoraVeiculos.Infra.ORM
             string connectionString = config.Build().GetConnectionString("SqlServerEF");
 
             optionsBuilder
-                .UseSqlServer(connectionString);
+                .UseSqlServer(connectionString, builder =>
+                {
+                    builder.EnableRetryOnFailure(5, TimeSpan.FromMilliseconds(10), null);
+                }
+                );
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

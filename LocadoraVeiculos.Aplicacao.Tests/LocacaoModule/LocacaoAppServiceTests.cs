@@ -31,7 +31,7 @@ namespace LocadoraVeiculos.Aplicacao.Tests.LocacaoModule
             LocacaoAppService locacaoService = new LocacaoAppService(locacaoDaoMock.Object, geradorReciboMock.Object, Mock.Of<INotificadorEmail>(), Mock.Of<IVerificadorConexao>());
 
             // action
-            locacaoService.RegistrarNovaLocacao(locacao);
+            locacaoService.RegistrarDevolucao(locacao);
 
             // assert
             geradorReciboMock.Verify(x => x.GerarRecibo(It.IsAny<Locacao>()));
@@ -91,7 +91,7 @@ namespace LocadoraVeiculos.Aplicacao.Tests.LocacaoModule
             LocacaoAppService locacaoService = new LocacaoAppService(locacaoDaoMock.Object, Mock.Of<IGeradorRecibo>(), Mock.Of<INotificadorEmail>(), verificadorConexaoInternetMock.Object);
 
             // action
-            locacaoService.RegistrarNovaLocacao(locacao);
+            locacaoService.RegistrarDevolucao(locacao);
 
             // assert
             verificadorConexaoInternetMock.Verify(x => x.TemConexaoComInternet());
