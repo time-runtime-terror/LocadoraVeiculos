@@ -1,15 +1,20 @@
-﻿using LocadoraVeiculos.netCore.Dominio.FuncionarioModule;
+﻿using LocadoraVeiculos.Infra.ORM.Configurations;
+using LocadoraVeiculos.netCore.Dominio.ClienteModule;
+using LocadoraVeiculos.netCore.Dominio.FuncionarioModule;
 using LocadoraVeiculos.netCore.Dominio.VeiculoModule;
+using LocadoraVeiculos.netCore.Dominio.GrupoAutomoveisModule;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System;
 using System.IO;
-
 
 namespace LocadoraVeiculos.Infra.ORM
 {
     public class LocadoraDbContext : DbContext
     {
         public DbSet<Funcionario> Funcionarios {get; set; }
+        public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<GrupoAutomoveis> GrupoAutomoveis { get; set; }
         public DbSet<Veiculo> Veiculos { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -21,12 +26,18 @@ namespace LocadoraVeiculos.Infra.ORM
             string connectionString = config.Build().GetConnectionString("SqlServerEF");
 
             optionsBuilder
-                .UseSqlServer(connectionString);
+                .UseSqlServer(connectionString, builder =>
+                {
+                    builder.EnableRetryOnFailure(5, TimeSpan.FromMilliseconds(10), null);
+                }
+                );
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(LocadoraDbContext).Assembly);
+            modelBuilder.ApplyConfiguration(new FuncionarioConfiguration());
+            modelBuilder.ApplyConfiguration(new ClienteConfiguration());
+            modelBuilder.ApplyConfiguration(new GrupoAutomoveisConfiguration());
         }
     }
 }

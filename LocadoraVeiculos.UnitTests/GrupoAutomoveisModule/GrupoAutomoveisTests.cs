@@ -5,6 +5,7 @@ using FluentAssertions;
 namespace LocadoraVeiculos.UnitTests.GrupoAutomoveisModule
 {
     [TestClass]
+    [TestCategory("Dominio/GrupoAutomoveis")]
     public class GrupoAutomoveisTests
     {
         [TestMethod]

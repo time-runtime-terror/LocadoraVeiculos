@@ -16,6 +16,7 @@ using LocadoraVeiculos.Infra.SQL.TaxasServicosModule;
 namespace LocadoraVeiculos.IntegrationTests.LocacaoModule
 {
     [TestClass]
+    [TestCategory("DAO/Locacao")]
     public class LocacaoDAOTests
     {
         byte[] foto = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20 };
@@ -42,7 +43,6 @@ namespace LocadoraVeiculos.IntegrationTests.LocacaoModule
         }
 
         [TestMethod]
-        [TestCategory("DAO")]
         public void DeveInserir_Locacao()
         {
             // arrange
@@ -66,7 +66,6 @@ namespace LocadoraVeiculos.IntegrationTests.LocacaoModule
         }
 
         [TestMethod]
-        [TestCategory("DAO")]
         public void DeveEditar_Locacao()
         {
             // arrange
@@ -105,7 +104,6 @@ namespace LocadoraVeiculos.IntegrationTests.LocacaoModule
         }
 
         [TestMethod]
-        [TestCategory("DAO")]
         public void DeveExcluir_Locacao()
         {
             // arrange
@@ -130,7 +128,6 @@ namespace LocadoraVeiculos.IntegrationTests.LocacaoModule
         }
 
         [TestMethod]
-        [TestCategory("DAO")]
         public void DeveSelecionar_Locacao_PorId()
         {
             // arrange
@@ -154,7 +151,6 @@ namespace LocadoraVeiculos.IntegrationTests.LocacaoModule
         }
 
         [TestMethod]
-        [TestCategory("DAO")]
         public void DeveSelecionar_Todos_Clientes()
         {
             // arrange

@@ -1,25 +1,37 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using FluentAssertions;
+using LocadoraVeiculos.Infra.ORM;
+using LocadoraVeiculos.Infra.ORM.Modules.ClienteModule;
+using LocadoraVeiculos.netCore.Dominio.ClienteModule;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using FluentAssertions;
-using LocadoraVeiculos.netCore.Dominio.ClienteModule;
-using LocadoraVeiculos.Infra.SQL.ClienteModule;
-using LocadoraVeiculos.netCore.Infra.SQL.Shared;
 
 namespace LocadoraVeiculos.IntegrationTests.ClienteModule
 {
     [TestClass]
-    [TestCategory("DAO/Cliente")]
-    public class ClienteDAOTests
+    [TestCategory("ORM/Cliente")]
+
+    public class ClienteORMTests
     {
-        private ClienteDAO clienteRepository;
 
-        public ClienteDAOTests()
+        private readonly IClienteRepository clienteRepository;
+
+        public ClienteORMTests()
         {
-            clienteRepository = new ClienteDAO();
+            clienteRepository = new ClienteRepositoryEF();
+            DeletarLinhasTabela();
+        }
 
-            Db.Update("DELETE FROM [TBCLIENTE]");
-            Db.Update("DELETE FROM [TBFUNCIONARIO]");
+        public void DeletarLinhasTabela()
+        {
+            using (LocadoraDbContext _dbContext = new LocadoraDbContext())
+            {
+                var list = _dbContext.Clientes;
+
+                _dbContext.Clientes.RemoveRange(list);
+
+                _dbContext.SaveChanges();
+            }
         }
 
         [TestMethod]
