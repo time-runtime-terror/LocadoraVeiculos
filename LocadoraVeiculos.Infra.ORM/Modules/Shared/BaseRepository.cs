@@ -4,69 +4,72 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.Infra.ORM.Modules.Shared
 {
     public class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : EntidadeBase
     {
-
-        private readonly DbContext _dbContext;
-        private readonly DbSet<TEntity> _dbSet;
-
-        public BaseRepository(DbContext dbContext)
-        {
-            _dbContext = dbContext;
-            _dbSet = dbContext.Set<TEntity>();
-        }
-
         public virtual void InserirNovo(TEntity registro)
         {
-            try
+            using (LocadoraDbContext db = new LocadoraDbContext())
             {
-                _dbSet.Add(registro);
+                try
+                {
+                    db.Attach(registro).State = EntityState.Added;
 
-                _dbContext.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
         }
 
         public virtual void Editar(int id, TEntity registro)
         {
-            try
+            using (LocadoraDbContext db = new LocadoraDbContext())
             {
-                _dbSet.Update(registro);
-                _dbContext.SaveChanges();
-                _dbContext.Entry(registro).State = EntityState.Detached;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                try
+                {
+                    var idExiste = db.Set<TEntity>().Any();
+
+                    if (idExiste == true)
+                    {
+                        registro.Id = id;
+                        db.Set<TEntity>().Update(registro);
+
+                        db.SaveChanges();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
         }
 
         public virtual bool Excluir(int id)
         {
-            try
+            using (LocadoraDbContext db = new LocadoraDbContext())
             {
-                var registroEncontrado = _dbSet.Find(id);
-
-                if (registroEncontrado != null)
+                try
                 {
-                    _dbSet.Remove(registroEncontrado);
+                    var registroEncontrado = db.Set<TEntity>().Find(id);
 
-                    _dbContext.SaveChanges();
+                    if (registroEncontrado != null)
+                    {
+                        db.Set<TEntity>().Remove(registroEncontrado);
+
+                        db.SaveChanges();
+                    }
+                    else
+                        return false;
                 }
-                else
-                    return false;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
 
             return true;
@@ -74,28 +77,39 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.Shared
 
         public virtual TEntity SelecionarPorId(int id)
         {
-            try
+            using (LocadoraDbContext db = new LocadoraDbContext())
             {
-                return _dbSet.AsNoTracking().Where(x => x.Id == id).FirstOrDefault();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                try
+                {
+                    return db.Set<TEntity>()
+                        .AsNoTracking()
+                        .Where(x => x.Id == id)
+                        .FirstOrDefault();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
         }
 
         public virtual List<TEntity> SelecionarTodos()
         {
-            try
+            using (LocadoraDbContext db = new LocadoraDbContext())
             {
-                return _dbSet.AsNoTracking().OrderBy(x => x.Id).ToList();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                try
+                {
+                    return db.Set<TEntity>()
+                        .AsNoTracking()
+                        .OrderBy(x => x.Id)
+                        .ToList();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
         }
-
 
         public virtual List<TEntity> Pesquisar(string texto)
         {
@@ -104,7 +118,8 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.Shared
 
         public virtual bool Existe(int id)
         {
-            throw new NotImplementedException();
+            using (LocadoraDbContext db = new LocadoraDbContext())
+                return db.Set<TEntity>().Any(x => x.Id == id);
         }
     }
 }

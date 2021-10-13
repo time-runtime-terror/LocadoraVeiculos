@@ -26,6 +26,7 @@ using LocadoraVeiculos.Infra.InternetServices.LocacaoModule;
 using LocadoraVeiculos.Infra.JSON.CombustivelModule;
 using Serilog;
 using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
+using LocadoraVeiculos.Infra.ORM.Modules.FuncionarioModule;
 
 namespace LocadoraVeiculos.WindowsApp
 {
@@ -129,7 +130,7 @@ namespace LocadoraVeiculos.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            FuncionarioDAO funcionarioRepo = new FuncionarioDAO();
+            FuncionarioRepositoryEF funcionarioRepo = new FuncionarioRepositoryEF();
 
             operacoes = new OperacoesFuncionario(new FuncionarioAppService(funcionarioRepo));
 

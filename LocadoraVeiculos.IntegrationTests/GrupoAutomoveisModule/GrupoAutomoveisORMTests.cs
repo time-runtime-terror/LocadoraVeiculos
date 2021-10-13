@@ -12,28 +12,26 @@ using System.Threading.Tasks;
 namespace LocadoraVeiculos.IntegrationTests.GrupoAutomoveisModule
 {
     [TestClass]
-    [TestCategory("ORM")]
+    [TestCategory("ORM/GrupoAutomoveis")]
     public class GrupoAutomoveisORMTests
     {
         private IGrupoAutomoveisRepository grupoAutomoveisRepository;
-        private GrupoAutomoveisDbContext dbContext;
 
         public GrupoAutomoveisORMTests()
         {
-            dbContext = new GrupoAutomoveisDbContext();
-
+            grupoAutomoveisRepository = new GrupoAutomoveisRepositoryEF();
             DeletarLinhasTabela();
-
-            grupoAutomoveisRepository = new GrupoAutomoveisRepositoryEF(dbContext);
-
         }
 
         private void DeletarLinhasTabela()
         {
+            using (LocadoraDbContext db = new LocadoraDbContext())
+            {
+                var list = db.GrupoAutomoveis;
+                db.GrupoAutomoveis.RemoveRange(list);
 
-            var list = dbContext.GrupoAutomoveis;
-            dbContext.GrupoAutomoveis.RemoveRange(list);
-
+                db.SaveChanges();
+            }
         }
 
         [TestMethod]

@@ -9,12 +9,12 @@ using System;
 namespace LocadoraVeiculos.Aplicacao.Tests.LocacaoModule
 {
     [TestClass]
+    [TestCategory("Aplicao/Locacao")]
     public class LocacaoAppServiceTests
     {
         byte[] foto = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20 };
 
         [TestMethod]
-        [TestCategory("Aplicação")]
         public void Deve_Gerar_Recibo_Locacao()
         {
             // arrange
@@ -31,14 +31,13 @@ namespace LocadoraVeiculos.Aplicacao.Tests.LocacaoModule
             LocacaoAppService locacaoService = new LocacaoAppService(locacaoDaoMock.Object, geradorReciboMock.Object, Mock.Of<INotificadorEmail>(), Mock.Of<IVerificadorConexao>());
 
             // action
-            locacaoService.RegistrarNovaLocacao(locacao);
+            locacaoService.RegistrarDevolucao(locacao);
 
             // assert
             geradorReciboMock.Verify(x => x.GerarRecibo(It.IsAny<Locacao>()));
         }
 
         [TestMethod]
-        [TestCategory("Aplicação")]
         public void Deve_Enviar_Email_Locacao()
         {
             // arrange
@@ -70,7 +69,6 @@ namespace LocadoraVeiculos.Aplicacao.Tests.LocacaoModule
         }
 
         [TestMethod]
-        [TestCategory("Aplicação")]
         public void Deveria_Verificar_Conexao_Internet()
         {
             // arrange
@@ -93,7 +91,7 @@ namespace LocadoraVeiculos.Aplicacao.Tests.LocacaoModule
             LocacaoAppService locacaoService = new LocacaoAppService(locacaoDaoMock.Object, Mock.Of<IGeradorRecibo>(), Mock.Of<INotificadorEmail>(), verificadorConexaoInternetMock.Object);
 
             // action
-            locacaoService.RegistrarNovaLocacao(locacao);
+            locacaoService.RegistrarDevolucao(locacao);
 
             // assert
             verificadorConexaoInternetMock.Verify(x => x.TemConexaoComInternet());
