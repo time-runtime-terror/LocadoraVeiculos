@@ -26,9 +26,6 @@ namespace LocadoraVeiculos.Infra.ORM.Configurations
             builder.Property(p => p.CapacidadeTanque).HasColumnType("INT").IsRequired();
             builder.Property(p => p.Quilometragem).HasColumnType("INT").IsRequired();
             builder.Property(p => p.EstaAlugado).HasColumnType("BIT").IsRequired();
-
-
-
         }
     }
 }
