@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculos.netCore.Dominio.FuncionarioModule;
+using LocadoraVeiculos.netCore.Dominio.VeiculoModule;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.IO;
@@ -9,6 +10,7 @@ namespace LocadoraVeiculos.Infra.ORM
     public class LocadoraDbContext : DbContext
     {
         public DbSet<Funcionario> Funcionarios {get; set; }
+        public DbSet<Veiculo> Veiculos { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
