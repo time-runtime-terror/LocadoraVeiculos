@@ -38,6 +38,7 @@ namespace LocadoraVeiculos.Infra.ORM
             modelBuilder.ApplyConfiguration(new FuncionarioConfiguration());
             modelBuilder.ApplyConfiguration(new ClienteConfiguration());
             modelBuilder.ApplyConfiguration(new GrupoAutomoveisConfiguration());
+            modelBuilder.ApplyConfiguration(new VeiculoConfiguration());
         }
     }
 }
