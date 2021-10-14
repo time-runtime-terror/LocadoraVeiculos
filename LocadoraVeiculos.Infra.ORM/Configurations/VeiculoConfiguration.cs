@@ -18,14 +18,19 @@ namespace LocadoraVeiculos.Infra.ORM.Configurations
             //criando chave primária
             builder.HasKey(p => p.Id);
 
-            builder.Property(p => p.Imagem).HasColumnType("VARBINARY(MAX)").IsRequired();
-            builder.Property(p => p.Placa).HasColumnType("VARCHAR(50)").IsRequired();
-            builder.Property(p => p.Modelo).HasColumnType("VARCHAR(50)").IsRequired();
-            builder.Property(p => p.Marca).HasColumnType("VARCHAR(50)").IsRequired();
-            builder.Property(p => p.TipoCombustivel).HasColumnType("VARCHAR(50)").IsRequired();
-            builder.Property(p => p.CapacidadeTanque).HasColumnType("INT").IsRequired();
-            builder.Property(p => p.Quilometragem).HasColumnType("INT").IsRequired();
-            builder.Property(p => p.EstaAlugado).HasColumnType("BIT").IsRequired();
+            builder.Property(v => v.Foto).HasColumnType("VARBINARY(MAX)").IsRequired();
+            builder.Property(v => v.Placa).HasColumnType("VARCHAR(50)").IsRequired();
+            builder.Property(v => v.Modelo).HasColumnType("VARCHAR(50)").IsRequired();
+            builder.Property(v => v.Marca).HasColumnType("VARCHAR(50)").IsRequired();
+            builder.Property(v => v.TipoCombustivel).HasColumnType("VARCHAR(50)").IsRequired();
+            builder.Property(v => v.CapacidadeTanque).HasColumnType("INT").IsRequired();
+            builder.Property(v => v.Quilometragem).HasColumnType("INT").IsRequired();
+            builder.Property(v => v.EstaAlugado).HasColumnType("BIT").IsRequired();
+
+            builder
+              .HasOne(v => v.GrupoAutomoveis)
+              .WithMany(g => g.Veiculos)
+              .HasForeignKey(v => v.IdGrupoAutomoveis).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

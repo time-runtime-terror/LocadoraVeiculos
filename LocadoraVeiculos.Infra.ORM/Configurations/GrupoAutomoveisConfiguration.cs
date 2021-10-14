@@ -25,6 +25,9 @@ namespace LocadoraVeiculos.Infra.ORM.Configurations
             builder.Property(p => p.KmControladoDois).HasColumnType("VARCHAR(50)").IsRequired();
             builder.Property(p => p.KmControladoIncluida).HasColumnType("VARCHAR(50)").IsRequired();
             builder.Property(p => p.KmLivreUm).HasColumnType("VARCHAR(50)").IsRequired();
+
+            //builder
+            //    .HasMany(p => );
         }
     }
 }

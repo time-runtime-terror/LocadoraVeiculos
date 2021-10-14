@@ -4,14 +4,16 @@ using LocadoraVeiculos.Infra.ORM;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LocadoraVeiculos.Infra.ORM.Migrations
 {
     [DbContext(typeof(LocadoraDbContext))]
-    partial class LocadoraDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211014173530_TabelasAdicionadasNoProjetoDeTeste2")]
+    partial class TabelasAdicionadasNoProjetoDeTeste2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -211,8 +213,7 @@ namespace LocadoraVeiculos.Infra.ORM.Migrations
                 {
                     b.HasOne("LocadoraVeiculos.netCore.Dominio.GrupoAutomoveisModule.GrupoAutomoveis", "GrupoAutomoveis")
                         .WithMany("Veiculos")
-                        .HasForeignKey("IdGrupoAutomoveis")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("IdGrupoAutomoveis");
 
                     b.Navigation("GrupoAutomoveis");
                 });
