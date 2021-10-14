@@ -2,6 +2,7 @@
 using LocadoraVeiculos.netCore.Dominio.ClienteModule;
 using LocadoraVeiculos.netCore.Dominio.FuncionarioModule;
 using LocadoraVeiculos.netCore.Dominio.GrupoAutomoveisModule;
+using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
 using LocadoraVeiculos.netCore.Dominio.TaxasServicosModule;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -16,6 +17,7 @@ namespace LocadoraVeiculos.Infra.ORM
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<GrupoAutomoveis> GrupoAutomoveis { get; set; }
         public DbSet<TaxasServicos> Taxas { get; set; }
+        public DbSet<Locacao> Locacao { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -39,6 +41,7 @@ namespace LocadoraVeiculos.Infra.ORM
             modelBuilder.ApplyConfiguration(new ClienteConfiguration());
             modelBuilder.ApplyConfiguration(new GrupoAutomoveisConfiguration());
             modelBuilder.ApplyConfiguration(new TaxasServicosConfiguration());
+            modelBuilder.ApplyConfiguration(new LocacaoConfiguration());
         }
     }
 }

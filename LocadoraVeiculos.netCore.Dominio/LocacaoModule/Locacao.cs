@@ -9,7 +9,9 @@ namespace LocadoraVeiculos.netCore.Dominio.LocacaoModule
 {
     public class Locacao : EntidadeBase, IEquatable<Locacao>
     {
+        public int ClienteId { get; set; }
         public Cliente Cliente { get; set; }
+        public int VeiculoId { get; set; }
         public Veiculo Veiculo { get; set; }
         public DateTime DataSaida { get; set; }
         public DateTime DataDevolucao { get; set; }

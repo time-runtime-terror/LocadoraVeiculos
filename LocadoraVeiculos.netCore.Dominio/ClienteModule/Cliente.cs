@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.netCore.Dominio.Shared;
+﻿using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
+using LocadoraVeiculos.netCore.Dominio.Shared;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -20,6 +21,7 @@ namespace LocadoraVeiculos.netCore.Dominio.ClienteModule
         public Cliente Empresa { get; set; }
         public virtual ICollection<Cliente> Clientes { get; set; }
         public bool TemLocacaoAtiva { get; set; }
+        public Locacao Locacao { get; set; }
 
         public Cliente()
         {

@@ -5,6 +5,7 @@ using System.Linq;
 using System.IO;
 using LocadoraVeiculos.netCore.Dominio.GrupoAutomoveisModule;
 using System.Drawing;
+using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
 
 namespace LocadoraVeiculos.netCore.Dominio.VeiculoModule
 {
@@ -45,6 +46,7 @@ namespace LocadoraVeiculos.netCore.Dominio.VeiculoModule
         public int Quilometragem { get; }
         public GrupoAutomoveis GrupoAutomoveis { get; }
         public bool EstaAlugado { get; set; }
+        public Locacao Locacao { get; set; }
 
         public string NomeGrupo 
         {
