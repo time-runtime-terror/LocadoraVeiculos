@@ -1,6 +1,4 @@
-﻿using ceTe.DynamicPDF;
-using ceTe.DynamicPDF.PageElements;
-using LocadoraVeiculos.netCore.Dominio.ClienteModule;
+﻿using LocadoraVeiculos.netCore.Dominio.ClienteModule;
 using LocadoraVeiculos.netCore.Dominio.Shared;
 using LocadoraVeiculos.netCore.Dominio.TaxasServicosModule;
 using LocadoraVeiculos.netCore.Dominio.VeiculoModule;
@@ -13,7 +11,6 @@ namespace LocadoraVeiculos.netCore.Dominio.LocacaoModule
     {
         public Cliente Cliente { get; set; }
         public Veiculo Veiculo { get; set; }
-        public List<TaxasServicos> Taxas { get; set; }
         public DateTime DataSaida { get; set; }
         public DateTime DataDevolucao { get; set; }
         public double Caucao { get; set; }
@@ -21,6 +18,7 @@ namespace LocadoraVeiculos.netCore.Dominio.LocacaoModule
         public string Condutor { get;  set; }
         public string Devolucao { get; set; }
         public double Total { get; set; }
+        public ICollection<TaxasServicos> Taxas { get; set; } = new List<TaxasServicos>();
 
         public Locacao(Cliente clienteEscolhido, Veiculo veiculoEscolhido, List<TaxasServicos> taxas,
             DateTime dataSaida, DateTime dataDevolucao, double caucao, string planoEscolhido, string condutor, string devolucao)
@@ -40,6 +38,11 @@ namespace LocadoraVeiculos.netCore.Dominio.LocacaoModule
         {
         }
 
+        public void AdicionarTaxa(TaxasServicos taxa)
+        {
+            Taxas.Add(taxa);
+        }
+
         public override bool Equals(object obj)
         {
             return Equals(obj as Locacao);
@@ -51,7 +54,7 @@ namespace LocadoraVeiculos.netCore.Dominio.LocacaoModule
                    Id == locacao.Id &&
                    EqualityComparer<Cliente>.Default.Equals(Cliente, locacao.Cliente) &&
                    EqualityComparer<Veiculo>.Default.Equals(Veiculo, locacao.Veiculo) &&
-                   EqualityComparer<List<TaxasServicos>>.Default.Equals(Taxas, locacao.Taxas) &&
+                   EqualityComparer<ICollection<TaxasServicos>>.Default.Equals(Taxas, locacao.Taxas) &&
                    DataSaida == locacao.DataSaida &&
                    DataDevolucao == locacao.DataDevolucao &&
                    Caucao == locacao.Caucao &&
@@ -68,7 +71,7 @@ namespace LocadoraVeiculos.netCore.Dominio.LocacaoModule
             hashCode = hashCode * -1521134295 + Id.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<Cliente>.Default.GetHashCode(Cliente);
             hashCode = hashCode * -1521134295 + EqualityComparer<Veiculo>.Default.GetHashCode(Veiculo);
-            hashCode = hashCode * -1521134295 + EqualityComparer<List<TaxasServicos>>.Default.GetHashCode(Taxas);
+            hashCode = hashCode * -1521134295 + EqualityComparer<ICollection<TaxasServicos>>.Default.GetHashCode(Taxas);
             hashCode = hashCode * -1521134295 + DataSaida.GetHashCode();
             hashCode = hashCode * -1521134295 + DataDevolucao.GetHashCode();
             hashCode = hashCode * -1521134295 + Caucao.GetHashCode();

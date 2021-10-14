@@ -18,9 +18,5 @@ namespace LocadoraVeiculos.netCore.Dominio.TaxasServicosModule
         public bool ExcluirTaxaUsada(Locacao locacao);
 
         public List<TaxasServicos> SelecionarTaxasServicosUsados(int id);
-
-        TaxasServicos ConverterEmTaxasServicosUsados(IDataReader reader);
-
-        Dictionary<string, object> ObtemParametrosTaxasServicosUsados(Locacao locacao, TaxasServicos taxa);
     }
 }

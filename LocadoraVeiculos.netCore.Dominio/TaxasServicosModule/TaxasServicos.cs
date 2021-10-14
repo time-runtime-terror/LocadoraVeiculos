@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.netCore.Dominio.Shared;
+﻿using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
+using LocadoraVeiculos.netCore.Dominio.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,10 @@ namespace LocadoraVeiculos.netCore.Dominio.TaxasServicosModule
 {
     public class TaxasServicos : EntidadeBase, IEquatable<TaxasServicos>
     {
+        public TaxasServicos()
+        {
+        }
+
         public TaxasServicos(string servico, double taxa, string opcaoServico, string localServico)
         {
             Servico = servico;
@@ -18,14 +23,11 @@ namespace LocadoraVeiculos.netCore.Dominio.TaxasServicosModule
         }
 
         public new int Id { get; set; }
-
         public string Servico { get; }
-
         public double Taxa { get; }
-
         public string OpcaoServico { get; }
-
         public string LocalServico { get; }
+        public ICollection<Locacao> Locacoes { get; set; }
 
         public override string ToString()
         {

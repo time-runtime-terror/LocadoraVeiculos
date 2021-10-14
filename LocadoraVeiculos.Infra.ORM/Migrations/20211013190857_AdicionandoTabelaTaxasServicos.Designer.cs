@@ -4,14 +4,16 @@ using LocadoraVeiculos.Infra.ORM;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LocadoraVeiculos.Infra.ORM.Migrations
 {
     [DbContext(typeof(LocadoraDbContext))]
-    partial class LocadoraDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211013190857_AdicionandoTabelaTaxasServicos")]
+    partial class AdicionandoTabelaTaxasServicos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

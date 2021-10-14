@@ -51,7 +51,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                 dateDataDevolucao.Value = locacao.DataDevolucao;
 
-                taxasSelecionadas = locacao.Taxas;
+                taxasSelecionadas = locacao.Taxas as List<TaxasServicos>;
 
                 if (taxasSelecionadas != null)
                     foreach (var taxa in taxasSelecionadas)
@@ -181,7 +181,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             if(listaTaxasServicos.Items.Count!= 0)
                 foreach (var item in listaTaxasServicos.Items)
                     taxasSelecionadas.Add((TaxasServicos)item);
-
 
             string localTaxa = "Locação";
             TelaSelecaoTaxasForm tela = new TelaSelecaoTaxasForm(taxasSelecionadas, localTaxa);
