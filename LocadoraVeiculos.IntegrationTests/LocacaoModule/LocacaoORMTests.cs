@@ -14,6 +14,7 @@ using LocadoraVeiculos.netCore.Dominio.TaxasServicosModule;
 using LocadoraVeiculos.Infra.ORM.Modules.LocacaoModule;
 using LocadoraVeiculos.Infra.ORM.Modules.ClienteModule;
 using LocadoraVeiculos.Infra.ORM.Modules.TaxasServicosModule;
+using LocadoraVeiculos.Infra.ORM.Modules.VeiculoModule;
 
 namespace LocadoraVeiculos.IntegrationTests.LocacaoModule
 {
@@ -35,7 +36,7 @@ namespace LocadoraVeiculos.IntegrationTests.LocacaoModule
             LocadoraDbContext db = new();
             grupoAutomoveisRepository = new GrupoAutomoveisRepositoryEF(db);
             clienteRepository = new ClienteRepositoryEF(db);
-            //veiculoRepository = new VeiculosDAO(new GrupoAutomoveisDAO());
+            veiculoRepository = new VeiculoRepositoryEF(db);
             taxasServicosRepository = new TaxasServicosRepositoryEF(db);
             locacaoRepository = new LocacaoRepositoryEF(db);
 
@@ -65,14 +66,14 @@ namespace LocadoraVeiculos.IntegrationTests.LocacaoModule
             Cliente cliente = new Cliente("Tiago Santini", "testador@ndd.com", "Maria de Melo Kuster", "(49) 9805-6251", "CPF", "123123124", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
             clienteRepository.InserirNovo(cliente);
 
-            //GrupoAutomoveis grupoAutomovel = new GrupoAutomoveis("Econômico", 100, 120, 140, 160, 100, 180);
-            //grupoAutomoveisRepository.InserirNovo(grupoAutomovel);
+            GrupoAutomoveis grupoAutomovel = new GrupoAutomoveis("Econômico", 100, 120, 140, 160, 100, 180);
+            grupoAutomoveisRepository.InserirNovo(grupoAutomovel);
 
-            //Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, grupoAutomovel);
-            //veiculoRepository.InserirNovo(veiculo);
+            Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, grupoAutomovel);
+            veiculoRepository.InserirNovo(veiculo);
 
             // action
-            Locacao locacao = new Locacao(cliente, null, null, DateTime.Now.Date, DateTime.Now.AddDays(2).Date, 200, "Diário", "", "Pendente");
+            Locacao locacao = new Locacao(cliente, veiculo, null, DateTime.Now.Date, DateTime.Now.AddDays(2).Date, 200, "Diário", "", "Pendente");
             locacaoRepository.InserirNovo(locacao);
 
 

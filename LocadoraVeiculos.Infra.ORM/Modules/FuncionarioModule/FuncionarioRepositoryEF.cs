@@ -10,8 +10,11 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.FuncionarioModule
 {
     public class FuncionarioRepositoryEF : BaseRepository<Funcionario>, IFuncionarioRepository
     {
+        private readonly LocadoraDbContext db;
+
         public FuncionarioRepositoryEF(LocadoraDbContext db) : base(db)
         {
+            this.db = db;
         }
 
         public Dictionary<string, object> AdicionarParametroFuncionario(string campoUsuario, object valorUsuario, string campoSenha, object valorSenha)
@@ -21,16 +24,13 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.FuncionarioModule
 
         public bool ExisteFuncionario(string usuario, string senha)
         {
-            using (LocadoraDbContext db = new LocadoraDbContext())
+            try
             {
-                try
-                {
-                    return db.Funcionarios.Where(x => x.NomeUsuario == usuario && x.Senha == senha).Any();
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                return db.Funcionarios.Where(x => x.NomeUsuario == usuario && x.Senha == senha).Any();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }

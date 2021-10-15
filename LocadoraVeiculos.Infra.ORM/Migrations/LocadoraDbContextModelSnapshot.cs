@@ -215,6 +215,8 @@ namespace LocadoraVeiculos.Infra.ORM.Migrations
 
                     b.HasIndex("ClienteId");
 
+                    b.HasIndex("VeiculoId");
+
                     b.ToTable("TBLOCACAO");
                 });
 
@@ -294,6 +296,21 @@ namespace LocadoraVeiculos.Infra.ORM.Migrations
                     b.ToTable("TBVEICULO");
                 });
 
+            modelBuilder.Entity("LocacaoTaxasServicos", b =>
+                {
+                    b.HasOne("LocadoraVeiculos.netCore.Dominio.LocacaoModule.Locacao", null)
+                        .WithMany()
+                        .HasForeignKey("LocacoesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("LocadoraVeiculos.netCore.Dominio.TaxasServicosModule.TaxasServicos", null)
+                        .WithMany()
+                        .HasForeignKey("TaxasId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("LocadoraVeiculos.netCore.Dominio.ClienteModule.Cliente", b =>
                 {
                     b.HasOne("LocadoraVeiculos.netCore.Dominio.ClienteModule.Cliente", "Empresa")
@@ -301,6 +318,23 @@ namespace LocadoraVeiculos.Infra.ORM.Migrations
                         .HasForeignKey("EmpresaId");
 
                     b.Navigation("Empresa");
+                });
+
+            modelBuilder.Entity("LocadoraVeiculos.netCore.Dominio.LocacaoModule.Locacao", b =>
+                {
+                    b.HasOne("LocadoraVeiculos.netCore.Dominio.ClienteModule.Cliente", "Cliente")
+                        .WithMany("Locacoes")
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("LocadoraVeiculos.netCore.Dominio.VeiculoModule.Veiculo", null)
+                        .WithMany("Locacoes")
+                        .HasForeignKey("VeiculoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
                 });
 
             modelBuilder.Entity("LocadoraVeiculos.netCore.Dominio.VeiculoModule.Veiculo", b =>
@@ -313,17 +347,6 @@ namespace LocadoraVeiculos.Infra.ORM.Migrations
                     b.Navigation("GrupoAutomoveis");
                 });
 
-            modelBuilder.Entity("LocadoraVeiculos.netCore.Dominio.LocacaoModule.Locacao", b =>
-                {
-                    b.HasOne("LocadoraVeiculos.netCore.Dominio.ClienteModule.Cliente", "Cliente")
-                        .WithMany("Locacoes")
-                        .HasForeignKey("ClienteId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Cliente");
-                });
-
             modelBuilder.Entity("LocadoraVeiculos.netCore.Dominio.ClienteModule.Cliente", b =>
                 {
                     b.Navigation("Clientes");
@@ -334,6 +357,11 @@ namespace LocadoraVeiculos.Infra.ORM.Migrations
             modelBuilder.Entity("LocadoraVeiculos.netCore.Dominio.GrupoAutomoveisModule.GrupoAutomoveis", b =>
                 {
                     b.Navigation("Veiculos");
+                });
+
+            modelBuilder.Entity("LocadoraVeiculos.netCore.Dominio.VeiculoModule.Veiculo", b =>
+                {
+                    b.Navigation("Locacoes");
                 });
 #pragma warning restore 612, 618
         }

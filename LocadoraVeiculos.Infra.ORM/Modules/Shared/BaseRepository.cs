@@ -15,13 +15,15 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.Shared
         public BaseRepository(DbContext dbContext)
         {
             _dbContext = dbContext;
+            _dbSet = _dbContext.Set<TEntity>();
         }
 
         public virtual void InserirNovo(TEntity registro)
         {
             try
             {
-                _dbContext.Attach(registro).State = EntityState.Added;
+                _dbSet.Add(registro);
+                //_dbContext.Attach(registro).State = EntityState.Added;
 
                 _dbContext.SaveChanges();
             }
@@ -33,22 +35,20 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.Shared
 
         public virtual void Editar(int id, TEntity registro)
         {
-                try
-                {
-                    var idExiste = _dbContext.Set<TEntity>().Any();
+            try
+            {
+                TEntity registroEncontrado = _dbSet.SingleOrDefault(x => x.Id.Equals(id));
 
-                    if (idExiste == true)
-                    {
-                        registro.Id = id;
-                        _dbContext.Set<TEntity>().Update(registro);
+                registro.Id = id;
 
-                    _dbContext.SaveChanges();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                _dbContext.Entry(registroEncontrado).CurrentValues.SetValues(registro);
+
+                _dbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public virtual bool Excluir(int id)

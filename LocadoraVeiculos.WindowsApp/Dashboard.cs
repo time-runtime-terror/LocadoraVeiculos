@@ -27,6 +27,7 @@ using LocadoraVeiculos.Infra.JSON.CombustivelModule;
 using Serilog;
 using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
 using LocadoraVeiculos.Infra.ORM.Modules.FuncionarioModule;
+using LocadoraVeiculos.Infra.ORM;
 
 namespace LocadoraVeiculos.WindowsApp
 {
@@ -35,6 +36,7 @@ namespace LocadoraVeiculos.WindowsApp
         private ICadastravel operacoes;
         private INotificadorEmail notificadorEmail;
         private IVerificadorConexao verificadorConexao;
+        private LocadoraDbContext dbContext;
 
         public static Dashboard Instancia { get; set; }
         public string Usuario { get; set; }
@@ -42,6 +44,8 @@ namespace LocadoraVeiculos.WindowsApp
         public Dashboard(string usuario)
         {
             InitializeComponent();
+
+            dbContext = new();
 
             Instancia = this;
             Usuario = usuario;
@@ -130,7 +134,7 @@ namespace LocadoraVeiculos.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            FuncionarioRepositoryEF funcionarioRepo = new FuncionarioRepositoryEF();
+            FuncionarioRepositoryEF funcionarioRepo = new FuncionarioRepositoryEF(dbContext);
 
             operacoes = new OperacoesFuncionario(new FuncionarioAppService(funcionarioRepo));
 

@@ -7,16 +7,11 @@ using LocadoraVeiculos.netCore.Dominio.CombustivelModule;
 using LocadoraVeiculos.netCore.Dominio.GrupoAutomoveisModule;
 using LocadoraVeiculos.netCore.Dominio.VeiculoModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.IntegrationTests.VeiculoModule
 {
     [TestClass]
-    [TestCategory("ORM")]
+    [TestCategory("ORM/Veiculo")]
 
     public class VeiculoORMTests
     {
@@ -36,7 +31,7 @@ namespace LocadoraVeiculos.IntegrationTests.VeiculoModule
 
             veiculoRepository = new VeiculoRepositoryEF(dbContext);
 
-            grupoAutomoveisRepository = new GrupoAutomoveisRepositoryEF();
+            grupoAutomoveisRepository = new GrupoAutomoveisRepositoryEF(dbContext);
 
             configCombustivel = new CombustivelConfiguration();
 

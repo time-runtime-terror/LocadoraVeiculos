@@ -22,12 +22,12 @@ namespace LocadoraVeiculos.Infra.ORM.Configurations
                 .OnDelete(DeleteBehavior.NoAction)
                 .IsRequired();
 
-            //builder // Veículo
-            //    .HasOne(v => v.Veiculo)
-            //    .WithMany(v => v.Locacoes)
-            //    .HasForeignKey(l => l.VeiculoId)
-            //    .OnDelete(DeleteBehavior.NoAction)
-            //    .IsRequired();
+            builder // Veículo
+                .HasOne(v => v.Veiculo)
+                .WithMany(v => v.Locacoes)
+                .HasForeignKey(l => l.VeiculoId)
+                .OnDelete(DeleteBehavior.NoAction)
+                .IsRequired();
 
             builder
                 .Ignore(l => l.Veiculo);
