@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LocadoraVeiculos.Infra.ORM.Migrations
 {
-    public partial class AdicionandoTbCliente : Migration
+    public partial class TabelasAdicionadas : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -53,10 +53,61 @@ namespace LocadoraVeiculos.Infra.ORM.Migrations
                     table.PrimaryKey("PK_TBFUNCIONARIO", x => x.Id);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "TBGRUPOAUTOMOVEIS",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NomeGrupo = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    PlanoDiarioUm = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    PlanoDiarioDois = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    KmControladoUm = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    KmControladoDois = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    KmControladoIncluida = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    KmLivreUm = table.Column<string>(type: "VARCHAR(50)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TBGRUPOAUTOMOVEIS", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TBVEICULO",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Foto = table.Column<byte[]>(type: "VARBINARY(MAX)", nullable: false),
+                    Placa = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    Modelo = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    Marca = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    TipoCombustivel = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    CapacidadeTanque = table.Column<int>(type: "INT", nullable: false),
+                    Quilometragem = table.Column<int>(type: "INT", nullable: false),
+                    IdGrupoAutomoveis = table.Column<int>(type: "int", nullable: true),
+                    EstaAlugado = table.Column<bool>(type: "BIT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TBVEICULO", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TBVEICULO_TBGRUPOAUTOMOVEIS_IdGrupoAutomoveis",
+                        column: x => x.IdGrupoAutomoveis,
+                        principalTable: "TBGRUPOAUTOMOVEIS",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_TBCLIENTE_EmpresaId",
                 table: "TBCLIENTE",
                 column: "EmpresaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TBVEICULO_IdGrupoAutomoveis",
+                table: "TBVEICULO",
+                column: "IdGrupoAutomoveis");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -66,6 +117,12 @@ namespace LocadoraVeiculos.Infra.ORM.Migrations
 
             migrationBuilder.DropTable(
                 name: "TBFUNCIONARIO");
+
+            migrationBuilder.DropTable(
+                name: "TBVEICULO");
+
+            migrationBuilder.DropTable(
+                name: "TBGRUPOAUTOMOVEIS");
         }
     }
 }

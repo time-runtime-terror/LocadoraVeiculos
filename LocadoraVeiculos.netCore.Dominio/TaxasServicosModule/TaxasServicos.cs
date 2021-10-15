@@ -10,9 +10,8 @@ namespace LocadoraVeiculos.netCore.Dominio.TaxasServicosModule
 {
     public class TaxasServicos : EntidadeBase, IEquatable<TaxasServicos>
     {
-        public TaxasServicos()
-        {
-        }
+
+        public TaxasServicos() { }
 
         public TaxasServicos(string servico, double taxa, string opcaoServico, string localServico)
         {

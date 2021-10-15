@@ -4,11 +4,18 @@ using System.Linq;
 using LocadoraVeiculos.netCore.Dominio.Shared;
 using System.Text;
 using System.Threading.Tasks;
+using LocadoraVeiculos.netCore.Dominio.VeiculoModule;
 
 namespace LocadoraVeiculos.netCore.Dominio.GrupoAutomoveisModule
 {
     public class GrupoAutomoveis : EntidadeBase, IEquatable<GrupoAutomoveis>
     {
+
+        public GrupoAutomoveis()
+        {
+            Veiculos = new List<Veiculo>();
+        }
+
         public GrupoAutomoveis(string nomeGrupo, double planoDiarioUm, double planoDiarioDois, double kmControladoUm,
             double kmControladoDois, double kmLivreUm, double kmControladoIncluida)
         {
@@ -36,6 +43,8 @@ namespace LocadoraVeiculos.netCore.Dominio.GrupoAutomoveisModule
         public double KmControladoIncluida { get; }
 
         public double KmLivreUm { get; }
+
+        public List<Veiculo> Veiculos { get; set; }
 
         public override bool Equals(object obj)
         {
@@ -93,6 +102,12 @@ namespace LocadoraVeiculos.netCore.Dominio.GrupoAutomoveisModule
                 resultadoValidacao = "ESTA_VALIDO";
 
             return resultadoValidacao;
+        }
+
+        public void AdicionarVeiculo(Veiculo veiculo)
+        {
+            Veiculos.Add(veiculo);
+            veiculo.GrupoAutomoveis = this;
         }
     }
 }

@@ -11,9 +11,8 @@ namespace LocadoraVeiculos.netCore.Dominio.VeiculoModule
 {
     public class Veiculo : EntidadeBase, IEquatable<Veiculo>
     {
-        public Veiculo()
-        {
-        }
+
+        public Veiculo() { }
 
         public Veiculo(byte[] foto, string placa, string modelo, string marca, string tipoCombustivel, int capacidadeTanque, int quilometragem, GrupoAutomoveis grupo)
         {
@@ -41,14 +40,15 @@ namespace LocadoraVeiculos.netCore.Dominio.VeiculoModule
             }
         }
 
-        public byte[] Foto { get; }
-        public string Placa { get; }
-        public string Modelo { get; }
-        public string Marca { get; }
-        public string TipoCombustivel { get; }
-        public int CapacidadeTanque { get; }
-        public int Quilometragem { get; }
-        public GrupoAutomoveis GrupoAutomoveis { get; }
+        public byte[] Foto { get; set; }
+        public string Placa { get; set; }
+        public string Modelo { get; set; }
+        public string Marca { get; set; }
+        public string TipoCombustivel { get; set; }
+        public int CapacidadeTanque { get; set; }
+        public int Quilometragem { get; set;  }
+        public GrupoAutomoveis GrupoAutomoveis { get; set; }
+        public int? IdGrupoAutomoveis { get; set; }
         public bool EstaAlugado { get; set; }
         public List<Locacao> Locacoes { get; set; }
 

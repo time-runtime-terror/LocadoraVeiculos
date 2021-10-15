@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LocadoraVeiculos.Infra.ORM.Migrations
 {
     [DbContext(typeof(LocadoraDbContext))]
-    [Migration("20211008170617_AdicionandoTbCliente")]
-    partial class AdicionandoTbCliente
+    [Migration("20211014172907_TabelasAdicionadas")]
+    partial class TabelasAdicionadas
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -114,6 +114,92 @@ namespace LocadoraVeiculos.Infra.ORM.Migrations
                     b.ToTable("TBFUNCIONARIO");
                 });
 
+            modelBuilder.Entity("LocadoraVeiculos.netCore.Dominio.GrupoAutomoveisModule.GrupoAutomoveis", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("KmControladoDois")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)");
+
+                    b.Property<string>("KmControladoIncluida")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)");
+
+                    b.Property<string>("KmControladoUm")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)");
+
+                    b.Property<string>("KmLivreUm")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)");
+
+                    b.Property<string>("NomeGrupo")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)");
+
+                    b.Property<string>("PlanoDiarioDois")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)");
+
+                    b.Property<string>("PlanoDiarioUm")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TBGRUPOAUTOMOVEIS");
+                });
+
+            modelBuilder.Entity("LocadoraVeiculos.netCore.Dominio.VeiculoModule.Veiculo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CapacidadeTanque")
+                        .HasColumnType("INT");
+
+                    b.Property<bool>("EstaAlugado")
+                        .HasColumnType("BIT");
+
+                    b.Property<byte[]>("Foto")
+                        .IsRequired()
+                        .HasColumnType("VARBINARY(MAX)");
+
+                    b.Property<int?>("IdGrupoAutomoveis")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Marca")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)");
+
+                    b.Property<string>("Modelo")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)");
+
+                    b.Property<string>("Placa")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)");
+
+                    b.Property<int>("Quilometragem")
+                        .HasColumnType("INT");
+
+                    b.Property<string>("TipoCombustivel")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdGrupoAutomoveis");
+
+                    b.ToTable("TBVEICULO");
+                });
+
             modelBuilder.Entity("LocadoraVeiculos.netCore.Dominio.ClienteModule.Cliente", b =>
                 {
                     b.HasOne("LocadoraVeiculos.netCore.Dominio.ClienteModule.Cliente", "Empresa")
@@ -123,9 +209,23 @@ namespace LocadoraVeiculos.Infra.ORM.Migrations
                     b.Navigation("Empresa");
                 });
 
+            modelBuilder.Entity("LocadoraVeiculos.netCore.Dominio.VeiculoModule.Veiculo", b =>
+                {
+                    b.HasOne("LocadoraVeiculos.netCore.Dominio.GrupoAutomoveisModule.GrupoAutomoveis", "GrupoAutomoveis")
+                        .WithMany("Veiculos")
+                        .HasForeignKey("IdGrupoAutomoveis");
+
+                    b.Navigation("GrupoAutomoveis");
+                });
+
             modelBuilder.Entity("LocadoraVeiculos.netCore.Dominio.ClienteModule.Cliente", b =>
                 {
                     b.Navigation("Clientes");
+                });
+
+            modelBuilder.Entity("LocadoraVeiculos.netCore.Dominio.GrupoAutomoveisModule.GrupoAutomoveis", b =>
+                {
+                    b.Navigation("Veiculos");
                 });
 #pragma warning restore 612, 618
         }
