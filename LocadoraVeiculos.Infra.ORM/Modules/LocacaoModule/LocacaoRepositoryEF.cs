@@ -26,8 +26,8 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.LocacaoModule
             {
                 Locacao locacaoParaAlterar = _dbSet.SingleOrDefault(x => x.Id.Equals(id));
 
-                if (locacaoParaAlterar != null && _dbContext.Entry(locacaoParaAlterar).State != EntityState.Modified)
-                    _dbContext.Entry(locacaoParaAlterar).State = EntityState.Detached;
+                //if (locacaoParaAlterar != null && _dbContext.Entry(locacaoParaAlterar).State != EntityState.Modified)
+                //    _dbContext.Entry(locacaoParaAlterar).State = EntityState.Detached;
 
                 locacaoAlterada.Id = id;
 
@@ -43,11 +43,19 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.LocacaoModule
 
         public override Locacao SelecionarPorId(int id)
         {
-            return _dbContext.Locacoes
-                .Include(l => l.Cliente)
-                .Include(l => l.Taxas)
-                .AsSplitQuery()
-                .FirstOrDefault(l => l.Id == id);
+            try
+            {
+                return _dbContext.Locacoes
+                        .Include(l => l.Cliente)
+                        .Include(l => l.Veiculo)
+                        .Include(l => l.Taxas)
+                        .AsSplitQuery()
+                        .FirstOrDefault(l => l.Id == id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public override List<Locacao> SelecionarTodos()
@@ -56,6 +64,8 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.LocacaoModule
             {
                 return _dbSet
                     .Include(l => l.Cliente)
+                    .Include(l => l.Veiculo)
+                    .Include(l => l.Taxas)
                     .OrderBy(x => x.Id)
                     .ToList();
             }

@@ -50,7 +50,7 @@ namespace LocadoraVeiculos.IntegrationTests.GrupoAutomoveisModule
         }
 
         [TestMethod]
-        public void DeveAtualizar_GrupoAutomoveis()
+        public void DeveEditar_GrupoAutomoveis()
         {
             //arrange
             var grupoAutomoveis = new GrupoAutomoveis("Econômico", 100, 120, 140, 160, 100, 180);

@@ -46,7 +46,7 @@ namespace LocadoraVeiculos.IntegrationTests.TaxasServicosModule
         }
 
         [TestMethod]
-        public void DeveAtualizar_TaxasServicos()
+        public void DeveEditar_TaxasServicos()
         {
             //arrange
             var taxasServicos = new TaxasServicos("GPS", 140, "Fixo", "Locação");

@@ -30,7 +30,6 @@ namespace LocadoraVeiculos.IntegrationTests.LocacaoModule
         private ITaxasServicosRepository taxasServicosRepository;
         private ILocacaoRepository locacaoRepository;
 
-
         public LocacaoORMTests()
         {
             LocadoraDbContext db = new();
@@ -40,7 +39,25 @@ namespace LocadoraVeiculos.IntegrationTests.LocacaoModule
             taxasServicosRepository = new TaxasServicosRepositoryEF(db);
             locacaoRepository = new LocacaoRepositoryEF(db);
 
-            DeletarLinhasTabela();
+            TearDown();
+        }
+
+        [TestCleanup]
+        public void TearDown()
+        {
+            using LocadoraDbContext dbContext = new LocadoraDbContext();
+
+            dbContext.Locacoes.RemoveRange(dbContext.Locacoes);
+
+            dbContext.Taxas.RemoveRange(dbContext.Taxas);
+
+            dbContext.Veiculos.RemoveRange(dbContext.Veiculos);
+
+            dbContext.GrupoAutomoveis.RemoveRange(dbContext.GrupoAutomoveis);
+
+            dbContext.Clientes.RemoveRange(dbContext.Clientes);
+
+            dbContext.SaveChanges();
         }
 
         public void DeletarLinhasTabela()
@@ -89,27 +106,26 @@ namespace LocadoraVeiculos.IntegrationTests.LocacaoModule
             Cliente cliente = new Cliente("Tiago Santini", "testador@ndd.com", "Maria de Melo Kuster", "(49) 9805-6251", "CPF", "123123124", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
             clienteRepository.InserirNovo(cliente);
 
-            //GrupoAutomoveis grupoAutomovel = new GrupoAutomoveis("Econômico", 100, 120, 140, 160, 100, 180);
-            //grupoAutomoveisRepository.InserirNovo(grupoAutomovel);
+            GrupoAutomoveis grupoAutomovel = new GrupoAutomoveis("Econômico", 100, 120, 140, 160, 100, 180);
+            grupoAutomoveisRepository.InserirNovo(grupoAutomovel);
 
-            //Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, grupoAutomovel);
-            //veiculoRepository.InserirNovo(veiculo);
+            Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, grupoAutomovel);
+            veiculoRepository.InserirNovo(veiculo);
 
-            Locacao locacao = new Locacao(cliente, null, null, DateTime.Now.Date, DateTime.Now.AddDays(2).Date, 200, "Diário", "", "Pendente");
+            Locacao locacao = new Locacao(cliente, veiculo, null, DateTime.Now.Date, DateTime.Now.AddDays(2).Date, 200, "Diário", "", "Pendente");
             locacaoRepository.InserirNovo(locacao);
 
             // action
             Cliente novoCliente = new Cliente("Lucas", "testador@ndd.com", "Teste", "(49) 9805-6251", "CPF", "1212432433", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
             clienteRepository.InserirNovo(novoCliente);
 
-            //GrupoAutomoveis novoGrupoAutomovel = new GrupoAutomoveis("SUV", 200, 220, 240, 260, 200, 280);
-            //grupoAutomoveisRepository.InserirNovo(novoGrupoAutomovel);
+            GrupoAutomoveis novoGrupoAutomovel = new GrupoAutomoveis("SUV", 200, 220, 240, 260, 200, 280);
+            grupoAutomoveisRepository.InserirNovo(novoGrupoAutomovel);
 
-            //Veiculo novoVeiculo = new Veiculo(foto, "DEF-5634", "uno", "Chevrolet", "Gasolina", 50, 20000, novoGrupoAutomovel);
-            //veiculoRepository.InserirNovo(novoVeiculo);
+            Veiculo novoVeiculo = new Veiculo(foto, "DEF-5634", "uno", "Chevrolet", "Gasolina", 50, 20000, novoGrupoAutomovel);
+            veiculoRepository.InserirNovo(novoVeiculo);
 
-            Locacao novaLocacao = new Locacao(novoCliente, null, null, DateTime.Now.Date, DateTime.Now.AddDays(2).Date, 200, "Controlado", "", "Pendente");
-            locacaoRepository.InserirNovo(novaLocacao);
+            Locacao novaLocacao = new Locacao(novoCliente, novoVeiculo, null, DateTime.Now.Date, DateTime.Now.AddDays(2).Date, 200, "Controlado", "", "Pendente");
 
             locacaoRepository.Editar(locacao.Id, novaLocacao);
 
@@ -125,13 +141,13 @@ namespace LocadoraVeiculos.IntegrationTests.LocacaoModule
             Cliente cliente = new Cliente("Tiago Santini", "testador@ndd.com", "Maria de Melo Kuster", "(49) 9805-6251", "CPF", "123123124", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
             clienteRepository.InserirNovo(cliente);
 
-            //GrupoAutomoveis grupoAutomovel = new GrupoAutomoveis("Econômico", 100, 120, 140, 160, 100, 180);
-            //grupoAutomoveisRepository.InserirNovo(grupoAutomovel);
+            GrupoAutomoveis grupoAutomovel = new GrupoAutomoveis("Econômico", 100, 120, 140, 160, 100, 180);
+            grupoAutomoveisRepository.InserirNovo(grupoAutomovel);
 
-            //Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, grupoAutomovel);
-            //veiculoRepository.InserirNovo(veiculo);
+            Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, grupoAutomovel);
+            veiculoRepository.InserirNovo(veiculo);
 
-            Locacao locacao = new Locacao(cliente, null, null, DateTime.Now.Date, DateTime.Now.AddDays(2).Date, 200, "Diário", null, null);
+            Locacao locacao = new Locacao(cliente, veiculo, null, DateTime.Now.Date, DateTime.Now.AddDays(2).Date, 200, "Diário", null, null);
             locacaoRepository.InserirNovo(locacao);
 
             // action
@@ -149,13 +165,13 @@ namespace LocadoraVeiculos.IntegrationTests.LocacaoModule
             Cliente cliente = new Cliente("Tiago Santini", "testador@ndd.com", "Maria de Melo Kuster", "(49) 9805-6251", "CPF", "123123124", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
             clienteRepository.InserirNovo(cliente);
 
-            //GrupoAutomoveis grupoAutomovel = new GrupoAutomoveis("Econômico", 100, 120, 140, 160, 100, 180);
-            //grupoAutomoveisRepository.InserirNovo(grupoAutomovel);
+            GrupoAutomoveis grupoAutomovel = new GrupoAutomoveis("Econômico", 100, 120, 140, 160, 100, 180);
+            grupoAutomoveisRepository.InserirNovo(grupoAutomovel);
 
-            //Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, grupoAutomovel);
-            //veiculoRepository.InserirNovo(veiculo);
+            Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, grupoAutomovel);
+            veiculoRepository.InserirNovo(veiculo);
 
-            Locacao locacao = new Locacao(cliente, null, null, DateTime.Now.Date, DateTime.Now.AddDays(2).Date, 200, "Diário", null, null);
+            Locacao locacao = new Locacao(cliente, veiculo, null, DateTime.Now.Date, DateTime.Now.AddDays(2).Date, 200, "Diário", null, null);
             locacaoRepository.InserirNovo(locacao);
 
             // action
@@ -173,27 +189,27 @@ namespace LocadoraVeiculos.IntegrationTests.LocacaoModule
             Cliente cliente = new Cliente("Tiago Santini", "testador@ndd.com", "Maria de Melo Kuster", "(49) 9805-6251", "CPF", "123123124", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
             clienteRepository.InserirNovo(cliente);
 
-            //GrupoAutomoveis grupoAutomovel = new GrupoAutomoveis("Econômico", 100, 120, 140, 160, 100, 180);
-            //grupoAutomoveisRepository.InserirNovo(grupoAutomovel);
+            GrupoAutomoveis grupoAutomovel = new GrupoAutomoveis("Econômico", 100, 120, 140, 160, 100, 180);
+            grupoAutomoveisRepository.InserirNovo(grupoAutomovel);
 
-            //Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, grupoAutomovel);
-            //veiculoRepository.InserirNovo(veiculo);
+            Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, grupoAutomovel);
+            veiculoRepository.InserirNovo(veiculo);
 
             //locacao 2
             Cliente novoCliente = new Cliente("Lucas", "testador@ndd.com", "Teste", "(49) 9805-6251", "CPF", "1212432433", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
             clienteRepository.InserirNovo(novoCliente);
 
-            //GrupoAutomoveis novoGrupoAutomovel = new GrupoAutomoveis("SUV", 200, 220, 240, 260, 200, 280);
-            //grupoAutomoveisRepository.InserirNovo(novoGrupoAutomovel);
+            GrupoAutomoveis novoGrupoAutomovel = new GrupoAutomoveis("SUV", 200, 220, 240, 260, 200, 280);
+            grupoAutomoveisRepository.InserirNovo(novoGrupoAutomovel);
 
-            //Veiculo novoVeiculo = new Veiculo(foto, "DEF-5634", "uno", "Chevrolet", "Gasolina", 70, 2000, novoGrupoAutomovel);
-            //veiculoRepository.InserirNovo(novoVeiculo);
+            Veiculo novoVeiculo = new Veiculo(foto, "DEF-5634", "uno", "Chevrolet", "Gasolina", 70, 2000, novoGrupoAutomovel);
+            veiculoRepository.InserirNovo(novoVeiculo);
 
             var locacaoes = new List<Locacao>
             {
-                new Locacao(cliente, null, null, DateTime.Now.Date, DateTime.Now.AddDays(2).Date, 200, "Diário", null, null),
+                new Locacao(cliente, veiculo, null, DateTime.Now.Date, DateTime.Now.AddDays(2).Date, 200, "Diário", null, null),
 
-                new Locacao(novoCliente, null, null, DateTime.Now.Date, DateTime.Now.AddDays(2).Date, 200, "Controlado", null, null)
+                new Locacao(novoCliente, novoVeiculo, null, DateTime.Now.Date, DateTime.Now.AddDays(2).Date, 200, "Controlado", null, null)
             };
 
             foreach (var l in locacaoes)

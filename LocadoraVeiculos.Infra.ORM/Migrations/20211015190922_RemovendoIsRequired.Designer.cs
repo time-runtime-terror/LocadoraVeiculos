@@ -4,14 +4,16 @@ using LocadoraVeiculos.Infra.ORM;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LocadoraVeiculos.Infra.ORM.Migrations
 {
     [DbContext(typeof(LocadoraDbContext))]
-    partial class LocadoraDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211015190922_RemovendoIsRequired")]
+    partial class RemovendoIsRequired
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -328,15 +330,13 @@ namespace LocadoraVeiculos.Infra.ORM.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("LocadoraVeiculos.netCore.Dominio.VeiculoModule.Veiculo", "Veiculo")
+                    b.HasOne("LocadoraVeiculos.netCore.Dominio.VeiculoModule.Veiculo", null)
                         .WithMany("Locacoes")
                         .HasForeignKey("VeiculoId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Cliente");
-
-                    b.Navigation("Veiculo");
                 });
 
             modelBuilder.Entity("LocadoraVeiculos.netCore.Dominio.VeiculoModule.Veiculo", b =>

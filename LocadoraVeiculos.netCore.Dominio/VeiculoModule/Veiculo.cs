@@ -50,7 +50,7 @@ namespace LocadoraVeiculos.netCore.Dominio.VeiculoModule
         public GrupoAutomoveis GrupoAutomoveis { get; set; }
         public int? IdGrupoAutomoveis { get; set; }
         public bool EstaAlugado { get; set; }
-        public List<Locacao> Locacoes { get; set; }
+        public List<Locacao> Locacoes { get; set; } = new List<Locacao>();
 
         public string NomeGrupo 
         {

@@ -37,11 +37,14 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.Shared
         {
             try
             {
-                TEntity registroEncontrado = _dbSet.SingleOrDefault(x => x.Id.Equals(id));
+                TEntity registroParaAlterar = _dbSet.SingleOrDefault(x => x.Id.Equals(id));
+
+                if (registroParaAlterar != null && _dbContext.Entry(registroParaAlterar).State != EntityState.Modified)
+                    _dbContext.Entry(registroParaAlterar).State = EntityState.Detached;
 
                 registro.Id = id;
 
-                _dbContext.Entry(registroEncontrado).CurrentValues.SetValues(registro);
+                _dbContext.Entry(registroParaAlterar).CurrentValues.SetValues(registro);
 
                 _dbContext.SaveChanges();
             }
@@ -79,37 +82,28 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.Shared
 
         public virtual TEntity SelecionarPorId(int id)
         {
-            using (LocadoraDbContext db = new LocadoraDbContext())
+            try
             {
-                try
-                {
-                    return db.Set<TEntity>()
-                        .AsNoTracking()
-                        .Where(x => x.Id == id)
-                        .FirstOrDefault();
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                return _dbSet
+                    .FirstOrDefault(p => p.Id.Equals(id));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
         public virtual List<TEntity> SelecionarTodos()
         {
-            using (LocadoraDbContext db = new LocadoraDbContext())
+            try
             {
-                try
-                {
-                    return db.Set<TEntity>()
-                        .AsNoTracking()
-                        .OrderBy(x => x.Id)
-                        .ToList();
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                return _dbSet
+                    .OrderBy(x => x.Id)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 

@@ -26,7 +26,9 @@ namespace LocadoraVeiculos.netCore.Dominio.LocacaoModule
             DateTime dataSaida, DateTime dataDevolucao, double caucao, string planoEscolhido, string condutor, string devolucao)
         {
             Cliente = clienteEscolhido;
+            ClienteId = Cliente.Id;
             Veiculo = veiculoEscolhido;
+            VeiculoId = Veiculo.Id;
             DataSaida = dataSaida;
             DataDevolucao = dataDevolucao;
             Caucao = caucao;
@@ -67,11 +69,10 @@ namespace LocadoraVeiculos.netCore.Dominio.LocacaoModule
                    Id == locacao.Id &&
                    EqualityComparer<Cliente>.Default.Equals(Cliente, locacao.Cliente) &&
                    EqualityComparer<Veiculo>.Default.Equals(Veiculo, locacao.Veiculo) &&
-                   EqualityComparer<ICollection<TaxasServicos>>.Default.Equals(Taxas, locacao.Taxas) &&
+                   //EqualityComparer<ICollection<TaxasServicos>>.Default.Equals(Taxas, locacao.Taxas) &&
                    DataSaida == locacao.DataSaida &&
                    DataDevolucao == locacao.DataDevolucao &&
                    Caucao == locacao.Caucao &&
-                   Plano == locacao.Plano &&
                    Condutor == locacao.Condutor &&
                    Devolucao == locacao.Devolucao &&
                    Plano == locacao.Plano;

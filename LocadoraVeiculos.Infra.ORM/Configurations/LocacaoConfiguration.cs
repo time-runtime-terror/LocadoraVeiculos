@@ -30,9 +30,6 @@ namespace LocadoraVeiculos.Infra.ORM.Configurations
                 .IsRequired();
 
             builder
-                .Ignore(l => l.Veiculo);
-
-            builder
                 .Property(p => p.DataSaida)
                 .IsRequired();
 
