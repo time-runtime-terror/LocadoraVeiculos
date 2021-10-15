@@ -5,7 +5,7 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.GrupoAutomoveisModule
 {
     public class GrupoAutomoveisRepositoryEF : BaseRepository<GrupoAutomoveis>, IGrupoAutomoveisRepository
     {
-        public GrupoAutomoveisRepositoryEF()
+        public GrupoAutomoveisRepositoryEF(LocadoraDbContext db) : base (db)
         {
         }
     }

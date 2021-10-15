@@ -9,44 +9,46 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.Shared
 {
     public class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : EntidadeBase
     {
+        private readonly DbContext _dbContext;
+        private readonly DbSet<TEntity> _dbSet;
+
+        public BaseRepository(DbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         public virtual void InserirNovo(TEntity registro)
         {
-            using (LocadoraDbContext db = new LocadoraDbContext())
+            try
             {
-                try
-                {
-                    db.Attach(registro).State = EntityState.Added;
+                _dbContext.Attach(registro).State = EntityState.Added;
 
-                    db.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                _dbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
         public virtual void Editar(int id, TEntity registro)
         {
-            using (LocadoraDbContext db = new LocadoraDbContext())
-            {
                 try
                 {
-                    var idExiste = db.Set<TEntity>().Any();
+                    var idExiste = _dbContext.Set<TEntity>().Any();
 
                     if (idExiste == true)
                     {
                         registro.Id = id;
-                        db.Set<TEntity>().Update(registro);
+                        _dbContext.Set<TEntity>().Update(registro);
 
-                        db.SaveChanges();
+                    _dbContext.SaveChanges();
                     }
                 }
                 catch (Exception ex)
                 {
                     throw ex;
                 }
-            }
         }
 
         public virtual bool Excluir(int id)

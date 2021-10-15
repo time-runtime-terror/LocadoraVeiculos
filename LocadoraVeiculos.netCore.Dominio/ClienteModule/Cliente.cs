@@ -19,9 +19,9 @@ namespace LocadoraVeiculos.netCore.Dominio.ClienteModule
         public string RG { get; }
         public int? EmpresaId { get; set; }
         public Cliente Empresa { get; set; }
-        public virtual ICollection<Cliente> Clientes { get; set; }
+        public virtual List<Cliente> Clientes { get; set; }
         public bool TemLocacaoAtiva { get; set; }
-        public Locacao Locacao { get; set; }
+        public List<Locacao> Locacoes { get; set; }
 
         public Cliente()
         {

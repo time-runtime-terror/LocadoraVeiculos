@@ -19,7 +19,8 @@ namespace LocadoraVeiculos.IntegrationTests.GrupoAutomoveisModule
 
         public GrupoAutomoveisORMTests()
         {
-            grupoAutomoveisRepository = new GrupoAutomoveisRepositoryEF();
+            LocadoraDbContext db = new();
+            grupoAutomoveisRepository = new GrupoAutomoveisRepositoryEF(db);
             DeletarLinhasTabela();
         }
 

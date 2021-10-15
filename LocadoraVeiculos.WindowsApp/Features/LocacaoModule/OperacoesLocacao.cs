@@ -86,10 +86,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                 if (conseguiuEditar)
                 {
-                    taxaService.ExcluirTaxaUsada(tela.Locacao);
-
-                    taxaService.RegistrarTaxaUsada(tela.Locacao);
-
                     List<Locacao> locacoes = locacaoService.SelecionarTodos();
 
                     tabelaLocacoes.AtualizarRegistros(locacoes);
@@ -120,12 +116,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             {
                 Stopwatch watch = Stopwatch.StartNew();
 
-                bool conseguiuExcluir = locacaoService.Excluir(id);
+                bool conseguiuExcluir = locacaoService.Excluir(locacaoSelecionada);
 
                 if (conseguiuExcluir)
                 {
-                    taxaService.ExcluirTaxaUsada(locacaoSelecionada);
-
                     List<Locacao> locacoes = locacaoService.SelecionarTodos();
 
                     tabelaLocacoes.AtualizarRegistros(locacoes);

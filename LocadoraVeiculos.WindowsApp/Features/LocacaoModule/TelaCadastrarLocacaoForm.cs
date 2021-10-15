@@ -46,12 +46,11 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                 txtValorEntrada.Text = locacao.Caucao.ToString();
 
-
                 dateDataSaida.Value = locacao.DataSaida;
 
                 dateDataDevolucao.Value = locacao.DataDevolucao;
 
-                taxasSelecionadas = locacao.Taxas as List<TaxasServicos>;
+                taxasSelecionadas = locacao.Taxas;
 
                 if (taxasSelecionadas != null)
                     foreach (var taxa in taxasSelecionadas)
@@ -241,11 +240,13 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             DateTime dataSaida = dateDataSaida.Value;
             DateTime dataDevolucao = dateDataDevolucao.Value;
 
-            List<TaxasServicos> taxasSelecionadas = ObterTaxasSelecionadas();
-
             string devolucao = "Pendente";
 
-            return new Locacao(cliente, veiculo, taxasSelecionadas, dataSaida, dataDevolucao, caucao, plano, condutor, devolucao);
+            var novaLocacao = new Locacao(cliente, veiculo, null, dataSaida, dataDevolucao, caucao, plano, condutor, devolucao);
+
+            novaLocacao.AdicionarTaxas(ObterTaxasSelecionadas());
+
+            return novaLocacao;
         }
 
         private List<TaxasServicos> ObterTaxasSelecionadas()

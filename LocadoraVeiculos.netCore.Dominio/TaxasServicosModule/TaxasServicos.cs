@@ -27,7 +27,7 @@ namespace LocadoraVeiculos.netCore.Dominio.TaxasServicosModule
         public double Taxa { get; }
         public string OpcaoServico { get; }
         public string LocalServico { get; }
-        public ICollection<Locacao> Locacoes { get; set; }
+        public List<Locacao> Locacoes { get; set; } = new List<Locacao>();
 
         public override string ToString()
         {

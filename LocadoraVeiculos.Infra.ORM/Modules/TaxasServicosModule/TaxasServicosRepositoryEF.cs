@@ -10,6 +10,10 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.TaxasServicosModule
 {
     public class TaxasServicosRepositoryEF : BaseRepository<TaxasServicos>, ITaxasServicosRepository
     {
+        public TaxasServicosRepositoryEF(LocadoraDbContext db) : base(db)
+        {
+
+        }
         public void InserirNovaTaxaUsada(Locacao registro)
         {
             throw new NotImplementedException();

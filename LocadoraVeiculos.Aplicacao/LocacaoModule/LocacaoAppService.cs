@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculos.Infra.ExtensionMethods;
 using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
+using LocadoraVeiculos.netCore.Dominio.TaxasServicosModule;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
         private readonly INotificadorEmail notificadorEmail;
         private readonly IVerificadorConexao verificadorConexao;
 
-        public LocacaoAppService(ILocacaoRepository locacaoRepository, 
+        public LocacaoAppService(ILocacaoRepository locacaoRepository,
             IGeradorRecibo geradorRecibo,
             INotificadorEmail notificadorEmail,
             IVerificadorConexao verificadorConexao)
@@ -123,21 +124,21 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             return false;
         }
 
-        public bool Excluir(int id)
+        public bool Excluir(Locacao locacao)
         {
-            Log.Logger.Aqui().Debug("Excluindo locação: {IdLocacao}", id);
+            Log.Logger.Aqui().Debug("Excluindo locação: {IdLocacao}", locacao.Id);
 
             try
             {
-                if (locacaoRepository.Excluir(id))
+                if (locacaoRepository.Excluir(locacao.Id))
                 {
-                    Log.Logger.Aqui().Debug("Exclusão concluída com sucesso! ID: {IdLocacao}", id);
+                    Log.Logger.Aqui().Debug("Exclusão concluída com sucesso! ID: {IdLocacao}", locacao.Id);
                     return true;
                 }
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "Falha ao tentar excluir locação. ID: {IdLocacao}", id);
+                Log.Error(ex, "Falha ao tentar excluir locação. ID: {IdLocacao}", locacao.Id);
             }
 
             return false;

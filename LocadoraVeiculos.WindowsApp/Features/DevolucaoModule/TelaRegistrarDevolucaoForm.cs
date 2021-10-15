@@ -35,7 +35,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
                 lblNomePlano.Text = locacao.Plano;
                 lblEntrada.Text = locacao.Caucao.ToString();
 
-                taxasSelecionadas = locacao.Taxas as List<TaxasServicos>;
+                taxasSelecionadas = locacao.Taxas;
 
                 if (taxasSelecionadas != null)
                     foreach (var taxa in taxasSelecionadas)

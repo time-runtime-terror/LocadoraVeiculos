@@ -10,7 +10,7 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.FuncionarioModule
 {
     public class FuncionarioRepositoryEF : BaseRepository<Funcionario>, IFuncionarioRepository
     {
-        public FuncionarioRepositoryEF()
+        public FuncionarioRepositoryEF(LocadoraDbContext db) : base(db)
         {
         }
 

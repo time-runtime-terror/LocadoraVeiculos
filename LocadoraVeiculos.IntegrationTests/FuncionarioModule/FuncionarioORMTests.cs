@@ -19,10 +19,9 @@ namespace LocadoraVeiculos.IntegrationTests.FuncionarioModule
 
         public FuncionarioORMTests()
         {
-
+            LocadoraDbContext db = new();
+            funcionarioRepository = new FuncionarioRepositoryEF(db);
             DeletarLinhasTabela();
-
-            funcionarioRepository = new FuncionarioRepositoryEF();
         }
 
         private void DeletarLinhasTabela()

@@ -182,6 +182,14 @@ namespace LocadoraVeiculos.Infra.SQL.LocacaoModule
 
         private const string sqlPesquisarLocacoes = "";
 
+
+        private const string sqlExcluirTaxasServicos =
+            @"DELETE 
+	                FROM
+                        TBTAXASSERVICOS
+                    WHERE 
+                        ID = @ID";
+
         #endregion
 
         private readonly ClienteDAO _clienteRepository;
@@ -201,16 +209,15 @@ namespace LocadoraVeiculos.Infra.SQL.LocacaoModule
             {
                 locacao.Id = Db.Insert(sqlInserirLocacao, ObtemParametrosRegistro(locacao));
 
-                if (locacao.Taxas != null)
-                    foreach (TaxasServicos taxa in locacao.Taxas)
-                    {
-                        var parametros = new Dictionary<string, object>();
+                foreach (TaxasServicos taxa in locacao.Taxas)
+                {
+                    var parametros = new Dictionary<string, object>();
 
-                        parametros.Add("ID_LOCACAO", locacao.Id);
-                        parametros.Add("ID_TAXASSERVICOS", taxa.Id);
+                    parametros.Add("ID_LOCACAO", locacao.Id);
+                    parametros.Add("ID_TAXASSERVICOS", taxa.Id);
 
-                        Db.Insert(sqlInserirTaxaSelecionada, parametros);
-                    }
+                    Db.Insert(sqlInserirTaxaSelecionada, parametros);
+                }
             }
             catch (Exception ex)
             {
@@ -251,6 +258,19 @@ namespace LocadoraVeiculos.Infra.SQL.LocacaoModule
             try
             {
                 Db.Update(sqlEditarLocacao, ObtemParametrosRegistro(registro));
+
+                Db.Delete(sqlExcluirTaxasServicos, AdicionarParametro("ID", id));
+
+                foreach (TaxasServicos taxa in registro.Taxas)
+                {
+                    var parametros = new Dictionary<string, object>();
+
+                    parametros.Add("ID_LOCACAO", registro.Id);
+                    parametros.Add("ID_TAXASSERVICOS", taxa.Id);
+
+                    Db.Insert(sqlInserirTaxaSelecionada, parametros);
+                }
+
             }
             catch (Exception ex)
             {

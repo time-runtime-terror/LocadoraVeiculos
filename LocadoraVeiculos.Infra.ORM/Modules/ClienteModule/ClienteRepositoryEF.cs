@@ -9,7 +9,7 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.ClienteModule
 {
     public class ClienteRepositoryEF : BaseRepository<Cliente>, IClienteRepository
     {
-        public ClienteRepositoryEF()
+        public ClienteRepositoryEF(LocadoraDbContext db) : base(db)
         {
         }
 

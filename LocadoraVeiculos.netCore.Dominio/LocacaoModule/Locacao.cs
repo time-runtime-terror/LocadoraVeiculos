@@ -20,20 +20,22 @@ namespace LocadoraVeiculos.netCore.Dominio.LocacaoModule
         public string Condutor { get;  set; }
         public string Devolucao { get; set; }
         public double Total { get; set; }
-        public ICollection<TaxasServicos> Taxas { get; set; } = new List<TaxasServicos>();
+        public List<TaxasServicos> Taxas { get; set; } = new List<TaxasServicos>();
 
         public Locacao(Cliente clienteEscolhido, Veiculo veiculoEscolhido, List<TaxasServicos> taxas,
             DateTime dataSaida, DateTime dataDevolucao, double caucao, string planoEscolhido, string condutor, string devolucao)
         {
             Cliente = clienteEscolhido;
             Veiculo = veiculoEscolhido;
-            Taxas = taxas;
             DataSaida = dataSaida;
             DataDevolucao = dataDevolucao;
             Caucao = caucao;
             Plano = planoEscolhido;
             Condutor = condutor;
             Devolucao = devolucao;
+
+            if (taxas != null)
+                Taxas = taxas;
         }
 
         public Locacao()
@@ -43,6 +45,15 @@ namespace LocadoraVeiculos.netCore.Dominio.LocacaoModule
         public void AdicionarTaxa(TaxasServicos taxa)
         {
             Taxas.Add(taxa);
+            taxa.Locacoes.Add(this);
+        }
+
+        public void AdicionarTaxas(List<TaxasServicos> taxas)
+        {
+            Taxas.AddRange(taxas);
+
+            foreach (var taxa in taxas)
+                taxa.Locacoes.Add(this);
         }
 
         public override bool Equals(object obj)

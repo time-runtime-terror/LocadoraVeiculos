@@ -18,7 +18,8 @@ namespace LocadoraVeiculos.IntegrationTests.ClienteModule
 
         public ClienteORMTests()
         {
-            clienteRepository = new ClienteRepositoryEF();
+            LocadoraDbContext db = new();
+            clienteRepository = new ClienteRepositoryEF(db);
             DeletarLinhasTabela();
         }
 

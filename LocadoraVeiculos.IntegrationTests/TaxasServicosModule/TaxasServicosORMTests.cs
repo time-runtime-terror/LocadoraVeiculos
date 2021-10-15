@@ -14,7 +14,8 @@ namespace LocadoraVeiculos.IntegrationTests.TaxasServicosModule
 
         public TaxasServicosORMTests()
         {
-            taxasRepository = new TaxasServicosRepositoryEF();
+            LocadoraDbContext db = new LocadoraDbContext();
+            taxasRepository = new TaxasServicosRepositoryEF(db);
             DeletarLinhasTabela();
         }
 

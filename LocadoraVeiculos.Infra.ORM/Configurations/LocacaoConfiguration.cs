@@ -17,17 +17,20 @@ namespace LocadoraVeiculos.Infra.ORM.Configurations
 
             builder // Cliente
                 .HasOne(c => c.Cliente)
-                .WithOne(c => c.Locacao)
-                .HasForeignKey<Locacao>(l => l.ClienteId)
+                .WithMany(c => c.Locacoes)
+                .HasForeignKey(l => l.ClienteId)
                 .OnDelete(DeleteBehavior.NoAction)
                 .IsRequired();
 
-            builder // Veículo
-                .HasOne(v => v.Veiculo)
-                .WithOne(v => v.Locacao)
-                .HasForeignKey<Locacao>(l => l.VeiculoId)
-                .OnDelete(DeleteBehavior.NoAction)
-                .IsRequired();
+            //builder // Veículo
+            //    .HasOne(v => v.Veiculo)
+            //    .WithMany(v => v.Locacoes)
+            //    .HasForeignKey(l => l.VeiculoId)
+            //    .OnDelete(DeleteBehavior.NoAction)
+            //    .IsRequired();
+
+            builder
+                .Ignore(l => l.Veiculo);
 
             builder
                 .Property(p => p.DataSaida)

@@ -17,7 +17,7 @@ namespace LocadoraVeiculos.Infra.ORM
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<GrupoAutomoveis> GrupoAutomoveis { get; set; }
         public DbSet<TaxasServicos> Taxas { get; set; }
-        public DbSet<Locacao> Locacao { get; set; }
+        public DbSet<Locacao> Locacoes { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
