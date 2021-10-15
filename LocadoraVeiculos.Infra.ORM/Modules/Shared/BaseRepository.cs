@@ -33,6 +33,8 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.Shared
             }
         }
 
+
+
         public virtual void Editar(int id, TEntity registro)
         {
             try
