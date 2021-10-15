@@ -183,6 +183,18 @@ namespace LocadoraVeiculos.IntegrationTests.VeiculoModule
         [TestMethod]
         public void Deve_AtualizarStatusAluguel()
         {
+            //arrange
+            Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, null);
+            veiculoRepository.InserirNovo(veiculo);
+
+            veiculo.EstaAlugado = true;
+
+            //action
+            veiculoRepository.AtualizarStatusAluguel(veiculo);
+
+            //assert
+            Veiculo veiculoEncontrado = veiculoRepository.SelecionarPorId(veiculo.Id);
+            veiculoEncontrado.EstaAlugado.Should().BeTrue();
 
         }
     }
