@@ -26,8 +26,17 @@ namespace LocadoraVeiculos.netCore.Dominio.LocacaoModule
             DateTime dataSaida, DateTime dataDevolucao, double caucao, string planoEscolhido, string condutor, string devolucao)
         {
             Cliente = clienteEscolhido;
+
+            if (Cliente == null)
+                throw new ArgumentNullException("O cliente deve ser inserido!");
+
             ClienteId = Cliente.Id;
+
             Veiculo = veiculoEscolhido;
+
+            if (Veiculo == null)
+                throw new ArgumentNullException("O veículo deve ser inserido!");
+
             VeiculoId = Veiculo.Id;
             DataSaida = dataSaida;
             DataDevolucao = dataDevolucao;
