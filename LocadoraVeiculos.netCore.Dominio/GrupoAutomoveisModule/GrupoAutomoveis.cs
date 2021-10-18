@@ -11,10 +11,7 @@ namespace LocadoraVeiculos.netCore.Dominio.GrupoAutomoveisModule
     public class GrupoAutomoveis : EntidadeBase, IEquatable<GrupoAutomoveis>
     {
 
-        public GrupoAutomoveis()
-        {
-            Veiculos = new List<Veiculo>();
-        }
+        public GrupoAutomoveis() { }
 
         public GrupoAutomoveis(string nomeGrupo, double planoDiarioUm, double planoDiarioDois, double kmControladoUm,
             double kmControladoDois, double kmLivreUm, double kmControladoIncluida)
@@ -44,7 +41,7 @@ namespace LocadoraVeiculos.netCore.Dominio.GrupoAutomoveisModule
 
         public double KmLivreUm { get; }
 
-        public List<Veiculo> Veiculos { get; set; }
+        public List<Veiculo> Veiculos { get; set; } = new List<Veiculo>();
 
         public override bool Equals(object obj)
         {

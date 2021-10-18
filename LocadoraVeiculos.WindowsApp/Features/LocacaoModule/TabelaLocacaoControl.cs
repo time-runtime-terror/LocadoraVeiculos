@@ -20,17 +20,14 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
     {
         private readonly LocacaoAppService locacaoService;
 
-        public TabelaLocacaoControl()
+        public TabelaLocacaoControl(LocacaoAppService locacaoS)
         {
             InitializeComponent();
             gridLocacoes.ConfigurarGridZebrado();
             gridLocacoes.ConfigurarGridSomenteLeitura();
             gridLocacoes.Columns.AddRange(ObterColunas());
 
-            LocacaoDAO locacaoRepo
-    = new LocacaoDAO(new ClienteDAO(), new VeiculosDAO(new GrupoAutomoveisDAO()), new TaxasServicosDAO());
-
-            locacaoService = new LocacaoAppService(locacaoRepo, new GeradorRecibo(), new NotificadorEmail(), new VerificadorConexao());
+            locacaoService = locacaoS;
         }
 
         public DataGridViewColumn[] ObterColunas()

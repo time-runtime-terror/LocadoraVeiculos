@@ -123,8 +123,12 @@ namespace LocadoraVeiculos.IntegrationTests.VeiculoModule
 
             configCombustivel.GravarCombustivel(combustivel);
 
+            var novoGrupo = new GrupoAutomoveis("SUV", 10, 10, 10, 10, 10, 50);
+
+            grupoAutomoveisRepository.InserirNovo(novoGrupo);
+
             //arrange
-            Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, null);
+            Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, novoGrupo);
             veiculoRepository.InserirNovo(veiculo);
 
             //action
