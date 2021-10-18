@@ -103,15 +103,16 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.LocacaoModule
 
         public List<Locacao> SelecionarTodasLocacoesPendentes()
         {
-            return _dbSet
-                .Where(l => l.Devolucao == "Pendente")
-                .Include(t => t.Taxas)
-                .AsSplitQuery()
-                .Include(v => v.Veiculo)
-                .AsSplitQuery()
-                .Include(c => c.Cliente)
-                .AsSplitQuery()
-                .ToList();
+                return _dbSet
+               .Where(l => l.Devolucao == "Pendente")
+               .Include(t => t.Taxas)
+               .AsSplitQuery()
+               .Include(v => v.Veiculo)
+               .AsSplitQuery()
+               .Include(c => c.Cliente)
+               .AsSplitQuery()
+               .ToList();
+              
         }
     }
 }
