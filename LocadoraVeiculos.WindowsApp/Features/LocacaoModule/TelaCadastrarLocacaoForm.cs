@@ -69,21 +69,17 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             }
         }
 
-        public TelaCadastrarLocacaoForm()
+        public TelaCadastrarLocacaoForm(LocacaoAppService locacaoSrv,
+            TaxasServicosAppService taxasSrv,
+            ClienteAppService clienteSrv,
+            VeiculoAppService veiculoSrv)
         {
             InitializeComponent();
 
-            ClienteDAO clienteRepository = new ClienteDAO();
-            VeiculosDAO veiculoRepository = new VeiculosDAO(new GrupoAutomoveisDAO());
-            TaxasServicosDAO taxaRepository = new TaxasServicosDAO();
-
-            clienteService = new ClienteAppService(clienteRepository);
-            veiculoService = new VeiculoAppService(veiculoRepository);
-            taxasService = new TaxasServicosAppService(taxaRepository);
-
-            LocacaoDAO locacaoRepository = new LocacaoDAO(clienteRepository, veiculoRepository, taxaRepository);
-
-            locacaoService = new LocacaoAppService(locacaoRepository, new GeradorRecibo(), new NotificadorEmail(), new VerificadorConexao());
+            locacaoService = locacaoSrv;
+            taxasService = taxasSrv;
+            clienteService = clienteSrv;
+            veiculoService = veiculoSrv;
         }
 
         #region Eventos
@@ -182,7 +178,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                     taxasSelecionadas.Add((TaxasServicos)item);
 
             string localTaxa = "Locação";
-            TelaSelecaoTaxasForm tela = new TelaSelecaoTaxasForm(taxasSelecionadas, localTaxa);
+            TelaSelecaoTaxasForm tela = new TelaSelecaoTaxasForm(taxasService, taxasSelecionadas, localTaxa);
 
             if (tela.ShowDialog() == DialogResult.OK)
             {

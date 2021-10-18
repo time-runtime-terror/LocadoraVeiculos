@@ -28,6 +28,11 @@ using Serilog;
 using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
 using LocadoraVeiculos.Infra.ORM.Modules.FuncionarioModule;
 using LocadoraVeiculos.Infra.ORM;
+using LocadoraVeiculos.Infra.ORM.Modules.LocacaoModule;
+using LocadoraVeiculos.Infra.ORM.Modules.TaxasServicosModule;
+using LocadoraVeiculos.Infra.ORM.Modules.VeiculoModule;
+using LocadoraVeiculos.Infra.ORM.Modules.ClienteModule;
+using LocadoraVeiculos.Infra.ORM.Modules.GrupoAutomoveisModule;
 
 namespace LocadoraVeiculos.WindowsApp
 {
@@ -44,8 +49,6 @@ namespace LocadoraVeiculos.WindowsApp
         public Dashboard(string usuario)
         {
             InitializeComponent();
-
-            dbContext = new();
 
             Instancia = this;
             Usuario = usuario;
@@ -87,22 +90,32 @@ namespace LocadoraVeiculos.WindowsApp
 
         private void btnLocacoes_Click(object sender, EventArgs e)
         {
+            dbContext = new LocadoraDbContext();
+
             ConfiguracoesLocacaoToolBox config = new ConfiguracoesLocacaoToolBox();
 
             ConfigurarToolBox(config);
 
             AtualizarRodape(config.TipoCadastro);
 
-            LocacaoDAO locacaoRepo 
-                = new LocacaoDAO(new ClienteDAO(), new VeiculosDAO(new GrupoAutomoveisDAO()), new TaxasServicosDAO());
+            //LocacaoDAO locacaoRepo 
+            //    = new LocacaoDAO(new ClienteDAO(), new VeiculosDAO(new GrupoAutomoveisDAO()), new TaxasServicosDAO());
 
-            LocacaoAppService locacaoService = new LocacaoAppService(locacaoRepo, new GeradorRecibo(), new NotificadorEmail(), new VerificadorConexao());
+            LocacaoRepositoryEF locacaoRepoOrm = new LocacaoRepositoryEF(dbContext);
 
-            TaxasServicosAppService taxaService = new TaxasServicosAppService(new TaxasServicosDAO());
+            LocacaoAppService locacaoService = new LocacaoAppService(locacaoRepoOrm, new GeradorRecibo(), new NotificadorEmail(), new VerificadorConexao());
 
-            VeiculoAppService veiculoService = new VeiculoAppService(new VeiculosDAO(new GrupoAutomoveisDAO()));
+            TaxasServicosRepositoryEF taxaRepoOrm = new TaxasServicosRepositoryEF(dbContext);
 
-            ClienteAppService clienteService = new ClienteAppService(new ClienteDAO());
+            TaxasServicosAppService taxaService = new TaxasServicosAppService(taxaRepoOrm);
+
+            VeiculoRepositoryEF veiculoRepoOrm = new VeiculoRepositoryEF(dbContext);
+
+            VeiculoAppService veiculoService = new VeiculoAppService(veiculoRepoOrm);
+
+            ClienteRepositoryEF clienteRepoOrm = new ClienteRepositoryEF(dbContext);
+
+            ClienteAppService clienteService = new ClienteAppService(clienteRepoOrm);
 
             operacoes = new OperacoesLocacao(locacaoService, taxaService, veiculoService, clienteService);
 
@@ -111,15 +124,17 @@ namespace LocadoraVeiculos.WindowsApp
 
         private void btnCadastroClientes_Click(object sender, System.EventArgs e)
         {
+            dbContext = new LocadoraDbContext();
+
             ConfiguracaoClienteToolBox config = new ConfiguracaoClienteToolBox();
 
             ConfigurarToolBox(config);
 
             AtualizarRodape(config.TipoCadastro);
 
-            ClienteDAO clienteRepo = new ClienteDAO();
+            ClienteRepositoryEF clienteRepoOrm = new ClienteRepositoryEF(dbContext);
 
-            ClienteAppService clienteService = new ClienteAppService(clienteRepo);
+            ClienteAppService clienteService = new ClienteAppService(clienteRepoOrm);
 
             operacoes = new OperacoesCliente(clienteService);
 
@@ -128,6 +143,8 @@ namespace LocadoraVeiculos.WindowsApp
 
         private void btnCadastroFuncionario_Click(object sender, System.EventArgs e)
         {
+            dbContext = new LocadoraDbContext();
+
             ConfiguracaoFuncionarioToolBox configuracao = new ConfiguracaoFuncionarioToolBox();
 
             ConfigurarToolBox(configuracao);
@@ -143,34 +160,40 @@ namespace LocadoraVeiculos.WindowsApp
 
         private void btnCadastroVeiculoModules_Click(object sender, System.EventArgs e)
         {
+            dbContext = new LocadoraDbContext();
+
             ConfiguracaoVeiculoToolBox configuracao = new ConfiguracaoVeiculoToolBox();
 
             ConfigurarToolBox(configuracao);
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            GrupoAutomoveisDAO grupoAutomoveisRepo = new GrupoAutomoveisDAO();
+            VeiculoRepositoryEF veiculoRepoOrm = new VeiculoRepositoryEF(dbContext);
 
-            VeiculosDAO veiculosRepo = new VeiculosDAO(grupoAutomoveisRepo);
+            VeiculoAppService veiculosService = new VeiculoAppService(veiculoRepoOrm);
 
-            VeiculoAppService veiculosService = new VeiculoAppService(veiculosRepo);
+            GrupoAutomoveisRepositoryEF grupoAutoRepoOrm = new GrupoAutomoveisRepositoryEF(dbContext);
 
-            operacoes = new OperacoesVeiculos(veiculosService);
+            GrupoAutomoveisAppService grupoAutomoveisService = new GrupoAutomoveisAppService(grupoAutoRepoOrm);
+
+            operacoes = new OperacoesVeiculos(veiculosService, grupoAutomoveisService);
 
             ConfigurarPainelRegistros();
         }
 
         private void btnCadastroGrupoAutomoveis_Click(object sender, EventArgs e)
         {
+            dbContext = new LocadoraDbContext();
+
             ConfiguracaoGrupoAutomoveisToolBox configuracao = new ConfiguracaoGrupoAutomoveisToolBox();
 
             ConfigurarToolBox(configuracao);
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            GrupoAutomoveisDAO grupoAutomoveisRepo = new GrupoAutomoveisDAO();
+            GrupoAutomoveisRepositoryEF grupoAutoRepoOrm = new GrupoAutomoveisRepositoryEF(dbContext);
 
-            GrupoAutomoveisAppService grupoAutomoveisService = new GrupoAutomoveisAppService(grupoAutomoveisRepo);
+            GrupoAutomoveisAppService grupoAutomoveisService = new GrupoAutomoveisAppService(grupoAutoRepoOrm);
 
             operacoes = new OperacoesGrupoAutomoveis(grupoAutomoveisService);
 
@@ -179,6 +202,8 @@ namespace LocadoraVeiculos.WindowsApp
 
         private void btnTaxasServicos_Click(object sender, EventArgs e)
         {
+            dbContext = new LocadoraDbContext();
+
             ConfiguracaoTaxasServicosToolBox config = new ConfiguracaoTaxasServicosToolBox();
 
             ConfigurarToolBox(config);
@@ -187,7 +212,9 @@ namespace LocadoraVeiculos.WindowsApp
 
             TaxasServicosDAO taxasRepo = new TaxasServicosDAO();
 
-            operacoes = new OperacoesTaxasServicos(new TaxasServicosAppService(taxasRepo));
+            TaxasServicosRepositoryEF taxasRepoOrm = new TaxasServicosRepositoryEF(dbContext);
+
+            operacoes = new OperacoesTaxasServicos(new TaxasServicosAppService(taxasRepoOrm));
 
             ConfigurarPainelRegistros();
         }

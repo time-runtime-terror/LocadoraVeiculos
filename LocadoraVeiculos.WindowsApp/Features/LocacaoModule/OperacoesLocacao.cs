@@ -35,7 +35,11 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
         public void InserirNovoRegistro()
         {
-            TelaCadastrarLocacaoForm tela = new TelaCadastrarLocacaoForm();
+            TelaCadastrarLocacaoForm tela = 
+                new TelaCadastrarLocacaoForm(locacaoService,
+                taxaService,
+                clienteService,
+                veiculoService);
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
@@ -74,7 +78,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             Locacao locacaoSelecionada = locacaoService.SelecionarPorId(id);
 
-            TelaCadastrarLocacaoForm tela = new TelaCadastrarLocacaoForm();
+            TelaCadastrarLocacaoForm tela = new TelaCadastrarLocacaoForm(locacaoService, taxaService, clienteService, veiculoService);
 
             tela.Locacao = locacaoSelecionada;
 
@@ -202,7 +206,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             Locacao locacaoSelecionada = locacaoService.SelecionarPorId(id);
 
-            TelaRegistrarDevolucaoForm tela = new TelaRegistrarDevolucaoForm();
+            TelaRegistrarDevolucaoForm tela = new TelaRegistrarDevolucaoForm(taxaService);
 
             tela.Locacao = locacaoSelecionada;
 

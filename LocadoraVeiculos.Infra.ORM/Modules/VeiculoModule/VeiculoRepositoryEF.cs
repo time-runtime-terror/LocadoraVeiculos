@@ -19,7 +19,6 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.VeiculoModule
 
         public override Veiculo SelecionarPorId(int id)
         {
-
             return db.Veiculos
                 .Include(l => l.GrupoAutomoveis)
                 .FirstOrDefault(l => l.Id == id);

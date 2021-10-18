@@ -27,17 +27,17 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         }
 
 
-        public TelaSelecaoTaxasForm()
+        public TelaSelecaoTaxasForm(TaxasServicosAppService taxasSrv)
         {
             InitializeComponent();
-            taxaService = new TaxasServicosAppService(new TaxasServicosDAO());
+            taxaService = taxasSrv;
         }
 
-        public TelaSelecaoTaxasForm(List<TaxasServicos> taxasVindas, string localTaxa)
+        public TelaSelecaoTaxasForm(TaxasServicosAppService taxasSrv, List<TaxasServicos> taxasVindas, string localTaxa)
         {
             InitializeComponent();
 
-            taxaService = new TaxasServicosAppService(new TaxasServicosDAO());
+            taxaService = taxasSrv;
 
             this.taxasVindas = taxasVindas;
 

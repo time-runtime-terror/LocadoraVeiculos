@@ -18,10 +18,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.VeiculoModule
 
         private readonly GrupoAutomoveisAppService grupoAutomoveisService;
 
-        public TelaCadastrarVeiculos()
+        public TelaCadastrarVeiculos(GrupoAutomoveisAppService grupoAutoService)
         {
             InitializeComponent();
-            grupoAutomoveisService = new GrupoAutomoveisAppService(new GrupoAutomoveisDAO());
+            grupoAutomoveisService = grupoAutoService;
             PopularGruposDeAutomoveis();
             PopularTiposCombustivel();
          

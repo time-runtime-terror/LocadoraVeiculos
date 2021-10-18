@@ -9,6 +9,7 @@ using System.Net.Mail;
 using LocadoraVeiculos.Infra.PDF.LocacaoModule;
 using LocadoraVeiculos.Infra.InternetServices.LocacaoModule;
 using LocadoraVeiculos.Infra.JSON.CombustivelModule;
+using LocadoraVeiculos.Aplicacao.TaxasServicosModule;
 
 namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
 {
@@ -17,6 +18,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
         private List<TaxasServicos> taxasSelecionadas;
 
         private Locacao locacao;
+        private TaxasServicosAppService taxaSrv;
 
         private CombustivelConfiguration configCombustivel;
 
@@ -44,10 +46,11 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             }
         }
 
-        public TelaRegistrarDevolucaoForm()
+        public TelaRegistrarDevolucaoForm(TaxasServicosAppService taxaService)
         {
             InitializeComponent();
 
+            taxaSrv = taxaService;
             configCombustivel = new CombustivelConfiguration();
         }
 
@@ -58,35 +61,11 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
             txbQuilometragemAtual.Minimum = locacao.Veiculo.Quilometragem;
         }
 
-        private async void btnGravar_Click(object sender, EventArgs e)
+        private void btnGravar_Click(object sender, EventArgs e)
         {
             locacao.Taxas = taxasSelecionadas;
             locacao.Devolucao = dateDataDevolucao.Value.ToShortDateString();
             locacao.Total = Convert.ToDouble(lblValorTotal.Text);
-
-            //GeradorRecibo geradorRecibo = new GeradorRecibo();
-
-            //string pdf = geradorRecibo.GerarRecibo(locacao);
-
-            //NotificadorEmail notificador = new NotificadorEmail();
-
-            //try
-            //{
-            //    await notificador.EnviarEmailAsync(locacao, pdf);
-
-            //    string mensagem = $"O recibo da locação foi enviado ao email {locacao.Cliente.Email}";
-
-            //    MessageBox.Show(mensagem, "Notificação de Envio de Email", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //}
-            //catch (SmtpException ex)
-            //{
-            //    string mensagem = $"Falha ao conectar com o servidor de email, verifique sua conexão de internet e tente novamente!\n\n{ex.Message}";
-
-            //    MessageBox.Show(mensagem, "Erro de Conexão", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            //    DialogResult = DialogResult.None;
-            //    return;
-            //}
         }
 
         private void btnCalcularTotal_Click(object sender, EventArgs e)
@@ -115,7 +94,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.DevolucaoModule
         private void btnSelecionarTaxas_Click(object sender, EventArgs e)
         {
             btnGravar.Enabled = false;
-            TelaSelecaoTaxasForm tela = new TelaSelecaoTaxasForm(taxasSelecionadas, "Devolução");
+            TelaSelecaoTaxasForm tela = new TelaSelecaoTaxasForm(taxaSrv, taxasSelecionadas, "Devolução");
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
