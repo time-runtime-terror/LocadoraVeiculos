@@ -29,29 +29,20 @@ namespace LocadoraVeiculos.UnitTests.LocacaoModule
             resultado.Should().Be("ESTA_VALIDO");
         }
 
+        [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
-        public void NaoDeveValidarCliente()
+        public void ClienteNaoDeveSerNull()
         {
-
-            Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, null);
-
-            Locacao locacao = new Locacao(null, veiculo, null, DateTime.Now, DateTime.Now.AddDays(2), 200, "Diário", null, null);
-
-            string resultado = locacao.Validar();
-
-            resultado.Should().Be("O Cliente deve ser inserido!");
+            Locacao locacao = new Locacao(null, null, null, DateTime.Now, DateTime.Now.AddDays(2), 200, "Diário", null, null);
         }
 
+        [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
-        public void NaoDeveValidarVeiculo()
+        public void VeiculoNaoDeveSerNull()
         {
             Cliente cliente = new Cliente("Testador 1", "testador@ndd.com", "Maria de Melo Kuster", "(49) 9805-6251", "CPF", "123123124", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
 
             Locacao locacao = new Locacao(cliente, null, null, DateTime.Now, DateTime.Now.AddDays(2), 200, "Diário", null, null);
-
-            string resultado = locacao.Validar();
-
-            resultado.Should().Be("O Veículo deve ser inserido!");
         }
 
         [TestMethod]
@@ -112,16 +103,15 @@ namespace LocadoraVeiculos.UnitTests.LocacaoModule
         [TestMethod]
         public void NaoDeveValidarTodosOsCampos()
         {
+            Cliente cliente = new Cliente("Testador 1", "testador@ndd.com", "Maria de Melo Kuster", "(49) 9805-6251", "CPF", "123123124", new DateTime(2025, 06, 30), "41421412412", "41242121412", null);
 
-            Locacao locacao = new Locacao(null, null, null, new DateTime(2002, 02, 22), DateTime.MinValue, 0, null, null, null);
+            Veiculo veiculo = new Veiculo(foto, "ABC-1234", "Vectra", "Chevrolet", "Gasolina", 70, 2000, null);
+
+            Locacao locacao = new Locacao(cliente, veiculo, null, new DateTime(2002, 02, 22), DateTime.MinValue, 0, null, null, null);
 
             string resultado = locacao.Validar();
 
-            string resultadoEsperado = "O Cliente deve ser inserido!"
-                + Environment.NewLine
-                + "O Veículo deve ser inserido!"
-                + Environment.NewLine
-                + "O campo Data de Devolução é obrigatório!"
+            string resultadoEsperado = "O campo Data de Devolução é obrigatório!"
                 + Environment.NewLine
                 + "O campo Data de Devolução necessita ser maior que a de saida do veículo!"
                 + Environment.NewLine

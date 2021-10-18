@@ -48,6 +48,7 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.LocacaoModule
                 return _dbContext.Locacoes
                         .Include(l => l.Cliente)
                         .Include(l => l.Veiculo)
+                        .ThenInclude(v => v.GrupoAutomoveis)
                         .Include(l => l.Taxas)
                         .AsSplitQuery()
                         .FirstOrDefault(l => l.Id == id);
