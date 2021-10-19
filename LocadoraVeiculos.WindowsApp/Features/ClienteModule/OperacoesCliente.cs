@@ -23,7 +23,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 
         public void InserirNovoRegistro()
         {
-            TelaClienteForm tela = new TelaClienteForm();
+            TelaClienteForm tela = new TelaClienteForm(clienteService);
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
@@ -57,7 +57,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
 
             Cliente clienteSelecionado = clienteService.SelecionarPorId(id);
 
-            TelaClienteForm tela = new TelaClienteForm();
+            TelaClienteForm tela = new TelaClienteForm(clienteService);
 
             tela.Cliente = clienteSelecionado;
 
