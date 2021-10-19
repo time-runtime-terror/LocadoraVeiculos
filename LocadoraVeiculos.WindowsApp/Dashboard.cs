@@ -1,5 +1,5 @@
-﻿using Serilog;
-using Autofac;
+﻿using System;
+using System.Windows.Forms;
 using LocadoraVeiculos.WindowsApp.Features.ClienteModule;
 using LocadoraVeiculos.WindowsApp.Features.FuncionarioModule;
 using LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule;
@@ -9,11 +9,9 @@ using LocadoraVeiculos.WindowsApp.Features.VeiculoModule;
 using LocadoraVeiculos.WindowsApp.Features.CombustivelModule;
 using LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule;
 using LocadoraVeiculos.WindowsApp.Features.LocacaoModule;
-using LocadoraVeiculos.Infra.InternetServices.LocacaoModule;
 using LocadoraVeiculos.Infra.JSON.CombustivelModule;
-using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
-using System.Windows.Forms;
-using System;
+using Serilog;
+using Autofac;
 
 namespace LocadoraVeiculos.WindowsApp
 {
