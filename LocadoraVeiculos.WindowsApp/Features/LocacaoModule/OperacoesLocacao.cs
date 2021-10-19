@@ -10,12 +10,21 @@ using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 {
     public class OperacoesLocacao : ICadastravel
     {
+        #region Mensagens de Rodapé e Logging
+
+        private string msgEmailsEnviados { get => "Conexão estabelecida! Emails agendados enviados com sucesso."; }
+
+        private string msgEmailsNaoEnviados { get => "Sem conexão com a internet! Não foi possível enviar emails agendados."; }
+
+        #endregion
+
         private readonly LocacaoAppService locacaoService;
         private readonly TaxasServicosAppService taxaService;
         private readonly VeiculoAppService veiculoService;
@@ -235,6 +244,16 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                     Log.Logger.Aqui().FuncionalidadeUsada(watch.ElapsedMilliseconds);
                 }
             }
+        }
+
+        public async Task EnviarEmailsAgendados()
+        {
+            bool resultadoEnvio = await locacaoService.EnviarEmailsAgendados();
+
+            if (resultadoEnvio)
+                Dashboard.Instancia.AtualizarRodape(msgEmailsEnviados);
+            else
+                Dashboard.Instancia.AtualizarRodape(msgEmailsNaoEnviados);
         }
 
         public void Pesquisar(string text)

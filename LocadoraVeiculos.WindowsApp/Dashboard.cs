@@ -19,20 +19,13 @@ namespace LocadoraVeiculos.WindowsApp
 {
     public partial class Dashboard : Form
     {
-        #region Mensagens de Rodapé e Logging
+        #region Mensagens de Log
 
         private string msgLoginCompleto { get => $"Usuário [{ Usuario }]: Login completo... Executando o Dashboard."; }
-
-        private string msgEmailsEnviados { get => "Conexão estabelecida! Emails agendados enviados com sucesso."; }
-
-        private string msgEmailsNaoEnviados { get => "Sem conexão com a internet! Não foi possível enviar emails agendados."; }
 
         #endregion
 
         private ICadastravel operacoes;
-        private INotificadorEmail notificadorEmail;
-        private IVerificadorConexao verificadorConexao;
-        
         public static Dashboard Instancia { get; set; }
         public string Usuario { get; set; }
 
@@ -43,17 +36,6 @@ namespace LocadoraVeiculos.WindowsApp
             Instancia = this;
             Usuario = usuario;
             Log.Debug(msgLoginCompleto);
-
-            notificadorEmail = new NotificadorEmail();
-            verificadorConexao = new VerificadorConexao();
-
-            if (verificadorConexao.TemConexaoComInternet())
-            {
-                EnviarEmailsAgendados();
-                Instancia.AtualizarRodape(msgEmailsEnviados);
-            }
-            else
-                Instancia.AtualizarRodape(msgEmailsNaoEnviados);
         }
 
         public void AtualizarRodape(string mensagem)
@@ -77,7 +59,7 @@ namespace LocadoraVeiculos.WindowsApp
 
         #region Eventos de Click dos Botões do Menu Principal
 
-        private void btnLocacoes_Click(object sender, EventArgs e)
+        private async void btnLocacoes_Click(object sender, EventArgs e)
         {
             ConfiguracoesLocacaoToolBox config = new ConfiguracoesLocacaoToolBox();
 
@@ -88,6 +70,10 @@ namespace LocadoraVeiculos.WindowsApp
             operacoes = ServiceLocator.Container.Resolve<OperacoesLocacao>();
 
             ConfigurarPainelRegistros();
+
+            OperacoesLocacao operacoesLocacao = operacoes as OperacoesLocacao;
+
+            await operacoesLocacao.EnviarEmailsAgendados();
         }
 
         private void btnCadastroClientes_Click(object sender, System.EventArgs e)
@@ -165,9 +151,11 @@ namespace LocadoraVeiculos.WindowsApp
 
             ConfigurarPainelConfiguracoes();
         }
+
         #endregion
 
         #region Eventos de Click dos Botões de CRUD
+
         private void toolStripBtnAdicionar_Click(object sender, System.EventArgs e)
         {
             operacoes.InserirNovoRegistro();
@@ -208,18 +196,6 @@ namespace LocadoraVeiculos.WindowsApp
         #endregion
 
         #region Métodos Privados da Classe
-
-        private void EnviarEmailsAgendados()
-        {
-            try
-            {
-                notificadorEmail.EnviarEmailsAgendadosAsync();
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, "Falha ao tentar enviar emails agendados.");
-            }
-        }
 
         private void ConfigurarPainelRegistros()
         {

@@ -4,6 +4,7 @@ using LocadoraVeiculos.netCore.Dominio.TaxasServicosModule;
 using Serilog;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 {
@@ -206,6 +207,21 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             }
 
             return null;
+        }
+
+        public async Task<bool> EnviarEmailsAgendados()
+        {
+            try
+            {
+                await notificadorEmail.EnviarEmailsAgendadosAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "Falha ao tentar enviar emails agendados.");
+            }
+
+            return false;
         }
 
         public List<Locacao> Pesquisar(string texto)
