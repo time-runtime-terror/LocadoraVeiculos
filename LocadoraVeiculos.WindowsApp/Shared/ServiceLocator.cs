@@ -54,9 +54,6 @@ namespace LocadoraVeiculos.WindowsApp.Shared
 
         private static void RegistrarORM()
         {
-            //builder.RegisterType<ParceiroORMDao>().As<IRepositorBase<Parceiro>>().InstancePerDependency();
-
-            //builder.RegisterType<CupomORMDao>().As<IRepositorCupomBase>().InstancePerDependency();
 
             builder.RegisterType<GrupoAutomoveisRepositoryEF>().As<IGrupoAutomoveisRepository>().InstancePerDependency();
 
@@ -69,7 +66,7 @@ namespace LocadoraVeiculos.WindowsApp.Shared
           
             builder.RegisterType<TaxasServicosRepositoryEF>().As<ITaxasServicosRepository>().InstancePerDependency();
 
-           //builder.RegisterType<GeradorPDF>().InstancePerDependency();
+   
 
             builder.RegisterType<LocacaoRepositoryEF>().As<ILocacaoRepository>().InstancePerDependency();
 
@@ -88,7 +85,7 @@ namespace LocadoraVeiculos.WindowsApp.Shared
 
             builder.RegisterType<TaxasServicosAppService>().InstancePerDependency();
 
-            //builder.RegisterType<EmailAppService>().As<IEmailAppService>().InstancePerDependency();
+         
 
             builder.RegisterType<NotificadorEmail>().As<INotificadorEmail>().InstancePerDependency();
 
