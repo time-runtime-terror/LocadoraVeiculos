@@ -1,8 +1,8 @@
-﻿using LocadoraVeiculos.WindowsApp.Features.ClienteModule;
+﻿using Serilog;
+using Autofac;
+using LocadoraVeiculos.WindowsApp.Features.ClienteModule;
 using LocadoraVeiculos.WindowsApp.Features.FuncionarioModule;
 using LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule;
-using System;
-using System.Windows.Forms;
 using LocadoraVeiculos.WindowsApp.Shared;
 using LocadoraVeiculos.WindowsApp.Feature.VeiculoModule;
 using LocadoraVeiculos.WindowsApp.Features.VeiculoModule;
@@ -11,20 +11,28 @@ using LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule;
 using LocadoraVeiculos.WindowsApp.Features.LocacaoModule;
 using LocadoraVeiculos.Infra.InternetServices.LocacaoModule;
 using LocadoraVeiculos.Infra.JSON.CombustivelModule;
-using Serilog;
 using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
-
-using Autofac;
+using System.Windows.Forms;
+using System;
 
 namespace LocadoraVeiculos.WindowsApp
 {
     public partial class Dashboard : Form
     {
+        #region Mensagens de Rodapé e Logging
+
+        private string msgLoginCompleto { get => $"Usuário [{ Usuario }]: Login completo... Executando o Dashboard."; }
+
+        private string msgEmailsEnviados { get => "Conexão estabelecida! Emails agendados enviados com sucesso."; }
+
+        private string msgEmailsNaoEnviados { get => "Sem conexão com a internet! Não foi possível enviar emails agendados."; }
+
+        #endregion
+
         private ICadastravel operacoes;
         private INotificadorEmail notificadorEmail;
         private IVerificadorConexao verificadorConexao;
         
-
         public static Dashboard Instancia { get; set; }
         public string Usuario { get; set; }
 
@@ -34,7 +42,7 @@ namespace LocadoraVeiculos.WindowsApp
 
             Instancia = this;
             Usuario = usuario;
-            Log.Debug($"Usuário [{ Usuario }]: Login completo... Executando o Dashboard.");
+            Log.Debug(msgLoginCompleto);
 
             notificadorEmail = new NotificadorEmail();
             verificadorConexao = new VerificadorConexao();
@@ -42,10 +50,10 @@ namespace LocadoraVeiculos.WindowsApp
             if (verificadorConexao.TemConexaoComInternet())
             {
                 EnviarEmailsAgendados();
-                Instancia.AtualizarRodape("Conexão estabelecida! Emails agendados enviados com sucesso.");
+                Instancia.AtualizarRodape(msgEmailsEnviados);
             }
             else
-                Instancia.AtualizarRodape("Sem conexão com a internet! Não foi possível enviar emails agendados.");
+                Instancia.AtualizarRodape(msgEmailsNaoEnviados);
         }
 
         public void AtualizarRodape(string mensagem)
@@ -67,7 +75,6 @@ namespace LocadoraVeiculos.WindowsApp
             toolStripBtnExcluir.Enabled = false;
         }
 
-
         #region Eventos de Click dos Botões do Menu Principal
 
         private void btnLocacoes_Click(object sender, EventArgs e)
@@ -85,8 +92,6 @@ namespace LocadoraVeiculos.WindowsApp
 
         private void btnCadastroClientes_Click(object sender, System.EventArgs e)
         {
-            
-
             ConfiguracaoClienteToolBox config = new ConfiguracaoClienteToolBox();
 
             ConfigurarToolBox(config);
@@ -113,7 +118,6 @@ namespace LocadoraVeiculos.WindowsApp
 
         private void btnCadastroVeiculoModules_Click(object sender, System.EventArgs e)
         {
-
             ConfiguracaoVeiculoToolBox configuracao = new ConfiguracaoVeiculoToolBox();
 
             ConfigurarToolBox(configuracao);
@@ -127,7 +131,6 @@ namespace LocadoraVeiculos.WindowsApp
 
         private void btnCadastroGrupoAutomoveis_Click(object sender, EventArgs e)
         {
-
             ConfiguracaoGrupoAutomoveisToolBox configuracao = new ConfiguracaoGrupoAutomoveisToolBox();
 
             ConfigurarToolBox(configuracao);
@@ -141,7 +144,6 @@ namespace LocadoraVeiculos.WindowsApp
 
         private void btnTaxasServicos_Click(object sender, EventArgs e)
         {
-           
             ConfiguracaoTaxasServicosToolBox config = new ConfiguracaoTaxasServicosToolBox();
 
             ConfigurarToolBox(config);
