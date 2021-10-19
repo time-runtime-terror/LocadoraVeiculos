@@ -40,9 +40,6 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.Shared
             {
                 TEntity registroParaAlterar = _dbSet.SingleOrDefault(x => x.Id.Equals(id));
 
-                if (registroParaAlterar != null && _dbContext.Entry(registroParaAlterar).State != EntityState.Modified)
-                    _dbContext.Entry(registroParaAlterar).State = EntityState.Detached;
-
                 registro.Id = id;
 
                 _dbContext.Entry(registroParaAlterar).CurrentValues.SetValues(registro);

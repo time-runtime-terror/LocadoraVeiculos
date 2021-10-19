@@ -9,6 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.IO;
+using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace LocadoraVeiculos.Infra.ORM
 {
@@ -20,6 +22,16 @@ namespace LocadoraVeiculos.Infra.ORM
         public DbSet<Veiculo> Veiculos { get; set; }
         public DbSet<TaxasServicos> Taxas { get; set; }
         public DbSet<Locacao> Locacoes { get; set; }
+
+        private static readonly ILoggerFactory serilogFactory = LoggerFactory.Create(builder =>
+        {
+            builder
+                .AddFilter((category, level) =>
+                    category == DbLoggerCategory.Database.Command.Name
+                    && level == LogLevel.Debug)
+                .AddDebug()
+                .AddSerilog(Log.Logger, dispose: true);
+        });
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -34,7 +46,8 @@ namespace LocadoraVeiculos.Infra.ORM
                 {
                     builder.EnableRetryOnFailure(5, TimeSpan.FromMilliseconds(10), null);
                 }
-                );
+                )
+                .UseLoggerFactory(serilogFactory);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
