@@ -1,5 +1,4 @@
-﻿using Autofac;
-using LocadoraVeiculos.Aplicacao.ClienteModule;
+﻿using LocadoraVeiculos.Aplicacao.ClienteModule;
 using LocadoraVeiculos.Aplicacao.FuncionarioModule;
 using LocadoraVeiculos.Aplicacao.GrupoAutomoveisModule;
 using LocadoraVeiculos.Aplicacao.LocacaoModule;
@@ -26,18 +25,14 @@ using LocadoraVeiculos.WindowsApp.Features.FuncionarioModule;
 using LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule;
 using LocadoraVeiculos.WindowsApp.Features.LocacaoModule;
 using LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Autofac;
 
 namespace LocadoraVeiculos.WindowsApp.Shared
 {
     public static class ServiceLocator
     {
         public static IContainer Container { get; private set; }
-        private static ContainerBuilder builder;
+        private static readonly ContainerBuilder builder;
 
         static ServiceLocator()
         {
@@ -45,71 +40,68 @@ namespace LocadoraVeiculos.WindowsApp.Shared
 
             builder.RegisterType<LocadoraDbContext>().InstancePerLifetimeScope();
 
-            RegistrarORM();
-            RegistrarAppService();
-            RegistrarOperacoes();
-
-            Container = builder.Build();
+            Container = builder
+                            .RegistrarORM()
+                            .RegistrarAppService()
+                            .RegistrarOperacoes()
+                            .Build();
         }
 
-        private static void RegistrarORM()
+        private static ContainerBuilder RegistrarORM(this ContainerBuilder builder)
         {
+            builder.RegisterType<GrupoAutomoveisRepositoryEF>().As<IGrupoAutomoveisRepository>();
 
-            builder.RegisterType<GrupoAutomoveisRepositoryEF>().As<IGrupoAutomoveisRepository>().InstancePerDependency();
+            builder.RegisterType<VeiculoRepositoryEF>().As<IVeiculoRepository>();
 
-            builder.RegisterType<VeiculoRepositoryEF>().As<IVeiculoRepository>().InstancePerDependency();
+            builder.RegisterType<FuncionarioRepositoryEF>().As<IFuncionarioRepository>();
 
-            builder.RegisterType<FuncionarioRepositoryEF>().As<IFuncionarioRepository>().InstancePerDependency();
-
-            builder.RegisterType<ClienteRepositoryEF>().As<IClienteRepository>().InstancePerDependency();
-
+            builder.RegisterType<ClienteRepositoryEF>().As<IClienteRepository>();
           
-            builder.RegisterType<TaxasServicosRepositoryEF>().As<ITaxasServicosRepository>().InstancePerDependency();
+            builder.RegisterType<TaxasServicosRepositoryEF>().As<ITaxasServicosRepository>();
 
-   
+            builder.RegisterType<LocacaoRepositoryEF>().As<ILocacaoRepository>();
 
-            builder.RegisterType<LocacaoRepositoryEF>().As<ILocacaoRepository>().InstancePerDependency();
-
+            return builder;
         }
 
-        private static void RegistrarAppService()
+        private static ContainerBuilder RegistrarAppService(this ContainerBuilder builder)
         {
-            
-            builder.RegisterType<GrupoAutomoveisAppService>().InstancePerDependency();
+            builder.RegisterType<GrupoAutomoveisAppService>();
 
-            builder.RegisterType<VeiculoAppService>().InstancePerDependency();
+            builder.RegisterType<VeiculoAppService>();
 
-            builder.RegisterType<FuncionarioAppService>().InstancePerDependency();
+            builder.RegisterType<FuncionarioAppService>();
 
-            builder.RegisterType<ClienteAppService>().InstancePerDependency();
+            builder.RegisterType<ClienteAppService>();
 
-            builder.RegisterType<TaxasServicosAppService>().InstancePerDependency();
-
+            builder.RegisterType<TaxasServicosAppService>();
          
+            builder.RegisterType<NotificadorEmail>().As<INotificadorEmail>();
 
-            builder.RegisterType<NotificadorEmail>().As<INotificadorEmail>().InstancePerDependency();
+            builder.RegisterType<VerificadorConexao>().As<IVerificadorConexao>();
 
-            builder.RegisterType<VerificadorConexao>().As<IVerificadorConexao>().InstancePerDependency();
+            builder.RegisterType<GeradorRecibo>().As<IGeradorRecibo>();
 
-            builder.RegisterType<GeradorRecibo>().As<IGeradorRecibo>().InstancePerDependency();
+            builder.RegisterType<LocacaoAppService>();
 
-            builder.RegisterType<LocacaoAppService>().InstancePerDependency();
+            return builder;
         }
 
-        private static void RegistrarOperacoes()
+        private static ContainerBuilder RegistrarOperacoes(this ContainerBuilder builder)
         {
+            builder.RegisterType<OperacoesCliente>();
 
-            builder.RegisterType<OperacoesCliente>().InstancePerDependency();
+            builder.RegisterType<OperacoesVeiculos>();
 
-            builder.RegisterType<OperacoesVeiculos>().InstancePerDependency();
+            builder.RegisterType<OperacoesGrupoAutomoveis>();
 
-            builder.RegisterType<OperacoesGrupoAutomoveis>().InstancePerDependency();
+            builder.RegisterType<OperacoesFuncionario>();
 
-            builder.RegisterType<OperacoesFuncionario>().InstancePerDependency();
+            builder.RegisterType<OperacoesTaxasServicos>();
 
-            builder.RegisterType<OperacoesTaxasServicos>().InstancePerDependency();
+            builder.RegisterType<OperacoesLocacao>();
 
-            builder.RegisterType<OperacoesLocacao>().InstancePerDependency();
+            return builder;
         }
     }
 }
