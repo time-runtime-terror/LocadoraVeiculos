@@ -60,6 +60,7 @@
     <Content Include="Resources\round_sort_by_alpha_black_24dp.png" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.3.0" />
     <PackageReference Include="JsonFlatFileDataStore" Version="2.2.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.10">
       <PrivateAssets>all</PrivateAssets>
