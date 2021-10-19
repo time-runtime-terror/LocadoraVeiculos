@@ -54,25 +54,24 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.Shared
 
         public virtual bool Excluir(int id)
         {
-            using (LocadoraDbContext db = new LocadoraDbContext())
+            try
             {
-                try
-                {
-                    var registroEncontrado = db.Set<TEntity>().Find(id);
+                var registroEncontrado = _dbSet.Find(id);
 
-                    if (registroEncontrado != null)
-                    {
-                        db.Set<TEntity>().Remove(registroEncontrado);
-
-                        db.SaveChanges();
-                    }
-                    else
-                        return false;
-                }
-                catch (Exception ex)
+                if (registroEncontrado != null)
                 {
-                    throw ex;
+                    _dbSet.Remove(registroEncontrado);
+
+                    _dbContext.SaveChanges();
+
+                    registroEncontrado = null;
                 }
+                else
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
 
             return true;
@@ -112,8 +111,7 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.Shared
 
         public virtual bool Existe(int id)
         {
-            using (LocadoraDbContext db = new LocadoraDbContext())
-                return db.Set<TEntity>().Any(x => x.Id == id);
+            return _dbSet.Any(x => x.Id == id);
         }
     }
 }
