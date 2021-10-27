@@ -246,15 +246,15 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             }
         }
 
-        public async Task EnviarEmailsAgendados()
-        {
-            bool resultadoEnvio = await locacaoService.EnviarEmailsAgendados();
+        //public async Task EnviarEmailsAgendados()
+        //{
+        //    bool resultadoEnvio = await locacaoService.EnviarEmailsAgendados();
 
-            if (resultadoEnvio)
-                Dashboard.Instancia.AtualizarRodape(msgEmailsEnviados);
-            else
-                Dashboard.Instancia.AtualizarRodape(msgEmailsNaoEnviados);
-        }
+        //    if (resultadoEnvio)
+        //        Dashboard.Instancia.AtualizarRodape(msgEmailsEnviados);
+        //    else
+        //        Dashboard.Instancia.AtualizarRodape(msgEmailsNaoEnviados);
+        //}
 
         public void Pesquisar(string text)
         {

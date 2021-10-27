@@ -12,18 +12,19 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
     {
         private readonly ILocacaoRepository locacaoRepository;
         private readonly IGeradorRecibo geradorRecibo;
-        private readonly INotificadorEmail notificadorEmail;
-        private readonly IVerificadorConexao verificadorConexao;
+        //private readonly INotificadorEmail notificadorEmail;
+        //private readonly IVerificadorConexao verificadorConexao;
+        private readonly IArmazenadorEmail armazenadorEmail;
 
         public LocacaoAppService(ILocacaoRepository locacaoRepository,
             IGeradorRecibo geradorRecibo,
-            INotificadorEmail notificadorEmail,
-            IVerificadorConexao verificadorConexao)
+           IArmazenadorEmail armazenadorEmail)
         {
             this.locacaoRepository = locacaoRepository;
             this.geradorRecibo = geradorRecibo;
-            this.notificadorEmail = notificadorEmail;
-            this.verificadorConexao = verificadorConexao;
+            //this.notificadorEmail = notificadorEmail;
+            //this.verificadorConexao = verificadorConexao;
+            this.armazenadorEmail = armazenadorEmail;
         }
 
         public bool RegistrarNovaLocacao(Locacao locacao)
@@ -71,24 +72,31 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
                         CaminhoArquivo = caminhoRecibo 
                     };
 
-                    bool temInternet = verificadorConexao.TemConexaoComInternet();
 
-                    if (temInternet)
-                    {
-                        notificadorEmail.EnviarEmailAsync(emailCliente, caminhoRecibo);
+                    armazenadorEmail.AgendarEnvioEmail(emailCliente, caminhoRecibo);
 
-                        resultadoValidacao = $"Devolução concluída com sucesso! O recibo de devolução foi enviado para o email {locacao.Cliente.Email}";
+                    resultadoValidacao = $"Devolução concluída com sucesso! O recibo de devolução foi enviado para o email {locacao.Cliente.Email}";
 
-                        Log.Logger.Aqui().Debug("Devolução concluída com sucesso! Email enviado com sucesso. ID: {IdLocacao}", locacao.Id);
-                    }
-                    else
-                    {
-                        notificadorEmail.AgendarEnvioEmailAsync(emailCliente, caminhoRecibo);
+                    Log.Logger.Aqui().Debug("Devolução concluída com sucesso! Email enviado com sucesso. ID: {IdLocacao}", locacao.Id);
 
-                        resultadoValidacao = "Devolução concluída com sucesso! Sem conexão com a internet; o envio do recibo foi agendado para mais tarde";
+                    //bool temInternet = verificadorConexao.TemConexaoComInternet();
 
-                        Log.Logger.Aqui().Debug("Devolução concluída com sucesso! Envio de email agendado... ID: {IdLocacao}", locacao.Id);
-                    }
+                    //if (temInternet)
+                    //{
+                    //    notificadorEmail.EnviarEmailAsync(emailCliente, caminhoRecibo);
+
+                    //    resultadoValidacao = $"Devolução concluída com sucesso! O recibo de devolução foi enviado para o email {locacao.Cliente.Email}";
+
+                    //    Log.Logger.Aqui().Debug("Devolução concluída com sucesso! Email enviado com sucesso. ID: {IdLocacao}", locacao.Id);
+                    //}
+                    //else
+                    //{
+                    //    notificadorEmail.AgendarEnvioEmailAsync(emailCliente, caminhoRecibo);
+
+                    //    resultadoValidacao = "Devolução concluída com sucesso! Sem conexão com a internet; o envio do recibo foi agendado para mais tarde";
+
+                    //    Log.Logger.Aqui().Debug("Devolução concluída com sucesso! Envio de email agendado... ID: {IdLocacao}", locacao.Id);
+                    //}
                 }
                 catch (Exception ex)
                 {
@@ -209,20 +217,20 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             return null;
         }
 
-        public async Task<bool> EnviarEmailsAgendados()
-        {
-            try
-            {
-                await notificadorEmail.EnviarEmailsAgendadosAsync();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, "Falha ao tentar enviar emails agendados.");
-            }
+        //public async Task<bool> EnviarEmailsAgendados()
+        //{
+        //    try
+        //    {
+        //        await notificadorEmail.EnviarEmailsAgendadosAsync();
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log.Error(ex, "Falha ao tentar enviar emails agendados.");
+        //    }
 
-            return false;
-        }
+        //    return false;
+        //}
 
         public List<Locacao> Pesquisar(string texto)
         {

@@ -57,7 +57,7 @@ namespace LocadoraVeiculos.WindowsApp
 
         #region Eventos de Click dos Botões do Menu Principal
 
-        private async void btnLocacoes_Click(object sender, EventArgs e)
+        private  void btnLocacoes_Click(object sender, EventArgs e)
         {
             ConfiguracoesLocacaoToolBox config = new ConfiguracoesLocacaoToolBox();
 
@@ -71,7 +71,7 @@ namespace LocadoraVeiculos.WindowsApp
 
             OperacoesLocacao operacoesLocacao = operacoes as OperacoesLocacao;
 
-            await operacoesLocacao.EnviarEmailsAgendados();
+            //await operacoesLocacao.EnviarEmailsAgendados();
         }
 
         private void btnCadastroClientes_Click(object sender, System.EventArgs e)

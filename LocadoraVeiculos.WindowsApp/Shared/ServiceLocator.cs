@@ -26,6 +26,7 @@ using LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule;
 using LocadoraVeiculos.WindowsApp.Features.LocacaoModule;
 using LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule;
 using Autofac;
+using LocadoraVeiculos.Infra.JSON.LocacaoModule;
 
 namespace LocadoraVeiculos.WindowsApp.Shared
 {
@@ -75,10 +76,12 @@ namespace LocadoraVeiculos.WindowsApp.Shared
             builder.RegisterType<ClienteAppService>();
 
             builder.RegisterType<TaxasServicosAppService>();
-         
-            builder.RegisterType<NotificadorEmail>().As<INotificadorEmail>();
 
-            builder.RegisterType<VerificadorConexao>().As<IVerificadorConexao>();
+            //builder.RegisterType<NotificadorEmail>().As<INotificadorEmail>();
+
+            //builder.RegisterType<VerificadorConexao>().As<IVerificadorConexao>();
+
+            builder.RegisterType<ArmazenadorEmail>().As<IArmazenadorEmail>();
 
             builder.RegisterType<GeradorRecibo>().As<IGeradorRecibo>();
 
