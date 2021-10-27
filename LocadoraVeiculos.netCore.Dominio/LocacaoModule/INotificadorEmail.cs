@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.netCore.Dominio.LocacaoModule
 {
@@ -7,5 +8,7 @@ namespace LocadoraVeiculos.netCore.Dominio.LocacaoModule
         Task EnviarEmailAsync(Email email, string nomeArquivo);
         Task AgendarEnvioEmailAsync(Email email, string nomeArquivo);
         Task EnviarEmailsAgendadosAsync();
+        IEnumerable<Email> ObterEmailsAgendados();
+        bool EnviarEmailAgendado(Email email);
     }
 }
