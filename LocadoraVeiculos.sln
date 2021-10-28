@@ -67,7 +67,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraVeiculos.Infra.Exte
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "LocadoraVeiculos.Database.SQLServerEntity", "LocadoraVeiculos.Database.SQLServerEntity\LocadoraVeiculos.Database.SQLServerEntity.sqlproj", "{44F8E0E4-9F3C-45EA-B679-7420DA6B9CAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraVeiculos.EmailService", "LocadoraVeiculos.EmailService\LocadoraVeiculos.EmailService.csproj", "{567E68CD-2438-48AD-A789-40133ACE3137}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraVeiculos.EmailService", "LocadoraVeiculos.EmailService\LocadoraVeiculos.EmailService.csproj", "{567E68CD-2438-48AD-A789-40133ACE3137}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -182,7 +182,7 @@ Global
 		{E02141EA-9335-49B3-B909-2E83F1A8735D} = {B79FD61E-1A7F-40A7-A2E5-745627C33EBB}
 		{4E3074A4-2F3F-4F91-ACBD-74720EDFFC2D} = {E02141EA-9335-49B3-B909-2E83F1A8735D}
 		{44F8E0E4-9F3C-45EA-B679-7420DA6B9CAE} = {F2994EC2-9873-4336-A539-7099C0E0BDB6}
-		{567E68CD-2438-48AD-A789-40133ACE3137} = {FE044444-3355-47E2-ADE5-77F2EADD7BD9}
+		{567E68CD-2438-48AD-A789-40133ACE3137} = {F41662BE-C6D8-46AC-BA08-6B0289D576DD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A8DAF387-4312-4A1E-9DBA-2EE0FEDD6AB0}

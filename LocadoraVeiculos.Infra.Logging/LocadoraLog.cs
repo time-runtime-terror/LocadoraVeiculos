@@ -30,9 +30,9 @@ namespace LocadoraVeiculos.Infra.Logging
                 .WriteTo.File("error.log",
                     rollingInterval: RollingInterval.Day,
                     restrictedToMinimumLevel: LogEventLevel.Warning)
-                .WriteTo.Seq("http://20.195.229.236:5341",
-                    apiKey: "7vhi2xy0pSo6lsVGHzi2",
-                    controlLevelSwitch: LevelSwitch)
+                //.WriteTo.Seq("http://20.195.229.236:5341",
+                //    apiKey: "7vhi2xy0pSo6lsVGHzi2",
+                //    controlLevelSwitch: LevelSwitch)
                 .CreateLogger();
         }
 

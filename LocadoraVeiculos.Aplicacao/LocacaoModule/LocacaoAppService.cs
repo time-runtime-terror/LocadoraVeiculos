@@ -1,10 +1,8 @@
-﻿using LocadoraVeiculos.Infra.ExtensionMethods;
-using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
-using LocadoraVeiculos.netCore.Dominio.TaxasServicosModule;
-using Serilog;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using LocadoraVeiculos.Infra.ExtensionMethods;
+using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
+using Serilog;
 
 namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 {
@@ -12,24 +10,20 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
     {
         private readonly ILocacaoRepository locacaoRepository;
         private readonly IGeradorRecibo geradorRecibo;
-        //private readonly INotificadorEmail notificadorEmail;
-        //private readonly IVerificadorConexao verificadorConexao;
         private readonly IArmazenadorEmail armazenadorEmail;
 
         public LocacaoAppService(ILocacaoRepository locacaoRepository,
             IGeradorRecibo geradorRecibo,
-           IArmazenadorEmail armazenadorEmail)
+            IArmazenadorEmail armazenadorEmail)
         {
             this.locacaoRepository = locacaoRepository;
             this.geradorRecibo = geradorRecibo;
-            //this.notificadorEmail = notificadorEmail;
-            //this.verificadorConexao = verificadorConexao;
             this.armazenadorEmail = armazenadorEmail;
         }
 
         public bool RegistrarNovaLocacao(Locacao locacao)
         {
-            Log.Logger.Aqui().Debug("Inserindo nova {TipoRegistro}: {@Locacao}", "Locacao", locacao);
+            Log.Logger.Aqui().Debug("Inserindo nova {TipoRegistro}: {@Locacao}", "Locacao", locacao.Id);
 
             string resultadoValidacao = locacao.Validar();
 
@@ -72,31 +66,11 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
                         CaminhoArquivo = caminhoRecibo 
                     };
 
-
                     armazenadorEmail.AgendarEnvioEmail(emailCliente, caminhoRecibo);
 
                     resultadoValidacao = $"Devolução concluída com sucesso! O recibo de devolução foi enviado para o email {locacao.Cliente.Email}";
 
                     Log.Logger.Aqui().Debug("Devolução concluída com sucesso! Email enviado com sucesso. ID: {IdLocacao}", locacao.Id);
-
-                    //bool temInternet = verificadorConexao.TemConexaoComInternet();
-
-                    //if (temInternet)
-                    //{
-                    //    notificadorEmail.EnviarEmailAsync(emailCliente, caminhoRecibo);
-
-                    //    resultadoValidacao = $"Devolução concluída com sucesso! O recibo de devolução foi enviado para o email {locacao.Cliente.Email}";
-
-                    //    Log.Logger.Aqui().Debug("Devolução concluída com sucesso! Email enviado com sucesso. ID: {IdLocacao}", locacao.Id);
-                    //}
-                    //else
-                    //{
-                    //    notificadorEmail.AgendarEnvioEmailAsync(emailCliente, caminhoRecibo);
-
-                    //    resultadoValidacao = "Devolução concluída com sucesso! Sem conexão com a internet; o envio do recibo foi agendado para mais tarde";
-
-                    //    Log.Logger.Aqui().Debug("Devolução concluída com sucesso! Envio de email agendado... ID: {IdLocacao}", locacao.Id);
-                    //}
                 }
                 catch (Exception ex)
                 {
@@ -216,21 +190,6 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
             return null;
         }
-
-        //public async Task<bool> EnviarEmailsAgendados()
-        //{
-        //    try
-        //    {
-        //        await notificadorEmail.EnviarEmailsAgendadosAsync();
-        //        return true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Log.Error(ex, "Falha ao tentar enviar emails agendados.");
-        //    }
-
-        //    return false;
-        //}
 
         public List<Locacao> Pesquisar(string texto)
         {

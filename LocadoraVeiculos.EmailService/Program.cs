@@ -1,13 +1,15 @@
-using Autofac;
-using Autofac.Extensions.DependencyInjection;
-using LocadoraVeiculos.EmailService.Workers;
-using LocadoraVeiculos.Infra.Logging;
-using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
+using System.IO;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
+using LocadoraVeiculos.EmailService.Workers;
+using LocadoraVeiculos.Infra.Logging;
+using Autofac.Extensions.DependencyInjection;
+using Autofac;
 using Serilog;
-using System.IO;
+using LocadoraVeiculos.Infra.InternetServices.LocacaoModule;
+
 namespace LocadoraVeiculos.EmailService
 {
     public class Program
@@ -29,8 +31,8 @@ namespace LocadoraVeiculos.EmailService
                 .UseServiceProviderFactory(new AutofacServiceProviderFactory())
                 .ConfigureContainer<ContainerBuilder>((hostContext, builder) =>
                 {
-                    builder.RegisterType<INotificadorEmail>().SingleInstance();
-                    builder.RegisterType<IVerificadorConexao>().SingleInstance();
+                    builder.RegisterType<NotificadorEmail>().As<INotificadorEmail>().SingleInstance();
+                    builder.RegisterType<VerificadorConexao>().As<IVerificadorConexao>().SingleInstance();
                 })
                 .UseWindowsService()
                 .ConfigureLogging(configure =>

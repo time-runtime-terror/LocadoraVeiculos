@@ -1,10 +1,10 @@
-using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Concurrent;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
 
 namespace LocadoraVeiculos.EmailService.Workers
 {
@@ -49,14 +49,9 @@ namespace LocadoraVeiculos.EmailService.Workers
                         bool conseguiuEnviar = _notificadorEmail.EnviarEmailAgendado(email);
 
                         if (conseguiuEnviar)
-                        {
                             _logger.LogInformation("Email enviado ao endereço {enderecoEmail} com sucesso!", email.EmailCliente);
-
-                        }
                         else
-                        {
                             _logger.LogError("Falha ao enviar email ao endereço {enderecoEmail}!", email.EmailCliente);
-                        }
 
                     });
                 }
