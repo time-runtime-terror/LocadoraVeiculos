@@ -8,17 +8,23 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 {
     public class LocacaoAppService
     {
-        private readonly ILocacaoRepository locacaoRepository;
-        private readonly IGeradorRecibo geradorRecibo;
-        private readonly IArmazenadorEmail armazenadorEmail;
+        private readonly ILocacaoRepository _locacaoRepository;
+        private readonly IGeradorRecibo _geradorRecibo;
+        private readonly IVerificadorConexao _verificadorConexao;
+        private readonly INotificadorEmail _notificadorEmail;
+        private readonly ISolicitacaoEmailRepository _solicitacaoEmailRepo;
 
         public LocacaoAppService(ILocacaoRepository locacaoRepository,
             IGeradorRecibo geradorRecibo,
-            IArmazenadorEmail armazenadorEmail)
+            IVerificadorConexao verificadorConexao,
+            INotificadorEmail notificadorEmail,
+            ISolicitacaoEmailRepository solicitacaoEmailRepo)
         {
-            this.locacaoRepository = locacaoRepository;
-            this.geradorRecibo = geradorRecibo;
-            this.armazenadorEmail = armazenadorEmail;
+            _locacaoRepository = locacaoRepository;
+            _geradorRecibo = geradorRecibo;
+            _verificadorConexao = verificadorConexao;
+            _notificadorEmail = notificadorEmail;
+            _solicitacaoEmailRepo = solicitacaoEmailRepo;
         }
 
         public bool RegistrarNovaLocacao(Locacao locacao)
@@ -31,7 +37,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             {
                 try
                 {
-                    locacaoRepository.InserirNovo(locacao);
+                    _locacaoRepository.InserirNovo(locacao);
 
                     Log.Logger.Aqui().Debug("{TipoRegistro} registrada com sucesso! ID: {IdLocacao}", "Locacao", locacao.Id);
                 }
@@ -45,6 +51,24 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             return true;
         }
 
+        public bool EnviarEmail(SolicitacaoEmail email)
+        {
+            if (!_verificadorConexao.TemConexaoComInternet())
+            {
+                Log.Logger.Aqui().Debug("Não foi possível se conectar com a internet!");
+                return false;
+            }
+
+            try
+            {
+                return _notificadorEmail.EnviarEmail(email);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         public string RegistrarDevolucao(Locacao locacao)
         {
             Log.Logger.Aqui().Debug("Registrando devolução da {TipoRegistro} ID: {IdLocacao}", "Locacao", locacao.Id);
@@ -55,22 +79,15 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             {
                 try
                 {
-                    locacaoRepository.RegistrarDevolucao(locacao);
+                    _locacaoRepository.RegistrarDevolucao(locacao);
 
-                    string caminhoRecibo = geradorRecibo.GerarRecibo(locacao);
+                    string caminhoRecibo = _geradorRecibo.GerarRecibo(locacao);
 
-                    Email emailCliente = new Email
-                    { 
-                        NomeCliente = locacao.Cliente.Nome,
-                        EmailCliente = locacao.Cliente.Email,
-                        CaminhoArquivo = caminhoRecibo 
-                    };
+                    _solicitacaoEmailRepo.InserirNovo(new SolicitacaoEmail(locacao, caminhoRecibo));
 
-                    armazenadorEmail.AgendarEnvioEmail(emailCliente, caminhoRecibo);
+                    resultadoValidacao = $"Devolução concluída com sucesso! O recibo foi encaminhado para envio ao email: {locacao.Cliente.Email}";
 
-                    resultadoValidacao = $"Devolução concluída com sucesso! O recibo de devolução foi enviado para o email {locacao.Cliente.Email}";
-
-                    Log.Logger.Aqui().Debug("Devolução concluída com sucesso! Email enviado com sucesso. ID: {IdLocacao}", locacao.Id);
+                    Log.Logger.Aqui().Debug("Devolução concluída com sucesso! Solicitação de envio de email encaminhada. ID: {IdLocacao}", locacao.Id);
                 }
                 catch (Exception ex)
                 {
@@ -92,7 +109,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             {
                 try
                 {
-                    locacaoRepository.Editar(id, registro);
+                    _locacaoRepository.Editar(id, registro);
 
                     Log.Logger.Aqui().Debug("Edição concluída com sucesso! ID: {IdLocacao}", id);
 
@@ -113,7 +130,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
             try
             {
-                if (locacaoRepository.Excluir(locacao.Id))
+                if (_locacaoRepository.Excluir(locacao.Id))
                 {
                     Log.Logger.Aqui().Debug("Exclusão concluída com sucesso! ID: {IdLocacao}", locacao.Id);
                     return true;
@@ -133,7 +150,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
             try
             {
-                return locacaoRepository.SelecionarPorId(id);
+                return _locacaoRepository.SelecionarPorId(id);
             }
             catch (Exception ex)
             {
@@ -149,7 +166,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
             try
             {
-                return locacaoRepository.SelecionarTodos();
+                return _locacaoRepository.SelecionarTodos();
             }
             catch (Exception ex)
             {
@@ -165,7 +182,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
             try
             {
-                return locacaoRepository.SelecionarTodasLocacoesConcluidas();
+                return _locacaoRepository.SelecionarTodasLocacoesConcluidas();
             }
             catch (Exception ex)
             {
@@ -181,7 +198,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
             try
             {
-                return locacaoRepository.SelecionarTodasLocacoesPendentes();
+                return _locacaoRepository.SelecionarTodasLocacoesPendentes();
             }
             catch (Exception ex)
             {

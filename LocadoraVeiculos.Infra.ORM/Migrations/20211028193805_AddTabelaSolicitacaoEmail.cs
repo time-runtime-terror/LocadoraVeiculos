@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LocadoraVeiculos.Infra.ORM.Migrations
 {
-    public partial class TabelasNovasAdicionadas : Migration
+    public partial class AddTabelaSolicitacaoEmail : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -143,8 +143,7 @@ namespace LocadoraVeiculos.Infra.ORM.Migrations
                         name: "FK_TBLOCACAO_TBVEICULO_VeiculoId",
                         column: x => x.VeiculoId,
                         principalTable: "TBVEICULO",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -171,6 +170,27 @@ namespace LocadoraVeiculos.Infra.ORM.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "TBSOLICITACAO_EMAIL",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    LocacaoId = table.Column<int>(type: "int", nullable: false),
+                    CaminhoRecibo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EnvioPendente = table.Column<bool>(type: "bit", nullable: false, defaultValue: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TBSOLICITACAO_EMAIL", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TBSOLICITACAO_EMAIL_TBLOCACAO_LocacaoId",
+                        column: x => x.LocacaoId,
+                        principalTable: "TBLOCACAO",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_LocacaoTaxasServicos_TaxasId",
                 table: "LocacaoTaxasServicos",
@@ -192,6 +212,11 @@ namespace LocadoraVeiculos.Infra.ORM.Migrations
                 column: "VeiculoId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_TBSOLICITACAO_EMAIL_LocacaoId",
+                table: "TBSOLICITACAO_EMAIL",
+                column: "LocacaoId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_TBVEICULO_IdGrupoAutomoveis",
                 table: "TBVEICULO",
                 column: "IdGrupoAutomoveis");
@@ -206,10 +231,13 @@ namespace LocadoraVeiculos.Infra.ORM.Migrations
                 name: "TBFUNCIONARIO");
 
             migrationBuilder.DropTable(
-                name: "TBLOCACAO");
+                name: "TBSOLICITACAO_EMAIL");
 
             migrationBuilder.DropTable(
                 name: "TBTAXASSERVICOS");
+
+            migrationBuilder.DropTable(
+                name: "TBLOCACAO");
 
             migrationBuilder.DropTable(
                 name: "TBCLIENTE");

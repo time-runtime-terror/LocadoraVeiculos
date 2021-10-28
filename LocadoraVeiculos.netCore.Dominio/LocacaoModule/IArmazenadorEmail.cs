@@ -8,6 +8,6 @@ namespace LocadoraVeiculos.netCore.Dominio.LocacaoModule
 {
     public interface IArmazenadorEmail
     {
-        void AgendarEnvioEmail(Email email, string caminho);
+        //void AgendarEnvioEmail(Email email, string caminho);
     }
 }

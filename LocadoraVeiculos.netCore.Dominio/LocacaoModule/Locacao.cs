@@ -21,6 +21,7 @@ namespace LocadoraVeiculos.netCore.Dominio.LocacaoModule
         public string Devolucao { get; set; }
         public double Total { get; set; }
         public List<TaxasServicos> Taxas { get; set; } = new List<TaxasServicos>();
+        public List<SolicitacaoEmail> SolicitacoesEmail{ get; set; }
 
         public Locacao(Cliente clienteEscolhido, Veiculo veiculoEscolhido, List<TaxasServicos> taxas,
             DateTime dataSaida, DateTime dataDevolucao, double caucao, string planoEscolhido, string condutor, string devolucao)

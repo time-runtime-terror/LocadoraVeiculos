@@ -21,6 +21,7 @@ namespace LocadoraVeiculos.Infra.ORM
         public DbSet<GrupoAutomoveis> GrupoAutomoveis { get; set; }
         public DbSet<Veiculo> Veiculos { get; set; }
         public DbSet<TaxasServicos> Taxas { get; set; }
+        public DbSet<SolicitacaoEmail> Emails { get; set; }
         public DbSet<Locacao> Locacoes { get; set; }
 
         private static readonly ILoggerFactory serilogFactory = LoggerFactory.Create(builder =>
@@ -57,6 +58,7 @@ namespace LocadoraVeiculos.Infra.ORM
             modelBuilder.ApplyConfiguration(new GrupoAutomoveisConfiguration());
             modelBuilder.ApplyConfiguration(new VeiculoConfiguration());
             modelBuilder.ApplyConfiguration(new TaxasServicosConfiguration());
+            modelBuilder.ApplyConfiguration(new SolicitacaoEmailConfiguration());
             modelBuilder.ApplyConfiguration(new LocacaoConfiguration());
         }
     }

@@ -9,6 +9,10 @@ using Autofac.Extensions.DependencyInjection;
 using Autofac;
 using Serilog;
 using LocadoraVeiculos.Infra.InternetServices.LocacaoModule;
+using LocadoraVeiculos.Aplicacao.LocacaoModule;
+using LocadoraVeiculos.Infra.PDF.LocacaoModule;
+using LocadoraVeiculos.Infra.ORM.Modules.LocacaoModule;
+using LocadoraVeiculos.Infra.ORM;
 
 namespace LocadoraVeiculos.EmailService
 {
@@ -31,14 +35,22 @@ namespace LocadoraVeiculos.EmailService
                 .UseServiceProviderFactory(new AutofacServiceProviderFactory())
                 .ConfigureContainer<ContainerBuilder>((hostContext, builder) =>
                 {
-                    builder.RegisterType<NotificadorEmail>().As<INotificadorEmail>().SingleInstance();
-                    builder.RegisterType<VerificadorConexao>().As<IVerificadorConexao>().SingleInstance();
+                    builder.RegisterType<NotificadorEmail>().As<INotificadorEmail>();
+                    builder.RegisterType<VerificadorConexao>().As<IVerificadorConexao>();
+                    builder.RegisterType<GeradorRecibo>().As<IGeradorRecibo>();
+
+                    builder.RegisterType<LocadoraDbContext>().InstancePerLifetimeScope();
+
+                    builder.RegisterType<SolicitacaoEmailRepositoryEF>().As<ISolicitacaoEmailRepository>();
+                    builder.RegisterType<LocacaoRepositoryEF>().As<ILocacaoRepository>();
+
+                    builder.RegisterType<LocacaoAppService>();
                 })
-                .UseWindowsService()
                 .ConfigureLogging(configure =>
                 {
                     configure.AddSerilog();
                 })
+                .UseWindowsService()
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddHostedService<EmailWorker>();

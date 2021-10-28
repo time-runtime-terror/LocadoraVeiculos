@@ -10,25 +10,25 @@ namespace LocadoraVeiculos.Infra.JSON.LocacaoModule
 {
     public class ArmazenadorEmail : IArmazenadorEmail
     {
-        private DataStore ArmazemDados { get; init; }
+        //private DataStore ArmazemDados { get; init; }
 
-        public ArmazenadorEmail()
-        {
-            ArmazemDados = new DataStore("emailData.json");
-        }
-        public void AgendarEnvioEmail(Email email, string caminho)
-        {
-            try
-            {
-                var collection = ArmazemDados.GetCollection<Email>();
+        //public ArmazenadorEmail()
+        //{
+        //    ArmazemDados = new DataStore("emailData.json");
+        //}
+        //public void AgendarEnvioEmail(Email email, string caminho)
+        //{
+        //    try
+        //    {
+        //        var collection = ArmazemDados.GetCollection<Email>();
 
-                collection.InsertOne(email);
-            }
-            catch (Exception ex)
-            {
-                ex.Data.Add("caminhoArquivo", caminho);
-                throw ex;
-            }
-        }
+        //        collection.InsertOne(email);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ex.Data.Add("caminhoArquivo", caminho);
+        //        throw ex;
+        //    }
+        //}
     }
 }

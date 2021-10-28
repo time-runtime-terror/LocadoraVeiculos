@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Mail;
 using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
@@ -9,19 +8,11 @@ namespace LocadoraVeiculos.Infra.InternetServices.LocacaoModule
 {
     public class NotificadorEmail : INotificadorEmail
     {
-        private DataStore ArmazemDados { get; init; }
-
         public NotificadorEmail()
         {
-            ArmazemDados = new DataStore("emailData.json");
         }
     
-        public IEnumerable<Email> ObterEmailsAgendados()
-        {
-            return ArmazemDados.GetCollection<Email>().AsQueryable();
-        }
-
-        public bool EnviarEmailAgendado(Email email)
+        public bool EnviarEmail(SolicitacaoEmail email)
         {
             try
             {
@@ -39,11 +30,11 @@ namespace LocadoraVeiculos.Infra.InternetServices.LocacaoModule
                         mail.From = new MailAddress("runtimeterror903@gmail.com");
 
                         //para
-                        mail.To.Add(new MailAddress(email.EmailCliente));
+                        mail.To.Add(new MailAddress(email.Locacao.Cliente.Email));
 
                         mail.Subject = "Locadora Rech: Devolução realizada com sucesso";
 
-                        string corpoEmail = $"<h2><strong>Olá {email.NomeCliente}!</strong></h2>" +
+                        string corpoEmail = $"<h2><strong>Olá {email.Locacao.Cliente.Nome}!</strong></h2>" +
                             $"<br/><h3>Houve uma locação de veículo recentemente fechada em seu nome." +
                             $"<br/>Segue em anexo o recibo contendo os dados da locação.</h3>" +
                             $"<br/><br/>Agradecemos a preferência, volte sempre!" +
@@ -53,22 +44,20 @@ namespace LocadoraVeiculos.Infra.InternetServices.LocacaoModule
 
                         mail.IsBodyHtml = true;
 
-                        if (email.CaminhoArquivo != null)
-                            mail.Attachments.Add(new Attachment(email.CaminhoArquivo));
+                        if (email.CaminhoRecibo != null)
+                            mail.Attachments.Add(new Attachment(email.CaminhoRecibo));
 
                         smtp.Send(mail);
-
                     }
-                    var collection = ArmazemDados.GetCollection<Email>();
 
-                    collection.DeleteOne(x => x.EmailCliente.Equals(email.EmailCliente));
+                    email.EnvioPendente = false;
 
                     return true;
                 }
             }
             catch (Exception ex)
             {
-                ex.Data.Add("emailCliente", email.EmailCliente);
+                ex.Data.Add("emailCliente", email.Locacao.Cliente.Email);
                 return false;
             }
         }

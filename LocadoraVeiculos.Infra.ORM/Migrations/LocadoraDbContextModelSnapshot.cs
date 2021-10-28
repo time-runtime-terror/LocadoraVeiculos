@@ -220,6 +220,32 @@ namespace LocadoraVeiculos.Infra.ORM.Migrations
                     b.ToTable("TBLOCACAO");
                 });
 
+            modelBuilder.Entity("LocadoraVeiculos.netCore.Dominio.LocacaoModule.SolicitacaoEmail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CaminhoRecibo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("EnvioPendente")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<int>("LocacaoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LocacaoId");
+
+                    b.ToTable("TBSOLICITACAO_EMAIL");
+                });
+
             modelBuilder.Entity("LocadoraVeiculos.netCore.Dominio.TaxasServicosModule.TaxasServicos", b =>
                 {
                     b.Property<int>("Id")
@@ -339,6 +365,17 @@ namespace LocadoraVeiculos.Infra.ORM.Migrations
                     b.Navigation("Veiculo");
                 });
 
+            modelBuilder.Entity("LocadoraVeiculos.netCore.Dominio.LocacaoModule.SolicitacaoEmail", b =>
+                {
+                    b.HasOne("LocadoraVeiculos.netCore.Dominio.LocacaoModule.Locacao", "Locacao")
+                        .WithMany("SolicitacoesEmail")
+                        .HasForeignKey("LocacaoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Locacao");
+                });
+
             modelBuilder.Entity("LocadoraVeiculos.netCore.Dominio.VeiculoModule.Veiculo", b =>
                 {
                     b.HasOne("LocadoraVeiculos.netCore.Dominio.GrupoAutomoveisModule.GrupoAutomoveis", "GrupoAutomoveis")
@@ -359,6 +396,11 @@ namespace LocadoraVeiculos.Infra.ORM.Migrations
             modelBuilder.Entity("LocadoraVeiculos.netCore.Dominio.GrupoAutomoveisModule.GrupoAutomoveis", b =>
                 {
                     b.Navigation("Veiculos");
+                });
+
+            modelBuilder.Entity("LocadoraVeiculos.netCore.Dominio.LocacaoModule.Locacao", b =>
+                {
+                    b.Navigation("SolicitacoesEmail");
                 });
 
             modelBuilder.Entity("LocadoraVeiculos.netCore.Dominio.VeiculoModule.Veiculo", b =>
