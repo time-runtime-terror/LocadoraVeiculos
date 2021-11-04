@@ -1,0 +1,83 @@
+﻿html {
+    font-family: 'Noto Sans', sans-serif;
+}
+
+body {
+    color: white;
+    background: rgb(130,42,166);
+    background: linear-gradient(170deg, rgba(130,42,166,0.9752275910364145) 41%, rgba(157,58,196,0.8071603641456583) 79%, rgba(162,78,207,0.8183648459383753) 84%);
+}
+
+.index-container {
+    padding-top: 5%;
+}
+
+.index-container h1 {
+    color: black;
+    font-weight: 700;
+}
+
+.index-container i {
+    display: block;
+    float: right;
+    font-size: 28rem;
+    padding-right: 5%;
+    position:relative;
+    top: -60px;
+}
+
+.index-container h3 {
+    padding-right: 60%;
+    padding-top: 2%;
+    color: white;
+}
+
+.index-container a {
+    background-color: #eae60e;
+    border: none;
+    color: black;
+    font-weight: 700;
+    margin-top: 1.5%;
+}
+
+.index-container a:hover {
+    background-color: rgba(0,0,0,0.5);
+    border: 2px solid #eae60e;
+}
+
+.navbar {
+    border: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    margin-bottom: 0;
+}
+
+.navbar .nav-link, .navbar-brand{
+    font-size: 1.4rem;
+}
+
+@media (max-width: 320px)
+{
+    .index-container i {
+        display: none;
+    }
+
+    .index-container h1 {
+        padding-top: 10%;
+        text-align: center;
+        font-size: 2.5rem;
+    }
+
+    .index-container h3 {
+        text-align: center;
+        padding-top: 5%;
+        padding-right: 5%;
+        color: white;
+    }
+
+    .index-container a {
+        text-align: center;
+        margin: 10% 25% -10% 25%;
+        width: 10rem;
+    }
+}
