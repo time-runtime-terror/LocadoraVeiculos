@@ -69,6 +69,8 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "LocadoraVeiculos.Database.S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraVeiculos.EmailService", "LocadoraVeiculos.EmailService\LocadoraVeiculos.EmailService.csproj", "{567E68CD-2438-48AD-A789-40133ACE3137}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraVeiculos.WebApplication", "LocadoraVeiculos.WebApplication\LocadoraVeiculos.WebApplication.csproj", "{456E2A23-BAAF-40F0-B7B5-1DB02BF2A649}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -147,6 +149,10 @@ Global
 		{567E68CD-2438-48AD-A789-40133ACE3137}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{567E68CD-2438-48AD-A789-40133ACE3137}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{567E68CD-2438-48AD-A789-40133ACE3137}.Release|Any CPU.Build.0 = Release|Any CPU
+		{456E2A23-BAAF-40F0-B7B5-1DB02BF2A649}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{456E2A23-BAAF-40F0-B7B5-1DB02BF2A649}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{456E2A23-BAAF-40F0-B7B5-1DB02BF2A649}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{456E2A23-BAAF-40F0-B7B5-1DB02BF2A649}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -183,6 +189,7 @@ Global
 		{4E3074A4-2F3F-4F91-ACBD-74720EDFFC2D} = {E02141EA-9335-49B3-B909-2E83F1A8735D}
 		{44F8E0E4-9F3C-45EA-B679-7420DA6B9CAE} = {F2994EC2-9873-4336-A539-7099C0E0BDB6}
 		{567E68CD-2438-48AD-A789-40133ACE3137} = {F41662BE-C6D8-46AC-BA08-6B0289D576DD}
+		{456E2A23-BAAF-40F0-B7B5-1DB02BF2A649} = {F41662BE-C6D8-46AC-BA08-6B0289D576DD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A8DAF387-4312-4A1E-9DBA-2EE0FEDD6AB0}
