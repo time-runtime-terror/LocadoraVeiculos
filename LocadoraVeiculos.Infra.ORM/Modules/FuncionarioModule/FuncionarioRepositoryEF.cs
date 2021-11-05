@@ -22,6 +22,24 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.FuncionarioModule
             throw new NotImplementedException();
         }
 
+        public virtual void Editar(int id, Funcionario registro)
+        {
+            try
+            {
+                Funcionario registroParaAlterar = db.Set<Funcionario>().SingleOrDefault(x => x.Id.Equals(id));
+
+                registro.Id = id;
+
+                db.Entry(registroParaAlterar).CurrentValues.SetValues(registro);
+
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public bool ExisteFuncionario(string usuario, string senha)
         {
             try

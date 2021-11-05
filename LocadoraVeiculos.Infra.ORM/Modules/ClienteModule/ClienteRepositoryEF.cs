@@ -16,6 +16,24 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.ClienteModule
             this.db = db;
         }
 
+        public override void Editar(int id, Cliente registro)
+        {
+            try
+            {
+                Cliente registroParaAlterar = db.Set<Cliente>().SingleOrDefault(x => x.Id.Equals(id));
+
+                registro.Id = id;
+
+                db.Entry(registroParaAlterar).CurrentValues.SetValues(registro);
+
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public override Cliente SelecionarPorId(int id)
         {
             try

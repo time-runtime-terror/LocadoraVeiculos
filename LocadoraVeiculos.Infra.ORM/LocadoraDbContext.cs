@@ -11,11 +11,14 @@ using System;
 using System.IO;
 using Microsoft.Extensions.Logging;
 using Serilog;
+using LocadoraVeiculos.netCore.Dominio.ParceiroModule;
 
 namespace LocadoraVeiculos.Infra.ORM
 {
     public class LocadoraDbContext : DbContext
     {
+
+        public DbSet<Parceiro> Parceiros { get; set; }
         public DbSet<Funcionario> Funcionarios {get; set; }
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<GrupoAutomoveis> GrupoAutomoveis { get; set; }
@@ -53,6 +56,7 @@ namespace LocadoraVeiculos.Infra.ORM
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfiguration(new ParceiroConfiguration());
             modelBuilder.ApplyConfiguration(new FuncionarioConfiguration());
             modelBuilder.ApplyConfiguration(new ClienteConfiguration());
             modelBuilder.ApplyConfiguration(new GrupoAutomoveisConfiguration());

@@ -17,6 +17,24 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.VeiculoModule
             this.db = db;
         }
 
+        public virtual void Editar(int id, Veiculo registro)
+        {
+            try
+            {
+                Veiculo registroParaAlterar = db.Set<Veiculo>().SingleOrDefault(x => x.Id.Equals(id));
+
+                registro.Id = id;
+
+                db.Entry(registroParaAlterar).CurrentValues.SetValues(registro);
+
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public override Veiculo SelecionarPorId(int id)
         {
             return db.Veiculos
