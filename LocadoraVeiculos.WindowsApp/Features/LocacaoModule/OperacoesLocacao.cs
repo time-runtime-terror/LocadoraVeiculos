@@ -10,12 +10,21 @@ using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 {
     public class OperacoesLocacao : ICadastravel
     {
+        #region Mensagens de Rodapé e Logging
+
+        private string msgEmailsEnviados { get => "Conexão estabelecida! Emails agendados enviados com sucesso."; }
+
+        private string msgEmailsNaoEnviados { get => "Sem conexão com a internet! Não foi possível enviar emails agendados."; }
+
+        #endregion
+
         private readonly LocacaoAppService locacaoService;
         private readonly TaxasServicosAppService taxaService;
         private readonly VeiculoAppService veiculoService;
@@ -30,12 +39,16 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             veiculoService = veiculoS;
             clienteService = clienteS;
 
-            tabelaLocacoes = new TabelaLocacaoControl();
+            tabelaLocacoes = new TabelaLocacaoControl(locacaoService);
         }
 
         public void InserirNovoRegistro()
         {
-            TelaCadastrarLocacaoForm tela = new TelaCadastrarLocacaoForm();
+            TelaCadastrarLocacaoForm tela = 
+                new TelaCadastrarLocacaoForm(locacaoService,
+                taxaService,
+                clienteService,
+                veiculoService);
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
@@ -74,7 +87,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             Locacao locacaoSelecionada = locacaoService.SelecionarPorId(id);
 
-            TelaCadastrarLocacaoForm tela = new TelaCadastrarLocacaoForm();
+            TelaCadastrarLocacaoForm tela = new TelaCadastrarLocacaoForm(locacaoService, taxaService, clienteService, veiculoService);
 
             tela.Locacao = locacaoSelecionada;
 
@@ -86,10 +99,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                 if (conseguiuEditar)
                 {
-                    taxaService.ExcluirTaxaUsada(tela.Locacao);
-
-                    taxaService.RegistrarTaxaUsada(tela.Locacao);
-
                     List<Locacao> locacoes = locacaoService.SelecionarTodos();
 
                     tabelaLocacoes.AtualizarRegistros(locacoes);
@@ -120,12 +129,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             {
                 Stopwatch watch = Stopwatch.StartNew();
 
-                bool conseguiuExcluir = locacaoService.Excluir(id);
+                bool conseguiuExcluir = locacaoService.Excluir(locacaoSelecionada);
 
                 if (conseguiuExcluir)
                 {
-                    taxaService.ExcluirTaxaUsada(locacaoSelecionada);
-
                     List<Locacao> locacoes = locacaoService.SelecionarTodos();
 
                     tabelaLocacoes.AtualizarRegistros(locacoes);
@@ -208,7 +215,7 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
             Locacao locacaoSelecionada = locacaoService.SelecionarPorId(id);
 
-            TelaRegistrarDevolucaoForm tela = new TelaRegistrarDevolucaoForm();
+            TelaRegistrarDevolucaoForm tela = new TelaRegistrarDevolucaoForm(taxaService);
 
             tela.Locacao = locacaoSelecionada;
 
@@ -238,6 +245,16 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                 }
             }
         }
+
+        //public async Task EnviarEmailsAgendados()
+        //{
+        //    bool resultadoEnvio = await locacaoService.EnviarEmailsAgendados();
+
+        //    if (resultadoEnvio)
+        //        Dashboard.Instancia.AtualizarRodape(msgEmailsEnviados);
+        //    else
+        //        Dashboard.Instancia.AtualizarRodape(msgEmailsNaoEnviados);
+        //}
 
         public void Pesquisar(string text)
         {

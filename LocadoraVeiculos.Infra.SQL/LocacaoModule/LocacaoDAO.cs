@@ -13,7 +13,7 @@ using System.Data;
 
 namespace LocadoraVeiculos.Infra.SQL.LocacaoModule
 {
-    public class LocacaoDAO : BaseDAO, ILocacaoRepository
+    public class LocacaoDAO : BaseDAO<Locacao>, ILocacaoRepository
     {
         #region Queries
         private const string sqlInserirLocacao =
@@ -182,6 +182,14 @@ namespace LocadoraVeiculos.Infra.SQL.LocacaoModule
 
         private const string sqlPesquisarLocacoes = "";
 
+
+        private const string sqlExcluirTaxasServicos =
+            @"DELETE 
+	                FROM
+                        TBTAXASSERVICOS
+                    WHERE 
+                        ID = @ID";
+
         #endregion
 
         private readonly ClienteDAO _clienteRepository;
@@ -201,16 +209,15 @@ namespace LocadoraVeiculos.Infra.SQL.LocacaoModule
             {
                 locacao.Id = Db.Insert(sqlInserirLocacao, ObtemParametrosRegistro(locacao));
 
-                if (locacao.Taxas != null)
-                    foreach (TaxasServicos taxa in locacao.Taxas)
-                    {
-                        var parametros = new Dictionary<string, object>();
+                foreach (TaxasServicos taxa in locacao.Taxas)
+                {
+                    var parametros = new Dictionary<string, object>();
 
-                        parametros.Add("ID_LOCACAO", locacao.Id);
-                        parametros.Add("ID_TAXASSERVICOS", taxa.Id);
+                    parametros.Add("ID_LOCACAO", locacao.Id);
+                    parametros.Add("ID_TAXASSERVICOS", taxa.Id);
 
-                        Db.Insert(sqlInserirTaxaSelecionada, parametros);
-                    }
+                    Db.Insert(sqlInserirTaxaSelecionada, parametros);
+                }
             }
             catch (Exception ex)
             {
@@ -251,6 +258,19 @@ namespace LocadoraVeiculos.Infra.SQL.LocacaoModule
             try
             {
                 Db.Update(sqlEditarLocacao, ObtemParametrosRegistro(registro));
+
+                Db.Delete(sqlExcluirTaxasServicos, AdicionarParametro("ID", id));
+
+                foreach (TaxasServicos taxa in registro.Taxas)
+                {
+                    var parametros = new Dictionary<string, object>();
+
+                    parametros.Add("ID_LOCACAO", registro.Id);
+                    parametros.Add("ID_TAXASSERVICOS", taxa.Id);
+
+                    Db.Insert(sqlInserirTaxaSelecionada, parametros);
+                }
+
             }
             catch (Exception ex)
             {
@@ -344,7 +364,7 @@ namespace LocadoraVeiculos.Infra.SQL.LocacaoModule
             throw new NotImplementedException();
         }
 
-        public Dictionary<string, object> ObtemParametrosRegistro(Locacao locacao)
+        public override Dictionary<string, object> ObtemParametrosRegistro(Locacao locacao)
         {
             var parametros = new Dictionary<string, object>();
 
@@ -361,7 +381,7 @@ namespace LocadoraVeiculos.Infra.SQL.LocacaoModule
             return parametros;
         }
 
-        public Locacao ConverterEmRegistro(IDataReader reader)
+        public override Locacao ConverterEmRegistro(IDataReader reader)
         {
             int id = Convert.ToInt32(reader["ID"]);
             int idVeiculo = Convert.ToInt32(reader["ID_VEICULO"]);

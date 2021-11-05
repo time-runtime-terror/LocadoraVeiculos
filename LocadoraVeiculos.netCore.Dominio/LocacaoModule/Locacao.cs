@@ -1,6 +1,4 @@
-﻿using ceTe.DynamicPDF;
-using ceTe.DynamicPDF.PageElements;
-using LocadoraVeiculos.netCore.Dominio.ClienteModule;
+﻿using LocadoraVeiculos.netCore.Dominio.ClienteModule;
 using LocadoraVeiculos.netCore.Dominio.Shared;
 using LocadoraVeiculos.netCore.Dominio.TaxasServicosModule;
 using LocadoraVeiculos.netCore.Dominio.VeiculoModule;
@@ -11,9 +9,10 @@ namespace LocadoraVeiculos.netCore.Dominio.LocacaoModule
 {
     public class Locacao : EntidadeBase, IEquatable<Locacao>
     {
+        public int ClienteId { get; set; }
         public Cliente Cliente { get; set; }
+        public int VeiculoId { get; set; }
         public Veiculo Veiculo { get; set; }
-        public List<TaxasServicos> Taxas { get; set; }
         public DateTime DataSaida { get; set; }
         public DateTime DataDevolucao { get; set; }
         public double Caucao { get; set; }
@@ -21,23 +20,52 @@ namespace LocadoraVeiculos.netCore.Dominio.LocacaoModule
         public string Condutor { get;  set; }
         public string Devolucao { get; set; }
         public double Total { get; set; }
+        public List<TaxasServicos> Taxas { get; set; } = new List<TaxasServicos>();
+        public List<SolicitacaoEmail> SolicitacoesEmail{ get; set; }
 
         public Locacao(Cliente clienteEscolhido, Veiculo veiculoEscolhido, List<TaxasServicos> taxas,
             DateTime dataSaida, DateTime dataDevolucao, double caucao, string planoEscolhido, string condutor, string devolucao)
         {
             Cliente = clienteEscolhido;
+
+            if (Cliente == null)
+                throw new ArgumentNullException("O cliente deve ser inserido!");
+
+            ClienteId = Cliente.Id;
+
             Veiculo = veiculoEscolhido;
-            Taxas = taxas;
+
+            if (Veiculo == null)
+                throw new ArgumentNullException("O veículo deve ser inserido!");
+
+            VeiculoId = Veiculo.Id;
             DataSaida = dataSaida;
             DataDevolucao = dataDevolucao;
             Caucao = caucao;
             Plano = planoEscolhido;
             Condutor = condutor;
             Devolucao = devolucao;
+
+            if (taxas != null)
+                Taxas = taxas;
         }
 
         public Locacao()
         {
+        }
+
+        public void AdicionarTaxa(TaxasServicos taxa)
+        {
+            Taxas.Add(taxa);
+            taxa.Locacoes.Add(this);
+        }
+
+        public void AdicionarTaxas(List<TaxasServicos> taxas)
+        {
+            Taxas.AddRange(taxas);
+
+            foreach (var taxa in taxas)
+                taxa.Locacoes.Add(this);
         }
 
         public override bool Equals(object obj)
@@ -48,15 +76,13 @@ namespace LocadoraVeiculos.netCore.Dominio.LocacaoModule
         public bool Equals(Locacao obj)
         {
             return obj is Locacao locacao &&
-                   id == locacao.id &&
                    Id == locacao.Id &&
                    EqualityComparer<Cliente>.Default.Equals(Cliente, locacao.Cliente) &&
                    EqualityComparer<Veiculo>.Default.Equals(Veiculo, locacao.Veiculo) &&
-                   EqualityComparer<List<TaxasServicos>>.Default.Equals(Taxas, locacao.Taxas) &&
+                   //EqualityComparer<ICollection<TaxasServicos>>.Default.Equals(Taxas, locacao.Taxas) &&
                    DataSaida == locacao.DataSaida &&
                    DataDevolucao == locacao.DataDevolucao &&
                    Caucao == locacao.Caucao &&
-                   Plano == locacao.Plano &&
                    Condutor == locacao.Condutor &&
                    Devolucao == locacao.Devolucao &&
                    Plano == locacao.Plano;
@@ -65,11 +91,11 @@ namespace LocadoraVeiculos.netCore.Dominio.LocacaoModule
         public override int GetHashCode()
         {
             int hashCode = -465531437;
-            hashCode = hashCode * -1521134295 + id.GetHashCode();
+            
             hashCode = hashCode * -1521134295 + Id.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<Cliente>.Default.GetHashCode(Cliente);
             hashCode = hashCode * -1521134295 + EqualityComparer<Veiculo>.Default.GetHashCode(Veiculo);
-            hashCode = hashCode * -1521134295 + EqualityComparer<List<TaxasServicos>>.Default.GetHashCode(Taxas);
+            hashCode = hashCode * -1521134295 + EqualityComparer<ICollection<TaxasServicos>>.Default.GetHashCode(Taxas);
             hashCode = hashCode * -1521134295 + DataSaida.GetHashCode();
             hashCode = hashCode * -1521134295 + DataDevolucao.GetHashCode();
             hashCode = hashCode * -1521134295 + Caucao.GetHashCode();

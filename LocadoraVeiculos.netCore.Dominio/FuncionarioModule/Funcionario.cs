@@ -21,7 +21,6 @@ namespace LocadoraVeiculos.netCore.Dominio.FuncionarioModule
         }
 
         
-
         public string Nome { get; }
 
         public string NomeUsuario { get; }
@@ -31,6 +30,7 @@ namespace LocadoraVeiculos.netCore.Dominio.FuncionarioModule
         public DateTime DataEntrada { get; }
 
         public string Salario { get; }
+       
 
         public override bool Equals(object obj)
         {
@@ -64,9 +64,9 @@ namespace LocadoraVeiculos.netCore.Dominio.FuncionarioModule
             if (DataEntrada == DateTime.MinValue)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Data de Entrada é obrigatório";
 
-            if(DataEntrada > DateTime.Now)
+            if (DataEntrada > DateTime.Now)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Data de Entrada aceita apenas datas menores que a atual";
-            
+
 
             if (string.IsNullOrEmpty(Salario))
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Salário é obrigatório";
@@ -77,6 +77,7 @@ namespace LocadoraVeiculos.netCore.Dominio.FuncionarioModule
 
             return resultadoValidacao;
         }
+
 
         public override int GetHashCode()
         {

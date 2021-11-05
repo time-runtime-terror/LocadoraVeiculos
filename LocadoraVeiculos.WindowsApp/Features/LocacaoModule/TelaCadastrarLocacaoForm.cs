@@ -46,7 +46,6 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
 
                 txtValorEntrada.Text = locacao.Caucao.ToString();
 
-
                 dateDataSaida.Value = locacao.DataSaida;
 
                 dateDataDevolucao.Value = locacao.DataDevolucao;
@@ -70,21 +69,17 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             }
         }
 
-        public TelaCadastrarLocacaoForm()
+        public TelaCadastrarLocacaoForm(LocacaoAppService locacaoSrv,
+            TaxasServicosAppService taxasSrv,
+            ClienteAppService clienteSrv,
+            VeiculoAppService veiculoSrv)
         {
             InitializeComponent();
 
-            ClienteDAO clienteRepository = new ClienteDAO();
-            VeiculosDAO veiculoRepository = new VeiculosDAO(new GrupoAutomoveisDAO());
-            TaxasServicosDAO taxaRepository = new TaxasServicosDAO();
-
-            clienteService = new ClienteAppService(clienteRepository);
-            veiculoService = new VeiculoAppService(veiculoRepository);
-            taxasService = new TaxasServicosAppService(taxaRepository);
-
-            LocacaoDAO locacaoRepository = new LocacaoDAO(clienteRepository, veiculoRepository, taxaRepository);
-
-            locacaoService = new LocacaoAppService(locacaoRepository, new GeradorRecibo(), new NotificadorEmail(), new VerificadorConexao());
+            locacaoService = locacaoSrv;
+            taxasService = taxasSrv;
+            clienteService = clienteSrv;
+            veiculoService = veiculoSrv;
         }
 
         #region Eventos
@@ -182,9 +177,8 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
                 foreach (var item in listaTaxasServicos.Items)
                     taxasSelecionadas.Add((TaxasServicos)item);
 
-
             string localTaxa = "Locação";
-            TelaSelecaoTaxasForm tela = new TelaSelecaoTaxasForm(taxasSelecionadas, localTaxa);
+            TelaSelecaoTaxasForm tela = new TelaSelecaoTaxasForm(taxasService, taxasSelecionadas, localTaxa);
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
@@ -242,11 +236,13 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
             DateTime dataSaida = dateDataSaida.Value;
             DateTime dataDevolucao = dateDataDevolucao.Value;
 
-            List<TaxasServicos> taxasSelecionadas = ObterTaxasSelecionadas();
-
             string devolucao = "Pendente";
 
-            return new Locacao(cliente, veiculo, taxasSelecionadas, dataSaida, dataDevolucao, caucao, plano, condutor, devolucao);
+            var novaLocacao = new Locacao(cliente, veiculo, null, dataSaida, dataDevolucao, caucao, plano, condutor, devolucao);
+
+            novaLocacao.AdicionarTaxas(ObterTaxasSelecionadas());
+
+            return novaLocacao;
         }
 
         private List<TaxasServicos> ObterTaxasSelecionadas()

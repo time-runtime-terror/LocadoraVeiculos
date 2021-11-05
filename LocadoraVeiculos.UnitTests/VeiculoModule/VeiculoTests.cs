@@ -1,16 +1,11 @@
 ﻿using LocadoraVeiculos.netCore.Dominio.VeiculoModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.UnitTests.VeiculoModule
 {
     [TestClass]
-    [TestCategory("Dominio")]
+    [TestCategory("Dominio/Veiculo")]
     public class VeiculoTest
     {
         byte[] foto = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20 };

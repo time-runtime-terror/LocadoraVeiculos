@@ -6,10 +6,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace LocadoraVeiculos.UnitTests.ClienteModule
 {
     [TestClass]
+    [TestCategory("Dominio/Cliente")]
     public class ClienteTests
     {
         [TestMethod]
-        [TestCategory("Dominio")]
         public void DeveValidar_Cliente()
         {
             // arrange
@@ -23,7 +23,6 @@ namespace LocadoraVeiculos.UnitTests.ClienteModule
         }
 
         [TestMethod]
-        [TestCategory("Dominio")]
         public void NaoDeveValidar_NomeVazio()
         {
             // arrange
@@ -37,7 +36,6 @@ namespace LocadoraVeiculos.UnitTests.ClienteModule
         }
 
         [TestMethod]
-        [TestCategory("Dominio")]
         public void NaoDeveValidar_EnderecoVazio()
         {
             // arrange
@@ -51,7 +49,6 @@ namespace LocadoraVeiculos.UnitTests.ClienteModule
         }
 
         [TestMethod]
-        [TestCategory("Dominio")]
         public void NaoDeveValidar_TelefoneVazio()
         {
             // arrange
@@ -65,7 +62,6 @@ namespace LocadoraVeiculos.UnitTests.ClienteModule
         }
 
         [TestMethod]
-        [TestCategory("Dominio")]
         public void NaoDeveValidar_CamposVazios()
         {
             // arrange

@@ -20,17 +20,14 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
     {
         private readonly LocacaoAppService locacaoService;
 
-        public TabelaLocacaoControl()
+        public TabelaLocacaoControl(LocacaoAppService locacaoS)
         {
             InitializeComponent();
             gridLocacoes.ConfigurarGridZebrado();
             gridLocacoes.ConfigurarGridSomenteLeitura();
             gridLocacoes.Columns.AddRange(ObterColunas());
 
-            LocacaoDAO locacaoRepo
-    = new LocacaoDAO(new ClienteDAO(), new VeiculosDAO(new GrupoAutomoveisDAO()), new TaxasServicosDAO());
-
-            locacaoService = new LocacaoAppService(locacaoRepo, new GeradorRecibo(), new NotificadorEmail(), new VerificadorConexao());
+            locacaoService = locacaoS;
         }
 
         public DataGridViewColumn[] ObterColunas()
@@ -64,9 +61,12 @@ namespace LocadoraVeiculos.WindowsApp.Features.LocacaoModule
         {
             gridLocacoes.Rows.Clear();
 
-            foreach (Locacao locacao in locacoes)
+            if(locacoes != null)
             {
-                gridLocacoes.Rows.Add(locacao.Id, locacao.Cliente, locacao.Veiculo, locacao.Plano, locacao.DataSaida.ToShortDateString(), locacao.DataDevolucao.ToShortDateString(), locacao.Devolucao);
+                foreach (Locacao locacao in locacoes)
+                {
+                    gridLocacoes.Rows.Add(locacao.Id, locacao.Cliente, locacao.Veiculo, locacao.Plano, locacao.DataSaida.ToShortDateString(), locacao.DataDevolucao.ToShortDateString(), locacao.Devolucao);
+                }
             }
 
             gridLocacoes.Sort(gridLocacoes.Columns[6], ListSortDirection.Descending);

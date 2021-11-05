@@ -60,7 +60,16 @@
     <Content Include="Resources\round_sort_by_alpha_black_24dp.png" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.3.0" />
     <PackageReference Include="JsonFlatFileDataStore" Version="2.2.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Serilog" Version="2.10.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
     <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.3.242703">
@@ -69,7 +78,6 @@
     <PackageReference Include="Microsoft.Windows.Compatibility" Version="5.0.2" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="System.Runtime.Extensions" Version="4.3.1" />
   </ItemGroup>
   <ItemGroup>
@@ -82,6 +90,7 @@
     <ProjectReference Include="..\LocadoraVeiculos.Aplicacao\LocadoraVeiculos.Aplicacao.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.Infra.Configuration\LocadoraVeiculos.Infra.JSON.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.Infra.Logging\LocadoraVeiculos.Infra.Logging.csproj" />
+    <ProjectReference Include="..\LocadoraVeiculos.Infra.ORM\LocadoraVeiculos.Infra.ORM.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.Infra.SQL\LocadoraVeiculos.Infra.SQL.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.Aplicacao\LocadoraVeiculos.Aplicacao.csproj" />
     <ProjectReference Include="..\LocadoraVeiculos.Infra.InternetServices\LocadoraVeiculos.Infra.InternetServices.csproj" />

@@ -1,32 +1,35 @@
-﻿using LocadoraVeiculos.Infra.ExtensionMethods;
+﻿using System;
+using System.Collections.Generic;
+using LocadoraVeiculos.Infra.ExtensionMethods;
 using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
 using Serilog;
-using System;
-using System.Collections.Generic;
 
 namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 {
     public class LocacaoAppService
     {
-        private readonly ILocacaoRepository locacaoRepository;
-        private readonly IGeradorRecibo geradorRecibo;
-        private readonly INotificadorEmail notificadorEmail;
-        private readonly IVerificadorConexao verificadorConexao;
+        private readonly ILocacaoRepository _locacaoRepository;
+        private readonly IGeradorRecibo _geradorRecibo;
+        private readonly IVerificadorConexao _verificadorConexao;
+        private readonly INotificadorEmail _notificadorEmail;
+        private readonly ISolicitacaoEmailRepository _solicitacaoEmailRepo;
 
-        public LocacaoAppService(ILocacaoRepository locacaoRepository, 
+        public LocacaoAppService(ILocacaoRepository locacaoRepository,
             IGeradorRecibo geradorRecibo,
+            IVerificadorConexao verificadorConexao,
             INotificadorEmail notificadorEmail,
-            IVerificadorConexao verificadorConexao)
+            ISolicitacaoEmailRepository solicitacaoEmailRepo)
         {
-            this.locacaoRepository = locacaoRepository;
-            this.geradorRecibo = geradorRecibo;
-            this.notificadorEmail = notificadorEmail;
-            this.verificadorConexao = verificadorConexao;
+            _locacaoRepository = locacaoRepository;
+            _geradorRecibo = geradorRecibo;
+            _verificadorConexao = verificadorConexao;
+            _notificadorEmail = notificadorEmail;
+            _solicitacaoEmailRepo = solicitacaoEmailRepo;
         }
 
         public bool RegistrarNovaLocacao(Locacao locacao)
         {
-            Log.Logger.Aqui().Debug("Inserindo nova {TipoRegistro}: {@Locacao}", "Locacao", locacao);
+            Log.Logger.Aqui().Debug("Inserindo nova {TipoRegistro}: {@Locacao}", "Locacao", locacao.Id);
 
             string resultadoValidacao = locacao.Validar();
 
@@ -34,7 +37,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             {
                 try
                 {
-                    locacaoRepository.InserirNovo(locacao);
+                    _locacaoRepository.InserirNovo(locacao);
 
                     Log.Logger.Aqui().Debug("{TipoRegistro} registrada com sucesso! ID: {IdLocacao}", "Locacao", locacao.Id);
                 }
@@ -48,6 +51,24 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             return true;
         }
 
+        public bool EnviarEmail(SolicitacaoEmail email)
+        {
+            if (!_verificadorConexao.TemConexaoComInternet())
+            {
+                Log.Logger.Aqui().Debug("Não foi possível se conectar com a internet!");
+                return false;
+            }
+
+            try
+            {
+                return _notificadorEmail.EnviarEmail(email);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         public string RegistrarDevolucao(Locacao locacao)
         {
             Log.Logger.Aqui().Debug("Registrando devolução da {TipoRegistro} ID: {IdLocacao}", "Locacao", locacao.Id);
@@ -58,35 +79,15 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             {
                 try
                 {
-                    locacaoRepository.RegistrarDevolucao(locacao);
+                    _locacaoRepository.RegistrarDevolucao(locacao);
 
-                    string caminhoRecibo = geradorRecibo.GerarRecibo(locacao);
+                    string caminhoRecibo = _geradorRecibo.GerarRecibo(locacao);
 
-                    Email emailCliente = new Email
-                    { 
-                        NomeCliente = locacao.Cliente.Nome,
-                        EmailCliente = locacao.Cliente.Email,
-                        CaminhoArquivo = caminhoRecibo 
-                    };
+                    _solicitacaoEmailRepo.InserirNovo(new SolicitacaoEmail(locacao, caminhoRecibo));
 
-                    bool temInternet = verificadorConexao.TemConexaoComInternet();
+                    resultadoValidacao = $"Devolução concluída com sucesso! O recibo foi encaminhado para envio ao email: {locacao.Cliente.Email}";
 
-                    if (temInternet)
-                    {
-                        notificadorEmail.EnviarEmailAsync(emailCliente, caminhoRecibo);
-
-                        resultadoValidacao = $"Devolução concluída com sucesso! O recibo de devolução foi enviado para o email {locacao.Cliente.Email}";
-
-                        Log.Logger.Aqui().Debug("Devolução concluída com sucesso! Email enviado com sucesso. ID: {IdLocacao}", locacao.Id);
-                    }
-                    else
-                    {
-                        notificadorEmail.AgendarEnvioEmailAsync(emailCliente, caminhoRecibo);
-
-                        resultadoValidacao = "Devolução concluída com sucesso! Sem conexão com a internet; o envio do recibo foi agendado para mais tarde";
-
-                        Log.Logger.Aqui().Debug("Devolução concluída com sucesso! Envio de email agendado... ID: {IdLocacao}", locacao.Id);
-                    }
+                    Log.Logger.Aqui().Debug("Devolução concluída com sucesso! Solicitação de envio de email encaminhada. ID: {IdLocacao}", locacao.Id);
                 }
                 catch (Exception ex)
                 {
@@ -108,7 +109,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             {
                 try
                 {
-                    locacaoRepository.Editar(id, registro);
+                    _locacaoRepository.Editar(id, registro);
 
                     Log.Logger.Aqui().Debug("Edição concluída com sucesso! ID: {IdLocacao}", id);
 
@@ -123,21 +124,21 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
             return false;
         }
 
-        public bool Excluir(int id)
+        public bool Excluir(Locacao locacao)
         {
-            Log.Logger.Aqui().Debug("Excluindo locação: {IdLocacao}", id);
+            Log.Logger.Aqui().Debug("Excluindo locação: {IdLocacao}", locacao.Id);
 
             try
             {
-                if (locacaoRepository.Excluir(id))
+                if (_locacaoRepository.Excluir(locacao.Id))
                 {
-                    Log.Logger.Aqui().Debug("Exclusão concluída com sucesso! ID: {IdLocacao}", id);
+                    Log.Logger.Aqui().Debug("Exclusão concluída com sucesso! ID: {IdLocacao}", locacao.Id);
                     return true;
                 }
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "Falha ao tentar excluir locação. ID: {IdLocacao}", id);
+                Log.Error(ex, "Falha ao tentar excluir locação. ID: {IdLocacao}", locacao.Id);
             }
 
             return false;
@@ -149,7 +150,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
             try
             {
-                return locacaoRepository.SelecionarPorId(id);
+                return _locacaoRepository.SelecionarPorId(id);
             }
             catch (Exception ex)
             {
@@ -165,7 +166,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
             try
             {
-                return locacaoRepository.SelecionarTodos();
+                return _locacaoRepository.SelecionarTodos();
             }
             catch (Exception ex)
             {
@@ -181,7 +182,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
             try
             {
-                return locacaoRepository.SelecionarTodasLocacoesConcluidas();
+                return _locacaoRepository.SelecionarTodasLocacoesConcluidas();
             }
             catch (Exception ex)
             {
@@ -197,7 +198,7 @@ namespace LocadoraVeiculos.Aplicacao.LocacaoModule
 
             try
             {
-                return locacaoRepository.SelecionarTodasLocacoesPendentes();
+                return _locacaoRepository.SelecionarTodasLocacoesPendentes();
             }
             catch (Exception ex)
             {

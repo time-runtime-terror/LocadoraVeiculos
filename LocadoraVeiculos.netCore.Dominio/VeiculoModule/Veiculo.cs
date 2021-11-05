@@ -5,11 +5,15 @@ using System.Linq;
 using System.IO;
 using LocadoraVeiculos.netCore.Dominio.GrupoAutomoveisModule;
 using System.Drawing;
+using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
 
 namespace LocadoraVeiculos.netCore.Dominio.VeiculoModule
 {
     public class Veiculo : EntidadeBase, IEquatable<Veiculo>
     {
+
+        public Veiculo() { }
+
         public Veiculo(byte[] foto, string placa, string modelo, string marca, string tipoCombustivel, int capacidadeTanque, int quilometragem, GrupoAutomoveis grupo)
         {
             Foto = foto;
@@ -36,15 +40,17 @@ namespace LocadoraVeiculos.netCore.Dominio.VeiculoModule
             }
         }
 
-        public byte[] Foto { get; }
-        public string Placa { get; }
-        public string Modelo { get; }
-        public string Marca { get; }
-        public string TipoCombustivel { get; }
-        public int CapacidadeTanque { get; }
-        public int Quilometragem { get; }
-        public GrupoAutomoveis GrupoAutomoveis { get; }
+        public byte[] Foto { get; set; }
+        public string Placa { get; set; }
+        public string Modelo { get; set; }
+        public string Marca { get; set; }
+        public string TipoCombustivel { get; set; }
+        public int CapacidadeTanque { get; set; }
+        public int Quilometragem { get; set;  }
+        public GrupoAutomoveis GrupoAutomoveis { get; set; }
+        public int? IdGrupoAutomoveis { get; set; }
         public bool EstaAlugado { get; set; }
+        public List<Locacao> Locacoes { get; set; } = new List<Locacao>();
 
         public string NomeGrupo 
         {
@@ -70,7 +76,6 @@ namespace LocadoraVeiculos.netCore.Dominio.VeiculoModule
         public bool Equals(Veiculo obj)
         {
             return obj is Veiculo veiculo &&
-                   id == veiculo.id &&
                    Id == veiculo.Id &&
                    Foto.SequenceEqual(veiculo.Foto) &&
                    Placa == veiculo.Placa &&
@@ -86,7 +91,6 @@ namespace LocadoraVeiculos.netCore.Dominio.VeiculoModule
         public override int GetHashCode()
         {
             int hashCode = -1944787682;
-            hashCode = hashCode * -1521134295 + id.GetHashCode();
             hashCode = hashCode * -1521134295 + Id.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<Bitmap>.Default.GetHashCode(Imagem);
             hashCode = hashCode * -1521134295 + EqualityComparer<byte[]>.Default.GetHashCode(Foto);

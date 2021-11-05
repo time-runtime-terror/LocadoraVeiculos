@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.netCore.Dominio.Shared;
+﻿using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
+using LocadoraVeiculos.netCore.Dominio.Shared;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -7,7 +8,6 @@ namespace LocadoraVeiculos.netCore.Dominio.ClienteModule
 {
     public class Cliente : EntidadeBase, IEquatable<Cliente>
     {
-
         public string Nome { get; }
         public string Email { get; }
         public string Endereco { get; }
@@ -17,10 +17,16 @@ namespace LocadoraVeiculos.netCore.Dominio.ClienteModule
         public string CNH { get; }
         public DateTime? VencimentoCnh { get; }
         public string RG { get; }
-        
+        public int? EmpresaId { get; set; }
         public Cliente Empresa { get; set; }
-
+        public virtual List<Cliente> Clientes { get; set; }
         public bool TemLocacaoAtiva { get; set; }
+        public List<Locacao> Locacoes { get; set; }
+
+        public Cliente()
+        {
+
+        }
 
         public Cliente(string nome, string email, string endereco, string telefone, string tipoPessoa,
             string cnh, DateTime? vencimentoCnh, string cadastro, string rg, Cliente empresa) 

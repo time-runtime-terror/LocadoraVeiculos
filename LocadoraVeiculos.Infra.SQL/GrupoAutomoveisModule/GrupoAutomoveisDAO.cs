@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.Infra.SQL.GrupoAutomoveisModule
 {
-    public class GrupoAutomoveisDAO : BaseDAO, IGrupoAutomoveisRepository
+    public class GrupoAutomoveisDAO : BaseDAO<GrupoAutomoveis>, IGrupoAutomoveisRepository
     {
         #region Queries
         private const string sqlInserirGrupoAutomoveis =
@@ -179,7 +179,7 @@ namespace LocadoraVeiculos.Infra.SQL.GrupoAutomoveisModule
             throw new NotImplementedException();
         }
 
-        public Dictionary<string, object> ObtemParametrosRegistro(GrupoAutomoveis grupoAutomoveis)
+        public override Dictionary<string, object> ObtemParametrosRegistro(GrupoAutomoveis grupoAutomoveis)
         {
             var parametros = new Dictionary<string, object>();
 
@@ -195,7 +195,7 @@ namespace LocadoraVeiculos.Infra.SQL.GrupoAutomoveisModule
             return parametros;
         }
 
-        public GrupoAutomoveis ConverterEmRegistro(IDataReader reader)
+        public override GrupoAutomoveis ConverterEmRegistro(IDataReader reader)
         {
             int id = Convert.ToInt32(reader["ID"]);
             string nomeGrupo = Convert.ToString(reader["NOMEGRUPO"]);

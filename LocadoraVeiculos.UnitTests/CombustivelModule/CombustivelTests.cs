@@ -6,7 +6,7 @@ using FluentAssertions;
 namespace LocadoraVeiculos.UnitTests.CombustivelModule
 {
     [TestClass]
-    [TestCategory("Dominio")]
+    [TestCategory("Dominio/Combustivel")]
     public class CombustivelTest
     {
         [TestMethod]

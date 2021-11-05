@@ -13,10 +13,10 @@ namespace LocadoraVeiculos.WindowsApp.Features.ClienteModule
         private Cliente cliente;
         private readonly ClienteAppService clienteService;
 
-        public TelaClienteForm()
+        public TelaClienteForm(ClienteAppService clienteSrv)
         {
             InitializeComponent();
-            clienteService = new ClienteAppService(new ClienteDAO());
+            clienteService = clienteSrv;
         }
 
         public Cliente Cliente

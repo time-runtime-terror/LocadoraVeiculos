@@ -1,40 +1,29 @@
-﻿using LocadoraVeiculos.WindowsApp.Features.ClienteModule;
+﻿using System;
+using System.Windows.Forms;
+using LocadoraVeiculos.WindowsApp.Features.ClienteModule;
 using LocadoraVeiculos.WindowsApp.Features.FuncionarioModule;
 using LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule;
-using System;
-using System.Windows.Forms;
 using LocadoraVeiculos.WindowsApp.Shared;
 using LocadoraVeiculos.WindowsApp.Feature.VeiculoModule;
 using LocadoraVeiculos.WindowsApp.Features.VeiculoModule;
 using LocadoraVeiculos.WindowsApp.Features.CombustivelModule;
 using LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule;
 using LocadoraVeiculos.WindowsApp.Features.LocacaoModule;
-using LocadoraVeiculos.Infra.SQL.GrupoAutomoveisModule;
-using LocadoraVeiculos.Aplicacao.GrupoAutomoveisModule;
-using LocadoraVeiculos.Infra.SQL.VeiculosModule;
-using LocadoraVeiculos.Aplicacao.VeiculosModule;
-using LocadoraVeiculos.Aplicacao.ClienteModule;
-using LocadoraVeiculos.Infra.SQL.ClienteModule;
-using LocadoraVeiculos.Aplicacao.FuncionarioModule;
-using LocadoraVeiculos.Infra.SQL.FuncionarioModule;
-using LocadoraVeiculos.Infra.SQL.TaxasServicosModule;
-using LocadoraVeiculos.Aplicacao.TaxasServicosModule;
-using LocadoraVeiculos.Infra.SQL.LocacaoModule;
-using LocadoraVeiculos.Aplicacao.LocacaoModule;
-using LocadoraVeiculos.Infra.PDF.LocacaoModule;
-using LocadoraVeiculos.Infra.InternetServices.LocacaoModule;
 using LocadoraVeiculos.Infra.JSON.CombustivelModule;
 using Serilog;
-using LocadoraVeiculos.netCore.Dominio.LocacaoModule;
+using Autofac;
 
 namespace LocadoraVeiculos.WindowsApp
 {
     public partial class Dashboard : Form
     {
-        private ICadastravel operacoes;
-        private INotificadorEmail notificadorEmail;
-        private IVerificadorConexao verificadorConexao;
+        #region Mensagens de Log
 
+        private string msgLoginCompleto { get => $"Usuário [{ Usuario }]: Login completo... Executando o Dashboard."; }
+
+        #endregion
+
+        private ICadastravel operacoes;
         public static Dashboard Instancia { get; set; }
         public string Usuario { get; set; }
 
@@ -44,18 +33,7 @@ namespace LocadoraVeiculos.WindowsApp
 
             Instancia = this;
             Usuario = usuario;
-            Log.Debug($"Usuário [{ Usuario }]: Login completo... Executando o Dashboard.");
-
-            notificadorEmail = new NotificadorEmail();
-            verificadorConexao = new VerificadorConexao();
-
-            if (verificadorConexao.TemConexaoComInternet())
-            {
-                EnviarEmailsAgendados();
-                Instancia.AtualizarRodape("Conexão estabelecida! Emails agendados enviados com sucesso.");
-            }
-            else
-                Instancia.AtualizarRodape("Sem conexão com a internet! Não foi possível enviar emails agendados.");
+            Log.Debug(msgLoginCompleto);
         }
 
         public void AtualizarRodape(string mensagem)
@@ -77,10 +55,9 @@ namespace LocadoraVeiculos.WindowsApp
             toolStripBtnExcluir.Enabled = false;
         }
 
-
         #region Eventos de Click dos Botões do Menu Principal
 
-        private void btnLocacoes_Click(object sender, EventArgs e)
+        private  void btnLocacoes_Click(object sender, EventArgs e)
         {
             ConfiguracoesLocacaoToolBox config = new ConfiguracoesLocacaoToolBox();
 
@@ -88,20 +65,13 @@ namespace LocadoraVeiculos.WindowsApp
 
             AtualizarRodape(config.TipoCadastro);
 
-            LocacaoDAO locacaoRepo 
-                = new LocacaoDAO(new ClienteDAO(), new VeiculosDAO(new GrupoAutomoveisDAO()), new TaxasServicosDAO());
-
-            LocacaoAppService locacaoService = new LocacaoAppService(locacaoRepo, new GeradorRecibo(), new NotificadorEmail(), new VerificadorConexao());
-
-            TaxasServicosAppService taxaService = new TaxasServicosAppService(new TaxasServicosDAO());
-
-            VeiculoAppService veiculoService = new VeiculoAppService(new VeiculosDAO(new GrupoAutomoveisDAO()));
-
-            ClienteAppService clienteService = new ClienteAppService(new ClienteDAO());
-
-            operacoes = new OperacoesLocacao(locacaoService, taxaService, veiculoService, clienteService);
+            operacoes = ServiceLocator.Container.Resolve<OperacoesLocacao>();
 
             ConfigurarPainelRegistros();
+
+            OperacoesLocacao operacoesLocacao = operacoes as OperacoesLocacao;
+
+            //await operacoesLocacao.EnviarEmailsAgendados();
         }
 
         private void btnCadastroClientes_Click(object sender, System.EventArgs e)
@@ -112,11 +82,7 @@ namespace LocadoraVeiculos.WindowsApp
 
             AtualizarRodape(config.TipoCadastro);
 
-            ClienteDAO clienteRepo = new ClienteDAO();
-
-            ClienteAppService clienteService = new ClienteAppService(clienteRepo);
-
-            operacoes = new OperacoesCliente(clienteService);
+            operacoes = ServiceLocator.Container.Resolve<OperacoesCliente>();
 
             ConfigurarPainelRegistros();
         }
@@ -129,9 +95,7 @@ namespace LocadoraVeiculos.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            FuncionarioDAO funcionarioRepo = new FuncionarioDAO();
-
-            operacoes = new OperacoesFuncionario(new FuncionarioAppService(funcionarioRepo));
+            operacoes = ServiceLocator.Container.Resolve<OperacoesFuncionario>();
 
             ConfigurarPainelRegistros();
         }
@@ -144,13 +108,7 @@ namespace LocadoraVeiculos.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            GrupoAutomoveisDAO grupoAutomoveisRepo = new GrupoAutomoveisDAO();
-
-            VeiculosDAO veiculosRepo = new VeiculosDAO(grupoAutomoveisRepo);
-
-            VeiculoAppService veiculosService = new VeiculoAppService(veiculosRepo);
-
-            operacoes = new OperacoesVeiculos(veiculosService);
+            operacoes = ServiceLocator.Container.Resolve<OperacoesVeiculos>();
 
             ConfigurarPainelRegistros();
         }
@@ -163,11 +121,7 @@ namespace LocadoraVeiculos.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            GrupoAutomoveisDAO grupoAutomoveisRepo = new GrupoAutomoveisDAO();
-
-            GrupoAutomoveisAppService grupoAutomoveisService = new GrupoAutomoveisAppService(grupoAutomoveisRepo);
-
-            operacoes = new OperacoesGrupoAutomoveis(grupoAutomoveisService);
+            operacoes = ServiceLocator.Container.Resolve<OperacoesGrupoAutomoveis>();
 
             ConfigurarPainelRegistros();
         }
@@ -180,9 +134,7 @@ namespace LocadoraVeiculos.WindowsApp
 
             AtualizarRodape(config.TipoCadastro);
 
-            TaxasServicosDAO taxasRepo = new TaxasServicosDAO();
-
-            operacoes = new OperacoesTaxasServicos(new TaxasServicosAppService(taxasRepo));
+            operacoes = ServiceLocator.Container.Resolve<OperacoesTaxasServicos>();
 
             ConfigurarPainelRegistros();
         }
@@ -197,9 +149,11 @@ namespace LocadoraVeiculos.WindowsApp
 
             ConfigurarPainelConfiguracoes();
         }
+
         #endregion
 
         #region Eventos de Click dos Botões de CRUD
+
         private void toolStripBtnAdicionar_Click(object sender, System.EventArgs e)
         {
             operacoes.InserirNovoRegistro();
@@ -240,18 +194,6 @@ namespace LocadoraVeiculos.WindowsApp
         #endregion
 
         #region Métodos Privados da Classe
-
-        private void EnviarEmailsAgendados()
-        {
-            try
-            {
-                notificadorEmail.EnviarEmailsAgendadosAsync();
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, "Falha ao tentar enviar emails agendados.");
-            }
-        }
 
         private void ConfigurarPainelRegistros()
         {

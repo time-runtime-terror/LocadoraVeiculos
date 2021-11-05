@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace LocadoraVeiculos.IntegrationTests.TaxasServicosModule
 {
     [TestClass]
-    [TestCategory("DAO")]
+    [TestCategory("DAO/TaxasServicos")]
     public class TaxasServicosDAOTests
     {
         private TaxasServicosDAO taxasRepository;

@@ -4,7 +4,7 @@ namespace LocadoraVeiculos.netCore.Dominio.Shared
 {
     public abstract class EntidadeBase
     {
-        protected int id;
+        //protected int id;
 
         public int Id { get; set; }
 

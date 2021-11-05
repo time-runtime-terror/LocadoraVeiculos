@@ -7,7 +7,7 @@ using System.Data;
 
 namespace LocadoraVeiculos.Infra.SQL.FuncionarioModule
 {
-    public class FuncionarioDAO : BaseDAO, IFuncionarioRepository
+    public class FuncionarioDAO : BaseDAO<Funcionario>, IFuncionarioRepository
     {
 
         #region Queries
@@ -194,7 +194,7 @@ namespace LocadoraVeiculos.Infra.SQL.FuncionarioModule
             throw new NotImplementedException();
         }
 
-        public Funcionario ConverterEmRegistro(IDataReader reader)
+        public override Funcionario ConverterEmRegistro(IDataReader reader)
         {
             int id = Convert.ToInt32(reader["ID"]);
             string nome = Convert.ToString(reader["NOME"]);
@@ -210,7 +210,7 @@ namespace LocadoraVeiculos.Infra.SQL.FuncionarioModule
             return funcionario;
         }
 
-        public Dictionary<string, object> ObtemParametrosRegistro(Funcionario funcionario)
+        public override Dictionary<string, object> ObtemParametrosRegistro(Funcionario funcionario)
         {
             var parametros = new Dictionary<string, object>();
 

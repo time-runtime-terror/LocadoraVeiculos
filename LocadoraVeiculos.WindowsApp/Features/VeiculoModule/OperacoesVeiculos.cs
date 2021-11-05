@@ -9,23 +9,26 @@ using System.Reflection;
 using System;
 using Serilog;
 using System.Diagnostics;
+using LocadoraVeiculos.Aplicacao.GrupoAutomoveisModule;
 
 namespace LocadoraVeiculos.WindowsApp.Feature.VeiculoModule
 {
     public class OperacoesVeiculos : ICadastravel
     {
         private readonly VeiculoAppService veiculosService = null;
+        private readonly GrupoAutomoveisAppService grupoAutoService;
         private readonly TabelaVeiculosControl tabelaVeiculo = null;
 
-        public OperacoesVeiculos(VeiculoAppService veiculosAppService)
+        public OperacoesVeiculos(VeiculoAppService veiculosAppService, GrupoAutomoveisAppService grupoAutomoveisService)
         {
             veiculosService = veiculosAppService;
+            grupoAutoService = grupoAutomoveisService;
             tabelaVeiculo = new TabelaVeiculosControl(veiculosAppService);
         }
 
         public void InserirNovoRegistro()
         {
-            TelaCadastrarVeiculos tela = new TelaCadastrarVeiculos();
+            TelaCadastrarVeiculos tela = new TelaCadastrarVeiculos(grupoAutoService);
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
@@ -34,7 +37,7 @@ namespace LocadoraVeiculos.WindowsApp.Feature.VeiculoModule
 
                 veiculosService.InserirNovo(tela.Veiculo);
 
-                List<Veiculo> veiculos = veiculosService.SelecionarTodos();
+                //List<Veiculo> veiculos = veiculosService.SelecionarTodos();
 
                 tabelaVeiculo.AtualizarRegistros();
 
@@ -59,7 +62,7 @@ namespace LocadoraVeiculos.WindowsApp.Feature.VeiculoModule
 
             Veiculo veiculoSelecionado = veiculosService.SelecionarPorId(id);
 
-            TelaCadastrarVeiculos tela = new TelaCadastrarVeiculos();
+            TelaCadastrarVeiculos tela = new TelaCadastrarVeiculos(grupoAutoService);
 
             tela.Veiculo = veiculoSelecionado;
 
