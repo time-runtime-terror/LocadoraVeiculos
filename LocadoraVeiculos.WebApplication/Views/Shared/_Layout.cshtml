@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - LocadoraVeiculos.WebApplication</title>
+    <title>@ViewData["Title"] - Locadora Rech</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,6 +29,28 @@
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacidade</a>
                         </li>
+                        <li class="nav-item disabled">
+                            <a class="nav-link text-white" asp-area="" asp-controller="" asp-action="">Configurações</a>
+                        </li>
+                        <li class="nav-item ml-auto">
+                            <a class="nav-link text-white" asp-area="" asp-controller="" asp-action="" disabled>Locações</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Cadastros
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Clientes</a>
+                                <a class="dropdown-item" href="#">Veículos</a>
+                                <a class="dropdown-item" href="#">Grupo de Automóveis</a>
+                                <a class="dropdown-item" href="#">Funcionários</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" disabled>Parceiros</a>
+                                <a class="dropdown-item" href="#" disabled>Cupons</a>
+                                <a class="dropdown-item" href="#">Taxas</a>
+                            </div>
+                        </li>
+
                     </ul>
                 </div>
             </div>

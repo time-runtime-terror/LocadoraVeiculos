@@ -33,7 +33,7 @@ body {
 }
 
 .index-container a {
-    background-color: #eae60e;
+    background-color: #ffc107;
     border: none;
     color: black;
     font-weight: 700;
@@ -42,7 +42,7 @@ body {
 
 .index-container a:hover {
     background-color: rgba(0,0,0,0.5);
-    border: 2px solid #eae60e;
+    border: 2px solid #ffc107;
 }
 
 .navbar {
@@ -50,10 +50,13 @@ body {
     -webkit-box-shadow: none;
     box-shadow: none;
     margin-bottom: 0;
+    background-color: #999999 !important;
 }
 
 .navbar .nav-link, .navbar-brand{
+    color: black !important;
     font-size: 1.4rem;
+    font-weight: 700;
 }
 
 @media (max-width: 320px)
