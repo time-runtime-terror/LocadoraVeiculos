@@ -44,10 +44,11 @@ namespace LocadoraVeiculos.WindowsApp.Features.ParceiroModule
         {
             gridParceiro.Rows.Clear();
 
-            foreach (Parceiro f in parceiros)
-            {
-                gridParceiro.Rows.Add(f.Id, f.Nome);
-            }
+            if (parceiros != null)
+                foreach (Parceiro f in parceiros)
+                {
+                    gridParceiro.Rows.Add(f.Id, f.Nome);
+                }
         }
 
     }
