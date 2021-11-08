@@ -26,6 +26,10 @@ using LocadoraVeiculos.WindowsApp.Features.GrupoAutomoveisModule;
 using LocadoraVeiculos.WindowsApp.Features.LocacaoModule;
 using LocadoraVeiculos.WindowsApp.Features.TaxasServicosModule;
 using Autofac;
+using LocadoraVeiculos.Infra.ORM.Modules.ParceiroModule;
+using LocadoraVeiculos.netCore.Dominio.ParceiroModule;
+using LocadoraVeiculos.Aplicacao.ParceiroModule;
+using LocadoraVeiculos.WindowsApp.Features.ParceiroModule;
 
 namespace LocadoraVeiculos.WindowsApp.Shared
 {
@@ -59,6 +63,8 @@ namespace LocadoraVeiculos.WindowsApp.Shared
           
             builder.RegisterType<TaxasServicosRepositoryEF>().As<ITaxasServicosRepository>();
 
+            builder.RegisterType<ParceiroRepositoryEF>().As<IParceiroRepository>();
+
             builder.RegisterType<SolicitacaoEmailRepositoryEF>().As<ISolicitacaoEmailRepository>();
 
             builder.RegisterType<LocacaoRepositoryEF>().As<ILocacaoRepository>();
@@ -73,6 +79,8 @@ namespace LocadoraVeiculos.WindowsApp.Shared
             builder.RegisterType<VeiculoAppService>();
 
             builder.RegisterType<FuncionarioAppService>();
+
+            builder.RegisterType<ParceiroAppService>();
 
             builder.RegisterType<ClienteAppService>();
 
@@ -91,6 +99,8 @@ namespace LocadoraVeiculos.WindowsApp.Shared
 
         private static ContainerBuilder RegistrarOperacoes(this ContainerBuilder builder)
         {
+            builder.RegisterType<OperacoesParceiro>();
+
             builder.RegisterType<OperacoesCliente>();
 
             builder.RegisterType<OperacoesVeiculos>();

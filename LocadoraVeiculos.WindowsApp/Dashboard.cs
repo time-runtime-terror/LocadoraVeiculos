@@ -12,6 +12,7 @@ using LocadoraVeiculos.WindowsApp.Features.LocacaoModule;
 using LocadoraVeiculos.Infra.JSON.CombustivelModule;
 using Serilog;
 using Autofac;
+using LocadoraVeiculos.WindowsApp.Features.ParceiroModule;
 
 namespace LocadoraVeiculos.WindowsApp
 {
@@ -30,6 +31,7 @@ namespace LocadoraVeiculos.WindowsApp
         public Dashboard(string usuario)
         {
             InitializeComponent();
+           
 
             Instancia = this;
             Usuario = usuario;
@@ -150,6 +152,19 @@ namespace LocadoraVeiculos.WindowsApp
             ConfigurarPainelConfiguracoes();
         }
 
+        private void btnParceiros_Click(object sender, EventArgs e)
+        {
+            ConfiguracaoParceiroToolBox configuracao = new ConfiguracaoParceiroToolBox();
+
+            ConfigurarToolBox(configuracao);
+
+            AtualizarRodape(configuracao.TipoCadastro);
+
+            operacoes = ServiceLocator.Container.Resolve<OperacoesParceiro>();
+
+            ConfigurarPainelRegistros();
+        }
+
         #endregion
 
         #region Eventos de Click dos Botões de CRUD
@@ -268,5 +283,7 @@ namespace LocadoraVeiculos.WindowsApp
             if (txtPesquisa.Text != "Digite para Pesquisar")
                 operacoes.Pesquisar(txtPesquisa.Text);
         }
+
+        
     }
 }
