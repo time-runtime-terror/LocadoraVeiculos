@@ -27,6 +27,9 @@ namespace LocadoraVeiculos.IntegrationTests.ParceiroModule
         {
             using (LocadoraDbContext db = new LocadoraDbContext())
             {
+                var listaCupons = db.Cupons;
+                db.Cupons.RemoveRange(listaCupons);
+
                 var list = db.Parceiros;
                 db.Parceiros.RemoveRange(list);
 

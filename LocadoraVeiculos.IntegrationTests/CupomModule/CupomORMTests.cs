@@ -81,7 +81,6 @@ namespace LocadoraVeiculos.IntegrationTests.CupomModule
             //assert
             var cupomEncontrado = cupomRepository.SelecionarPorId(cupom.Id);
             cupomEncontrado.Should().Be(cupomAtualizado);
-
         }
 
         [TestMethod]
