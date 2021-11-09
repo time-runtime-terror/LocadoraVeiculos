@@ -28,9 +28,9 @@ namespace LocadoraVeiculos.Infra.ORM.Configurations
                 .HasDefaultValue(0)
                 .HasColumnType("decimal(18, 0)");
 
-            entity.HasOne(e => e.Parceiro)
+            entity.HasOne(c => c.Parceiro)
                 .WithMany(p => p.Cupons)
-                .HasForeignKey(p => p.ParceiroId);
+                .HasForeignKey(c => c.ParceiroId).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

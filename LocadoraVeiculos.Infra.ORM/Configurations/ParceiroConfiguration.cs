@@ -19,9 +19,9 @@ namespace LocadoraVeiculos.Infra.ORM.Configurations
 
             builder.Property(p => p.Nome).HasColumnType("VARCHAR(50)").IsRequired();
 
-            builder.HasMany(p => p.Cupons)
-               .WithOne(p => p.Parceiro)
-               .OnDelete(DeleteBehavior.ClientSetNull);
+            //builder.HasMany(p => p.Cupons)
+            //   .WithOne(p => p.Parceiro)
+            //   .OnDelete(DeleteBehavior.ClientSetNull);
         }
     }
 }

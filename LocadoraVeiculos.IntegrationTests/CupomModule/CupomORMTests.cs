@@ -69,11 +69,12 @@ namespace LocadoraVeiculos.IntegrationTests.CupomModule
             var parceiro = new Parceiro("José");
             parceiroRepository.InserirNovo(parceiro);
 
-            var cupom = new Cupom("Desconto de Natal", 50, new DateTime(2021, 12, 25), parceiro.Id, 100);
+
+            var cupom = new Cupom("Desconto de Natal", 10, new DateTime(2021, 12, 31), parceiro, 100, TipoCupom.ValorFixo);
 
             cupomRepository.InserirNovo(cupom);
 
-            var cupomAtualizado = new Cupom("Desconto de Natal Atualizado", 50, new DateTime(2021, 12, 25), parceiro.Id, 100);
+            var cupomAtualizado = new Cupom("Desconto de Natal Atualizado", 10, new DateTime(2021, 12, 31), parceiro, 100, TipoCupom.ValorFixo);
 
 
             //action
@@ -82,9 +83,11 @@ namespace LocadoraVeiculos.IntegrationTests.CupomModule
             //assert
             var cupomEncontrado = cupomRepository.SelecionarPorId(cupom.Id);
 
-            cupomEncontrado.Parceiro = null;
+            //cupomEncontrado.Parceiro = null;
 
-            cupomEncontrado.Should().Be(cupomAtualizado);
+            
+
+            cupomEncontrado.Should().BeEquivalentTo(cupomAtualizado, x => x.Excluding(y => y.Parceiro).IgnoringCyclicReferences());
         }
 
         [TestMethod]
