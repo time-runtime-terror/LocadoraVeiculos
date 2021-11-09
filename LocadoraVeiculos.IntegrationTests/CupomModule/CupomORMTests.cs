@@ -75,11 +75,15 @@ namespace LocadoraVeiculos.IntegrationTests.CupomModule
 
             var cupomAtualizado = new Cupom("Desconto de Natal Atualizado", 50, new DateTime(2021, 12, 25), parceiro.Id, 100);
 
+
             //action
             cupomRepository.Editar(cupom.Id, cupomAtualizado);
 
             //assert
             var cupomEncontrado = cupomRepository.SelecionarPorId(cupom.Id);
+
+            cupomEncontrado.Parceiro = null;
+
             cupomEncontrado.Should().Be(cupomAtualizado);
         }
 

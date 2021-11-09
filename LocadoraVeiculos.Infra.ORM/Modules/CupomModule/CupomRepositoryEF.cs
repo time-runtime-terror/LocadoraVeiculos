@@ -16,26 +16,26 @@ namespace LocadoraVeiculos.Infra.ORM.Modules.CupomModule
             this.db = db;
         }
 
-        //public override void Editar(int id, Cupom registroAlterado)
-        //{
-        //    try
-        //    {
-        //        Cupom cupomParaAlterar= db.Cupons.SingleOrDefault(x => x.Id.Equals(id));
+        public override void Editar(int id, Cupom registroAlterado)
+        {
+            try
+            {
+                Cupom cupomParaAlterar = db.Cupons.SingleOrDefault(x => x.Id.Equals(id));
 
-        //        //if (locacaoParaAlterar != null && _dbContext.Entry(locacaoParaAlterar).State != EntityState.Modified)
-        //        //    _dbContext.Entry(locacaoParaAlterar).State = EntityState.Detached;
+                //if (locacaoParaAlterar != null && _dbContext.Entry(locacaoParaAlterar).State != EntityState.Modified)
+                //    _dbContext.Entry(locacaoParaAlterar).State = EntityState.Detached;
 
-        //        registroAlterado.Id = id;
+                registroAlterado.Id = id;
 
-        //        db.Entry(cupomParaAlterar).CurrentValues.SetValues(registroAlterado);
+                db.Entry(cupomParaAlterar).CurrentValues.SetValues(registroAlterado);
 
-        //        db.SaveChanges();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public Cupom SelecionarPorId(int id, bool carregarParceiro = false)
         {
