@@ -1,5 +1,7 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using AutoMapper.Contrib.Autofac.DependencyInjection;
+using LocadoraVeiculos.WebApplication.Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Localization;
@@ -47,6 +49,13 @@ namespace LocadoraVeiculos.WebApplication
                 configBinder.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
                 #endregion
             });
+        }
+
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterModule(new ContainerModule());
+
+            builder.RegisterAutoMapper(typeof(Startup).Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
