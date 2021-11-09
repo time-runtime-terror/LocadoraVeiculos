@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.netCore.Dominio.Shared;
+﻿using LocadoraVeiculos.netCore.Dominio.CupomModule;
+using LocadoraVeiculos.netCore.Dominio.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace LocadoraVeiculos.netCore.Dominio.ParceiroModule
 {
     public class Parceiro : EntidadeBase, IEquatable<Parceiro>
     {
+        public virtual ICollection<Cupom> Cupons { get; set; }
 
         public string Nome { get; }
 
